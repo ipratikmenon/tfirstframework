@@ -130,6 +130,45 @@ it weakens monotonically as anisotropy increases (1.50 → 1.50 → 0.50 → 0.5
 trend worth tracking in any follow-up, not just noise (each run's `key_metric` and full
 diagnostic history is in `results.db`).
 
+## Follow-up: N=128 run + resolution control (same session)
+
+Ran the spec'd follow-up, `EXP-L3-R2-ANISO0050-JAX-128` (aspect_ratio=0.05,
+N=128): **FAIL**, `delta_max=0.00` exactly. Not a truncated or vacuous run —
+theta stayed non-negative, energy decayed normally (0.001328 → 0.000763),
+and it completed the full 69 steps to `t_final=1.0`.
+
+Before treating this as a genuine finding, checked for a resolution artifact:
+at N=128, `ellz` hits the module's hard grid floor (clamped to exactly
+2π/128=0.0491, since the requested 0.05×ellr=0.0393 is below one grid cell)
+— i.e. the core's axial extent is representable as literally one grid point.
+
+Ran a control to isolate the explanation: `EXP-L3-R2-ANISO0100-JAX-128`
+(aspect_ratio=0.1, N=128, NOT floor-clamped — ellz=0.0785 vs floor 0.0491)
+— **PASS**, `delta_max=0.50`, identical to the N=64 result at the same
+aspect_ratio. Full comparison:
+
+| exp_id | N | aspect_ratio | floor-clamped? | n_steps | delta_max | verdict |
+|---|---|---|---|---|---|---|
+| EXP-L3-R2-ANISO0100-JAX-064 | 64 | 0.1 | yes (ellz=2π/64) | 29 | 0.50 | PASS |
+| EXP-L3-R2-ANISO0100-JAX-128 | 128 | 0.1 | no (ellz=0.0785) | 64 | 0.50 | PASS |
+| EXP-L3-R2-ANISO0050-JAX-128 | 128 | 0.05 | yes (ellz=2π/128) | 69 | 0.00 | FAIL |
+
+**Conclusion:** aspect_ratio=0.1 is genuinely resolution-converged (identical
+δ at N=64 and N=128). The sole FAIL coincides exactly with the one
+configuration pinned to the hard grid floor — most likely a discretization
+artifact (the intended core geometry is literally unrepresentable at 1 grid
+cell), not a genuine defeat of the CZ/delta-gain mechanism at that
+anisotropy. This is inference from a single controlled comparison, not
+proof the floor explains everything; cleanly testing the real
+aspect_ratio=0.05 geometry needs N high enough that ellz clears the floor by
+several cells (N≳512 for ellz=0.0393 to span ~4 cells) — well beyond this
+session's compute budget, and not attempted.
+
+**Current honest state of the sweep:** delta_max>0 at every properly
+resolved aspect_ratio tested (down to 0.1, confirmed at two resolutions);
+no genuine adversarial anisotropy threshold has been found — only a hard
+numerical resolution floor.
+
 ## Honest caveats
 
 - Same epistemic status as `blowup_search_3D.py` (M9): finite N cannot resolve

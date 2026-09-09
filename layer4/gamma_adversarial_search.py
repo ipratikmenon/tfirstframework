@@ -276,7 +276,7 @@ class GammaAdversarialSearch:
             integrand[i] = float(np.sqrt(max(ball_avg, 0.0)))
 
         # Trapezoidal rule
-        gamma = float(np.trapz(integrand, dx=dt))
+        gamma = float(np.trapezoid(integrand, dx=dt))
         return gamma
 
     # ------------------------------------------------------------------

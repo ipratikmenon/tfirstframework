@@ -6218,6 +6218,19 @@ term families. Three structural lemmas organise them.
   Ladyzhenskaya--Uraltseva Chapter~II; it involves no new estimate. Until
   written out it is recorded as \emph{open-mechanical}, distinct in kind
   from the genuinely open items (H2, $\sigma^*$-decay, Type-II).
+
+  \medskip
+  \noindent\textbf{\color{red}Superseded (S41).} The scheme sketched in this
+  remark was executed in \S\ref{sec:annulus-s41} and \emph{does not close}.
+  The recursion it produces has coefficient $\geq2^{8}$ in front of the
+  level-$(k+1)$ quantity for every choice of $\delta_k$
+  (Proposition~\ref{prop:s41-nocontraction}); the stated choice
+  $\delta_k=\delta_08^{-k}$ makes the coefficient grow like $32^{k}$ rather
+  than $4^{k}$; and by a co-area identity no admissible level selection can
+  reduce the residual below a level density of the underlying measure
+  (Proposition~\ref{prop:s41-coarea}). The classification
+  ``open-mechanical'' in the last sentence above is therefore withdrawn: see
+  Remark~\ref{rem:s41-summary} and Conjecture~\ref{target:band-absorption}.
 \end{remark}
 
 \subsection{Routine items (i), (ii), (iv) discharged [Proved]}
@@ -6261,17 +6274,37 @@ $K$-absorption & Proved modulo $\mathcal{A}_{\mathrm{ann}}$ & Prop.~\ref{prop:K-
 C2 ($\alpha$-terms) & Verified & this section \\
 Gram negativity & Proved (good signs) & Lem.~\ref{lem:gram-negativity} \\
 $w^2$ cancellation & Proved (corrects \S\ref{sec:secondrung-s35}) & Lem.~\ref{lem:w2-cancel} \\
-Annulus residual $\mathcal{A}_{\mathrm{ann}}$ & Open-mechanical (level iteration) & Rem.~\ref{rem:level-iteration} \\
+$\mathcal{A}_{\mathrm{ann}}$: families (G1)--(G4) & Proved good-signed, discarded (S41) & Prop.~\ref{prop:s41-core} \\
+$\mathcal{A}_{\mathrm{ann}}$: families (I1)--(I2) & Proved in the allowed class (S41) & Prop.~\ref{prop:s41-core} \\
+$\mathcal{A}_{\mathrm{ann}}$: core (S1)+(S2) & \textbf{Open} --- level iteration \emph{fails} & \S\ref{sec:annulus-s41}, Conj.~\ref{target:band-absorption} \\
 \hline
 \end{tabular}
 \end{center}
 
-\noindent\textbf{Summary.} H1 (the Bridge Lemma) now rests on:
+\noindent\textbf{Summary} \emph{(amended in S41; see
+\S\ref{sec:annulus-s41})}. H1 (the Bridge Lemma) rests on:
 (a)~$\sigma^*\leq\varepsilon_0$ at the working scale;
-(b)~execution of the level iteration for $\mathcal{A}_{\mathrm{ann}}$
-(open-mechanical). Everything else in its estimate layer is proved. The
-genuinely open items of the program remain H2, $\sigma^*$-decay, and
-Type-II exclusion, as ledgered in \S\ref{sec:secondrung-s35}.
+(b)~absorption of the annulus residual $\mathcal{A}_{\mathrm{ann}}$.
+Item~(b) was classified in Remark~\ref{rem:level-iteration} as
+\emph{open-mechanical}, on the expectation that the nested level iteration
+sketched there would dispose of it. \textbf{That expectation was wrong.}
+\S\ref{sec:annulus-s41} executes the scheme and proves that it cannot
+close: the recursion coefficient is $\geq2^{8}$ for every choice of the
+Young parameters (Proposition~\ref{prop:s41-nocontraction}), the proposed
+$\delta_k=\delta_08^{-k}$ makes it worse, the unrolled iteration is weaker
+than trivial (Proposition~\ref{prop:s41-vacuous}), and by a co-area
+identity \emph{no} level selection whatsoever gains anything
+(Proposition~\ref{prop:s41-coarea}). What S41 does establish is that six of
+the eight cutoff-derivative families vanish by sign or fall in the allowed
+inhomogeneous class, leaving an explicit core with an unconditional bound
+that falls short of absorption by exactly one logarithm --- the same
+shortfall as Proposition~\ref{prop:crude-K}. Item~(b) is therefore
+reclassified as \emph{open}, of the same analytic type as
+Conjecture~\ref{conj:K-refined}, and is restated as
+Conjecture~\ref{target:band-absorption}. Everything else in H1's estimate
+layer is proved. The genuinely open items of the program remain H2,
+$\sigma^*$-decay, and Type-II exclusion, as ledgered in
+\S\ref{sec:secondrung-s35}.
 
 % ══════════════════════════════════════════════════════════════════════════════
 \section{Localized Constantin--Fefferman Depletion and the Unification of H2 with $\sigma^*$-Decay (Session S37)}
@@ -7630,6 +7663,821 @@ Type-II exclusion & Open (outside all present methods) & Rem.~\ref{rem:s39-dista
   this.
 \end{remark}
 
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Execution of the Level Iteration for the Annulus Residual:
+an Exact Inventory and a Structural Obstruction (Session S41)}
+\label{sec:annulus-s41}
+
+This section carries out the programme announced in
+Remark~\ref{rem:level-iteration}: the nested De~Giorgi level iteration that
+was to remove the annulus residual $\mathcal{A}_{\mathrm{ann}}$
+(Definition~\ref{def:annulus-residual}) from
+Proposition~\ref{prop:K-amended}, the last item standing between H1's
+estimate layer and a proof. The outcome is \emph{mixed, and on the decisive
+point negative}; it is reported as such.
+
+\begin{enumerate}[label=(\alph*)]
+  \item The nested levels and cutoffs are constructed and their derivative
+    bounds computed; the constant $C\,4^{k}$ asserted in
+    Remark~\ref{rem:level-iteration} is confirmed, and its origin
+    identified: it is $|\chi_k'|^2$, produced when the second-order term
+    $\nu\Delta m$ inside $D_t\chi_k$ is integrated by parts
+    (\S\ref{subsec:s41-setup}).
+  \item An \emph{exact} inventory of the $\chi$-derivative families is
+    derived from the $K$-identity of Proposition~\ref{prop:K-self}
+    (\S\ref{subsec:s41-inventory}). This is a genuine positive result: four
+    of the eight families have a \emph{favourable sign} and may simply be
+    discarded, and two more fall in the inhomogeneous class already allowed
+    by Proposition~\ref{prop:K-amended}. $\mathcal{A}_{\mathrm{ann}}$
+    shrinks to an irreducible core of two families
+    (Proposition~\ref{prop:s41-core}).
+  \item The recursion for that core is derived
+    (\S\ref{subsec:s41-recursion}). Its coefficient in front of the
+    level-$(k+1)$ quantity is \emph{never smaller than $1$}, for
+    \emph{any} choice of the Young parameters $\delta_k$; the proposed
+    $\delta_k=\delta_0 8^{-k}$ makes it strictly worse
+    (Proposition~\ref{prop:s41-nocontraction}). The unrolled iteration is
+    weaker than the trivial inequality and carries no information
+    (Proposition~\ref{prop:s41-vacuous}).
+  \item Neither classical iteration lemma applies: the linear
+    (Ladyzhenskaya--Ural'tseva / Giaquinta--Giusti hole-filling) lemma needs
+    a contraction factor $<1$; the nonlinear (Stampacchia--De~Giorgi) lemma
+    needs a superlinear gain running from coarse levels to fine ones. Here
+    the recursion runs the \emph{opposite} way --- the level sets
+    \emph{grow} with $k$ --- and is homogeneous of degree one
+    (Remark~\ref{rem:s41-whichlemma}).
+  \item The $k\to\infty$ limit does not annihilate the residual: it
+    converges to a \emph{flux through the level set} $\{|\omega|=M/8\}$, and
+    a co-area identity shows that \emph{no} admissible choice of levels ---
+    nested, geometric, uniform, or optimally selected --- reduces the
+    residual below the level density of the underlying measure, whose only
+    a priori bound is a fixed multiple of the band integral
+    (\S\ref{subsec:s41-coarea}). This is the crux, and it is not
+    bookkeeping.
+  \item The core residual does admit the unconditional bound
+    $\mathcal{A}_{\mathrm{ann}}^{\mathrm{core}}
+    \leq C\,\mathcal{L}\,\|w\|_{L^\infty}M^{1/2}$
+    (Proposition~\ref{prop:s41-crude}) --- which is \emph{exactly} the bound
+    of Proposition~\ref{prop:crude-K} and therefore falls short of
+    absorption by exactly one logarithm.
+\end{enumerate}
+
+\noindent Accordingly $\mathcal{A}_{\mathrm{ann}}$ is reclassified from
+\emph{open-mechanical} to \emph{open}, of the same analytic type as the
+$c_K$-decorrelation question (Conjecture~\ref{conj:K-refined}); the
+consolidated table of \S\ref{sec:verification-s36} is amended accordingly.
+Nothing else in the document is affected: this section touches only the
+$\mathcal{A}_{\mathrm{ann}}$ row of H1's estimate layer, and in particular
+makes no statement about H2, $\sigma^*$-decay, Type-II exclusion, or the
+withdrawn \S\ref{sec:audit-s31} material.
+
+\subsection{Admissible levels, the nested family, and the derivative bounds}
+\label{subsec:s41-setup}
+
+Throughout, $m=|\omega|$, $w=|\nabla\hat{e}|^2$,
+$M=M(t)=\|\omega(\cdot,t)\|_{L^\infty}$, $r^*=M^{-1/2}$, and $\psi$ is the
+fixed space--time cutoff of Definition~\ref{def:composite-cutoff}
+($\psi\equiv1$ on $Q(\rho)$, $\operatorname{supp}\psi\subseteq Q(\rho')$,
+$\tfrac{r^*}{2}\leq\rho<\rho'\leq r^*$). Only the $|\omega|$-level of the
+composite cutoff is iterated below; the spatial nesting $\rho<\rho'$ is
+untouched, and terms carrying $\nabla\psi$ or $\partial_t\psi$ remain in the
+$(\rho'-\rho)^{-2}$ family of Proposition~\ref{prop:first-rung} and are not
+annulus terms.
+
+\begin{definition}[Admissible level cutoffs]\label{def:s41-admissible}
+  For $\tfrac{1}{16}\leq\theta_-<\theta_+\leq\tfrac14$ let
+  $\mathcal{C}(\theta_-,\theta_+)$ be the set of nondecreasing
+  $\chi\in C^\infty([0,\infty);[0,1])$ with $\chi\equiv0$ on $[0,\theta_-]$
+  and $\chi\equiv1$ on $[\theta_+,\infty)$. For $\chi\in\mathcal{C}$ write
+  $\eta_\chi=\psi\cdot\chi(m/M)$.
+\end{definition}
+
+\begin{lemma}[Uniform admissibility of every level pair]
+  \label{lem:s41-admissible}
+  Let $\chi\in\mathcal{C}(\theta_-,\theta_+)$ with
+  $\tfrac1{16}\leq\theta_-<\theta_+\leq\tfrac14$. Then
+  \begin{enumerate}[label=(\roman*)]
+    \item $0\leq\chi\leq1$ and $\chi\equiv1$ on $\{m\geq M/4\}$, hence a
+      fortiori on $\{m\geq M/2\}$;
+    \item $\operatorname{supp}\chi(m/M)\subseteq\{m\geq M/16\}$, so
+      $M/16\leq m\leq M$ on $\operatorname{supp}\eta_\chi$;
+    \item $\chi'\geq0$.
+  \end{enumerate}
+  These, together with the derivative bound
+  $\|\chi'\|_\infty\leq2/(\theta_+-\theta_-)\leq32$, are the properties of
+  the $\chi$-factor used in
+  \S\ref{sec:magnitude-s34}--\S\ref{sec:verification-s36}
+  (see the proof). Consequently
+  Proposition~\ref{prop:K-amended} holds verbatim with $\eta$ replaced by
+  $\eta_\chi$, with constants independent of the pair
+  $(\theta_-,\theta_+)$ in that range; in particular the inhomogeneous term
+  \begin{equation}\label{eq:s41-I}
+    \mathcal{I} \;:=\; C\,\mathcal{L}^2\,M^{3/2}\,
+      \bigl(\nu^{-1}+\nu^{-1/2}(\sigma^*)^{1/2}\bigr)
+  \end{equation}
+  is level-independent, as is the a priori enstrophy budget
+  \begin{equation}\label{eq:s41-budget}
+    \mathcal{E} \;:=\; \nu\iint_{Q(r^*)}|\nabla\omega|^2
+    \;=\; \nu\iint_{Q(r^*)}\bigl(|\nabla m|^2+m^2w\bigr)
+    \;\leq\; C\,\mathcal{L}\,M^{1/2}.
+  \end{equation}
+\end{lemma}
+\begin{proof}
+  (i)--(iii) are immediate from Definition~\ref{def:s41-admissible}. For the
+  remaining assertions: Lemma~\ref{lem:w2-cancel} uses only
+  $\hat{e}\cdot\partial_k\hat{e}=0$ and is cutoff-blind;
+  Lemma~\ref{lem:gram-negativity} uses only $\eta\geq0$ and the Gram
+  positivity; Lemma~\ref{lem:stretch-couple} and \S\ref{sec:verification-s36}
+  (C2) use only $\eta\leq1$, the bound
+  $|\alpha|\leq\|\nabla u\|_{L^\infty}\leq CM\mathcal{L}$ and
+  Theorem~\ref{thm:apriori-sigma}, whose own proof needs only
+  $\{m\geq M/2\}\subseteq\{\chi=1\}$, i.e.~(i). Wherever $m$ occurs in a
+  denominator the level enters through the lower bound of (ii), replacing
+  the numerical factor $m^{-1}\leq 8/M$ (levels $\tfrac18,\tfrac14$) by
+  $m^{-1}\leq16/M$: a change of absolute constants only. Likewise
+  Lemma~\ref{lem:mag-rhs}(c) of \S\ref{sec:magnitude-s34} uses the
+  $\chi$-factor only through $\|\chi'\|_\infty$ and through the pointwise
+  dominations $m^2w\leq|\nabla\omega|^2$, $|\nabla m|^2\leq|\nabla\omega|^2$,
+  which are level-free.
+  \eqref{eq:s41-budget} is Lemma~\ref{lem:grad-omega-split} combined with
+  Lemma~\ref{lem:local-enstrophy-typeI} and $M^2(r^*)^3=M^{1/2}$; it
+  involves no cutoff at all.
+\end{proof}
+
+\begin{remark}[Why the level pair is genuinely free]\label{rem:s41-free}
+  Lemma~\ref{lem:s41-admissible} is what makes any level-selection argument
+  legitimate downstream: a bound proved for \emph{one} admissible
+  $\chi\in\mathcal{C}(\theta_-,\theta_+)$, $\theta_\pm$ in the stated range,
+  feeds Proposition~\ref{prop:first-rung} and
+  Theorem~\ref{thm:apriori-sigma} exactly as the original
+  $(\tfrac18,\tfrac14)$ pair does. This positive observation is used in
+  \S\ref{subsec:s41-coarea}; it is also the reason the failure established
+  there is a failure of the \emph{method} and not of a particular
+  normalisation.
+\end{remark}
+
+\begin{definition}[The nested family of Remark~\ref{rem:level-iteration}]
+  \label{def:s41-nested}
+  Put $\theta_k=\tfrac18+2^{-k-3}$ for $k=0,1,2,\dots$, so $\theta_0=\tfrac14$,
+  $\theta_k\downarrow\tfrac18$, and
+  \[
+    \ell_k \;:=\; \theta_k-\theta_{k+1} \;=\; 2^{-k-3}-2^{-k-4}\;=\;2^{-k-4}.
+  \]
+  Fix once and for all a nondecreasing $\Theta\in C^\infty(\R;[0,1])$ with
+  $\Theta\equiv0$ on $(-\infty,0]$, $\Theta\equiv1$ on $[1,\infty)$,
+  $0\leq\Theta'\leq2$, $|\Theta''|\leq16$, and set
+  \[
+    \chi_k(s)\;=\;\Theta\Bigl(\frac{s-\theta_{k+1}}{\ell_k}\Bigr)
+      \;\in\;\mathcal{C}(\theta_{k+1},\theta_k),
+    \qquad
+    \eta_k \;=\; \psi\,\chi_k(m/M),
+  \]
+  \[
+    \mathrm{Ann}_k \;=\; \{\theta_{k+1}M\leq m\leq\theta_kM\}
+      \cap\operatorname{supp}\psi \;\supseteq\;
+      \operatorname{supp}\bigl[\chi_k'(m/M)\bigr]\cap\operatorname{supp}\psi .
+  \]
+\end{definition}
+
+\begin{lemma}[Derivative bounds; the origin of $4^{k}$]\label{lem:s41-derivs}
+  For every $k\geq0$,
+  \begin{align}
+    0\;\leq\;\chi_k' &\;\leq\; 2/\ell_k \;=\; 2^{k+5},
+      \label{eq:s41-chip}\\
+    |\chi_k''| &\;\leq\; 16/\ell_k^2 \;=\; 2^{2k+12},
+      \label{eq:s41-chipp}\\
+    \bigl|\nabla[\chi_k(m/M)]\bigr| &\;=\; \chi_k'\,|\nabla m|/M
+      \;\leq\; 2^{k+5}\,|\nabla m|/M .
+      \label{eq:s41-gradchi}
+  \end{align}
+  Hence the combinations occurring \emph{before} the integration by parts of
+  Lemma~\ref{lem:three-ibp}(b), namely $\chi_k$ and $\chi_k\chi_k'$, obey
+  $\chi_k\chi_k'\leq 2^{5}\cdot2^{k}$, whereas the combinations occurring
+  \emph{after} it, namely $(\chi_k')^2$ and $\chi_k|\chi_k''|$, obey
+  $(\chi_k')^2+\chi_k|\chi_k''|\leq 2^{13}\cdot4^{k}$. The constant
+  $C\,4^{k}$ of Remark~\ref{rem:level-iteration} is therefore correct, and
+  it is the \emph{square} of the cutoff derivative: it is created by
+  $\nu\Delta m$ inside $D_t\chi_k$ when that term is integrated by parts, as
+  it must be (Lemma~\ref{lem:three-ibp}(b)).
+\end{lemma}
+\begin{proof}
+  Chain rule: $\chi_k'(s)=\Theta'((s-\theta_{k+1})/\ell_k)/\ell_k$ and
+  $\chi_k''(s)=\Theta''(\cdot)/\ell_k^2$; insert
+  $\ell_k^{-1}=2^{k+4}$ and $\ell_k^{-2}=2^{2k+8}$, and use
+  $\|\Theta'\|_\infty\leq2$, $\|\Theta''\|_\infty\leq16$; then
+  $2\cdot2^{k+4}=2^{k+5}$ and $16\cdot 2^{2k+8}=2^{2k+12}=2^{12}\cdot4^{k}$.
+  \eqref{eq:s41-gradchi} is $\nabla[\chi_k(m/M)]=\chi_k'(m/M)\nabla m/M$
+  ($M=M(t)$ is $x$-independent). Finally
+  $(\chi_k')^2\leq2^{2k+10}$ and $\chi_k|\chi_k''|\leq2^{2k+12}$, whose sum
+  is $\leq2^{2k+13}=2^{13}4^{k}$.
+\end{proof}
+
+\begin{lemma}[The level-$k$ annulus carries full level-$(k+1)$ weight]
+  \label{lem:s41-fullweight}
+  For every $k\geq0$: $\chi_{k+1}(m/M)\equiv1$ on $\mathrm{Ann}_k$, hence
+  $\eta_{k+1}^2=\psi^2$ there. Moreover $\chi_{k+1}\geq\chi_k$ pointwise, the
+  interiors of the $\mathrm{Ann}_k$ are pairwise disjoint, and
+  $\bigcup_{k\geq0}\mathrm{Ann}_k
+   =\{M/8<m\leq M/4\}\cap\operatorname{supp}\psi=:\mathrm{Ann}$,
+  the annulus of Definition~\ref{def:annulus-residual} up to the level set
+  $\{m=M/8\}$.
+\end{lemma}
+\begin{proof}
+  $\chi_{k+1}\equiv1$ on $[\theta_{k+1},\infty)$ while
+  $\mathrm{Ann}_k\subseteq\{m/M\geq\theta_{k+1}\}$. For monotonicity: if
+  $s\geq\theta_{k+1}$ then $\chi_{k+1}(s)=1\geq\chi_k(s)$; if
+  $s\leq\theta_{k+1}$ then $\chi_k(s)=0\leq\chi_{k+1}(s)$. Disjointness and
+  the union statement follow from $\theta_{k+1}<\theta_k$ and
+  $\theta_k\downarrow\tfrac18$.
+\end{proof}
+
+\subsection{Exact inventory of the $\chi$-derivative families}
+\label{subsec:s41-inventory}
+
+Definition~\ref{def:annulus-residual} specifies $\mathcal{A}_{\mathrm{ann}}$
+by the \emph{shapes} of its terms, not by a term-by-term derivation. Since
+the whole question is whether these terms can be removed, we first derive
+them exactly. The following identity is the one behind
+Proposition~\ref{prop:K-self}; it is exact (no inequalities), and we record
+it in the form in which the cutoff derivatives are visible.
+
+\begin{lemma}[The exact weighted magnitude identity]\label{lem:s41-identity}
+  Let $\eta=\psi\chi(m/M)$ with $\chi\in\mathcal{C}$. Testing
+  \eqref{eq:mag-eq} against $m\,w\,\eta^2$ and integrating by parts in space
+  and in time (using $\divg u=0$, so that
+  $\iint(D_tf)g=-\iint f\,D_tg$ up to time slices) gives
+  \begin{align}
+    \nu\iint|\nabla m|^2w\eta^2
+    &+\nu\iint m^2w^2\eta^2
+      \;+\;[\text{time slices}] \notag\\
+    &=\;\underbrace{\iint\alpha\,m^2w\,\eta^2}_{R_1}
+      \;\underbrace{-\;\nu\iint m\,\eta^2\,\nabla m\cdot\nabla w}_{R_2}
+      \;\underbrace{-\;\nu\iint m\,w\,\nabla m\cdot\nabla(\eta^2)}_{R_3}
+      \notag\\
+    &\qquad
+      \;+\;\underbrace{\tfrac12\iint m^2\,(D_tw)\,\eta^2}_{R_4}
+      \;+\;\underbrace{\tfrac12\iint m^2\,w\,D_t(\eta^2)}_{R_5} .
+      \label{eq:s41-identity}
+  \end{align}
+\end{lemma}
+\begin{proof}
+  Multiply \eqref{eq:mag-eq} by $mw\eta^2$ and integrate:
+  $\iint(D_tm)mw\eta^2=\iint\alpha m^2w\eta^2
+  +\nu\iint(\Delta m)mw\eta^2-\nu\iint m^2w^2\eta^2$.
+  Expand $\nabla(mw\eta^2)=w\eta^2\nabla m+m\eta^2\nabla w+mw\nabla(\eta^2)$
+  in $\nu\iint(\Delta m)mw\eta^2=-\nu\iint\nabla m\cdot\nabla(mw\eta^2)$,
+  and $\iint(D_tm)mw\eta^2=\tfrac12\iint D_t(m^2)\,w\eta^2
+  =-\tfrac12\iint m^2D_t(w\eta^2)+[\text{slices}]$. Rearranging gives
+  \eqref{eq:s41-identity}. The middle viscous cross-term $R_2$ is the one
+  absorbed by Cauchy--Schwarz in Proposition~\ref{prop:K-self}; $R_1$ is C2
+  and $R_4$ is C1 of \S\ref{sec:verification-s36}.
+\end{proof}
+
+\begin{proposition}[Inventory: four families die by sign, two are
+  inhomogeneous, two survive]\label{prop:s41-core}
+  Write $\chi=\chi(m/M)$, $\chi'=\chi'(m/M)$, $\chi''=\chi''(m/M)$, and
+  isolate in \eqref{eq:s41-identity} all terms carrying a
+  $\chi$-derivative (all remaining terms carry either $\eta^2$ in full, or
+  $\nabla\psi$/$\partial_t\psi$ and belong to the $(\rho'-\rho)$-family).
+  Then, exactly:
+  \begin{enumerate}[label=\textup{(G\arabic*)}]
+    \item from $R_3$:
+      $\displaystyle -\frac{2\nu}{M}\iint m\,w\,|\nabla m|^2\,\psi^2\,\chi\chi'
+      \;\leq\;0$;
+    \item from $R_5$ through the sink $-\nu mw$ of \eqref{eq:mag-eq}:
+      $\displaystyle -\frac{\nu}{M}\iint m^3w^2\,\psi^2\,\chi\chi'\;\leq\;0$;
+    \item from $R_5$ through $\nu\Delta m$, after one integration by parts,
+      the $(\chi')^2$ piece:
+      $\displaystyle -\frac{\nu}{M^2}\iint m^2w\,|\nabla m|^2\,\psi^2\,(\chi')^2
+      \;\leq\;0$;
+    \item from the same integration by parts, the $\nabla(m^2)$ piece:
+      $\displaystyle -\frac{2\nu}{M}\iint m\,w\,|\nabla m|^2\,\psi^2\,\chi\chi'
+      \;\leq\;0$.
+  \end{enumerate}
+  \begin{enumerate}[label=\textup{(I\arabic*)}]
+    \item from $R_5$ through $\alpha m$:
+      $\displaystyle \frac{1}{M}\iint \alpha\,m^3w\,\psi^2\,\chi\chi'$,
+      bounded in absolute value by
+      $\|\chi\chi'\|_\infty\,\|\nabla u\|_{L^\infty}\nu^{-1}\mathcal{E}
+      \leq C\|\chi\chi'\|_\infty\mathcal{L}^2M^{3/2}\nu^{-1}$;
+    \item from $R_5$ through $-m\dot M/M$: the same bound, using
+      $|\dot M|/M\leq\|\nabla u\|_{L^\infty}\leq CM\mathcal{L}$.
+  \end{enumerate}
+  \begin{enumerate}[label=\textup{(S\arabic*)}]
+    \item the $\chi\chi''$ piece of the integration by parts in (G3):
+      $\displaystyle -\frac{\nu}{M^2}\iint m^2w\,|\nabla m|^2\,\psi^2\,\chi\chi''$,
+      of \emph{indefinite} sign, with
+      $|{\cdot}|\leq\tfrac{1}{16}\|\chi\chi''\|_\infty\,
+      \nu\iint_{\{\theta_-M\leq m\leq\theta_+M\}}|\nabla m|^2w\,\psi^2$;
+    \item the cross family, arising both from $R_5$ (through
+      $\nu\Delta m$, the $\nabla w$ piece) and from $R_4$ (the
+      $\nu\Delta\partial_k\hat{e}$ piece of the differentiated direction
+      equation, cf.\ Lemma~\ref{lem:three-ibp}(a)):
+      $\displaystyle \frac{c\,\nu}{M}\iint m^2\,\psi^2\,\chi\chi'\,
+      \nabla m\cdot\nabla w$, $|c|\leq2$, of indefinite sign.
+  \end{enumerate}
+  Consequently, discarding (G1)--(G4) and absorbing (I1)--(I2) into
+  $\mathcal{I}$ of \eqref{eq:s41-I},
+  \begin{equation}\label{eq:s41-core}
+    \mathcal{A}_{\mathrm{ann}}
+    \;\leq\;
+    \mathcal{A}^{\mathrm{core}}_{\mathrm{ann}}
+    \;:=\;
+    \Bigl|\text{\upshape(S1)}\Bigr| + \Bigl|\text{\upshape(S2)}\Bigr| .
+  \end{equation}
+\end{proposition}
+\begin{proof}
+  Write $\nabla(\eta^2)=\chi^2\nabla(\psi^2)+2\psi^2\chi\chi'\nabla m/M$ and
+  $D_t(\eta^2)=\chi^2D_t(\psi^2)
+  +2\psi^2\chi\chi'\bigl(D_tm/M-m\dot M/M^2\bigr)$; the $\nabla(\psi^2)$ and
+  $D_t(\psi^2)$ parts are $(\rho'-\rho)$-family terms by
+  Definition~\ref{def:composite-cutoff}, not annulus terms. Substituting the
+  first display into $R_3$ gives (G1), whose sign is
+  $\leq0$ because $m,w\geq0$ and $\chi,\chi'\geq0$
+  (Lemma~\ref{lem:s41-admissible}(iii)). Substituting the second into $R_5$
+  and then $D_tm=\alpha m+\nu\Delta m-\nu mw$ from \eqref{eq:mag-eq} gives
+  four contributions: the $-\nu mw$ one is (G2), $\leq0$ for the same
+  reason; the $\alpha m$ and $-m\dot M/M$ ones are (I1)--(I2), estimated by
+  $|\alpha|\leq\|\nabla u\|_{L^\infty}$, $m/M\leq1$, $\psi^2\leq1$ and
+  $\nu\iint_{Q(\rho')}m^2w\leq\mathcal{E}$ from
+  \eqref{eq:s41-budget}, together with $M\mathcal{L}\cdot\mathcal{L}M^{1/2}
+  =\mathcal{L}^2M^{3/2}$; the $\nu\Delta m$ one is
+  $\frac{\nu}{M}\iint m^2w\psi^2\chi\chi'\Delta m
+  =-\frac{\nu}{M}\iint\nabla m\cdot\nabla\bigl(m^2w\psi^2\chi\chi'\bigr)$
+  (no boundary terms: the integrand vanishes off
+  $\operatorname{supp}\psi\cap\{\chi'\neq0\}$), and expanding the gradient by
+  the product rule yields exactly the four pieces (G3), (G4), (S1), (S2)
+  --- using $\nabla[\chi\chi'(m/M)]
+  =\bigl((\chi')^2+\chi\chi''\bigr)\nabla m/M$ --- plus one further piece
+  carrying $\nabla(\psi^2)$, again a $(\rho'-\rho)$-family term. Signs: in
+  (G3) the factor $(\chi')^2\geq0$ enters with an overall minus, in (G4)
+  the factor $\chi\chi'\geq0$ likewise. The stated bound in (S1) uses
+  $m^2/M^2\leq\tfrac{1}{16}$ on $\operatorname{supp}\chi'$.
+  For (S2), the $R_4$ contribution has the same shape by
+  Lemma~\ref{lem:three-ibp}(a) with $\eta^2$ replaced by $m^2\eta^2$, and
+  $|\nabla w|\leq2w^{1/2}|\nabla^2\hat{e}|$ is not yet used.
+\end{proof}
+
+\begin{remark}[What is and is not established by
+  Proposition~\ref{prop:s41-core}]\label{rem:s41-caveat}
+  Two honest caveats.
+  \begin{enumerate}[label=(\roman*)]
+    \item Families (G1)--(G4), (I1)--(I2), (S1) are derived from the
+      \emph{exact} identity \eqref{eq:s41-identity} and are therefore
+      complete for $R_1,R_2,R_3,R_5$. Family $R_4$ (coupling C1) is
+      \emph{not} displayed term-by-term in \S\ref{sec:verification-s36};
+      what is asserted above for it is only that its
+      $\chi$-derivative terms have the shape (S2), by the structural
+      parallel with Lemma~\ref{lem:three-ibp}(a). If a full audit of C1
+      produced $\chi$-derivative terms of a shape not listed here, the
+      inventory would have to be extended --- but this could only
+      \emph{enlarge} $\mathcal{A}^{\mathrm{core}}_{\mathrm{ann}}$, so the
+      negative conclusion of \S\ref{subsec:s41-recursion}--\S\ref{subsec:s41-coarea}
+      is unaffected; only the positive statement
+      \eqref{eq:s41-core} is conditional on that shape.
+    \item Definition~\ref{def:annulus-residual} writes the annulus weight as
+      $\psi|\chi'|$. The derivation above shows the weight is in fact
+      $\psi^2$ times a $\chi$-derivative factor: the $\chi$-derivatives are
+      produced by $\nabla(\eta^2)$ and $D_t(\eta^2)$, both of which retain
+      the full spatial factor $\psi^2$. We read
+      Definition~\ref{def:annulus-residual} accordingly. Every estimate
+      below uses only $\psi\leq1$, hence holds in either reading.
+  \end{enumerate}
+\end{remark}
+
+\subsection{The recursion, and why no choice of $\delta_k$ contracts}
+\label{subsec:s41-recursion}
+
+\begin{definition}[Level quantities]\label{def:s41-levelquantities}
+  With $\eta_k$ as in Definition~\ref{def:s41-nested}, set
+  \[
+    Y_k=\nu\iint|\nabla m|^2\,w\,\eta_k^2,\qquad
+    D_k=\nu\iint|\nabla^2\hat{e}|^2\,\eta_k^2,
+  \]
+  and let $D_\flat=\nu\iint_{\{m>M/8\}}|\nabla^2\hat{e}|^2\psi^2$, so
+  $D_k\leq D_\flat$ for all $k$ by Lemma~\ref{lem:s41-fullweight}. By that
+  lemma $\chi_{k+1}\geq\chi_k$, hence
+  \begin{equation}\label{eq:s41-monotone}
+    Y_0\;\leq\;Y_1\;\leq\;Y_2\;\leq\;\cdots\;\uparrow\;
+    Y_\infty=\nu\iint_{\{m>M/8\}}|\nabla m|^2w\,\psi^2 .
+  \end{equation}
+\end{definition}
+
+\begin{proposition}[The level-$k$ recursion]\label{prop:s41-recursion}
+  For every $k\geq0$ and every $\delta_k>0$,
+  \begin{equation}\label{eq:s41-recursion}
+    Y_k \;\leq\; G_k \;+\;\Lambda_k\,Y_{k+1},
+    \qquad
+    G_k \;=\; C_*\bigl(M^2D_\flat+2^{k}\mathcal{I}\bigr)+\delta_k M^2D_\flat,
+    \qquad
+    \Lambda_k \;=\; 2^{8}\,4^{k}\;+\;2^{8}\,\delta_k^{-1}\,4^{k}.
+  \end{equation}
+  (The factor $2^{k}$ on $\mathcal{I}$ records that families (I1)--(I2) of
+  Proposition~\ref{prop:s41-core} carry $\|\chi_k\chi_k'\|_\infty\leq2^{k+5}$;
+  it only strengthens the negative conclusions below.)
+\end{proposition}
+\begin{proof}
+  Proposition~\ref{prop:K-amended} at level $k$
+  (legitimate by Lemma~\ref{lem:s41-admissible}) gives
+  $Y_k\leq C_*(M^2D_k+\mathcal{I})+\mathcal{A}_k
+  \leq C_*(M^2D_\flat+2^{k}\mathcal{I})+\mathcal{A}^{\mathrm{core}}_k$, where
+  $\mathcal{A}^{\mathrm{core}}_k$ is \eqref{eq:s41-core} formed with
+  $\chi_k$. For (S1), by Proposition~\ref{prop:s41-core},
+  Lemma~\ref{lem:s41-derivs} and Lemma~\ref{lem:s41-fullweight}
+  ($\eta_{k+1}^2=\psi^2$ on $\mathrm{Ann}_k$, and
+  $\operatorname{supp}\chi_k'\subseteq\mathrm{Ann}_k$),
+  \[
+    |\text{\upshape(S1)}_k|
+    \;\leq\;\tfrac{1}{16}\,2^{2k+12}\;
+      \nu\iint_{\mathrm{Ann}_k}|\nabla m|^2w\,\psi^2
+    \;\leq\; 2^{8}\,4^{k}\,Y_{k+1}.
+  \]
+  For (S2), $|c|\leq2$ and $|\nabla w|\leq2w^{1/2}|\nabla^2\hat{e}|$ give
+  $|\text{\upshape(S2)}_k|\leq\frac{4\nu}{M}\iint m^2\psi^2\chi_k\chi_k'
+  |\nabla m|\,w^{1/2}|\nabla^2\hat{e}|$; then Young's inequality
+  $4XZ\leq\delta_kX^2+4\delta_k^{-1}Z^2$ with
+  $X=m|\nabla^2\hat{e}|\,\psi\mathbf 1_{\mathrm{Ann}_k}$ and
+  $Z=\tfrac{m}{M}\chi_k\chi_k'|\nabla m|w^{1/2}\psi$ gives
+  \[
+    |\text{\upshape(S2)}_k| \;\leq\;
+      \delta_k\,\nu\iint m^2|\nabla^2\hat{e}|^2\psi^2
+        \mathbf 1_{\mathrm{Ann}_k}
+      \;+\;4\delta_k^{-1}\,\frac{\nu}{M^2}
+        \iint m^2(\chi_k\chi_k')^2|\nabla m|^2w\,\psi^2
+    \;\leq\; \delta_k M^2D_\flat + 2^{8}\delta_k^{-1}4^{k}Y_{k+1},
+  \]
+  using $m\leq M$, $m^2/M^2\leq\tfrac1{16}$ and
+  $(\chi_k\chi_k')^2\leq2^{2k+10}$, so
+  $4\cdot\tfrac1{16}\cdot2^{2k+10}=2^{8}4^{k}$.
+\end{proof}
+
+\begin{proposition}[No choice of Young parameters produces a contraction]
+  \label{prop:s41-nocontraction}
+  In \eqref{eq:s41-recursion}, for every sequence $(\delta_k)$ of positive
+  numbers and every $k$,
+  \[
+    \Lambda_k \;\geq\; 2^{8}\,4^{k} \;\geq\; 2^{8}\;>\;1,
+    \qquad \Lambda_k\to\infty .
+  \]
+  In particular:
+  \begin{enumerate}[label=(\roman*)]
+    \item the choice proposed in Remark~\ref{rem:level-iteration},
+      $\delta_k=\delta_0 8^{-k}$, gives
+      $\Lambda_k=2^{8}4^{k}+2^{8}\delta_0^{-1}32^{k}$, which grows
+      \emph{faster} than the unmodified $4^{k}$: the Young device makes the
+      recursion strictly worse, not better;
+    \item no other choice helps, because the term $2^{8}4^{k}$ --- coming
+      from family (S1), which is not a product of a dissipative factor with
+      anything else --- is present irrespective of $\delta_k$: Young's
+      inequality has no purchase on it;
+    \item if one additionally demands, as any absorption of the extracted
+      dissipation into $M^2D_\flat$ requires, that $\sum_k\delta_k\leq\tfrac12$,
+      then $\delta_k\leq\tfrac12$ and hence
+      $2^{8}\delta_k^{-1}4^{k}\geq2^{9}4^{k}$: the two geometric factors act
+      on the \emph{same} side of the inequality and reinforce each other.
+      The phrase ``geometric beats geometric'' has no realisation here.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  Immediate from \eqref{eq:s41-recursion}: $\Lambda_k$ is a sum of two
+  nonnegative terms, the first of which is $2^{8}4^{k}$ and does not involve
+  $\delta_k$. For (i), $8^{-k}$ inverted is $8^{k}$ and
+  $8^{k}4^{k}=32^{k}$. For (iii), $\sum_k\delta_k\leq\tfrac12$ forces
+  $\delta_k\leq\tfrac12$, i.e.\ $\delta_k^{-1}\geq2$.
+\end{proof}
+
+\begin{proposition}[The unrolled iteration is weaker than trivial]
+  \label{prop:s41-vacuous}
+  With $G_k$ and $\Lambda_k$ as in \eqref{eq:s41-recursion}, unrolling
+  \eqref{eq:s41-recursion} $N$ times gives
+  \[
+    Y_0 \;\leq\; \sum_{j=0}^{N-1}G_j\prod_{i<j}\Lambda_i
+      \;+\;\Bigl(\prod_{i<N}\Lambda_i\Bigr)Y_N,
+    \qquad
+    \prod_{i<N}\Lambda_i \;\geq\; 2^{8N}\,4^{N(N-1)/2}.
+  \]
+  Since $Y_N\geq Y_0$ by \eqref{eq:s41-monotone} and
+  $\prod_{i<N}\Lambda_i\geq1$, the remainder term alone already exceeds
+  $Y_0$: the unrolled inequality is implied by the trivial statement
+  $Y_0\leq Y_0$ and carries no information, for every $N$. Letting
+  $N\to\infty$ does not help: both the sum and the remainder coefficient
+  diverge, and $Y_N\uparrow Y_\infty$, which is not known to vanish (indeed
+  $Y_\infty\geq Y_0$).
+\end{proposition}
+\begin{proof}
+  Induction on $N$ using \eqref{eq:s41-recursion} and
+  $\Lambda_i\geq2^{8}4^{i}$, so
+  $\prod_{i<N}\Lambda_i\geq2^{8N}4^{0+1+\cdots+(N-1)}$. The monotonicity
+  $Y_N\geq Y_0$ is \eqref{eq:s41-monotone}.
+\end{proof}
+
+\begin{remark}[Which iteration lemma would be needed, and why none applies]
+  \label{rem:s41-whichlemma}
+  The task of Remark~\ref{rem:level-iteration} is to decide whether the
+  scheme is a linear telescoping (Ladyzhenskaya--Ural'tseva Ch.~II,
+  Giaquinta--Giusti \cite{Giaquinta1982,Giusti2003}) or needs a nonlinear
+  iteration lemma (Stampacchia--De~Giorgi type). Neither is available.
+  \begin{enumerate}[label=(\roman*)]
+    \item \textbf{Linear (hole-filling) lemma.} If $f\geq0$ is bounded on
+      $[\rho_0,\rho_1]$ and $f(s)\leq\vartheta f(t)+A(t-s)^{-\gamma}+B$ for
+      all $\rho_0\leq s<t\leq\rho_1$ with $\vartheta<1$, then
+      $f(s)\leq C(\gamma,\vartheta)\bigl(A(t-s)^{-\gamma}+B\bigr)$. The
+      hypothesis $\vartheta<1$ is what makes the geometric selection of
+      radii work. Here $\vartheta$ is $\Lambda_k\geq2^{8}$
+      (Proposition~\ref{prop:s41-nocontraction}), so the lemma does not
+      apply; and by Proposition~\ref{prop:s41-nocontraction}(ii) no
+      rearrangement of the estimate reduces $\Lambda_k$ below $1$.
+    \item \textbf{Nonlinear (Stampacchia) lemma.} If
+      $Y_{k+1}\leq C\,b^{k}Y_k^{1+\beta}$ with $b>1$, $\beta>0$ and
+      $Y_0\leq C^{-1/\beta}b^{-1/\beta^2}$, then $Y_k\to0$. Three of its
+      hypotheses fail simultaneously here: (a) the direction --- our
+      inequality bounds the \emph{coarse} level by the \emph{fine} one
+      ($Y_k$ by $Y_{k+1}$), because the truncation levels
+      $\theta_k$ \emph{decrease}, so the level sets $\{m>\theta_{k+1}M\}$
+      \emph{increase} with $k$, exactly the opposite of De~Giorgi
+      truncation, where superlevel sets shrink to measure zero; (b)
+      homogeneity --- \eqref{eq:s41-recursion} is homogeneous of degree one
+      in $Y$, with no superlinear gain to beat $b^{k}$; (c) smallness ---
+      $Y_0$ small is the conclusion sought, not an available hypothesis.
+    \item \textbf{The structural reason.} De~Giorgi truncation gains because
+      the sets on which the iterated quantity lives shrink. Here the
+      truncation is in an \emph{auxiliary} variable, $|\omega|$, which on
+      the region of interest is confined to the fixed band
+      $[M/16,M]$; no set shrinks, no measure decays, and there is
+      nothing for a nonlinear gain to feed on.
+  \end{enumerate}
+\end{remark}
+
+\subsection{The $k\to\infty$ limit is a level-set flux; the co-area
+obstruction}
+\label{subsec:s41-coarea}
+
+The failure above is not an artefact of the geometric choice
+$\theta_k=\tfrac18+2^{-k-3}$. The following identifies the obstruction
+exactly and shows it is common to \emph{all} level selections.
+
+\begin{definition}[Level measure]\label{def:s41-levelmeasure}
+  For $F\geq0$ measurable with $\iint_{Q(\rho')}F<\infty$, let $\mu_F$ be
+  the push-forward of $F\,dx\,dt$ under
+  $(x,t)\mapsto m(x,t)/M(t)$, so that
+  $\iint F\,g(m/M)\,dx\,dt=\int_0^\infty g\,d\mu_F$ for every bounded Borel
+  $g$. Write $\mu_F=\varrho_F\,ds+\mu_F^{\mathrm{sing}}$ for its Lebesgue
+  decomposition.
+\end{definition}
+
+\begin{proposition}[Co-area obstruction: no level selection gains]
+  \label{prop:s41-coarea}
+  Let $\tfrac1{16}\leq\theta_-<\theta_+\leq\tfrac14$ and
+  $F\geq0$ as above. Then:
+  \begin{enumerate}[label=(\alph*)]
+    \item for every $\chi\in\mathcal{C}(\theta_-,\theta_+)$,
+      \[
+        \iint F\,\chi'(m/M)\,dx\,dt \;=\; \int_{\theta_-}^{\theta_+}\chi'\,d\mu_F
+        \;\geq\; \operatorname*{ess\,inf}_{s\in(\theta_-,\theta_+)}\varrho_F(s),
+      \]
+      because $\chi'\geq0$ and $\int_{\theta_-}^{\theta_+}\chi'\,ds=1$;
+    \item conversely
+      $\displaystyle\inf_{\chi\in\mathcal{C}(\theta_-,\theta_+)}
+       \iint F\chi'(m/M)
+       \;\leq\;\frac{\mu_F\bigl([\theta_-,\theta_+]\bigr)}{\theta_+-\theta_-}$,
+      attained up to $\epsilon$ by $\chi'\equiv(\theta_+-\theta_-)^{-1}$
+      mollified;
+    \item hence the residual produced by \emph{any} admissible cutoff is a
+      \emph{level density} of $\mu_F$, and the only a priori information
+      available about it --- namely the total mass
+      $\mu_F([\theta_-,\theta_+])\leq\iint_{Q(\rho')}F$ --- bounds it from
+      above only by $(\theta_+-\theta_-)^{-1}\leq16$ times that total mass,
+      and bounds it from below not at all;
+    \item for the nested family of Definition~\ref{def:s41-nested},
+      $\chi_k'\,ds\rightharpoonup\delta_{1/8}$ weakly-$*$, so if $\varrho_F$
+      is continuous at $\tfrac18$ and $\mu_F^{\mathrm{sing}}$ vanishes near
+      $\tfrac18$ then
+      \[
+        \iint F\,\chi_k'(m/M)\;\longrightarrow\;\varrho_F(\tfrac18)
+        \;=\;\int \!M(t)\!\!\int_{\{m=M(t)/8\}}\frac{F}{|\nabla m|}
+          \,d\mathcal{H}^2\,dt
+      \]
+      (the last equality by the co-area formula, valid for a.e.\ $t$ at
+      which $M(t)/8$ is a regular value of $m(\cdot,t)$). The limit is a
+      \emph{flux through the level set} $\{|\omega|=M/8\}$; it is zero only
+      if $F$ vanishes there.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  (a) is the definition of $\mu_F$ together with
+  $\int\chi'\,d\mu_F\geq\int\chi'\varrho_F\,ds
+  \geq\operatorname{ess\,inf}\varrho_F\cdot\int\chi'\,ds$ and
+  $\int_{\theta_-}^{\theta_+}\chi'=\chi(\theta_+)-\chi(\theta_-)=1$.
+  (b) is the same identity for the stated $\chi$.
+  (c) restates (a)--(b).
+  (d): $\chi_k'\geq0$, $\int\chi_k'=1$ and
+  $\operatorname{supp}\chi_k'\subseteq[\theta_{k+1},\theta_k]\downarrow\{\tfrac18\}$,
+  which is weak-$*$ convergence to $\delta_{1/8}$; the co-area identity is
+  the substitution $s=M(t)\sigma$ in
+  $\iint F g(m/M)=\int\!dt\int_0^\infty g(s/M)
+  \bigl(\int_{\{m=s\}}F/|\nabla m|\,d\mathcal{H}^2\bigr)ds$.
+\end{proof}
+
+\begin{remark}[Reading of Proposition~\ref{prop:s41-coarea}]
+  \label{rem:s41-reading}
+  Applied to $F=|\nabla m|^2w$ --- the integrand of family (S1) --- part (d)
+  says that the level iteration does not annihilate the residual; it
+  converts it into the trace
+  $\int M\!\int_{\{m=M/8\}}|\nabla m|\,w\,d\mathcal{H}^2dt$. Controlling
+  that trace requires a bound for $w$ \emph{on a level set of $|\omega|$},
+  weighted by $|\nabla m|$: precisely the pointwise information that H1 is
+  trying to produce. Part (c) says the same thing statically: the annulus
+  residual is, for every admissible cutoff, a level density of $\mu_F$,
+  and the only a priori bound is $16\times$ the band mass
+  $\nu\iint_{\mathrm{Ann}}|\nabla m|^2w\,\psi^2$ --- which is the very
+  quantity $Y$ restricted to the band where $\eta^2$ degenerates. Choosing a
+  ``good'' level by pigeonhole gains nothing either: with $N$ equally spaced
+  levels the derivative bound is $|\chi'|\leq16N$ while the best of $N$
+  disjoint annuli carries at most $1/N$ of the band mass, and the two
+  factors cancel \emph{exactly}. This is the sharp form of the obstruction:
+  the co-area normalisation $\int|\chi'|\,ds=1$ is scale-free, so no
+  redistribution of levels can beat it.
+\end{remark}
+
+\begin{remark}[Why the same terms are harmless at the quadratic level]
+  \label{rem:s41-contrast}
+  It is worth recording precisely why Lemma~\ref{lem:mag-rhs}(c) could
+  dispose of the annulus terms of the \emph{quadratic} magnitude Caccioppoli
+  \eqref{eq:mag-caccioppoli} ``with no absorption argument needed'', while
+  the same device fails here. There, the annulus integrands were
+  $|\nabla m|^2$ and $m^2w$, both dominated pointwise by $|\nabla\omega|^2$
+  and hence by the unconditional budget \eqref{eq:s41-budget}. Here the
+  integrands are $|\nabla m|^2w$ and $m^2w^2$: each is a budgeted quadratic
+  quantity \emph{times $w$}, and $w$ is exactly the unknown of H1. The
+  annulus residual is thus not a defect of the cutoff, but the quartic
+  nature of the $K$-identity making itself felt at the boundary of the
+  level set.
+\end{remark}
+
+\subsection{What is nevertheless proved, and the exact closure target}
+\label{subsec:s41-target}
+
+\begin{proposition}[Unconditional crude bound for the core residual]
+  \label{prop:s41-crude}
+  With $\mathcal{A}^{\mathrm{core}}_{\mathrm{ann}}$ as in
+  \eqref{eq:s41-core} formed with any
+  $\chi\in\mathcal{C}(\theta_-,\theta_+)$,
+  $\tfrac1{16}\leq\theta_-<\theta_+\leq\tfrac14$, and any $\delta>0$,
+  \[
+    \mathcal{A}^{\mathrm{core}}_{\mathrm{ann}}
+    \;\leq\; \delta\,M^2D_\flat
+    \;+\; C\bigl(1+\delta^{-1}\bigr)\,
+      \|w\|_{L^\infty(Q(\rho')\cap\{m\geq M/16\})}\;\mathcal{E}
+    \;\leq\; C\bigl(1+\delta^{-1}\bigr)\,\mathcal{L}\,\|w\|_{L^\infty}\,M^{1/2}
+      \;+\;\delta M^2D_\flat,
+  \]
+  with $C$ depending only on $\|\Theta'\|_\infty,\|\Theta''\|_\infty$ and
+  $\theta_+-\theta_-$. Equivalently, in the $K$-units of
+  Proposition~\ref{prop:crude-K} (divide by $M^2$ and use
+  $M^{-3/2}=(r^*)^3$):
+  \[
+    M^{-2}\,\mathcal{A}^{\mathrm{core}}_{\mathrm{ann}}
+    \;\leq\; C\bigl(1+\delta^{-1}\bigr)\,\mathcal{L}\,\|w\|_{L^\infty}\,(r^*)^3
+    \;+\;\delta\,D_\flat .
+  \]
+\end{proposition}
+\begin{proof}
+  For (S1): $|\nabla m|^2\leq|\nabla\omega|^2$
+  (Lemma~\ref{lem:grad-omega-split}), $\psi\leq1$, $w\leq\|w\|_\infty$ on the
+  support, and $\|\chi\chi''\|_\infty\leq C$; apply \eqref{eq:s41-budget}.
+  For (S2): Young as in the proof of
+  Proposition~\ref{prop:s41-recursion} with parameter $\delta$, then
+  $|\nabla m|^2w\leq\|w\|_\infty|\nabla\omega|^2$ in the second factor and
+  \eqref{eq:s41-budget} again.
+\end{proof}
+
+\begin{remark}[The shortfall is exactly one logarithm]\label{rem:s41-shortfall}
+  Proposition~\ref{prop:s41-crude} reproduces, term for term, the bound of
+  Proposition~\ref{prop:crude-K}. The quantity that
+  Proposition~\ref{prop:second-rung} is able to absorb is
+  $\delta\,\nu\,(r^*)^3\|w\|_{L^\infty}$; what
+  Proposition~\ref{prop:s41-crude} delivers is
+  $C\mathcal{L}\|w\|_{L^\infty}(r^*)^3$. Absorption therefore requires
+  $C\mathcal{L}\leq\delta\nu$, which fails for fixed $\nu$ as
+  $\mathcal{L}=\log(e+\|u\|_{H^3}/M)\to\infty$. So the annulus residual is
+  short of closure by exactly the same single logarithm that
+  Proposition~\ref{prop:crude-K} identified for $K$ itself --- and, by
+  Remark~\ref{rem:s41-reading}, no level scheme recovers it.
+\end{remark}
+
+\begin{remark}[The exact end target, for the record]\label{rem:s41-endtarget}
+  For the ``modulo $\mathcal{A}_{\mathrm{ann}}$'' caveat of
+  Proposition~\ref{prop:K-amended} to be removable, what must be proved is:
+  \emph{there exists one admissible $\chi\in\mathcal{C}(\theta_-,\theta_+)$
+  with $\tfrac1{16}\leq\theta_-<\theta_+\leq\tfrac14$ and constants
+  $C$ such that, with $\eta=\eta_\chi$,}
+  \begin{equation}\label{eq:s41-endtarget}
+    \mathcal{A}_{\mathrm{ann}}
+    \;\leq\; \tfrac12\,\nu\iint|\nabla m|^2\,w\,\eta^2
+      \;+\; C\,M^2\,\nu\iint|\nabla^2\hat{e}|^2\eta^2
+      \;+\; C\,\mathcal{L}^2M^{3/2}
+        \bigl(\nu^{-1}+\nu^{-1/2}(\sigma^*)^{1/2}\bigr).
+  \end{equation}
+  Two points must be stressed. First, the absorbed first term must carry
+  \emph{the same} $\eta$ as the left-hand side of
+  Proposition~\ref{prop:K-amended}: an annulus bound in terms of a
+  \emph{fuller} weight (e.g.\ $\psi^2$ on the band, or $\eta_{k+1}^2$) does
+  not absorb, and this --- not the value of any constant --- is what defeats
+  the nested scheme. Second, by Lemma~\ref{lem:s41-admissible} it suffices
+  to prove \eqref{eq:s41-endtarget} for a \emph{single} admissible level
+  pair, since all such pairs are interchangeable downstream; so the
+  difficulty is genuinely analytic, not a matter of choosing levels
+  cleverly.
+\end{remark}
+
+\begin{conjecture}[Band absorption --- the replacement for
+  Remark~\ref{rem:level-iteration}]\label{target:band-absorption}
+  There exist $\theta_-<\theta_+$ in $[\tfrac1{16},\tfrac14]$, a cutoff
+  $\chi\in\mathcal{C}(\theta_-,\theta_+)$ and a constant $C$ such that, with
+  $\eta=\eta_\chi$ and
+  $\mathrm{Band}=\{\theta_-M\leq m\leq\theta_+M\}\cap\operatorname{supp}\psi$,
+  \begin{align}
+    \nu\iint_{\mathrm{Band}}|\nabla m|^2\,w\,\psi^2
+    &\;\leq\; 2^{-11}\,\nu\iint|\nabla m|^2\,w\,\eta^2
+      \;+\; C\,M^2\,\nu\iint|\nabla^2\hat{e}|^2\eta^2
+      \;+\; C\,\mathcal{L}^2M^{3/2}\nu^{-1},
+      \label{eq:s41-bandY}\\
+    M^2\,\nu\iint_{\mathrm{Band}}|\nabla^2\hat{e}|^2\,\psi^2
+    &\;\leq\; C\,M^2\,\nu\iint|\nabla^2\hat{e}|^2\eta^2
+      \;+\; C\,\mathcal{L}^2M^{3/2}\nu^{-1}.
+      \label{eq:s41-bandD}
+  \end{align}
+\end{conjecture}
+
+\begin{remark}[Status of Conjecture~\ref{target:band-absorption}]
+  \label{rem:s41-band-status}
+  Conjecture~\ref{target:band-absorption} implies
+  \eqref{eq:s41-endtarget}. Indeed, for a single level pair of width
+  $\theta_+-\theta_-\geq\tfrac1{16}$ one has
+  $\|\chi\chi'\|_\infty\leq32$ and $\|\chi\chi''\|_\infty\leq2^{12}$, so
+  Proposition~\ref{prop:s41-core} and the Young step of
+  Proposition~\ref{prop:s41-recursion} with $\delta=1$ give
+  $|\text{\upshape(S1)}|+|\text{\upshape(S2)}|
+  \leq 2^{9}\,\nu\iint_{\mathrm{Band}}|\nabla m|^2w\psi^2
+  + M^2\nu\iint_{\mathrm{Band}}|\nabla^2\hat{e}|^2\psi^2$; inserting
+  \eqref{eq:s41-bandY}--\eqref{eq:s41-bandD} and
+  $2^{9}\cdot2^{-11}=\tfrac14<\tfrac12$ yields
+  \eqref{eq:s41-endtarget}. We do not claim the converse. The conjecture
+  asserts that the
+  radial--angular coupling density on the transition band is not
+  concentrated there relative to its value on $\{m\geq\theta_+M\}$. This is
+  a statement of exactly the same analytic type as
+  Conjecture~\ref{conj:K-refined} (a decorrelation/equipartition
+  hypothesis), restricted to the band, and it is \emph{open}. In particular
+  the claim of Remark~\ref{rem:if-verified} --- that verification of C1--C2
+  makes Conjecture~\ref{conj:K-refined} unnecessary --- must be qualified:
+  it holds on $\{m\geq M/4\}$, where the level cutoff is inactive, and not
+  on the transition band, where a hypothesis of that type is still required.
+\end{remark}
+
+\subsection{Amended status of $\mathcal{A}_{\mathrm{ann}}$}
+\label{subsec:s41-status}
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Sub-item of $\mathcal{A}_{\mathrm{ann}}$ & Status & Where \\
+\hline
+Families (G1)--(G4) & \textbf{Proved} good-signed; discarded & Prop.~\ref{prop:s41-core} \\
+Families (I1)--(I2) & \textbf{Proved} in the allowed class $\mathcal{I}$ & Prop.~\ref{prop:s41-core} \\
+Nested cutoffs, $4^{k}$ constant & \textbf{Proved} (constant confirmed) & Lem.~\ref{lem:s41-derivs} \\
+Level pairs interchangeable & \textbf{Proved} & Lem.~\ref{lem:s41-admissible} \\
+Recursion with $\delta_k$ & \textbf{Proved not a contraction} & Prop.~\ref{prop:s41-nocontraction} \\
+$\delta_k=\delta_08^{-k}$ as proposed & \textbf{Proved counterproductive} ($32^{k}$) & Prop.~\ref{prop:s41-nocontraction}(i) \\
+Unrolled iteration & \textbf{Proved vacuous} & Prop.~\ref{prop:s41-vacuous} \\
+$k\to\infty$ limit & \textbf{Proved} to be a level-set flux & Prop.~\ref{prop:s41-coarea}(d) \\
+Any other level selection & \textbf{Proved} no gain (co-area) & Prop.~\ref{prop:s41-coarea}(c) \\
+Core residual (S1)+(S2), crude bound & \textbf{Proved}; one logarithm short & Prop.~\ref{prop:s41-crude} \\
+Core residual, absorption & \textbf{Open} (was ``open-mechanical'') & Conj.~\ref{target:band-absorption} \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{remark}[Honest summary of S41]\label{rem:s41-summary}
+  The level iteration of Remark~\ref{rem:level-iteration} does not close, and
+  the reason is structural rather than computational: the residue of a
+  level-set truncation is, by the co-area normalisation
+  $\int|\chi'|=1$, a level density of the underlying measure, and no
+  redistribution of levels --- geometric, uniform, nested, or selected ---
+  makes a level density smaller than a fixed multiple of the band mass.
+  What was gained instead is a substantial reduction: six of the eight
+  $\chi$-derivative families are removed outright, four by sign and two into
+  the already-allowed inhomogeneous class, leaving a single explicit core
+  \eqref{eq:s41-core} with a sharp, unconditional, one-logarithm-short
+  bound and a sharply stated open target
+  (Conjecture~\ref{target:band-absorption}). The correct classification of
+  $\mathcal{A}_{\mathrm{ann}}$ is therefore \emph{open}, of the same type as
+  Conjecture~\ref{conj:K-refined}, and \S\ref{sec:verification-s36} is
+  amended accordingly. No other item of the program is affected by this
+  section, and in particular nothing here bears on H2, on
+  $\sigma^*$-decay, or on Type-II exclusion.
+\end{remark}
+
 % ════════════════════════════════════════════════════════════════════════════
 % ══════════════════════════════════════════════════════════════════════════════
 \begin{thebibliography}{99}
@@ -7731,6 +8579,16 @@ Type-II exclusion & Open (outside all present methods) & Rem.~\ref{rem:s39-dista
   On partial regularity of suitable weak solutions to the three-dimensional
   Navier--Stokes equations,
   \emph{J. Math. Fluid Mech.}, 1(4):356--387, 1999.
+
+\bibitem{Giusti2003}
+  E.~Giusti,
+  \emph{Direct Methods in the Calculus of Variations},
+  World Scientific, 2003. (Iteration Lemma~6.1; hole-filling.)
+
+\bibitem{LadyzhenskayaUraltseva1968}
+  O.~A.~Ladyzhenskaya, N.~N.~Ural'tseva,
+  \emph{Linear and Quasilinear Elliptic Equations},
+  Academic Press, 1968. (Chapter~II: De~Giorgi level truncation.)
 
 \end{thebibliography}
 

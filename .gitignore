@@ -4,3 +4,11 @@ __pycache__/
 .pytest_cache/
 .claude/settings.local.json
 .claude/worktrees/
+
+# TeX build artifacts (WP0, S47)
+*.aux
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz

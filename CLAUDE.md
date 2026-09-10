@@ -262,7 +262,30 @@ python -m pytest layer1/ layer2/ -q
 # Verified experiments (should always pass — locked)
 python verified/tfirst_verify.py
 python verified/sco2_verify.py
+
+# Proof documents: structural check — MUST pass before any commit that
+# touches proofs/*.tex  (added S47/WP0 per HANDOVER-S46-OPUS.md)
+python scripts/check_proof.py                    # default: the Claim-A document
+python scripts/check_proof.py proofs/other.tex   # explicit target(s)
+python scripts/check_proof.py --quiet            # failures only; exit 1 on any
+
+# Proof documents: full LaTeX compile (catches undefined macros, which the
+# structural check cannot see).  Requires texlive + cm-super:
+#   apt-get install -y texlive-latex-base texlive-latex-extra \
+#                      texlive-science texlive-fonts-recommended cm-super
+# cm-super is not optional: microtype's font expansion aborts the run without
+# scalable Type-1 fonts.
+pdflatex -interaction=nonstopmode -halt-on-error -file-line-error \
+         -output-directory=/tmp/proofbuild proofs/claim_a_3d_proof_attempt.tex
 ```
+
+`scripts/check_proof.py` verifies brace balance, `\begin`/`\end` multiset and
+nesting, undeclared environments, duplicate labels, unresolved
+`\ref`/`\eqref`/`\cite`, and the malformed `end{...>` typo class. It exits
+non-zero on any failure. It does **not** detect undefined control sequences —
+run `pdflatex` for those. A reference that genuinely has no target must be
+declared, not guessed at, with a trailing comment
+`% CHECK-PROOF: ALLOW-DANGLING <label>` and a visible red note in the body.
 
 ---
 

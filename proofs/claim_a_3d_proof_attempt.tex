@@ -32,6 +32,14 @@
 \newtheorem{claim}[theorem]{Claim}
 \newtheorem{conjecture}[theorem]{Conjecture}
 \newtheorem{fact}[theorem]{Fact}
+% ── S47 (WP0): declarations for two environments used since S31 but never
+%    declared.  Compilation with pdfLaTeX failed at lines 5039, 5117, 5144 with
+%    "LaTeX Error: Environment {openproblem,observation} undefined".  Numbering
+%    is shared with `theorem` so that existing cross-references
+%    (Open Problem~\ref{open:pressure}, Observation~\ref{obs:gap-ratio}) render
+%    with the counter their surrounding prose already assumes.
+\newtheorem{openproblem}[theorem]{Open Problem}
+\newtheorem{observation}[theorem]{Observation}
 
 % ── Macros ─────────────────────────────────────────────────────────────────────
 \newcommand{\R}{\mathbb{R}}
@@ -54,6 +62,18 @@
   {\vcenter{\hbox{$\textstyle-$}}}%
   {\vcenter{\hbox{$\scriptstyle-$}}}%
   {\vcenter{\hbox{$\scriptscriptstyle-$}}}}\!\int}
+% ── S47 (WP0): two macros used in the body but never defined.  pdfLaTeX raised
+%    "Undefined control sequence" at lines 4584 (\colonequals), 5254 and 5912
+%    (\fint), the last three errors standing between the document and a clean
+%    compile.  Both are aliases, not new notation:
+%      \fint         — the averaged integral.  The \Xint machinery immediately
+%                      above builds exactly that glyph and is otherwise unused
+%                      in the document, i.e. it was defined for this alias and
+%                      the alias line was lost.
+%      \colonequals  — ":=".  mathtools is already loaded and supplies \coloneqq.
+%    \providecommand so that a future package definition wins.
+\providecommand{\fint}{\Xint}
+\providecommand{\colonequals}{\coloneqq}
 
 % ── Title block ────────────────────────────────────────────────────────────────
 \title{%
@@ -4737,7 +4757,13 @@ finite on any fixed time interval for $M(0)<\infty$.
 \end{proof}
 
 \begin{theorem}[Complete conditional chain]\label{thm:sigma-chain}
-  Assume $Z(r,z_0)\leq D\cdot r^{2/3}$ for all $r,z_0$ (Theorem~\ref{thm:vorticity-uniform}
+  % S47 (WP0): `thm:vorticity-uniform' never existed.  Resolved to
+  % `thm:uniform-enstrophy' (line ~4394, "Theorem 20.4: Uniform Enstrophy
+  % Control"), whose displayed conclusion \eqref{eq:Z-decay} is character-for-
+  % character the hypothesis quoted here, and which is the unique statement of
+  % that form in the document.  Not a guess: verified by exhaustive search for
+  % `r^{2/3}'.
+  Assume $Z(r,z_0)\leq D\cdot r^{2/3}$ for all $r,z_0$ (Theorem~\ref{thm:uniform-enstrophy}
   from §20).  Then:
   \[
     Z(r)\leq D\cdot r^{2/3}
@@ -4808,7 +4834,12 @@ Setting $f = R_{\log}$ and using $M = e^{f+\lambda\sigma}$:
 \begin{equation}\label{eq:scalar-ode}
   \frac{df}{dt} \;\leq\; \alpha - \lambda\,\varepsilon_\nu\,e^{f+\lambda\sigma}.
 \end{equation}
-In the low-disorder regime where $\sigma\to 0$ (see Proposition~\ref{prop:blowup-alignment}
+% S47 (WP0): `prop:blowup-alignment' never existed.  Resolved to
+% `thm:blowup-alignment' (18 lines below, in the subsection literally titled
+% "The Blowup Alignment Theorem"), whose item (i) is exactly the asserted
+% $\sigma(t)\to0$.  The environment is a theorem, so the preceding word is
+% corrected from "Proposition" to "Theorem".
+In the low-disorder regime where $\sigma\to 0$ (see Theorem~\ref{thm:blowup-alignment}
 below), this reduces to $df/dt\leq\alpha - \lambda\varepsilon_\nu e^f$.
 This is a scalar Riccati-type ODE with exponential damping.
 
@@ -4991,7 +5022,11 @@ symmetry.  Hence:
 \end{itemize}
 
 For a tube with small curvature $\kappa \sim |\nabla\hat{e}|$,
-Lemma~\ref{lem:GN-ehat} gives $\|\nabla\hat{e}\|_{L^\infty(B_{r_*})} \le
+% S47 (WP0): `lem:GN-ehat' never existed.  Resolved to `lem:gn-grad-ehat'
+% (line ~4708), "GN interpolation for $\nabla\hat e$", whose conclusion
+% \eqref{eq:gn-ehat} is the displayed bound quoted in this sentence.  It is the
+% only lemma in the document bounding $\|\nabla\hat e\|_{L^\infty}$.
+Lemma~\ref{lem:gn-grad-ehat} gives $\|\nabla\hat{e}\|_{L^\infty(B_{r_*})} \le
 C\sigma^{1/2}M^{-1/4}$.  The tilted geometry produces an axial pressure perturbation:
 \begin{equation}\label{eq:axial-pressure}
   |\partial_z p| \;\sim\; \kappa \cdot \frac{u_\theta^2}{r_*}
@@ -5037,7 +5072,13 @@ This also vanishes as $M\to\infty$.
 The analysis above reveals the precise gap:
 
 \begin{openproblem}[Pressure Non-Axisymmetry]\label{open:pressure}
-  Let $\omega$ be a solution of \eqref{eq:NS-vorticity} on $\mathbb{T}^3$ with
+  % S47 (WP0): `eq:NS-vorticity' never existed.  Resolved to
+  % `eq:vorticity-eq' (line ~4229) — the vorticity equation
+  % $\partial_t\omega+(u\cdot\nabla)\omega-(\omega\cdot\nabla)u=\nu\Delta\omega$,
+  % which an exhaustive search for `\partial_t\omega' shows to be the document's
+  % only evolution equation for $\omega$, hence the only equation of which
+  % "$\omega$ is a solution".
+  Let $\omega$ be a solution of \eqref{eq:vorticity-eq} on $\mathbb{T}^3$ with
   $M(t)\to\infty$ and $\sigma(t)\to 0$.  Does there exist $c_0 > 0$ such that
   \[
     \left|\frac{\partial_z p_{\mathrm{glob}}}{M^{3/2}}\right|_{B_{r_*}}
@@ -9671,6 +9712,640 @@ Level refinement as a route
 \end{remark}
 
 % ════════════════════════════════════════════════════════════════════════════
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Routes and Walls: A Referenced Record (Session S47)}
+\label{sec:walls-s47}
+
+This section is a record, not an argument. It lists the routes this programme
+has attempted since the audit of \S\ref{sec:audit-s31} and, for each, the
+obstruction that stopped it, so that a later session does not repeat a step
+already proved impossible, and so that the material exists in citable form
+outside the session logs.
+
+Every entry uses the same four-part template.
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+  \item \textbf{Route.} What was attempted, and what it would have delivered
+    had it worked.
+  \item \textbf{Obstruction.} The statement that stops it, by label.
+  \item \textbf{Classification.} Exactly one of:
+    \textsc{proved impossible} --- a proof in this document rules the route
+    out, and no choice of parameters inside it can help;
+    \textsc{open} --- nothing is proved against the route; it is unfinished,
+    and remains available;
+    \textsc{superseded} --- the route was replaced by a different formulation
+    of the same target, which carries its own status;
+    \textsc{withdrawn} --- an assertion was made in this document and has been
+    retracted.
+  \item \textbf{Consequence.} What the wall forbids, and what it leaves
+    permitted.
+\end{enumerate}
+
+Four conventions. First, \emph{labels are primary}. Line numbers are
+secondary, quoted as of session S47, and will rot; hand-written numbers in the
+older prose are unreliable for a separate reason recorded below.
+Second, every claim below resolves to a label in this document, except where a
+paragraph is explicitly marked \emph{outside this document}, in which case it
+names the session log that carries it and is not used to support any statement
+here. Third, \emph{nothing in this section is new mathematics}: no statement
+below is cited as a hypothesis anywhere else, and this section may be deleted
+without altering any proof.
+
+Fourth, a caution the first successful compilation of this document (S47)
+exposed. Parts of \S20--\S22 carry \emph{hand-written} numbers in their prose
+and subsection headings --- ``Lemma 20.1'', ``Proposition 20.3'',
+``Theorem 20.4'' --- which are off by one from the numbers \LaTeX{} assigns:
+those three statements live in the section \LaTeX{} numbers 21, and
+Theorem~\ref{thm:uniform-enstrophy} prints as Theorem~21.4, not 20.4. The
+title of \S\ref{sec:audit-s31} and the defect headings inside it use the
+hand-written scheme. This record uses \verb|\ref| throughout, so its numbers
+are the printed ones; when they disagree with a quoted phrase from the older
+prose, the \verb|\ref| is right. The drift is pre-existing, is not repaired
+here, and is noted so that a reader is not sent to the wrong section.
+
+\subsection{Wall 0 --- The S31 audit: the \texorpdfstring{$H^1$}{H1} Prize
+claim of \S20--\S22}
+\label{subsec:wall0-s31}
+
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+  \item \textbf{Route.} A vorticity scale-recursion
+    (Proposition~\ref{prop:vorticity-recursive-20}) iterated down scales to
+    give the uniform enstrophy cascade bound
+    $Z(r,z_0)\leq D\,r^{2/3}$ for all $u_0\in H^1(\T^3)$
+    (Theorem~\ref{thm:uniform-enstrophy}, line~4407), from which
+    Corollary~\ref{cor:claim-a-enstrophy} (line~4451) and
+    Corollary~\ref{cor:prize-h1} (line~4467, ``Prize for $u_0\in H^1$'')
+    were drawn.
+  \item \textbf{Obstruction.} \S\ref{sec:audit-s31} (line~5218) records
+    \emph{eight} independent defects, not one:
+    \begin{enumerate}[label=\textup{D\arabic*.},leftmargin=2.6em]
+      \item the induction of Theorem~\ref{thm:uniform-enstrophy} requires
+        $D$ small and its base case requires $D$ large; the stated choice
+        satisfies neither, so the recursion collapses to the CKN small-energy
+        regime;
+      \item an invalid H\"older triple ($\tfrac13+\tfrac12+\tfrac12>1$) in
+        Lemma 20.2 Step 3, which destroys the claimed $5/3$ superlinearity;
+      \item a reversed Jensen inequality in Lemma 20.2 Step 5 --- the true
+        relation runs the other way, and no $L^\infty_t$ information is
+        available for Leray--Hopf solutions to repair it;
+      \item regularity circularity (a local \emph{enstrophy} inequality is
+        assumed where only a local \emph{energy} inequality holds) together
+        with global/local norm mixing;
+      \item Theorem~\ref{thm:sigma-gronwall} is conditional on
+        $\int_0^TM\,dt<\infty$, which is the Beale--Kato--Majda criterion, so
+        it assumes an equivalent of its conclusion;
+      \item the two-regime dichotomy needs $\nu>C_1C/c$, a condition on the
+        given physical viscosity that NS scaling cannot arrange;
+      \item the Regime~II conclusion is false: $\dot M=CM^{5/4}$ blows up in
+        finite time;
+      \item unproved $|\nabla^2\omega|^2$-coercivity in
+        Lemma~\ref{lem:A-evol}, whose stretching estimate also uses
+        $\|\nabla u\|_{L^\infty}\leq CM$ --- Calder\'on--Zygmund operators
+        are unbounded on $L^\infty$ and the correct bound carries a
+        logarithm.
+    \end{enumerate}
+  \item \textbf{Classification.} \textsc{withdrawn.}
+    Theorem~\ref{thm:uniform-enstrophy}, Corollary~\ref{cor:claim-a-enstrophy}
+    and Corollary~\ref{cor:prize-h1} are withdrawn. Global regularity for
+    general $u_0\in H^1(\T^3)$ is \textbf{open} in this document.
+  \item \textbf{Consequence.} What survives is listed in ``What survives the
+    audit'' (\S\ref{sec:audit-s31}): the Route~C bootstrap
+    (Theorem~\ref{thm:routeC}), Claim~A for shear (\S11) and near-shear
+    (\S12) data, $\lambda_{\max}=0$ for shear flows, the orthogonal split
+    (Lemma~\ref{lem:grad-omega-split}) and the exact scale invariance of
+    $\sigma=A_{\mathrm{loc}}/M^{3/2}$ --- the audit's own list, which names
+    $\sigma$ and not the later localised $\sigma^*$ of
+    Proposition~\ref{prop:sigma-star-invariant}. \S20 remains
+    usable only as a \emph{conditional small-data} statement, and only after
+    D2--D4 are repaired and the superlinearity exponent re-derived. Defect~D8
+    is the first appearance of Wall~1 below; it was already flagged in the
+    audit and is the reason the logarithm is not a later regression.
+\end{enumerate}
+
+\subsection{Wall 1 --- The Calder\'on--Zygmund logarithm}
+\label{subsec:wall1-cz}
+
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+  \item \textbf{Route.} Every enstrophy-budget estimate of
+    \S\ref{sec:moser-s33}--\S\ref{sec:relation-s44} controls the vortex
+    stretching by a sup-norm of $\nabla u$, recovered from $\omega$ by
+    Biot--Savart. Closing any of them requires that sup-norm to cost $O(M)$.
+  \item \textbf{Obstruction.} It costs $M\mathcal{L}$. The factor
+    $\mathcal{L}=\log(e+\|u\|_{H^3}/M)$ enters at
+    Lemma~\ref{lem:local-enstrophy-typeI} (line~5701, definition on
+    line~5712) through $\|\nabla u\|_{L^\infty}\lesssim M\mathcal{L}$, which
+    is the $L^\infty$ endpoint failure of the Biot--Savart operator --- a
+    Calder\'on--Zygmund operator, unbounded on $L^\infty$. This is the
+    correction Defect~D8 of \S\ref{sec:audit-s31} had already flagged as
+    unavoidable, so the factor is not a later regression but the audit's
+    finding carried forward explicitly. Every budget downstream inherits it,
+    and it appears at three distinct closure attempts:
+    \begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.6em]
+      \item \textbf{Crude $K$-absorption.} Proposition~\ref{prop:crude-K}
+        (line~5903): the coupling term re-enters at top order multiplied by
+        $\mathcal{L}$ --- ``the crude route misses closing the loop by exactly
+        one logarithm''.
+      \item \textbf{The annulus core.} Remark~\ref{rem:s41-shortfall}
+        (line~8395): absorption requires $C\mathcal{L}\leq\delta\nu$, which
+        fails for fixed $\nu$ as $\mathcal{L}\to\infty$; the shortfall is
+        ``exactly the same single logarithm''.
+      \item \textbf{The corrected band route.}
+        Proposition~\ref{prop:s44-linfty-route} (line~9209): both
+        Conjecture~\ref{conj:K-refined} and the $Y$-half of
+        Conjecture~\ref{target:band-absorption} close if and only if the
+        correlation constant \emph{decays} like $C_1/\mathcal{L}$;
+        boundedness is not enough, because the hypothesis is used precisely
+        to cancel the $\mathcal{L}$ carried by the budget
+        \eqref{eq:s41-budget}.
+    \end{enumerate}
+  \item \textbf{Classification.} \textsc{open}, and structural. No proof in
+    this document says the logarithm cannot be removed; what the three items
+    above establish is that it is not a bookkeeping artefact of any one
+    estimate, since it is paid once, at the point where a sup-norm of a
+    Calder\'on--Zygmund image is taken, and then inherited.
+  \item \textbf{Consequence.} \emph{Forbidden:} presenting any of (i)--(iii)
+    as a separate obstacle to be attacked separately; they are one obstacle
+    seen three times. \emph{Forbidden:} closing any of them with a
+    \emph{boundedness} hypothesis on a correlation constant --- by
+    Proposition~\ref{prop:s44-linfty-route} the required hypothesis is decay.
+    \emph{Permitted:} any reformulation in which $\nabla u$ is \emph{not}
+    recovered by an $L^\infty$ Calder\'on--Zygmund bound. Two such are on
+    record: the profile reformulation of \S\ref{sec:rigidity-s39}, whose
+    status is Wall~2; and a symmetry-reduced setting in which $\nabla u$ is
+    recovered by lower-dimensional elliptic problems, which is untested here
+    and must be settled by a written estimate before anything is built on it.
+\end{enumerate}
+
+\subsection{Wall 2 --- The profile route relocates Wall 1 into
+  hypothesis \textup{(R)}}
+\label{subsec:wall2-R}
+
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+  \item \textbf{Route.} Type-I blowup-profile compactness
+    (\S\ref{sec:rigidity-s39}): pass to a rescaled limit $U$ and work on the
+    profile, where Proposition~\ref{prop:transfer-audit}(d) (line~6941)
+    states that ``on the profile the logarithmic factor $\mathcal{L}$ may be
+    replaced by an absolute constant''. If that were unconditional, Wall~1
+    would be removed for every estimate transferred to $U$.
+  \item \textbf{Obstruction.} It is not unconditional.
+    Proposition~\ref{prop:transfer-audit}(d) is labelled
+    \emph{Proved-modulo-\textup{(R)}}, and its proof states the mechanism
+    plainly: ``the CZ step is replaced by the interior estimate (R), which is
+    logarithm-free''. Hypothesis \textbf{(R)} (line~6785) \emph{is} an
+    assumed log-free gradient bound --- scale-uniform interior regularity
+    $\|\nabla^k u_\lambda\|_{L^\infty}\leq C_k(c_I)(1+R)S_1^{-(k+1)/2}$ ---
+    carried in the S39 ledger as \textbf{Conditional} (Serrin-type). The
+    barrier is therefore relocated, not removed.
+  \item \textbf{Classification.} \textsc{open.} Whether \textbf{(R)} follows
+    from existing Type-I $\varepsilon$-regularity is not settled in this
+    document. The hypothesis's own status note records two genuine caveats
+    (time regularity, and what Serrin's criterion \cite{Serrin1962} as
+    classically stated actually controls) as the reason it is not marked
+    \emph{Proved}.
+  \item \textbf{Consequence.} \emph{Forbidden:} describing the profile route
+    as logarithm-free without carrying \textbf{(R)} in the same sentence;
+    an earlier draft of the S46 audit made exactly that claim and withdrew it
+    on reading the proof of Proposition~\ref{prop:transfer-audit}(d).
+    \emph{Permitted, and cheap:} settling \textbf{(R)} against the
+    $\varepsilon$-regularity literature
+    \cite{CKN1982,EscauriazaSereginSverak2003,Seregin2012,KNSS2009}. The
+    named trap for that work is that $\varepsilon$-regularity requires the
+    scaled local energy to be \emph{small}, whereas Type-I supplies only
+    \emph{bounded by} $c_I$; a derivation of \textbf{(R)} that does not
+    confront that difference is not a derivation.
+\end{enumerate}
+
+\subsection{Wall 3 --- The ceiling of the S32--S45 line is below the Prize}
+\label{subsec:wall3-typeII}
+
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+  \item \textbf{Route.} The alignment pincer of
+    \S\ref{sec:pincer-s32}--\S\ref{sec:rigidity-s39}, closed at both horns.
+  \item \textbf{Obstruction.} Remark~\ref{rem:s39-distance} (line~7670)
+    states the ceiling: if \textbf{(A-up)} and
+    Conjecture~\ref{target:disorder-depletion} were proved and
+    \textbf{(R)}, \textbf{(N)}, \textbf{(N$'$)} discharged, the conclusion
+    would be \emph{no Type-I singularity} --- ``strictly less than the Clay
+    problem''. The reason is not a gap but the construction: every estimate
+    in \S\ref{sec:moser-s33}--\S\ref{sec:rigidity-s39} uses the Type-I rates,
+    and the profile extraction uses them \emph{essentially} --- without
+    $M(t)\lesssim(T-t)^{-1}$ the rescaled family has no uniform bound and
+    there is no limit object. ``A Type-II singularity would rescale to
+    nothing, and the entire reframe would be vacuous against it.'' The same
+    remark adds two further reservations: \textbf{(N)} restricts the
+    conclusion to non-degenerate points, and
+    Conjecture~\ref{target:disorder-depletion} must beat the constant~$1$
+    exactly, which is the marginal-target pattern the S31 audit identified as
+    where errors hide.
+  \item \textbf{Classification.} \textsc{open}, and outside the present
+    methods. Type-II exclusion is carried in the S39 ledger as ``Open
+    (outside all present methods)''.
+  \item \textbf{Consequence.} \emph{Forbidden:} reading any part of
+    \S\ref{sec:moser-s33}--\S\ref{sec:relation-s44} as progress on Type-II;
+    the document says so in terms. \emph{Forbidden:} reporting a closed
+    pincer as the Prize. \emph{Permitted:} closing the pincer as a Type-I
+    exclusion result, provided it is stated as such --- and, in a symmetry
+    class where Type-I is already excluded in the literature, only if the
+    prior exclusion is cited rather than re-derived.
+\end{enumerate}
+
+\subsection{Wall 4 --- Level iteration for the annulus residual}
+\label{subsec:wall4-levels}
+
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+  \item \textbf{Route.} Remark~\ref{rem:level-iteration} proposed absorbing
+    the annulus residual by a nested family of level cutoffs
+    $\chi_k$ with Young parameters $\delta_k=\delta_08^{-k}$, on the
+    ``geometric beats geometric'' principle.
+  \item \textbf{Obstruction.} Three propositions in
+    \S\ref{sec:annulus-s41}, each independent of the others:
+    \begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.6em]
+      \item Proposition~\ref{prop:s41-nocontraction} (line~8156):
+        $\Lambda_k\geq 2^8 4^k\geq 2^8>1$ for \emph{every} sequence
+        $(\delta_k)$ --- the recursion never contracts. The proposed
+        $\delta_k=\delta_08^{-k}$ makes it strictly worse ($32^k$); Young's
+        inequality has no purchase on the $2^84^k$ term because that term
+        does not involve $\delta_k$; and the summability
+        $\sum_k\delta_k\leq\tfrac12$ that absorption independently requires
+        forces the two geometric factors onto the same side, where they
+        reinforce.
+      \item Proposition~\ref{prop:s41-vacuous} (line~8191): the unrolled
+        inequality is implied by $Y_0\leq Y_0$ and carries no information for
+        every $N$; letting $N\to\infty$ does not help.
+      \item Proposition~\ref{prop:s41-coarea} (line~8270): by a co-area
+        identity the residual produced by \emph{any} admissible cutoff is a
+        level density of the measure $\mu_F$, bounded above only by
+        $(\theta_+-\theta_-)^{-1}\leq16$ times a total mass and bounded below
+        not at all. No cleverer choice of levels exists to be found.
+    \end{enumerate}
+  \item \textbf{Classification.} \textsc{proved impossible} for the route, and
+    \textsc{superseded} as a target: Conjecture~\ref{target:band-absorption}
+    (line~8435) is stated as ``the replacement for
+    Remark~\ref{rem:level-iteration}'' and is itself \textsc{open}.
+  \item \textbf{Consequence.} \emph{Forbidden:} any further attempt to close
+    the annulus residual by choosing levels, cutoffs or Young parameters.
+    Remark~\ref{rem:s41-endtarget} states what would actually have to be
+    proved, and stresses that the absorbed term must carry \emph{the same}
+    cutoff $\eta$ as the left-hand side --- ``this, not the value of any
+    constant, is what defeats the nested scheme'' --- and that by
+    Lemma~\ref{lem:s41-admissible} one admissible level pair suffices, so the
+    difficulty is analytic and not combinatorial. This wall is what
+    reclassified the annulus residual $\mathcal{A}_{\mathrm{ann}}$ --- H1's
+    last gap --- from \emph{open-mechanical} to \emph{open}, at the close of
+    \S\ref{sec:annulus-s41} and in the S44 ledger of
+    \S\ref{sec:relation-s44}.
+\end{enumerate}
+
+\subsection{Wall 5 --- \texorpdfstring{$c_K$}{c\_K} and band absorption are
+  not the same hypothesis}
+\label{subsec:wall5-independence}
+
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+  \item \textbf{Route.} Remarks~\ref{rem:s41-summary} and
+    \ref{rem:s41-band-status} described
+    Conjecture~\ref{conj:K-refined} (the $c_K$ decorrelation hypothesis,
+    line~5917) and Conjecture~\ref{target:band-absorption} (line~8435) as
+    ``of the same analytic type'', with the hope that proving one would
+    deliver the other, or that the apparently absolute constants of the band
+    statement made it the weaker target.
+  \item \textbf{Obstruction.} \S\ref{sec:relation-s44} settles both hopes
+    negatively.
+    \begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.6em]
+      \item \emph{Disjoint supports.} Remark~\ref{rem:s44-disjoint}
+        (line~8738): $E=Q(r^*)\cap\{m\geq M/4\}$ and
+        $\mathrm{Band}\subseteq\{m\leq M/4\}$ meet only in a null level set;
+        neither hypothesis constrains any integral supported in the other's
+        region.
+      \item \emph{Counterexamples both ways.}
+        Proposition~\ref{prop:s44-b-fails} (line~8846): a family with both
+        band left-hand sides vanishing identically --- so
+        Conjecture~\ref{target:band-absorption} holds with $C=0$ --- while
+        $c_K\geq|E|/(8\ell^5)\to\infty$.
+        Proposition~\ref{prop:s44-a-fails} (line~8947): a family with
+        $c_K=0$, the strongest possible form of
+        Conjecture~\ref{conj:K-refined}, for which the constant required in
+        \eqref{eq:s41-bandY} diverges.
+      \item \emph{The strength claim was inverted.}
+        Remark~\ref{rem:s44-corrigendum} (line~8708) records that the first
+        draft of \S\ref{sec:relation-s44} stated
+        Lemma~\ref{lem:s44-xi-vs-cK} with the reciprocal volume factor. Three
+        conclusions drawn from it --- that $\Xi$-boundedness is weaker than
+        $c_K$-boundedness, that Conjecture~\ref{conj:K-refined} could be
+        weakened to an $O(1)$ statement without loss, and that the measured
+        $c_K\approx1$ was direct evidence for $\Xi=O(1)$ --- are
+        \textbf{withdrawn}. Corrected, $\Xi[\mathbf{1}_E]=c_K|Q(r^*)|/|E|\geq
+        c_K$: the volume-normalised statistic is \emph{stronger}, not weaker.
+    \end{enumerate}
+  \item \textbf{Classification.} \textsc{proved impossible} for the
+    implication, in a precisely bounded sense, and \textsc{withdrawn} for the
+    strength claim. The bound on the sense matters and is stated in the
+    document, not added here: by Remark~\ref{rem:s44-scope} (line~8822) an
+    admissible test configuration (Definition~\ref{def:s44-config}) need not
+    come from a solution of Navier--Stokes, so
+    Propositions~\ref{prop:s44-b-fails} and~\ref{prop:s44-a-fails} do
+    \emph{not} establish that the two conjectures are independent as
+    statements about Navier--Stokes solutions --- ``that question is not
+    decidable by any argument available here''. What is proved is that no
+    implication can be derived from the a priori budgets and pointwise
+    structure (A1)--(A3) in terms of which both are phrased.
+  \item \textbf{Consequence.} \emph{Forbidden:} treating a proof of either
+    conjecture as progress on the other; \emph{forbidden:} the reading of
+    ``same analytic type'' as ``one covers the other''.
+    \emph{Permitted:} Conjecture~\ref{conj:lc-s44} (line~9412), the single
+    hypothesis (LC) that covers both $Y$-halves
+    (Proposition~\ref{prop:s44-lc-implies}). Note its exact position, which
+    is easy to misstate: (LC) is \emph{verbatim} the $c_K$ hypothesis ---
+    same normalisation, same $1/\mathcal{L}$ decay --- asserted on the
+    \emph{larger} region $\{m\geq M/16\}$; by
+    Remark~\ref{rem:s44-lc-reading} it implies neither
+    Conjecture~\ref{conj:K-refined} nor conversely, and is ``a genuinely new
+    hypothesis of an old form''. It is weaker than the alternative common
+    hypothesis (JLE-1, Conjecture~\ref{conj:jle-s44}) in the regime that
+    matters, not weaker than Conjecture~\ref{conj:K-refined}. Neither the
+    angular half \eqref{eq:s41-bandD} (Remark~\ref{rem:s44-bandD}) nor the
+    constant condition $CC_1\leq\delta\nu$
+    (Remark~\ref{rem:s44-channel-caveat}) is covered by any of them.
+\end{enumerate}
+
+\subsection{Wall 6 --- The \texorpdfstring{$c_K$}{c\_K} numerics cannot
+  discriminate}
+\label{subsec:wall6-numerics}
+
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+  \item \textbf{Route.} Measure $c_K$ in direct numerical simulation and use
+    the result as evidence for or against Conjecture~\ref{conj:K-refined}.
+    Four sessions did so (S34, S35, S42--43, S45).
+  \item \textbf{Obstruction.} The measurement is uninformative for a logical
+    reason, independent of what any run reports.
+    \begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.6em]
+      \item Conjecture~\ref{conj:K-refined} and
+        Conjecture~\ref{conj:lc-s44} are conditional statements: each asserts
+        a bound \emph{near a putative Type-I singularity}, in the limit
+        $\mathcal{L}\to\infty$. A solver that remains globally regular is
+        never in that regime, so neither the conjecture nor its negation
+        predicts anything about the numbers such a solver produces. Both
+        predict the same thing --- nothing --- and a measurement that both
+        sides of a disjunction predict cannot separate them.
+      \item Proposition~\ref{prop:regime-A-impossible} (line~6514) removes
+        the one reading under which a regular run could still have served as
+        a proxy. It proves that at a genuine blowup time
+        $\limsup_{t\to T^-}\Omega(t)=\infty$; hence bounded-enstrophy escape
+        (Regime~A) is impossible, and $\sigma^*$-decay is, given H1,
+        \emph{necessary} rather than one route among several. A resolved
+        simulation is a bounded-enstrophy object throughout. So the regime
+        the conjectures speak about is not merely one the runs did not visit;
+        it is not of the type a resolved run represents, and the decay is
+        not something such a run could exhibit.
+      \item Independently of (i)--(ii), the in-document assessment
+        Remark~\ref{rem:s44-numerics} (line~9363) states that the $O(1)$
+        measurements of S34--S35 are ``consistent with, but do not
+        establish'' either conjecture, that a measured $c_K\approx1$ does
+        \emph{not} support $\Xi=O(1)$ after the correction of
+        Remark~\ref{rem:s44-corrigendum}, and that the discrepancy is worst
+        exactly in the thin, filamentary configurations expected near a
+        singularity.
+    \end{enumerate}
+  \item \textbf{Classification.} \textsc{proved impossible} as a test of the
+    conjectures. The ground is (i)--(ii): an observation about the
+    \emph{form} of the statements --- each is conditional on a regime the
+    solver cannot enter, and Proposition~\ref{prop:regime-A-impossible} is
+    what ties that regime to genuine blowup. No new mathematics is required
+    for it, and it does not depend on resolution, viscosity or initial
+    condition. The diagnostic suite itself is \textsc{open} and valid for
+    other purposes.
+  \item \textbf{Consequence.} \emph{Forbidden:} measuring $c_K$,
+    $c_K^{\mathrm{band}}$ or the band ratios again \emph{as evidence} for or
+    against Conjecture~\ref{conj:K-refined},
+    Conjecture~\ref{target:band-absorption} or
+    Conjecture~\ref{conj:lc-s44}; they may be computed as context.
+    \emph{Permitted:} measurements whose answer differs between competing
+    mechanisms \emph{in a regular flow} --- questions about a mechanism, not
+    proxies for blowup. Also permitted, and still outstanding, are the three
+    quantities Remark~\ref{rem:s44-numerics}(iii) names as not reported in
+    the form needed: the volume fractions $|E|/|Q(r^*)|$ and
+    $|\mathrm{Band}|/|Q(r^*)|$ at the working scale, the band correlation
+    constant $c_K^{\mathrm{band}}$, and the $\mathcal{L}$-dependence of both
+    correlation constants.
+
+    \emph{Outside this document.} Session S45 measured all three
+    (\texttt{SESSION-LOG/}\allowbreak\texttt{2026-09-10-S45-}\allowbreak
+    \texttt{scale-diagnostics-}\allowbreak\texttt{jet-sweep.md};
+    \texttt{EXP-L4-SCALE-*}, \texttt{EXP-L4-JET*}) and found the
+    $\mathcal{L}$-slope of $\log c_K$ to be $-0.196$ ($r^2=0.05$) on one pool
+    and $+0.088$ ($r^2=0.02$) across all twelve runs, against the $-1$ a
+    clean $C/\mathcal{L}$ law would require, over
+    $\mathcal{L}\in[1.35,4.68]$. That is a negative signal for
+    Proposition~\ref{prop:s44-linfty-route}'s hypothesis and nothing more:
+    by (i) above it does not refute the conjecture, and it is recorded here
+    only because it is the measurement Remark~\ref{rem:s44-numerics}(iii)
+    asked for. No statement in this document rests on it.
+\end{enumerate}
+
+\subsection{Wall 7 --- The S35 second good term does not exist}
+\label{subsec:wall7-w2}
+
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+  \item \textbf{Route.} Proposition~\ref{prop:K-self} (line~6026,
+    \emph{provisional} as stated) recorded the identity
+    \eqref{eq:K-self-identity} with \emph{two} good terms on the left: the
+    $K$-density $\nu\iint|\nabla m|^2w\eta^2$ and, additionally,
+    $\nu\iint m^2w^2\eta^2$ --- the critical quadratic with the favourable
+    weight, presented as reinforcing
+    Proposition~\ref{prop:second-rung}.
+  \item \textbf{Obstruction.} Lemma~\ref{lem:w2-cancel} (line~6166): the
+    $+\nu w\hat e$ term of \eqref{eq:dir-eq} contributes exactly $+\nu w^2$
+    to $\tfrac12 D_tw$, which cancels the sink term
+    $-\nu\iint m^2w^2\eta^2$ \emph{identically}. The second left-hand term is
+    removed; \eqref{eq:K-self-identity} must be read without it.
+  \item \textbf{Classification.} \textsc{withdrawn}, and repaired. The
+    $K$-control conclusion stands with amended constants; the critical
+    quadratic is handled solely by Proposition~\ref{prop:second-rung}, which
+    suffices, so no downstream conclusion depended on the cancelled term.
+  \item \textbf{Consequence.} \emph{Forbidden:} citing
+    \eqref{eq:K-self-identity} in its original two-term form, or invoking the
+    $w^2$ term as an independent source of smallness. This is the smallest of
+    the walls and is recorded because it is one of three instances --- with
+    Wall~5(iii) and the corrigendum of \S\ref{sec:magnitude-s34} --- of the
+    same failure mode: a favourable statement written down before the
+    computation producing it was closed.
+    Note also Remark~\ref{rem:if-verified}, which states what would follow if
+    couplings C1--C2 verified in full: Conjecture~\ref{conj:K-refined} would
+    become \emph{unnecessary}. That conditional remains conditional.
+\end{enumerate}
+
+\subsection{Wall 8 --- The localized Constantin--Fefferman machinery does not
+  transfer to profiles}
+\label{subsec:wall8-cf-transfer}
+
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+  \item \textbf{Route.} Carry the H2 / Regime-B analysis of
+    \S\ref{sec:cf-s37}, whose engine is
+    Proposition~\ref{prop:localized-cf} (line~6381), across the rescaling
+    limit onto the Type-I profile $U$, so that the S39 reframe inherits it.
+  \item \textbf{Obstruction.} Remark~\ref{rem:s39-nontransfer}(i)
+    (line~7031): the far-field step of
+    Proposition~\ref{prop:localized-cf} bounds
+    $\int_{|y|\geq\rho'}|\omega(x^*-y)||y|^{-3}dy$ by
+    $C(\rho')^{-3/2}\Omega^{1/2}$ with $\Omega=\|\omega\|_{L^2}^2$, and for
+    $U\in\mathcal{A}(c_I)$ on $\R^3$ there is no reason for
+    $\|\omega_U(\cdot,s)\|_{L^2(\R^3)}$ to be finite; the naive substitute
+    $|\omega_U|\leq M_U$ makes the integral logarithmically divergent at
+    large $|y|$. The document states the consequence in terms: ``the entire
+    H2/Regime-B analysis of \S\ref{sec:cf-s37} is unavailable on the profile
+    as written''.
+  \item \textbf{Classification.} \textsc{proved impossible} as written --- the
+    obstruction is a divergence, not a missing estimate. Whether some
+    localized substitute exists on $\R^3$ is \textsc{open} and untried.
+  \item \textbf{Consequence.} \emph{Forbidden:} ``Any future session that uses
+    Proposition~\ref{prop:localized-cf} on a profile is in error''
+    (Remark~\ref{rem:s39-bought}(4)). The companion prohibition of
+    Remark~\ref{rem:s39-nontransfer}(ii) is equally binding and is easier to
+    violate by accident: the Bridge Lemma (Conjecture~\ref{conj:bridge}) may
+    \emph{not} be pulled back, because
+    Lemma~\ref{lem:sigma-semicontinuity} gives semicontinuity in the wrong
+    direction and $\sigma^*(U)=0$ does not give
+    $\sigma^*(u_{\lambda_j})\to0$. Any argument that routes a profile
+    conclusion back through H1 on the approximating sequence is invalid; the
+    S39 dichotomy is built to obtain its contradiction entirely on $U$ for
+    exactly this reason.
+\end{enumerate}
+
+\subsection{Wall 9 --- Forced blowup constructions cannot be de-forced}
+\label{subsec:wall9-forcing}
+
+\emph{This entry is recorded outside the mathematics of this document.} It
+carries no label here because no part of this document uses it; it is included
+because it bounds what future sessions may import. The source is
+\texttt{SESSION-LOG/}\allowbreak\texttt{2026-09-09-S40-}\allowbreak
+\texttt{openai-comparison-}\allowbreak\texttt{aniso-collapse.md}.
+
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+  \item \textbf{Route.} Import the mechanism of a recently published
+    finite-time blowup construction for the \emph{forced} Navier--Stokes
+    equations --- an axisymmetric anisotropic self-similar collapsing vortex
+    core, with $\ell_r\asymp\tau^{1/2}$, $\ell_z\asymp\tau^{1/2-h}$ and
+    $\mathrm{Re}_\theta\to\infty$ while $\mathrm{Re}_r=O(1)$ --- by deleting
+    the forcing term, and read the result against the Prize equations.
+  \item \textbf{Obstruction.} The forcing is load-bearing at three separate
+    points of that construction, not decorative: an exponentially small
+    external force seeds each oscillatory pulse; what remains of the momentum
+    residual after pulse cancellation \emph{becomes} part of $f$; and the
+    compact-support cutoff introduces a further force term. The forcing is
+    \emph{defined} as the Navier--Stokes residual of the constructed field.
+    Setting $f\equiv0$ is therefore not a simplification of the construction
+    but a different question, which the source does not claim to answer. In
+    Fefferman's formulation \cite{Fefferman2000} the result establishes
+    alternatives (C) and (D), not (A)/(B).
+  \item \textbf{Classification.} \textsc{proved impossible} as an import route
+    --- there is nothing to de-force, since the residual is the forcing by
+    construction. The underlying blowup question for the unforced equations is
+    of course \textsc{open}; that is the Prize.
+  \item \textbf{Consequence.} \emph{Forbidden:} forcing terms, modified
+    equations and ``weak internal forces'' as mechanisms anywhere in this
+    programme; \emph{forbidden:} reading a forced blowup result as evidence
+    about the unforced equations in either direction.
+    \emph{Permitted:} the \emph{geometry} of such constructions as a source
+    of adversarial initial data for the unforced solver, which is how
+    \texttt{layer3/aniso\_collapse\_IC.py} was built (fed to an unmodified
+    $f\equiv0$ solver). The one substantive observation, recorded as an
+    observation and not as evidence: sustaining that anisotropic collapse
+    against dissipation required an externally injected, precisely tuned
+    force.
+\end{enumerate}
+
+\subsection{Status table}
+\label{subsec:walls-table}
+
+\begin{center}
+\small
+\begin{tabular}{@{}l p{0.30\textwidth} p{0.31\textwidth} l@{}}
+\hline
+\# & Route & Classification & Primary reference \\
+\hline
+0 & \S20--\S22 $H^1$ Prize claim & \textbf{Withdrawn} (8 grounds)
+  & \S\ref{sec:audit-s31} \\
+1 & Sup-norm of a CZ image; crude $K$
+  & \textbf{Open} (structural) & Prop.~\ref{prop:crude-K} \\
+1$'$ & \quad same log, annulus core & \textbf{Open}
+  & Rem.~\ref{rem:s41-shortfall} \\
+1$''$ & \quad same log, corrected band & \textbf{Open}; needs \emph{decay}
+  & Prop.~\ref{prop:s44-linfty-route} \\
+2 & Profile route as log-free & \textbf{Open}; relocated into (R)
+  & Prop.~\ref{prop:transfer-audit}(d) \\
+3 & Pincer closed $\Rightarrow$ Prize & \textbf{Open}; ceiling is Type-I only
+  & Rem.~\ref{rem:s39-distance} \\
+4 & Nested level iteration & \textbf{Proved impossible}
+  & Prop.~\ref{prop:s41-nocontraction} \\
+4$'$ & \quad unrolled form & \textbf{Proved impossible} (vacuous)
+  & Prop.~\ref{prop:s41-vacuous} \\
+4$''$ & \quad any level selection & \textbf{Proved impossible} (co-area)
+  & Prop.~\ref{prop:s41-coarea} \\
+4$'''$ & \quad replacement target & \textbf{Superseded}; \textbf{Open}
+  & Conj.~\ref{target:band-absorption} \\
+5 & $c_K\Rightarrow$ band absorption & \textbf{Proved impossible} over (A1)--(A3)
+  & Prop.~\ref{prop:s44-a-fails} \\
+5$'$ & band absorption $\Rightarrow c_K$ & \textbf{Proved impossible} over (A1)--(A3)
+  & Prop.~\ref{prop:s44-b-fails} \\
+5$''$ & \quad scope of 5, 5$'$ & Test configurations, \emph{not} NS solutions
+  & Rem.~\ref{rem:s44-scope} \\
+5$'''$ & band is the weaker target & \textbf{Withdrawn} (lemma inverted)
+  & Rem.~\ref{rem:s44-corrigendum} \\
+5$''''$ & common hypothesis (LC) & \textbf{Open}; covers both $Y$-halves
+  & Conj.~\ref{conj:lc-s44} \\
+6 & $c_K$ numerics as evidence & \textbf{Proved impossible} (logical)
+  & Prop.~\ref{prop:regime-A-impossible} \\
+6$'$ & \quad in-document assessment & Consistent with, does not establish
+  & Rem.~\ref{rem:s44-numerics} \\
+7 & S35 second good term & \textbf{Withdrawn} (exact cancellation)
+  & Lem.~\ref{lem:w2-cancel} \\
+8 & Localized CF on profiles & \textbf{Proved impossible} ($\Omega=\infty$)
+  & Rem.~\ref{rem:s39-nontransfer}(i) \\
+8$'$ & Pull-back of H1 to sequence & \textbf{Forbidden} (no reverse inequality)
+  & Rem.~\ref{rem:s39-nontransfer}(ii) \\
+9 & De-forcing a forced blowup & \textbf{Proved impossible} as an import
+  & S40 log (outside doc) \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{remark}[Two corrections to the S46 handover, recorded here]
+  \label{rem:s47-handover-corrigenda}
+  The execution plan \texttt{HANDOVER-S46-OPUS.md} that commissioned this
+  section states two things that the document does not support, and the
+  document governs.
+  \begin{enumerate}[label=(\roman*)]
+    \item It refers to ``the S31 audit (all seven grounds)''.
+      \S\ref{sec:audit-s31} lists \textbf{eight} defects, D1--D8. D8
+      (unproved coercivity in Lemma~\ref{lem:A-evol}, together with the
+      $L^\infty$ Calder\'on--Zygmund bound) is the one most easily dropped
+      from a summary and is also the first appearance of Wall~1, so the
+      omission is not neutral. Wall~0 above lists all eight.
+    \item It describes Conjecture~\ref{conj:lc-s44} as ``a common
+      \emph{weaker} target''. By its own statement (LC) is the $c_K$
+      hypothesis asserted on the \emph{larger} region $\{m\geq M/16\}$, with
+      the same normalisation and the same $1/\mathcal{L}$ decay; by
+      Remark~\ref{rem:s44-lc-reading} it neither implies nor is implied by
+      Conjecture~\ref{conj:K-refined}. It is weaker than the \emph{other}
+      common hypothesis (JLE-1, Conjecture~\ref{conj:jle-s44}) in the regime
+      that matters --- which is what \S\ref{subsec:s44-common} says --- not
+      weaker than Conjecture~\ref{conj:K-refined}.
+  \end{enumerate}
+  A third statement of the handover is correct but is routinely rounded off
+  in summary: the S44 non-implications are proved over the a priori structure
+  (A1)--(A3) of Definition~\ref{def:s44-config}, \emph{not} for
+  Navier--Stokes solutions (Remark~\ref{rem:s44-scope}). ``Proved
+  independent'' without that qualifier overstates them.
+\end{remark}
+
+\begin{remark}[What this section does not do]\label{rem:s47-scope}
+  It does not assess whether any wall can be broken, and it contains no
+  encouragement to try. Walls~1, 2, 3 and 5$''''$ are open questions with no
+  proof against them; Walls~4, 6, 8 and 9 carry proofs, and the proofs are in
+  the propositions cited, not here. Nothing in this section bears on H2, on
+  $\sigma^*$-decay, on hypothesis \textbf{(R)}, on gap \textbf{(A-up)}, on the
+  withdrawn material of \S20--\S22, or on any Prize or Claim~A conclusion, all
+  of which retain the status they had before it was written.
+\end{remark}
+
 % ══════════════════════════════════════════════════════════════════════════════
 \begin{thebibliography}{99}
 

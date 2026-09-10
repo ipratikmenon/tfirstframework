@@ -37,7 +37,7 @@ Each item below was checked against `proofs/claim_a_3d_proof_attempt.tex`
 (9787 lines) in S46. Labels and line numbers are given so you can re-verify.
 
 **W1 — The logarithm is structural, not bookkeeping.** `lem:local-enstrophy-typeI`
-(line ~5664) introduces `𝓛 = log(e + ‖u‖_{H³}/M)` through
+(line 5660 in the pristine file; `𝓛` is defined at 5671) introduces `𝓛 = log(e + ‖u‖_{H³}/M)` through
 `‖∇u‖_∞ ≲ M·𝓛`. That is the L^∞ endpoint failure of the Biot–Savart operator
 (a Calderón–Zygmund operator, unbounded on L^∞). Every enstrophy budget in the
 document inherits it. It is the *same* log that blocks crude K-absorption
@@ -67,10 +67,21 @@ problem". Every estimate uses Type-I rates *essentially*; a Type-II singularity
 (Λ_k ≥ 2⁸ for every Young parameter), `prop:s41-vacuous`, `prop:s41-coarea`
 (no level selection helps, by a co-area identity).
 
-**W5 — `conj:K-refined` and `target:band-absorption` are independent** (S44):
-counterexamples both ways (`prop:s44-a-fails`, `prop:s44-b-fails`); structural
-cause is disjoint supports (`rem:s44-disjoint`). A common weaker target
-`conj:lc-s44` exists; corrected, it needs the same decaying constant `≤ C/𝓛`.
+**W5 — no implication between `conj:K-refined` and `target:band-absorption`
+follows from the a priori structure** (S44): counterexamples both ways
+(`prop:s44-a-fails`, `prop:s44-b-fails`); structural cause is disjoint supports
+(`rem:s44-disjoint`). **Scope, corrected S47:** `rem:s44-scope` is emphatic that
+an admissible test configuration need not come from an NS solution, so this is
+*not* independence for Navier–Stokes solutions — "that question is not decidable
+by any argument available here". What is proved is that no implication follows
+from (A1)–(A3). Earlier drafts of this handover and of `PROGRESS.md` said
+"proved independent" without the qualifier; that overstates the result. A common target
+`conj:lc-s44` exists — but note (corrected S47) it is **not weaker than
+`conj:K-refined`**: by `rem:s44-lc-reading` neither implies the other. It is
+verbatim the c_K hypothesis (same normalisation, same `1/𝓛` decay) asserted on
+the *larger* region `{m ≥ M/16}`, and it supplies the *conclusion* both targets
+were designed to give. It is weaker than the other common hypothesis, JLE-1
+(`conj:jle-s44`).
 A first-draft strength claim was inverted and withdrawn (`rem:s44-corrigendum`).
 
 **W6 — The c_K numerics were never discriminating.** S38 proved σ\*-decay is
@@ -139,6 +150,14 @@ S39/S44 class of syntactic error cannot recur silently.
    `eq:NS-vorticity`, `lem:GN-ehat`, `prop:blowup-alignment`,
    `thm:vorticity-uniform` (lines ~4740–5040 — locate the intended targets or
    mark them explicitly as dangling with a red note; do not invent labels).
+2b. **(Added S47, from execution.)** The handover's defect list was
+   **incomplete**: three undefined control sequences were also blocking
+   compilation — `\colonequals` (line ~4584) and `\fint` (~5254, ~5912).
+   Both were fixed via `\providecommand`; `\fint` aliases the preamble's
+   existing `\Xint`. Also required: the `cm-super` package, without which
+   microtype fails with a scalable-font error and the toolchain looks broken
+   when it is not.
+
 3. `scripts/check_proof.py`: brace balance (comment-stripped, `\{ \} \\`
    handled), `\begin`/`\end` multiset equality, undeclared environments,
    duplicate labels, unresolved `\ref`/`\eqref`/`\cite`, and the malformed
@@ -168,7 +187,7 @@ One subsection per wall, **fixed template**:
 label/line refs; (c) classification — PROVED IMPOSSIBLE / OPEN / SUPERSEDED /
 WITHDRAWN; (d) what it forbids or permits for future work.*
 
-Walls to cover, minimum: S31 audit (`§sec:audit-s31`, all seven grounds); W1
+Walls to cover, minimum: S31 audit (`§sec:audit-s31`, all **eight** grounds — Defects 1–8; note `PROGRESS.md`'s S31 block lists only seven, omitting D8, which is itself the first appearance of W1); W1
 the CZ log with its three appearances; W2 the (R) relocation; W3 the Type-II
 ceiling; W4 level iteration; W5 c_K/band independence + the S44 corrigendum;
 W6 non-discriminating numerics (give the *logical* argument via S38, not just

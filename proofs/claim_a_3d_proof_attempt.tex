@@ -8433,6 +8433,35 @@ exactly and shows it is common to \emph{all} level selections.
   makes Conjecture~\ref{conj:K-refined} unnecessary --- must be qualified:
   it holds on $\{m\geq M/4\}$, where the level cutoff is inactive, and not
   on the transition band, where a hypothesis of that type is still required.
+
+  \medskip
+  \noindent\textbf{Amended (S44).} The phrase ``exactly the same analytic
+  type'' above is accurate as a statement about the \emph{form} of the two
+  hypotheses and must not be read as an implication in either direction:
+  \S\ref{sec:relation-s44} shows that neither conjecture implies the other,
+  nor any nontrivial part of the other, from the a priori structure they are
+  formulated against (Propositions~\ref{prop:s44-a-fails}
+  and~\ref{prop:s44-b-fails}; the exact scope of that claim is
+  Remark~\ref{rem:s44-scope}). The reason is that the two are supported on
+  disjoint regions of the $|\omega|$-level decomposition
+  (Remark~\ref{rem:s44-disjoint}). Three further amendments. (i) The
+  description ``a decorrelation/equipartition hypothesis'' applies to
+  \eqref{eq:s41-bandY} but \emph{not} to \eqref{eq:s41-bandD}, which is a bare
+  level non-concentration statement of a different type
+  (Remark~\ref{rem:s44-bandD}). (ii) The absolute constants of
+  \eqref{eq:s41-bandY}--\eqref{eq:s41-bandD} do \emph{not} make this
+  conjecture weaker than Conjecture~\ref{conj:K-refined}: reduced to a
+  hypothesis on the band correlation constant by the route on which the
+  latter was calibrated, \eqref{eq:s41-bandY} requires
+  $c_K^{\mathrm{band}}\leq C/\mathcal{L}$, the same decaying form
+  (Proposition~\ref{prop:s44-linfty-route},
+  Remark~\ref{rem:s44-strength}). (iii) A single hypothesis covers the
+  $Y$-halves of both targets, namely Conjecture~\ref{conj:lc-s44} --- the
+  $c_K$ hypothesis itself, asserted on $\{m\geq M/16\}$ rather than on
+  $\{m\geq M/4\}$ (Proposition~\ref{prop:s44-lc-implies}); the
+  volume-normalised alternative Conjecture~\ref{conj:jle-s44} also suffices
+  but is strictly stronger in the concentrated regime
+  (Remark~\ref{rem:s44-jle-status}).
 \end{remark}
 
 \subsection{Amended status of $\mathcal{A}_{\mathrm{ann}}$}
@@ -8454,6 +8483,7 @@ $k\to\infty$ limit & \textbf{Proved} to be a level-set flux & Prop.~\ref{prop:s4
 Any other level selection & \textbf{Proved} no gain (co-area) & Prop.~\ref{prop:s41-coarea}(c) \\
 Core residual (S1)+(S2), crude bound & \textbf{Proved}; one logarithm short & Prop.~\ref{prop:s41-crude} \\
 Core residual, absorption & \textbf{Open} (was ``open-mechanical'') & Conj.~\ref{target:band-absorption} \\
+Relation to Conj.~\ref{conj:K-refined} & \textbf{Proved independent} (S44); common hyp.\ isolated & \S\ref{sec:relation-s44}, Conj.~\ref{conj:lc-s44} \\
 \hline
 \end{tabular}
 \end{center}
@@ -8476,6 +8506,1168 @@ Core residual, absorption & \textbf{Open} (was ``open-mechanical'') & Conj.~\ref
   amended accordingly. No other item of the program is affected by this
   section, and in particular nothing here bears on H2, on
   $\sigma^*$-decay, or on Type-II exclusion.
+\end{remark}
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{The Relationship Between the $c_K$ and Band-Absorption Hypotheses
+(Session S44)}
+\label{sec:relation-s44}
+
+Remark~\ref{rem:s41-summary} classifies $\mathcal{A}_{\mathrm{ann}}$ as
+``open, of the same analytic type as Conjecture~\ref{conj:K-refined}'', and
+Remark~\ref{rem:s41-band-status} repeats the phrase; both note that the crude
+bounds fail by the same single logarithm
+(Proposition~\ref{prop:crude-K}, Proposition~\ref{prop:s41-crude},
+Remark~\ref{rem:s41-shortfall}). This section asks whether the resemblance is
+substantive, i.e.\ what the \emph{logical} relationship between
+Conjecture~\ref{conj:K-refined} and Conjecture~\ref{target:band-absorption}
+actually is. The outcome is mixed, and is reported as such.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Conjecture~\ref{conj:K-refined} does \emph{not} imply
+    Conjecture~\ref{target:band-absorption}
+    (Proposition~\ref{prop:s44-a-fails}); the reason is structural, not a
+    matter of constants: the two hypotheses are supported on \emph{disjoint}
+    regions of the $|\omega|$-level decomposition
+    (Remark~\ref{rem:s44-disjoint}). The band-transported form of the $c_K$
+    hypothesis does imply the $Y$-half \eqref{eq:s41-bandY}: through the
+    $\|w\|_{L^\infty}$ route with no extra ingredient
+    (Proposition~\ref{prop:s44-linfty-route}), or through the budget route
+    with the volume hypothesis (NB) named explicitly
+    (Proposition~\ref{prop:s44-transport}).
+  \item Conjecture~\ref{target:band-absorption} does not imply
+    Conjecture~\ref{conj:K-refined}, nor any upper bound on $c_K$ whatsoever
+    (Proposition~\ref{prop:s44-b-fails}).
+  \item There are common hypotheses from which the $Y$-halves of both targets
+    follow, one for each of the two available routes
+    (Remark~\ref{rem:s44-two-routes}). The weaker and preferred one is
+    Conjecture~\ref{conj:lc-s44}: \emph{the $c_K$ hypothesis itself, asserted
+    on $\{m\geq M/16\}$ instead of on $\{m\geq M/4\}$}
+    (Proposition~\ref{prop:s44-lc-implies}). The alternative,
+    Conjecture~\ref{conj:jle-s44}, replaces the decaying constant by an $O(1)$
+    one at the cost of normalising by the ambient parabolic volume, and is a
+    demanding hypothesis rather than a cheap one
+    (Remark~\ref{rem:s44-jle-status}). The angular half \eqref{eq:s41-bandD}
+    of Conjecture~\ref{target:band-absorption} is of a different type and is
+    covered by neither (Remark~\ref{rem:s44-bandD}).
+  \item The strength comparison suggested by the ``$C/\mathcal{L}$ versus
+    $O(1)$'' discrepancy does \emph{not} survive: \eqref{eq:s41-bandY} is
+    $O(1)$ in its bookkeeping only. Reduced to a hypothesis on a correlation
+    constant by the route on which Conjecture~\ref{conj:K-refined} was
+    calibrated, it requires $c_K^{\mathrm{band}}\leq C/\mathcal{L}$ --- the
+    same decaying form (Proposition~\ref{prop:s44-linfty-route}). The
+    volume-normalised alternative buys an $O(1)$ constant only at the price of
+    a volume hypothesis, symmetrically on both sides
+    (\eqref{eq:s44-NB} and \eqref{eq:s44-NBE}), and is \emph{strictly
+    stronger} than the corresponding correlation bound
+    (Lemma~\ref{lem:s44-xi-vs-cK}). See
+    Proposition~\ref{prop:s44-calibration}, Remark~\ref{rem:s44-strength} and
+    Remark~\ref{rem:s44-numerics}. The first draft of this section concluded
+    the opposite from an inverted lemma; that conclusion is withdrawn and the
+    correction is recorded in Remark~\ref{rem:s44-corrigendum}.
+\end{enumerate}
+
+\noindent This section changes no proved statement. It rearranges open
+hypotheses; its only edits elsewhere are a cross-reference appended to
+Remark~\ref{rem:s41-band-status} and one row added to the table of
+\S\ref{subsec:s41-status}. Nothing here bears on H2, on $\sigma^*$-decay, on
+the hypotheses of \S\ref{sec:rigidity-s39}, on Type-II exclusion, or on the
+withdrawn \S\ref{sec:audit-s31} material.
+
+\subsection{Normalisation; the two hypotheses side by side}
+\label{subsec:s44-setup}
+
+Throughout, the notation is that of \S\ref{sec:annulus-s41}: $m=|\omega|$,
+$w=|\nabla\hat{e}|^2$, $M=M(t)$, $r^*=M^{-1/2}$, $\psi$ the fixed space--time
+cutoff of Definition~\ref{def:composite-cutoff} with
+$\tfrac{r^*}{2}\leq\rho<\rho'\leq r^*$, $\mathcal{E}$ the enstrophy budget
+\eqref{eq:s41-budget}, and $\mathcal{I}$ the allowed inhomogeneous class
+\eqref{eq:s41-I}. We abbreviate its dominant constituent
+\[
+  \mathcal{I}_0 \;:=\; \mathcal{L}^2M^{3/2}\nu^{-1}
+  \qquad(\text{so }\mathcal{I}\geq C^{-1}\mathcal{I}_0
+  \text{ and }\mathcal{I}_0\text{ is exactly the last term of }
+  \eqref{eq:s41-bandY}\text{--}\eqref{eq:s41-bandD}).
+\]
+Constants $C$ depend only on the standing Type-I data $(C_I,\nu)$ and on
+$\|\Theta'\|_\infty,\|\Theta''\|_\infty$, never on $M$ or $\mathcal{L}$.
+We write $|Q(\rho)|=c_5\rho^5$ for the parabolic volume ($c_5$ absolute) and
+\[
+  Q^\sharp \;:=\; Q(\rho')\cap\{m\geq M/16\},
+  \qquad
+  E \;=\; Q(r^*)\cap\{m\geq M/4\},
+  \qquad
+  \mathrm{Band} \;=\; \{\theta_-M\leq m\leq\theta_+M\}\cap\operatorname{supp}\psi ,
+\]
+with $\tfrac1{16}\leq\theta_-<\theta_+\leq\tfrac14$ admissible in the sense of
+Definition~\ref{def:s41-admissible}.
+
+\begin{definition}[Volume-normalised coupling excess]\label{def:s44-excess}
+  For a measurable weight $\varpi$ with $0\leq\varpi\leq1$ supported in
+  $Q(r^*)$, and provided both factors in the denominator are positive and
+  finite, set
+  \[
+    \Xi[\varpi]
+    \;:=\;
+    \frac{|Q(r^*)|\;\displaystyle\iint|\nabla m|^2\,w\,\varpi}
+         {\Bigl(\displaystyle\iint|\nabla m|^2\,\varpi\Bigr)
+          \Bigl(\displaystyle\iint w\,\varpi\Bigr)} .
+  \]
+  Thus $\Xi[\varpi]\leq\kappa_0$ says: \emph{the coupling density
+  $|\nabla m|^2w$ is at most $\kappa_0$ times what it would be if
+  $|\nabla m|^2$ and $w$ were uncorrelated and spread over the whole cylinder
+  $Q(r^*)$.} It is the same ratio as $c_K$ except that the normalising volume
+  is the ambient $|Q(r^*)|$ and not the measure of the region carrying
+  $\varpi$. If either denominator vanishes then $|\nabla m|^2w\,\varpi=0$
+  a.e., so $\Xi[\varpi]$ is left undefined and every statement below in which
+  it occurs holds trivially; we do not repeat this convention.
+\end{definition}
+
+\begin{lemma}[$\Xi$ versus $c_K$: the volume ratio]\label{lem:s44-xi-vs-cK}
+  With $c_K$ as in Conjecture~\ref{conj:K-refined},
+  \begin{equation}\label{eq:s44-xi-ck}
+    \Xi[\mathbf{1}_E] \;=\; c_K\,\frac{|Q(r^*)|}{|E|}\;\geq\;c_K ,
+  \end{equation}
+  and more generally, for any measurable $R\subseteq Q(r^*)$ of positive
+  measure and any weight $\varpi$ supported in $R$,
+  \[
+    \Xi[\varpi] \;=\; c_K[\varpi]\,\frac{|Q(r^*)|}{|R|},
+    \qquad
+    c_K[\varpi]\;:=\;
+    \frac{|R|\iint|\nabla m|^2w\,\varpi}
+      {\bigl(\iint|\nabla m|^2\varpi\bigr)\bigl(\iint w\,\varpi\bigr)} ,
+  \]
+  $c_K[\mathbf{1}_E]$ being exactly $c_K$ and
+  $c_K[\mathbf{1}_{\mathrm{Band}}\psi^2]$ exactly the $c_K^{\mathrm{band}}$ of
+  \eqref{eq:s44-cKband}. Consequently:
+  \begin{enumerate}[label=(\roman*)]
+    \item a bound $\Xi[\varpi]\leq\kappa$ is \emph{strictly stronger} than the
+      correlation bound $c_K[\varpi]\leq\kappa$, by exactly the volume ratio
+      $|Q(r^*)|/|R|$;
+    \item Conjecture~\ref{conj:K-refined} gives only
+      $\Xi[\mathbf{1}_E]\leq (C/\mathcal{L})\,|Q(r^*)|/|E|$, which is $O(1)$
+      \emph{only} under a volume lower bound on $E$; and
+    \item $\Xi[\varpi]\geq1$ whenever $|\nabla m|^2$ and $w$ are supported in a
+      common set of measure $\leq|Q(r^*)|$ and are uncorrelated on it --- for
+      $|\nabla m|^2\equiv G$, $w\equiv W$ on $R$ and both vanishing off $R$ one
+      has $c_K[\varpi]=1$ but $\Xi[\varpi]=|Q(r^*)|/|R|$.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  Writing out the two averages in Conjecture~\ref{conj:K-refined} gives
+  $c_K = |E|\iint_E|\nabla m|^2w
+  \big/\bigl(\iint_E|\nabla m|^2\cdot\iint_E w\bigr)$, and
+  Definition~\ref{def:s44-excess} with $\varpi=\mathbf{1}_E$ gives the same
+  expression with $|E|$ replaced by $|Q(r^*)|$; dividing yields
+  \eqref{eq:s44-xi-ck}. The general case is identical, and (i)--(iii) follow
+  from $|R|\leq|Q(r^*)|$ and direct substitution.
+\end{proof}
+
+\begin{remark}[Corrigendum: this lemma was stated inverted in the first draft
+  of S44]\label{rem:s44-corrigendum}
+  In the first draft of this section Lemma~\ref{lem:s44-xi-vs-cK} was recorded
+  as $\Xi[\mathbf{1}_E]=c_K|E|/|Q(r^*)|\leq c_K$ --- the reciprocal of the
+  correct volume factor, hence the wrong direction. The error was caught in
+  the independent check of this section and is recorded here, in the style of
+  the corrigendum of \S\ref{sec:magnitude-s34} and the retraction of
+  \S\ref{sec:secondrung-s35}, because it \emph{reverses} the interpretation of
+  the volume-normalised statistic $\Xi$ and therefore the answer to the
+  strength question of \S\ref{subsec:s44-strength}. What the first draft
+  concluded --- that $\Xi$-boundedness is weaker than $c_K$-boundedness, that
+  Conjecture~\ref{conj:K-refined} may be weakened to an $O(1)$ statement
+  without loss, and that the measured $c_K\approx1$ is direct evidence for
+  $\Xi=O(1)$ --- is \textbf{withdrawn}; the corrected statements are
+  Proposition~\ref{prop:s44-calibration}(iii),
+  Remark~\ref{rem:s44-strength} and Remark~\ref{rem:s44-numerics} below.
+  Nothing else in this section used the lemma: the two non-implications
+  (Propositions~\ref{prop:s44-a-fails} and~\ref{prop:s44-b-fails}),
+  Lemma~\ref{lem:s44-budget}, Proposition~\ref{prop:s44-transport},
+  Proposition~\ref{prop:s44-calibration}(i)--(ii) and
+  Proposition~\ref{prop:s44-jle-implies} are all independent of it and were
+  re-checked line by line. Two internal consistency checks confirm the
+  corrected direction: Remark~\ref{rem:s44-jle-status} computes
+  $\Xi=|Q(r^*)|/|S|$ under co-concentration on a set $S$, and
+  Proposition~\ref{prop:s44-transport} uses
+  $\Xi[\mathbf{1}_{\mathrm{Band}}\psi^2]
+  =c_K^{\mathrm{band}}|Q(r^*)|/|\mathrm{Band}|$; both agree with
+  \eqref{eq:s44-xi-ck} and contradicted the first-draft lemma.
+\end{remark}
+
+\begin{remark}[The two hypotheses live on disjoint regions]
+  \label{rem:s44-disjoint}
+  Conjecture~\ref{conj:K-refined} is a statement about
+  $E=Q(r^*)\cap\{m\geq M/4\}$. Conjecture~\ref{target:band-absorption} is a
+  statement about $\mathrm{Band}\subseteq\{m\leq M/4\}$. The two regions meet
+  only in the level set $\{m=M/4\}$, which carries no five-dimensional measure
+  whenever $M(t)/4$ is a regular value of $m(\cdot,t)$ for a.e.\ $t$. Neither
+  hypothesis constrains any integral supported in the other's region. This
+  already makes it implausible that either implies the other, and
+  \S\ref{subsec:s44-nonimplications} confirms it. It also locates precisely
+  what Remark~\ref{rem:s41-band-status} was right to flag: ``the same analytic
+  type'' is a statement about the \emph{form} of the two hypotheses, not about
+  their content, and the qualification that remark attaches to
+  Remark~\ref{rem:if-verified} is exactly the disjointness recorded here.
+\end{remark}
+
+\begin{lemma}[Budget lemma]\label{lem:s44-budget}
+  Let $0\leq\varpi\leq1$ be supported in $Q^\sharp$. Then
+  \[
+    \nu\iint|\nabla m|^2\,\varpi \;\leq\;\mathcal{E},
+    \qquad
+    \iint w\,\varpi \;\leq\;\frac{256\,\mathcal{E}}{\nu M^2},
+  \]
+  and consequently, whenever $\Xi[\varpi]$ is defined,
+  \begin{equation}\label{eq:s44-master}
+    \nu\iint|\nabla m|^2\,w\,\varpi
+    \;\leq\;
+    \Xi[\varpi]\;\frac{256\,\mathcal{E}^2}{\nu\,M^2\,|Q(r^*)|}
+    \;\leq\;
+    C\,\Xi[\varpi]\;\mathcal{I}_0 .
+  \end{equation}
+\end{lemma}
+\begin{proof}
+  The first bound is $|\nabla m|^2\leq|\nabla m|^2+m^2w$ together with
+  \eqref{eq:s41-budget} and $\varpi\leq1$. The second is the same estimate
+  after using $m\geq M/16$ on $\operatorname{supp}\varpi$, so that
+  $m^2w\geq M^2w/256$. Multiplying the two bounds, dividing by $|Q(r^*)|$ and
+  using Definition~\ref{def:s44-excess} gives the first inequality of
+  \eqref{eq:s44-master}. For the second, insert
+  $|Q(r^*)|=c_5(r^*)^5=c_5M^{-5/2}$ and
+  $\mathcal{E}\leq C_{\mathcal{E}}\mathcal{L}M^{1/2}$:
+  \[
+    \frac{\mathcal{E}^2}{M^2|Q(r^*)|}
+    \;\leq\;\frac{C_{\mathcal{E}}^2\mathcal{L}^2M}{c_5\,M^{2}M^{-5/2}}
+    \;=\;\frac{C_{\mathcal{E}}^2}{c_5}\,\mathcal{L}^2M^{3/2} . \qedhere
+  \]
+\end{proof}
+
+Lemma~\ref{lem:s44-budget} is the whole mechanism of this section, and it is
+worth saying at once what it replaces. Proposition~\ref{prop:crude-K} bounds
+the coupling by $\|w\|_{L^\infty}$ times the enstrophy budget, thereby
+\emph{discarding} the a priori $w$-budget of Theorem~\ref{thm:apriori-sigma};
+\eqref{eq:s44-master} uses both budgets and pays for it with a correlation
+hypothesis. The gain is not the logarithm per se: it is the elimination of
+$\|w\|_{L^\infty}$, which is the unknown that H1 is trying to produce.
+
+\subsection{Test configurations: what a non-implication can mean here}
+\label{subsec:s44-config}
+
+Neither conjecture can be refuted or verified by exhibiting a Navier--Stokes
+solution; both are asserted only \emph{near a putative Type-I singularity},
+whose existence is the open question. What can be settled --- and is settled
+below --- is whether either implication follows from the a priori structure
+that the two hypotheses are formulated against.
+
+\begin{definition}[Admissible test configuration]\label{def:s44-config}
+  Fix $\nu>0$, $M\geq1$, $r^*=M^{-1/2}$, $\mathcal{L}\geq1$, and $\psi$ as in
+  Definition~\ref{def:composite-cutoff} with $\rho=\tfrac34r^*$, $\rho'=r^*$.
+  An \emph{admissible test configuration} is a triple $(m,w,h)$ on $Q(r^*)$
+  with $m$ Lipschitz and $w,h\geq0$ measurable, such that
+  \begin{enumerate}[label=\textup{(A\arabic*)}]
+    \item $0\leq m\leq M$ and $\sup_{Q(r^*)}m=M$;
+    \item $\nu\iint_{Q(r^*)}\bigl(|\nabla m|^2+m^2w\bigr)
+      \leq C_{\mathcal{E}}\,\mathcal{L}M^{1/2}$, i.e.\ \eqref{eq:s41-budget};
+    \item $|\nabla w|\leq 2\,w^{1/2}h^{1/2}$ a.e.\ --- the pointwise link
+      $|\nabla w|\leq2w^{1/2}|\nabla^2\hat{e}|$ used throughout
+      \S\ref{sec:secondrung-s35}--\S\ref{sec:annulus-s41}, with $h$ standing
+      for $|\nabla^2\hat{e}|^2$.
+  \end{enumerate}
+  In such a configuration $c_K$, $\Xi[\varpi]$,
+  \eqref{eq:s41-bandY}--\eqref{eq:s41-bandD} and \eqref{eq:s44-master} are all
+  well defined, with $|\nabla^2\hat{e}|^2$ read as $h$.
+\end{definition}
+
+\begin{remark}[Scope of the non-implications; stated as a limitation]
+  \label{rem:s44-scope}
+  An admissible test configuration need not come from a solution of the
+  Navier--Stokes equations: $w$ need not equal $|\nabla\hat{e}|^2$ for a unit
+  field $\hat{e}$, $h$ need not be its second-derivative density, and no
+  evolution equation is imposed. Consequently
+  Propositions~\ref{prop:s44-b-fails} and~\ref{prop:s44-a-fails} do
+  \emph{not} say that the two conjectures are independent as statements about
+  Navier--Stokes solutions; that question is not decidable by any argument
+  available here. What they do say, and all they say, is: \emph{no implication
+  between Conjecture~\ref{conj:K-refined} and
+  Conjecture~\ref{target:band-absorption} can be derived from} (A1)--(A3),
+  i.e.\ from the a priori budgets and the pointwise structure in terms of
+  which the two statements are phrased. Any implication would have to invoke
+  further PDE structure, and none is on offer in
+  \S\ref{sec:magnitude-s34}--\S\ref{sec:annulus-s41}. That is the precise
+  sense in which the ``same analytic type'' language of
+  Remarks~\ref{rem:s41-summary} and~\ref{rem:s41-band-status} must not be read
+  as ``one covers the other''.
+\end{remark}
+
+\subsection{The two non-implications}
+\label{subsec:s44-nonimplications}
+
+\begin{proposition}[Band absorption bounds no correlation]
+  \label{prop:s44-b-fails}
+  There is a family of admissible test configurations, indexed by
+  $\ell\in(0,r^*/4)$, for which the left-hand sides of
+  \eqref{eq:s41-bandY} and \eqref{eq:s41-bandD} \emph{vanish identically} for
+  every admissible level pair --- so
+  Conjecture~\ref{target:band-absorption} holds with $C=0$ --- while
+  \[
+    c_K \;\geq\;\frac{|E|}{8\,\ell^{5}}\;\longrightarrow\;\infty
+    \qquad(\ell\to0),
+  \]
+  with $\mathcal{L}$ held fixed. Hence
+  Conjecture~\ref{target:band-absorption} implies no upper bound on $c_K$ at
+  all, a fortiori not Conjecture~\ref{conj:K-refined}.
+\end{proposition}
+\begin{proof}
+  Let $\varphi(s)=\operatorname{dist}(s,2\mathbb{Z})\in[0,1]$ be the unit
+  triangular wave, so $|\varphi'|=1$ a.e. Fix $\ell\in(0,r^*/4)$, let
+  $K\subseteq B_\rho$ be an axis-aligned cube of side $\ell$ and $I\subseteq
+  (t_0-\rho^2,t_0)$ an interval of length $\ell^2$, and put $N=K\times I$,
+  $|N|=\ell^5$, and let $N_0=K_0\times I$ with $K_0$ the concentric cube of
+  side $\ell/2$. Let $\xi$ be a Lipschitz cutoff, independent of $t$, with
+  $\xi\equiv1$ on $K_0$, $\operatorname{supp}\xi\subseteq K$ and
+  $|\nabla\xi|\leq8/\ell$, and set
+  \[
+    m(x,t)\;=\;\frac{M}{2}+\frac{M}{8}\,\xi(x)\,
+      \varphi\!\Bigl(\frac{x_1}{\epsilon}\Bigr)
+    \quad\text{on }N,
+    \qquad\text{so}\qquad
+    |\nabla m|^2 \;=\; G \;:=\;\frac{M^2}{64\,\epsilon^2}
+    \ \text{ on }N_0,
+  \]
+  and $|\nabla m|^2\leq 4G$ on $N$ once $\epsilon\leq\ell/8$ (indeed
+  $|\nabla m|\leq\tfrac{M}{8}(|\nabla\xi|+\epsilon^{-1})
+  \leq\tfrac{M}{4\epsilon}=2G^{1/2}$). Here $\epsilon>0$ is chosen below, and
+  $\epsilon\leq\ell/8$ holds once $\ell/r^*$ is small enough in terms of $\nu$,
+  since the normalisation below forces
+  $\epsilon^2\leq C\nu M^{3/2}\ell^{5}$, i.e.\
+  $\epsilon^2/\ell^2\leq C\nu(\ell/r^*)^{3}$.
+  Since $m/M\in[\tfrac38,\tfrac58]$ on $N$, we have
+  $N\subseteq\{m\geq M/4\}$, so $N\subseteq E$ and $N$ is disjoint from every
+  admissible band; and $m\equiv M/2$ on $\partial N$, so the definition
+  extends Lipschitz across $\partial N$. Extend $m$ to the rest of $Q(r^*)$
+  so that $\sup m=M$, $m$ is constant on a small ball $P_1\subseteq
+  E\setminus\overline{N}$, $|E|\geq\tfrac12|Q(r^*)|$ (a normalisation
+  independent of $\ell$), and $|\nabla m|\leq CM/r^*$ off $N$; the last
+  contributes at most $C\nu M^2(r^*)^{-2}|Q(r^*)| = C\nu M^{1/2}$ to (A2).
+
+  Let $\zeta$ be Lipschitz with $0\leq\zeta\leq1$,
+  $\operatorname{supp}\zeta\subseteq N_0$ and $\zeta\not\equiv0$, and set
+  $w=W\zeta^2$ on $N_0$ plus a further bump $W'\ge0$ supported in $P_1$, and
+  $w=0$ elsewhere; set $h=W|\nabla\zeta|^2$ on $N_0$ and correspondingly on
+  $P_1$, so that (A3) holds with
+  $|\nabla w|=2W\zeta|\nabla\zeta|=2w^{1/2}h^{1/2}$.
+
+  Choose $\epsilon$ and $W,W'$ so that
+  $4\nu G|N| = \tfrac12 C_{\mathcal{E}}\mathcal{L}M^{1/2}$,
+  $\nu M^2(W|N|+W'|P_1|)\leq\tfrac14C_{\mathcal{E}}\mathcal{L}M^{1/2}$, and
+  $C\nu M^{1/2}\leq\tfrac14C_{\mathcal{E}}\mathcal{L}M^{1/2}$ (enlarging
+  $C_{\mathcal{E}}$ if necessary); then (A1)--(A2) hold. Since $w=h=0$ on
+  $\{m\leq M/4\}$, both left-hand sides of
+  \eqref{eq:s41-bandY}--\eqref{eq:s41-bandD} vanish for every admissible pair.
+
+  For $c_K$: on $E$ the product $|\nabla m|^2w$ is supported in $N_0$, where
+  $|\nabla m|^2\equiv G$, so $\iint_E|\nabla m|^2w = G\iint_{N_0} w$; also
+  $\iint_E w \ge \iint_{N_0} w>0$ and
+  \[
+    \iint_E|\nabla m|^2 \;\leq\; 4G|N| + C\frac{M^2}{(r^*)^2}|Q(r^*)|
+    \;=\;4G|N| + C M^{1/2}
+    \;\leq\; 6\,G|N|
+  \]
+  by the third normalisation above. Hence
+  \[
+    c_K \;=\;\frac{|E|\,G\iint_{N_0} w}
+      {\bigl(\iint_E|\nabla m|^2\bigr)\bigl(\iint_E w\bigr)}
+    \;\geq\;\frac{|E|\,G\iint_{N_0} w}
+      {6 G|N|\cdot\bigl(\iint_{N_0}w+W'|P_1|\bigr)}
+    \;\geq\;\frac{|E|}{6|N|}\cdot
+      \frac{\iint_{N_0}w}{\iint_{N_0}w+W'|P_1|} ,
+  \]
+  and taking $W'|P_1|\leq\tfrac13\iint_{N_0} w$ gives
+  $c_K\geq |E|/(8|N|)$, which is the claim, since
+  $|E|\geq\tfrac12|Q(r^*)|$ is independent of $\ell$ while
+  $|N|=\ell^5\to0$.
+\end{proof}
+
+\begin{remark}[The conclusions do not compare either]\label{rem:s44-conclusions}
+  One might hope that even if the hypotheses do not compare, their
+  \emph{conclusions} do: Conjecture~\ref{target:band-absorption} yields
+  $K$-absorption (through Remark~\ref{rem:s41-band-status} and
+  Proposition~\ref{prop:K-amended}), and $K$-absorption is what
+  Conjecture~\ref{conj:K-refined} was introduced to supply. But $K$-absorption
+  is an \emph{upper bound} on $Y=\nu\iint|\nabla m|^2w\eta^2$, whereas $c_K$ is
+  a \emph{ratio}; a small $Y$ is perfectly compatible with a large $c_K$,
+  since the denominator
+  $\bigl(\iint_E|\nabla m|^2\bigr)\bigl(\iint_Ew\bigr)/|E|$ may be smaller
+  still. That is exactly what the configuration of
+  Proposition~\ref{prop:s44-b-fails} realises. So the conclusions do not
+  compare in that direction either.
+\end{remark}
+
+\begin{proposition}[The $c_K$ hypothesis does not imply band absorption]
+  \label{prop:s44-a-fails}
+  There is a family of admissible test configurations, indexed by
+  $\ell\in(0,r^*/4)$, with
+  \[
+    c_K \;=\; 0
+  \]
+  --- the strongest possible form of Conjecture~\ref{conj:K-refined} --- for
+  which every admissible level pair of width
+  $\theta_+-\theta_-\geq\tfrac1{16}$ violates \eqref{eq:s41-bandY}: writing
+  $\Gamma$ for the quantity defined in the proof,
+  \[
+    \nu\iint_{\mathrm{Band}}|\nabla m|^2w\,\psi^2 \;\geq\;\tfrac14\,\Gamma,
+    \qquad
+    \nu\iint|\nabla m|^2w\,\eta_\chi^2 \;\leq\; 8\,\Gamma,
+    \qquad
+    M^2\nu\iint h\,\eta_\chi^2 \;+\;\mathcal{I}_0
+    \;\leq\; C\Bigl[\Bigl(\frac{\ell}{r^*}\Bigr)^{\!3}
+      +\Bigl(\frac{\ell}{r^*}\Bigr)^{\!5}\Bigr]\Gamma .
+  \]
+  Hence the constant $C$ required in \eqref{eq:s41-bandY} diverges as
+  $\ell/r^*\to0$ with $\mathcal{L}$ held fixed, and
+  Conjecture~\ref{target:band-absorption} fails along the family.
+\end{proposition}
+\begin{proof}
+  Let $\varphi$ be as in the previous proof. Fix $\ell\in(0,r^*/4)$, let
+  $F=K\times I$ with $K\subseteq B_\rho$ an axis-aligned cube of side $\ell$
+  and $I$ an interval of length $\ell^2$ inside $\{\psi=1\}$, so
+  $|F|=\ell^5$, and let $N=K'\times I$ where $K'$ is the concentric cube of
+  side $\tfrac98\ell$, so that $|N|=(\tfrac98)^3|F|\leq2|F|$. Let $\xi$ be a
+  Lipschitz cutoff, independent of $t$, with $\xi\equiv1$ on $K$,
+  $\operatorname{supp}\xi\subseteq K'$ and $|\nabla\xi|\leq16/\ell$, and set
+  \[
+    m(x,t)\;=\;\frac{M}{16}+\frac{3M}{16}\,\xi(x)\,
+      \varphi\!\Bigl(\frac{x_1}{\epsilon}\Bigr)
+    \quad\text{on }N,
+    \qquad
+    |\nabla m|^2\;=\;G\;:=\;\frac{9M^2}{256\,\epsilon^2}\ \text{ on }F ,
+  \]
+  with $|\nabla m|^2\leq4G$ on $N$ whenever $\epsilon\leq\ell/16$ (since
+  $|\nabla m|\leq\tfrac{3M}{16}(|\nabla\xi|+\epsilon^{-1})
+  \leq\tfrac{3M}{8\epsilon}=2G^{1/2}$), and $m\equiv M/16$ on $\partial N$, so
+  that the definition extends Lipschitz across $\partial N$.
+  Then $m/M$ takes values in $[\tfrac1{16},\tfrac14]$ only. Moreover, provided
+  $\epsilon\leq\ell/16$ (verified below), for every
+  $[\theta_-,\theta_+]\subseteq[\tfrac1{16},\tfrac14]$ of length
+  $\geq\tfrac1{16}$,
+  \begin{equation}\label{eq:s44-thirdmass}
+    \bigl|\{m/M\in[\theta_-,\theta_+]\}\cap F\bigr|
+    \;\geq\;\frac34\cdot\frac{1/16}{3/16}\,|F| \;=\;\frac{|F|}{4}.
+  \end{equation}
+  Indeed, $F$ is a product of the cube $K$ with $I$, and the $x_1$-side of $K$,
+  an interval of length $\ell$, contains at least
+  $\lfloor \ell/2\epsilon\rfloor\geq \ell/2\epsilon-1$ full periods of
+  $\varphi(\cdot/\epsilon)$; on each full period the set where
+  $\varphi\in[a,b]$ has measure exactly $(b-a)\cdot2\epsilon$, so the total is
+  at least $(b-a)(\ell-2\epsilon)\geq\tfrac34(b-a)\ell$ when
+  $\epsilon\leq\ell/16$. Take $[a,b]$ to be the preimage of
+  $[\theta_-,\theta_+]$, of length $(\theta_+-\theta_-)/(3/16)\geq\tfrac13$.
+
+  Let $\zeta$ be Lipschitz and independent of $t$, with $\zeta\equiv1$ on $K$,
+  $\operatorname{supp}\zeta\subseteq K'$ and $|\nabla\zeta|\leq16/\ell$, and put
+  $w=W\zeta^2$, $h=W|\nabla\zeta|^2\leq 256W\ell^{-2}$ on $N$, so (A3) holds as
+  before. Off $N$, extend $m$ Lipschitz with $|\nabla m|\leq CM/r^*$ so that
+  $\sup m=M$, and set $w=h=0$ there except on two disjoint balls
+  $P_1,P_2\subseteq E$ on which, respectively, $m$ is constant and a small
+  bump of $w$ is placed, and $m$ is non-constant with $w=0$. Then
+  $\iint_E|\nabla m|^2w=0$ while both denominators of $c_K$ are positive, so
+  $c_K=0$.
+
+  Fix $\epsilon,W$ by
+  \[
+    \nu G|F| \;=\;\gamma\, C_{\mathcal{E}}\mathcal{L}M^{1/2},
+    \qquad
+    \nu M^2W|F| \;=\;\gamma\, C_{\mathcal{E}}\mathcal{L}M^{1/2},
+    \qquad \gamma:=\tfrac1{32} ,
+  \]
+  which is consistent with (A2): on $N$ one has $|\nabla m|^2\leq4G$ and
+  $w\leq W$ with $|N|\leq2|F|$, so those two contributions are at most
+  $8\gamma$ and $2\gamma$ times $C_{\mathcal{E}}\mathcal{L}M^{1/2}$, i.e.\
+  at most $\tfrac14+\tfrac1{16}$ of the budget; the far field
+  ($\leq C\nu M^{1/2}\leq\tfrac14C_{\mathcal{E}}\mathcal{L}M^{1/2}$ after
+  enlarging $C_{\mathcal{E}}$) and the two small bumps on $P_1,P_2$ use the
+  rest. Set
+  \[
+    \Gamma \;:=\;\nu\,G\,W\,|F|
+    \;=\;\bigl(\nu G|F|\bigr)\,W
+    \;=\;\gamma C_{\mathcal{E}}\mathcal{L}M^{1/2}\cdot
+      \frac{\gamma C_{\mathcal{E}}\mathcal{L}M^{-3/2}}{\nu|F|}
+    \;=\;\frac{\gamma^2\,C_{\mathcal{E}}^2\,\mathcal{L}^2}{\nu\,M\,|F|} .
+  \]
+
+  \emph{First display.} By \eqref{eq:s44-thirdmass}, $\zeta\equiv1$ and
+  $\psi\equiv1$ on $F$, the left-hand side of \eqref{eq:s41-bandY} is at least
+  $\nu GW|F|/4=\Gamma/4$.
+
+  \emph{Second display.} $|\nabla m|^2w$ is supported in $N$, where
+  $|\nabla m|^2\leq4G$ and $w\leq W$; since $\eta_\chi^2\leq\psi^2\leq1$ and
+  $|N|\leq2|F|$, $\nu\iint|\nabla m|^2w\eta_\chi^2\leq4\nu GW|N|\leq8\Gamma$.
+
+  \emph{Third display.} $h$ is supported in $N\setminus F$ and bounded by
+  $256W\ell^{-2}$ there, and $|N\setminus F|\leq|N|\leq2|F|$, so
+  \[
+    \frac{M^2\nu\iint h\,\eta_\chi^2}{\Gamma}
+    \;\leq\;\frac{\nu M^2\cdot 256W\ell^{-2}\cdot 2|F|}{\nu GW|F|}
+    \;=\;\frac{512\,M^2}{G\,\ell^{2}}
+    \;=\;\frac{512\cdot 256\,\epsilon^2}{9\,\ell^{2}} .
+  \]
+  From $\nu G|F|=\gamma C_{\mathcal{E}}\mathcal{L}M^{1/2}$, $|F|=\ell^5$ and
+  $\mathcal{L}\geq1$ one gets
+  $\epsilon^2 = \tfrac{9\gamma^{-1}}{256}\,\nu M^{3/2}\ell^{5}
+  /(C_{\mathcal{E}}\mathcal{L}) \leq C\nu M^{3/2}\ell^{5}$, whence the ratio is
+  at most $C\nu M^{3/2}\ell^{3}=C\nu(\ell/r^*)^{3}$; the same bound gives
+  $\epsilon^2/\ell^2\leq C\nu(\ell/r^*)^{3}$, hence $\epsilon\leq\ell/16$ once
+  $(\ell/r^*)^{3}\leq(256\,C\nu)^{-1}$, which is the standing smallness
+  assumption on $\ell/r^*$ and validates both \eqref{eq:s44-thirdmass} and the
+  bound $|\nabla m|^2\leq4G$ on $N$. Finally
+  \[
+    \frac{\mathcal{I}_0}{\Gamma}
+    \;=\;\frac{\mathcal{L}^2M^{3/2}\nu^{-1}}
+      {\gamma^2C_{\mathcal{E}}^2\mathcal{L}^2\,(\nu M|F|)^{-1}}
+    \;=\;\frac{M^{5/2}|F|}{\gamma^2C_{\mathcal{E}}^2}
+    \;=\;\frac{1}{\gamma^2C_{\mathcal{E}}^2}
+      \Bigl(\frac{\ell}{r^*}\Bigr)^{5} ,
+  \]
+  using $M^{5/2}=(r^*)^{-5}$ and $|F|=\ell^5$.
+
+  \emph{Conclusion.} If \eqref{eq:s41-bandY} held with some constant $C$, then
+  $\tfrac14\Gamma\leq 2^{-11}\cdot8\Gamma
+  + C'\bigl[(\ell/r^*)^{3}+(\ell/r^*)^{5}\bigr]\Gamma$, i.e.\
+  $\tfrac14-2^{-8}\leq C'\bigl[(\ell/r^*)^{3}+(\ell/r^*)^{5}\bigr]$, which
+  fails for $\ell/r^*$ small. Since $\mathcal{L}$ is held fixed while
+  $\ell\to0$, no choice of $C$ works along the family.
+\end{proof}
+
+\begin{remark}[Reading of Proposition~\ref{prop:s44-a-fails}]
+  \label{rem:s44-reading}
+  The configuration is the natural adversary: $|\omega|$ oscillates rapidly
+  \emph{inside} the transition band, so that $|\nabla m|^2$ and $w$ are both
+  large on a common set whose $m$-values never leave $[\tfrac1{16},\tfrac14]$.
+  Conjecture~\ref{conj:K-refined} is blind to it, being a statement about
+  $\{m\geq M/4\}$, where in this configuration nothing happens. Two further
+  observations. (i) The oscillation is what makes $|\nabla m|$ large while
+  $m$ stays inside the band; there is no contradiction with $m\in[M/16,M/4]$,
+  and this is exactly the mechanism identified in
+  Remark~\ref{rem:s41-contrast} as the reason the band terms are not
+  controlled by the enstrophy budget alone. (ii) The same configuration has
+  $\Xi[\mathbf{1}_{\mathrm{Band}}\psi^2]\geq c(r^*/\ell)^{5}\to\infty$,
+  consistently with Proposition~\ref{prop:s44-jle-implies} below: the
+  hypothesis that \emph{does} imply \eqref{eq:s41-bandY} is violated here, as
+  it must be.
+\end{remark}
+
+\subsection{What has to be added: the band transport}
+\label{subsec:s44-transport}
+
+Proposition~\ref{prop:s44-a-fails} shows that
+Conjecture~\ref{conj:K-refined} must at least be \emph{transported} to the
+band before any implication can be hoped for. It is then a genuine
+implication, and the extra ingredient is explicit.
+
+\begin{proposition}[Band-transported $c_K$ implies \eqref{eq:s41-bandY}]
+  \label{prop:s44-transport}
+  Let $\theta_\pm$ be admissible and suppose
+  \begin{equation}\label{eq:s44-cKband}
+    c_K^{\mathrm{band}}
+    \;:=\;
+    \frac{|\mathrm{Band}|\displaystyle\iint_{\mathrm{Band}}
+        |\nabla m|^2w\,\psi^2}
+         {\Bigl(\displaystyle\iint_{\mathrm{Band}}|\nabla m|^2\psi^2\Bigr)
+          \Bigl(\displaystyle\iint_{\mathrm{Band}}w\,\psi^2\Bigr)}
+    \;\leq\;\frac{C_1}{\mathcal{L}} .
+  \end{equation}
+  If in addition
+  \begin{equation}\label{eq:s44-NB}
+    \textup{(NB)}\qquad
+    |\mathrm{Band}| \;\geq\;\frac{\kappa_1\,|Q(r^*)|}{\mathcal{L}}
+    \qquad\text{for some }\kappa_1>0 ,
+  \end{equation}
+  then \eqref{eq:s41-bandY} holds --- indeed in the stronger form
+  \[
+    \nu\iint_{\mathrm{Band}}|\nabla m|^2w\,\psi^2
+    \;\leq\;\frac{C\,C_1}{\kappa_1}\;\mathcal{I}_0 ,
+  \]
+  with neither the $Y$-term nor the $D$-term needed on the right.
+\end{proposition}
+\begin{proof}
+  By Definition~\ref{def:s44-excess},
+  $\Xi[\mathbf{1}_{\mathrm{Band}}\psi^2]
+  = c_K^{\mathrm{band}}\,|Q(r^*)|/|\mathrm{Band}|
+  \leq (C_1/\mathcal{L})(\mathcal{L}/\kappa_1)=C_1/\kappa_1$ by
+  \eqref{eq:s44-cKband} and \eqref{eq:s44-NB}. Now apply
+  \eqref{eq:s44-master} with $\varpi=\mathbf{1}_{\mathrm{Band}}\psi^2$, which
+  is supported in $Q^\sharp$ because $\theta_-\geq\tfrac1{16}$.
+\end{proof}
+
+\begin{remark}[(NB) is not free, and is of the same family]
+  \label{rem:s44-NB}
+  Hypothesis \eqref{eq:s44-NB} says the transition band is not too thin. It is
+  not automatic: by the co-area formula, as in
+  Proposition~\ref{prop:s41-coarea}(d),
+  \[
+    |\mathrm{Band}|
+    \;=\;\int\!\!\int_{\theta_-M}^{\theta_+M}
+      \int_{\{m=s\}}\frac{d\mathcal{H}^2}{|\nabla m|}\,ds\,dt ,
+  \]
+  so a thin band is precisely a band on which $|\nabla m|$ is large --- the
+  dangerous case, and the one realised in
+  Proposition~\ref{prop:s44-a-fails}. Thus (NB) is itself a non-concentration
+  statement about $|\nabla m|$ on level sets of $|\omega|$, and it should not
+  be presented as a harmless technical addendum. Two consequences are worth
+  recording. First, the honest answer to ``does
+  Conjecture~\ref{conj:K-refined} imply
+  Conjecture~\ref{target:band-absorption}?'' is: \emph{not as stated; its band
+  transport implies only the $Y$-half \eqref{eq:s41-bandY}, and only when
+  supplemented by} \eqref{eq:s44-NB}. Second --- and this is the point missed
+  in the first draft of this section, see Remark~\ref{rem:s44-corrigendum} ---
+  \emph{the bulk side needs a volume hypothesis of exactly the same kind}. By
+  Lemma~\ref{lem:s44-xi-vs-cK}, passing from
+  Conjecture~\ref{conj:K-refined} to the volume-normalised bound
+  $\Xi[\mathbf{1}_E]=O(1)$ used in
+  Proposition~\ref{prop:s44-calibration}(i) requires
+  \begin{equation}\label{eq:s44-NBE}
+    \textup{(NB-E)}\qquad
+    |E| \;\geq\;\frac{\kappa_2\,|Q(r^*)|}{\mathcal{L}}
+    \qquad\text{for some }\kappa_2>0 ,
+  \end{equation}
+  the exact analogue of \eqref{eq:s44-NB} with $\mathrm{Band}$ replaced by
+  $E$. The symmetry is complete: neither the bulk route nor the band route is
+  free of a volume condition, and in both cases the condition fails precisely
+  when the region carrying the coupling is thin --- the filamentary regime.
+\end{remark}
+
+\begin{remark}[The two routes, and what each costs]\label{rem:s44-two-routes}
+  It is worth separating, once and for all, the two ways a correlation
+  hypothesis can be cashed in; the strength comparison of
+  \S\ref{subsec:s44-strength} is entirely a matter of which route is used.
+  \begin{enumerate}[label=\textup{(R\arabic*)}]
+    \item \emph{The $\|w\|_{L^\infty}$ route} (that of
+      Proposition~\ref{prop:crude-K} and Proposition~\ref{prop:s41-crude}):
+      bound $\iint w\,\varpi\leq\|w\|_{L^\infty}|R|$, so that the volume
+      factor in $c_K[\varpi]$ cancels and one lands on the Moser-absorbable
+      quantity $\delta\nu(r^*)^3\|w\|_{L^\infty}$ of
+      Proposition~\ref{prop:second-rung}. No volume hypothesis; the price is
+      that a factor $\mathcal{L}$ must be found inside the correlation
+      constant, and that the closure runs through $\|w\|_{L^\infty}$
+      (Proposition~\ref{prop:s44-linfty-route}).
+    \item \emph{The budget route} (Lemma~\ref{lem:s44-budget}): bound
+      $\iint w\,\varpi$ by the a priori $w$-budget of
+      Theorem~\ref{thm:apriori-sigma}, so that $\|w\|_{L^\infty}$ never
+      appears and one lands directly in $\mathcal{I}_0$. No logarithm is
+      needed in the correlation constant; the price is the volume factor
+      $|Q(r^*)|/|R|$, i.e.\ a hypothesis of the form \eqref{eq:s44-NB} or
+      \eqref{eq:s44-NBE}.
+  \end{enumerate}
+  Neither route dominates: (R1) is cheaper exactly when
+  $|R|/|Q(r^*)|<1/\mathcal{L}$, (R2) exactly when
+  $|R|/|Q(r^*)|>1/\mathcal{L}$. This trade-off, and not any difference between
+  the two conjectures, is what the ``$C/\mathcal{L}$ versus $O(1)$''
+  discrepancy in their statements records.
+\end{remark}
+
+\begin{proposition}[The $\|w\|_{L^\infty}$ route: both targets require a
+  \emph{decaying} correlation constant]\label{prop:s44-linfty-route}
+  Let $R\subseteq Q^\sharp$ be measurable, $\varpi=\mathbf{1}_R\psi^2$, and
+  suppose $c_K[\varpi]\leq C_1/\mathcal{L}$, with $c_K[\varpi]$ as in
+  Lemma~\ref{lem:s44-xi-vs-cK}. Then
+  \[
+    \frac{\nu}{M^2}\iint_R|\nabla m|^2\,w\,\psi^2
+    \;\leq\; C\,C_1\,
+      \|w\|_{L^\infty(Q(\rho')\cap\{m\geq M/16\})}\,(r^*)^3 ,
+  \]
+  which is precisely the quantity Proposition~\ref{prop:second-rung} absorbs
+  with factor $\delta$, provided the absolute constant $CC_1$ satisfies
+  $CC_1\leq\delta\nu$. Taken with $R=E$ this is the conclusion
+  Conjecture~\ref{conj:K-refined} was designed to give
+  (Proposition~\ref{prop:crude-K} with its logarithm removed); taken with
+  $R=\mathrm{Band}$ it removes exactly the shortfall of
+  Remark~\ref{rem:s41-shortfall} from the $Y$-half of the core residual. No
+  volume hypothesis is used in either case.
+\end{proposition}
+\begin{proof}
+  By the definition of $c_K[\varpi]$ in Lemma~\ref{lem:s44-xi-vs-cK} and
+  $\iint w\,\varpi\leq\|w\|_{L^\infty}|R|$,
+  \[
+    \iint_R|\nabla m|^2w\,\psi^2
+    \;=\;\frac{c_K[\varpi]}{|R|}
+      \Bigl(\iint_R|\nabla m|^2\psi^2\Bigr)
+      \Bigl(\iint_R w\,\psi^2\Bigr)
+    \;\leq\; c_K[\varpi]\,\|w\|_{L^\infty}\iint_R|\nabla m|^2\psi^2 .
+  \]
+  Multiply by $\nu/M^2$, use $\nu\iint_R|\nabla m|^2\psi^2\leq\mathcal{E}
+  \leq C_{\mathcal{E}}\mathcal{L}M^{1/2}$ from \eqref{eq:s41-budget}, and
+  $M^{-3/2}=(r^*)^3$; the hypothesis $c_K[\varpi]\leq C_1/\mathcal{L}$ cancels
+  the $\mathcal{L}$.
+\end{proof}
+
+\begin{remark}[A bookkeeping caveat, flagged and not resolved]
+  \label{rem:s44-channel-caveat}
+  Proposition~\ref{prop:s44-linfty-route} delivers the band term into the
+  \emph{Moser channel} $\delta\nu(r^*)^3\|w\|_{L^\infty}$, which is the target
+  Remark~\ref{rem:s41-shortfall} names, and not into the right-hand side of
+  \eqref{eq:s41-endtarget}, which has no $\|w\|_{L^\infty}$ slot. These are
+  two different closures of the same residual: the first leaves
+  Proposition~\ref{prop:K-amended} in the form
+  $Y\leq CM^2D_{\mathrm{ang}}+\mathcal{I}+C\|w\|_{L^\infty}M^{1/2}$, the last
+  term being absorbed downstream by Proposition~\ref{prop:second-rung}; the
+  second removes the residual outright. The document states both targets and
+  does not reconcile them --- the discrepancy is pre-existing (compare
+  Remark~\ref{rem:s41-shortfall} with \eqref{eq:s41-endtarget}) --- and it is
+  recorded here rather than papered over. Separately, the constant condition
+  $CC_1\leq\delta\nu$ is a genuine if non-divergent residue; it is present
+  identically in Conjecture~\ref{conj:K-refined}, which this document does not
+  track either, and nothing below claims to remove it.
+\end{remark}
+
+\subsection{The strength comparison: where the logarithm really comes from}
+\label{subsec:s44-strength}
+
+\begin{proposition}[Calibration]\label{prop:s44-calibration}
+  Let $\kappa_0\geq1$. Then:
+  \begin{enumerate}[label=(\roman*)]
+    \item \textup{(bulk)} If $\Xi[\mathbf{1}_{Q^\sharp}\psi^2]\leq\kappa_0$
+      then, for every admissible $\eta_\chi$,
+      \[
+        \nu\iint|\nabla m|^2\,w\,\eta_\chi^2 \;\leq\; C\kappa_0\,\mathcal{I}_0 ,
+      \]
+      i.e.\ the coupling term $K$ lands in the allowed inhomogeneous class
+      \eqref{eq:s41-I} outright --- with no $D_{\mathrm{ang}}$ term, no
+      $\|w\|_{L^\infty}$ and no annulus residual.
+    \item \textup{(band)} If
+      $\Xi[\mathbf{1}_{\mathrm{Band}}\psi^2]\leq\kappa_0$ then
+      \eqref{eq:s41-bandY} holds, again in the stronger form with right-hand
+      side $C\kappa_0\mathcal{I}_0$.
+    \item \textup{(comparison --- corrected)} The hypotheses used in (i) and
+      (ii) are \emph{stronger}, not weaker, than the corresponding
+      correlation bounds. By Lemma~\ref{lem:s44-xi-vs-cK},
+      $\Xi[\mathbf{1}_E]\leq\kappa_0$ implies $c_K\leq\kappa_0$ but not
+      conversely, the gap being the factor $|Q(r^*)|/|E|$; and
+      Conjecture~\ref{conj:K-refined} gives only
+      $\Xi[\mathbf{1}_E]\leq(C/\mathcal{L})|Q(r^*)|/|E|$, which is $O(1)$
+      exactly under \eqref{eq:s44-NBE}. Symmetrically on the band, with
+      \eqref{eq:s44-NB}. Neither $\Xi$-bound is therefore available from the
+      $c_K$-type hypotheses without a volume condition.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  (i) and (ii) are \eqref{eq:s44-master} applied with
+  $\varpi=\mathbf{1}_{Q^\sharp}\psi^2$ and
+  $\varpi=\mathbf{1}_{\mathrm{Band}}\psi^2$ respectively, using
+  $\eta_\chi^2\leq\psi^2\mathbf{1}_{\{m\geq M/16\}}$
+  (Lemma~\ref{lem:s41-admissible}(ii)) in (i) and
+  $\mathrm{Band}\subseteq Q^\sharp$ in (ii). (iii) is
+  Lemma~\ref{lem:s44-xi-vs-cK}.
+\end{proof}
+
+\begin{remark}[Answer to the strength question, corrected]
+  \label{rem:s44-strength}
+  The premise behind the question ``is
+  Conjecture~\ref{target:band-absorption} strictly weaker than
+  Conjecture~\ref{conj:K-refined}, needing only an $O(1)$ equipartition
+  constant where $c_K$ needs a logarithmically decaying one?'' does not
+  survive the correction recorded in Remark~\ref{rem:s44-corrigendum}. The
+  answer is \textbf{no}, and the corrected picture is the following.
+  \begin{enumerate}[label=(\arabic*)]
+    \item \emph{\eqref{eq:s41-bandY} is $O(1)$ in its bookkeeping, not in its
+      strength.} It is stated against $Y$, $M^2D_{\mathrm{ang}}$ and
+      $\mathcal{I}_0$ rather than against a correlation constant, which is
+      what makes its constants look absolute. Expressed as a hypothesis on the
+      band correlation constant it is \emph{not} an $O(1)$ statement: by
+      Proposition~\ref{prop:s44-linfty-route} with $R=\mathrm{Band}$, what the
+      $\|w\|_{L^\infty}$ route requires is
+      $c_K^{\mathrm{band}}\leq C/\mathcal{L}$ --- the exact analogue of
+      Conjecture~\ref{conj:K-refined}, on the band. In this precise and
+      limited sense the ``same analytic type'' language of
+      Remark~\ref{rem:s41-band-status} is \emph{vindicated}: both targets
+      require a logarithmically decaying correlation constant, on their
+      respective regions.
+    \item \emph{The alternative --- an $O(1)$ constant --- is bought with a
+      volume hypothesis, symmetrically on both sides.} The budget route
+      (Proposition~\ref{prop:s44-calibration}) does replace $C/\mathcal{L}$ by
+      $O(1)$, but only in the volume-normalised statistic $\Xi$; and by
+      Lemma~\ref{lem:s44-xi-vs-cK} an $O(1)$ bound on $\Xi$ is
+      \emph{strictly stronger} than an $O(1)$ bound on the correlation
+      constant, by the factor $|Q(r^*)|/|R|$. Recovering it from a $c_K$-type
+      hypothesis costs \eqref{eq:s44-NB} on the band and \eqref{eq:s44-NBE} on
+      the bulk. Remark~\ref{rem:s44-two-routes} states the trade-off: neither
+      route dominates, the crossover being at $|R|/|Q(r^*)|=1/\mathcal{L}$.
+    \item \emph{Consequently the logarithm is not an ``artefact''.} It is what
+      the $\|w\|_{L^\infty}$ route costs, and that route is the one requiring
+      no information about the measure of the region carrying the coupling.
+      Removing the logarithm means acquiring that information instead. The
+      first draft of this section asserted that
+      Conjecture~\ref{conj:K-refined} could be weakened to an $O(1)$ statement
+      without loss; that assertion is \textbf{withdrawn}
+      (Remark~\ref{rem:s44-corrigendum}).
+    \item \emph{Net verdict on the strength question.}
+      Conjecture~\ref{target:band-absorption} is \textbf{not} shown to be
+      weaker than Conjecture~\ref{conj:K-refined}. The two are incomparable as
+      statements (Propositions~\ref{prop:s44-a-fails}
+      and~\ref{prop:s44-b-fails}), and when each is reduced to a hypothesis on
+      a correlation constant by the same route they require bounds of the
+      \emph{same} form. What separates them is their support, not their
+      strength.
+  \end{enumerate}
+  One caveat, recorded rather than concealed: landing $K$, or the band term,
+  in $\mathcal{I}_0=\mathcal{L}^2M^{3/2}\nu^{-1}$ is ``allowed'' only in the
+  sense of \S\ref{sec:verification-s36}~(C2), i.e.\ it is an
+  $\mathcal{L}^2$-degraded inhomogeneous term of the same marginal class as
+  every other such term in the scheme. It therefore inherits, and does not
+  resolve, the standing marginality issue of Remark~\ref{rem:marginality}; it
+  introduces no \emph{new} degradation, which is all that is claimed. The
+  $\|w\|_{L^\infty}$ route carries its own caveat,
+  Remark~\ref{rem:s44-channel-caveat}.
+\end{remark}
+
+\begin{remark}[What the existing numerics do and do not support]
+  \label{rem:s44-numerics}
+  The $c_K$ measurements of S34--S35 (\texttt{EXP-L4-KCORR-*}) reported
+  $c_K\approx1$ and were explicitly caveated as unable to distinguish $O(1)$
+  from the stronger $c_K\leq C/\mathcal{L}$. That caveat stands, and after the
+  correction of Remark~\ref{rem:s44-corrigendum} a second must be added
+  beside it.
+  \begin{enumerate}[label=(\roman*)]
+    \item \emph{A measured $c_K\approx1$ does not support
+      $\Xi[\mathbf{1}_E]=O(1)$.} By Lemma~\ref{lem:s44-xi-vs-cK},
+      $\Xi[\mathbf{1}_E]=c_K\,|Q(r^*)|/|E|\geq c_K$, so such a measurement
+      bounds $\Xi$ only once the volume fraction $|E|/|Q(r^*)|$ is known and
+      bounded below. The first draft of this section asserted the reverse
+      inequality and drew the opposite conclusion; that is withdrawn.
+    \item \emph{The gap is worst where it matters.} The correction factor
+      $|Q(r^*)|/|E|$ is largest exactly when the near-maximal vorticity set is
+      thin --- the filamentary regime expected near a putative singularity ---
+      so an $O(1)$ correlation measurement in a benign configuration says
+      correspondingly less about $\Xi$ in a concentrated one. Volume fractions
+      quoted from the S42--S43 diagnostics should be treated as motivation for
+      measuring $|E|/|Q(r^*)|$ directly and \emph{not} as evidence about it:
+      those diagnostics take the near-maximal set over the whole periodic box
+      rather than over $Q(r^*)$, which is not the quantity appearing in
+      Lemma~\ref{lem:s44-xi-vs-cK}.
+    \item \emph{What should be measured.} Three quantities, none of which the
+      existing suite reports in the form needed: the volume fractions
+      $|E|/|Q(r^*)|$ and $|\mathrm{Band}|/|Q(r^*)|$ at the working scale
+      $r^*$, to test \eqref{eq:s44-NBE} and \eqref{eq:s44-NB}; the band
+      correlation constant $c_K^{\mathrm{band}}$ of \eqref{eq:s44-cKband},
+      which by Proposition~\ref{prop:s44-a-fails} cannot be inferred from the
+      $E$-measurement; and the $\mathcal{L}$-dependence of both correlation
+      constants, since Proposition~\ref{prop:s44-linfty-route} needs decay and
+      not merely boundedness.
+  \end{enumerate}
+  The plain statement, replacing the first draft's: \emph{the existing $O(1)$
+  measurements are consistent with, but do not establish, either
+  Conjecture~\ref{conj:K-refined} or Conjecture~\ref{conj:lc-s44}; and they
+  bear on Conjecture~\ref{conj:jle-s44} only in combination with a volume
+  measurement that has not been made.}
+\end{remark}
+
+\subsection{Common hypotheses}
+\label{subsec:s44-common}
+
+Two hypotheses are recorded, one for each of the routes of
+Remark~\ref{rem:s44-two-routes}. Each implies the $Y$-halves of \emph{both}
+targets; neither implies the other; and the first is the weaker of the two in
+the regime that matters. Both are open. Neither covers the angular half
+\eqref{eq:s41-bandD}, for the reason given in Remark~\ref{rem:s44-bandD}.
+
+\begin{conjecture}[Level-uniform decorrelation]\label{conj:lc-s44}
+  There is $C_1$, depending only on the standing Type-I data, such that near a
+  putative Type-I singularity, at the working scale $r^*=M(t_0)^{-1/2}$, with
+  $Q^\sharp=Q(\rho')\cap\{m\geq M/16\}$ and $c_K[\,\cdot\,]$ as in
+  Lemma~\ref{lem:s44-xi-vs-cK},
+  \begin{equation}\label{eq:s44-lc}
+    \textup{(LC)}\qquad
+    c_K\bigl[\mathbf{1}_{Q^\sharp}\psi^2\bigr]
+    \;\leq\;\frac{C_1}{\mathcal{L}} .
+  \end{equation}
+  This is \emph{verbatim} the hypothesis of Conjecture~\ref{conj:K-refined} ---
+  same normalisation, same $1/\mathcal{L}$ decay --- asserted on
+  $\{m\geq M/16\}$ instead of on $\{m\geq M/4\}$, i.e.\ extended downwards
+  across the transition band.
+\end{conjecture}
+
+\begin{proposition}[(LC) covers both $Y$-halves]\label{prop:s44-lc-implies}
+  Assume \eqref{eq:s44-lc}. Then, with
+  $\|w\|_\infty=\|w\|_{L^\infty(Q(\rho')\cap\{m\geq M/16\})}$,
+  \[
+    \frac{\nu}{M^2}\iint|\nabla m|^2\,w\,\eta_\chi^2
+    \;+\;\frac{\nu}{M^2}\iint_{\mathrm{Band}}|\nabla m|^2\,w\,\psi^2
+    \;\leq\; C\,C_1\,\|w\|_\infty\,(r^*)^3
+  \]
+  for every admissible $\chi$ and every admissible level pair. Both terms are
+  therefore of the class Proposition~\ref{prop:second-rung} absorbs with
+  factor $\delta$, subject to the constant condition $CC_1\leq\delta\nu$ of
+  Proposition~\ref{prop:s44-linfty-route}. In particular \eqref{eq:s44-lc}
+  simultaneously supplies the conclusion sought from
+  Conjecture~\ref{conj:K-refined} and removes the shortfall of
+  Remark~\ref{rem:s41-shortfall} from the $Y$-half of the core residual, with
+  \emph{no} volume hypothesis.
+\end{proposition}
+\begin{proof}
+  Both $\{\eta_\chi>0\}$ and $\mathrm{Band}$ are contained in $Q^\sharp$ and
+  the integrand is nonnegative, so both left-hand terms are bounded by
+  $\tfrac{\nu}{M^2}\iint_{Q^\sharp}|\nabla m|^2w\,\psi^2$; apply
+  Proposition~\ref{prop:s44-linfty-route} with $R=Q^\sharp$.
+\end{proof}
+
+\begin{remark}[Why (LC) is the right reading of ``same analytic type'']
+  \label{rem:s44-lc-reading}
+  Remark~\ref{rem:s41-summary} said that $\mathcal{A}_{\mathrm{ann}}$ is
+  ``open, of the same analytic type as Conjecture~\ref{conj:K-refined}''.
+  Sections~\ref{subsec:s44-nonimplications} show that this cannot mean one
+  implies the other. Conjecture~\ref{conj:lc-s44} is what it \emph{can}
+  legitimately mean: the two targets are two instances of a \emph{single}
+  hypothesis, differing only in the region on which it is asserted, and the
+  single hypothesis stated on the union of those regions covers both. This
+  costs nothing in form: it is the $c_K$ hypothesis, unchanged in
+  normalisation and in the decay rate of its constant, differing from
+  Conjecture~\ref{conj:K-refined} only in the region on which it is asserted.
+
+  Two things this does \emph{not} say, lest the sentence above be read too
+  generously. First, \eqref{eq:s44-lc} does not imply
+  Conjecture~\ref{conj:K-refined}: a bound on a single correlation ratio over
+  $Q^\sharp$ does not restrict to the sub-region $E$, the ratio being
+  non-monotone under restriction. What
+  Proposition~\ref{prop:s44-lc-implies} supplies is the \emph{conclusion}
+  sought from Conjecture~\ref{conj:K-refined}, not that conjecture itself.
+  Second and conversely, Conjecture~\ref{conj:K-refined} does not imply
+  \eqref{eq:s44-lc}: by Proposition~\ref{prop:s44-a-fails} the extension of
+  the assertion across the band is exactly the part it does not supply. (LC)
+  is therefore a genuinely new hypothesis of an old form, not a repackaging of
+  an existing one.
+\end{remark}
+
+\begin{conjecture}[Joint level equipartition]\label{conj:jle-s44}
+  There is $\kappa_0$, depending only on the standing Type-I data, such that
+  near a putative Type-I singularity, at the working scale
+  $r^*=M(t_0)^{-1/2}$, with $Q^\sharp=Q(\rho')\cap\{m\geq M/16\}$:
+  \begin{align}
+    \textup{(JLE-1)}\qquad
+    \iint_{Q^\sharp}|\nabla m|^2\,w\,\psi^2
+    &\;\leq\;\frac{\kappa_0}{|Q(r^*)|}
+      \Bigl(\iint_{Q^\sharp}|\nabla m|^2\,\psi^2\Bigr)
+      \Bigl(\iint_{Q^\sharp}w\,\psi^2\Bigr) ,
+      \label{eq:s44-jle}\\
+    \textup{(JLE-2)}\qquad
+    \nu\iint_{\mathrm{Band}}|\nabla^2\hat{e}|^2\,\psi^2
+    &\;\leq\;\kappa_0\,\nu\iint|\nabla^2\hat{e}|^2\,\eta_\chi^2
+      \;+\;\kappa_0\,\mathcal{L}^2M^{-1/2}\nu^{-1} ,
+      \label{eq:s44-jle2}
+  \end{align}
+  the latter for some admissible level pair $\theta_\pm$ of width
+  $\theta_+-\theta_-\geq\tfrac1{16}$ and some
+  $\chi\in\mathcal{C}(\theta_-,\theta_+)$.
+\end{conjecture}
+
+\begin{proposition}[Both targets follow from
+  Conjecture~\ref{conj:jle-s44}]\label{prop:s44-jle-implies}
+  Assume \textup{(JLE-1)}. Then
+  \begin{enumerate}[label=(\roman*)]
+    \item $\nu\iint|\nabla m|^2w\,\eta_\chi^2\leq C\kappa_0\,\mathcal{I}_0$
+      for every admissible $\chi$; in particular the conclusion that
+      Conjecture~\ref{conj:K-refined} was introduced to supply holds, and
+      Conjecture~\ref{conj:K-refined} itself is not needed;
+    \item \eqref{eq:s41-bandY} holds for every admissible level pair, in the
+      stronger form with right-hand side $C\kappa_0\mathcal{I}_0$.
+  \end{enumerate}
+  If in addition \textup{(JLE-2)} holds for the pair $\theta_\pm$ and cutoff
+  $\chi$ named there, then \eqref{eq:s41-bandD} holds for that pair; hence
+  Conjecture~\ref{target:band-absorption} holds in full, hence
+  \eqref{eq:s41-endtarget} holds, and the caveat ``modulo
+  $\mathcal{A}_{\mathrm{ann}}$'' may be removed from
+  Proposition~\ref{prop:K-amended}.
+\end{proposition}
+\begin{proof}
+  \textup{(JLE-1)} is precisely $\Xi[\mathbf{1}_{Q^\sharp}\psi^2]\leq\kappa_0$,
+  so (i) and (ii) are Proposition~\ref{prop:s44-calibration}(i)--(ii), using
+  $\mathrm{Band}\subseteq Q^\sharp$,
+  $\eta_\chi^2\leq\psi^2\mathbf{1}_{\{m\geq M/16\}}$, and the nonnegativity of
+  the integrand for the restriction to subregions. Multiplying
+  \eqref{eq:s44-jle2} by $M^2$ gives \eqref{eq:s41-bandD} with $C=\kappa_0$,
+  since $M^2\cdot\mathcal{L}^2M^{-1/2}\nu^{-1}=\mathcal{L}^2M^{3/2}\nu^{-1}$.
+  The last two implications are those of
+  Remark~\ref{rem:s41-band-status}.
+\end{proof}
+
+\begin{remark}[Status, failure mode, and what (JLE-1) really asserts]
+  \label{rem:s44-jle-status}
+  (JLE-1) says: \emph{on the region where the level cutoff lives, the coupling
+  density $|\nabla m|^2w$ is no larger than a fixed multiple of what
+  uncorrelated densities spread over the ambient parabolic cylinder would
+  give.} It is an equipartition/non-concentration hypothesis of exactly the
+  kind described in the remark following
+  Conjecture~\ref{conj:K-refined}, with two differences: the normalising
+  volume is $|Q(r^*)|$ rather than the measure of the level region, and the
+  constant is $O(1)$ rather than $O(1/\mathcal{L})$. It is \emph{sufficient}
+  for both $Y$-halves and \emph{necessary} for neither
+  (Proposition~\ref{prop:s44-b-fails} exhibits a configuration in which
+  \eqref{eq:s41-bandY} holds while $\Xi$ is unbounded).
+
+  \medskip
+  \noindent\textbf{But it is a demanding hypothesis, not a cheap one.} This is
+  the point the first draft of this section got backwards
+  (Remark~\ref{rem:s44-corrigendum}). By Lemma~\ref{lem:s44-xi-vs-cK},
+  (JLE-1) is equivalent to
+  $c_K[\mathbf{1}_{Q^\sharp}\psi^2]\leq\kappa_0\,|Q^\sharp|/|Q(r^*)|$, i.e.\ it
+  demands a correlation constant not merely bounded but \emph{small in
+  proportion to the volume fraction of $Q^\sharp$}. Its exact failure mode is
+  co-concentration: if $|\nabla m|^2$ and $w$ are both of sizes $G,W$ on a
+  common set $S$ and negligible elsewhere, then $\Xi=|Q(r^*)|/|S|$, which is
+  large precisely when the vorticity structure is filamentary --- the regime
+  of interest. Neither (JLE-1) nor \eqref{eq:s44-lc} implies the other:
+  (JLE-1) gives $c_K[\mathbf{1}_{Q^\sharp}\psi^2]\leq\kappa_0$, which is
+  $O(1)$ and not $O(1/\mathcal{L})$, so it does not give \eqref{eq:s44-lc};
+  and \eqref{eq:s44-lc} gives
+  $\Xi[\mathbf{1}_{Q^\sharp}\psi^2]\leq(C_1/\mathcal{L})|Q(r^*)|/|Q^\sharp|$,
+  which is $O(1)$ only under a volume hypothesis of the form
+  \eqref{eq:s44-NBE}. They are two genuinely different sufficient hypotheses,
+  matched to the two routes of Remark~\ref{rem:s44-two-routes}.
+
+  \medskip
+  \noindent\textbf{Which to target.} On present evidence
+  Conjecture~\ref{conj:lc-s44} is the better target: it needs no information
+  about the measure of any level region, it is the existing $c_K$ hypothesis
+  with its region enlarged, and it degrades gracefully under concentration,
+  whereas (JLE-1) degrades like $|Q(r^*)|/|S|$. Conjecture~\ref{conj:jle-s44}
+  is retained because it is the natural hypothesis for the budget route, it
+  yields the stronger conclusion (landing in $\mathcal{I}_0$ outright, with no
+  $\|w\|_{L^\infty}$ and hence none of the caveats of
+  Remark~\ref{rem:s44-channel-caveat}), and it becomes the more attractive of
+  the two in any regime where the near-maximal vorticity set is \emph{not}
+  thin.
+\end{remark}
+
+\begin{remark}[The angular half is \emph{not} of the $c_K$ type]
+  \label{rem:s44-bandD}
+  \eqref{eq:s41-bandD}, equivalently (JLE-2), contains no product of two
+  densities and no correlation: it is a bare level non-concentration statement
+  for the angular curvature density $\nu|\nabla^2\hat{e}|^2\psi^2$. Nothing in
+  Conjecture~\ref{conj:K-refined}, in \eqref{eq:s44-jle}, or in any
+  decorrelation hypothesis bears on it. It would follow from either of two
+  unrelated inputs: an a priori bound
+  $\nu\iint_{Q^\sharp}|\nabla^2\hat{e}|^2\psi^2
+  \leq C\mathcal{L}^2M^{-1/2}\nu^{-1}$ --- none is available, since
+  $\nu\iint|\nabla^2\hat{e}|^2\eta^2$ is a left-hand quantity of the first
+  rung and is controlled only \emph{with} the cutoff $\eta$ --- or a level
+  non-concentration hypothesis for that density. So the assertion of
+  Remarks~\ref{rem:s41-summary} and~\ref{rem:s41-band-status} that
+  $\mathcal{A}_{\mathrm{ann}}$ is ``of the same analytic type as
+  Conjecture~\ref{conj:K-refined}'' is accurate for the $Y$-half of the
+  closure target and \emph{inaccurate for the $D$-half}. This is the sharpest
+  single correction this section makes to the surrounding text.
+\end{remark}
+
+\begin{remark}[Level refinement moves the two halves in opposite directions]
+  \label{rem:s44-refinement}
+  A small observation, recorded because it is the natural next thing to try
+  and it does not work. Remark~\ref{rem:s41-reading} shows that pigeonholing
+  over $N$ equally spaced levels gains nothing for a $\chi'$-weighted
+  residual, because $|\chi'|\leq CN$ cancels the $1/N$ of the lightest
+  annulus. The left-hand side of \eqref{eq:s41-bandD} carries \emph{no}
+  $\chi'$ factor, so for it the pigeonhole is a genuine gain: at least half of
+  $N$ equally spaced bands carry at most $4/N$ of
+  $\nu\iint_{Q^\sharp}|\nabla^2\hat{e}|^2\psi^2$ each, and the constant
+  multiplying that band in the Young step of
+  Proposition~\ref{prop:s41-recursion} (with $\delta=1$) is $N$-independent.
+  But the same refinement multiplies the $Y$-side constants by
+  $\|\chi\chi'\|_\infty^2+\|\chi\chi''\|_\infty=O(N^2)$, so the coefficient
+  $2^{-11}$ in \eqref{eq:s41-bandY} would have to be replaced by $cN^{-2}$
+  while the band mass on that side decreases by at best $4/N$: a net loss of a
+  factor $\sim N$. Since a single pair $\theta_\pm$ must serve both halves of
+  Conjecture~\ref{target:band-absorption}, the refinement cannot be used.
+  This refines, and does not contradict, Remark~\ref{rem:s41-reading}.
+\end{remark}
+
+\subsection{Status table (S44)}
+\label{subsec:s44-status}
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Question & Answer & Where \\
+\hline
+(a) Conj.~\ref{conj:K-refined} $\Rightarrow$ Conj.~\ref{target:band-absorption}?
+  & \textbf{No} (disjoint supports) & Prop.~\ref{prop:s44-a-fails} \\
+(a$'$) Band-transported $c_K$ $\Rightarrow$ \eqref{eq:s41-bandY}?
+  & \textbf{Yes} --- via $\|w\|_{L^\infty}$, no extra ingredient
+    & Prop.~\ref{prop:s44-linfty-route} \\
+(a$''$) \dots{} or via the budget route?
+  & \textbf{Yes}, but only given (NB) \eqref{eq:s44-NB}
+    & Prop.~\ref{prop:s44-transport} \\
+(b) Conj.~\ref{target:band-absorption} $\Rightarrow$ Conj.~\ref{conj:K-refined}?
+  & \textbf{No}; no bound on $c_K$ at all & Prop.~\ref{prop:s44-b-fails} \\
+(b$'$) Do the two \emph{conclusions} compare?
+  & \textbf{No} & Rem.~\ref{rem:s44-conclusions} \\
+(c) Common sufficient hypothesis (preferred)?
+  & \textbf{Yes} --- (LC), the $c_K$ hypothesis on $\{m\geq M/16\}$
+    & Conj.~\ref{conj:lc-s44}, Prop.~\ref{prop:s44-lc-implies} \\
+(c$'$) Common hypothesis for the budget route?
+  & \textbf{Yes} --- (JLE-1), but demanding
+    & Conj.~\ref{conj:jle-s44}, Prop.~\ref{prop:s44-jle-implies} \\
+(c$''$) Does either cover \eqref{eq:s41-bandD}?
+  & \textbf{No} --- different analytic type & Rem.~\ref{rem:s44-bandD} \\
+(d) Is \eqref{eq:s41-bandY} weaker than Conj.~\ref{conj:K-refined}?
+  & \textbf{No}; $O(1)$ in bookkeeping only
+    & Prop.~\ref{prop:s44-linfty-route}, Rem.~\ref{rem:s44-strength} \\
+(d$'$) Is $\Xi=O(1)$ weaker than $c_K=O(1)$?
+  & \textbf{No} --- \emph{stronger}, by $|Q(r^*)|/|R|$
+    & Lem.~\ref{lem:s44-xi-vs-cK}, Prop.~\ref{prop:s44-calibration}(iii) \\
+(d$''$) Numerics ($c_K\approx1$) support which?
+  & Neither, on their own; a volume measurement is missing
+    & Rem.~\ref{rem:s44-numerics} \\
+(d$'''$) First-draft answer to (d)
+  & \textbf{Withdrawn} (lemma was inverted) & Rem.~\ref{rem:s44-corrigendum} \\
+(e) Independent as stated?
+  & \textbf{Yes}, over the a priori structure (A1)--(A3)
+    & Rem.~\ref{rem:s44-scope} \\
+Volume conditions (NB), (NB-E)
+  & \textbf{Symmetric}; needed by the budget route only
+    & Rem.~\ref{rem:s44-NB}, Rem.~\ref{rem:s44-two-routes} \\
+Level refinement as a route
+  & \textbf{Net loss} & Rem.~\ref{rem:s44-refinement} \\
+(LC) and (JLE-1) themselves
+  & \textbf{Open}; mutually independent & Rem.~\ref{rem:s44-jle-status} \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{remark}[Honest summary of S44]\label{rem:s44-summary}
+  The resemblance noted in Remarks~\ref{rem:s41-summary}
+  and~\ref{rem:s41-band-status} is real at the level of \emph{form} and
+  illusory at the level of \emph{content}: the two conjectures are supported
+  on disjoint regions of the $|\omega|$-level decomposition, and neither
+  implies the other, nor any nontrivial part of the other, from the a priori
+  structure available --- Remark~\ref{rem:s44-scope} states the exact scope of
+  that claim, which is a statement about admissible test configurations and
+  not about Navier--Stokes solutions.
+
+  The positive outcome is that a single hypothesis covers both $Y$-halves, and
+  that it is a familiar one: Conjecture~\ref{conj:lc-s44} is the $c_K$
+  hypothesis of Conjecture~\ref{conj:K-refined} with its region enlarged from
+  $\{m\geq M/4\}$ to $\{m\geq M/16\}$, and nothing else. That is the
+  legitimate content of ``same analytic type''
+  (Remark~\ref{rem:s44-lc-reading}): not that either target subsumes the
+  other, but that both are instances of one hypothesis stated on adjacent
+  regions.
+
+  The negative outcomes are three. First, the two conjectures are genuinely
+  incomparable, so the loose language of
+  Remarks~\ref{rem:s41-summary} and~\ref{rem:s41-band-status} must not be read
+  as an implication. Second, the angular half \eqref{eq:s41-bandD} is of a
+  different type entirely and is covered by no decorrelation hypothesis
+  (Remark~\ref{rem:s44-bandD}). Third --- and this reverses what the first
+  draft of this section claimed --- \eqref{eq:s41-bandY} is \emph{not} weaker
+  than Conjecture~\ref{conj:K-refined}: its apparently absolute constants are
+  an artefact of its bookkeeping, and reduced to a hypothesis on a correlation
+  constant it needs the same $1/\mathcal{L}$ decay
+  (Proposition~\ref{prop:s44-linfty-route}). The volume-normalised statistic
+  $\Xi$ that would avoid the logarithm is \emph{stronger}, not weaker, than
+  the correlation constant (Lemma~\ref{lem:s44-xi-vs-cK}), so the existing
+  $O(1)$ numerics do not deliver it; what they would need to be supplemented
+  by is listed in Remark~\ref{rem:s44-numerics}(iii). The withdrawal is
+  recorded in Remark~\ref{rem:s44-corrigendum}.
+
+  No proved statement of the document is altered, and nothing here bears on
+  H2, on $\sigma^*$-decay, on the hypotheses of \S\ref{sec:rigidity-s39}, or
+  on Type-II exclusion.
 \end{remark}
 
 % ════════════════════════════════════════════════════════════════════════════

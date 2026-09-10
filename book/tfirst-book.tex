@@ -1,0 +1,202 @@
+% =====================================================================
+%  T-FIRST: A PROGRAMME AND ITS WALLS
+%  The complete record of a 47-session attempt on the Clay Millennium
+%  Prize problem for the 3D incompressible Navier--Stokes equations.
+%
+%  Build:  pdflatex -interaction=nonstopmode tfirst-book.tex   (x3)
+%  Requires: texlive-latex-base, -latex-extra, -science,
+%            -fonts-recommended, texlive-pictures, cm-super
+%            (cm-super is NOT optional: microtype's font expansion
+%             aborts without scalable Type-1 fonts.)
+% =====================================================================
+\documentclass[11pt]{book}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{caption}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit,calc,
+                backgrounds,decorations.pathreplacing,patterns}
+
+\geometry{a4paper,margin=1.15in,headheight=14pt}
+
+% ---------------------------------------------------------------------
+%  Colours and status labels
+% ---------------------------------------------------------------------
+\definecolor{provedgreen}{HTML}{1B6B3A}
+\definecolor{openblue}{HTML}{1F4E79}
+\definecolor{impossiblered}{HTML}{9B1B1B}
+\definecolor{withdrawnorange}{HTML}{A0522D}
+\definecolor{condpurple}{HTML}{5B2C6F}
+\definecolor{rulegrey}{HTML}{666666}
+\definecolor{panelgrey}{HTML}{F2F2F2}
+
+\newcommand{\PROVED}{\textcolor{provedgreen}{\textsc{proved}}}
+\newcommand{\OPEN}{\textcolor{openblue}{\textsc{open}}}
+\newcommand{\IMPOSSIBLE}{\textcolor{impossiblered}{\textsc{proved impossible}}}
+\newcommand{\WITHDRAWN}{\textcolor{withdrawnorange}{\textsc{withdrawn}}}
+\newcommand{\SUPERSEDED}{\textcolor{rulegrey}{\textsc{superseded}}}
+\newcommand{\PROVEDMOD}[1]{\textcolor{condpurple}{\textsc{proved mod}~(#1)}}
+\newcommand{\CONDITIONAL}[1]{\textcolor{condpurple}{\textsc{conditional on}~#1}}
+
+% ---------------------------------------------------------------------
+%  Notation
+% ---------------------------------------------------------------------
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\ehat}{\hat{e}}
+\newcommand{\sstar}{\sigma^{*}}
+\newcommand{\rstar}{r^{*}}
+\newcommand{\Lfac}{\mathcal{L}}
+\newcommand{\Aann}{\mathcal{A}_{\mathrm{ann}}}
+\newcommand{\Band}{\mathrm{Band}}
+\newcommand{\dee}{\,\mathrm{d}}
+\newcommand{\Dt}{D_t}
+
+% Session tag used constantly in the text
+\newcommand{\Sn}[1]{\textbf{S#1}}
+
+% ---------------------------------------------------------------------
+%  Theorem-like environments (this book states, it does not prove)
+% ---------------------------------------------------------------------
+\theoremstyle{definition}
+\newtheorem{statement}{Statement}[chapter]
+\newtheorem{defn}[statement]{Definition}
+\theoremstyle{remark}
+\newtheorem{obsv}[statement]{Observation}
+
+% A boxed "record" environment for load-bearing verbatim findings
+\newenvironment{record}
+  {\par\medskip\noindent\begin{minipage}{\linewidth}%
+   \colorbox{panelgrey}{\begin{minipage}{\dimexpr\linewidth-2\fboxsep}%
+   \vspace{2pt}\small}
+  {\vspace{2pt}\end{minipage}}\end{minipage}\par\medskip}
+
+% ---------------------------------------------------------------------
+%  Headers
+% ---------------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\small\nouppercase{\leftmark}}
+\fancyhead[RO]{\small\nouppercase{\rightmark}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\setlength{\parskip}{0.35em}
+\setlength{\emergencystretch}{3em}
+
+% =====================================================================
+\begin{document}
+
+\frontmatter
+
+\begin{titlepage}
+\centering
+\vspace*{2.5cm}
+{\Huge\bfseries T-First\par}
+\vspace{0.6cm}
+{\LARGE A Programme and Its Walls\par}
+\vspace{1.6cm}
+{\large The complete record of a forty-seven-session attempt on\\
+global regularity for the three-dimensional\\
+incompressible Navier--Stokes equations\par}
+\vspace{2.2cm}
+{\large Pratik Menon \quad$\cdot$\quad Claude (Anthropic)\par}
+\vspace{0.8cm}
+{\large September 2026\par}
+\vfill
+\begin{minipage}{0.82\textwidth}
+\small
+\textbf{Status of this book.} The programme it documents \emph{has not proved}
+the Clay Millennium Prize problem. It claimed a proof once, in session~S29,
+and withdrew that claim in session~S31 on eight independent grounds. This
+book records the routes taken, the reasoning behind each, the numerical
+programme built to test them, and --- with no less weight --- every wall the
+programme hit and every claim it had to retract. Every quantitative statement
+here traces to \texttt{results/results.db}, to a session log, or to
+\texttt{proofs/claim\_a\_3d\_proof\_attempt.tex}. Where the sources disagree,
+the proof document governs, and the disagreement is footnoted.
+\end{minipage}
+\vspace{1.5cm}
+\end{titlepage}
+
+\tableofcontents
+\listoffigures
+
+\include{chapters/00-how-to-read}
+
+\mainmatter
+
+% =====================================================================
+\part{The Programme}
+% =====================================================================
+\include{chapters/01-origin}
+\include{chapters/02-routes}
+\include{chapters/03-architecture}
+\include{chapters/04-house-rules}
+
+% =====================================================================
+\part{The Numerical Programme}
+% =====================================================================
+\include{chapters/05-layer1-layer2}
+\include{chapters/06-layer3}
+\include{chapters/07-layer4}
+
+% =====================================================================
+\part{The Analytical Programme}
+% =====================================================================
+\include{chapters/08-claim-a}
+\include{chapters/09-the-prize-claim}
+\include{chapters/10-the-audit}
+\include{chapters/11-the-pincer}
+\include{chapters/12-unification}
+\include{chapters/13-profile-rigidity}
+\include{chapters/14-annulus}
+\include{chapters/15-non-implication}
+
+% =====================================================================
+\part{The Walls}
+% =====================================================================
+\include{chapters/16-walls}
+\include{chapters/17-cz-logarithm}
+
+% =====================================================================
+\part{Lessons}
+% =====================================================================
+\include{chapters/18-methodology}
+\include{chapters/19-numerical-lessons}
+
+% =====================================================================
+\part{Where It Stands}
+% =====================================================================
+\include{chapters/20-where-it-stands}
+
+% =====================================================================
+\appendix
+% =====================================================================
+\include{chapters/A1-experiment-inventory}
+\include{chapters/A2-session-index}
+\include{chapters/A3-glossary}
+
+\backmatter
+\include{chapters/A4-bibliography}
+
+\end{document}

@@ -408,6 +408,77 @@ Lemma 2.5 (CZ source structure) defeats the critical CCF 2nd unstable profile (�
 
 ---
 
+## 🔑 KEY FINDING — S48 (WP2): Hypothesis (R) is a THEOREM
+
+**Verdict (i).** `\S sec:hypR-s48` (proof doc now 11,309 lines, 152 pages,
+compiles clean) proves (R) — and in a *stronger* form than stated:
+`thm:s48-R` gives, for all k,l ≥ 0,
+
+    ‖∇^k ∂_s^l u_λ(·,s)‖_∞ ≤ C_{k,l}(c_I) · |s|^{-(k+1)/2 - l}
+
+uniformly in λ ∈ (0,1], with **no** (1+R) factor and **no** S₂ dependence.
+k=1, l=0 is exactly (R).
+
+**Why it works, and why the named trap never bit.** Not by ε-regularity. The
+bound actually available on the rescaled family is an L^∞_t L^∞_x *velocity*
+bound, and (s′,s) = (∞,∞) gives 2/s′ + 3/s = 0 < 1 — the **strict**,
+subcritical range of Serrin's criterion. Boundedness suffices; smallness is
+never required, so the handover's trap ("ε-regularity needs smallness, Type-I
+gives only boundedness") is on a shelf this route never touches. Mechanism:
+a restart argument on KNSS 2009 Prop. 4.1, transferred to Λ_λ = λ^{-1}𝕋³ by a
+periodised Oseen kernel (L-uniform), with parasitic solutions killed outright
+by a torus Liouville argument (harmonic on a closed manifold ⟹ constant).
+
+**Downstream.** `prop:transfer-audit(d)` first clause: Proved-mod-(R) → **PROVED**.
+**Wall 2 reclassified OPEN → WITHDRAWN.** The profile route does not merely
+relocate the CZ logarithm — on that branch it never passes through the
+Calderón–Zygmund operator at all.
+
+**Correction to the document's own reasoning.** `prop:transfer-audit(d)`'s
+stated mechanism ("U has no structure below scale |s|^{1/2}") is an unproved
+heuristic and is *wrong*; the conclusion stands for the different reason above
+(`rem:s48-mechanism`).
+
+**RESIDUE — four items, none of them (R):**
+1. **Saturation, now the sharpest gap on this branch.** (d)'s *second* clause
+   (‖∇U‖_∞ ≤ C M_U) carries a pre-existing "whenever the Type-I bound is
+   saturated" proviso. Part (e) uses that form (r* = M_U^{-1/2}). So (e) moves
+   Proved-mod-(R) → **Proved-mod-saturation**, not Proved. Good target: a
+   statement about one scalar function of one variable.
+2. **The ω→u bridge is closed permanently.** ‖v‖_∞ ≲ ‖ω‖_∞^{3/5}‖v‖_{L²}^{2/5}
+   is log-free, but 3/5 is *forced by scaling* (independently re-derived), and
+   3/5 > 1/2. From vorticity Type-I alone the velocity bound is unreachable —
+   a scaling identity, not a missing technique. No future session should retry.
+   (Moot here: the document assumes the velocity bound outright at line 5565.)
+3. **(R) as *used* exceeded (R) as *stated*:** `prop:profile-extraction` invoked
+   "the local pressure bound supplied by (R)"; (R) supplies none. Repaired
+   without any pressure bound.
+4. **Nothing else moves.** (N), (N′), (A-up), `target:disorder-depletion`,
+   Wall 1, Wall 3, Type-II untouched. `rem:s39-distance` stands verbatim — the
+   ceiling is still "no Type-I singularity", strictly below the Prize.
+
+**Recorded, deliberately not acted on** (`obs:s48-wall1`): the same estimate
+applies to u on 𝕋³, giving ‖∇u‖_∞ ≤ C(c_I)(T−t)^{-1} log-free. This does NOT
+remove Wall 1 — §33–§37 need ∇u against M(t), not (T−t)^{-1}, and the two agree
+only on the saturated set. Suggests **saturation, not the logarithm, is what
+both branches actually need.** Test that before attacking either wall.
+
+**Document errors found (citations):** `\cite{Seregin2012}` is miscited twice
+(lines 6810, 6848) — it is an L³-endpoint blowup result, containing neither the
+"standard caveats" nor any Type-I-improved ε-regularity theorem;
+`\cite{LadyzhenskayaSeregin1999}` is loosely attributed at 6798. (N) is
+unaffected — it remains assumed.
+
+**Verified independently before merge** (S41/S44/S47 discipline): re-derived the
+restart arithmetic and the forced 3/5 exponent from scratch; confirmed the
+line-5565 standing assumption, the pre-existing saturation proviso and all three
+miscitations at their exact lines; ran `check_proof.py` (exit 0) and two
+`pdflatex` passes (exit 0, 152 pp). One agent imprecision corrected: "0 LaTeX
+warnings" — 4 new hyperref bookmark warnings came from an unguarded math
+heading, since fixed with `\texorpdfstring` (now back to the 109 pre-existing).
+
+---
+
 ## 📋 Decision Log
 
 | Date | Decision | Reasoning |

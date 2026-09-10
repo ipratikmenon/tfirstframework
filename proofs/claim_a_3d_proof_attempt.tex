@@ -6809,6 +6809,20 @@ limit are isolated now, and neither is proved here.
   of \eqref{eq:rescaled-bounds} is available. Both caveats are standard in the
   Type-I literature \cite{Seregin2012} but neither is discharged in this
   document.}
+  \emph{\textbf{Status amended at S48: Proved.} \S\ref{sec:hypR-s48} settles
+  \textup{(R)} against the literature. Theorem~\ref{thm:s48-R} proves it in a
+  strictly stronger form (time derivatives included, no factor $(1+R)$), from
+  Serrin's \emph{subcritical} interior criterion
+  \cite{Serrin1962,ChenGaldiPoggiSchikorra2026} together with the
+  $L^\infty$-based local theory of \cite[\S4]{KNSS2009} and
+  \cite[Thm.~2.4]{SereginSverak2009}. Three corrections to the note above are
+  recorded in Remark~\ref{rem:s48-doc-errors}: caveat~(ii) is void (no energy,
+  global or local, is used anywhere in that theory); caveat~(i) is real but is
+  not a caveat on \textup{(R)}, which asks only for spatial derivatives, and
+  is discharged for the objects this document forms by
+  Theorem~\ref{thm:s48-SS}; and the citations to \cite{Seregin2012} and
+  \cite{LadyzhenskayaSeregin1999} in this note do not support what they are
+  cited for.}
 \item[\textbf{(N)}] \emph{Non-degeneracy at the singular point (no vorticity
   escape).}
   There exist $\varepsilon_*>0$, a compact
@@ -7666,6 +7680,25 @@ Type-II exclusion & Open (outside all present methods) & Rem.~\ref{rem:s39-dista
 \hline
 \end{tabular}
 \end{center}
+
+\noindent\emph{Amended at S48.} \textbf{(R)} is no longer conditional: it is
+proved in Theorem~\ref{thm:s48-R} from Serrin's subcritical interior
+criterion \cite{Serrin1962,ChenGaldiPoggiSchikorra2026} together with the
+$L^\infty$-based local theory of \cite[\S4]{KNSS2009} and
+\cite[Thm.~2.4]{SereginSverak2009}. Every row above reading ``mod (R)''
+should be read with the (R) deleted --- so
+Prop.~\ref{prop:transfer-audit}(d) and Lem.~\ref{lem:harmonic-reduction}
+become \textbf{Proved}, Prop.~\ref{prop:profile-extraction} and
+Lem.~\ref{lem:sigma-equality} become ``Proved mod (N)'',
+Thm.~\ref{thm:aligned-horn} ``Proved mod (A-up)'', and
+Thm.~\ref{thm:rigidity-dichotomy} conditional on four inputs, not five ---
+with one exception recorded in \S\ref{subsec:s48-residue}: the row for
+Prop.~\ref{prop:transfer-audit}(e) becomes ``Proved mod \emph{saturation}'',
+because (e) uses (d) in the form $\|\nabla U\|_{L^\infty}\lesssim M_U$, which
+(d) supplies only where the Type-I upper bound is saturated. No other row
+changes; in particular \textbf{(N)}, \textbf{(N$'$)}, \textbf{(A-up)},
+Conjecture~\ref{target:disorder-depletion} and Type-II exclusion are
+untouched, and Remark~\ref{rem:s39-distance} stands verbatim.
 
 \begin{remark}[Distance to the goal]\label{rem:s39-distance}
   Suppose both horns closed completely --- \textbf{(A-up)} proved and
@@ -9711,6 +9744,750 @@ Level refinement as a route
   on Type-II exclusion.
 \end{remark}
 
+% ══════════════════════════════════════════════════════════════════════════════
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Hypothesis (R) Settled Against the Literature (Session S48)}
+\label{sec:hypR-s48}
+
+This section discharges hypothesis \textbf{(R)} of \S\ref{subsec:s39-step1}.
+It is a literature audit with three short proofs; it introduces no new
+programme machinery and no new hypothesis.
+
+\medskip
+\noindent\textbf{Verdict, stated first.}
+\emph{\textbf{(R)} is a theorem}, in a form strictly stronger than the one
+this document assumes. It follows from the classical \emph{subcritical}
+interior regularity criterion of Serrin \cite{Serrin1962}, made quantitative
+and scale-invariant by the $L^\infty$-based local theory of
+Koch--Nadirashvili--Seregin--\v{S}ver\'ak \cite{KNSS2009} and
+Seregin--\v{S}ver\'ak \cite{SereginSverak2009}. It is \emph{not} a consequence
+of $\varepsilon$-regularity, and therefore the trap that governed this
+question --- ``$\varepsilon$-regularity needs the scaled local energy to be
+\emph{small}, Type-I supplies only \emph{boundedness}'' --- does not arise:
+no smallness, no local energy, and no pressure hypothesis enters. Consequently
+Proposition~\ref{prop:transfer-audit}(d) is upgraded from
+\emph{Proved-modulo-(R)} to \emph{Proved}, and Wall~2 of
+\S\ref{subsec:wall2-R} is \textbf{withdrawn}.
+
+Three things are \emph{not} thereby proved, and are named precisely in
+\S\ref{subsec:s48-residue}: the saturation proviso inside
+Proposition~\ref{prop:transfer-audit}(d), which
+Proposition~\ref{prop:transfer-audit}(e) uses and which is independent of
+\textbf{(R)}; the discharge of \textbf{(N)}, \textbf{(N$'$)} or
+\textbf{(A-up)}, none of which is touched; and Wall~1 for the original
+solution $u$, which stands.
+
+\subsection{What (R) says, and what is actually available}
+\label{subsec:s48-what-R-says}
+
+\begin{quote}
+\textbf{(R)} \emph{Scale-uniform interior regularity} (line~6785 of this
+document, as of S48). \emph{There are constants $C_k(c_I)$, $k\geq0$, such
+that every $u_\lambda$ as in \eqref{eq:rescaling} satisfies}
+\[
+  \bigl\|\nabla^k u_\lambda\bigr\|_{L^\infty(B_R\times[-S_2,-S_1])}
+  \;\leq\; C_k(c_I)\,(1+R)\,S_1^{-(k+1)/2}
+\]
+\emph{for all $0<S_1<S_2$ and $R\geq1$ with $B_R\times[-2S_2,-S_1/2]$ inside
+the domain of $u_\lambda$.}
+\end{quote}
+
+Two features of this statement matter and are easy to miss.
+
+\begin{remark}[The hypothesis available is global in space, so the
+  ``interior'' framing and the factor $(1+R)$ are slack]
+  \label{rem:s48-global-in-space}
+  The standing assumption of \S\ref{sec:moser-s33} (line~5565, repeated at
+  line~6760) is \emph{two} bounds, not one:
+  $M(t)\leq C_I/(T-t)$ \emph{and} $\sup_{x}|u(x,t)|\leq C_I(T-t)^{-1/2}$, the
+  supremum being over all of $\T^3$. Hence \eqref{eq:rescaled-bounds} is a
+  bound at \emph{every} $y\in\Lambda_\lambda$, and on the time slab
+  $[-S_2,-S_1]$ one has the single scalar bound
+  \begin{equation}\label{eq:s48-slab-bound}
+    \bigl\|u_\lambda\bigr\|_{L^\infty(\Lambda_\lambda\times[-S_2,-S_1])}
+    \;\leq\; c_I\,S_1^{-1/2},
+    \qquad
+    \bigl\|\omega_\lambda\bigr\|_{L^\infty(\Lambda_\lambda\times[-S_2,-S_1])}
+    \;\leq\; c_I\,S_1^{-1} .
+  \end{equation}
+  \textbf{(R)} is therefore an interior statement in \emph{time} only. There
+  is nothing to be gained by the factor $(1+R)$, and the theorem proved below
+  does not produce one: the constants are uniform in $y$, as
+  Proposition~\ref{prop:transfer-audit}(d) already anticipates in its proof
+  (``the constant [is] independent of $y_0$, because
+  \eqref{eq:profile-bounds} is uniform in $y$'').
+\end{remark}
+
+\begin{remark}[The exponent pair is \emph{strictly subcritical} for Serrin]
+  \label{rem:s48-subcritical}
+  \eqref{eq:s48-slab-bound} places $u_\lambda$ in $L^{s'}_tL^s_x$ with
+  $s'=s=\infty$, so
+  \[
+    \frac{2}{s'}+\frac{3}{s} \;=\; 0 \;<\; 1 .
+  \]
+  This is the \emph{strict-inequality} range of Serrin's criterion --- the
+  range Serrin himself proved in 1962, not the borderline equality case that
+  needed Struwe and Takahashi. Boundedness suffices; no smallness is required,
+  and none is available. This single observation is what decides the present
+  question, and it is why the $\varepsilon$-regularity literature
+  (\cite{CKN1982}, \cite{LadyzhenskayaSeregin1999}) is the wrong shelf: those
+  theorems live at the critical scale, where smallness is the whole content.
+\end{remark}
+
+\subsection{The literature statements, quoted}
+\label{subsec:s48-literature}
+
+The four statements below are quoted, not recalled. Where a statement is
+paraphrased the paraphrase is marked as such.
+
+\begin{theorem}[Serrin's interior regularity criterion; Serrin 1962,
+  Struwe 1988, Takahashi 1990]\label{thm:s48-serrin}
+  Let $Q=B\times(0,T)$ with $B$ a ball in $\R^3$, and let $u\in L^2(Q)$ be a
+  distributional solution of the Navier--Stokes equations (tested against
+  solenoidal $C_0^\infty(Q)$ fields, so that the pressure is eliminated). If
+  \[
+    u\in L^\infty\bigl(L^2(B)\bigr),\qquad \omega:=\curl u\in L^2(Q),
+  \]
+  and in addition
+  \[
+    u\in L^{s'}\bigl(L^{s}(B)\bigr),\qquad \frac{2}{s'}+\frac{3}{s}=1,
+    \qquad s'\in(2,\infty),
+  \]
+  then \emph{``$u$ is $C^\infty$ in the spatial variables and every spatial
+  derivative of $u$ belongs to $L^\infty(Q')$ for any $Q'\Subset Q$''}.
+  \emph{[Cited verbatim from Chen--Galdi--Poggi--Schikorra
+  \cite{ChenGaldiPoggiSchikorra2026}, equations (1.1)--(1.4) and the sentence
+  following. The same source records: ``Serrin proved (1.4) under the stronger
+  assumption that the exponents $s',s$ satisfy the relation above with a
+  strict inequality sign. The proof of the result, as stated here, is due to
+  Struwe \cite{Struwe1988} and Takahashi \cite{Takahashi1990}.'' The case
+  relevant here, $s'=s=\infty$, lies in the \emph{strict} range and is
+  therefore Serrin's own theorem.]}
+\end{theorem}
+
+\begin{remark}[No pressure hypothesis, and no smallness]
+  \label{rem:s48-no-pressure}
+  Kwon \cite{Kwon2021}, surveying exactly this point, writes: ``For weak
+  solutions, Serrin [36] showed the local $L^\infty$-boundedness under the
+  assumption $u\in L^r_tL^m_x(Q_1)$ for $(r,m)$ in the subcritical range
+  $\frac{2}{r}+\frac{3}{m}<1$. After that, Struwe [37] and Takahashi [38]
+  extended the result to the critical range, the equality case, when
+  $m\in(3,\infty]$. \emph{These results work even with distributional
+  pressure} \textup{[emphasis added]}, but it is not known whether a generic
+  weak solution satisfies the assumption.'' This is the decisive structural
+  fact for the present question: Serrin's mechanism is a bootstrap on the
+  \emph{vorticity} equation together with a local Helmholtz decomposition
+  \cite[(1.5)--(1.7)]{ChenGaldiPoggiSchikorra2026}, in which the pressure
+  never appears. Nothing must be assumed about $p_\lambda$, and in particular
+  the $\lambda$-uniformity of any local pressure norm --- which is
+  \emph{not} available --- is not needed.
+\end{remark}
+
+\begin{remark}[What Serrin's criterion does \emph{not} give, and why that is
+  harmless here]\label{rem:s48-time}
+  Theorem~\ref{thm:s48-serrin} controls \emph{spatial} derivatives only.
+  \cite{ChenGaldiPoggiSchikorra2026} emphasises: ``It is worth emphasizing
+  that (1.4) yields regularity only in the spatial variables; no gain in time
+  regularity is obtained beyond that assumed for $u$''. This is sharp, by
+  Serrin's example: ``$u=a(t)\nabla\psi$, $\Delta\psi=0$ in $B$, with
+  $a\in L^2(0,T)$, is a distributional solution that is $C^\infty$ in space,
+  whereas its regularity in time is exactly that of the coefficient $a$.''
+  Kwon \cite{Kwon2021} records the same family in the form
+  $u=\Phi(t)\nabla H(x)$, $p=-\Phi'(t)H(x)-\tfrac12|\Phi(t)\nabla H(x)|^2$,
+  and notes: ``The parasitic solutions $u$, on the other hand, are harmonic
+  and hence smooth in space.''
+
+  Three consequences, all of which the present section uses.
+  \begin{enumerate}[label=(\roman*),leftmargin=2.2em]
+  \item \textbf{(R)} as \emph{stated} asks only for $\nabla^k u_\lambda$ and
+    is therefore untouched by the parasitic family; the family satisfies the
+    estimate ($|\nabla u|=|\Phi||\nabla^2H|\lesssim
+    \|u\|_{L^\infty(B_1)}$ on $B_{1/2}$ by interior harmonic estimates).
+  \item Everything \S\ref{sec:rigidity-s39} does downstream of \textbf{(R)}
+    is built from $\omega_U$, $\hat e_U$, $m_U=|\omega_U|$ and $\sigma^*$,
+    all of which are invariant under $U\mapsto U+b(s)$ and, more generally,
+    unchanged by the curl-free parasitic part.
+  \item The one place where more than spatial regularity is needed is the
+    $C^\infty_{\mathrm{loc}}$ compactness of
+    Proposition~\ref{prop:profile-extraction}, and there it is supplied
+    unconditionally by Theorem~\ref{thm:s48-SS} below, not by \textbf{(R)}.
+    See Remark~\ref{rem:s48-doc-errors}(c).
+  \end{enumerate}
+\end{remark}
+
+\begin{theorem}[Quantitative $L^\infty$ smoothing; KNSS 2009,
+  Proposition~4.1]\label{thm:s48-knss41}
+  Let $u\in L^\infty_{x,t}(\R^n\times(0,T))$ be a mild solution of the
+  Navier--Stokes Cauchy problem with $u_0\in L^\infty$. Then for
+  $k,l=0,1,\dots$ the functions $t^{\frac{k}{2}+l}\nabla_x^k\partial_t^lu$ are
+  bounded and, for $T'=\varepsilon(k,l)\|u_0\|_{L^\infty(\R^n)}^{-2}$ with
+  $\varepsilon(k,l)>0$ a small constant,
+  \begin{equation}\label{eq:s48-knss41}
+    \bigl\|t^{\frac{k}{2}+l}\nabla_x^k\partial_t^lu\bigr\|
+      _{L^\infty_{x,t}(\R^n\times(0,T'))}
+    \;\leq\; C(k,l)\,\|u_0\|_{L^\infty(\R^n)} .
+  \end{equation}
+  \emph{[Cited verbatim from \cite[Prop.~4.1 and (4.6)]{KNSS2009}. The same
+  source adds, in its Remark~4.2: ``Estimate (4.6) says that the
+  local-in-time smoothing properties of Navier-Stokes for $u_0\in L^\infty$
+  are the same as those of the heat equation.'']}
+\end{theorem}
+
+\begin{remark}[The same paper's version without mildness]
+  \label{rem:s48-knss410}
+  \cite{KNSS2009} also proves, for a \emph{bounded weak} solution
+  $u\in L^\infty_{x,t}(\R^n\times(0,T))$ with
+  $M=\|u\|_{L^\infty_{x,t}}$, the estimates
+  \[
+    \|\nabla_x^ku\|_{L^\infty_{x,t}(\R^n\times(\delta,T))}\leq C(k,\delta,T,M),
+    \qquad
+    \|\nabla_x^k\partial_t(u-b)\|_{L^\infty_{x,t}(\R^n\times(\delta,T))}
+      \leq C(k,\delta,R,M),
+  \]
+  their (4.10) and (4.11), where $b$ is a function of $t$ only. The route is
+  worth recording because it is the pressure-free one: the local $L^p$ bound
+  (4.7) on $\omega$, then the vorticity equation
+  $\omega_{i,t}-\Delta\omega_i=\partial_{x_j}(\omega_ju_i-\omega_iu_j)$, of
+  which \cite{KNSS2009} says ``Equation (4.8) gains $\omega$ one spatial
+  derivative in $L^p_{x,t}$. The standard bootstrapping arguments and
+  regularity estimates for harmonic functions now give (4.9)''. Note the
+  shape of (4.11): the additive $b(t)$ sits inside the time derivative and
+  outside every spatial derivative, so all \emph{vorticity} time-derivatives
+  are controlled unconditionally --- which is precisely what
+  Lemma~\ref{lem:logtime} needs of $\partial_s\omega_U$ (line~7408).
+\end{remark}
+
+\begin{theorem}[Bounded ancient solutions are quantitatively regular;
+  Seregin--\v{S}ver\'ak 2009, Theorem~2.4]\label{thm:s48-SS24}
+  Let $u$ be an arbitrary bounded ancient solution --- i.e., by their
+  Definition~2.3, a bounded divergence-free field
+  $u\in L^\infty(Q_-;\R^n)$, $Q_-=\R^n\times(-\infty,0)$, satisfying
+  $\int_{Q_-}(u\cdot\partial_tw+u\otimes u:\nabla w+u\cdot\Delta w)\,dz=0$ for
+  all solenoidal $w\in C_0^\infty(Q_-)$, normalised by
+  $\operatorname*{ess\,sup}|u|\leq1$. Then for any $m>1$,
+  \[
+    |\nabla u|+|\nabla^2u|+|\nabla p_{u\otimes u}| \in L_m(Q_-) ,
+  \]
+  and for each $t_0\leq0$ there is $b_{t_0}\in L^\infty(t_0-1,t_0)$ with
+  $\sup_{t_0\leq0}\|b_{t_0}\|_{L^\infty(t_0-1,t_0)}\leq c(n)<+\infty$ such
+  that, writing $u_{t_0}(x,t)=u(x,t)+b_{t_0}(t)$,
+  \[
+    \sup_{z_0=(x_0,t_0),\,x_0\in\R^n,\,t_0\leq0}
+      \|u_{t_0}\|_{W^{2,1}_m(Q(z_0,1))} \;\leq\; c(m,n)\;<\;+\infty .
+  \]
+  \emph{[Cited from \cite[Thm.~2.4, Def.~2.3, (4.8)]{SereginSverak2009}; here
+  $L_m(Q_-)$ and $W^{2,1}_m(Q_-)$ are their ``uniform'' spaces, normed by
+  $\sup_{z_0\in Q_-}\|\cdot\|_{\,\cdot\,(Q(z_0,1))}$. Two points deserve
+  emphasis. First, \emph{no mildness and no pressure integrability is
+  assumed}: the hypothesis is boundedness alone. Second, the additive shift
+  $b_{t_0}$ is spatially constant, so $\nabla u_{t_0}=\nabla u$ and
+  $\nabla^2u_{t_0}=\nabla^2u$: the displayed bound is a bound on the
+  derivatives of $u$ itself.]}
+\end{theorem}
+
+\begin{theorem}[Rescaling at a \emph{local} singularity produces a
+  \emph{mild} limit; Seregin--\v{S}ver\'ak 2009, Theorem~2.8]
+  \label{thm:s48-SS}
+  Let $v,q$ be a local suitable weak solution with a singular point, and let
+  $u_k(y,s)=\lambda_kv(x_k+\lambda_ky,\,t_k+\lambda_k^2s)$ be the rescaling
+  built from $\lambda_k=1/M_k$, $M_k=\max_{x\in B(r_1)}|v(x,t_k)|\to\infty$,
+  so that $|u_k|\leq1$ and $|u_k(0,0)|=1$. Then: ``For each $a>0$, the
+  sequence $\{u_k\}$ is uniformly H\"older continuous on the closure of $Q(a)$
+  for sufficiently large $k$ and a subsequence $\{u_{k_j}\}$ of $\{u_k\}$
+  converges uniformly on compact subsets of $\R^n\times{]}-\infty,0]$ to a
+  mild bounded ancient solution $u$ with $|u(0,0)|=1$.''
+  Their Remark~2.9: ``The main point of the theorem is that the limit $u$ is a
+  mild solution, i.e., \emph{the parasitic solutions cannot appear in this
+  re-scaling procedure}.''
+  \emph{[Cited verbatim from \cite[Thm.~2.8, Rem.~2.9]{SereginSverak2009}.
+  The introduction to their \S2 states the point in terms:
+  ``even in the local (in space) situation, the solutions arising from the
+  re-scaling procedure at a potential singularity are still mild bounded
+  ancient solutions''. Their Remark~2.7 records the companion fact from
+  \cite{KNSS2009}: ``mild ancient solutions are infinitely smooth''.]}
+\end{theorem}
+
+\begin{remark}[Two citations in this document that do not say what they are
+  cited for]\label{rem:s48-miscitations}
+  \emph{(a)} \cite{Seregin2012} is cited twice as authority for Type-I local
+  regularity technology: at line~6810 (``Both caveats are standard in the
+  Type-I literature \cite{Seregin2012}'') and at lines~6848 and~7689 (``a
+  Type-I-improved $\varepsilon$-regularity statement (of the kind developed by
+  Seregin \cite{Seregin2012})''). The paper's abstract is: ``We show that a
+  necessary condition for $T$ to be a potential blow up time is
+  $\lim_{t\uparrow T}\|v(\cdot,t)\|_{L^3}=\infty$.'' It is a
+  \emph{critical-endpoint} $L^3$ blow-up result in the line of
+  \cite{EscauriazaSereginSverak2003}; it contains no Type-I-improved
+  $\varepsilon$-regularity theorem and no discussion of the caveats at
+  line~6810. The intended reference is presumably
+  \cite{SereginSverak2009} (which \cite{Seregin2012} itself cites for exactly
+  this purpose) or, for the local Type-I/ancient-solution equivalence,
+  \cite{AlbrittonBarker2019}. Both are added to the bibliography here.
+  \emph{This does not affect \textbf{(N)}, which remains assumed.}
+
+  \emph{(b)} \cite{LadyzhenskayaSeregin1999} is offered at line~6798 as a
+  ``sharpening'' of Serrin's criterion by ``local-pressure theory''. It is a
+  partial-regularity ($\varepsilon$-regularity) paper for \emph{suitable} weak
+  solutions, requiring a local pressure in $L^{3/2}$ \emph{and} a smallness
+  hypothesis. It is not the tool that discharges \textbf{(R)}, and by
+  Remark~\ref{rem:s48-no-pressure} no local-pressure theory is needed at all.
+\end{remark}
+
+\subsection{The \texorpdfstring{$\omega\to u$}{omega-to-u} bridge: log-free, but it loses the exponent}
+\label{subsec:s48-bridge}
+
+Since \S\ref{sec:rigidity-s39}'s Type-I hypothesis is often stated in this
+programme on the \emph{vorticity} alone, it is worth settling whether the
+velocity bound in \eqref{eq:rescaled-bounds} could be \emph{derived} rather
+than assumed. It cannot, and the obstruction is a scaling identity, not a
+missing technique. The result is recorded because it forecloses a natural
+future attempt.
+
+\begin{lemma}[Biot--Savart interpolation; logarithm-free]
+  \label{lem:s48-biotsavart}
+  There is an absolute constant $C$ such that for every smooth
+  divergence-free $v$ on $\T^3$ with $\int_{\T^3}v\,dx=0$ and
+  $\omega=\curl v$,
+  \begin{equation}\label{eq:s48-bridge}
+    \|v\|_{L^\infty} \;\leq\; C\,\|\omega\|_{L^\infty}^{3/5}\,
+      \|v\|_{L^2}^{2/5}.
+  \end{equation}
+  The same estimate holds on $\R^3$ for $v$ with $\|v\|_{L^2}<\infty$.
+  \emph{[Proved.]}
+\end{lemma}
+\begin{proof}
+  Littlewood--Paley. Write $v=\sum_{j\geq0}\Delta_jv$ (no lower block, since
+  $v$ has zero mean). For the low blocks, Bernstein gives
+  $\|\Delta_jv\|_{L^\infty}\leq C2^{3j/2}\|\Delta_jv\|_{L^2}
+  \leq C2^{3j/2}\|v\|_{L^2}$, so
+  $\sum_{j\leq J}\|\Delta_jv\|_{L^\infty}\leq C2^{3J/2}\|v\|_{L^2}$.
+  For the high blocks, $\operatorname{div}v=0$ and $\curl v=\omega$ give
+  $\Delta_jv=2^{-j}\,\mathcal{K}_j\widetilde\Delta_j\omega$ where
+  $\mathcal{K}_j$ is the Biot--Savart multiplier rescaled to the annulus
+  $|\xi|\sim2^j$; its kernel has $L^1$ mass bounded independently of $j$, so
+  $\|\Delta_jv\|_{L^\infty}\leq C2^{-j}\|\omega\|_{L^\infty}$ and
+  $\sum_{j>J}\|\Delta_jv\|_{L^\infty}\leq C2^{-J}\|\omega\|_{L^\infty}$.
+  Balancing at $2^J=(\|\omega\|_{L^\infty}/\|v\|_{L^2})^{2/5}$ gives
+  \eqref{eq:s48-bridge}.
+
+  The point of the computation is where the logarithm of
+  \S\ref{sec:moser-s33} does \emph{not} appear. The same decomposition applied
+  to $\nabla v$ gives $\|\Delta_j\nabla v\|_{L^\infty}\leq
+  C\|\omega\|_{L^\infty}$ with \emph{no} decaying factor, and summing over the
+  $O(\mathcal{L})$ active blocks produces exactly
+  $\|\nabla v\|_{L^\infty}\lesssim\mathcal{L}\|\omega\|_{L^\infty}$ --- the
+  Calder\'on--Zygmund endpoint failure of
+  Lemma~\ref{lem:local-enstrophy-typeI}. For $v$ itself the geometric factor
+  $2^{-j}$ sums, and no logarithm is paid. So the intuition that the
+  \emph{velocity} bridge is logarithm-free is correct.
+\end{proof}
+
+\begin{proposition}[The exponent is forced, and it is the wrong one]
+  \label{prop:s48-bridge-fails}
+  Let $\theta\in[0,1]$ and suppose
+  $\|v\|_{L^\infty}\leq C\|\curl v\|_{L^\infty}^{\theta}\|v\|_{L^2}^{1-\theta}$
+  holds for all smooth compactly supported divergence-free $v$ on $\R^3$.
+  Then $\theta=3/5$. Consequently, from the vorticity Type-I bound
+  $M(t)\leq C_I(T-t)^{-1}$ and the energy bound
+  $\|u(\cdot,t)\|_{L^2}^2\leq E_0$ alone, the best velocity bound obtainable
+  by \emph{any} such interpolation is
+  \begin{equation}\label{eq:s48-wrong-exponent}
+    \|u(\cdot,t)\|_{L^\infty}
+    \;\leq\; C\,C_I^{3/5}E_0^{1/5}\,(T-t)^{-3/5},
+  \end{equation}
+  and $3/5>1/2$: the Type-I velocity rate is \emph{not} implied. The rescaled
+  family then satisfies only
+  $|u_\lambda(y,s)|\leq C\lambda^{-1/5}|s|^{-3/5}$, which diverges as
+  $\lambda\downarrow0$, so no uniform bound and no limit object survives.
+  \emph{[Proved.]}
+\end{proposition}
+\begin{proof}
+  Apply the hypothesis to $v_\mu(x)=\mu^{a}v(\mu x)$, $\mu>0$. Then
+  $\|v_\mu\|_{L^\infty}=\mu^{a}\|v\|_{L^\infty}$,
+  $\|\curl v_\mu\|_{L^\infty}=\mu^{a+1}\|\curl v\|_{L^\infty}$ and
+  $\|v_\mu\|_{L^2}=\mu^{a-3/2}\|v\|_{L^2}$. Homogeneity forces
+  $a=\theta(a+1)+(1-\theta)(a-\tfrac32)$, i.e.\
+  $0=\theta-\tfrac32(1-\theta)$, i.e.\ $\theta=3/5$; and
+  Lemma~\ref{lem:s48-biotsavart} shows that this exponent is attained, so the
+  family of admissible estimates is exactly one point. Substituting the two
+  bounds gives \eqref{eq:s48-wrong-exponent}. The rescaled statement follows
+  from $u_\lambda(y,s)=\lambda u(x^*+\lambda y,T+\lambda^2s)$ and
+  $|u|\leq C(\lambda^2|s|)^{-3/5}$.
+\end{proof}
+
+\begin{remark}[What this settles]\label{rem:s48-bridge-consequence}
+  The near-field/far-field heuristic --- near field $\lesssim r^*M$ with
+  $r^*=M^{-1/2}$, giving the Type-I rate $M^{1/2}=(T-t)^{-1/2}$ --- is correct
+  as far as it goes, and it is the far field that fails: cutting at
+  $2^J=1/r^*=M^{1/2}$ leaves a low-frequency contribution
+  $2^{3J/2}\|u\|_{L^2}\sim M^{3/4}E_0^{1/2}=(T-t)^{-3/4}E_0^{1/2}$, worse than
+  the near field, and the optimal balance sits at $\theta=3/5$, not at
+  $r^*=M^{-1/2}$. \emph{Therefore the velocity Type-I bound at line~5565 is an
+  independent hypothesis and must stay one.} A future session must not attempt
+  to weaken the standing assumptions of \S\ref{sec:moser-s33} to a
+  vorticity-only Type-I hypothesis: by
+  Proposition~\ref{prop:s48-bridge-fails} that is not a technical gap but a
+  scaling obstruction. Conversely, nothing is lost: the velocity bound is the
+  standard formulation of Type-I in the literature
+  (\cite{AlbrittonBarker2019}), and it is the hypothesis this
+  document already carries.
+\end{remark}
+
+\subsection{Discharge of (R)}
+\label{subsec:s48-discharge}
+
+Two short lemmas transfer the cited theorems to the geometry of
+\eqref{eq:rescaling}. Both are routine; both are written out because the
+programme's rule is that routine steps are the ones that hide errors.
+
+\begin{lemma}[Parasitic solutions do not exist on a torus]
+  \label{lem:s48-no-parasites}
+  Let $L>0$ and let $\Lambda=L\,\T^3$. Suppose $v(y,s)=\Phi(s)\nabla H(y)$
+  with $H$ harmonic on $\Lambda$, and that the associated pressure is a
+  single-valued function on $\Lambda$. Then $H$ is constant and $v\equiv0$.
+  In particular the family $u(y,s)=b(s)$ with $b$ non-constant is not a
+  solution on $\Lambda$. \emph{[Proved.]}
+\end{lemma}
+\begin{proof}
+  $H$ is harmonic on the closed manifold $\Lambda$, hence constant (maximum
+  principle), so $\nabla H\equiv0$. For the special case $H(y)=b(s)\cdot y$
+  the function $H$ is not single-valued on $\Lambda$ unless $b=0$; equally,
+  the pressure $q=-b'(s)\cdot y$ of $u=b(s)$ is not single-valued on
+  $\Lambda$ unless $b'=0$.
+\end{proof}
+
+\begin{lemma}[Torus form of Theorem~\ref{thm:s48-knss41}, uniform in the
+  period]\label{lem:s48-torus-knss}
+  For every $k,l\geq0$ there are $\varepsilon(k,l)>0$ and $C(k,l)$,
+  independent of $L$, with the following property. Let $L>0$ and let $w$ be a
+  smooth solution of the Navier--Stokes equations on
+  $(L\T^3)\times[0,T]$ with single-valued pressure, and put
+  $A=\|w(\cdot,0)\|_{L^\infty}$. Then for
+  $0<t\leq\min\bigl(T,\varepsilon(k,l)A^{-2}\bigr)$,
+  \[
+    \bigl\|\nabla^k\partial_t^{\,l}w(\cdot,t)\bigr\|_{L^\infty(L\T^3)}
+    \;\leq\; C(k,l)\,A\,t^{-\frac{k}{2}-l}.
+  \]
+  \emph{[Proved, by the argument of \cite[\S4]{KNSS2009} with the Oseen
+  kernel periodised; the one estimate used is $L$-uniform.]}
+\end{lemma}
+\begin{proof}
+  The proof of Theorem~\ref{thm:s48-knss41} in \cite{KNSS2009} is a
+  perturbation series around the heat extension: with $B$ the bilinear form
+  built from the Oseen kernel $K_{ijk}$, the equation is $w=W+B(w,w)$ and the
+  entire argument rests on \cite[(4.5)]{KNSS2009},
+  $\|B(u,v)\|_{L^\infty}\leq C\sqrt{T}\|u\|_{L^\infty}\|v\|_{L^\infty}$,
+  which in turn rests only on the kernel bound
+  $\int|K(\cdot,t)|\leq Ct^{-1/2}$. On $L\T^3$ the corresponding kernel is
+  the periodisation $K^{(L)}(z,t)=\sum_{n\in\Z^3}K(z+Ln,t)$, and
+  \[
+    \int_{L\T^3}\bigl|K^{(L)}(z,t)\bigr|\,dz
+    \;\leq\; \sum_{n\in\Z^3}\int_{L\T^3}|K(z+Ln,t)|\,dz
+    \;=\;\int_{\R^3}|K(z,t)|\,dz \;\leq\; Ct^{-1/2},
+  \]
+  \emph{uniformly in $L$}. The Leray projector on $L\T^3$ is bounded on every
+  $L^p$, $1<p<\infty$, with constants independent of $L$ (it is a Fourier
+  multiplier with the same symbol as on $\R^3$), and the pressure is fixed by
+  the mean-zero normalisation, which is legitimate by
+  Lemma~\ref{lem:s48-no-parasites}. A smooth solution with single-valued
+  pressure satisfies the corresponding Duhamel identity by variation of
+  constants, and the $L^\infty$ mild solution with datum $w(\cdot,0)$ is
+  unique \cite[\S3]{KNSS2009}; hence $w$ \emph{is} the fixed point, and
+  \eqref{eq:s48-knss41} applies verbatim with the periodised kernel.
+\end{proof}
+
+\begin{theorem}[\textbf{(R)} is a theorem, in a stronger form]
+  \label{thm:s48-R}
+  Assume the standing Type-I bounds of \S\ref{sec:moser-s33} (line~5565),
+  i.e.\ both $M(t)\leq C_I/(T-t)$ and $\sup_{\T^3}|u(\cdot,t)|\leq
+  C_I(T-t)^{-1/2}$, and let $u_\lambda$ be as in \eqref{eq:rescaling}. Then
+  for every $k,l\geq0$ there is $C_{k,l}(c_I)$ such that
+  \begin{equation}\label{eq:s48-R-strong}
+    \bigl\|\nabla^k\partial_s^{\,l}u_\lambda(\cdot,s)\bigr\|
+      _{L^\infty(\Lambda_\lambda)}
+    \;\leq\; C_{k,l}(c_I)\,|s|^{-\frac{k+1}{2}-l}
+  \end{equation}
+  for every $\lambda\in(0,1]$ and every $s<0$ with
+  $\tfrac32|s|\leq T/\lambda^2$. In particular \textbf{(R)} holds, with
+  constants $C_k(c_I)=C_{k,0}(c_I)$, \emph{without} the factor $(1+R)$ and
+  \emph{without} any dependence on $S_2$.
+  \emph{[Proved.]}
+\end{theorem}
+\begin{proof}
+  Fix $s_0<0$ with $\tfrac32|s_0|\leq T/\lambda^2$ and write $S=|s_0|$. By
+  \eqref{eq:rescaled-bounds}, for every $s$ with $|s|\in[S,\tfrac32S]$ we have
+  $\|u_\lambda(\cdot,s)\|_{L^\infty(\Lambda_\lambda)}\leq c_I|s|^{-1/2}\leq
+  c_IS^{-1/2}=:A$, and the whole time interval lies inside the domain of
+  $u_\lambda$ by the standing restriction on $s_0$.
+
+  Set $\tau=\min\bigl(\varepsilon(k,l)c_I^{-2},\tfrac12\bigr)\,S$, so that
+  $\tau\leq\tfrac12 S$ and $\tau\leq\varepsilon(k,l)A^{-2}$. Apply
+  Lemma~\ref{lem:s48-torus-knss} on $L\T^3$ with $L=\lambda^{-1}$ to
+  $w(\cdot,t)=u_\lambda(\cdot,s_0-\tau+t)$, $t\in[0,\tau]$, whose initial
+  datum has $\|w(\cdot,0)\|_{L^\infty}\leq A$. At $t=\tau$,
+  \[
+    \bigl\|\nabla^k\partial_s^{\,l}u_\lambda(\cdot,s_0)\bigr\|_{L^\infty}
+    \;\leq\; C(k,l)\,A\,\tau^{-\frac{k}{2}-l}
+    \;=\; C(k,l)\,c_IS^{-\frac12}\,
+      \Bigl(\min\bigl(\varepsilon(k,l)c_I^{-2},\tfrac12\bigr)S\Bigr)
+        ^{-\frac{k}{2}-l}
+    \;=\; C_{k,l}(c_I)\,S^{-\frac{k+1}{2}-l},
+  \]
+  which is \eqref{eq:s48-R-strong}. The bound is uniform in
+  $y\in\Lambda_\lambda$ because \eqref{eq:s48-slab-bound} is, so no factor
+  $(1+R)$ appears; and it depends on $s_0$ only, so no $S_2$ appears. Since
+  $S\geq S_1$ on $[-S_2,-S_1]$ and the right-hand side is decreasing in $S$,
+  \textbf{(R)} follows.
+
+  \emph{Dimensional check.} In units $\nu=1$ (Remark~\ref{rem:s39-units}),
+  $[\nabla^k\partial_s^lu]=L^{-1-k-2l}$ and
+  $[|s|^{-(k+1)/2-l}]=L^{-(k+1)-2l}$; the two agree, and $c_I$ is
+  dimensionless.
+
+  \emph{Independent confirmation without Lemma~\ref{lem:s48-torus-knss}.}
+  The qualitative content --- that every spatial derivative of $u_\lambda$ is
+  locally bounded --- is Theorem~\ref{thm:s48-serrin} applied on any
+  coordinate ball, with $s'=s=\infty$ in the strict range
+  (Remark~\ref{rem:s48-subcritical}), needing neither periodicity nor
+  pressure nor mildness. Lemma~\ref{lem:s48-torus-knss} is used only to make
+  the constants scale-invariant and to supply $l\geq1$.
+\end{proof}
+
+\begin{corollary}[Proposition~\ref{prop:transfer-audit}(d) is Proved]
+  \label{cor:s48-transfer-d}
+  Let $U\in\mathcal{A}(c_I)$. Then
+  $\|\nabla U(\cdot,s)\|_{L^\infty(\R^3)}\leq C_1(c_I)|s|^{-1}$ for every
+  $s<0$; i.e.\ Proposition~\ref{prop:transfer-audit}(d) holds unconditionally,
+  and its label changes from \emph{Proved-modulo-(R)} to \emph{Proved}.
+  \emph{[Proved.]}
+\end{corollary}
+\begin{proof}
+  Two independent arguments; the second needs nothing beyond
+  Definition~\ref{def:profile-class}.
+
+  \emph{(1) Via the family.} If $U$ arises from
+  Proposition~\ref{prop:profile-extraction}, pass \eqref{eq:s48-R-strong}
+  with $k=1$, $l=0$ through the locally uniform convergence.
+
+  \emph{(2) Via Theorem~\ref{thm:s48-SS24}, for an arbitrary member of the
+  class.} Fix $s_0<0$, set $r=|s_0|^{1/2}$, and define
+  \[
+    V(y,s) \;:=\; c_I^{-1}r\,
+      U\bigl(c_I^{-1}r\,y,\; r^2(c_I^{-2}s-1)\bigr) .
+  \]
+  This is a composition of three Navier--Stokes symmetries --- the parabolic
+  scaling of Lemma~\ref{lem:typeI-scaleinv-bounds} applied twice (with factors
+  $r$ and $c_I^{-1}$) and one translation in time --- so $V$ is a smooth
+  divergence-free solution, hence a distributional one in the sense of
+  \cite[Def.~2.1]{SereginSverak2009}. Its time argument is
+  $r^2(c_I^{-2}s-1)<0$ for every $s\leq0$, so $V$ is defined on all of
+  $\R^3\times(-\infty,0)$, and
+  \[
+    |V(y,s)| \;\leq\; c_I^{-1}r\cdot c_I\,
+      \bigl|r^2(c_I^{-2}s-1)\bigr|^{-1/2}
+    \;=\; \bigl|c_I^{-2}s-1\bigr|^{-1/2} \;\leq\; 1
+    \qquad (s\leq0),
+  \]
+  since $c_I^{-2}s\leq0$ forces $|c_I^{-2}s-1|\geq1$. So $V$ is a bounded
+  ancient solution normalised as in \cite[(4.8)]{SereginSverak2009}, with no
+  mildness and no pressure integrability assumed.
+  Theorem~\ref{thm:s48-SS24} gives, for any $m>1$,
+  $\sup_{z_0}\|V_{t_0}\|_{W^{2,1}_m(Q(z_0,1))}\leq c(m,3)$; taking $m>5$ and
+  using the parabolic embedding
+  $W^{2,1}_m(Q(z_0,1))\hookrightarrow C^{1+\alpha,(1+\alpha)/2}$ with
+  $\alpha=1-5/m$ yields $\|\nabla V\|_{L^\infty(Q(z_0,1))}\leq c$ uniformly in
+  $z_0=(x_0,t_0)$ with $t_0\leq0$, the shift $b_{t_0}$ being spatially
+  constant so that $\nabla V_{t_0}=\nabla V$. Now
+  $\nabla V(y,s)=c_I^{-2}r^2(\nabla U)\bigl(c_I^{-1}ry,\,
+  r^2(c_I^{-2}s-1)\bigr)$, and at $s=0$ the inner time argument is exactly
+  $-r^2=s_0$; taking $t_0=0$ and the supremum over $y$,
+  \[
+    c_I^{-2}r^{2}\,\|\nabla U(\cdot,s_0)\|_{L^\infty(\R^3)} \;\leq\; c,
+    \qquad\text{i.e.}\qquad
+    \|\nabla U(\cdot,s_0)\|_{L^\infty(\R^3)} \;\leq\; c\,c_I^{2}\,|s_0|^{-1},
+  \]
+  which is the claim with $C_1(c_I)=c\,c_I^2$.
+
+  Neither argument uses the pressure, a local energy, or a smallness
+  hypothesis.
+\end{proof}
+
+\begin{remark}[The mechanism, corrected]\label{rem:s48-mechanism}
+  The proof of Proposition~\ref{prop:transfer-audit}(d) explains the
+  disappearance of $\mathcal{L}$ by: ``$U$ has, by construction, no structure
+  below the scale $|s|^{1/2}$ that is not already visible at scale
+  $|s|^{1/2}$''. That is a heuristic, it is not proved anywhere in this
+  document, and it is not the reason. The reason is
+  Remark~\ref{rem:s48-subcritical}: the available hypothesis is an
+  $L^\infty_{t}L^\infty_{x}$ velocity bound, which is \emph{strictly
+  subcritical} for Serrin's criterion, so $\nabla U$ is obtained by parabolic
+  smoothing from $U$ --- not by a Calder\'on--Zygmund bound on $\omega_U$ ---
+  and parabolic smoothing has no endpoint failure. The correct one-line
+  statement is: \emph{the logarithm is not removed on the profile; it is never
+  incurred, because the profile route does not pass through the
+  Calder\'on--Zygmund operator at all.} The conclusion of
+  Proposition~\ref{prop:transfer-audit}(d) is unaffected; only its stated
+  reason is.
+\end{remark}
+
+\subsection{Verdict, residue, and what does \emph{not} follow}
+\label{subsec:s48-residue}
+
+\noindent\textbf{Verdict: (i).} \textbf{(R)} is a theorem. Precisely: under
+the standing hypotheses of \S\ref{sec:moser-s33} --- \emph{both} Type-I bounds
+of line~5565, and smoothness of $u$ on $\T^3\times[0,T)$ --- the estimate
+displayed at line~6785 holds, with constants depending only on $c_I$, by
+Theorem~\ref{thm:s48-R}; and the strengthened form
+\eqref{eq:s48-R-strong}, which additionally controls $l$ time derivatives,
+holds by the same proof. The hypotheses under which the cited theorems apply
+are checked in Theorem~\ref{thm:s48-R} and
+Corollary~\ref{cor:s48-transfer-d}. \textbf{(R)} is removed from the
+hypothesis list of \S\ref{sec:rigidity-s39}.
+
+The three traps named for this question are disposed of as follows.
+\emph{Smallness vs.\ boundedness}: does not arise, because the route is not
+$\varepsilon$-regularity (Remark~\ref{rem:s48-subcritical},
+Remark~\ref{rem:s48-no-pressure}). \emph{Circularity}: none of
+Theorems~\ref{thm:s48-serrin}, \ref{thm:s48-knss41}, \ref{thm:s48-SS24},
+\ref{thm:s48-SS} assumes any conclusion of \S\ref{sec:rigidity-s39}; they
+assume boundedness of the velocity and nothing about alignment, $\sigma^*$, or
+nontriviality. \emph{Interior vs.\ global}: \textbf{(R)} is interior in time
+and global in space (Remark~\ref{rem:s48-global-in-space}); the theorem proved
+respects that, and asserts nothing at $s=0$, where
+\eqref{eq:rescaled-bounds} degenerates.
+
+\medskip
+\noindent\textbf{Residue.} Four items, none of which is \textbf{(R)}.
+
+\begin{enumerate}[label=(\arabic*),leftmargin=2.4em]
+\item \textbf{The saturation proviso, and it is load-bearing.}
+  Proposition~\ref{prop:transfer-audit}(d) states two things: the bound
+  $\|\nabla U\|_{L^\infty}\leq C_1(c_I)|s|^{-1}$, now proved, \emph{and} the
+  consequence ``$\|\nabla U(\cdot,s)\|_{L^\infty}\leq C(c_I)M_U(s)$ at every
+  time with $M_U(s)\geq c_I^{-1}|s|^{-1}$ (i.e.\ whenever the Type-I upper
+  bound is saturated up to a factor)''. Part (e) uses the \emph{second} form
+  --- it replaces $\mathcal{L}$ inside Lemma~\ref{lem:mag-rhs}, where the
+  gradient is measured against $M_U$ and $r^*=M_U(s_0)^{-1/2}$. The two forms
+  differ by the factor $\bigl(|s|M_U(s)\bigr)^{-1}$, which is $O(1)$ only on
+  the saturated set. \emph{Whether $M_U(s)\gtrsim|s|^{-1}$ holds for all
+  $s<0$, or only on a set, is not settled by \textbf{(R)} and is not settled
+  here.} Under \textbf{(N)}, $M_U(s)>0$ for every $s<0$
+  (Proposition~\ref{prop:profile-extraction}), but positivity is weaker than
+  saturation. This is the sharpest surviving gap on the profile branch and it
+  is a good target: it is a statement about one scalar function of one
+  variable on an ancient solution.
+\item \textbf{(R) as used exceeded (R) as stated, and the excess is now
+  supplied elsewhere.} See Remark~\ref{rem:s48-doc-errors}(c). No
+  circularity results, because the replacement input
+  (Theorem~\ref{thm:s48-SS}, or \eqref{eq:s48-R-strong} with $l\geq1$) is
+  independent of \S\ref{sec:rigidity-s39}.
+\item \textbf{Nothing else in the S39 ledger moves.} \textbf{(N)},
+  \textbf{(N$'$)} and \textbf{(A-up)} are untouched;
+  Conjecture~\ref{target:disorder-depletion} is untouched;
+  Remark~\ref{rem:s39-distance} stands verbatim, including its ceiling
+  (``no Type-I singularity \dots\ strictly less than the Clay problem'') and
+  its Type-II reservation. Wall~3 is unaffected. In the ledger of
+  \S\ref{sec:rigidity-s39} the rows reading ``mod (R)'' become
+  \emph{Proved}; the rows reading ``mod (R),(N)'', ``mod (R),(N$'$)'' and
+  ``mod (R),(A-up)'' lose only the (R).
+\item \textbf{The $\omega$-only route is closed, permanently.}
+  Proposition~\ref{prop:s48-bridge-fails}: the velocity Type-I bound cannot be
+  derived from the vorticity Type-I bound and the energy. This is not a
+  residue of the present argument but a constraint on future ones.
+\end{enumerate}
+
+\begin{observation}[The same estimate applies to $u$ itself --- recorded, not
+  claimed]\label{obs:s48-wall1}
+  Lemma~\ref{lem:s48-torus-knss} applies verbatim to $u$ on $\T^3$ (take
+  $L=1$, restart at $t-\tau$ with $\tau=\min(\varepsilon(1,0)c_I^{-2},
+  \tfrac12)(T-t)$), giving, under the standing hypotheses of
+  \S\ref{sec:moser-s33},
+  \[
+    \|\nabla u(\cdot,t)\|_{L^\infty(\T^3)} \;\leq\; C(c_I)\,(T-t)^{-1},
+    \qquad \text{logarithm-free.}
+  \]
+  This does \emph{not} remove Wall~1. Every estimate of
+  \S\ref{sec:moser-s33}--\S\ref{sec:cf-s37} needs $\nabla u$ measured against
+  $M(t)$, not against $(T-t)^{-1}$, and the two agree only where the Type-I
+  upper bound is saturated --- the same proviso as residue~(1) above, one
+  level down. The observation is recorded here because it is cheap, because it
+  identifies \emph{saturation}, not the logarithm, as the quantity both
+  branches actually need, and because a future session should test it before
+  attacking either wall separately. It is not a revision of
+  \S\ref{subsec:wall1-cz} and is not used anywhere in this document.
+\end{observation}
+
+\begin{remark}[Three places where this document's own text needs correcting]
+  \label{rem:s48-doc-errors}
+  \emph{(a)} The status note of \textbf{(R)} (line~6785ff) gives caveat~(ii)
+  as: the $\lambda$-uniformity ``must be checked against the fact that
+  $u_\lambda$ has \emph{no} uniform global energy bound''. The premise is
+  true and the inference is not: the $L^\infty$-based local theory
+  (\cite[\S4]{KNSS2009}, \cite[Thm.~2.4]{SereginSverak2009}) uses no energy
+  at any point, global or local. Caveat~(ii) is void.
+
+  \emph{(b)} The same note gives caveat~(i) as the time-regularity gap. It is
+  correctly identified --- Remark~\ref{rem:s48-time} confirms it is sharp for
+  general distributional solutions --- but it is not a caveat on \textbf{(R)},
+  which asks only for spatial derivatives, and it is discharged for the
+  objects this document actually forms by Theorem~\ref{thm:s48-SS}.
+
+  \emph{(c)} The proof of Proposition~\ref{prop:profile-extraction} bounds
+  $\partial_su_\lambda$ using ``the local pressure bound supplied by
+  \textbf{(R)}''. \textbf{(R)} supplies no pressure bound: its statement
+  (line~6785) bounds $\nabla^ku_\lambda$ only. This is a genuine gap between
+  the hypothesis as stated and the hypothesis as used, and it is exactly the
+  parasitic-solution issue in disguise. The repair does not need a pressure
+  bound at all: \eqref{eq:s48-R-strong} with $l=1$ bounds
+  $\partial_su_\lambda$ directly, and the mildness of the limit ---
+  the property that rules out $U\mapsto U+b(s)$ --- is supplied by
+  Theorem~\ref{thm:s48-SS}. The sentence in the proof should be replaced by a
+  reference to \eqref{eq:s48-R-strong}.
+\end{remark}
+
+\begin{center}
+\begin{tabular}{@{}l l l@{}}
+\hline
+Item & Status before S48 & Status after S48 \\
+\hline
+\textbf{(R)} scale-uniform interior regularity
+  & \textbf{Conditional} (Serrin-type) & \textbf{Proved}
+    (Thm.~\ref{thm:s48-R}) \\
+Prop.~\ref{prop:transfer-audit}(d), profiles $\mathcal{L}$-free
+  & Proved mod (R) & \textbf{Proved} (Cor.~\ref{cor:s48-transfer-d}) \\
+Prop.~\ref{prop:transfer-audit}(e), $\nu\langle\sigma^*\rangle\leq C$
+  & Proved mod (R) & Proved mod \emph{saturation} \\
+Prop.~\ref{prop:profile-extraction}, profile extraction
+  & Proved mod (R),(N) & Proved mod (N) \\
+Lem.~\ref{lem:sigma-equality}, $\sigma^*$ equality
+  & Proved mod (R),(N) & Proved mod (N) \\
+Lem.~\ref{lem:harmonic-reduction}, aligned $\Rightarrow$ 2D
+  & Proved mod (R) & \textbf{Proved} \\
+Thm.~\ref{thm:aligned-horn}, aligned horn
+  & Proved mod (R),(A-up) & Proved mod (A-up) \\
+Wall~2 (\S\ref{subsec:wall2-R})
+  & \textsc{open}; relocated into (R) & \textsc{withdrawn} \\
+Wall~1 (\S\ref{subsec:wall1-cz})
+  & \textsc{open}, structural & \textsc{open}, structural (unchanged) \\
+Wall~3 (\S\ref{subsec:wall3-typeII})
+  & \textsc{open}, outside methods & unchanged \\
+Type-II exclusion & Open & unchanged \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{remark}[Scope discipline]\label{rem:s48-scope}
+  This section changes the status of one hypothesis and one proposition. It
+  does not close either horn of the pincer, does not bear on
+  $\sigma^*$-decay, does not touch Type-II, and does not bring the programme
+  nearer to the Clay problem than Remark~\ref{rem:s39-distance} already
+  states. What it does is remove a hypothesis that had been carried for nine
+  sessions and was, on inspection, classical --- and, in doing so, replace the
+  question ``is the profile route logarithm-free?'' with the sharper question
+  of residue~(1): \emph{is the Type-I upper bound saturated?}
+\end{remark}
+
+
 % ════════════════════════════════════════════════════════════════════════════
 % ══════════════════════════════════════════════════════════════════════════════
 \section{Routes and Walls: A Referenced Record (Session S47)}
@@ -9870,14 +10647,22 @@ claim of \S20--\S22}
     \emph{Permitted:} any reformulation in which $\nabla u$ is \emph{not}
     recovered by an $L^\infty$ Calder\'on--Zygmund bound. Two such are on
     record: the profile reformulation of \S\ref{sec:rigidity-s39}, whose
-    status is Wall~2; and a symmetry-reduced setting in which $\nabla u$ is
+    status is Wall~2 --- \textsc{withdrawn} at S48, the reformulation having
+    been shown in \S\ref{sec:hypR-s48} never to incur the logarithm at all;
+    and a symmetry-reduced setting in which $\nabla u$ is
     recovered by lower-dimensional elliptic problems, which is untested here
     and must be settled by a written estimate before anything is built on it.
 \end{enumerate}
 
-\subsection{Wall 2 --- The profile route relocates Wall 1 into
-  hypothesis \textup{(R)}}
+\subsection{Wall 2 --- The profile route was thought to relocate Wall 1 into
+  hypothesis \textup{(R)}; it does not}
 \label{subsec:wall2-R}
+
+\emph{Revised at S48. This entry was written at S47 and classified}
+\textsc{open}\emph{; \S\ref{sec:hypR-s48} settled \textbf{(R)} against the
+literature and the entry is now} \textsc{withdrawn}\emph{. The S47 text is
+retained in (a)--(b) because the record is the point of this section; (c)
+and (d) are rewritten.}
 
 \begin{enumerate}[label=(\alph*),leftmargin=2.2em]
   \item \textbf{Route.} Type-I blowup-profile compactness
@@ -9886,32 +10671,57 @@ claim of \S20--\S22}
     states that ``on the profile the logarithmic factor $\mathcal{L}$ may be
     replaced by an absolute constant''. If that were unconditional, Wall~1
     would be removed for every estimate transferred to $U$.
-  \item \textbf{Obstruction.} It is not unconditional.
-    Proposition~\ref{prop:transfer-audit}(d) is labelled
+  \item \textbf{Obstruction, as recorded at S47.} It was held not to be
+    unconditional. Proposition~\ref{prop:transfer-audit}(d) was labelled
     \emph{Proved-modulo-\textup{(R)}}, and its proof states the mechanism
     plainly: ``the CZ step is replaced by the interior estimate (R), which is
     logarithm-free''. Hypothesis \textbf{(R)} (line~6785) \emph{is} an
     assumed log-free gradient bound --- scale-uniform interior regularity
     $\|\nabla^k u_\lambda\|_{L^\infty}\leq C_k(c_I)(1+R)S_1^{-(k+1)/2}$ ---
-    carried in the S39 ledger as \textbf{Conditional} (Serrin-type). The
-    barrier is therefore relocated, not removed.
-  \item \textbf{Classification.} \textsc{open.} Whether \textbf{(R)} follows
-    from existing Type-I $\varepsilon$-regularity is not settled in this
-    document. The hypothesis's own status note records two genuine caveats
-    (time regularity, and what Serrin's criterion \cite{Serrin1962} as
-    classically stated actually controls) as the reason it is not marked
-    \emph{Proved}.
-  \item \textbf{Consequence.} \emph{Forbidden:} describing the profile route
-    as logarithm-free without carrying \textbf{(R)} in the same sentence;
-    an earlier draft of the S46 audit made exactly that claim and withdrew it
-    on reading the proof of Proposition~\ref{prop:transfer-audit}(d).
-    \emph{Permitted, and cheap:} settling \textbf{(R)} against the
-    $\varepsilon$-regularity literature
-    \cite{CKN1982,EscauriazaSereginSverak2003,Seregin2012,KNSS2009}. The
-    named trap for that work is that $\varepsilon$-regularity requires the
-    scaled local energy to be \emph{small}, whereas Type-I supplies only
-    \emph{bounded by} $c_I$; a derivation of \textbf{(R)} that does not
-    confront that difference is not a derivation.
+    carried in the S39 ledger as \textbf{Conditional} (Serrin-type). On that
+    reading the barrier was relocated, not removed.
+  \item \textbf{Classification.} \textsc{withdrawn}. The assertion in (b)
+    that the barrier is ``relocated, not removed'' is retracted.
+    Theorem~\ref{thm:s48-R} proves \textbf{(R)}, and
+    Corollary~\ref{cor:s48-transfer-d} proves
+    Proposition~\ref{prop:transfer-audit}(d) unconditionally. The reason the
+    S47 reading was wrong is recorded in Remark~\ref{rem:s48-subcritical}:
+    the hypothesis actually available on the rescaled family is an
+    $L^\infty_tL^\infty_x$ \emph{velocity} bound (line~5565 assumes it
+    outright, alongside the vorticity bound), and the pair
+    $s'=s=\infty$ satisfies $2/s'+3/s=0<1$ --- the \emph{strict}, subcritical
+    range of Serrin's criterion \cite{Serrin1962,ChenGaldiPoggiSchikorra2026},
+    where boundedness suffices and no smallness is required. The S47 entry
+    looked for \textbf{(R)} on the $\varepsilon$-regularity shelf
+    (\cite{CKN1982,LadyzhenskayaSeregin1999,Seregin2012}), where the
+    smallness-versus-boundedness objection is real; the statement is not on
+    that shelf. Its quantitative, scale-invariant form comes from the
+    $L^\infty$-based local theory of \cite[\S4]{KNSS2009} and
+    \cite[Thm.~2.4]{SereginSverak2009}, neither of which uses a local energy,
+    a pressure norm, or a smallness hypothesis. Remark~\ref{rem:s48-mechanism}
+    corrects the mechanism stated inside
+    Proposition~\ref{prop:transfer-audit}(d): the logarithm is not
+    \emph{removed} on the profile, it is never \emph{incurred}, because the
+    profile route does not pass through the Calder\'on--Zygmund operator.
+  \item \textbf{Consequence.} \emph{Permitted, and now correct:} describing
+    the profile route as logarithm-free without carrying \textbf{(R)}.
+    \emph{Forbidden:} reading this withdrawal as removing Wall~1. Wall~1
+    concerns $u$ on $\T^3$ measured against $M(t)$, and stands; the closest
+    the present result comes to it is Observation~\ref{obs:s48-wall1}, which
+    is recorded there as an open item and used nowhere.
+    \emph{Forbidden:} reading it as progress on the Prize. Wall~3 is
+    unaffected: the ceiling of \S\ref{sec:rigidity-s39} is still ``no Type-I
+    singularity'', and \textbf{(N)}, \textbf{(N$'$)}, \textbf{(A-up)} and
+    Conjecture~\ref{target:disorder-depletion} are all exactly where S47 left
+    them. \emph{The one live successor:} the saturation proviso inside
+    Proposition~\ref{prop:transfer-audit}(d), which
+    Proposition~\ref{prop:transfer-audit}(e) uses and which \textbf{(R)} never
+    covered --- residue~(1) of \S\ref{subsec:s48-residue}.
+    \emph{Also forbidden, permanently:} attempting to weaken the standing
+    hypotheses of \S\ref{sec:moser-s33} to a vorticity-only Type-I bound.
+    Proposition~\ref{prop:s48-bridge-fails} shows the velocity rate cannot be
+    recovered from $\|\omega\|_{L^\infty}$ and the energy: the interpolation
+    exponent is forced to $3/5$, not $1/2$.
 \end{enumerate}
 
 \subsection{Wall 3 --- The ceiling of the S32--S45 line is below the Prize}
@@ -10269,8 +11079,8 @@ because it bounds what future sessions may import. The source is
   & Rem.~\ref{rem:s41-shortfall} \\
 1$''$ & \quad same log, corrected band & \textbf{Open}; needs \emph{decay}
   & Prop.~\ref{prop:s44-linfty-route} \\
-2 & Profile route as log-free & \textbf{Open}; relocated into (R)
-  & Prop.~\ref{prop:transfer-audit}(d) \\
+2 & Profile route as log-free & \textbf{Withdrawn} at S48; (R) proved
+  & Thm.~\ref{thm:s48-R}, Cor.~\ref{cor:s48-transfer-d} \\
 3 & Pincer closed $\Rightarrow$ Prize & \textbf{Open}; ceiling is Type-I only
   & Rem.~\ref{rem:s39-distance} \\
 4 & Nested level iteration & \textbf{Proved impossible}
@@ -10446,6 +11256,43 @@ because it bounds what future sessions may import. The source is
   On partial regularity of suitable weak solutions to the three-dimensional
   Navier--Stokes equations,
   \emph{J. Math. Fluid Mech.}, 1(4):356--387, 1999.
+
+\bibitem{Struwe1988}
+  M.~Struwe,
+  On partial regularity results for the Navier--Stokes equations,
+  \emph{Comm. Pure Appl. Math.}, 41(4):437--458, 1988.
+
+\bibitem{Takahashi1990}
+  S.~Takahashi,
+  On interior regularity criteria for weak solutions of the Navier--Stokes
+  equations,
+  \emph{Manuscripta Math.}, 69(3):237--254, 1990.
+
+\bibitem{SereginSverak2009}
+  G.~Seregin, V.~\v{S}ver\'ak,
+  On type~I singularities of the local axi-symmetric solutions of the
+  Navier--Stokes equations,
+  \emph{Comm. Partial Differential Equations}, 34(2):171--201, 2009.
+  (arXiv:0804.1803; Definition~2.3, Theorem~2.4, Theorem~2.8, Remark~2.9
+  are the statements used in \S\ref{sec:hypR-s48}.)
+
+\bibitem{AlbrittonBarker2019}
+  D.~Albritton, T.~Barker,
+  On local type~I singularities of the Navier--Stokes equations and Liouville
+  theorems,
+  \emph{J. Math. Fluid Mech.}, 21(3):Art.~43, 2019. (arXiv:1811.00502.)
+
+\bibitem{ChenGaldiPoggiSchikorra2026}
+  R.~M.~Chen, G.~P.~Galdi, B.~Poggi, A.~Schikorra,
+  On Serrin interior regularity criterion for Navier--Stokes equations,
+  arXiv:2606.24733, 2026. (Quoted in \S\ref{sec:hypR-s48} for the exact
+  statement of Serrin's criterion and its attribution.)
+
+\bibitem{Kwon2021}
+  H.~Kwon,
+  The role of the pressure in the regularity theory for the Navier--Stokes
+  equations,
+  arXiv:2104.03160, 2021.
 
 \bibitem{Giusti2003}
   E.~Giusti,

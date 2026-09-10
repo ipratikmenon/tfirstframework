@@ -1,388 +1,439 @@
-**
-(claim_a_3d_proof_attempt.tex
-LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-02-24> (article.cls
-Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
-(size11.clo
-File: size11.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.10)  10 SEP 2026 14:40
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**proofs/claim_a_3d_proof_attempt.tex
+(./proofs/claim_a_3d_proof_attempt.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count181
-\c@section=\count182
-\c@subsection=\count183
-\c@subsubsection=\count184
-\c@paragraph=\count185
-\c@subparagraph=\count186
-\c@figure=\count187
-\c@table=\count188
-\abovecaptionskip=\skip47
-\belowcaptionskip=\skip48
-\bibindent=\dimen138
-) (amsmath.sty
-Package: amsmath 2021/10/15 v2.17l AMS math features
-\@mathmargin=\skip49
+\c@part=\count187
+\c@section=\count188
+\c@subsection=\count189
+\c@subsubsection=\count190
+\c@paragraph=\count191
+\c@subparagraph=\count192
+\c@figure=\count193
+\c@table=\count194
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\bibindent=\dimen140
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2023/05/13 v2.17o AMS math features
+\@mathmargin=\skip50
 
 For additional information on amsmath, use the `?' option.
-(amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2021/08/26 v2.01 AMS text
- (amsgen.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks16
-\ex@=\dimen139
-)) (amsbsy.sty
+\@emptytoks=\toks17
+\ex@=\dimen141
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen140
-) (amsopn.sty
-Package: amsopn 2021/08/26 v2.02 operator names
+\pmbraise@=\dimen142
 )
-\inf@bad=\count189
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count195
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count190
-\leftroot@=\count191
+\uproot@=\count196
+\leftroot@=\count197
 LaTeX Info: Redefining \overline on input line 399.
-\classnum@=\count192
-\DOTSCASE@=\count193
+LaTeX Info: Redefining \colon on input line 410.
+\classnum@=\count198
+\DOTSCASE@=\count199
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
-\Mathstrutbox@=\box50
-\strutbox@=\box51
-\big@size=\dimen141
+\Mathstrutbox@=\box51
+\strutbox@=\box52
+LaTeX Info: Redefining \big on input line 722.
+LaTeX Info: Redefining \Big on input line 723.
+LaTeX Info: Redefining \bigg on input line 724.
+LaTeX Info: Redefining \Bigg on input line 725.
+\big@size=\dimen143
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count194
-\c@MaxMatrixCols=\count195
+\macc@depth=\count266
+LaTeX Info: Redefining \bmod on input line 905.
+LaTeX Info: Redefining \pmod on input line 910.
+LaTeX Info: Redefining \smash on input line 940.
+LaTeX Info: Redefining \relbar on input line 970.
+LaTeX Info: Redefining \Relbar on input line 971.
+\c@MaxMatrixCols=\count267
 \dotsspace@=\muskip16
-\c@parentequation=\count196
-\dspbrk@lvl=\count197
-\tag@help=\toks17
-\row@=\count198
-\column@=\count199
-\maxfields@=\count266
-\andhelp@=\toks18
-\eqnshift@=\dimen142
-\alignsep@=\dimen143
-\tagshift@=\dimen144
-\tagwidth@=\dimen145
-\totwidth@=\dimen146
-\lineht@=\dimen147
-\@envbody=\toks19
-\multlinegap=\skip50
-\multlinetaggap=\skip51
-\mathdisplay@stack=\toks20
-LaTeX Info: Redefining \[ on input line 2938.
-LaTeX Info: Redefining \] on input line 2939.
-) (amssymb.sty
+\c@parentequation=\count268
+\dspbrk@lvl=\count269
+\tag@help=\toks18
+\row@=\count270
+\column@=\count271
+\maxfields@=\count272
+\andhelp@=\toks19
+\eqnshift@=\dimen144
+\alignsep@=\dimen145
+\tagshift@=\dimen146
+\tagwidth@=\dimen147
+\totwidth@=\dimen148
+\lineht@=\dimen149
+\@envbody=\toks20
+\multlinegap=\skip51
+\multlinetaggap=\skip52
+\mathdisplay@stack=\toks21
+LaTeX Info: Redefining \[ on input line 2953.
+LaTeX Info: Redefining \] on input line 2954.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
-(amsfonts.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (amsthm.sty
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
-\thm@style=\toks21
-\thm@bodyfont=\toks22
-\thm@headfont=\toks23
-\thm@notefont=\toks24
-\thm@headpunct=\toks25
-\thm@preskip=\skip52
-\thm@postskip=\skip53
-\thm@headsep=\skip54
-\dth@everypar=\toks26
-) (mathtools.sty
-Package: mathtools 2022/02/07 v1.28a mathematical typesetting tools
- (keyval.sty
-Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks27
-) (calc.sty
-Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count267
-\calc@Bcount=\count268
-\calc@Adimen=\dimen148
-\calc@Bdimen=\dimen149
-\calc@Askip=\skip55
-\calc@Bskip=\skip56
+\thm@style=\toks22
+\thm@bodyfont=\toks23
+\thm@headfont=\toks24
+\thm@notefont=\toks25
+\thm@headpunct=\toks26
+\thm@preskip=\skip53
+\thm@postskip=\skip54
+\thm@headsep=\skip55
+\dth@everypar=\toks27
+)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
+Package: mathtools 2022/06/29 v1.29 mathematical typesetting tools
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks28
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count273
+\calc@Bcount=\count274
+\calc@Adimen=\dimen150
+\calc@Bdimen=\dimen151
+\calc@Askip=\skip56
+\calc@Bskip=\skip57
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count269
-\calc@Cskip=\skip57
+\calc@Ccount=\count275
+\calc@Cskip=\skip58
 )
-(mhsetup.sty
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty
 Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 )
-\g_MT_multlinerow_int=\count270
-\l_MT_multwidth_dim=\dimen150
-\origjot=\skip58
-\l_MT_shortvdotswithinadjustabove_dim=\dimen151
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen152
-\l_MT_above_intertext_sep=\dimen153
-\l_MT_below_intertext_sep=\dimen154
-\l_MT_above_shortintertext_sep=\dimen155
-\l_MT_below_shortintertext_sep=\dimen156
-\xmathstrut@box=\box52
-\xmathstrut@dim=\dimen157
-) (geometry.sty
+\g_MT_multlinerow_int=\count276
+\l_MT_multwidth_dim=\dimen152
+\origjot=\skip59
+\l_MT_shortvdotswithinadjustabove_dim=\dimen153
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen154
+\l_MT_above_intertext_sep=\dimen155
+\l_MT_below_intertext_sep=\dimen156
+\l_MT_above_shortintertext_sep=\dimen157
+\l_MT_below_shortintertext_sep=\dimen158
+\xmathstrut@box=\box53
+\xmathstrut@dim=\dimen159
+)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
- (ifvtex.sty
+
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
- (iftex.sty
+
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
 ))
-\Gm@cnth=\count271
-\Gm@cntv=\count272
-\c@Gm@tempcnt=\count273
-\Gm@bindingoffset=\dimen158
-\Gm@wd@mp=\dimen159
-\Gm@odd@mp=\dimen160
-\Gm@even@mp=\dimen161
-\Gm@layoutwidth=\dimen162
-\Gm@layoutheight=\dimen163
-\Gm@layouthoffset=\dimen164
-\Gm@layoutvoffset=\dimen165
-\Gm@dimlist=\toks28
-) (hyperref.sty
-Package: hyperref 2022-02-21 v7.00n Hypertext links for LaTeX
+\Gm@cnth=\count277
+\Gm@cntv=\count278
+\c@Gm@tempcnt=\count279
+\Gm@bindingoffset=\dimen160
+\Gm@wd@mp=\dimen161
+\Gm@odd@mp=\dimen162
+\Gm@even@mp=\dimen163
+\Gm@layoutwidth=\dimen164
+\Gm@layoutheight=\dimen165
+\Gm@layouthoffset=\dimen166
+\Gm@layoutvoffset=\dimen167
+\Gm@dimlist=\toks29
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2024-01-20 v7.01h Hypertext links for LaTeX
 
-(ltxcmds.sty
-Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
-) (pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 )
- (infwarerr.sty
+
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode not found.
-) (kvsetkeys.sty
-Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
-)
-(kvdefinekeys.sty
-Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
-) (pdfescape.sty
-Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
-) (hycolor.sty
+Package pdftexcmds Info: \pdfdraftmode found.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
-) (letltxmacro.sty
-Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
-) (auxhook.sty
+)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
-) (kvoptions.sty
-Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
 )
-\@linkdim=\dimen166
-\Hy@linkcounter=\count274
-\Hy@pagecounter=\count275
- (pd1enc.def
-File: pd1enc.def 2022-02-21 v7.00n Hyperref: PDFDocEncoding definition (HO)
-) (intcalc.sty
-Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
-) (etexcmds.sty
-Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
-)
-\Hy@SavedSpaceFactor=\count276
- (puenc.def
-File: puenc.def 2022-02-21 v7.00n Hyperref: PDF Unicode definition (HO)
-)
-Package hyperref Info: Hyper figures OFF on input line 4137.
-Package hyperref Info: Link nesting OFF on input line 4142.
-Package hyperref Info: Hyper index ON on input line 4145.
-Package hyperref Info: Plain pages OFF on input line 4152.
-Package hyperref Info: Backreferencing OFF on input line 4157.
-Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4390.
-\c@Hy@tempcnt=\count277
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
 
-(url.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count280
+)
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count281
+)
+\@linkdim=\dimen168
+\Hy@linkcounter=\count282
+\Hy@pagecounter=\count283
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2024-01-20 v7.01h Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count284
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2024-01-20 v7.01h Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Hyper figures OFF on input line 4179.
+Package hyperref Info: Link nesting OFF on input line 4184.
+Package hyperref Info: Hyper index ON on input line 4187.
+Package hyperref Info: Plain pages OFF on input line 4194.
+Package hyperref Info: Backreferencing OFF on input line 4199.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4446.
+\c@Hy@tempcnt=\count285
+
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 4749.
-\XeTeXLinkMargin=\dimen167
- (bitset.sty
+LaTeX Info: Redefining \url on input line 4784.
+\XeTeXLinkMargin=\dimen169
+
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
- (bigintcalc.sty
+
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count278
-\Field@Width=\dimen168
-\Fld@charsize=\dimen169
-Package hyperref Info: Hyper figures OFF on input line 6027.
-Package hyperref Info: Link nesting OFF on input line 6032.
-Package hyperref Info: Hyper index ON on input line 6035.
-Package hyperref Info: backreferencing OFF on input line 6042.
-Package hyperref Info: Link coloring OFF on input line 6047.
-Package hyperref Info: Link coloring with OCG OFF on input line 6052.
-Package hyperref Info: PDF/A mode OFF on input line 6057.
-LaTeX Info: Redefining \ref on input line 6097.
-LaTeX Info: Redefining \pageref on input line 6101.
- (atbegshi-ltx.sty
+\Fld@menulength=\count286
+\Field@Width=\dimen170
+\Fld@charsize=\dimen171
+Package hyperref Info: Hyper figures OFF on input line 6063.
+Package hyperref Info: Link nesting OFF on input line 6068.
+Package hyperref Info: Hyper index ON on input line 6071.
+Package hyperref Info: backreferencing OFF on input line 6078.
+Package hyperref Info: Link coloring OFF on input line 6083.
+Package hyperref Info: Link coloring with OCG OFF on input line 6088.
+Package hyperref Info: PDF/A mode OFF on input line 6093.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count279
-\c@Item=\count280
-\c@Hfootnote=\count281
+\Hy@abspage=\count287
+\c@Item=\count288
+\c@Hfootnote=\count289
 )
-Package hyperref Info: Driver (autodetected): hxetex.
- (hxetex.def
-File: hxetex.def 2022-02-21 v7.00n Hyperref driver for XeTeX
+Package hyperref Info: Driver (autodetected): hpdftex.
 
-(stringenc.sty
-Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
-)
-)
-\pdfm@box=\box53
-\c@Hy@AnnotLevel=\count282
-\HyField@AnnotCount=\count283
-\Fld@listcount=\count284
-\c@bookmark@seq@number=\count285
- (rerunfilecheck.sty
-Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
- (atveryend-ltx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2024-01-20 v7.01h Hyperref driver for pdfTeX
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
 kage
 with kernel methods
-) (uniquecounter.sty
+)
+\Fld@listcount=\count290
+\c@bookmark@seq@number=\count291
+
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
-86.
+85.
 )
-\Hy@SectionHShift=\skip59
+\Hy@SectionHShift=\skip60
 )
-(microtype.sty
-Package: microtype 2022/03/14 v3.0d Micro-typographical refinements (RS)
- (etoolbox.sty
-Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count286
-)
-\MT@toks=\toks29
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2023/03/13 v3.1a Micro-typographical refinements (RS)
+\MT@toks=\toks30
 \MT@tempbox=\box54
-\MT@count=\count287
-LaTeX Info: Redefining \noprotrusionifhmode on input line 1027.
-LaTeX Info: Redefining \leftprotrusion on input line 1028.
-LaTeX Info: Redefining \rightprotrusion on input line 1036.
-LaTeX Info: Redefining \textls on input line 1195.
-\MT@outer@kern=\dimen170
-LaTeX Info: Redefining \textmicrotypecontext on input line 1781.
-\MT@listname@count=\count288
- (microtype-xetex.def
-File: microtype-xetex.def 2022/03/14 v3.0d Definitions specific to xetex (RS)
-LaTeX Info: Redefining \lsstyle on input line 236.
+\MT@count=\count292
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1059.
+LaTeX Info: Redefining \leftprotrusion on input line 1060.
+\MT@prot@toks=\toks31
+LaTeX Info: Redefining \rightprotrusion on input line 1078.
+LaTeX Info: Redefining \textls on input line 1368.
+\MT@outer@kern=\dimen172
+LaTeX Info: Redefining \textmicrotypecontext on input line 1988.
+\MT@listname@count=\count293
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+File: microtype-pdftex.def 2023/03/13 v3.1a Definitions specific to pdftex (RS)
+
+LaTeX Info: Redefining \lsstyle on input line 902.
+LaTeX Info: Redefining \lslig on input line 902.
+\MT@outer@space=\skip61
 )
 Package microtype Info: Loading configuration file microtype.cfg.
- (microtype.cfg
-File: microtype.cfg 2022/03/14 v3.0d microtype main configuration file (RS)
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2023/03/13 v3.1a microtype main configuration file (RS)
 ))
-(xcolor.sty
-Package: xcolor 2021/10/31 v2.13 LaTeX color extensions (UK)
- (color.cfg
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2023/11/15 v3.01 LaTeX color extensions (UK)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package xcolor Info: Driver file: xetex.def on input line 227.
- (xetex.def
-File: xetex.def 2021/03/18 v5.0k Graphics/color driver for xetex
-)
-Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1352.
-Package xcolor Info: Model `RGB' extended on input line 1368.
-Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1370.
-Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1371.
-Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1372.
-Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1373.
-Package xcolor Info: Model `Gray' substituted by `gray' on input line 1374.
-Package xcolor Info: Model `wave' substituted by `hsb' on input line 1375.
-) (enumitem.sty
-Package: enumitem 2019/06/20 v3.9 Customized lists
-\labelindent=\skip60
-\enit@outerparindent=\dimen171
-\enit@toks=\toks30
-\enit@inbox=\box55
-\enit@count@id=\count289
-\enitdp@description=\count290
-) (booktabs.sty
-Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen172
-\lightrulewidth=\dimen173
-\cmidrulewidth=\dimen174
-\belowrulesep=\dimen175
-\belowbottomsep=\dimen176
-\aboverulesep=\dimen177
-\abovetopsep=\dimen178
-\cmidrulesep=\dimen179
-\cmidrulekern=\dimen180
-\defaultaddspace=\dimen181
-\@cmidla=\count291
-\@cmidlb=\count292
-\@aboverulesep=\dimen182
-\@belowrulesep=\dimen183
-\@thisruleclass=\count293
-\@lastruleclass=\count294
-\@thisrulewidth=\dimen184
-)
-\c@theorem=\count295
+Package xcolor Info: Driver file: pdftex.def on input line 274.
 
-(l3backend-xetex.def
-File: l3backend-xetex.def 2022-02-07 L3 backend support: XeTeX
-\c__kernel_sys_dvipdfmx_version_int=\count296
-\l__color_backend_stack_int=\count297
-\g__color_backend_stack_int=\count298
-\g__graphics_track_int=\count299
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1350.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1354.
+Package xcolor Info: Model `RGB' extended on input line 1366.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1368.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1371.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1372.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2019/06/20 v3.9 Customized lists
+\labelindent=\skip62
+\enit@outerparindent=\dimen173
+\enit@toks=\toks32
+\enit@inbox=\box55
+\enit@count@id=\count294
+\enitdp@description=\count295
+)
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen174
+\lightrulewidth=\dimen175
+\cmidrulewidth=\dimen176
+\belowrulesep=\dimen177
+\belowbottomsep=\dimen178
+\aboverulesep=\dimen179
+\abovetopsep=\dimen180
+\cmidrulesep=\dimen181
+\cmidrulekern=\dimen182
+\defaultaddspace=\dimen183
+\@cmidla=\count296
+\@cmidlb=\count297
+\@aboverulesep=\dimen184
+\@belowrulesep=\dimen185
+\@thisruleclass=\count298
+\@lastruleclass=\count299
+\@thisrulewidth=\dimen186
+)
+\c@theorem=\count300
+
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count301
 \l__pdf_internal_box=\box56
-\g__pdf_backend_object_int=\count300
-\g__pdf_backend_annotation_int=\count301
-\g__pdf_backend_link_int=\count302
-) (claim_a_3d_proof_attempt.aux)
+)
+(/tmp/verifybuild/claim_a_3d_proof_attempt.aux)
 \openout1 = `claim_a_3d_proof_attempt.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 67.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 6
-7.
- (ts1cmr.fd
-File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-)
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
- (graphicx.sty
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
 
-(graphics.sty
-Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
- (trig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
-) (graphics.cfg
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: xetex.def on input line 107.
+Package graphics Info: Driver file: pdftex.def on input line 107.
 )
-\Gin@req@height=\dimen185
-\Gin@req@width=\dimen186
+\Gin@req@height=\dimen187
+\Gin@req@width=\dimen188
 )
 *geometry* driver: auto-detecting
-*geometry* detected driver: xetex
+*geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
-* driver: xetex
+* driver: pdftex
 * paper: <default>
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
@@ -413,321 +464,319 @@ Package graphics Info: Driver file: xetex.def on input line 107.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 67.
-(nameref.sty
-Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
- (refcount.sty
-Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
-) (gettitlestring.sty
-Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
-)
-\c@section@level=\count303
-)
-LaTeX Info: Redefining \ref on input line 67.
-LaTeX Info: Redefining \pageref on input line 67.
-LaTeX Info: Redefining \nameref on input line 67.
- (claim_a_3d_proof_attempt.out) (claim_a_3d_proof_attempt.out)
+Package hyperref Info: Link coloring OFF on input line 89.
+(/tmp/verifybuild/claim_a_3d_proof_attempt.out)
+(/tmp/verifybuild/claim_a_3d_proof_attempt.out)
 \@outlinefile=\write3
 \openout3 = `claim_a_3d_proof_attempt.out'.
 
-LaTeX Info: Redefining \microtypecontext on input line 67.
-Package microtype Info: Applying patch `item' on input line 67.
-Package microtype Info: Applying patch `toc' on input line 67.
-Package microtype Info: Applying patch `eqnum' on input line 67.
-Package microtype Info: Applying patch `footnote' on input line 67.
+LaTeX Info: Redefining \microtypecontext on input line 89.
+Package microtype Info: Applying patch `item' on input line 89.
+Package microtype Info: Applying patch `toc' on input line 89.
+Package microtype Info: Applying patch `eqnum' on input line 89.
+Package microtype Info: Applying patch `footnote' on input line 89.
+Package microtype Info: Applying patch `verbatim' on input line 89.
+Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+LaTeX Info: Redefining \showhyphens on input line 89.
 Package microtype Info: No adjustment of tracking.
-Package microtype Info: No adjustment of spacing.
-Package microtype Info: No adjustment of kerning.
- (mt-LatinModernRoman.cfg
-File: mt-LatinModernRoman.cfg 2021/02/21 v1.1 microtype config. file: Latin Mod
-ern Roman (RS)
-) (mt-cmr.cfg
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 69.
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count302
+\scratchdimen=\dimen189
+\scratchbox=\box57
+\nofMPsegments=\count303
+\nofMParguments=\count304
+\everyMPshowfont=\toks33
+\MPscratchCnt=\count305
+\MPscratchDim=\dimen190
+\MPnumerator=\count306
+\makeMPintoPDFobject=\count307
+\everyMPtoPDFconversion=\toks34
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+LaTeX Font Info:    Trying to load font information for U+msa on input line 91.
 
 
-(umsa.fd
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-) (mt-msa.cfg
+)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 69.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 91.
 
- (umsb.fd
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) (mt-msb.cfg
+)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-) (claim_a_3d_proof_attempt.toc
-[1
+)
+(/tmp/verifybuild/claim_a_3d_proof_attempt.toc [1
 
-] [2] [3])
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/
+dvips/cm-super/cm-super-ts1.enc}] [2] [3] [4] [5] [6])
 \tf@toc=\write4
 \openout4 = `claim_a_3d_proof_attempt.toc'.
 
- [4] [5] [6]
+ [7] [8] [9] [10]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 366.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\delta' on input line 366.
+(hyperref)                removing `math shift' on input line 392.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 366.
+(hyperref)                removing `\delta' on input line 392.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 366.
-
-[7]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 399.
+(hyperref)                removing `subscript' on input line 392.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\theta' on input line 399.
+(hyperref)                removing `math shift' on input line 392.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 399.
+(hyperref)                removing `math shift' on input line 425.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 399.
+(hyperref)                removing `\theta' on input line 425.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\varepsilon' on input line 399.
+(hyperref)                removing `math shift' on input line 425.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 399.
+(hyperref)                removing `math shift' on input line 425.
 
 
-Overfull \hbox (24.33339pt too wide) in paragraph at lines 456--461
-[]\TU/lmr/bx/n/10.95 Bound transport $\OML/cmm/m/it/10.95 u \OMS/cmsy/m/n/10.95
- ^^A r\OML/cmm/m/it/10.95 ^^R$\TU/lmr/bx/n/10.95 . $\OML/cmm/m/it/10.95 u \OMS/
-cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 L[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95
- Q[]\OT1/cmr/m/n/10.95 )$ \TU/lmr/m/n/10.95 (Leray–Hopf interpolation). Hölder:
- $[][] \OMS/cmsy/m/n/10.95 ^^T
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\varepsilon' on input line 425.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 425.
+
+[11] [12]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 545.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\delta' on input line 545.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 545.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\to' on input line 545.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\infty' on input line 545.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 545.
+
+
+Overfull \hbox (6.9702pt too wide) in paragraph at lines 584--586
+[][]\OT1/cmr/bx/n/10.95 (-20) Lemma 4.1 \OT1/cmr/m/n/10.95 (-20) (Lo-cal part e
+s-ti-mate)\OT1/cmr/bx/n/10.95 (-20) . []$[][] \OMS/cmsy/m/n/10.95 ^^T \OML/cmm/
+m/it/10.95 C [][] \OMS/cmsy/m/n/10.95 ^^T \OML/cmm/m/it/10.95 C [][]$\OT1/cmr/m
+/it/10.95 (-20) . 
  []
 
-[8]
+[13] [14]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 519.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\delta' on input line 519.
+(hyperref)                removing `math shift' on input line 706.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 519.
+(hyperref)                removing `\theta' on input line 706.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\to' on input line 519.
+(hyperref)                removing `math shift' on input line 706.
+
+[15]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 754.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\infty' on input line 519.
+(hyperref)                removing `\varepsilon' on input line 754.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 519.
+(hyperref)                removing `math shift' on input line 754.
 
-[9]
-Overfull \hbox (10.11087pt too wide) in paragraph at lines 558--560
-[][]\TU/lmr/bx/n/10.95 Lemma 4.1 \TU/lmr/m/n/10.95 (Local part estimate)\TU/lmr
-/bx/n/10.95 . []$[][] \OMS/cmsy/m/n/10.95 ^^T \OML/cmm/m/it/10.95 C [][] \OMS/c
-msy/m/n/10.95 ^^T \OML/cmm/m/it/10.95 C [][]$\TU/lmr/m/it/10.95 . 
+
+Overfull \hbox (153.865pt too wide) in paragraph at lines 782--785
+[][]\OT1/cmr/bx/n/10.95 (-20) Definition 6.2 \OT1/cmr/m/n/10.95 (-20) (Sin-gu-l
+ar set)\OT1/cmr/bx/n/10.95 (-20) . []$\OMS/cmsy/m/n/10.95 S \OT1/cmr/m/n/10.95 
+(-20) = \OMS/cmsy/m/n/10.95 f\OML/cmm/m/it/10.95 z[] \OMS/cmsy/m/n/10.95 2 \OML
+/cmm/m/it/10.95 Q[] \OT1/cmr/m/n/10.95 (-20) : \OML/cmm/m/it/10.95 z[][]\OMS/cm
+sy/m/n/10.95 g \OT1/cmr/m/n/10.95 (-20) = []$. 
  []
-
-
-Overfull \hbox (2.5769pt too wide) in paragraph at lines 590--603
-\TU/lmr/m/n/10.95 Sobolev–Poincaré inequality on $\OML/cmm/m/it/10.95 B\OT1/cmr
-/m/n/10.95 (\OML/cmm/m/it/10.95 r\OT1/cmr/m/n/10.95 )$\TU/lmr/m/n/10.95 : $[][]
- \OMS/cmsy/m/n/10.95 ^^T \OML/cmm/m/it/10.95 Cr [][]$\TU/lmr/m/n/10.95 , where
- []
-
-[10] [11]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 680.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\theta' on input line 680.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 680.
-
-
-Overfull \hbox (1.4305pt too wide) in paragraph at lines 702--704
-\TU/lmr/bx/n/10.95 Pursue Angle 2\TU/lmr/m/n/10.95 : Use CKN partial regularity
- ($\OMS/cmsy/m/n/10.95 H[]\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 S\OT1/cmr/m/n
-/10.95 ) = 0$\TU/lmr/m/n/10.95 ) to establish the Morrey bound []
- []
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 728.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\varepsilon' on input line 728.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 728.
-
-[12]
-Overfull \hbox (157.02731pt too wide) in paragraph at lines 756--759
-[][]\TU/lmr/bx/n/10.95 Definition 6.2 \TU/lmr/m/n/10.95 (Singular set)\TU/lmr/b
-x/n/10.95 . []$\OMS/cmsy/m/n/10.95 S \OT1/cmr/m/n/10.95 = \OMS/cmsy/m/n/10.95 f
-\OML/cmm/m/it/10.95 z[] \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 Q[] \OT1/cmr/
-m/n/10.95 : \OML/cmm/m/it/10.95 z[][]\OMS/cmsy/m/n/10.95 g \OT1/cmr/m/n/10.95 =
- []$\TU/lmr/m/n/10.95 . 
- []
-
-[13]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 864.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 864.
-
-[14] [15]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 995.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\theta' on input line 995.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 995.
 
 [16]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1031.
+(hyperref)                removing `math shift' on input line 890.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 1031.
+(hyperref)                removing `math shift' on input line 890.
+
+[17] [18]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1021.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1031.
+(hyperref)                removing `\theta' on input line 1021.
 
 
-Overfull \hbox (33.72568pt too wide) in paragraph at lines 1034--1036
-[][]\TU/lmr/bx/n/10.95 Proposition 8.3 \TU/lmr/m/n/10.95 (Heat-kernel $\OML/cmm
-/m/it/10.95 L[]$ \TU/lmr/m/n/10.95 estimate for $\OML/cmm/m/it/10.95 ^^R$\TU/lm
-r/m/n/10.95 )\TU/lmr/bx/n/10.95 . []\TU/lmr/m/it/10.95 For the heat kernel $\OM
-L/cmm/m/it/10.95 G\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 x; t\OT1/cmr/m/n/10.9
-5 ) = (4\OML/cmm/m/it/10.95 ^^Y^^Wt\OT1/cmr/m/n/10.95 )[]\OML/cmm/m/it/10.95 e[
-]$\TU/lmr/m/it/10.95 ,
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1021.
+
+[19]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1057.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 1057.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1057.
+
+
+Overfull \hbox (28.19704pt too wide) in paragraph at lines 1060--1062
+[][]\OT1/cmr/bx/n/10.95 (-20) Proposition 8.3 \OT1/cmr/m/n/10.95 (-20) (Heat-k-
+er-nel $\OML/cmm/m/it/10.95 L[]$ \OT1/cmr/m/n/10.95 (-20) es-ti-mate for $\OML/
+cmm/m/it/10.95 ^^R$\OT1/cmr/m/n/10.95 (-20) )\OT1/cmr/bx/n/10.95 (-20) . []\OT1
+/cmr/m/it/10.95 (-20) For the heat ker-nel $\OML/cmm/m/it/10.95 G\OT1/cmr/m/n/1
+0.95 (-20) (\OML/cmm/m/it/10.95 x; t\OT1/cmr/m/n/10.95 (-20) ) = (4\OML/cmm/m/i
+t/10.95 ^^Y^^Wt\OT1/cmr/m/n/10.95 (-20) )[]\OML/cmm/m/it/10.95 e[]$\OT1/cmr/m/i
+t/10.95 (-20) ,
  []
 
 
-Overfull \hbox (12.49887pt too wide) in paragraph at lines 1046--1052
-[]\TU/lmr/m/n/10.95 By Young’s convolution inequality ($[][] \OMS/cmsy/m/n/10.9
-5 ^^T [][] [][]$ \TU/lmr/m/n/10.95 with $\OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.9
-5 =p \OT1/cmr/m/n/10.95 = 1\OML/cmm/m/it/10.95 =r$\TU/lmr/m/n/10.95 ): $[][] \O
-MS/cmsy/m/n/10.95 ^^T
+Overfull \hbox (8.30748pt too wide) in paragraph at lines 1072--1078
+[]\OT1/cmr/m/n/10.95 (-20) By Young's con-vo-lu-tion in-equal-ity ($[][] \OMS/c
+msy/m/n/10.95 ^^T [][] [][]$ \OT1/cmr/m/n/10.95 (-20) with $1\OML/cmm/m/it/10.9
+5 =p \OT1/cmr/m/n/10.95 (-20) = 1\OML/cmm/m/it/10.95 =r$\OT1/cmr/m/n/10.95 (-20
+) ): $[][] \OMS/cmsy/m/n/10.95 ^^T
  []
 
 
-Overfull \hbox (13.25822pt too wide) in paragraph at lines 1046--1052
-[][] [][] [][] \OML/cmm/m/it/10.95 ds$\TU/lmr/m/n/10.95 . Since $[][] \OT1/cmr/
-m/n/10.95 = \OML/cmm/m/it/10.95 C[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^W^
-^\\OT1/cmr/m/n/10.95 )[]$\TU/lmr/m/n/10.95 , and $[][] \OT1/cmr/m/n/10.95 = \OM
-L/cmm/m/it/10.95 ^^W [] \OMS/cmsy/m/n/10.95 jr\OML/cmm/m/it/10.95 u\OMS/cmsy/m/
-n/10.95 j[] ^^T
+Overfull \hbox (11.76889pt too wide) in paragraph at lines 1072--1078
+[][] [][] [][] \OML/cmm/m/it/10.95 ds$\OT1/cmr/m/n/10.95 (-20) . Since $[][] = 
+\OML/cmm/m/it/10.95 C[]\OT1/cmr/m/n/10.95 (-20) (\OML/cmm/m/it/10.95 ^^W^^\\OT1
+/cmr/m/n/10.95 (-20) )[]$, and $[][] = \OML/cmm/m/it/10.95 ^^W [] \OMS/cmsy/m/n
+/10.95 jr\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 j[] ^^T
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1074.
+(hyperref)                removing `math shift' on input line 1100.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\delta' on input line 1074.
+(hyperref)                removing `\delta' on input line 1100.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1074.
+(hyperref)                removing `math shift' on input line 1100.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1074.
+(hyperref)                removing `math shift' on input line 1100.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 1074.
+(hyperref)                removing `superscript' on input line 1100.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1074.
+(hyperref)                removing `math shift' on input line 1100.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1099.
+(hyperref)                removing `math shift' on input line 1125.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\theta' on input line 1099.
+(hyperref)                removing `\theta' on input line 1125.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1099.
+(hyperref)                removing `math shift' on input line 1125.
 
-[17]
-Overfull \hbox (83.76204pt too wide) in paragraph at lines 1141--1146
-[]\TU/lmr/bx/it/10.95 [Local pressure closable] \TU/lmr/m/it/10.95 Uniform loca
-l pressure estimate: $[]  [] \OMS/cmsy/m/n/10.95 ^^@[]j\OML/cmm/m/it/10.95 p\OM
-S/cmsy/m/n/10.95 j[] ^^T \OML/cmm/m/it/10.95 B[]  [][]$\TU/lmr/m/it/10.95 ,
+[20]
+Overfull \hbox (79.32901pt too wide) in paragraph at lines 1167--1172
+[]\OT1/cmr/bx/it/10.95 (-20) [Local pres-sure clos-able] \OT1/cmr/m/it/10.95 (-
+20) Uni-form lo-cal pres-sure es-ti-mate: $[]  [] \OMS/cmsy/m/n/10.95 ^^@[]j\OM
+L/cmm/m/it/10.95 p\OMS/cmsy/m/n/10.95 j[] ^^T \OML/cmm/m/it/10.95 B[]  [][]$\OT
+1/cmr/m/it/10.95 (-20) ,
  []
 
 
-Overfull \hbox (10.43997pt too wide) in paragraph at lines 1162--1165
-[]\TU/lmr/m/n/10.95 (G1)$\OMS/cmsy/m/n/10.95 )$\TU/lmr/m/n/10.95 (G2): By CZ an
-d Sobolev–Poincaré, $[]  [] \OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 p\OMS/cmsy
-/m/n/10.95 j[] ^^T \OML/cmm/m/it/10.95 C\OT1/cmr/m/n/10.95 ([]  [] \OMS/cmsy/m/
-n/10.95 j\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 j[]\OT1/cmr/m/n/10.95 )[] \OM
-S/cmsy/m/n/10.95 ^^T
+Overfull \hbox (6.49355pt too wide) in paragraph at lines 1188--1191
+[]\OT1/cmr/m/n/10.95 (-20) (G1)$\OMS/cmsy/m/n/10.95 )$\OT1/cmr/m/n/10.95 (-20) 
+(G2): By CZ and Sobolev--Poincar^^Se, $[]  [] \OMS/cmsy/m/n/10.95 j\OML/cmm/m/i
+t/10.95 p\OMS/cmsy/m/n/10.95 j[] ^^T \OML/cmm/m/it/10.95 C\OT1/cmr/m/n/10.95 (-
+20) ([]  [] \OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 j[]\O
+T1/cmr/m/n/10.95 (-20) )[] \OMS/cmsy/m/n/10.95 ^^T
  []
 
-[18] [19]
+[21] [22]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1270.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\theta' on input line 1270.
+(hyperref)                removing `math shift' on input line 1296.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1270.
+(hyperref)                removing `\theta' on input line 1296.
 
 
-Overfull \hbox (19.21613pt too wide) detected at line 1291
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1296.
+
+
+Overfull \hbox (19.21613pt too wide) detected at line 1317
 [][][]\OML/cmm/m/it/10.95 ^^W [] [][] \OMS/cmsy/m/n/10.95 jr\OML/cmm/m/it/10.95
  u\OMS/cmsy/m/n/10.95 j[] ^^T \OML/cmm/m/it/10.95 Cr[] [] [][] ^^R \OT1/cmr/m/n
 /10.95 + \OML/cmm/m/it/10.95 Cr[] [] [][] ^^R\OMS/cmsy/m/n/10.95 j\OML/cmm/m/it
@@ -738,245 +787,221 @@ t/10.95 x; t[]\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ^^^\OT1/cmr/m/n/10.95 (\O
 ML/cmm/m/it/10.95 x; t[]\OT1/cmr/m/n/10.95 ) \OML/cmm/m/it/10.95 dx:
  []
 
-[20]
+[23
+pdfTeX warning (ext4): destination with the same identifier (name{equation.9.37
+}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1369   \end{align}
+                    ]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1386.
+(hyperref)                removing `math shift' on input line 1412.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\theta' on input line 1386.
+(hyperref)                removing `\theta' on input line 1412.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1386.
+(hyperref)                removing `math shift' on input line 1412.
 
-
-Overfull \hbox (1.20256pt too wide) in paragraph at lines 1396--1399
-[]$\OML/cmm/m/it/10.95 Cr[] [] [][] ^^R \OMS/cmsy/m/n/10.95 ^^T \OML/cmm/m/it/1
-0.95 CC[]  []  [] \OMS/cmsy/m/n/10.95 ^^@[]jr\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n
-/10.95 j[] ^^A \OML/cmm/m/it/10.95 r[]$\TU/lmr/m/it/10.95 , which gives $\OML/c
-mm/m/it/10.95 Cr[] \OMS/cmsy/m/n/10.95 ^^A \OML/cmm/m/it/10.95 C[] r A\OT1/cmr/
-m/n/10.95 (2\OML/cmm/m/it/10.95 r\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ^^A \
-OML/cmm/m/it/10.95 r[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 C[]r[]A\OT1/cmr
-/m/n/10.95 (2\OML/cmm/m/it/10.95 r\OT1/cmr/m/n/10.95 )$\TU/lmr/m/it/10.95 .
- []
-
-[21] [22]
-Overfull \hbox (93.0934pt too wide) in paragraph at lines 1527--1545
+[24]
+pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
+4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1476   \begin{equation}
+                         \label{eq:K-approx}
+pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
+4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1476   \begin{equation}
+                         \label{eq:K-approx}
+pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
+4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1476   \begin{equation}
+                         \label{eq:K-approx}
+pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
+4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1476   \begin{equation}
+                         \label{eq:K-approx} [25
+pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
+4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1509 \end{remark}
+                   ]
+Overfull \hbox (249.4543pt too wide) in paragraph at lines 1553--1571
  [] 
- []
-
-[23]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1628.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\nabla' on input line 1628.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 1628.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1628.
-
-[24] [25]
-Overfull \hbox (0.8207pt too wide) in paragraph at lines 1777--1782
-\TU/lmr/m/n/10.95 Alternatively, for large $\OML/cmm/m/it/10.95 t$\TU/lmr/m/n/1
-0.95 : using the $\OML/cmm/m/it/10.95 L[]$ \TU/lmr/m/n/10.95 decay from part (i
-i), $\OMS/cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 S[]\OT1/cmr/m/n/10.95 (\OMS/cmsy/
-m/n/10.95 ^^A\OML/cmm/m/it/10.95 ; t\OT1/cmr/m/n/10.95 )\OMS/cmsy/m/n/10.95 k[]
- ^^T [][] k\OML/cmm/m/it/10.95 @[]u[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 s\
-OT1/cmr/m/n/10.95 )\OMS/cmsy/m/n/10.95 k[] \OML/cmm/m/it/10.95 ds \OMS/cmsy/m/n
-/10.95 ^^T
  []
 
 [26]
-Overfull \hbox (13.58281pt too wide) in paragraph at lines 1860--1867
-[]\TU/lmr/m/n/10.95 The classical Fujita–Kato theory (adapted to the torus) giv
-es $\OML/cmm/m/it/10.95 u \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 C\OT1/cmr/m
-/n/10.95 ([0\OML/cmm/m/it/10.95 ; \OMS/cmsy/m/n/10.95 1\OT1/cmr/m/n/10.95 ); \O
-ML/cmm/m/it/10.95 H[]\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 \
- []
-
-[27]
-Overfull \hbox (4.49573pt too wide) in paragraph at lines 1911--1919
-[]\TU/lmr/m/n/10.95 We bound $\OML/cmm/m/it/10.95 I[]$ \TU/lmr/m/n/10.95 in two
- pieces. For $\OML/cmm/m/it/10.95 s \OMS/cmsy/m/n/10.95 2 \OT1/cmr/m/n/10.95 (0
-\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 1]$\TU/lmr/m/n/10.95 , use Lemma []11.
-3[](i): $\OMS/cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 @[]u[]\OT1/cmr/m/n/10.95 (\OM
-L/cmm/m/it/10.95 s\OT1/cmr/m/n/10.95 )\OMS/cmsy/m/n/10.95 k[] ^^T \OML/cmm/m/it
-/10.95 C^^W[]s[]$\TU/lmr/m/n/10.95 ,
- []
-
-[28]
-Overfull \hbox (67.84256pt too wide) in paragraph at lines 1972--1979
-[][]\TU/lmr/bx/n/10.95 Remark 12.5 \TU/lmr/m/n/10.95 (Coverage of M7 shear expe
-riment)\TU/lmr/bx/n/10.95 . []\TU/lmr/m/n/10.95 The M7 shear IC is a 3D flow $\
-OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 u\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95
- y; t\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; v\OT1/cmr/m/n/10.95 (\OML/cmm/m/
-it/10.95 x; y; t\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; w\OT1/cmr/m/n/10.95 (
-\OML/cmm/m/it/10.95 x; y; t\OT1/cmr/m/n/10.95 ))$
- []
-
-[29] [30] [31] [32] [33] [34] [35]
-Overfull \hbox (1.94278pt too wide) in paragraph at lines 2584--2588
-\TU/lmr/m/n/10.95 By the Poincaré inequality $\OMS/cmsy/m/n/10.95 k\OML/cmm/m/i
-t/10.95 u[]\OMS/cmsy/m/n/10.95 k[] ^^T \OML/cmm/m/it/10.95 Cr\OMS/cmsy/m/n/10.9
-5 kr\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 k[]$ \TU/lmr/m/n/10.95 and the tra
-ce inequality $\OMS/cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 v\OMS/cmsy/m/n/10.95 k[
-] ^^T
- []
-
-[36]
-Overfull \hbox (4.66232pt too wide) in paragraph at lines 2602--2610
-[]\TU/lmr/m/it/10.95 Viscous term. $[]\OT1/cmr/bx/n/10.95 m \OMS/cmsy/m/n/10.95
- ^^A \OML/cmm/m/it/10.95 ^^W [][] \OMS/cmsy/m/n/10.95 r\OML/cmm/m/it/10.95 u \O
-MS/cmsy/m/n/10.95 ^^A \OML/cmm/m/it/10.95 n[] \OT1/cmr/m/n/10.95 = []\OML/cmm/m
-/it/10.95 ^^W\OT1/cmr/bx/n/10.95 m \OMS/cmsy/m/n/10.95 ^^A [][] \OT1/cmr/m/n/10
-.95 ^^A\OML/cmm/m/it/10.95 u[][] \OMS/cmsy/m/n/10.95 ^^T \OML/cmm/m/it/10.95 ^^
-Wh\OMS/cmsy/m/n/10.95 k\OT1/cmr/m/n/10.95 ^^A\OML/cmm/m/it/10.95 u[]\OMS/cmsy/m
-/n/10.95 k[] ^^T \OML/cmm/m/it/10.95 ^^Whr[]\OMS/cmsy/m/n/10.95 kr[]\OML/cmm/m/
-it/10.95 u\OMS/cmsy/m/n/10.95 k[]$
- []
-
-
-Overfull \hbox (2.6109pt too wide) in paragraph at lines 2641--2643
-[]\TU/lmr/m/it/10.95 The mean Morrey condition [] holds with $\OML/cmm/m/it/10.
-95 ^^K \OT1/cmr/m/n/10.95 = [](\OML/cmm/m/it/10.95 ^^L; \OT1/cmr/m/n/10.95 1\OM
-L/cmm/m/it/10.95 =\OT1/cmr/m/n/10.95 2)$ \TU/lmr/m/it/10.95 and $\OML/cmm/m/it/
-10.95 C[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 C\OT1/cmr/m/n/10.95 (\OML/cm
-m/m/it/10.95 E[]; ^^W; T; C[]\OT1/cmr/m/n/10.95 )[]\OML/cmm/m/it/10.95 r[]$\TU/
-lmr/m/it/10.95 . 
- []
-
-[37] [38] [39] [40] [41]
-Overfull \hbox (45.2467pt too wide) in paragraph at lines 3029--3034
-[]\TU/lmr/bx/n/10.95 (i) $\OMS/cmsy/m/n/10.95 )$ \TU/lmr/bx/n/10.95 (ii): \TU/l
-mr/m/n/10.95 Under Prodi–Serrin, $\OML/cmm/m/it/10.95 u \OMS/cmsy/m/n/10.95 2 \
-OML/cmm/m/it/10.95 L[]L[]$ \TU/lmr/m/n/10.95 implies by Hölder: $\OMS/cmsy/m/n/
-10.95 kr\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 k[] ^^T \OML/cmm/m/it/10.95 r[
-]\OMS/cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 k[] ^^T
- []
-
-
-Overfull \hbox (2.0865pt too wide) in paragraph at lines 3052--3060
-[][]\TU/lmr/bx/n/10.95 Remark 16.8 \TU/lmr/m/n/10.95 (CKN consistency)\TU/lmr/b
-x/n/10.95 . []\TU/lmr/m/n/10.95 CKN partial regularity (Theorem []6.3[]) shows 
-that $\OMS/cmsy/m/n/10.95 H[]\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 S\OT1/cmr/
-m/n/10.95 ) =
- []
-
-[42]
-Overfull \hbox (471.59575pt too wide) in paragraph at lines 3119--3196
- [] 
- []
-
-[43]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3207.
+(hyperref)                removing `math shift' on input line 1654.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\varepsilon' on input line 3207.
+(hyperref)                removing `\nabla' on input line 1654.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3207.
+(hyperref)                removing `superscript' on input line 1654.
 
-[44]
-Overfull \hbox (9.4158pt too wide) in paragraph at lines 3247--3251
-[]\TU/lmr/m/n/10.95 At a CKN regular point, Theorem []6.1[] gives $\OML/cmm/m/i
-t/10.95 u \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 L[]\OT1/cmr/m/n/10.95 (\OML
-/cmm/m/it/10.95 Q\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 r[]=\OT1/cmr/m/n/10.95
- 2\OML/cmm/m/it/10.95 ; z[]\OT1/cmr/m/n/10.95 ))$ \TU/lmr/m/n/10.95 with $\OMS/
-cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 k[] ^^T
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1654.
+
+[27] [28] [29]
+Overfull \hbox (7.75558pt too wide) in paragraph at lines 1886--1893
+[]\OT1/cmr/m/n/10.95 (-20) The clas-si-cal Fujita--Kato the-ory (adapted to the
+ torus) gives $\OML/cmm/m/it/10.95 u \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 
+C\OT1/cmr/m/n/10.95 (-20) ([0\OML/cmm/m/it/10.95 ; \OMS/cmsy/m/n/10.95 1\OT1/cm
+r/m/n/10.95 (-20) ); \OML/cmm/m/it/10.95 H[]\OT1/cmr/m/n/10.95 (-20) ) \OMS/cms
+y/m/n/10.95 \
+ []
+
+[30] [31]
+Overfull \hbox (60.35963pt too wide) in paragraph at lines 1998--2005
+[][]\OT1/cmr/bx/n/10.95 (-20) Remark 12.5 \OT1/cmr/m/n/10.95 (-20) (Cov-er-age 
+of M7 shear ex-per-i-ment)\OT1/cmr/bx/n/10.95 (-20) . []\OT1/cmr/m/n/10.95 (-20
+) The M7 shear IC is a 3D flow $(\OML/cmm/m/it/10.95 u\OT1/cmr/m/n/10.95 (-20) 
+(\OML/cmm/m/it/10.95 y; t\OT1/cmr/m/n/10.95 (-20) )\OML/cmm/m/it/10.95 ; v\OT1/
+cmr/m/n/10.95 (-20) (\OML/cmm/m/it/10.95 x; y; t\OT1/cmr/m/n/10.95 (-20) )\OML/
+cmm/m/it/10.95 ; w\OT1/cmr/m/n/10.95 (-20) (\OML/cmm/m/it/10.95 x; y; t\OT1/cmr
+/m/n/10.95 (-20) ))$
+ []
+
+[32] [33] [34
+pdfTeX warning (ext4): destination with the same identifier (name{equation.13.5
+5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2234   \]
+           ] [35] [36] [37] [38] [39]
+Overfull \hbox (3.0476pt too wide) in paragraph at lines 2628--2636
+[]\OT1/cmr/m/it/10.95 (-20) Viscous term. $[]\OT1/cmr/bx/n/10.95 (-20) m \OMS/c
+msy/m/n/10.95 ^^A \OML/cmm/m/it/10.95 ^^W [][] \OMS/cmsy/m/n/10.95 r\OML/cmm/m/
+it/10.95 u \OMS/cmsy/m/n/10.95 ^^A \OML/cmm/m/it/10.95 n[] \OT1/cmr/m/n/10.95 (
+-20) = []\OML/cmm/m/it/10.95 ^^W\OT1/cmr/bx/n/10.95 (-20) m \OMS/cmsy/m/n/10.95
+ ^^A [][] \OT1/cmr/m/n/10.95 (-20) ^^A\OML/cmm/m/it/10.95 u[][] \OMS/cmsy/m/n/1
+0.95 ^^T \OML/cmm/m/it/10.95 ^^Wh\OMS/cmsy/m/n/10.95 k\OT1/cmr/m/n/10.95 (-20) 
+^^A\OML/cmm/m/it/10.95 u[]\OMS/cmsy/m/n/10.95 k[] ^^T \OML/cmm/m/it/10.95 ^^Whr
+[]\OMS/cmsy/m/n/10.95 kr[]\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 k[]$
+ []
+
+
+Overfull \hbox (0.17065pt too wide) in paragraph at lines 2667--2669
+[]\OT1/cmr/m/it/10.95 (-20) The mean Mor-rey con-di-tion [] holds with $\OML/cm
+m/m/it/10.95  \OT1/cmr/m/n/10.95 (-20) = [](\OML/cmm/m/it/10.95 ^^L; \OT1/cmr/
+m/n/10.95 (-20) 1\OML/cmm/m/it/10.95 =\OT1/cmr/m/n/10.95 (-20) 2)$ \OT1/cmr/m/i
+t/10.95 (-20) and $\OML/cmm/m/it/10.95 C[] \OT1/cmr/m/n/10.95 (-20) = \OML/cmm/
+m/it/10.95 C\OT1/cmr/m/n/10.95 (-20) (\OML/cmm/m/it/10.95 E[]; ^^W; T; C[]\OT1/
+cmr/m/n/10.95 (-20) )[]\OML/cmm/m/it/10.95 r[]$\OT1/cmr/m/it/10.95 (-20) . 
+ []
+
+[40] [41] [42] [43] [44]
+Overfull \hbox (39.51497pt too wide) in paragraph at lines 3055--3060
+[]\OT1/cmr/bx/n/10.95 (-20) (i) $\OMS/cmsy/m/n/10.95 )$ \OT1/cmr/bx/n/10.95 (-2
+0) (ii): \OT1/cmr/m/n/10.95 (-20) Un-der Prodi--Serrin, $\OML/cmm/m/it/10.95 u 
+\OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 L[]L[]$ \OT1/cmr/m/n/10.95 (-20) im-p
+lies by H^^?older: $\OMS/cmsy/m/n/10.95 kr\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10
+.95 k[] ^^T \OML/cmm/m/it/10.95 r[]\OMS/cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 u\O
+MS/cmsy/m/n/10.95 k[] ^^T
  []
 
 [45]
-Overfull \hbox (24.33084pt too wide) in paragraph at lines 3319--3324
-[]$\OML/cmm/m/it/10.95 L[]$ \TU/lmr/bx/n/10.95 bound []: \TU/lmr/m/n/10.95 The 
-energy identity for the NS equations gives $\OMS/cmsy/m/n/10.95 kr\OML/cmm/m/it
-/10.95 u\OMS/cmsy/m/n/10.95 k[] ^^T \OML/cmm/m/it/10.95 C\OMS/cmsy/m/n/10.95 k\
-OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 k[]k\OT1/cmr/m/n/10.95 ^^A\OML/cmm/m/it
-/10.95 u\OMS/cmsy/m/n/10.95 k[]$
- []
-
-
-Overfull \hbox (4.4403pt too wide) in paragraph at lines 3349--3358
-\TU/lmr/m/n/10.95 bound more carefully: by Hölder in space, $[]  [][] \OMS/cmsy
-/m/n/10.95 jr\OML/cmm/m/it/10.95 u\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 t\OT1
-/cmr/m/n/10.95 )\OMS/cmsy/m/n/10.95 j[] ^^T kr\OML/cmm/m/it/10.95 u\OT1/cmr/m/n
-/10.95 (\OML/cmm/m/it/10.95 t\OT1/cmr/m/n/10.95 )\OMS/cmsy/m/n/10.95 k[] ^^T \O
-ML/cmm/m/it/10.95 C\OMS/cmsy/m/n/10.95 kr[]\OML/cmm/m/it/10.95 u\OT1/cmr/m/n/10
-.95 (\OML/cmm/m/it/10.95 t\OT1/cmr/m/n/10.95 )\OMS/cmsy/m/n/10.95 k[] \OT1/cmr/
-m/n/10.95 +
- []
-
-
-Overfull \hbox (65.95346pt too wide) in paragraph at lines 3349--3358
-\OML/cmm/m/it/10.95 Cr[]\OMS/cmsy/m/n/10.95 kr\OML/cmm/m/it/10.95 u\OT1/cmr/m/n
-/10.95 (\OML/cmm/m/it/10.95 t\OT1/cmr/m/n/10.95 )\OMS/cmsy/m/n/10.95 k[]$\TU/lm
-r/m/n/10.95 . Under $\OML/cmm/m/it/10.95 u \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/
-10.95 L[]$\TU/lmr/m/n/10.95 , the second-order bound gives $\OMS/cmsy/m/n/10.95
- kr\OML/cmm/m/it/10.95 u\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 t\OT1/cmr/m/n/1
-0.95 )\OMS/cmsy/m/n/10.95 k[] ^^T \OML/cmm/m/it/10.95 C\OMS/cmsy/m/n/10.95 k\OM
-L/cmm/m/it/10.95 u\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 t\OT1/cmr/m/n/10.95 )
-\OMS/cmsy/m/n/10.95 k[]kr[]\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 k[] ^^A
+Overfull \hbox (643.5024pt too wide) in paragraph at lines 3145--3222
+ [] 
  []
 
 [46]
-Overfull \hbox (24.96603pt too wide) in paragraph at lines 3418--3430
-\TU/lmr/m/n/10.95 and only if $[][]\OT1/cmr/m/n/10.95 [\OML/cmm/m/it/10.95 A\OT
-1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 r; z[]\OT1/cmr/m/n/10.95 ) + \OML/cmm/m/it
-/10.95 B\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 r; z[]\OT1/cmr/m/n/10.95 )[] + 
-\OMS/cmsy/m/n/10.95 C\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 r; z[]\OT1/cmr/m/n
-/10.95 )[]] \OMS/cmsy/m/n/10.95 ^^U \OML/cmm/m/it/10.95 "[]$\TU/lmr/m/n/10.95 .
- Since $\OML/cmm/m/it/10.95 A\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 r; z[]\OT1
-/cmr/m/n/10.95 ) = \OML/cmm/m/it/10.95 r[] [] [][] \OMS/cmsy/m/n/10.95 jr\OML/c
-mm/m/it/10.95 u\OMS/cmsy/m/n/10.95 j[] ^^U
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 3233.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\varepsilon' on input line 3233.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 3233.
+
+[47]
+Overfull \hbox (4.8554pt too wide) in paragraph at lines 3273--3277
+[]\OT1/cmr/m/n/10.95 (-20) At a CKN reg-u-lar point, The-o-rem []6.1[] gives $\
+OML/cmm/m/it/10.95 u \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 L[]\OT1/cmr/m/n/
+10.95 (-20) (\OML/cmm/m/it/10.95 Q\OT1/cmr/m/n/10.95 (-20) (\OML/cmm/m/it/10.95
+ r[]=\OT1/cmr/m/n/10.95 (-20) 2\OML/cmm/m/it/10.95 ; z[]\OT1/cmr/m/n/10.95 (-20
+) ))$ with $\OMS/cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 k[] ^
+^T
  []
 
-[47] [48] [49] [50]
-Overfull \hbox (10.81995pt too wide) in paragraph at lines 3702--3705
-[][]\TU/lmr/bx/n/10.95 Lemma 19.4 \TU/lmr/m/n/10.95 (Convective forcing bound)\
-TU/lmr/bx/n/10.95 . []\TU/lmr/m/it/10.95 The convective component $\OML/cmm/m/i
-t/10.95 F[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 r; t\OT1/cmr/m/n/10.95 ) = [
-][][][](\OML/cmm/m/it/10.95 u \OMS/cmsy/m/n/10.95 
-
- []
-
-[51]
-Overfull \hbox (23.78279pt too wide) in paragraph at lines 3803--3803
-[]\TU/lmr/bx/n/14.4 Scale-Recursive Inequality and the No-Concentration-Cascade
-
- []
-
-[52]
-Overfull \hbox (32.53276pt too wide) in paragraph at lines 3870--3878
-[]\TU/lmr/bx/n/10.95 Estimate []. \TU/lmr/m/n/10.95 Since $\OML/cmm/m/it/10.95 
-p[]$ \TU/lmr/m/n/10.95 is harmonic in $\OML/cmm/m/it/10.95 B[]$\TU/lmr/m/n/10.9
-5 , the mean-value property gives $\OMS/cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 p[]
-\OMS/cmsy/m/n/10.95 k[] ^^T
+[48]
+Overfull \hbox (19.41422pt too wide) in paragraph at lines 3345--3350
+[]$\OML/cmm/m/it/10.95 L[]$ \OT1/cmr/bx/n/10.95 (-20) bound []: \OT1/cmr/m/n/10
+.95 (-20) The en-ergy iden-tity for the NS equa-tions gives $\OMS/cmsy/m/n/10.9
+5 kr\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 k[] ^^T \OML/cmm/m/it/10.95 C\OMS/
+cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 k[]k\OT1/cmr/m/n/10.95
+ (-20) ^^A\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 k[]$
  []
 
 
-Overfull \hbox (53.52592pt too wide) in paragraph at lines 3879--3884
-[]\TU/lmr/bx/n/10.95 Estimate []. \TU/lmr/m/n/10.95 Apply Hölder with exponents
- $\OT1/cmr/m/n/10.95 (5\OML/cmm/m/it/10.95 =\OT1/cmr/m/n/10.95 3\OML/cmm/m/it/1
-0.95 ; \OT1/cmr/m/n/10.95 5\OML/cmm/m/it/10.95 =\OT1/cmr/m/n/10.95 2)$ \TU/lmr/
-m/n/10.95 on $\OML/cmm/m/it/10.95 B[]$\TU/lmr/m/n/10.95 : $\OMS/cmsy/m/n/10.95 
-k\OML/cmm/m/it/10.95 p\OMS/cmsy/m/n/10.95 k[] ^^T j\OML/cmm/m/it/10.95 B[]\OMS/
-cmsy/m/n/10.95 j[]k\OML/cmm/m/it/10.95 p\OMS/cmsy/m/n/10.95 k[] ^^T
+Overfull \hbox (62.14471pt too wide) in paragraph at lines 3375--3384
+\OML/cmm/m/it/10.95 Cr[]\OMS/cmsy/m/n/10.95 kr\OML/cmm/m/it/10.95 u\OT1/cmr/m/n
+/10.95 (-20) (\OML/cmm/m/it/10.95 t\OT1/cmr/m/n/10.95 (-20) )\OMS/cmsy/m/n/10.9
+5 k[]$\OT1/cmr/m/n/10.95 (-20) . Un-der $\OML/cmm/m/it/10.95 u \OMS/cmsy/m/n/10
+.95 2 \OML/cmm/m/it/10.95 L[]$\OT1/cmr/m/n/10.95 (-20) , the second-order bound
+ gives $\OMS/cmsy/m/n/10.95 kr\OML/cmm/m/it/10.95 u\OT1/cmr/m/n/10.95 (-20) (\O
+ML/cmm/m/it/10.95 t\OT1/cmr/m/n/10.95 (-20) )\OMS/cmsy/m/n/10.95 k[] ^^T \OML/c
+mm/m/it/10.95 C\OMS/cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 u\OT1/cmr/m/n/10.95 (-2
+0) (\OML/cmm/m/it/10.95 t\OT1/cmr/m/n/10.95 (-20) )\OMS/cmsy/m/n/10.95 k[]kr[]\
+OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 k[] ^^A
+ []
+
+[49] [50] [51] [52] [53]
+Overfull \hbox (4.76263pt too wide) in paragraph at lines 3728--3731
+[][]\OT1/cmr/bx/n/10.95 (-20) Lemma 19.4 \OT1/cmr/m/n/10.95 (-20) (Con-vec-tive
+ forc-ing bound)\OT1/cmr/bx/n/10.95 (-20) . []\OT1/cmr/m/it/10.95 (-20) The con
+-vec-tive com-po-nent $\OML/cmm/m/it/10.95 F[]\OT1/cmr/m/n/10.95 (-20) (\OML/cm
+m/m/it/10.95 r; t\OT1/cmr/m/n/10.95 (-20) ) = [][][][](\OML/cmm/m/it/10.95 u \O
+MS/cmsy/m/n/10.95 
+
+ []
+
+[54]
+Overfull \hbox (17.02365pt too wide) in paragraph at lines 3829--3829
+[]\OT1/cmr/bx/n/14.4 (-20) Scale-Recursive In-equal-ity and the No-Concentratio
+n-Cascade
+ []
+
+[55]
+Overfull \hbox (27.0409pt too wide) in paragraph at lines 3896--3904
+[]\OT1/cmr/bx/n/10.95 (-20) Estimate []. \OT1/cmr/m/n/10.95 (-20) Since $\OML/c
+mm/m/it/10.95 p[]$ \OT1/cmr/m/n/10.95 (-20) is har-monic in $\OML/cmm/m/it/10.9
+5 B[]$\OT1/cmr/m/n/10.95 (-20) , the mean-value prop-erty gives $\OMS/cmsy/m/n/
+10.95 k\OML/cmm/m/it/10.95 p[]\OMS/cmsy/m/n/10.95 k[] ^^T
  []
 
 
-Overfull \hbox (49.07211pt too wide) detected at line 3920
+Overfull \hbox (48.85806pt too wide) in paragraph at lines 3905--3910
+[]\OT1/cmr/bx/n/10.95 (-20) Estimate []. \OT1/cmr/m/n/10.95 (-20) Ap-ply H^^?ol
+der with ex-po-nents $(5\OML/cmm/m/it/10.95 =\OT1/cmr/m/n/10.95 (-20) 3\OML/cmm
+/m/it/10.95 ; \OT1/cmr/m/n/10.95 (-20) 5\OML/cmm/m/it/10.95 =\OT1/cmr/m/n/10.95
+ (-20) 2)$ on $\OML/cmm/m/it/10.95 B[]$\OT1/cmr/m/n/10.95 (-20) : $\OMS/cmsy/m/
+n/10.95 k\OML/cmm/m/it/10.95 p\OMS/cmsy/m/n/10.95 k[] ^^T j\OML/cmm/m/it/10.95 
+B[]\OMS/cmsy/m/n/10.95 j[]k\OML/cmm/m/it/10.95 p\OMS/cmsy/m/n/10.95 k[] ^^T
+ []
+
+
+Overfull \hbox (49.07219pt too wide) detected at line 3946
 [] [] [][] \OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 p[]\OMS/cmsy/m/n/10.95 jj\O
 ML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 j  ^^T  [] ^^A k\OML/cmm/m/it/10.95 p[]\
 OMS/cmsy/m/n/10.95 k[] ^^A j\OML/cmm/m/it/10.95 Q\OT1/cmr/m/n/10.95 (2\OML/cmm/
@@ -986,17 +1011,636 @@ OML/cmm/m/it/10.95 r[] \OMS/cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 u[]\OMS/cmsy/m/
 n/10.95 k[]  \OT1/cmr/m/n/10.95 =  \OML/cmm/m/it/10.95 C r[];
  []
 
-[53] [54] [55] [56] [57]
-Overfull \hbox (2.09586pt too wide) in paragraph at lines 4288--4292
-[]\TU/lmr/bx/n/10.95 Step 1 (Biot–Savart without pressure). \TU/lmr/m/n/10.95 B
-y Biot–Savart on $\U/msb/m/n/10.95 T[]$\TU/lmr/m/n/10.95 , $\OMS/cmsy/m/n/10.95
- r\OML/cmm/m/it/10.95 u \OT1/cmr/m/n/10.95 = \OMS/cmsy/m/n/10.95 r\OT1/cmr/m/n/
-10.95 ^^A[] [] \OML/cmm/m/it/10.95 !$
+[56] [57] [58] [59] [60] [61] [62] [63] [64] [65] [66]
+Overfull \hbox (69.655pt too wide) detected at line 4776
+\OML/cmm/m/it/10.95 Z\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 r\OT1/cmr/m/n/10.9
+5 ) \OMS/cmsy/m/n/10.95 ^^T \OML/cmm/m/it/10.95 D \OMS/cmsy/m/n/10.95 ^^A \OML/
+cmm/m/it/10.95 r[]  \OMS/cmsy/m/n/10.95 )  \OML/cmm/m/it/10.95 ^^W\OMS/cmsy/m/n
+/10.95 jr\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 j[] 2 \OML/cmm/m/it/10.95 L[]
+  \OMS/cmsy/m/n/10.95 )  [] \OML/cmm/m/it/10.95 M[] dt < \OMS/cmsy/m/n/10.95 1 
+ )  [] \OML/cmm/m/it/10.95 M dt < \OMS/cmsy/m/n/10.95 1  )  \OML/cmm/m/it/10.95
+ ^^[ < \OMS/cmsy/m/n/10.95 1  )  \OML/cmm/m/it/10.95 M < \OMS/cmsy/m/n/10.95 1 
+ )  \OML/cmm/m/it/10.95 u \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 C[]:
  []
 
-[58] [59] [60] [61] [62] (claim_a_3d_proof_attempt.aux)
-Package rerunfilecheck Info: File `claim_a_3d_proof_attempt.out' has not change
-d.
-(rerunfilecheck)             Checksum: FE7C7C6886C818C4EDB77B68484B86D3;25970.
- )
-Output written on claim_a_3d_proof_attempt.xdv (62 pages, 1286520 bytes).
+[67] [68] [69] [70]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 5047.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 5047.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 5047.
+
+[71] [72]
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `cmtt' (encoding: OT1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+
+Overfull \hbox (76.40797pt too wide) in paragraph at lines 5159--5161
+[][]\OT1/cmr/m/it/10.95 (-20) Observation \OT1/cmr/m/n/10.95 (-20) 24.8 (Com-pu
+-ta-tional Ev-i-dence | S31)\OT1/cmr/m/it/10.95 (-20) . []\OT1/cmr/m/n/10.95 (-
+20) Nu-mer-i-cal ex-per-i-ments (\OT1/cmtt/m/n/10.95 layer4/axisymmetry[]defect
+.py\OT1/cmr/m/n/10.95 (-20) ,
+ []
+
+[73] [74] [75] [76]
+Overfull \hbox (12.68839pt too wide) in paragraph at lines 5433--5439
+[]\OT1/cmr/m/n/10.95 (-20) On $\OMS/cmsy/m/n/10.95 fj\OML/cmm/m/it/10.95 !\OMS/
+cmsy/m/n/10.95 j ^^U \OML/cmm/m/it/10.95 M=\OT1/cmr/m/n/10.95 (-20) 4\OMS/cmsy/
+m/n/10.95 g$ \OT1/cmr/m/n/10.95 (-20) we have $\OMS/cmsy/m/n/10.95 j\OML/cmm/m/
+it/10.95 !\OMS/cmsy/m/n/10.95 j[] ^^U \OML/cmm/m/it/10.95 M[]=\OT1/cmr/m/n/10.9
+5 (-20) 16$, so $[][] \OMS/cmsy/m/n/10.95 jr[]j[]\OT1/cmr/bx/n/10.95 (-20) 1 \O
+ML/cmm/m/it/10.95 dx \OMS/cmsy/m/n/10.95 ^^T \OT1/cmr/m/n/10.95 (-20) (16\OML/c
+mm/m/it/10.95 =M[]\OT1/cmr/m/n/10.95 (-20) ) [] \OMS/cmsy/m/n/10.95 j\OML/cmm/m
+/it/10.95 !\OMS/cmsy/m/n/10.95 j[]jr[]j[]\OML/cmm/m/it/10.95 '[] dx \OT1/cmr/m/
+n/10.95 (-20) =
+ []
+
+[77] [78] [79]
+Overfull \hbox (34.94618pt too wide) in paragraph at lines 5667--5671
+\OT1/cmr/m/it/10.95 (-20) Consequently, ap-ply-ing Young's in-equal-ity with pa
+-ram-e-ter $[]$ to ev-ery prod-uct $\OMS/cmsy/m/n/10.95 jr[][]j ^^B \OT1/cmr/m/
+n/10.95 (-20) ([])$\OT1/cmr/m/it/10.95 (-20) ,
+ []
+
+[80]
+Overfull \hbox (36.96912pt too wide) detected at line 5750
+[]
+ []
+
+[81]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 5809.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 5809.
+
+
+Overfull \hbox (18.33676pt too wide) detected at line 5845
+[][][]\OML/cmm/m/it/10.95 ^^W [] [] m[]w ^^Q[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/
+it/10.95 ^^W [] [] \OMS/cmsy/m/n/10.95 jr\OML/cmm/m/it/10.95 m\OMS/cmsy/m/n/10.
+95 j[]\OML/cmm/m/it/10.95 ^^Q[] \OT1/cmr/m/n/10.95 + [] [] [] \OML/cmm/m/it/10.
+95 m[]^^Q[]  \OMS/cmsy/m/n/10.95 ^^T  [] [] \OML/cmm/m/it/10.95  m[]^^Q[] \OT1
+/cmr/m/n/10.95 + [] [] [] \OML/cmm/m/it/10.95 m[] []D[]\OT1/cmr/m/n/10.95 (\OML
+/cmm/m/it/10.95 ^^Q[]\OT1/cmr/m/n/10.95 )[] + \OML/cmm/m/it/10.95 ^^W [] [] m[]
+\OMS/cmsy/m/n/10.95 jr\OML/cmm/m/it/10.95 ^^Q\OMS/cmsy/m/n/10.95 j[]\OML/cmm/m/
+it/10.95 :
+ []
+
+[82]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 5900.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 5900.
+
+[83]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 5966.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 5966.
+
+[84]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 6019.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 6019.
+
+
+Overfull \hbox (30.16925pt too wide) in paragraph at lines 6046--6056
+[]\OT1/cmr/m/n/10.95 (-20) The vis-cous term gives $\OML/cmm/m/it/10.95 ^^W [] 
+[] \OT1/cmr/m/n/10.95 (-20) ^^A\OML/cmm/m/it/10.95 m \OMS/cmsy/m/n/10.95 ^^A \O
+ML/cmm/m/it/10.95 mw^^Q[] \OT1/cmr/m/n/10.95 (-20) = \OMS/cmsy/m/n/10.95 ^^@\OM
+L/cmm/m/it/10.95 ^^W [] [] \OMS/cmsy/m/n/10.95 jr\OML/cmm/m/it/10.95 m\OMS/cmsy
+/m/n/10.95 j[]\OML/cmm/m/it/10.95 w^^Q[] \OMS/cmsy/m/n/10.95 ^^@
+ []
+
+[85]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 6144.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\alpha' on input line 6144.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 6144.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 6160.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 6160.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 6160.
+
+[86]
+Overfull \hbox (40.20761pt too wide) in paragraph at lines 6205--6213
+\OMS/cmsy/m/n/10.95 jr[]\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 jjr[]j$ \OT1/c
+mr/m/it/10.95 (-20) part, af-ter the near/far Biot--Savart split and Cauchy--Sc
+hwarz, is $\OMS/cmsy/m/n/10.95 ^^T \OML/cmm/m/it/10.95 C \OMS/cmsy/m/n/10.95 L[
+]\OT1/cmr/m/n/10.95 (-20) (\OML/cmm/m/it/10.95 ^^[[]\OT1/cmr/m/n/10.95 (-20) )[
+]\OML/cmm/m/it/10.95 ^^W[]M[]$\OT1/cmr/m/it/10.95 (-20) .
+ []
+
+[87]
+Overfull \hbox (29.20215pt too wide) in paragraph at lines 6308--6323
+ [] 
+ []
+
+[88]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 6351.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\sigma' on input line 6351.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 6351.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 6351.
+
+
+Overfull \hbox (9.13602pt too wide) detected at line 6405
+\OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 D\OT1/cmr/m/n/10.95 ([](\OML/cmm/m/it/
+10.95 x[]\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; []\OT1/cmr/m/n/10.95 (\OML/c
+mm/m/it/10.95 x[] \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 y\OT1/cmr/m/n/10.
+95 )\OML/cmm/m/it/10.95 ; ^^[\OT1/cmr/m/n/10.95 )\OMS/cmsy/m/n/10.95 j \OT1/cmr
+/m/n/10.95 = \OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 D\OT1/cmr/m/n/10.95 ([](\
+OML/cmm/m/it/10.95 x[]\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; []\OT1/cmr/m/n/
+10.95 (\OML/cmm/m/it/10.95 x[] \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 y\OT
+1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; ^^[\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10
+.95 ^^@ \OML/cmm/m/it/10.95 D\OT1/cmr/m/n/10.95 ([](\OML/cmm/m/it/10.95 x[]\OT1
+/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; []\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95
+ x[]\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; ^^[\OT1/cmr/m/n/10.95 )\OMS/cmsy/
+m/n/10.95 j ^^T \OML/cmm/m/it/10.95 C K\OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95
+ y\OMS/cmsy/m/n/10.95 j \OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/
+10.95 y\OMS/cmsy/m/n/10.95 j \OML/cmm/m/it/10.95 < ^^Z[] \OMS/cmsy/m/n/10.95 ^^
+T \OML/cmm/m/it/10.95 ^^Z\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 :
+ []
+
+[89]
+Overfull \hbox (25.54205pt too wide) in paragraph at lines 6409--6414
+[]\OT1/cmr/bx/n/10.95 (-20) Far field \OT1/cmr/m/n/10.95 (-20) ($\OMS/cmsy/m/n/
+10.95 j\OML/cmm/m/it/10.95 y\OMS/cmsy/m/n/10.95 j ^^U \OML/cmm/m/it/10.95 ^^Z[]
+$\OT1/cmr/m/n/10.95 (-20) ): by Cauchy--Schwarz, $[][] \OMS/cmsy/m/n/10.95 j\OM
+L/cmm/m/it/10.95 !\OT1/cmr/m/n/10.95 (-20) (\OML/cmm/m/it/10.95 x[] \OMS/cmsy/m
+/n/10.95 ^^@ \OML/cmm/m/it/10.95 y\OT1/cmr/m/n/10.95 (-20) )\OMS/cmsy/m/n/10.95
+ j\OML/cmm/m/it/10.95 =\OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 y\OMS/cmsy/m/n/
+10.95 j[] \OML/cmm/m/it/10.95 dy \OMS/cmsy/m/n/10.95 ^^T [][][] j\OML/cmm/m/it/
+10.95 y\OMS/cmsy/m/n/10.95 j[]\OML/cmm/m/it/10.95 dy[][]\OMS/cmsy/m/n/10.95 k\O
+ML/cmm/m/it/10.95 !\OMS/cmsy/m/n/10.95 k[] \OT1/cmr/m/n/10.95 (-20) =
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 6421.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\Omega' on input line 6421.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 6421.
+
+[90]
+Overfull \hbox (30.54453pt too wide) in paragraph at lines 6492--6505
+ [] 
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 6508.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\sigma' on input line 6508.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 6508.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 6508.
+
+[91]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 6560.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\sigma' on input line 6560.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 6560.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 6560.
+
+[92]
+Overfull \hbox (73.32053pt too wide) in paragraph at lines 6642--6655
+ [] 
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 6658.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\sigma' on input line 6658.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 6658.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 6658.
+
+[93] [94] [95]
+Overfull \hbox (2.83786pt too wide) detected at line 6852
+\OML/cmm/m/it/10.95 r[] [] [][] \OMS/cmsy/m/n/10.95 jr\OML/cmm/m/it/10.95 u\OMS
+/cmsy/m/n/10.95 j[] \OML/cmm/m/it/10.95 dx dt  \OMS/cmsy/m/n/10.95 ^^U  \OML/cm
+m/m/it/10.95 "[];  [] r[] [] [][] \OMS/cmsy/m/n/10.95 jr\OML/cmm/m/it/10.95 u\O
+MS/cmsy/m/n/10.95 j[] \OML/cmm/m/it/10.95 dx dt  \OT1/cmr/m/n/10.95 =  [] [][] 
+\OMS/cmsy/m/n/10.95 jr\OML/cmm/m/it/10.95 u[]\OMS/cmsy/m/n/10.95 j[] \OML/cmm/m
+/it/10.95 dy ds;
+ []
+
+[96]
+Overfull \hbox (7.22693pt too wide) detected at line 6994
+[][][]\OMS/cmsy/m/n/10.95 h\OML/cmm/m/it/10.95 ^^[[]\OMS/cmsy/m/n/10.95 i\OT1/c
+mr/m/n/10.95 (\OML/cmm/m/it/10.95 s[]\OT1/cmr/m/n/10.95 )  :=  (\OML/cmm/m/it/1
+0.95 r[]\OT1/cmr/m/n/10.95 )[] [] [][] \OMS/cmsy/m/n/10.95 jr[]j[] \OT1/cmr/bx/
+n/10.95 1[] \OML/cmm/m/it/10.95 dy ds  \OMS/cmsy/m/n/10.95 ^^T  \OML/cmm/m/it/1
+0.95 C\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 c[]\OT1/cmr/m/n/10.95 )\OML/cmm/m
+/it/10.95 ;  r[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 M[]\OT1/cmr/m/n/10.95
+ (\OML/cmm/m/it/10.95 s[]\OT1/cmr/m/n/10.95 )[]\OML/cmm/m/it/10.95 ;
+ []
+
+[97]
+Overfull \hbox (29.34724pt too wide) in paragraph at lines 7048--7060
+[][]\OT1/cmr/bx/n/10.95 (-20) Proposition []31.2[]
+ []
+
+[98]
+Overfull \hbox (2.08504pt too wide) in paragraph at lines 7130--7135
+[][]\OT1/cmr/m/n/10.95 (-20) The derivative-level ob-struc-tion is \OT1/cmr/bx/
+n/10.95 (-20) real
+ []
+
+[99]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7161.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\sigma' on input line 7161.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 7161.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7161.
+
+[100] [101] [102] [103]
+Overfull \hbox (7.2043pt too wide) in paragraph at lines 7522--7535
+[][]\OT1/cmr/m/it/10.95 (-20) Average-
+ []
+
+[104] [105]
+Overfull \hbox (40.85168pt too wide) in paragraph at lines 7650--7682
+ [] 
+ []
+
+[106] [107] [108] [109]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7968.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\chi' on input line 7968.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 7968.
+
+
+Overfull \hbox (10.54926pt too wide) in paragraph at lines 7998--8008
+[]\OT1/cmr/m/n/10.95 (-20) Multiply [] by $\OML/cmm/m/it/10.95 mw^^Q[]$ \OT1/cm
+r/m/n/10.95 (-20) and in-te-grate: $[] [](\OML/cmm/m/it/10.95 D[]m\OT1/cmr/m/n/
+10.95 (-20) )\OML/cmm/m/it/10.95 mw^^Q[] \OT1/cmr/m/n/10.95 (-20) = [] [] \OML/
+cmm/m/it/10.95 m[]w^^Q[] \OT1/cmr/m/n/10.95 (-20) + \OML/cmm/m/it/10.95 ^^W []
+ []\OT1/cmr/m/n/10.95 (-20) (^^A\OML/cmm/m/it/10.95 m\OT1/cmr/m/n/10.95 (-20) )
+\OML/cmm/m/it/10.95 mw^^Q[] \OMS/cmsy/m/n/10.95 ^^@
+ []
+
+[110]
+Overfull \hbox (63.10707pt too wide) in paragraph at lines 8023--8027
+[]\OT1/cmr/m/it/10.95 (-20) from $\OML/cmm/m/it/10.95 R[]$ \OT1/cmr/m/it/10.95 
+(-20) through $\OML/cmm/m/it/10.95 ^^W\OT1/cmr/m/n/10.95 (-20) ^^A\OML/cmm/m/it
+/10.95 m$\OT1/cmr/m/it/10.95 (-20) , af-ter one in-te-gra-tion by parts, the $\
+OT1/cmr/m/n/10.95 (-20) (\OML/cmm/m/it/10.95 ^^_[]\OT1/cmr/m/n/10.95 (-20) )[]$
+ \OT1/cmr/m/it/10.95 (-20) piece: $\OMS/cmsy/m/n/10.95 ^^@[] [] [] \OML/cmm/m/i
+t/10.95 m[]w \OMS/cmsy/m/n/10.95 jr\OML/cmm/m/it/10.95 m\OMS/cmsy/m/n/10.95 j[]
+ \OML/cmm/m/it/10.95  [] \OT1/cmr/m/n/10.95 (-20) (\OML/cmm/m/it/10.95 ^^_[]\OT
+1/cmr/m/n/10.95 (-20) )[]  \OMS/cmsy/m/n/10.95 ^^T
+ []
+
+
+Overfull \hbox (40.98306pt too wide) in paragraph at lines 8032--8037
+[]\OT1/cmr/m/it/10.95 (-20) from $\OML/cmm/m/it/10.95 R[]$ \OT1/cmr/m/it/10.95 
+(-20) through $\OML/cmm/m/it/10.95 m$\OT1/cmr/m/it/10.95 (-20) : $[] [] [] \OM
+L/cmm/m/it/10.95  m[]w  [] ^^_^^_[]$\OT1/cmr/m/it/10.95 (-20) , bounded in ab-
+so-lute value by $\OMS/cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 ^^_^^_[]\OMS/cmsy/m/
+n/10.95 k[] kr\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 k[]\OML/cmm/m/it/10.95 ^
+^W[]\OMS/cmsy/m/n/10.95 E ^^T
+ []
+
+
+Overfull \hbox (31.10075pt too wide) in paragraph at lines 8046--8052
+\OML/cmm/m/it/10.95 ^^W\OT1/cmr/m/n/10.95 (-20) ^^A\OML/cmm/m/it/10.95 @[][]$ \
+OT1/cmr/m/it/10.95 (-20) piece of the dif-fer-en-ti-ated di-rec-tion equa-tion,
+ cf. Lemma []27.5[](a)): $[] [] [] \OML/cmm/m/it/10.95 m[]  [] ^^_^^_[] \OMS/cm
+sy/m/n/10.95 r\OML/cmm/m/it/10.95 m \OMS/cmsy/m/n/10.95 ^^A
+ []
+
+[111]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 8122.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\delta' on input line 8122.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 8122.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 8122.
+
+
+Overfull \hbox (8.17657pt too wide) in paragraph at lines 8168--8175
+\OT1/cmr/m/n/10.95 (-20) Young's in-equal-ity $4\OML/cmm/m/it/10.95 XZ \OMS/cms
+y/m/n/10.95 ^^T \OML/cmm/m/it/10.95 ^^N[]X[] \OT1/cmr/m/n/10.95 (-20) + 4\OML/c
+mm/m/it/10.95 ^^N[]Z[]$ \OT1/cmr/m/n/10.95 (-20) with $\OML/cmm/m/it/10.95 X \O
+T1/cmr/m/n/10.95 (-20) = \OML/cmm/m/it/10.95 m\OMS/cmsy/m/n/10.95 jr[][]j \OML/
+cmm/m/it/10.95  \OT1/cmr/bx/n/10.95 (-20) 1[]$ \OT1/cmr/m/n/10.95 (-20) and $\O
+ML/cmm/m/it/10.95 Z \OT1/cmr/m/n/10.95 (-20) = []\OML/cmm/m/it/10.95 ^^_[]^^_[]
+\OMS/cmsy/m/n/10.95 jr\OML/cmm/m/it/10.95 m\OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/1
+0.95 w[] $
+ []
+
+
+Overfull \hbox (48.96655pt too wide) detected at line 8182
+\OMS/cmsy/m/n/10.95 j[][]j  ^^T  \OML/cmm/m/it/10.95 ^^N[] ^^W [] [] m[]\OMS/cm
+sy/m/n/10.95 jr[][]j[]\OML/cmm/m/it/10.95  []\OT1/cmr/bx/n/10.95 1[]  \OT1/cmr/
+m/n/10.95 +  4\OML/cmm/m/it/10.95 ^^N[] [] [] [] m[]\OT1/cmr/m/n/10.95 (\OML/cm
+m/m/it/10.95 ^^_[]^^_[]\OT1/cmr/m/n/10.95 )[]\OMS/cmsy/m/n/10.95 jr\OML/cmm/m/i
+t/10.95 m\OMS/cmsy/m/n/10.95 j[]\OML/cmm/m/it/10.95 w  []  \OMS/cmsy/m/n/10.95 
+^^T  \OML/cmm/m/it/10.95 ^^N[]M[]D[] \OT1/cmr/m/n/10.95 + 2[]\OML/cmm/m/it/10.9
+5 ^^N[]\OT1/cmr/m/n/10.95 4[]\OML/cmm/m/it/10.95 Y[];
+ []
+
+[112] [113]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 8286.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\to' on input line 8286.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\infty' on input line 8286.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 8286.
+
+[114]
+Overfull \hbox (19.608pt too wide) detected at line 8407
+\OMS/cmsy/m/n/10.95 A[]  ^^T  \OML/cmm/m/it/10.95 ^^N M[]D[]  \OT1/cmr/m/n/10.9
+5 +  \OML/cmm/m/it/10.95 C[]\OT1/cmr/m/n/10.95 1 + \OML/cmm/m/it/10.95 ^^N[][] 
+\OMS/cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 w\OMS/cmsy/m/n/10.95 k[] E  ^^T  \OML/
+cmm/m/it/10.95 C[]\OT1/cmr/m/n/10.95 1 + \OML/cmm/m/it/10.95 ^^N[][] \OMS/cmsy/
+m/n/10.95 L k\OML/cmm/m/it/10.95 w\OMS/cmsy/m/n/10.95 k[] \OML/cmm/m/it/10.95 M
+[]  \OT1/cmr/m/n/10.95 +  \OML/cmm/m/it/10.95 ^^NM[]D[];
+ []
+
+[115] [116]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 8541.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 8541.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 8541.
+
+
+Overfull \hbox (105.69931pt too wide) in paragraph at lines 8545--8563
+ [] 
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 8587.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 8587.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 8587.
+
+[117]
+Overfull \hbox (52.0423pt too wide) detected at line 8675
+\OML/cmm/m/it/10.95 Q[]  \OT1/cmr/m/n/10.95 :=  \OML/cmm/m/it/10.95 Q\OT1/cmr/m
+/n/10.95 (\OML/cmm/m/it/10.95 ^^Z[]\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 \ f
+\OML/cmm/m/it/10.95 m \OMS/cmsy/m/n/10.95 ^^U \OML/cmm/m/it/10.95 M=\OT1/cmr/m/
+n/10.95 16\OMS/cmsy/m/n/10.95 g\OML/cmm/m/it/10.95 ;  E  \OT1/cmr/m/n/10.95 =  
+\OML/cmm/m/it/10.95 Q\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 r[]\OT1/cmr/m/n/10
+.95 ) \OMS/cmsy/m/n/10.95 \ f\OML/cmm/m/it/10.95 m \OMS/cmsy/m/n/10.95 ^^U \OML
+/cmm/m/it/10.95 M=\OT1/cmr/m/n/10.95 4\OMS/cmsy/m/n/10.95 g\OML/cmm/m/it/10.95 
+;  []  \OT1/cmr/m/n/10.95 =  \OMS/cmsy/m/n/10.95 f\OML/cmm/m/it/10.95 ^^R[]M \O
+MS/cmsy/m/n/10.95 ^^T \OML/cmm/m/it/10.95 m \OMS/cmsy/m/n/10.95 ^^T \OML/cmm/m/
+it/10.95 ^^R[]M\OMS/cmsy/m/n/10.95 g \ [] \OML/cmm/m/it/10.95  ;
+ []
+
+[118]
+Overfull \hbox (3.51476pt too wide) in paragraph at lines 8731--8738
+[]\OT1/cmr/m/n/10.95 (-20) Writing out the two av-er-ages in Con-jec-ture []28.
+5[] gives $\OML/cmm/m/it/10.95 c[] \OT1/cmr/m/n/10.95 (-20) = \OMS/cmsy/m/n/10.
+95 j\OML/cmm/m/it/10.95 E\OMS/cmsy/m/n/10.95 j [] [][] jr\OML/cmm/m/it/10.95 m\
+OMS/cmsy/m/n/10.95 j[]\OML/cmm/m/it/10.95 w[][][] [][] \OMS/cmsy/m/n/10.95 jr\O
+ML/cmm/m/it/10.95 m\OMS/cmsy/m/n/10.95 j[] ^^A
+ []
+
+[119] [120] [121]
+Overfull \hbox (63.283pt too wide) detected at line 8998
+\OML/cmm/m/it/10.95 ^^W [] [][] \OMS/cmsy/m/n/10.95 jr\OML/cmm/m/it/10.95 m\OMS
+/cmsy/m/n/10.95 j[]\OML/cmm/m/it/10.95 w  []  \OMS/cmsy/m/n/10.95 ^^U  [] \OT1/
+cmr/m/n/10.95 ^^@\OML/cmm/m/it/10.95 ;  ^^W [] [] \OMS/cmsy/m/n/10.95 jr\OML/cm
+m/m/it/10.95 m\OMS/cmsy/m/n/10.95 j[]\OML/cmm/m/it/10.95 w ^^Q[]  \OMS/cmsy/m/n
+/10.95 ^^T  \OT1/cmr/m/n/10.95 8 ^^@\OML/cmm/m/it/10.95 ;  M[]^^W [] [] h ^^Q[]
+  \OT1/cmr/m/n/10.95 +  \OMS/cmsy/m/n/10.95 I[]  ^^T  \OML/cmm/m/it/10.95 C[][]
+[][][] \OT1/cmr/m/n/10.95 + [][][][][]^^@\OML/cmm/m/it/10.95 :
+ []
+
+[122] [123] [124] [125] [126] [127] [128] [129]
+Overfull \hbox (213.83548pt too wide) in paragraph at lines 9657--9704
+ [] 
+ []
+
+[130] [131] [132] [133] [134] [135] [136]
+Overfull \hbox (55.79733pt too wide) detected at line 10235
+[]\OMS/cmsy/m/n/10.95 r[]\OML/cmm/m/it/10.95 @[]u[]\OT1/cmr/m/n/10.95 (\OMS/cms
+y/m/n/10.95 ^^A\OML/cmm/m/it/10.95 ; s[]\OT1/cmr/m/n/10.95 )[][]  \OMS/cmsy/m/n
+/10.95 ^^T  \OML/cmm/m/it/10.95 C\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 k; l\O
+T1/cmr/m/n/10.95 ) \OML/cmm/m/it/10.95 A ^^\[]  \OT1/cmr/m/n/10.95 =  \OML/cmm/
+m/it/10.95 C\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 k; l\OT1/cmr/m/n/10.95 ) \O
+ML/cmm/m/it/10.95 c[]S[] [][][]"\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 k; l\OT
+1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 c[]; [][]S[][]  \OT1/cmr/m/n/10.95 =  \OML
+/cmm/m/it/10.95 C[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 c[]\OT1/cmr/m/n/10.9
+5 ) \OML/cmm/m/it/10.95 S[];
+ []
+
+[137]
+Overfull \hbox (1.05118pt too wide) in paragraph at lines 10242--10246
+[]\OT1/cmr/m/it/10.95 (-20) Dimensional check. \OT1/cmr/m/n/10.95 (-20) In unit
+s $\OML/cmm/m/it/10.95 ^^W \OT1/cmr/m/n/10.95 (-20) = 1$ (Re-mark []33.1[]), $[
+\OMS/cmsy/m/n/10.95 r[]\OML/cmm/m/it/10.95 @[]u\OT1/cmr/m/n/10.95 (-20) ] = \OM
+L/cmm/m/it/10.95 L[]$ \OT1/cmr/m/n/10.95 (-20) and $[\OMS/cmsy/m/n/10.95 j\OML/
+cmm/m/it/10.95 s\OMS/cmsy/m/n/10.95 j[]\OT1/cmr/m/n/10.95 (-20) ] =
+ []
+
+[138]
+Overfull \hbox (2.78702pt too wide) in paragraph at lines 10401--10405
+[][]\OT1/cmr/m/it/10.95 (-20) Observation \OT1/cmr/m/n/10.95 (-20) 36.19 (The s
+ame es-ti-mate ap-plies to $\OML/cmm/m/it/10.95 u$ \OT1/cmr/m/n/10.95 (-20) it-
+self --- recorded, not claimed)\OT1/cmr/m/it/10.95 (-20) . []\OT1/cmr/m/n/10.95
+ (-20) Lemma []36.15[]
+ []
+
+[139]
+Overfull \hbox (30.48871pt too wide) in paragraph at lines 10449--10477
+ [] 
+ []
+
+[140] [141] [142] [143] [144] [145] [146] [147] [148]
+Underfull \hbox (badness 1412) in paragraph at lines 11108--11109
+[]\OT1/cmr/bx/n/10 (+20) Withdrawn \OT1/cmr/m/n/10 (+20) (ex-act can-cel-la-
+ []
+
+[149] [150] [151] [152] (/tmp/verifybuild/claim_a_3d_proof_attempt.aux)
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+ ***********
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `claim_a_3d_proof_attempt.out' has changed
+.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `claim_a_3d_proof_attempt.out':
+(rerunfilecheck)             Before: FF6D36847FEBE401C569A7EBD72D7B5F;64001
+(rerunfilecheck)             After:  AC92BB910D2A72A693F38A7C7C4A57B7;64046.
+ ) 
+Here is how much of TeX's memory you used:
+ 16187 strings out of 476106
+ 246264 string characters out of 5793933
+ 1948975 words of memory out of 5000000
+ 36329 multiletter control sequences out of 15000+600000
+ 594301 words of font info for 367 fonts, out of 8000000 for 9000
+ 59 hyphenation exceptions out of 8191
+ 75i,16n,79p,1028b,838s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
+8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></
+usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/font
+s/type1/public/cm-super/sfbx1095.pfb></usr/share/texmf/fonts/type1/public/cm-su
+per/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></u
+sr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts
+/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/public/cm-sup
+er/sfti1095.pfb>
+Output written on /tmp/verifybuild/claim_a_3d_proof_attempt.pdf (152 pages, 132
+4491 bytes).
+PDF statistics:
+ 4723 PDF objects out of 5155 (max. 8388607)
+ 4400 compressed objects within 44 object streams
+ 1151 named destinations out of 1200 (max. 500000)
+ 69825 words of extra memory for PDF output out of 74296 (max. 10000000)
+

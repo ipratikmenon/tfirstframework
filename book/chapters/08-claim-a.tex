@@ -1,0 +1,470 @@
+% =====================================================================
+%  Chapter 08 — EARLY WORK I: the Claim-A proof attempt (S18–S27)
+% =====================================================================
+\chapter{Early Work I: The Claim-A Proof Attempt}
+\label{ch:claim-a}
+
+\begin{record}
+\textbf{Classification.} This chapter, and the two that follow, are
+\emph{early work}. The material is retained in full in
+\texttt{proofs/claim\_a\_3d\_proof\_attempt.tex}, has not been deleted, and is
+read forward: Chapter~\ref{ch:inheritance} names what every later session
+took from it. Sessions \Sn{18}--\Sn{27}, May 2026.
+\end{record}
+
+The programme's numerical work had established, by \Sn{17}, that the
+regularity exponent \(\delta\) it cared about was positive in the exact Prize
+equations, independent of the regularisation, and independent of resolution
+(Chapter~\ref{ch:layer3}). What it had not established was why. This chapter
+is the attempt to prove it.
+
+\section{What we assumed}
+\label{sec:claima-assumed}
+
+\subsection{Stated hypotheses}
+
+The proof document opens (\texttt{sec:setup}, line~131) with the following, in
+force everywhere in this chapter:
+
+\begin{enumerate}[leftmargin=2.2em]
+\item The domain is the flat torus \(\T^3=\R^3/(2\pi\Z)^3\), and the equations
+  are the exact incompressible Navier--Stokes equations \texttt{eq:NS} with
+  constant viscosity \(\nu\) and \(u_0\in C^\infty(\T^3)\). No temperature, no
+  variable viscosity: this is Route~2 from the first line.
+\item \(u\) is a \emph{Leray--Hopf} weak solution, global in time.
+\item \(u\) is a \emph{suitable} weak solution in the sense of
+  Caffarelli--Kohn--Nirenberg: the \emph{local energy inequality} holds.
+\item The auxiliary scalar \(\theta\) is defined by \texttt{eq:theta}
+  (line~150) with \(\theta(\cdot,0)=0\). At \(\varepsilon=0\), \(\theta\) does
+  not appear in \texttt{eq:NS}; its equation is an identity satisfied by any
+  solution.
+\item The target is \emph{Claim~A} (\texttt{def:claimA}, line~163): for some
+  \(\delta>0\),
+  \[
+    \norm{\nu\abs{\nabla u}^2}_{L^{1+\delta}(Q_T)} \le C(\nu,E_0,T)<\infty .
+  \]
+  The energy inequality gives \(\delta=0\) and nothing more.
+\item An equivalence used constantly: Claim~A holds if and only if
+  \(\omega\in L^{2+2\delta}(Q_T)\), via Calder\'on--Zygmund, since
+  \(\abs{\nabla u}^2\le C\abs{\omega}^2+C\abs{S}^2\) and
+  \(\abs{S}^2\le C\abs{\omega}^2\) by incompressibility.
+\end{enumerate}
+
+\subsection{Tacit hypotheses, surfaced later}
+
+Four assumptions were in force but not stated. Two were caught inside the
+early work itself; two were caught only by the audit of
+Chapter~\ref{ch:audit}. They are listed here, at the point where they entered,
+rather than being sprung on the reader later.
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.42\textwidth} l p{0.36\textwidth}@{}}
+\toprule
+Tacit assumption & Surfaced & Consequence \\
+\midrule
+That an exponent computed by H\"older on \(r^{-1}\iint_{Q(r)}\abs{p}\abs{u}\)
+was \(r^{-1/6}\)
+  & \Sn{19} & Wrong: the correct optimal exponent is \(r^{-1/2}\), via
+    \(L^{5/3}\times L^{5/2}\). Corrected inside \S9. \\[3pt]
+That the shear layer's spatial mean vanishes over every ball
+  & \Sn{23} & False: \(\int_{B_r}e^{iky}\,dx\neq0\) in 3D. The claim was
+    corrected; the shear result was re-routed through direct parabolic
+    regularity, which does not need it. \\[3pt]
+That a local \emph{enstrophy} inequality is available for Leray--Hopf
+solutions
+  & \Sn{31} & False. Suitable weak solutions carry a local \emph{energy}
+    inequality. Defect~D4. \\[3pt]
+That \(\norm{\nabla u}_{L^\infty(B_{\rstar})}\le CM\)
+  & \Sn{31} & False. Calder\'on--Zygmund operators are unbounded on
+    \(L^\infty\); the correct bound carries a logarithm. Defect~D8 --- and the
+    single most consequential line in this book. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The two that were caught in-session are worth pausing on, because they show
+the early work auditing itself. The \(r^{-1/6}\) error was found by rederiving
+the same bound through a different route (the \(\theta\)-Caccioppoli of \S10)
+and getting \(r^{-1/2}\); the discrepancy was chased down rather than
+averaged. The shear-mean error was found by the \emph{test suite}: a unit test
+named \texttt{test\_spatial\_mean\_near\_zero} failed on \(\sin(2\pi y/L)\),
+and the mathematics was corrected to match the test rather than the test
+relaxed to match the mathematics.
+
+\section{What we considered}
+\label{sec:claima-considered}
+
+\subsection{Two routes, and why both were kept}
+
+Two strategies were laid out at the start and pursued in parallel.
+
+\emph{Route~B --- Caccioppoli--Gehring.} Derive a Caccioppoli inequality for
+\(\abs{\nabla u}^2\), convert it to a reverse H\"older inequality, and apply
+Gehring's lemma to gain a small amount of extra integrability. This is the
+standard mechanism by which elliptic and parabolic problems bootstrap
+themselves, it is robust, and it produces exactly the \(\delta>0\) Claim~A
+asks for. Its cost is that the Caccioppoli inequality for Navier--Stokes
+carries a pressure term, and the pressure is nonlocal.
+
+\emph{Route~C --- the \(\theta\)-bootstrap.} Given any \(\delta_0>0\), iterate
+a regularity gain on \(\theta\) and show the exponent grows without bound.
+
+Route~C closed immediately, and it is the single cleanest thing in the entire
+document. The bootstrap map is
+\[
+  \mathcal B(\delta) = \frac{1+31\delta}{29-\delta},
+\]
+and \texttt{thm:routeC} (line~508) proves \(\mathcal B(\delta)>\delta\) for
+all \(\delta\in(0,29)\) by the two-line observation that this is equivalent to
+\((\delta+1)^2>0\). Hence \(\delta_n\to\infty\) from \emph{any} positive
+start, and \texttt{cor:smooth} (line~547) converts that into
+\(u\in C^\infty\) by Prodi--Serrin.
+
+That is why the whole chapter is about Route~B. Once Route~C was proved,
+the entire Prize reduced --- unconditionally, with no limit and no
+regularisation --- to producing one positive number.
+
+\subsection{Three angles on the gap}
+
+Route~B has a single gap, \texttt{gap:small-ball} (line~633): a local Morrey
+bound on \(u\) in \(L^{10/3}\) over small balls, with a universal constant.
+\Sn{18} attacked it from three directions at once.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  >={Latex[length=2mm]},
+  ang/.style={draw, rounded corners=2pt, align=center, inner sep=4pt,
+              font=\small, text width=36mm, minimum height=13mm},
+  gap/.style={draw, very thick, rounded corners=3pt, align=center,
+              inner sep=5pt, font=\small\bfseries, fill=panelgrey,
+              text width=46mm}
+]
+\node[ang] (a2) at (-4.6, 2.2)
+  {\textbf{Angle 2}\\ CKN \(\varepsilon\)-regularity\\ and capacity};
+\node[ang] (a1) at ( 0.0, 3.1)
+  {\textbf{Angle 1}\\ CKN local \(A(r)\)\\ iteration};
+\node[ang] (a3) at ( 4.6, 2.2)
+  {\textbf{Angle 3}\\ \(\theta\)-positivity and\\ the heat kernel};
+
+\node[gap] (G) at (0,0)
+  {The single estimate \((\star)\)\\[2pt]
+   \(\displaystyle r^{-1}\!\!\iint_{Q(r)}\!\abs{p}\abs{u}\le C\,r^{\alpha}\),
+   \(\alpha>0\)};
+
+\draw[->, thick] (a2) -- node[left, font=\scriptsize, align=right, pos=0.55]
+  {constant\\ blows up\\ near \(S\)} (G);
+\draw[->, thick] (a1) -- node[right, font=\scriptsize, align=left, pos=0.45]
+  {error terms \(r^{-1},r^{-2}\)\\ defeat the smallness} (G);
+\draw[->, thick] (a3) -- node[right, font=\scriptsize, align=left, pos=0.55]
+  {\(\theta\in L^{5/3-}\) only;\\ bootstrap cannot start} (G);
+
+\node[below=5mm of G, font=\scriptsize\itshape, text width=0.72\textwidth,
+      align=center, text=rulegrey]
+  {\texttt{prop:gap-equivalence} (line~1160): the local Morrey bound, local
+   pressure closability, the reverse H\"older inequality and Claim~A are all
+   equivalent. Any one of them implies all of them --- which is why three
+   independent attacks converge on one estimate.};
+\end{tikzpicture}
+\caption[The three angles converge]{The three attack angles of \Sn{18} and the
+single estimate they all reduce to. Current bound at the time:
+\(r^{-1/2}\) (corrected in \Sn{19} from a first-pass \(r^{-1/6}\)); target
+\(r^{\alpha}\) with \(\alpha>0\).}
+\label{fig:three-angles}
+\end{figure}
+
+The convergence was not a coincidence and was proved to be inevitable:
+\texttt{prop:gap-equivalence} establishes that four apparently different
+conditions are the same condition. On the information available in \Sn{18},
+that was encouraging rather than discouraging --- it meant the problem had a
+single well-defined centre, and it justified spending the following sessions
+attacking that centre from new directions rather than looking for a fourth
+angle.
+
+\subsection{Why each subsequent move looked right at the time}
+
+The sequence of choices from \Sn{19} to \Sn{27} has an internal logic, and it
+should be recorded as it was, without the benefit of knowing where it ends.
+
+\emph{\Sn{19}: build a pressure-free tool.} If the pressure is the obstacle,
+eliminate it. The \(\theta\)-identity \(\nu\abs{\nabla u}^2=\partial_t\theta+
+u\cdot\nabla\theta-\nu\Delta\theta\) gives a Caccioppoli inequality with no
+pressure on the right-hand side at all (\texttt{prop:theta-cacc}, line~1306).
+This was a genuinely new tool, and the reasoning behind it is sound.
+
+\emph{\Sn{20}: find a case where it closes.} The shear layer. A completely
+solved special case is worth more than a partial general argument, because it
+tells you the mechanism is real.
+
+\emph{\Sn{21}: push outward from the solved case.} Near-shear data by
+perturbation.
+
+\emph{\Sn{22}: localise the obstacle.} Divergence-freeness plus
+Gagliardo--Nirenberg splits \(u\) on a ball into an oscillating part and its
+mean. The oscillating part is \emph{automatically} controlled, with exponent
+\(1/2\), better than the \(1/3\) Route~B requires. So the entire difficulty
+sits in the spatial mean \(\langle u\rangle_{B_r}\) --- a scalar-valued,
+three-component object, and a far smaller target than the field.
+
+\emph{\Sn{23}: the mean obeys an ODE.} Integrating Navier--Stokes over a ball
+gives an evolution equation for the mean whose right-hand side is a boundary
+integral. Gr\"onwall it.
+
+\emph{\Sn{25}--\Sn{26}: bound the forcing.} Estimate each boundary term.
+
+\emph{\Sn{27}: change direction --- iterate down scales.} Rather than bound a
+quantity at each scale, derive a recursion between scales and iterate downward
+from the global energy bound. The attraction of this, stated explicitly at the
+time, is that it does \emph{not} require a small-data starting condition:
+CKN's iteration needs \(A(r_0)<\varepsilon_0\) to begin, whereas a downward
+recursion starts from a bound that always holds.
+
+That last move is the one that led directly to Chapter~\ref{ch:prize-claim},
+and it is the one the audit judged most harshly. On the information available
+in \Sn{27} it was a reasonable idea, and it remains a reasonable idea; the
+failure is in the execution, not the conception.
+
+\section{What it produced}
+\label{sec:claima-produced}
+
+\subsection{Analytical results}
+
+\begin{table}[ht]
+\centering
+\footnotesize
+\begin{tabular}{@{}l l p{0.40\textwidth} l@{}}
+\toprule
+Label & Line & Statement & Session \\
+\midrule
+\texttt{thm:routeC} & 508
+  & \(\mathcal B(\delta)=(1+31\delta)/(29-\delta)>\delta\); hence
+    \(\delta_n\to\infty\) from any \(\delta_0>0\) & \Sn{17} \\
+\texttt{cor:smooth} & 547
+  & \(\delta_0>0\Rightarrow\nabla u\in L^p\ \forall p\Rightarrow u\in C^\infty\)
+    by Prodi--Serrin & \Sn{17} \\
+\texttt{prop:gap-equivalence} & 1160
+  & Local Morrey \(\Leftrightarrow\) local pressure \(\Leftrightarrow\) reverse
+    H\"older \(\Leftrightarrow\) Claim~A & \Sn{18} \\
+\texttt{cor:theta-L53} & --
+  & \(\theta\in L^{p}(Q_T)\) for every \(p<5/3\); the endpoint fails
+    (the parabolic B\'enilan--Brezis--Crandall barrier) & \Sn{18} \\
+\texttt{prop:theta-cacc} & 1306
+  & A Caccioppoli inequality for \(\nu\abs{\nabla u}^2\) with \emph{no
+    pressure} on the right & \Sn{19} \\
+\texttt{lem:shear-heat} & 1611
+  & For \(u_0=(f(y),0,0)\), the NS system reduces \emph{exactly} to the 1D
+    heat equation & \Sn{20} \\
+\texttt{thm:shear-claimA} & 1722
+  & \textbf{Claim~A holds for every shear-layer initial datum}
+    \(f\in H^1(\T^1)\), for every \(\delta\in(0,1)\) & \Sn{20} \\
+\texttt{prop:lambda-zero} & 1779
+  & \(\lambda_{\max}=0\) for shear flows: \(\norm{D\Phi_t}\le1+Ct^{1/2}\) & \Sn{20} \\
+\texttt{thm:near-shear} & 1961
+  & Claim~A with \(\delta_0=1/4\) for \(u_0=(f(y),0,0)+w_0\),
+    \(f\in H^2\), \(\norm{w_0}_{H^{1/2}}\le\varepsilon_1\) & \Sn{21} \\
+\texttt{lem:pressure-traceless} & 2044
+  & \(p=p_T+p_\sigma\) with \(p_T=-R_iR_jT_{ij}\) traceless;
+    \(C_{\mathrm{tr}}=\tfrac12C_{\mathrm{CZ}}\) & \Sn{21} \\
+\texttt{lem:gn-divfree} & 2211
+  & Local Gagliardo--Nirenberg for divergence-free fields:
+    \(\norm{u-\langle u\rangle}_{L^{10/3}(B_r)}\le Cr^{2/5}\norm{\nabla u}_{L^2(B_r)}\) & \Sn{22} \\
+\texttt{prop:mean-obstacle} & 2268
+  & The oscillating part is controlled with exponent \(1/2>1/3\): the whole
+    difficulty is the mean & \Sn{22} \\
+\texttt{thm:routeB-closure} & 2397
+  & Route~B closes \emph{if and only if} the mean-Morrey condition holds & \Sn{22} \\
+\texttt{lem:mean-gronwall} & 2580
+  & The Gr\"onwall ODE for \(h(t)=\abs{\langle u\rangle_{B_r}}\) & \Sn{23} \\
+\texttt{thm:conditional-mean-morrey} & 2657
+  & \(\Gamma(r)\le C_1r^\beta\Rightarrow\) mean Morrey with \(\alpha=1-3\beta\)
+    \(\Rightarrow\) Claim~A & \Sn{23} \\
+\texttt{thm:linfty-closes-gap} & 3490
+  & \(u\in L^\infty_{\mathrm{loc}}\Rightarrow\Gamma(r)\le C^*r^{1/2}
+    \Rightarrow\) Claim~A \(\Rightarrow u\in C^\infty\) & \Sn{25} \\
+\texttt{cor:complete-hierarchy} & 3569
+  & The full conditional chain, every arrow proved & \Sn{25} \\
+\texttt{lem:pressure-forcing} & 3672
+  & The pressure boundary forcing obeys
+    \(F_p\le Cr^{-23/15}\norm{p}_{L^{5/3}}\) & \Sn{26} \\
+\texttt{prop:scale-recursive} & 3976
+  & \(E(r)\le C_1E(2r)^{3/2}+C_2r^{3/10}\), explicit
+    \(\alpha=1/2\), \(\beta=3/10\) & \Sn{27} \\
+\bottomrule
+\end{tabular}
+\caption[What the Claim-A attempt produced]{The analytical output of
+\Sn{18}--\Sn{27}. Line numbers are current as of \Sn{47}.}
+\label{tab:claima-produced}
+\end{table}
+
+\subsection{The chain}
+
+By \Sn{25} the early work had assembled a complete conditional chain
+(\texttt{cor:complete-hierarchy}, line~3569) in which \emph{every implication
+is proved}:
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  >={Latex[length=2mm]},
+  n/.style={draw, rounded corners=2pt, font=\scriptsize, align=center,
+            inner sep=3pt, minimum height=8mm, text width=25mm},
+  open/.style={n, very thick, fill=panelgrey},
+  ar/.style={->, thick}
+]
+\node[open] (ps) at (0,0) {Prodi--Serrin\\\OPEN};
+\node[n] (li) at (3.1,0) {\(u\in L^\infty_{\mathrm{loc}}\)};
+\node[n] (ga) at (6.2,0) {\(\Gamma(r)\le Cr^{\beta}\)};
+\node[n] (mm) at (9.3,0) {mean Morrey};
+\node[n] (rb) at (9.3,-1.7) {Route B closes};
+\node[n] (d0) at (6.2,-1.7) {\(\delta_0>0\)};
+\node[n] (rc) at (3.1,-1.7) {Route C:\\\(\delta_n\to\infty\)};
+\node[n] (sm) at (0,-1.7) {\(u\in C^\infty\)};
+
+\draw[ar] (ps)--(li); \draw[ar] (li)--(ga); \draw[ar] (ga)--(mm);
+\draw[ar] (mm)--(rb); \draw[ar] (rb)--(d0); \draw[ar] (d0)--(rc);
+\draw[ar] (rc)--(sm);
+\draw[ar, dashed] (sm.south) to[out=-90,in=-90, looseness=0.55]
+  node[below, font=\scriptsize] {which is the Prize --- and also the
+  hypothesis at the far left} (ps.south);
+\end{tikzpicture}
+\caption[The conditional hierarchy of \Sn{25}]{The conditional hierarchy
+assembled by \Sn{25}. Every solid arrow is proved in the document. The dashed
+arrow is the point: the chain is a circle. The open step --- does every
+Leray--Hopf solution satisfy a Prodi--Serrin condition? --- \emph{is} the Clay
+problem, and CKN supplies the chain's entry point only at almost every point,
+with a constant that diverges as one approaches the singular set.}
+\label{fig:hierarchy-s25}
+\end{figure}
+
+That circularity was stated explicitly at the time, not discovered later. The
+value of the chain is not that it proves anything; it is that it \emph{relocates}
+the difficulty into a condition strictly weaker than Prodi--Serrin ---
+\(\Gamma(r)=\int_0^T\bigl(\abs{B_r}^{-1}\!\int_{B_r}\abs{\nabla u}^2\bigr)^{1/2}\dee t\le C_1r^\beta\), a
+local \(L^1_tH^{1/2}_{\mathrm{loc}}\)-type statement about \emph{averages} of
+the gradient --- and gives a smaller target to aim at.
+
+\subsection{Numerical results from this period}
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l l l@{}}
+\toprule
+\texttt{exp\_id} & \texttt{claim\_id} & key metric & verdict \\
+\midrule
+\texttt{EXP-L4-CZ-TG-032} & --- & \(\varepsilon_{\mathrm{CZ}}=1.00\), Claim~A \(100\%\) & \textsf{PASS} \\
+\texttt{EXP-L4-CZ-SHEAR-032} & --- & \(\varepsilon_{\mathrm{CZ}}=1.00\), Claim~A \(100\%\) & \textsf{PASS} \\
+\texttt{EXP-L4-MM-TG-002} & --- & \(M_\alpha^{\max}=11.03\), \(\gamma=+0.139\) & \textsf{PASS} \\
+\texttt{EXP-L4-MM-SH-002} & --- & \(M_\alpha^{\max}=14.82\), \(\gamma=+0.384\) & \textsf{PASS} \\
+\texttt{EXP-L4-GAM-ADV-001} & --- & \(\gamma:0.000\to-3.263\) & \textsf{NOT SUPPRESSED} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+Two remarks. The mean-Morrey scaling exponent \(\gamma\) is positive for both
+initial conditions, which is the sign the conditional theorem wants ---
+though, as Chapter~\ref{ch:layer4} records, the first pair of runs was
+destroyed by sampling bias and the honest magnitudes come from the random-centre
+reruns. And the adversarial \(\Gamma\)-search returned a negative verdict which
+is \emph{correct as stated and does not bear on the conjecture}, because it
+evolves the data under free viscous decay with the nonlinearity removed. That
+row still stands unresolved in the database.
+
+Note also, against the house rules of Chapter~\ref{ch:house-rules}: none of
+these five rows carries a \texttt{claim\_id}. The tables they live in predate
+the column.
+
+\section{What survived and what did not}
+\label{sec:claima-survived}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}p{0.27\textwidth} p{0.41\textwidth} p{0.24\textwidth}@{}}
+\toprule
+Object & Content & Status today \\
+\midrule
+\texttt{thm:routeC}, \texttt{cor:smooth}
+  & Bootstrap from any \(\delta_0>0\) to smoothness
+  & \PROVED \\[3pt]
+\texttt{thm:shear-claimA}, \texttt{cor:shear-smooth}
+  & Claim~A and global regularity for shear-layer data
+  & \PROVED \\[3pt]
+\texttt{prop:lambda-zero}
+  & \(\lambda_{\max}=0\) for shear flows
+  & \PROVED \\[3pt]
+\texttt{thm:near-shear}
+  & Claim~A for near-shear data, \(\delta_0=1/4\)
+  & \PROVED \\[3pt]
+\texttt{prop:theta-cacc}
+  & The pressure-free Caccioppoli inequality
+  & \PROVED, dormant \\[3pt]
+\texttt{lem:pressure-}\newline\texttt{traceless},
+  \texttt{prop:traceless-gain}
+  & The traceless CZ decomposition, \(C_{\mathrm{tr}}=\tfrac12C_{\mathrm{CZ}}\)
+  & \PROVED, dormant \\[3pt]
+\texttt{lem:gn-divfree}, \texttt{prop:mean-obstacle},
+\texttt{thm:routeB-closure}
+  & Route~B closes iff mean Morrey; the oscillating part is free
+  & \PROVED, dormant \\[3pt]
+\texttt{thm:conditional-}\newline\texttt{mean-morrey},
+  \texttt{cor:complete-}\newline\texttt{hierarchy}
+  & The full conditional chain
+  & \PROVED{} as implications; the chain is a circle \\[3pt]
+\texttt{lem:pressure-forcing}, \texttt{thm:forcing-gap}
+  & \(F_p\le Cr^{-23/15}\norm{p}_{L^{5/3}}\), better than the naive
+    \(r^{-2}\), still divergent
+  & \PROVED; does not close the gap \\[3pt]
+\texttt{prop:scale-recursive} (\S19)
+  & \(E(r)\le C_1E(2r)^{3/2}+C_2r^{3/10}\)
+  & \SUPERSEDED{} by \S20, which was itself \WITHDRAWN \\[3pt]
+\texttt{thm:no-concentration},\newline\texttt{cor:claim-a-}\newline\texttt{from-cascade}
+  & The uniform no-cascade bound and Claim~A from it
+  & \CONDITIONAL{\(u\in L^4_{\mathrm{loc}}\)}; superseded \\[3pt]
+The three angles of \Sn{18}
+  & CKN capacity, \(A(r)\) iteration, heat-kernel positivity
+  & All three \OPEN; each has an identified obstruction \\
+\bottomrule
+\end{tabular}
+\caption[Status of the Claim-A early work]{Status today of every substantial
+object produced in \Sn{18}--\Sn{27}. Nothing here is withdrawn on its own
+account; \S19 is superseded, and the chain of implications stands.}
+\label{tab:claima-status}
+\end{table}
+
+Three judgements deserve to be stated rather than left implicit in the table.
+
+\emph{The shear result is the programme's strongest unconditional theorem, and
+it is small.} \texttt{thm:shear-claimA} genuinely proves Claim~A, and hence
+global regularity, for every shear-layer initial datum in \(H^1(\T^1)\). It
+does so because the shear layer reduces the full nonlinear system
+\emph{exactly} to the one-dimensional heat equation: the advection
+\(u_1\partial_xu_1\) vanishes identically, and \(\Delta p=0\) forces \(p\)
+constant. That is a complete and correct proof of a case in which the equation
+is not really Navier--Stokes any more. The audit of Chapter~\ref{ch:audit}
+left it untouched, and it is untouched today.
+
+\emph{Route~C is worth more than it looks.} Two lines of algebra reduce the
+entire Prize problem, unconditionally, to producing one positive exponent. It
+has never been challenged by any audit and it is still the terminal step any
+future closure would use.
+
+\emph{The mean-Morrey and \(\Gamma(r)\) line is not refuted --- it is
+dormant.} From \Sn{31} onward the programme worked on vorticity direction
+fields and never returned to it. The implications in
+\texttt{cor:complete-hierarchy} remain proved; nobody has shown the
+\(\Gamma(r)\) condition is unreachable; nobody has reached it. It is
+\OPEN{}, and it is the largest body of proved machinery in the document that
+no later session uses.
+
+\begin{obsv}[Where this chapter leads]
+\label{obs:claima-leads}
+The \Sn{27} decision to iterate a recursion \emph{downward} from a bound that
+always holds, rather than upward from a smallness hypothesis, is the hinge.
+Its gradient-energy version had an exponent of \(3/4\), sublinear, which as
+\texttt{rem:prop19-gap} (line~4175) records reduces the argument to the CKN
+small-energy regime and gains nothing. The natural next move was to find a
+variable whose recursion is superlinear. Two sessions later, the programme
+believed it had.
+\end{obsv}

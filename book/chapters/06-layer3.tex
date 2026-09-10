@@ -1,0 +1,338 @@
+% =====================================================================
+%  Chapter 06 — Layer 3
+% =====================================================================
+\chapter{Layer 3: The Three-Dimensional Solvers}
+\label{ch:layer3}
+
+Two dimensions has no vortex stretching. Everything that makes the Prize
+problem hard --- the \((\omega\cdot\nabla)u\) term, the supercriticality of the
+energy, the possibility of concentration --- lives in three. Layer~3 is where
+the programme's numerics became capable of being wrong in an interesting way.
+
+\section{The modules}
+\label{sec:layer3-modules}
+
+\begin{center}
+\small
+\begin{tabular}{@{}l p{0.60\textwidth}@{}}
+\toprule
+Module & Purpose \\
+\midrule
+\texttt{route1\_3D.py} / \texttt{\_jax.py}
+  & Route~1 in 3D: incompressible NS with \(\mu(T)\) plus scalar \(T\). \\
+\texttt{route2\_3D.py} / \texttt{\_jax.py}
+  & Route~2 in 3D: exact Prize NS plus \(\theta\); \(f\equiv0\) throughout.
+    This is the solver every later diagnostic calls. \\
+\texttt{wang\_profiles\_3D.py}
+  & Self-similar 2D profiles embedded as 3D vortex tubes (M6). \\
+\texttt{mu\_sweep\_3D.py}
+  & The Phase-4 limit in 3D (M8). \\
+\texttt{blowup\_search\_3D.py}
+  & Anti-parallel vortex tubes at minimum thermal resistance (M9). \\
+\texttt{aniso\_collapse\_IC.py}
+  & Anisotropic collapsing vortex column (\Sn{40}; Chapter~\ref{ch:openai}). \\
+\texttt{quasar\_jet\_IC.py}
+  & Bipolar swirling jet with a strain sweep (\Sn{45}). \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Validation: Taylor--Green, and a bug worth the space}
+\label{sec:tg-validation}
+
+The Taylor--Green vortex is the standard benchmark: the initial energy is
+known analytically, \(E_0=0.125\) at \(V_0=1\), and the flow must lose energy
+monotonically. Two implementations were validated against it.
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l r r r r@{}}
+\toprule
+\texttt{exp\_id} & backend & \(E_0\) error & \(E_T/E_0\) & \(A_{\min}\) &
+\(\norm{\nabla\!\cdot\!u}_{\mathrm{rms}}\) \\
+\midrule
+\texttt{EXP-L3-R1-TG-032} & NumPy f64 & \(0.0000\%\) & \(0.99990\) &
+  \(3.0801\!\times\!10^{-5}\) & \(9.85\!\times\!10^{-16}\) \\
+\texttt{EXP-L3-R1-TG-JAX-032} & JAX f32 & \(6.0\!\times\!10^{-6}\%\) &
+  \(0.99990\) & \(3.0801\!\times\!10^{-5}\) & \(5.16\!\times\!10^{-7}\) \\
+\texttt{EXP-L3-R1-TG-JAX-064} & JAX f32 & \(0.0000\%\) & \(0.99989\) &
+  \(3.0801\!\times\!10^{-5}\) & \(1.07\!\times\!10^{-6}\) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+The divergence residuals differ by nine orders of magnitude between the two
+backends, and the reason is not a defect: the JAX port runs in float32 because
+the target accelerator supported neither complex nor double-precision tensors,
+and \(10^{-7}\) is float32 round-off. The relevant question is whether it is
+\emph{round-off} rather than a genuine constraint violation, and the answer
+came from the bug that produced this line of work.
+
+\begin{record}
+\textbf{The Nyquist bug (\Sn{08}).} \texttt{numpy.fft.fftfreq} represents the
+Nyquist frequency as \(-N/2\) at index \(N/2\); the mode and its conjugate
+partner therefore land at the \emph{same} index with the \emph{same} sign, so
+the anti-Hermitian identity \(k\cdot\hat u(-k)=-\overline{k\cdot\hat u(k)}\)
+that the Leray projector relies on fails on the three Nyquist planes. The
+inverse transform returned a field with a large imaginary part (RMS
+\(\approx79\) for random data at \(N=16\)); taking the real part discarded it
+and the divergence escaped, at RMS \(1.465\).
+
+The fix is to zero the three Nyquist planes before applying the projector.
+This is physically free --- the \(2/3\) dealiasing rule zeroes them anyway,
+since \(k_{\max}=N/3<N/2\) --- and it took the residual to below \(10^{-11}\)
+at \(N=16\) and to \(9.85\times10^{-16}\) on the production benchmark.
+\end{record}
+
+The JAX port also gave a measured speed-up of \(2.67\times\) over NumPy at
+\(N=32^3\) (\(38.0\) against \(14.2\) milliseconds per step), from XLA fusing
+the FFT, derivative, nonlinear and RK4 stages into one compiled kernel.
+
+\section{Route~2 in three dimensions: the \texorpdfstring{\(\delta\)}{delta} result}
+\label{sec:route2-3d}
+
+The quantity Route~2 measures is \(\delta_{\max}\): the largest exponent for
+which the auxiliary scalar \(\theta\) is seen to lie in the corresponding
+Sobolev class, and hence a numerical proxy for the Claim~A exponent of
+\eqref{eq:claimA}. The finding that mattered is stated in \Sn{10} and
+confirmed at production resolution in \Sn{17}.
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l r r r l@{}}
+\toprule
+\texttt{exp\_id} & IC & \(N\) & \(\varepsilon\) & \(\delta_{\max}\) & verdict \\
+\midrule
+\texttt{EXP-L3-R2-TG-032\_eps1.0}   & Taylor--Green & \(32\) & \(1.000\) & \(1.50\) & \textsf{PASS} \\
+\texttt{EXP-L3-R2-TG-032\_eps0.1}   & Taylor--Green & \(32\) & \(0.100\) & \(1.50\) & \textsf{PASS} \\
+\texttt{EXP-L3-R2-TG-032\_eps0.01}  & Taylor--Green & \(32\) & \(0.010\) & \(1.50\) & \textsf{PASS} \\
+\texttt{EXP-L3-R2-TG-032\_eps0.001} & Taylor--Green & \(32\) & \(0.001\) & \(1.50\) & \textsf{PASS} \\
+\texttt{EXP-L3-R2-TG-032\_eps0.0}   & Taylor--Green & \(32\) & \(\mathbf{0}\) & \(\mathbf{1.50}\) & \textsf{PASS} \\
+\texttt{EXP-L3-R2-TG-128}           & Taylor--Green & \(128\) & \(\mathbf{0}\) & \(\mathbf{1.50}\) & \textsf{PASS} \\
+\texttt{EXP-L3-R2-SH-128}           & shear layer & \(128\) & \(\mathbf{0}\) & \(\mathbf{0.50}\) & \textsf{PASS} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+Three things follow, and the third is the one that redirected the programme.
+
+First, \(\delta_{\max}\) is independent of \(\varepsilon\), for the reason
+given in Chapter~\ref{ch:routes}: \(\varepsilon\) never enters the momentum
+equation. Second, it is independent of resolution: \(1.50\) at \(N=32\) and at
+\(N=128\), so it is not a grid artefact. Third, and decisively, \emph{it is
+positive at \(\varepsilon=0\) exactly}, which is to say in the unmodified
+Prize equations. Whatever produces the excess integrability of
+\(\nu\abs{\nabla u}^2\) in these flows, it is not the regularisation. The
+\Sn{17} log states the consequence: no \(\varepsilon\to0\) limit argument is
+needed, and if Claim~A can be proved at \(\varepsilon=0\) the Prize follows
+directly.
+
+The two ICs separate cleanly and informatively. The shear layer, which is
+non-mixing (its maximal Lyapunov exponent is zero --- and this is not just
+numerics, it is proved in the document at \S11.4), returns \(\delta=0.50\),
+exactly the threshold needed for \(\theta\in L^\infty(Q_T)\) in three
+dimensions. Taylor--Green, which mixes, returns \(1.50\), three times as much.
+Mixing helps; but the shear layer shows that mixing is not \emph{required},
+which is what made a purely algebraic Calder\'on--Zygmund mechanism look
+plausible in \Sn{17}--\Sn{21}.
+
+\section{Adversarial self-similar profiles in 3D (M6)}
+\label{sec:wang-3d}
+
+The 2D self-similar profiles were embedded as 3D vortex tubes ---
+\(z\)-independent in the horizontal components, with a weak \(2\%\)
+\(z\)-perturbation to break the symmetry, followed by Leray projection to
+restore exact incompressibility.
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l r r l@{}}
+\toprule
+\texttt{exp\_id} & profile & \(\lambda\) & \(\delta_{\max}\) & verdict \\
+\midrule
+\texttt{EXP-L3-R2-CCF1-JAX-064} & CCF 1st unstable & \(0.6057\) & \(1.50\) & \textsf{PASS} \\
+\texttt{EXP-L3-R2-CCF2-JAX-064} & CCF 2nd unstable & \(0.4703\) & \(1.50\) & \textsf{PASS} \\
+\texttt{EXP-L3-R2-ADV3D-JAX-064} & adversarial min & \(0.0500\) & \(1.00\) & \textsf{PASS} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+All three at \(N=64^3\), \(\nu=10^{-3}\), \(t_{\mathrm{end}}=1\). The
+adversarial minimum --- the fastest self-similar blow-up rate in the family
+--- returns \(\delta_{\max}=1.00\), lower than the two CCF profiles but well
+clear of zero. The suite carries \(48\) tests.
+
+\section{The \texorpdfstring{\(\mu(T)\to\nu\)}{mu -> nu} limit in three dimensions (M8)}
+\label{sec:mu-limit-3d}
+
+The Phase-4 deliverable, repeated in 3D at \(N=64\),
+\(\bar T=300\,\mathrm{K}\), \(t_{\mathrm{end}}=1\), with
+\(A_{\mathrm{ref}}=3.0801340\times10^{-5}\).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{loglogaxis}[
+  width=0.80\textwidth, height=6.6cm,
+  xlabel={temperature perturbation amplitude \(\delta\)},
+  ylabel={\(\abs{\varepsilon(\delta)}=\abs{A_{\min}-A_{\mathrm{ref}}}\)},
+  xmin=6e-4, xmax=2,
+  grid=both, grid style={gray!18},
+  legend pos=north west, legend cell align=left,
+  legend style={font=\scriptsize, draw=gray!40},
+  tick label style={font=\scriptsize}, label style={font=\small}
+]
+\addplot[mark=*, thick, color=openblue] coordinates {
+  (1.0,1.8700e-7) (0.5,9.3562e-8) (0.2,3.7440e-8) (0.1,1.8723e-8)
+  (0.05,9.3620e-9) (0.02,3.7449e-9) (0.01,1.8725e-9) (0.005,9.3626e-10)
+  (0.002,3.7450e-10) (0.001,1.8725e-10)
+};
+\addlegendentry{2D (M4), \(N=64^2\)}
+\addplot[mark=square*, thick, color=provedgreen] coordinates {
+  (1.0,1.6498e-7) (0.5,8.2575e-8) (0.2,3.3004e-8) (0.1,1.6484e-8)
+  (0.05,8.2618e-9) (0.02,3.3106e-9) (0.01,1.7062e-9) (0.005,8.5856e-10)
+  (0.002,3.6016e-10) (0.001,1.9645e-10)
+};
+\addlegendentry{3D (M8), \(N=64^3\)}
+\addplot[dashed, gray, thick, domain=1e-3:1, samples=2] {1.87e-7*x};
+\addlegendentry{slope \(1\) reference}
+\end{loglogaxis}
+\end{tikzpicture}
+\caption[The Prize limit is regular in both dimensions]{The Phase-4 limit in
+two and three dimensions. Both series lie on a line of slope one over three
+decades: the deviation of \(A_{\min}\) from its uniform-temperature value is
+first order in the temperature perturbation, with no sign of collapse. The
+3D fit gives an exponent of \(0.978\)--\(0.980\) with \(R^2>0.99\). The two
+smallest 3D points sit slightly above the line; at \(\abs{\varepsilon}\sim
+2\times10^{-10}\) against \(A_{\mathrm{ref}}\sim3\times10^{-5}\) they are at
+the edge of float32 resolution and should not be read as structure.}
+\label{fig:mu-limit-2d3d}
+\end{figure}
+
+The two dimensions agree: \(A_{\mathrm{ref}}=3.0801\times10^{-5}\) in both,
+the plateau in both, the exponent \(\approx1\) in both. The programme's
+diagnostic tool \texttt{layer4/mu\_limit\_tracker.py} independently refits the
+M8 data and returns \(\alpha=0.978\), \(R^2=0.9991\), reproducing the session
+log's \(0.980\) to three figures --- a small but genuine internal
+cross-check, since the tracker was written separately from the sweep driver.
+
+\section{The blow-up search (M9)}
+\label{sec:blowup-search}
+
+This is the programme's most direct adversarial test and, by the \Sn{15}
+log's own assessment, its strongest single numerical result. The initial
+condition is the Kerr--Hou--Li configuration: two anti-parallel Gaussian
+vortex tubes, displaced by \(1.5\) radians, amplitude \(2.0\), core width
+\(\sigma=0.6\), with \(5\%\) random \(x\)-noise to break symmetry, and the
+velocity recovered by spectral Biot--Savart. The background temperature is set
+to \(150\,\mathrm{K}\) --- deliberately, to \emph{minimise} the thermal
+diffusivity and give the flow the best possible chance.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>={Latex[length=2mm]}, scale=0.95]
+  % two anti-parallel tubes
+  \begin{scope}[shift={(0,0)}]
+    \draw[thick, openblue, rounded corners=6pt]
+      (-2.6,0.62) -- (2.6,0.62);
+    \draw[thick, openblue, rounded corners=6pt]
+      (-2.6,0.98) -- (2.6,0.98);
+    \fill[openblue, opacity=0.13] (-2.6,0.62) rectangle (2.6,0.98);
+    \node[font=\scriptsize, openblue] at (3.35,0.80) {\(+\omega\,\hat z\)};
+
+    \draw[thick, impossiblered, rounded corners=6pt]
+      (-2.6,-0.98) -- (2.6,-0.98);
+    \draw[thick, impossiblered, rounded corners=6pt]
+      (-2.6,-0.62) -- (2.6,-0.62);
+    \fill[impossiblered, opacity=0.13] (-2.6,-0.98) rectangle (2.6,-0.62);
+    \node[font=\scriptsize, impossiblered] at (3.35,-0.80) {\(-\omega\,\hat z\)};
+
+    \draw[<->, thick] (-3.0,-0.80) -- node[left, font=\scriptsize]
+      {\(d=1.5\)} (-3.0,0.80);
+
+    \foreach \x in {-1.8,-0.9,0,0.9,1.8} {
+      \draw[->, gray] (\x,0.40) -- (\x,0.05);
+      \draw[->, gray] (\x,-0.40) -- (\x,-0.05);
+    }
+    \node[font=\scriptsize, gray] at (0,-1.55)
+      {mutual induction drives the tubes together: maximal stretching};
+  \end{scope}
+\end{tikzpicture}
+\caption[The M9 adversarial initial condition]{The M9 adversarial initial
+condition: two anti-parallel vortex tubes whose mutual induction drives them
+together, the classical candidate geometry for finite-time blow-up. Run at
+\(T=150\,\mathrm{K}\), where the thermal diffusivity is at its lowest, to give
+the configuration every advantage.}
+\label{fig:m9-ic}
+\end{figure}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}l r r r r r l@{}}
+\toprule
+\texttt{exp\_id} & \(N\) & \(A_{\min}\) & \(Z_{\max}/Z_0\) &
+\(P_{\max}\) & wall (s) & blow-up \\
+\midrule
+\texttt{EXP-L3-R1-ADV-064} & \(64\) & \(8.7236\!\times\!10^{-6}\) & \(0.981\) & \(2.911\!\times\!10^{2}\) & \(2.7\) & none \\
+\texttt{EXP-L3-R1-ADV-128} & \(128\) & \(8.7236\!\times\!10^{-6}\) & \(0.982\) & \(4.173\!\times\!10^{3}\) & \(27.0\) & none \\
+\texttt{EXP-L3-R1-ADV-256} & \(256\) & \(8.7236\!\times\!10^{-6}\) & \(0.982\) & \(6.720\!\times\!10^{4}\) & \(1539.4\) & none \\
+\bottomrule
+\end{tabular}
+\caption[The M9 blow-up search]{The M9 adversarial runs at three resolutions.
+\(Z\) is enstrophy, \(P\) palinstrophy. The blow-up alarm threshold was
+\(Z>20\,Z_0\); the measured maximum never exceeded \(0.982\,Z_0\). All three
+\textsf{PASS}.}
+\label{tab:m9}
+\end{table}
+
+Three readings, in decreasing order of strength.
+
+\emph{Strong.} \(A_{\min}=8.7236\times10^{-6}\), identical to five
+significant figures at \(N=64\), \(128\) and \(256\). This number equals
+\(A_{\mathrm{ref}}(300\,\mathrm{K})\cdot(150/273)^{1.82}\) --- the property
+engine's value at the background temperature. Because Layer~1 is the sole
+source of property values, this comparison is meaningful, and it establishes
+that \(A_{\min}\) is fixed by the thermodynamic state and not by the flow: the
+second-law bound is thermodynamic, not kinematic.
+
+\emph{Moderate.} The enstrophy \emph{decreases}: \(Z_{\max}/Z_0=0.982\), so
+the flow never even returns to its initial enstrophy, let alone approaches the
+alarm threshold. This is consistent across a \(4\times\) refinement.
+
+\emph{Weak, and to be read with care.} The palinstrophy maximum grows from
+\(2.9\times10^{2}\) to \(6.7\times10^{4}\) across the same refinement, a
+factor of about \(14\) per doubling. This is not a physical trend: palinstrophy
+\(\int\abs{\nabla\omega}^2\) is dominated by the highest resolved wavenumbers,
+so refining the grid necessarily increases it. It is a resolution diagnostic,
+and it is reported here rather than omitted because a reader scanning
+Table~\ref{tab:m9} would otherwise see a quantity increasing by two orders of
+magnitude next to the word ``none''.
+
+\begin{obsv}[The limits of M9]
+\label{obs:m9-limits}
+The runs are \(25\), \(49\) and \(97\) time steps to \(t=1\). Finite \(N\)
+cannot resolve an arbitrarily thin core, so a \textsf{PASS} at \(N=256\) does
+not exclude a structure below the grid scale --- the M9 module's own
+documentation says so. And the configuration was run under Route~1, with
+\(\mu(T)\); it is evidence about the T-first system, not directly about
+\eqref{eq:NS-prize}. What it shows is that in this system, on this geometry,
+with the thermal diffusivity deliberately minimised, at three resolutions,
+nothing happened.
+\end{obsv}
+
+\section{What Layer~3 delivered}
+\label{sec:layer3-summary}
+
+The layer produced one result that changed the programme's direction --- the
+\(\varepsilon\)-independence and positivity of \(\delta_{\max}\) at
+\(\varepsilon=0\), which turned Route~2 from a backup into the working system
+--- and a set of adversarial configurations that every later diagnostic
+reuses. The anti-parallel tubes of M9 become the \texttt{adv} initial
+condition throughout Chapter~\ref{ch:layer4}; the self-similar profiles become
+the Wang family; and the solver \texttt{route2\_3D} is, unmodified and with
+\(f\equiv0\), the engine underneath every measurement in the rest of this
+book.

@@ -1,0 +1,482 @@
+% =====================================================================
+%  Chapter 17 — The Landscape: the forced-blowup construction
+% =====================================================================
+\chapter{The Landscape: A Forced Blow-Up Construction, and Why It Cannot Be
+De-Forced}
+\label{ch:openai}
+
+\begin{record}
+\textbf{Sources of record.} \Sn{40},
+\texttt{SESSION-LOG/2026-09-09-S40-openai-comparison-aniso-collapse.md}, and
+\texttt{subsec:wall9-forcing} of the proof document (Wall~9, lines
+10212--10254). The primary document under discussion is a 166-page writeup
+accompanied by a Lean~4 formalisation repository; the session read Sections
+1--3 in full, together with the repository's own summary of what the result
+establishes.
+
+\smallskip
+Wall~9 is the only entry in the proof document's walls section that is
+explicitly recorded \emph{outside} the mathematics of that document. It
+carries no label, no part of the document uses it, and nothing in this
+programme rests on it. It is there to bound what future sessions may import.
+\end{record}
+
+In September 2026, while this programme was working on the annulus residual, a
+finite-time blow-up construction for the \emph{forced} three-dimensional
+incompressible Navier--Stokes equations was published. The owner asked two
+questions: does it bear on what T-First is actually trying to do, and if there
+is anything usable in it, build that --- explicitly without introducing a
+forcing term, since a forcing term leaves the Prize equations.
+
+This chapter is the answer to both. The short form: it is a real result on the
+problem it addresses, it addresses a different problem, and its mechanism
+cannot be transplanted. What could be taken was taken, and is measured in
+\S\ref{sec:aniso}.
+
+\section{The four alternatives}
+\label{sec:four-alternatives}
+
+Fefferman's official statement of the Millennium problem offers four
+alternatives, and a proof of any one of them resolves it. Two are positive
+statements about smoothness; two are negative statements about breakdown. They
+differ along a second axis as well, and that second axis is the whole subject
+of this chapter.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  cell/.style={draw, rounded corners=2pt, align=center, inner sep=5pt,
+               font=\small, text width=44mm, minimum height=17mm},
+  hit/.style={cell, very thick, draw=impossiblered, fill=impossiblered!7},
+  ours/.style={cell, very thick, draw=provedgreen, fill=provedgreen!7},
+  hdr/.style={font=\small\bfseries, align=center}
+]
+\node[hdr] at (-3.6, 2.3) {};
+\node[hdr] at (0.0, 2.3) {on \(\R^3\)};
+\node[hdr] at (5.2, 2.3) {on \(\T^3=\R^3/\Z^3\)};
+
+\node[hdr, align=right, text width=30mm] at (-3.9, 0.9)
+  {\textbf{(A), (B)}\\ existence and\\ smoothness};
+\node[hdr, align=right, text width=30mm] at (-3.9,-1.6)
+  {\textbf{(C), (D)}\\ breakdown};
+
+\node[ours] (A) at (0.0, 0.9)
+  {\textbf{(A)}\\ \(f\equiv0\)\\[2pt]
+   \footnotesize\emph{the T-First target}};
+\node[ours] (B) at (5.2, 0.9)
+  {\textbf{(B)}\\ \(f\equiv0\)\\[2pt]
+   \footnotesize\emph{the T-First target}};
+\node[hit] (C) at (0.0,-1.6)
+  {\textbf{(C)}\\ forcing \(f\) permitted\\[2pt]
+   \footnotesize\emph{established}};
+\node[hit] (D) at (5.2,-1.6)
+  {\textbf{(D)}\\ forcing \(f\) permitted\\[2pt]
+   \footnotesize\emph{established, via compact support}};
+\end{tikzpicture}
+\caption[The four Clay alternatives]{Fefferman's four alternatives. The
+positive statements (A) and (B) are posed with \(f\equiv0\); the breakdown
+statements (C) and (D) admit an external forcing term subject to smoothness
+and decay conditions. The construction discussed here establishes (C) and, via
+its compact-support cutoff, (D). This programme works on (A) and (B), and has
+proved neither.}
+\label{fig:four-alternatives}
+\end{figure}
+
+The writeup states outright which alternatives it establishes, and the
+programme's record repeats it without gloss: \emph{in Fefferman's formulation
+the result establishes alternatives (C) and (D), not (A)/(B)}. That is the
+proof document's sentence, at \texttt{subsec:wall9-forcing}, and it is the one
+this book uses.\footnote{The \Sn{40} session log goes one step further and
+describes (A)/(B) as ``the unforced conditions the \$1M Prize covers''. The
+proof document does not say that, and by the source hierarchy of
+\S\ref{sec:source-hierarchy} the document governs: it records which
+alternatives are established and stops there. The stronger claim about prize
+eligibility is a reading of the official problem statement, not a finding of
+this programme, and this book does not adopt it.}
+
+\section{What the construction establishes}
+\label{sec:their-theorem}
+
+The main theorem, as recorded in \Sn{40}:
+
+\begin{record}
+\textbf{Theorem 1.1 (as stated in the source).} For every \(\nu>0\) there
+exist a smooth, compactly supported (in space and time) forcing \(f\), a
+compact set \(K\), and smooth \((u,p)\) on \(\R^3\times[0,1)\) solving the
+\emph{forced} Navier--Stokes equations with \(u(\cdot,0)=0\), such that the
+kinetic energy is uniformly bounded while
+\[
+  \limsup_{t\uparrow1}\ \norm{u(t)}_{L^\infty} \;=\; \infty .
+\]
+\end{record}
+
+Two features of the statement should be noted before the mechanism, because
+they are what make it a strong result rather than a soft one. The viscosity is
+\emph{arbitrary and fixed}: the construction is not a small-viscosity or
+inviscid-limit argument. And the initial datum is \emph{zero}: the entire
+singular structure is generated from rest by the forcing within a finite time,
+inside a compact set.
+
+\section{How it works}
+\label{sec:their-mechanism}
+
+The mechanism is an axisymmetric, \emph{anisotropic}, self-similar collapsing
+vortex core. Write \(\tau=1-t\) for the time to the singularity. The core has
+two length scales, and they collapse at different rates:
+\[
+  \ell_r \asymp \tau^{1/2},
+  \qquad
+  \ell_z \asymp \tau^{1/2-h},
+  \qquad 0<h<\tfrac1{100}.
+\]
+The radial scale collapses at exactly the diffusive rate; the axial scale
+collapses \emph{more slowly}, by the small exponent \(h\). The consequence is
+the design feature of the whole construction: the two Reynolds numbers
+separate,
+\[
+  \mathrm{Re}_\theta \asymp \tau^{-h}\to\infty,
+  \qquad
+  \mathrm{Re}_r = O(1).
+\]
+Viscosity remains in full control radially --- which is why the collapse is not
+simply diffused away --- while only the azimuthal, spin-up direction escapes
+it. That is a genuinely clever way around the fact that at the diffusive
+scaling, viscosity ordinarily wins.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>={Latex[length=2mm]}]
+  % axis
+  \draw[thick, gray] (0,-2.5) -- (0,2.5) node[above, font=\scriptsize]{\(z\)};
+  \draw[->, thick, gray] (-3.4,0) -- (3.4,0) node[right, font=\scriptsize]{\(r\)};
+
+  % early core (wide)
+  \draw[openblue, thick, dashed] (0,0) ellipse (2.3 and 1.9);
+  \node[font=\scriptsize, openblue] at (2.55,1.55) {\(t\) early};
+
+  % late core (tall thin)
+  \draw[impossiblered, very thick] (0,0) ellipse (0.55 and 1.55);
+  \node[font=\scriptsize, impossiblered] at (1.05,-1.75) {\(t\to1\)};
+
+  % scale annotations
+  \draw[<->, thick] (-0.55,-1.95) -- node[below, font=\scriptsize]
+    {\(\ell_r\asymp\tau^{1/2}\)} (0.55,-1.95);
+  \draw[<->, thick] (1.55,-1.55) -- node[right, font=\scriptsize]
+    {\(\ell_z\asymp\tau^{1/2-h}\)} (1.55,1.55);
+
+  % swirl arrows
+  \foreach \y in {-0.8,0,0.8} {
+    \draw[->, provedgreen, thick] (-0.9,\y) arc (180:0:0.9 and 0.22);
+  }
+  \node[font=\scriptsize, provedgreen] at (-2.15,0.35)
+    {swirl: \(\mathrm{Re}_\theta\!\to\!\infty\)};
+  \node[font=\scriptsize, gray, align=center] at (-2.35,-1.5)
+    {radial:\\ \(\mathrm{Re}_r=O(1)\)\\ viscosity in control};
+
+  % pulses
+  \foreach \y in {1.15,-1.15} {
+    \draw[decorate, decoration={snake, amplitude=0.7mm, segment length=2.4mm},
+          withdrawnorange, thick] (-1.9,\y) -- (1.9,\y);
+  }
+  \node[font=\scriptsize, withdrawnorange, align=center] at (2.75,1.15)
+    {ring pulses};
+\end{tikzpicture}
+\caption[The anisotropic collapsing core]{The geometry: an axisymmetric vortex
+core whose radial and axial scales collapse at different rates. Because
+\(\ell_z\) collapses more slowly than \(\ell_r\), the azimuthal Reynolds number
+diverges while the radial one stays \(O(1)\), so viscosity controls the radial
+direction and only the swirl escapes. The oscillatory ring pulses supply the
+mean momentum flux that cancels the leading singular part of the residual.}
+\label{fig:aniso-geometry}
+\end{figure}
+
+The base collapsing profile is not by itself a solution of anything: as
+\(t\to1\) it leaves an unbounded momentum residual. The construction's
+substantive work is in cancelling that residual. Spatially oscillatory,
+ring-shaped ``pulses'' are introduced whose \emph{nonlinear self-advection}
+generates a mean momentum flux that cancels the leading singular part;
+successive corrections handle the remainder; and a compact-support cutoff
+localises the whole object, which is what upgrades (C) to (D).
+
+This is a direct extension of the vortex-layer-amplification programme of
+C\'ordoba and Mart\'inez-Zoroa, cited as such in the source. Stated plainly,
+without disparagement: the construction solves a hard problem, and the
+anisotropic scale separation and the pulse-cancellation device are real
+contributions.
+
+\section{The de-forcing question}
+\label{sec:de-forcing}
+
+The programme's question was not whether the result is correct. It was:
+\emph{can the construction be run with \(f=0\)?} If it could, it would be a
+statement about the Prize equations.
+
+It cannot, and the reason is worth stating precisely, because ``it uses a
+forcing term'' is not by itself an argument --- many constructions use a
+forcing term that turns out to be removable or absorbable.
+
+\begin{record}
+\textbf{The forcing is load-bearing at three separate points, not
+decorative.}
+\begin{enumerate}[label=(\alph*), leftmargin=2.2em]
+\item An exponentially small external force \emph{seeds each oscillatory
+  pulse}. The pulses do not arise from the dynamics; they are injected.
+\item After pulse cancellation, \emph{what remains of the momentum residual
+  becomes part of \(f\)}.
+\item The compact-support cutoff introduces \emph{its own} force term.
+\end{enumerate}
+
+\smallskip
+And the structural fact that settles it: \(f\) is \emph{defined} as the
+Navier--Stokes residual \(R(u,p)\) of the constructed field.
+\end{record}
+
+That last sentence is the whole argument. The construction proceeds by writing
+down a velocity field with the desired singular behaviour and then declaring
+the forcing to be whatever the equations fail to satisfy. There is therefore
+nothing to remove: setting \(f\equiv0\) is not a simplification of the
+construction, it is the assertion that this exact profile solves the unforced
+equations --- which is a different question, which the source does not claim to
+answer, and which the source states it does not establish.
+
+\begin{record}
+\textbf{Wall 9 (\texttt{subsec:wall9-forcing}).}
+\emph{Classification:} \IMPOSSIBLE{} \emph{as an import route} --- there is
+nothing to de-force, since the residual is the forcing by construction. The
+underlying blow-up question for the unforced equations is of course \OPEN{};
+that is the Prize.
+
+\smallskip
+\emph{Forbidden:} forcing terms, modified equations and ``weak internal
+forces'' as mechanisms anywhere in this programme; reading a forced blow-up
+result as evidence about the unforced equations \emph{in either direction}.
+
+\smallskip
+\emph{Permitted:} the \emph{geometry} of such constructions as a source of
+adversarial initial data for the unforced solver.
+\end{record}
+
+The prohibition runs in both directions, and this matters. It would be equally
+illegitimate to read the construction's existence as evidence that unforced
+blow-up is likely, and to read the difficulty of de-forcing it as evidence that
+unforced blow-up is unlikely. Neither inference is available.
+
+One substantive observation was recorded, and recorded \emph{as} an
+observation rather than as evidence: even to make a fixed-viscosity velocity
+field blow up, the construction needed an externally injected, precisely tuned
+force to sustain the anisotropic collapse against dissipation. The collapse
+does not sustain itself under real viscosity alone. That is a data point
+consistent with the general intuition that dissipation opposes this particular
+collapse mode absent external forcing --- and no more than that.
+
+Two further factual findings from the reading, recorded for completeness. The
+document contains no mention of temperature or thermodynamics anywhere: a full
+grep of the 166 pages returned zero hits for \emph{temperature}, \emph{thermal}
+and \emph{thermodynam}, and \(\nu\) is a fixed constant throughout. There is
+no structural overlap with Route~1's \(\mu(T)\), \(k(T)\), \(A(T)\) framework
+of Chapter~\ref{ch:origin}. And the construction has no bearing on any open
+item in the \Sn{31}--\Sn{39} programme: not the annulus step, not
+\(\sstar\)-decay, not H2, not hypothesis~(R), not gap~(A-up).
+
+\section{What the programme took anyway}
+\label{sec:aniso}
+
+The permitted import is the geometry, and it was taken under a standing rule
+of the owner's, stated at the time the work was commissioned: \emph{inspiration
+yes, forcing term never, because a forcing term leaves the Prize equations.}
+
+\subsection{The initial condition}
+
+\texttt{layer3/aniso\_collapse\_IC.py} builds an axisymmetric,
+independently-tunable-anisotropy, swirl-plus-outflow vortex column:
+\[
+  u_\theta(r,z) = \frac{r}{\ell_r}\,
+    \exp\!\Bigl(-\frac{r^2}{\ell_r^2}-\frac{z^2}{\ell_z^2}\Bigr),
+  \qquad
+  u_z(r,z) = \Bigl(\frac{z}{\ell_z}+b\Bigr)
+    \exp\!\Bigl(-\frac{r^2}{\ell_r^2}-\frac{z^2}{\ell_z^2}\Bigr),
+\]
+with \(\ell_z=\text{(aspect ratio)}\times\ell_r\) and a small asymmetric axial
+bias \(b\), mirroring the source's deliberate breaking of exact
+\(z\to-z\) reflection symmetry. The radial component and exact
+divergence-freeness are recovered by the existing spectral Leray projection.
+The amplitude is calibrated so that the total kinetic energy \emph{matches} the
+existing adversarial self-similar profile at the same resolution --- so the new
+test is not weaker than the old one by construction.
+
+Four properties of the build deserve emphasis, because together they are what
+make it a legitimate import rather than a smuggled forcing term:
+
+\begin{enumerate}[leftmargin=2.2em]
+\item The initial condition is fed to the \emph{existing, completely
+  unmodified} \texttt{route2\_3D\_jax} solver, which carries \(f\equiv0\)
+  throughout --- the same solver used by every other Layer-3 Route-2
+  experiment.
+\item No forcing term is introduced anywhere in the module.
+\item The module does \emph{not} reproduce the source's analytic profile,
+  which would require solving its appendix ODE and analytic-continuation
+  system. It is a qualitative surrogate sharing the one structural feature ---
+  independently tunable radial and axial anisotropy --- that the construction
+  exploits.
+\item \(31\) tests, all passing, covering shapes, energy calibration equality
+  across aspect ratios, \(\ell_z\) scaling and its grid floor, rejection of
+  invalid aspect ratios, post-Leray divergence, and short-run positivity of
+  the measured exponents. No existing file was edited; the \(48\)-test
+  self-similar-profile suite was re-run unmodified and still passes.
+\end{enumerate}
+
+\subsection{What the sweep returned}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}l r r r r r l@{}}
+\toprule
+\texttt{exp\_id} & \(N\) & aspect & floor-clamped? & steps &
+\(\delta_{\max}\) & verdict \\
+\midrule
+\texttt{EXP-L3-R2-ANISO1000-JAX-064} & \(64\) & \(1.000\) & no & \(20\) & \(1.50\) & \textsf{PASS} \\
+\texttt{EXP-L3-R2-ANISO0500-JAX-064} & \(64\) & \(0.500\) & no & \(20\) & \(1.50\) & \textsf{PASS} \\
+\texttt{EXP-L3-R2-ANISO0200-JAX-064} & \(64\) & \(0.200\) & no & \(26\) & \(0.50\) & \textsf{PASS} \\
+\texttt{EXP-L3-R2-ANISO0100-JAX-064} & \(64\) & \(0.100\) & yes & \(29\) & \(0.50\) & \textsf{PASS} \\
+\texttt{EXP-L3-R2-ANISO0100-JAX-128} & \(128\) & \(0.100\) & no & \(64\) & \(0.50\) & \textsf{PASS} \\
+\texttt{EXP-L3-R2-ANISO0050-JAX-128} & \(128\) & \(0.050\) & \textbf{yes} & \(69\) & \(\mathbf{0.00}\) & \textsf{FAIL} \\
+\bottomrule
+\end{tabular}
+\caption[The anisotropic-collapse sweep]{All six rows logged under
+\texttt{claim\_id}~\texttt{claim\_l3\_aniso\_collapse} in
+\texttt{route2\_jax\_experiments}. \(\nu=10^{-3}\), \(\varepsilon=0.1\),
+\(t_{\mathrm{end}}=1.0\). Energy decayed in every run and \(\theta\) stayed
+non-negative in every run, including the failure.}
+\label{tab:aniso}
+\end{table}
+
+The result requires care, and \Sn{40} took it. Two things are visible.
+
+\emph{A real trend.} \(\delta_{\max}\) weakens monotonically as anisotropy
+increases: \(1.50,1.50,0.50,0.50\). That is not noise, and it was flagged as
+worth tracking.
+
+\emph{One failure, and a control that explains it.} The single \textsf{FAIL},
+at aspect ratio \(0.05\) and \(N=128\), returned \(\delta_{\max}=0.00\)
+exactly. It is not a truncated or vacuous run: \(\theta\) stayed non-negative,
+the energy decayed normally from \(1.328\times10^{-3}\) to
+\(7.63\times10^{-4}\), and it completed all \(69\) steps to
+\(t_{\mathrm{final}}=1.0\). But before treating it as a finding, the session
+checked for a discretisation artefact --- and found one. At \(N=128\), the
+requested \(\ell_z=0.05\times\ell_r=0.0393\) falls \emph{below one grid cell},
+so the module clamps it to its hard floor of \(2\pi/128=0.0491\): the core's
+axial extent is representable as literally one grid point.
+
+The control run isolates it. At aspect ratio \(0.100\), \(N=128\), the axial
+scale is \(0.0785\) and is \emph{not} clamped; that run returns
+\(\delta_{\max}=0.50\), identical to the \(N=64\) result at the same aspect
+ratio. So aspect ratio \(0.1\) is genuinely resolution-converged, and the sole
+failure coincides exactly with the one configuration pinned to the grid floor.
+
+\Sn{40}'s own statement of the conclusion is the one this book adopts, and it
+is deliberately weaker than the evidence might tempt: this is inference from a
+single controlled comparison, not proof that the floor explains everything.
+Testing the real aspect-ratio-\(0.05\) geometry needs \(N\) large enough for
+\(\ell_z\) to clear the floor by several cells --- \(N\gtrsim512\) --- which was
+beyond the session's compute budget and was not attempted. The honest state of
+the sweep is: \(\delta_{\max}>0\) at every properly resolved aspect ratio
+tested, down to \(0.1\), confirmed at two resolutions; \emph{no genuine
+adversarial anisotropy threshold has been found, only a hard numerical
+resolution floor}.\footnote{A small internal inconsistency in the source, noted
+for anyone reconciling the record: the \Sn{40} log's ``Files changed'' section
+reports \(4\) new rows in \texttt{route2\_jax\_experiments}, written before the
+same session's follow-up added the two \(N=128\) runs. The database has six
+rows carrying \texttt{claim\_l3\_aniso\_collapse}, and the database governs.}
+
+The epistemic status is the same as that of the M9 blow-up search of
+Chapter~\ref{ch:layer3}: finite \(N\) cannot resolve an arbitrarily thin core,
+and a pass down to aspect ratio \(0.1\) does not rule out failure at ratios
+thinner than the grid resolves.
+
+\section{Their setting against ours}
+\label{sec:comparison}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}p{0.19\textwidth} p{0.35\textwidth} p{0.35\textwidth}@{}}
+\toprule
+& \textbf{The forced construction} & \textbf{T-First} \\
+\midrule
+Equations
+  & Forced incompressible Navier--Stokes, \(\partial_tu+(u\!\cdot\!\nabla)u
+    =-\nabla p+\nu\Delta u+f\)
+  & The exact Prize equations, \(f\equiv0\), from \Sn{18} onward \\[3pt]
+Forcing
+  & Essential. Smooth, compactly supported in space and time; \emph{defined}
+    as the Navier--Stokes residual of the constructed field
+  & Forbidden by standing rule; every solver in the programme carries
+    \(f\equiv0\) \\[3pt]
+Domain
+  & \(\R^3\), with a compact-support cutoff giving \(\T^3\) as well
+  & \(\T^3=\R^3/(2\pi\Z)^3\) throughout \\[3pt]
+Symmetry
+  & Axisymmetric with swirl, with \(z\to-z\) deliberately broken
+  & General, no symmetry class assumed; \Sn{46} proposed an
+    axisymmetric-with-swirl pivot, not yet executed \\[3pt]
+Viscosity
+  & Arbitrary fixed \(\nu>0\); not a small-viscosity argument
+  & Arbitrary fixed \(\nu>0\) in Route~2; \(\mu(T)\) in Route~1 \\[3pt]
+Initial data
+  & \(u(\cdot,0)=0\); the structure is generated from rest by \(f\)
+  & \(u_0\in C^\infty(\T^3)\) or \(H^1(\T^3)\); nothing is injected after
+    \(t=0\) \\[3pt]
+Direction of the result
+  & \textbf{Construct} a singularity
+  & \textbf{Exclude} a singularity \\[3pt]
+Clay alternative
+  & (C), and via compact support (D)
+  & (A) and (B) \\[3pt]
+What success wins
+  & A finite-time blow-up theorem for the forced equations; the source states
+    it establishes (C)/(D) and does not claim (A)/(B)
+  & Global regularity for the unforced equations --- the Prize. Not achieved:
+    the claim of \Sn{29} was withdrawn in \Sn{31} \\[3pt]
+Status
+  & A completed construction, with a Lean~4 formalisation effort
+  & \OPEN. The strongest unconditional results are Claim~A and regularity for
+    shear and near-shear data \\[3pt]
+Overlap with this programme
+  & None analytically: no temperature, no thermodynamics, no bearing on any
+    open item of \Sn{31}--\Sn{39}
+  & One import: the collapse \emph{geometry}, as an unforced adversarial
+    initial condition \\
+\bottomrule
+\end{tabular}
+\caption[The two settings compared]{Row by row. The two lines of work address
+different alternatives of the same problem statement, in opposite directions,
+with the forcing term as the dividing line.}
+\label{tab:comparison}
+\end{table}
+
+\section{A note on how it was reported}
+\label{sec:reporting}
+
+One factual caution, recorded because a reader of this book may encounter the
+secondary accounts before the primary source.
+
+The construction was widely described in public as a solution of the
+Navier--Stokes Millennium Prize problem. The distinction that account loses is
+the one this chapter has been about: the theorem proved is a finite-time
+blow-up statement for the \emph{forced} equations, establishing Fefferman's
+alternatives (C) and (D), with a forcing term that is defined as the residual
+of the constructed field. The source itself states which alternatives it
+establishes, and does not claim the unforced result.
+
+\Sn{40} also records that the public discussion carried a credit dispute,
+involving separately posted forced-blow-up results for the incompressible
+porous-medium equation, two-dimensional Boussinesq and three-dimensional Euler
+extending the same C\'ordoba--Mart\'inez-Zoroa programme, and that those
+preprints are not acknowledged in the writeup the session read. That is
+context; it is not mathematics, and nothing in this book turns on it.
+
+The programme's own position is the one stated in Wall~9 and repeated here
+without amplification: a forced blow-up result is not evidence about the
+unforced equations in either direction, the geometry may be borrowed, and the
+forcing may not.

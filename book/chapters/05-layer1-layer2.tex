@@ -1,0 +1,317 @@
+% =====================================================================
+%  Chapter 05 — Layers 1 and 2
+% =====================================================================
+\chapter{Layer 1 and Layer 2: The Property Engine and the Two-Dimensional Solvers}
+\label{ch:layer12}
+
+The numerical programme was built before the analytical programme, and it was
+built bottom-up. This chapter covers the two lowest layers: the property
+engine that supplies every thermophysical number in the system, and the
+two-dimensional spectral solvers in which each mechanism was first isolated.
+All figures quoted are from \texttt{results/results.db}.
+
+\section{Layer 1: the property engine}
+\label{sec:layer1}
+
+\texttt{layer1/tfirst\_props.py} is a single module and a hard rule: no solver
+file may inline a property formula. It exposes six entry points.
+
+\begin{center}
+\small
+\begin{tabular}{@{}l p{0.62\textwidth}@{}}
+\toprule
+Function & What it returns \\
+\midrule
+\texttt{scalar\_T\_props(T)}
+  & \(\mu(T)\), \(k(T)\), \(\rho\), \(c_v\) for the working fluid. \\
+\texttt{A\_field(T)}
+  & The diffusivity field \(A=k(T)/(\rho c_v)\). Asserts strict positivity
+    pointwise on every call in debug mode. \\
+\texttt{second\_law\_check(fluid)}
+  & Must pass for a fluid before any solver run is permitted. \\
+\texttt{route1\_coeffs(T)}
+  & \(\mu_{\min},\mu_{\max},A_{\min},A_{\max}\): the uniform bounds a
+    regularity margin would need. \\
+\texttt{route2\_theta(u,\(\nu\))}
+  & The auxiliary scalar source for Route~2. \\
+\texttt{self\_similar\_props(\(\lambda\))}
+  & Coefficients along a self-similar profile. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The layer is small and carries \(71\) tests. Its importance is
+disproportionate to its size for one reason: because every \(A\) value in the
+programme comes from one code path, \(A\) values are comparable \emph{across
+solvers, dimensions and years}. Chapter~\ref{ch:layer3} uses that
+comparability to settle a real question --- whether \(A_{\min}\) in a violent
+adversarial 3D run is set by the flow or by the background temperature --- by
+comparing a number produced in Layer~3 against a number produced in Layer~2.
+
+\section{Layer 2: the two-dimensional solvers}
+\label{sec:layer2}
+
+Seven modules, four milestones. \texttt{self\_similar\_IC.py} is the single
+source of adversarial initial data. \texttt{T\_solver\_2D.py} is the Route-1
+solver: incompressible Navier--Stokes with \(\mu(T)\) plus the scalar
+transport equation for \(T\). \texttt{route2\_2D.py} is the Route-2 solver:
+the exact Prize equations plus \(\theta\). \texttt{LPS\_monitor.py} and
+\texttt{stretching\_2D.py} are diagnostics; \texttt{lambda\_sweep\_2D.py} and
+\texttt{mu\_limit\_2D.py} are the two experiment drivers.
+
+Two bugs found in \Sn{02} are worth recording because they are the kind that
+produce plausible wrong numbers rather than crashes.
+
+\begin{record}
+\textbf{Dealiasing broke Hermitian symmetry.} The \(2/3\) filter zeroed the
+row at \(k=+N/3\) but not the row at \(k=-N/3\), so the real-field FFT lost
+its conjugate symmetry. Fixed by zeroing the closed range \(\abs{k}>N/3\).
+
+\smallskip
+\textbf{The energy formula went negative.} \(E=\tfrac12\langle\psi\omega\rangle
+L^2\) is negative for dipole vortices, where \(\psi\) and \(\omega\) are
+anti-correlated. Replaced by \(E=\tfrac12\langle\abs{\nabla\psi}^2\rangle L^2\),
+computed spectrally, which is non-negative by construction.
+\end{record}
+
+\section{The \texorpdfstring{\(\lambda\)}{lambda} sweep (M3)}
+\label{sec:lambda-sweep}
+
+The sweep tests the conjecture that temperature-dependent viscosity defeats
+self-similar blow-up for every \(\lambda>0\) --- that no critical threshold
+\(\lambda_c\) exists. Ten runs, all at \(N=64\), \(t_{\mathrm{end}}=0.5\),
+ideal-gas properties, logged under \texttt{claim\_id} \texttt{Conjecture\_3.5}
+and its two variants.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}l l r r r l@{}}
+\toprule
+\texttt{exp\_id} & profile & \(\lambda\) & \(A_{\min}\) & suppression &
+verdict \\
+\midrule
+\texttt{EXP-L2-R1-CCF-001} & CCF & \(1.2000\) & \(3.0801\!\times\!10^{-5}\) & \(9.1896\) & \textsf{PASS} \\
+\texttt{EXP-L2-R1-CCF-002} & CCF & \(0.9000\) & \(3.0801\!\times\!10^{-5}\) & \(7.4643\) & \textsf{PASS} \\
+\texttt{EXP-L2-R1-CCF-003} & CCF & \(0.6057\) & \(3.0801\!\times\!10^{-5}\) & \(6.0869\) & \textsf{PASS} \\
+\texttt{EXP-L2-R1-CCF-004} & CCF & \(0.4703\) & \(3.0801\!\times\!10^{-5}\) & \(5.5416\) & \textsf{PASS} \\
+\texttt{EXP-L2-R1-CCF-005} & CCF & \(0.3000\) & \(3.0801\!\times\!10^{-5}\) & \(4.9246\) & \textsf{PASS} \\
+\texttt{EXP-L2-R1-CCF-006} & CCF & \(0.1000\) & \(3.0801\!\times\!10^{-5}\) & \(4.2871\) & \textsf{PASS} \\
+\texttt{EXP-L2-R1-BOUS-001} & Bouss. & \(1.9206\) & \(3.0801\!\times\!10^{-5}\) & \(15.143\) & \textsf{PASS} \\
+\texttt{EXP-L2-R1-BOUS-002} & Bouss. & \(1.3991\) & \(3.0801\!\times\!10^{-5}\) & \(10.549\) & \textsf{PASS} \\
+\texttt{EXP-L2-R1-BOUS-003} & Bouss. & \(1.1843\) & \(3.0801\!\times\!10^{-5}\) & \(9.0901\) & \textsf{PASS} \\
+\texttt{EXP-L2-R1-ADV-001} & adv.\ min & \(0.0100\) & \(3.1740\!\times\!10^{-5}\) & \(4.0278\) & \textsf{PASS} \\
+\bottomrule
+\end{tabular}
+\caption[The \(\lambda\) sweep]{The M3 \(\lambda\) sweep, all ten runs.
+``Suppression'' is \texttt{suppression\_ratio\_final}, the ratio of the
+viscous damping rate to the self-similar blow-up rate. The verdict recorded
+for the conjecture was: no \(\lambda_c\) found; all \(\lambda\)
+suppressed.}
+\label{tab:lambda-sweep}
+\end{table}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=0.82\textwidth, height=6.2cm,
+  xlabel={self-similar exponent \(\lambda\)},
+  ylabel={suppression ratio at \(t=0.5\)},
+  xmin=0, xmax=2.05, ymin=0, ymax=17,
+  grid=both, grid style={gray!18},
+  legend pos=north west, legend cell align=left,
+  legend style={font=\scriptsize, draw=gray!40},
+  tick label style={font=\scriptsize}, label style={font=\small}
+]
+\addplot[mark=*, thick, color=openblue] coordinates {
+  (0.1,4.2871) (0.3,4.9246) (0.4703,5.5416) (0.6057,6.0869)
+  (0.9,7.4643) (1.2,9.1896)
+};
+\addlegendentry{CCF profiles}
+\addplot[mark=square*, thick, color=provedgreen] coordinates {
+  (1.1843,9.0901) (1.3991,10.549) (1.9206,15.143)
+};
+\addlegendentry{Boussinesq profiles}
+\addplot[mark=triangle*, mark size=3pt, only marks, color=impossiblered]
+  coordinates {(0.01,4.0278)};
+\addlegendentry{adversarial minimum}
+\addplot[dashed, gray, domain=0:2.05] {1};
+\node[font=\scriptsize, anchor=west, gray] at (axis cs:0.05,1.75)
+  {ratio \(=1\): viscosity exactly matches the blow-up rate};
+\end{axis}
+\end{tikzpicture}
+\caption[Suppression ratio against \(\lambda\)]{Suppression ratio against the
+self-similar exponent \(\lambda\). Every measured value is above unity ---
+viscous damping outpaces the self-similar blow-up rate at every \(\lambda\)
+tested, including the adversarial minimum at \(\lambda=0.01\) --- and the
+ratio decreases monotonically toward small \(\lambda\) without crossing.
+See Observation~\ref{obs:lambda-caveats} before drawing any conclusion from
+this figure.}
+\label{fig:lambda-sweep}
+\end{figure}
+
+\begin{obsv}[How much weight the \(\lambda\) sweep can bear: not much]
+\label{obs:lambda-caveats}
+Three facts about these ten runs, all read directly from the database, sharply
+limit what they establish.
+
+\emph{(i) The runs are five time steps long.} Every row has
+\texttt{n\_steps}\(=5\) at \texttt{t\_end}\(=0.5\). These are not evolutions;
+they are barely-perturbed initial conditions.
+
+\emph{(ii) The temperature field does not move.} For all nine
+CCF and Boussinesq runs, \texttt{T\_max\_final} lies between
+\(300.0000000055\) and \(300.0000000064\,\mathrm{K}\): the temperature changed
+by about \(6\times10^{-9}\,\mathrm{K}\). Consequently \(A_{\min}\) equals
+\(A(300\,\mathrm{K})=3.0801\times10^{-5}\) in all nine, to five significant
+figures, and the assertion \(A_{\min}>0\) is not testing the dynamics --- it
+is testing the property engine. Only the adversarial run has real thermal
+dynamics: its temperature spans \(304.99\) to \(307.49\,\mathrm{K}\), and it
+is the only run whose \(A_{\min}\) differs, at \(3.1740\times10^{-5}\).
+
+\emph{(iii) The suppression ratio is largely analytic.} The three Boussinesq
+runs report \emph{identical} \(\omega_{\max}=0.9874582480137633\) to sixteen
+digits, and identical final temperatures, while their suppression ratios
+differ by \(60\%\). The reason is that \(\lambda\) does not enter the
+Boussinesq initial condition used --- the dynamics are the same run three
+times --- and the suppression ratio is a post-processed comparison of
+\(\mu(t)\) against the \emph{analytic} blow-up rate \((T^*-t)^{-(1+\lambda)}\)
+evaluated at that \(\lambda\). The monotone descent in
+Figure~\ref{fig:lambda-sweep} is therefore in large part a property of the
+formula being compared against, not a measurement of the flow.
+
+The honest statement of what M3 shows is: over the specified \(\lambda\) grid,
+in short 2D runs, nothing anomalous occurred, and no threshold appeared. It is
+consistent with the conjecture. It does not test it.
+\end{obsv}
+
+\section{The Route~2 \texorpdfstring{\(\varepsilon\)}{eps} sweep (M2)}
+\label{sec:route2-2d}
+
+Four runs at \(\varepsilon\in\{1,0.1,0.01,0.001\}\), \(N=64\),
+\(\nu=10^{-3}\), on the CCF \(\lambda=0.6057\) profile.
+
+\begin{center}
+\small
+\begin{tabular}{@{}l r r r l@{}}
+\toprule
+\texttt{exp\_id} & \(\varepsilon\) & \(\theta_{\max}\) &
+\(\mu_{\mathrm{eff},\min}\) & verdict \\
+\midrule
+\texttt{EXP-L2-R2-001} & \(1.000\) & \(2.6045\!\times\!10^{-4}\) & \(1.0\!\times\!10^{-3}\) & \textsf{PASS} \\
+\texttt{EXP-L2-R2-002} & \(0.100\) & \(2.6045\!\times\!10^{-4}\) & \(1.0\!\times\!10^{-3}\) & \textsf{PASS} \\
+\texttt{EXP-L2-R2-003} & \(0.010\) & \(2.6045\!\times\!10^{-4}\) & \(1.0\!\times\!10^{-3}\) & \textsf{PASS} \\
+\texttt{EXP-L2-R2-004} & \(0.001\) & \(2.6045\!\times\!10^{-4}\) & \(1.0\!\times\!10^{-3}\) & \textsf{PASS} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+The four \(\theta_{\max}\) values are identical because the source
+\(S_\theta=\nu\abs{\nabla u}^2\) does not contain \(\varepsilon\), and the
+vorticity evolution is identical because \(\varepsilon\) never enters the
+momentum equation at all. This is the numerical face of the structural point
+made in Chapter~\ref{ch:routes}: Route~2's auxiliary scalar is diagnostic, and
+its regularisation parameter is inert.\footnote{A schema note for anyone
+querying the database directly: the Route-2 rows reuse the
+\texttt{T\_min\_final} and \texttt{T\_max\_final} columns of the shared
+\texttt{experiments} table to store \(\theta\) diagnostics, since Route~2 has
+no temperature field. The \texttt{key\_metric} string is authoritative:
+\texttt{theta\_max\_final=2.6045e-04}. The column names are a legacy of the
+table having been designed for Route~1.}
+
+The recorded \texttt{lps\_margin\_min}\(=0\) is also not a failure: at \(t=0\)
+we have \(\theta\equiv0\) and hence \(\varepsilon f(\theta)=0\), so the
+minimum over the run is attained at the first step by construction.
+
+\section{The \texorpdfstring{\(\mu(T)\to\nu\)}{mu -> nu} limit in two dimensions (M4)}
+\label{sec:mu-limit-2d}
+
+This is the Phase-4 deliverable in 2D: does the regularity margin collapse as
+the temperature field becomes uniform? Ten runs, \(N=64\),
+\(\bar T=300\,\mathrm{K}\), \(T_0=\bar T+\delta g(x)\) with
+\(\norm{g}_{L^\infty}=1\), \(\delta\) descending over three decades. Reference
+values: \(A_{\mathrm{ref}}=3.0801337698\times10^{-5}\),
+\(\nu_{\mathrm{ref}}=1.5686\times10^{-5}\).
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}l r r r r@{}}
+\toprule
+\texttt{exp\_id} & \(\delta\) & \(A_{\min}\) &
+\(\varepsilon(\delta)=A_{\min}-A_{\mathrm{ref}}\) &
+\(\varepsilon(\delta)/\delta\) \\
+\midrule
+\texttt{EXP-L2-R1-MULIMIT-001} & \(1.000\) & \(3.0614\!\times\!10^{-5}\) & \(-1.8700\!\times\!10^{-7}\) & \(-1.870\!\times\!10^{-7}\) \\
+\texttt{EXP-L2-R1-MULIMIT-002} & \(0.500\) & \(3.0708\!\times\!10^{-5}\) & \(-9.3562\!\times\!10^{-8}\) & \(-1.871\!\times\!10^{-7}\) \\
+\texttt{EXP-L2-R1-MULIMIT-003} & \(0.200\) & \(3.0764\!\times\!10^{-5}\) & \(-3.7440\!\times\!10^{-8}\) & \(-1.872\!\times\!10^{-7}\) \\
+\texttt{EXP-L2-R1-MULIMIT-004} & \(0.100\) & \(3.0783\!\times\!10^{-5}\) & \(-1.8723\!\times\!10^{-8}\) & \(-1.872\!\times\!10^{-7}\) \\
+\texttt{EXP-L2-R1-MULIMIT-005} & \(0.050\) & \(3.0792\!\times\!10^{-5}\) & \(-9.3620\!\times\!10^{-9}\) & \(-1.872\!\times\!10^{-7}\) \\
+\texttt{EXP-L2-R1-MULIMIT-006} & \(0.020\) & \(3.0798\!\times\!10^{-5}\) & \(-3.7449\!\times\!10^{-9}\) & \(-1.872\!\times\!10^{-7}\) \\
+\texttt{EXP-L2-R1-MULIMIT-007} & \(0.010\) & \(3.0799\!\times\!10^{-5}\) & \(-1.8725\!\times\!10^{-9}\) & \(-1.873\!\times\!10^{-7}\) \\
+\texttt{EXP-L2-R1-MULIMIT-008} & \(0.005\) & \(3.0800\!\times\!10^{-5}\) & \(-9.3626\!\times\!10^{-10}\) & \(-1.873\!\times\!10^{-7}\) \\
+\texttt{EXP-L2-R1-MULIMIT-009} & \(0.002\) & \(3.0801\!\times\!10^{-5}\) & \(-3.7450\!\times\!10^{-10}\) & \(-1.873\!\times\!10^{-7}\) \\
+\texttt{EXP-L2-R1-MULIMIT-010} & \(0.001\) & \(3.0801\!\times\!10^{-5}\) & \(-1.8725\!\times\!10^{-10}\) & \(-1.873\!\times\!10^{-7}\) \\
+\bottomrule
+\end{tabular}
+\caption[The 2D \(\mu(T)\to\nu\) limit]{The M4 sweep. The last column is the
+point: \(\varepsilon(\delta)/\delta\) is constant to four significant figures
+across three decades. The approach to the Prize limit is exactly first order.
+All ten runs \textsf{PASS}.}
+\label{tab:mu-limit-2d}
+\end{table}
+
+The physical reading is straightforward. Cold spots in the initial temperature
+field have slightly lower \(A\) than \(A(\bar T)\), so \(A_{\min}<
+A_{\mathrm{ref}}\); as \(\delta\to0\) the cold spots vanish and \(A_{\min}\)
+rises to \(A_{\mathrm{ref}}\) from below, at first order in \(\delta\) with
+coefficient \(\abs{A'(\bar T)}\). Nothing degenerates. The limit is regular,
+not singular.
+
+\begin{obsv}[A column name that misleads]
+\label{obs:lps-margin-column}
+The quantity tabulated above is stored in a database column named
+\texttt{lps\_margin}, and it is \emph{negative} in all ten rows while the
+verdict is \textsf{PASS}. A reader who takes the column name at face value
+would conclude the programme recorded ten negative regularity margins as
+passes. It did not: the quantity is
+\(\varepsilon(\delta)=A_{\min}-A_{\mathrm{ref}}\), and its sign is negative
+for the reason just given. The \(\lambda\)-sweep and \(\mu\)-limit drivers
+share a table; the column name belongs to the former.
+\end{obsv}
+
+\section{What Layer~2 established}
+\label{sec:layer2-summary}
+
+\begin{center}
+\small
+\begin{tabular}{@{}l p{0.36\textwidth} p{0.31\textwidth}@{}}
+\toprule
+Milestone & Claim targeted & Outcome \\
+\midrule
+M0 & Route-1 2D solver correct; \(\nabla\cdot u=0\) exact & \(64/64\) tests;
+  solver is the base of M3 and M4 \\
+M2 & Route-2 \(\varepsilon\)-independence & \(4/4\) \textsf{PASS};
+  \(\theta_{\max}\) identical across \(\varepsilon\) \\
+M3 & No critical \(\lambda_c\) & \(10/10\) \textsf{PASS}; consistent with the
+  conjecture, but see Obs.~\ref{obs:lambda-caveats} \\
+M4 & \(\mu(T)\to\nu\) limit regular & \(10/10\) \textsf{PASS};
+  \(\varepsilon(\delta)\propto\delta\) exactly \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+Two of these four are strong. The \(\varepsilon\)-independence result is
+strong because it is exact rather than approximate: the same numbers appear at
+every \(\varepsilon\) because the same equations were solved. The
+\(\mu\)-limit result is strong because the linearity holds to four figures
+across three decades, which is not the sort of thing that happens by accident.
+The other two are weaker than their \textsf{PASS} verdicts suggest, and
+Observation~\ref{obs:lambda-caveats} says why.
+
+None of the four is a theorem, and the programme never claimed otherwise. What
+Layer~2 delivered to the analytical work was a validated solver, a set of
+adversarial initial conditions, and the habit of logging every number.

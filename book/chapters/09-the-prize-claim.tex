@@ -1,0 +1,398 @@
+% =====================================================================
+%  Chapter 09 — EARLY WORK II: the Prize claim (S29–S30)
+% =====================================================================
+\chapter{Early Work II: The Prize Claim}
+\label{ch:prize-claim}
+
+\begin{record}
+\textbf{Classification.} Early work. Sessions \Sn{29}--\Sn{30}, May 2026.
+Everything asserted in this chapter as a \emph{result} was withdrawn in
+\Sn{31}. It is retained in full, and set out here in the form it had at the
+time, because the material that survived the withdrawal is the foundation of
+the entire later programme, and because the manner of the failure is itself a
+finding.
+\end{record}
+
+On 4 May 2026 the programme's session log opened with the line
+\emph{``Session \Sn{29} completes the Clay Prize proof for the Prize class of
+initial data.''} Four days later a second session built a parallel geometric
+framework on top of it. Ten weeks after that, both were withdrawn.
+
+\section{What we assumed}
+\label{sec:prize-assumed}
+
+\subsection{Stated hypotheses}
+
+\begin{enumerate}[leftmargin=2.2em]
+\item Everything from Chapter~\ref{ch:claim-a}: the exact Prize equations on
+  \(\T^3\), Leray--Hopf, suitable weak solution, Route~C available as the
+  terminal step.
+\item \(u_0\in H^1(\T^3)\). This is the Prize class in the relevant sense,
+  since \(C^\infty\subset H^1\), and it is the hypothesis under which the
+  claim was made.
+\item The base case: \(u_0\in H^1\Rightarrow\omega_0\in L^2\Rightarrow
+  Z(1,z_0)\le\norm{u_0}_{H^1}^2\,T<\infty\), where
+  \(Z(r,z_0)=r^{-1}\iint_{Q(r,z_0)}\abs{\omega}^2\) is the localised
+  enstrophy.
+\item That the vorticity equation is pressure-free --- which is true, and was
+  the whole point.
+\item For \Sn{30}: the exact algebraic identity
+  \(\abs{\nabla\omega}^2=\abs{\nabla\abs{\omega}}^2+\abs{\omega}^2
+  \abs{\nabla\ehat}^2\) (\texttt{lem:grad-omega-split}, line~4564), valid
+  pointwise wherever \(\omega\neq0\); and the definition
+  \(\sigma=A_{\mathrm{loc}}/M^{3/2}\) (\texttt{eq:sigma-def}, line~4595) with
+  \(A_{\mathrm{loc}}=\int_{B_{\rstar}(x^*)}\abs{\omega}^2\abs{\nabla\ehat}^2
+  \varphi^2\) and \(\rstar=M^{-1/2}\).
+\end{enumerate}
+
+\subsection{Tacit hypotheses, all four fatal}
+
+These were not stated because they were not noticed. Each is the substance of
+an audit defect, and each is elementary.
+
+\begin{enumerate}[leftmargin=2.2em, label=(\alph*)]
+\item \emph{That a single constant \(D\) could satisfy two incompatible
+  demands.} The inductive step of the enstrophy bound requires \(D\)
+  \emph{small}; the base case requires \(D\ge\norm{u_0}_{H^1}^2T\), i.e.\
+  \emph{large} for general data. Nobody checked that the stated choice
+  satisfied either. Defect~D1.
+\item \emph{That \(\tfrac13+\tfrac12+\tfrac12\) is a valid H\"older triple.}
+  It sums to \(4/3>1\). Defect~D2.
+\item \emph{That a higher \(L^p_t\) norm can be bounded by a lower one.} The
+  step used \(\int g^{5/3}\le r^{-2/3}(\int g)^{5/3}\); Jensen's inequality
+  runs the other way, and repairing it needs \(L^\infty_t\) information that
+  Leray--Hopf solutions do not provide. Defect~D3.
+\item \emph{That \(\norm{\nabla u}_{L^\infty}\le CM\).} Defect~D8.
+\end{enumerate}
+
+Two of these were partially visible at the time. The \Sn{30} section on the
+geometric framework contains a ``Precise gap'' remark that already
+acknowledges the smallness obstruction of (a) --- but the acknowledgement was
+never propagated to the statements it invalidates, nor to the programme
+documents, nor to the paper being prepared for submission. The audit records
+this explicitly.
+
+\section{What we considered}
+\label{sec:prize-considered}
+
+\subsection{Why change variable}
+
+\Sn{27} had produced a scale recursion in the gradient energy
+\(E(r)=r^{-1}\iint_{Q(r)}\abs{\nabla u}^2\), of the form
+\(E(r)\le C_1E(2r)^{1+\alpha}+C_2r^\beta\) with \(\alpha=1/2\). The mechanism
+is attractive: it iterates \emph{downward} from the global energy bound, so
+unlike the CKN iteration it needs no small-data hypothesis to start.
+
+But it did not deliver. \texttt{rem:prop19-gap} (line~4175) records the
+diagnosis honestly: the local pressure term \(p_{\mathrm{loc}}\), estimated
+through Calder\'on--Zygmund and Gagliardo--Nirenberg, contributes only
+\emph{sublinearly} --- exponent \(3/4<1\) --- for general data, so
+superlinearity is recovered only by re-assuming the CKN small-energy
+hypothesis, and nothing is gained.
+
+The obstacle was the pressure. And there is one formulation of the equations
+in which the pressure is simply absent: the vorticity equation
+\[
+  \partial_t\omega + (u\cdot\nabla)\omega - (\omega\cdot\nabla)u
+    = \nu\Delta\omega .
+\]
+Changing the recursion variable from \(E(r)\) to the localised enstrophy
+\(Z(r)\) removes the pressure entirely. That was the \Sn{29} move, and it is
+--- viewed as a strategy, independent of its execution --- exactly the right
+instinct. It is the same instinct that produces the \emph{correct} pressure-free
+framework two sessions after the audit
+(\texttt{lem:direction-eq}, line~5351), and the proof document says so in
+terms: that lemma provides ``the same structural advantage \S20 sought,
+obtained without any invalid estimate.''
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l l@{}}
+\toprule
+& \S19: gradient \(E(r)\) & \S20: vorticity \(Z(r)\) \\
+\midrule
+Quantity & \(r^{-1}\iint\abs{\nabla u}^2\) & \(r^{-1}\iint\abs{\omega}^2\) \\
+Recursion exponent & \(3/4\) --- sublinear, a gap & \(5/3\) --- superlinear \\
+Pressure required? & yes, via \(p_{\mathrm{loc}}\) & \textbf{no} \\
+Starting condition & \(u\in L^4_{\mathrm{loc}}\), beyond energy class
+  & \(u_0\in H^1\), the Prize class \\
+Claimed to reach the Prize? & no & \textbf{yes} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Why a second, parallel framework}
+
+\Sn{30} did not build on \S20; it built \emph{beside} it. The reasoning was
+that a second, independent route to the same conclusion is worth having, and
+that a geometric mechanism --- one that sees the \emph{direction} of the
+vorticity, not just its magnitude --- captures something the scalar recursion
+cannot.
+
+The observation it starts from is genuinely good and is the one thing from
+this chapter that is still in daily use. The identity
+\[
+  \abs{\nabla\omega}^2 = \abs{\nabla\abs{\omega}}^2
+    + \abs{\omega}^2\abs{\nabla\ehat}^2
+\]
+is exact, pointwise, and splits the enstrophy gradient into a
+\emph{magnitude} part and a \emph{direction} part which are orthogonal. It
+says that the budget \(\abs{\nabla\omega}^2\) is shared between growth of
+\(\abs{\omega}\) and bending of the vortex lines, and that the two compete for
+the same resource. Every later session uses it.
+
+Given the split, \(A_{\mathrm{loc}}\) measures the direction part on the ball
+of radius \(\rstar=M^{-1/2}\) around the vorticity maximum, and the
+normalisation \(\sigma=A_{\mathrm{loc}}/M^{3/2}\) is the \emph{unique} exponent
+making \(\sigma\) invariant under the Navier--Stokes scaling group: under
+\(u\mapsto u_\lambda\), \(A_{\mathrm{loc}}\mapsto\lambda^{-3}A_{\mathrm{loc}}\)
+and \(M^{3/2}\mapsto\lambda^{-3}M^{3/2}\). That is not a coincidence to be
+noted and passed over; it is the reason \(\sigma\) was the right object to
+look at, and the exponent \(3/2\) pairs with \S20's \(2/3\) as H\"older
+conjugates of the same scaling group.
+
+\section{What it produced}
+\label{sec:prize-produced}
+
+\subsection{The claim}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}l l p{0.44\textwidth}@{}}
+\toprule
+Label & Line & Statement as made \\
+\midrule
+\texttt{prop:vorticity-recursive-20} & 4371
+  & \(Z(r,z_0)\le C_1Z(2r,z_0)^{5/3}+C_2r^\gamma\); superlinear with
+    \(\alpha=2/3>0\), no smallness assumption, all \(u_0\in H^1(\T^3)\) \\[3pt]
+\texttt{thm:uniform-enstrophy} & 4407
+  & \(Z(r,z_0)\le D\,r^{2/3}\) for all \(z_0\in\T^3\) and all \(r\in(0,1]\),
+    with \(D=D(\nu,\norm{u_0}_{H^1},T)\) --- \emph{uniform}, no dependence on
+    \(x_0\) \\[3pt]
+\texttt{cor:claim-a-enstrophy} & 4451
+  & Claim~A: \(\nu\abs{\nabla u}^2\in L^{1+\delta_0}(Q_T)\), via a reverse
+    H\"older condition and Gehring's lemma \\[3pt]
+\texttt{cor:prize-h1} & 4467
+  & \textbf{``Prize for \(u_0\in H^1(\T^3)\)''}: no finite-time blow-up;
+    \(u\in C^\infty(\T^3\times[0,T])\); ``since \(C^\infty\subset H^1\), this
+    covers the Prize class'' \\
+\bottomrule
+\end{tabular}
+\caption[The \Sn{29} Prize claim]{The four statements of \S20 as they were
+written. All four are \WITHDRAWN.}
+\label{tab:prize-claim}
+\end{table}
+
+The chain assembled as follows, and it is worth displaying because its shape
+is exactly right --- the pieces fit, the exponents are consistent, the
+terminal step was already proved. Only the second arrow is false.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  >={Latex[length=2mm]},
+  n/.style={draw, rounded corners=2pt, font=\scriptsize, align=center,
+            inner sep=3.5pt, minimum height=9mm, text width=27mm},
+  bad/.style={n, draw=impossiblered, very thick},
+  ok/.style={n, draw=provedgreen, thick},
+  ar/.style={->, thick}
+]
+\node[ok] (a) at (0,0) {\(u_0\in H^1\)\\ base case \(Z(1)<\infty\)};
+\node[bad] (b) at (3.4,0) {\texttt{prop:vorticity-}\\\texttt{recursive-20}\\
+  \(Z(r)\le CZ(2r)^{5/3}+Cr^\gamma\)};
+\node[bad] (c) at (6.8,0) {\texttt{thm:uniform-}\\\texttt{enstrophy}\\
+  \(Z(r)\le D\,r^{2/3}\)};
+\node[bad] (d) at (10.2,0) {\texttt{cor:claim-a-}\\\texttt{enstrophy}\\
+  \(\delta_0=1/3\)};
+\node[ok] (e) at (10.2,-2.0) {\texttt{thm:routeC}\\ \(\delta_n\to\infty\)};
+\node[ok] (f) at (6.8,-2.0) {Prodi--Serrin\\ \(u\in C^\infty\)};
+\node[bad] (g) at (3.4,-2.0) {\texttt{cor:prize-h1}\\ \textbf{the Prize}};
+
+\draw[ar] (a)--(b); \draw[ar] (b)-- node[above, font=\scriptsize]{induction} (c);
+\draw[ar] (c)-- node[above, font=\scriptsize]{Gehring} (d);
+\draw[ar] (d)--(e); \draw[ar] (e)--(f); \draw[ar] (f)--(g);
+
+\node[font=\scriptsize, text=impossiblered, align=center, below=1mm of b]
+  {D2, D3 invalid};
+\node[font=\scriptsize, text=impossiblered, align=center, below=1mm of c]
+  {D1: no admissible \(D\)};
+\node[font=\scriptsize, text=provedgreen, align=center, above=1mm of e]
+  {intact};
+\node[font=\scriptsize, text=provedgreen, align=center, above=1mm of a]
+  {intact};
+\end{tikzpicture}
+\caption[The \Sn{29} Prize chain and where it broke]{The chain as it was
+claimed, with the audit's findings marked. Green boxes survived the audit
+untouched; red boxes are withdrawn. The terminal steps were already proved and
+remain proved; the failure is entirely in the recursion and its induction.}
+\label{fig:prize-chain}
+\end{figure}
+
+\subsection{The \(\sigma\)-framework}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}l l p{0.44\textwidth}@{}}
+\toprule
+Label & Line & Statement as made \\
+\midrule
+\texttt{lem:grad-omega-split} & 4564
+  & \(\abs{\nabla\omega}^2=\abs{\nabla\abs{\omega}}^2
+    +\abs{\omega}^2\abs{\nabla\ehat}^2\) --- exact, pointwise \\[3pt]
+\texttt{eq:sigma-def} & 4595
+  & \(\sigma=A_{\mathrm{loc}}/M^{3/2}\), exactly scale-invariant, the exponent
+    \(3/2\) being the unique fixed point \\[3pt]
+\texttt{prop:coercive} & 4611
+  & \(\int_{B_{\rstar}}\abs{\nabla^2\omega}^2/M^{3/2}\ge(M/C)(\sigma-C)\) \\[3pt]
+\texttt{lem:A-evol} & 4664
+  & Evolution of \(A_{\mathrm{loc}}\); the diffusion is claimed to contribute
+    \(-c\nu\int\abs{\nabla^2\omega}^2\varphi^2\) \\[3pt]
+\texttt{lem:gn-grad-ehat} & 4722
+  & \(\norm{\nabla\ehat}_{L^\infty(B_{\rstar})}\le C\sigma^{1/2}M^{-1/4}\) \\[3pt]
+\texttt{thm:sigma-gronwall} & 4744
+  & If \(\int_0^TM\,dt<\infty\) then \(\sigma(T)<\infty\) \\[3pt]
+\texttt{def:R-log} & 4803
+  & The logarithmic regulator \(R_{\log}=\log M-\lambda\sigma\) \\[3pt]
+\texttt{thm:blowup-alignment} & 4858
+  & ``Theorem E'': any blow-up forces (i) \(\sigma\to0\) --- vortex lines
+    align; (ii) \(M\ge C/(t^*-t)\), a Type-I lower bound; (iii) sub-Type-I
+    blow-up excluded \\[3pt]
+\texttt{cor:log-BKM} & 4901
+  & A log-corrected Beale--Kato--Majda criterion, strictly weaker than BKM \\
+\bottomrule
+\end{tabular}
+\caption[The \Sn{30} \(\sigma\)-framework]{The geometric framework of \Sn{30}.
+The first two rows survived the audit; the rest did not, or rest on
+ingredients that did not.}
+\label{tab:sigma-framework}
+\end{table}
+
+Theorem~E is the striking one, and it is worth understanding why it looked
+important. It converts blow-up from an unstructured possibility into a
+\emph{constrained} one: any singularity must be Type-I or faster, and must be
+accompanied by asymptotic \emph{alignment} of the vortex lines. That
+immediately suggests a contradiction strategy --- find a mechanism that
+misaligns aligned vortex tubes, and blow-up is excluded. \S22 identifies
+exactly one candidate, the global pressure, and states the required estimate
+as the single open step.
+
+\subsection{Numerical results, and a house-rule breach}
+
+\Sn{30} logged two experiments:
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l l l@{}}
+\toprule
+\texttt{exp\_id} & \(\sigma\) initial/final/max & \(M_{\max}\) & verdict \\
+\midrule
+\texttt{EXP-L4-SIGMA-TG-001} & \(0.930\) / \(1.114\) / \(1.114\) & \(2.000\) & \textsf{PASS} \\
+\texttt{EXP-L4-SIGMA-SH-001} & \(0.049\) / \(0.047\) / \(0.049\) & \(1.000\) & \textsf{PASS} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+Both at \(N=16\), \(\nu=0.1\), \(T=0.5\); both consistent with Theorem~E in
+the weak sense that \(R_{\log}\) stayed bounded and \(M\) did not grow.
+
+These two rows are \emph{not in} \texttt{results/results.db}. They exist only
+in \texttt{results/S30\_sigma\_results.md}. By the programme's own rule --- a
+result without a logged \texttt{claim\_id} is not a result --- they do not
+count, and they cannot be queried, cross-checked or re-derived against later
+runs. It is the only breach of that rule in the programme's history, and it
+occurred in the session whose mathematics the audit hit hardest. The
+coincidence is probably not causal. It is recorded anyway.
+
+\section{What survived and what did not}
+\label{sec:prize-survived}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}p{0.24\textwidth} p{0.38\textwidth} p{0.30\textwidth}@{}}
+\toprule
+Object & Content & Status \\
+\midrule
+\texttt{prop:vorticity-}\newline\texttt{recursive-20}
+  & The \(5/3\)-superlinear enstrophy recursion
+  & \WITHDRAWN{} (D2, D3) \\[3pt]
+\texttt{thm:uniform-}\newline\texttt{enstrophy}
+  & \(Z(r)\le D\,r^{2/3}\), uniform in \(z_0\)
+  & \WITHDRAWN{} (D1) \\[3pt]
+\texttt{cor:claim-a-}\newline\texttt{enstrophy}
+  & Claim~A with \(\delta_0=1/3\)
+  & \WITHDRAWN \\[3pt]
+\texttt{cor:prize-h1}
+  & The Prize for \(u_0\in H^1(\T^3)\)
+  & \WITHDRAWN \\[3pt]
+\S20 as a whole
+  & & Usable only as a \emph{conditional small-data} statement, and only
+    after D2--D4 are repaired and the superlinearity exponent re-derived.
+    Nobody has done this. \\[3pt]
+\midrule
+\texttt{lem:grad-omega-split}
+  & The orthogonal magnitude/direction split
+  & \PROVED{} --- named by the audit as a survivor \\[3pt]
+\texttt{eq:sigma-def}, its scale invariance
+  & \(\sigma=A_{\mathrm{loc}}/M^{3/2}\)
+  & \PROVED{} --- named by the audit as a survivor \\[3pt]
+\midrule
+\texttt{prop:coercive}
+  & Coercivity of the second-derivative term
+  & Rests on \texttt{lem:A-evol}; \OPEN \\[3pt]
+\texttt{lem:A-evol}
+  & \(-c\nu\int\abs{\nabla^2\omega}^2\varphi^2\) from diffusion
+  & \OPEN: asserted without proof; \(\ehat\) is singular on
+    \(\{\omega=0\}\) and the cross terms are sign-indefinite (D8) \\[3pt]
+\texttt{thm:sigma-gronwall}
+  & \(\int_0^TM\,dt<\infty\Rightarrow\sigma(T)<\infty\)
+  & \CONDITIONAL{BKM}, hence useless as a route: the hypothesis is an
+    equivalent of the conclusion (D5) \\[3pt]
+\texttt{thm:blowup-alignment} (Theorem~E)
+  & Alignment at blow-up; Type-I lower bound
+  & \OPEN. Not among the five survivors the audit names; its proof invokes
+    \texttt{thm:sigma-gronwall} (D5) and the Regime~I dichotomy, which needs
+    \(\nu>C_1C/c\) (D6) \\[3pt]
+\texttt{cor:log-BKM}
+  & Log-corrected BKM criterion
+  & \OPEN, same dependency \\[3pt]
+The pressure-misalignment estimate
+  & \(\abs{\nabla p_{\mathrm{glob}}/M}_{B_{\rstar}}\ge c_0\) for aligned tubes
+  & \OPEN{} then, \OPEN{} now; never attempted after \Sn{31} \\
+\bottomrule
+\end{tabular}
+\caption[Status of the Prize-claim early work]{Status of every object from
+\Sn{29}--\Sn{30}. Two survive as proved; four are withdrawn; the remainder are
+open, several of them resting on ingredients the audit found unproved.}
+\label{tab:prize-status}
+\end{table}
+
+\begin{obsv}[The two survivors are the seed of everything after]
+\label{obs:prize-survivors}
+Of the thirteen objects in Table~\ref{tab:prize-status}, exactly two are
+\PROVED: an algebraic identity and a scaling exponent. Both came from \Sn{30},
+the session that produced no correct theorems. Both are used in every session
+from \Sn{32} to \Sn{47}: the split identity is the pointwise device that makes
+the \Sn{34} magnitude Caccioppoli work and the \Sn{36} Gram negativity
+meaningful, and \(\sigma\)'s scale invariance is inherited by the localised
+\(\sstar\) that the entire later programme is built on
+(\texttt{prop:sigma-controls}: \(\sstar\le16\sigma\)).
+Chapter~\ref{ch:inheritance} traces this in full.
+\end{obsv}
+
+\begin{obsv}[The failure mode, named]
+\label{obs:prize-failure-mode}
+The three fatal errors of \S20 --- D1, D2, D3 --- are all of one kind: an
+inequality written down in the direction the argument needed, without the
+computation that would have decided its direction being carried out. The
+\emph{shape} of the argument was designed first and the estimates were fitted
+to it. This is the failure mode the \Sn{41} merge gate
+(Chapter~\ref{ch:house-rules}) exists to catch, and it is the same failure
+mode named again in Wall~7 of the walls document, where a favourable term is
+described as ``written down before the computation producing it was closed''.
+It recurred at least three times after \Sn{31}, each time smaller, each time
+caught earlier.
+\end{obsv}

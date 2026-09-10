@@ -1,0 +1,252 @@
+% =====================================================================
+%  Chapter 03 — Architecture
+% =====================================================================
+\chapter{Architecture: Six Phases and Four Layers}
+\label{ch:architecture}
+
+A research programme that intends to run for four years and to be executed in
+sessions, by more than one agent, with results that must remain checkable
+afterwards, needs two structures: a plan for the mathematics and a plan for
+the code. This chapter records both as they were specified, and says what
+became of each. The verification discipline that grew around them is
+Chapter~\ref{ch:house-rules}.
+
+\section{The six-phase proof architecture}
+\label{sec:six-phases}
+
+The plan of record divides the intended proof into six phases, with
+overlapping schedules over forty-eight months.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}c p{0.16\textwidth} p{0.42\textwidth} l@{}}
+\toprule
+Phase & Months & Goal & Status \\
+\midrule
+0 & 1--3 & Local existence for Route~1; continuation criterion: a singularity
+  implies \(A(T)\to0\) or \(\mu(T)\to0\) & \OPEN \\[3pt]
+1 & 1--8 & The scalar master equation for \(T\) globally well posed;
+  \(T\in[T_{\min},T_{\max}]\); \(A(T)\), \(\mu(T)\) uniformly bounded
+  & \OPEN \\[3pt]
+2 & 4--18 & Four regularisation mechanisms; the self-similar-profile lemma
+  strengthened & \OPEN \\[3pt]
+3 & 12--28 & Global strong solutions for Route~1; the continuation criterion
+  never triggered & \OPEN \\[3pt]
+4 & 24--36 & The limit \(\mu(T)\to\nu\); the LPS margin \(\varepsilon\)
+  survives; Prodi--Serrin gives the Prize & \OPEN \\[3pt]
+5 & 32--48 & Assemble; 3D adversarial experiments; peer review; submit
+  & \OPEN \\
+\bottomrule
+\end{tabular}
+\caption[The six-phase proof architecture]{The six-phase architecture as
+specified. Every phase is \OPEN. The programme did not execute this plan; the
+reason is given in \S\ref{sec:plan-vs-path}.}
+\label{tab:six-phases}
+\end{table}
+
+Three of the six phases were nevertheless \emph{instrumented}, and the
+instruments returned results even though the theorems were never proved.
+Phase~0's continuation criterion became
+\texttt{layer4/continuation\_criterion.py} and was applied to every
+adversarial run; it never triggered. Phase~4's limit became
+\texttt{layer2/mu\_limit\_2D.py} and \texttt{layer3/mu\_sweep\_3D.py}, twenty
+runs in total, all \textsf{PASS}. Phase~2's self-similar-profile question
+became the \(\lambda\) sweep of \S\ref{sec:lambda-sweep-plan} below. What was
+never built is any part of Phases~1, 3 or 5.
+
+\section{The layer stack}
+\label{sec:layer-stack}
+
+The code is organised as four layers with a strict dependency order, and the
+order is enforced by a rule: no Layer-3 experiment may be run before Layers~1
+and~2 are validated. The stack is drawn in Figure~\ref{fig:layer-stack}.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  >={Latex[length=2.2mm]},
+  lay/.style={draw, thick, rounded corners=3pt, align=left, inner sep=5pt,
+              font=\small, text width=57mm, minimum height=15mm},
+  side/.style={font=\scriptsize\itshape, text=rulegrey, align=left,
+               text width=34mm},
+  ar/.style={->, thick}
+]
+
+\node[lay, fill=panelgrey] (l1) at (0,0)
+  {\textbf{Layer 1 --- Property engine}\\
+   \texttt{layer1/tfirst\_props.py}\\[2pt]
+   \footnotesize \texttt{scalar\_T\_props}, \texttt{route1\_coeffs},
+   \texttt{route2\_theta}, \texttt{A\_field}, \texttt{second\_law\_check}};
+\node[side, right=5mm of l1] (s1)
+  {single source of all thermophysical properties; \(A>0\) asserted on every
+   call};
+
+\node[lay, above=9mm of l1] (l2)
+  {\textbf{Layer 2 --- 2D spectral solvers}\\
+   \texttt{layer2/} \quad (M0--M4)\\[2pt]
+   \footnotesize \texttt{T\_solver\_2D}, \texttt{route2\_2D},
+   \texttt{self\_similar\_IC}, \texttt{lambda\_sweep\_2D},
+   \texttt{mu\_limit\_2D}};
+\node[side, right=5mm of l2] (s2)
+  {cheap, fully resolved, where mechanisms are first isolated};
+
+\node[lay, above=9mm of l2] (l3)
+  {\textbf{Layer 3 --- 3D spectral solvers}\\
+   \texttt{layer3/} \quad (M5--M9)\\[2pt]
+   \footnotesize \texttt{route1\_3D}, \texttt{route2\_3D} (+JAX ports),
+   \texttt{wang\_profiles\_3D}, \texttt{mu\_sweep\_3D},
+   \texttt{blowup\_search\_3D}};
+\node[side, right=5mm of l3] (s3)
+  {the real geometry; \(N=32\) to \(256\); where vortex stretching exists at
+   all};
+
+\node[lay, above=9mm of l3] (l4)
+  {\textbf{Layer 4 --- Diagnostics}\\
+   \texttt{layer4/} \quad (M10 and after)\\[2pt]
+   \footnotesize \texttt{alignment\_bridge}, \texttt{k\_correlation},
+   \texttt{band\_concentration}, \texttt{scale\_diagnostics},
+   \texttt{continuation\_criterion}, \dots};
+\node[side, right=5mm of l4] (s4)
+  {each module targets one labelled statement in the proof document};
+
+\draw[ar] (l1) -- (l2);
+\draw[ar] (l2) -- (l3);
+\draw[ar] (l3) -- (l4);
+
+\draw[ar, dashed] (l4.west) to[out=180, in=180, looseness=0.85]
+  node[left, font=\scriptsize, align=right, pos=0.5, inner sep=1pt]
+  {results\\feed the\\proof doc.} (l1.west);
+
+\node[draw=rulegrey, dashed, rounded corners=3pt, fit=(l1)(l4),
+      inner sep=9pt] (stack) {};
+\node[below=1mm of stack, font=\scriptsize\itshape, text=rulegrey]
+  {strict dependency order: nothing above runs until everything below is
+   validated};
+\end{tikzpicture}
+\caption[The layer stack]{The four-layer stack. The dependency order is a
+rule, not a convention: it exists so that a failure at Layer~3 or~4 can be
+attributed to the physics rather than to a property lookup or a
+two-dimensional bug.}
+\label{fig:layer-stack}
+\end{figure}
+
+The single architectural rule that did the most work is the one at the bottom:
+\emph{all thermophysical property lookups go through Layer~1}, and no solver
+file may inline a property formula. It sounds like hygiene. Its real function
+is that when \(A_{\min}\) is observed to equal \(8.7236\times10^{-6}\) in an
+adversarial 3D run at \(T=150\,\mathrm{K}\), and \(3.0801\times10^{-5}\) in a
+Taylor--Green run at \(300\,\mathrm{K}\), those two numbers came from the same
+code path and their ratio is meaningful. Chapter~\ref{ch:layer3} uses exactly
+that comparison to establish that \(A_{\min}\) is set by the background
+temperature and not by the flow --- a conclusion that would have been
+unavailable had the two solvers each carried their own copy of the viscosity
+law.
+
+\section{Experiment identity}
+\label{sec:exp-ids}
+
+Every experiment carries a unique identifier of the form
+\texttt{EXP-\{LAYER\}-\{ROUTE\}-\{NNN\}}, optionally with a profile tag:
+\texttt{EXP-L2-R1-CCF-003} is the third Layer-2, Route-1 experiment on a
+Couette--Couette-flow self-similar profile;
+\texttt{EXP-L3-R2-ANISO0100-JAX-128} is a Layer-3, Route-2 anisotropic-collapse
+run at aspect ratio \(0.100\) on the JAX backend at \(N=128\).
+
+Every result is logged as
+\[
+  \texttt{claim\_id} \;\mid\;
+  \texttt{verdict}\in\{\textsf{PASS},\textsf{FAIL},\textsf{PARTIAL}\}
+  \;\mid\; \texttt{key\_metric} \;\mid\; \text{figure path},
+\]
+into \texttt{results/results.db}. The database has thirty-one tables. The rule
+that gives this force --- \emph{a result without a logged claim\_id is not a
+result} --- is discussed in Chapter~\ref{ch:house-rules}, where it is also
+recorded that the programme broke it once, in \Sn{30}.
+
+\section{The self-similar-profile interface}
+\label{sec:lambda-sweep-plan}
+
+Phase~2's target is the family of self-similar profiles parametrised by a
+scaling exponent \(\lambda\), used as adversarial initial data. The interface
+is a single module, \texttt{layer2/self\_similar\_IC.py}, which is the sole
+source of these profiles for the entire programme; the \(\lambda\) values are
+fixed by specification and may not be guessed:
+\[
+  \begin{array}{llll}
+    \text{CCF, stable} & \lambda=1.1808 &
+    \text{Boussinesq, stable} & \lambda=1.9206 \\
+    \text{CCF, 1st unstable} & \lambda=0.6057 &
+    \text{Boussinesq, 1st} & \lambda=1.3991 \\
+    \text{CCF, 2nd unstable} & \lambda=0.4703 &
+    \text{Boussinesq, 3rd} & \lambda=1.1843
+  \end{array}
+\]
+with the sweep run over \(\lambda\in\{1.2,\,0.9,\,0.6057,\,0.4703,\,0.3,\,0.1\}\)
+plus an adversarial minimum at \(\lambda=0.01\). The conjecture under test is
+that the viscosity scaling defeats self-similar blow-up for \emph{all}
+\(\lambda>0\), with no critical threshold \(\lambda_c\).
+Chapter~\ref{ch:layer12} reports what the sweep returned, and how much weight
+it can bear.
+
+\section{Plan against path}
+\label{sec:plan-vs-path}
+
+It is worth being explicit about the gap between
+Table~\ref{tab:six-phases} and what happened, because a reader who takes the
+architecture at face value will misread everything after
+Chapter~\ref{ch:layer3}.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  >={Latex[length=2mm]},
+  ph/.style={draw, rounded corners=2pt, font=\scriptsize, minimum width=17mm,
+             minimum height=7mm, align=center},
+  ev/.style={draw, thick, rounded corners=2pt, font=\scriptsize,
+             minimum width=21mm, minimum height=7mm, align=center,
+             fill=panelgrey},
+  ar/.style={->, thick}
+]
+\node[font=\small\bfseries] at (-1.6, 1.2) {plan};
+\node[ph] (p0) at (0.6,1.2) {Phase 0};
+\node[ph] (p1) at (2.9,1.2) {Phase 1};
+\node[ph] (p2) at (5.2,1.2) {Phase 2};
+\node[ph] (p3) at (7.5,1.2) {Phase 3};
+\node[ph] (p4) at (9.8,1.2) {Phase 4};
+\node[ph] (p5) at (12.1,1.2) {Phase 5};
+\draw[ar, rulegrey] (p0)--(p1); \draw[ar, rulegrey] (p1)--(p2);
+\draw[ar, rulegrey] (p2)--(p3); \draw[ar, rulegrey] (p3)--(p4);
+\draw[ar, rulegrey] (p4)--(p5);
+
+\node[font=\small\bfseries] at (-1.6,-1.2) {path};
+\node[ev] (a) at (0.9,-1.2) {\Sn{1}--\Sn{17}\\numerics};
+\node[ev] (b) at (3.9,-1.2) {\Sn{18}--\Sn{27}\\Claim A};
+\node[ev] (c) at (6.6,-1.2) {\Sn{29}--\Sn{30}\\Prize claim};
+\node[ev] (d) at (9.0,-1.2) {\Sn{31}\\\textsc{audit}};
+\node[ev] (e) at (12.0,-1.2) {\Sn{32}--\Sn{47}\\pincer, walls};
+\draw[ar] (a)--(b); \draw[ar] (b)--(c); \draw[ar] (c)--(d); \draw[ar] (d)--(e);
+
+\draw[->, dashed, rulegrey] (p2.south) to[out=-90,in=90]
+  node[right, font=\scriptsize, pos=0.55] {only the $\lambda$ sweep} (a.north);
+\draw[->, dashed, rulegrey] (p4.south) to[out=-90,in=60]
+  node[right, font=\scriptsize, pos=0.4] {only the $\mu$ sweep} (a.north east);
+\end{tikzpicture}
+\caption[Plan against path]{The planned phase sequence (top) against the
+programme's actual path (bottom). Only two phase targets --- the
+self-similar-profile sweep of Phase~2 and the \(\mu(T)\to\nu\) limit of
+Phase~4 --- were reached, and both numerically rather than analytically. From
+\Sn{18} the programme worked in Route~2 and the phase plan ceased to describe
+it.}
+\label{fig:plan-vs-path}
+\end{figure}
+
+The reason for the divergence is not that the phase plan was abandoned by
+decision. It is that \Sn{18} found a route into the exact Prize equations
+that appeared to be closing --- Claim~A, then the Route~C bootstrap, then a
+sequence of increasingly specific gap characterisations --- and each session
+followed the previous one's most promising thread.
+Chapter~\ref{ch:claim-a} records that sequence in detail. By \Sn{29} the
+programme believed it had a proof for \(u_0\in H^1(\T^3)\); by \Sn{31} it did
+not. Everything after \Sn{31} is a rebuild, and the rebuild took the
+architecture's layers with it but not its phases.

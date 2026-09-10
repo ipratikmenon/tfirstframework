@@ -1,0 +1,609 @@
+% =====================================================================
+%  Chapter 11 — EARLY WORK IV: inheritance
+% =====================================================================
+\chapter{Early Work IV: What the Later Programme Inherited}
+\label{ch:inheritance}
+
+\begin{record}
+\textbf{Purpose of this chapter.} The early work of
+Chapters~\ref{ch:claim-a}--\ref{ch:audit} is retained and read forward. This
+chapter says exactly what the sessions \Sn{32}--\Sn{47} took from it: which
+objects were reused, which were rebuilt, which were abandoned, and --- the
+question that matters most --- which parts of the early work are still
+load-bearing today.
+\end{record}
+
+There are three inheritances. The first is a framework: the coherence
+quantity \(\sigma\) and the algebraic identity underneath it became the
+localised \(\sstar\) on which every session from \Sn{32} to \Sn{45} is built.
+The second is an obstruction: a single clause in the audit's eighth defect
+became the Calder\'on--Zygmund logarithm \(\Lfac\), which is now the
+programme's central structural barrier and was rediscovered three separate
+times before anybody connected it back to its source. The third is a
+discipline: the withdrawal of \Sn{29}'s claim produced the verification rules
+of Chapter~\ref{ch:house-rules}.
+
+The first is the most useful. The second is the most important. The third is
+the only one that would transfer unchanged to a different problem.
+
+\section{The traceability table}
+\label{sec:traceability}
+
+\begin{center}
+\footnotesize
+\begin{longtable}{@{}p{0.20\textwidth} p{0.11\textwidth} p{0.24\textwidth} p{0.23\textwidth} p{0.11\textwidth}@{}}
+\toprule
+\textbf{Object (label, line)} & \textbf{Early status} &
+\textbf{What happened to it} & \textbf{Where it reappears, \Sn{32}--\Sn{47}} &
+\textbf{Status now} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Object (label, line)} & \textbf{Early status} &
+\textbf{What happened to it} & \textbf{Where it reappears} &
+\textbf{Status now} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\texttt{thm:routeC} (508) \newline Route~C bootstrap
+  & Proved, \Sn{17}
+  & Untouched by the audit; named survivor \#1
+  & Still the terminal step of any closure: any \(\delta_0>0\) gives
+    smoothness. Never invoked in \Sn{32}--\Sn{47} because no session produced
+    a \(\delta_0\)
+  & \PROVED \\[3pt]
+
+\texttt{thm:shear-claimA} (1722) \newline Claim~A for shear data
+  & Proved, \Sn{20}
+  & Untouched; named survivor \#2
+  & Not used; it is a solved case, not a tool
+  & \PROVED \\[3pt]
+
+\texttt{thm:near-shear} (1961)
+  & Proved, \Sn{21}
+  & Untouched; named survivor \#2
+  & Not used
+  & \PROVED \\[3pt]
+
+\texttt{prop:lambda-zero} (1779) \newline \(\lambda_{\max}=0\) for shear
+  & Proved, \Sn{20}
+  & Untouched; named survivor \#3
+  & Not used
+  & \PROVED \\[3pt]
+
+\texttt{lem:grad-omega-split} (4564) \newline
+  \(\abs{\nabla\omega}^2=\abs{\nabla m}^2+m^2\abs{\nabla\ehat}^2\)
+  & Proved, \Sn{30}
+  & Named survivor \#4; ``sound foundation for a future quantitative alignment
+    program''
+  & \textbf{Used constantly.} It is the pointwise device in the \Sn{34}
+    magnitude Caccioppoli (\texttt{eq:mag-caccioppoli}, 5836) that sends every
+    transition-annulus term to the enstrophy-gradient budget with no
+    absorption argument; and it is what makes the \Sn{36} Gram negativity
+    (\texttt{lem:gram-negativity}, 6180) a statement about a positive
+    semi-definite tensor
+  & \PROVED \\[3pt]
+
+\(\sigma=A_{\mathrm{loc}}/M^{3/2}\) \newline (\texttt{eq:sigma-def}, 4595)
+  & Proved scale-invariant, \Sn{30}
+  & Named survivor \#4; the exponent \(3/2\) is the unique fixed point of the
+    NS scaling group
+  & \textbf{Directly ancestral to \(\sstar\).}
+    \texttt{prop:sigma-controls} (5424) proves \(\sstar\le16\sigma\) in two
+    lines --- the surviving quantity controls the new one
+  & \PROVED \\[3pt]
+
+\texttt{thm:blowup-alignment} (4858) \newline ``Theorem E'': blow-up forces
+  \(\sigma\to0\)
+  & Claimed proved, \Sn{30}
+  & \emph{Not} on the audit's survivors list; its proof invokes
+    \texttt{thm:sigma-gronwall} (D5) and Regime~I (D6)
+  & \textbf{Its statement is the programme's central open problem.} \Sn{38}
+    identifies ``forcing \(\sstar(t)\to0\) near a putative Type-I
+    singularity'' as the single deep gap; \Sn{39} reframes it as
+    \texttt{target:disorder-}\newline\texttt{depletion} (7490). See
+    \S\ref{sec:theorem-e-irony}
+  & \OPEN \\[3pt]
+
+\texttt{prop:coercive} (4611), \newline \texttt{lem:A-evol} (4664)
+  & Asserted, \Sn{30}
+  & Defect~D8, first half: coercivity never derived; \(\ehat\) singular on
+    \(\{\omega=0\}\)
+  & Never repaired, never reused. The later programme derives the direction
+    equation from scratch instead (\texttt{lem:direction-eq}, 5349)
+  & \OPEN \\[3pt]
+
+\textbf{\(\norm{\nabla u}_{L^\infty}\le CM\)} \newline (D8, second half)
+  & Assumed silently, \Sn{29}--\Sn{30}
+  & \textbf{Identified by the audit as false}: CZ operators are unbounded on
+    \(L^\infty\); the correct bound carries a logarithm
+  & \textbf{Becomes \(\Lfac=\log(e+\norm{u}_{H^3}/M)\).} Cited by name in
+    \texttt{rem:marginality} (5443); enters formally at
+    \texttt{lem:local-}\newline\texttt{enstrophy-typeI} (5701, definition 5712); reappears at
+    \texttt{prop:crude-K} (5903), \texttt{rem:s41-shortfall} (8395),
+    \texttt{prop:s44-linfty-route} (9209); consolidated as Wall~1
+  & \OPEN, structural \\[3pt]
+
+\texttt{thm:sigma-gronwall} (4744)
+  & Claimed, \Sn{30}
+  & Defect~D5: hypothesis \(\int_0^TM\,dt<\infty\) is BKM
+  & Not reused. The \Sn{32} rebuild is explicitly designed to avoid assuming
+    an equivalent of its conclusion
+  & \WITHDRAWN{} as a route \\[3pt]
+
+\texttt{prop:vorticity-} \texttt{recursive-20} (4371), \newline
+  \texttt{thm:uniform-} \texttt{enstrophy} (4407)
+  & Claimed proved, \Sn{29}
+  & Defects D1--D4
+  & Never repaired. Wall~0 records that \S20 is usable only as a conditional
+    small-data statement, after D2--D4 are fixed and the exponent re-derived
+  & \WITHDRAWN \\[3pt]
+
+\texttt{cor:claim-a-enstrophy} (4451), \newline \texttt{cor:prize-h1} (4467)
+  & Claimed proved, \Sn{29}
+  & Defect~D1
+  & --- & \WITHDRAWN \\[3pt]
+
+\texttt{prop:scale-recursive} (3976) \newline \S19, gradient energy
+  & Proved conditional on \(u\in L^4_{\mathrm{loc}}\), \Sn{27}
+  & Superseded by \S20 for having a sublinear exponent
+    (\texttt{rem:prop19-gap}, 4175); \S20 then withdrawn
+  & Not reused. The idea --- iterate \emph{downward} from a bound that always
+    holds --- returns transformed in the \Sn{39} profile extraction, which
+    also avoids needing a smallness hypothesis to start
+  & \SUPERSEDED \\[3pt]
+
+\texttt{prop:theta-cacc} (1306) \newline pressure-free Caccioppoli
+  & Proved, \Sn{19}
+  & Untouched by the audit
+  & Not reused. Its motive --- eliminate the pressure --- is carried instead
+    by \texttt{lem:direction-eq}, which is pressure-free by construction
+  & \PROVED, dormant \\[3pt]
+
+\texttt{lem:pressure-} \texttt{traceless} (2044) \newline
+  \(C_{\mathrm{tr}}=\tfrac12C_{\mathrm{CZ}}\)
+  & Proved, \Sn{21}
+  & Untouched
+  & Not reused
+  & \PROVED, dormant \\[3pt]
+
+\texttt{lem:gn-divfree} (2211), \newline \texttt{prop:mean-obstacle} (2268),
+  \newline \texttt{thm:routeB-closure} (2397)
+  & Proved, \Sn{22}
+  & Untouched
+  & Not reused. The mean-Morrey line was never returned to after \Sn{31}
+  & \PROVED, dormant \\[3pt]
+
+\texttt{thm:conditional-} \texttt{mean-morrey} (2657), \newline
+  \texttt{cor:complete-} \texttt{hierarchy} (3569)
+  & Proved as implications, \Sn{23}, \Sn{25}
+  & Untouched; the chain is a circle and was known to be
+  & Not reused
+  & \PROVED, dormant \\[3pt]
+
+\texttt{lem:pressure-} \texttt{forcing} (3672) \newline \(F_p\le Cr^{-23/15}\)
+  & Proved, \Sn{26}
+  & Untouched; better than the naive \(r^{-2}\), still divergent
+  & Not reused
+  & \PROVED, dormant \\[3pt]
+
+The three angles of \Sn{18} \newline (CKN capacity; \(A(r)\) iteration;
+  heat-kernel positivity)
+  & Each obstructed, \Sn{18}
+  & Untouched
+  & CKN \(\varepsilon\)-regularity returns in a different role in \Sn{39}, as
+    the literature that would have to supply hypothesis~(R) --- with the named
+    trap that \(\varepsilon\)-regularity needs \emph{smallness} while Type-I
+    supplies only \emph{boundedness}
+  & \OPEN \\[3pt]
+
+\texttt{EXP-L4-GAM-} \texttt{ADV-001} \newline \(\Gamma\) not suppressed
+  & Negative, \Sn{27}
+  & Correctly read as a statement about free viscous decay, not about NS
+  & Prefigures Wall~6: a diagnostic whose regime does not match the
+    conjecture's cannot test it
+  & unresolved \\[3pt]
+
+\texttt{EXP-L4-MM-*} \newline mean-Morrey sampling
+  & \Sn{23}, \Sn{25}
+  & \(47\) orders of magnitude of sampling bias, found and corrected
+  & The sampling rule it produced governs \texttt{scale\_diagnostics.py} and
+    \texttt{band\_concentration.py}
+  & method \\[3pt]
+
+\texttt{EXP-L4-SIGMA-*} \newline the \(\sigma\) runs
+  & \Sn{30}
+  & Logged to a Markdown file, not the database --- the programme's only
+    breach of its own logging rule
+  & Superseded by \texttt{EXP-L4-BRIDGE-*}, which measure \(\sstar\) properly
+    and are in the database
+  & not a result \\
+\end{longtable}
+\end{center}
+
+\section{First inheritance: \texorpdfstring{\(\sigma\)}{sigma} becomes
+\texorpdfstring{\(\sstar\)}{sigma-star}, and the pincer}
+\label{sec:sigma-to-sstar}
+
+The audit left exactly two sound objects on the geometric side: the split
+identity and the scale invariance of \(\sigma\). \Sn{32} rebuilt on precisely
+those two and nothing else.
+
+\subsection{What was rebuilt, and what was kept}
+
+The rebuild has four steps, and it is instructive that three of them are
+\emph{re-derivations of things \Sn{30} had asserted}.
+
+\begin{enumerate}[leftmargin=2.2em]
+\item \emph{The direction equation, derived from scratch}
+  (\texttt{lem:direction-eq}, line~5349). With \(\ehat=\omega/\abs{\omega}\),
+  \(\alpha=\ehat\cdot S\ehat\) and \(\Dt=\partial_t+u\cdot\nabla\):
+  \begin{align*}
+    \Dt\abs{\omega} &= \alpha\abs{\omega}
+      + \nu\bigl(\Delta\abs{\omega}-\abs{\omega}\abs{\nabla\ehat}^2\bigr),\\
+    \Dt\ehat &= \nu\Delta\ehat
+      + 2\nu(\nabla\log\abs{\omega}\cdot\nabla)\ehat
+      + \nu\abs{\nabla\ehat}^2\ehat
+      + P_{\ehat^\perp}\bigl((\ehat\cdot\nabla)u\bigr).
+  \end{align*}
+  The document's remark is pointed: these equations contain \emph{no
+  pressure}, and this is ``the same structural advantage \S20 sought, obtained
+  without any invalid estimate''. The motive of the withdrawn work was
+  correct; its execution was not; the rebuild keeps the motive.
+\item \emph{A correctly localised coherence quantity}
+  (\texttt{def:sigma-star}, line~5393). With \(\rstar=M^{-1/2}\) and \(x^*\) a
+  point where \(\abs{\omega}\ge M/2\),
+  \[
+    \sstar(t) = (\rstar)^{-1}\int_{B_{\rstar}(x^*)}
+      \abs{\nabla\ehat}^2\,\mathbf 1_{\{\abs{\omega}\ge M/4\}}\,dx .
+  \]
+  \texttt{prop:sigma-star-invariant} (line~5402) proves exact scale
+  invariance directly, and the calibration remark that follows fixes its
+  meaning: if \(\abs{\nabla\ehat}\sim1/\rstar\) throughout the ball --- the
+  borderline Constantin--Fefferman coherence at the self-similar scale --- then
+  \(\sstar\sim1\). So \(\sstar\ll1\) means \emph{better than borderline}
+  coherence, and \(\sstar\) is the natural small parameter for an
+  \(\varepsilon\)-regularity statement.
+\item \emph{The link to the survivor} (\texttt{prop:sigma-controls},
+  line~5424): \(\sstar\le16\sigma\), proved in four lines. This is the formal
+  moment of inheritance --- the quantity the audit certified controls the
+  quantity the new programme uses.
+\item \emph{The criticality observation} (\texttt{rem:marginality},
+  line~5443), which is where the second inheritance enters and is discussed in
+  \S\ref{sec:cz-inheritance}.
+\end{enumerate}
+
+\subsection{The pincer}
+
+On those foundations \Sn{32} states its target, \texttt{thm:pincer-conditional}
+(line~5495): given two named hypotheses --- H1, the Bridge Lemma
+(\texttt{conj:bridge}, line~5466), upgrading averaged coherence to pointwise
+coherence; and H2, a localised Constantin--Fefferman depletion criterion at
+the shrinking scale \(\rstar\) --- no Type-I singularity can have
+\(\liminf_{t\to T^-}\sstar(t)\le\varepsilon_0\). Every Type-I singularity must
+maintain \emph{persistent geometric disorder}.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  >={Latex[length=2mm]},
+  early/.style={draw, rounded corners=2pt, font=\scriptsize, align=center,
+                inner sep=3.5pt, text width=32mm, minimum height=9mm},
+  surv/.style={early, draw=provedgreen, very thick},
+  dead/.style={early, draw=impossiblered, dashed},
+  new/.style={early, draw=openblue, thick, fill=panelgrey},
+  ar/.style={->, thick}
+]
+\node[font=\small\bfseries] at (-3.0,2.6) {\Sn{29}--\Sn{30}};
+\node[font=\small\bfseries] at (-3.0,-1.2) {\Sn{32}--\Sn{47}};
+
+\node[dead] (rec)  at (0.0,3.3) {\S20 enstrophy recursion};
+\node[dead] (thmE) at (4.0,3.3) {Theorem E: \(\sigma\to0\) at blow-up};
+\node[dead] (aev)  at (8.0,3.3) {\texttt{lem:A-evol} coercivity};
+\node[surv] (split) at (0.0,1.5) {\texttt{lem:grad-omega-split}};
+\node[surv] (sig)   at (4.0,1.5) {\(\sigma=A_{\mathrm{loc}}/M^{3/2}\) invariance};
+\node[surv] (d8)    at (8.0,1.5) {D8: \(\norm{\nabla u}_\infty\!\lesssim\!M\) is false};
+
+\node[new] (mag)  at (0.0,-0.6) {\texttt{lem:direction-eq}\\ magnitude Caccioppoli};
+\node[new] (sst)  at (4.0,-0.6) {\(\sstar\), \(\sstar\le16\sigma\)};
+\node[new] (L)    at (8.0,-0.6) {\(\Lfac\): Wall 1};
+
+\node[new] (pin)  at (2.0,-2.6) {the alignment pincer\\ \CONDITIONAL{H1, H2}};
+\node[new] (open) at (6.6,-2.6) {\(\sstar\)-decay:\\ the single deep gap};
+
+\draw[ar, provedgreen] (split)--(mag);
+\draw[ar, provedgreen] (sig)--(sst);
+\draw[ar, provedgreen] (d8)--(L);
+\draw[ar] (mag)--(pin); \draw[ar] (sst)--(pin);
+\draw[ar] (sst)--(open);
+\draw[ar, impossiblered, dashed] (thmE) to[out=0,in=90,looseness=0.7]
+  node[right, font=\scriptsize, pos=0.35, align=left, text=impossiblered]
+  {its \emph{statement}\\ becomes the\\ open problem} (open.north);
+\draw[ar, openblue, dashed] (L) -- (open.east);
+
+\node[font=\scriptsize\itshape, text=rulegrey, align=center] at (4.0,-4.1)
+  {solid green: certified by the audit and carried forward \quad
+   dashed red: withdrawn};
+\end{tikzpicture}
+\caption[The inheritance graph]{What crossed the \Sn{31} boundary. Three
+objects survived --- two theorems and one defect --- and each seeded a
+distinct part of the later programme. The withdrawn Theorem~E crossed too, but
+only as a question.}
+\label{fig:inheritance}
+\end{figure}
+
+\subsection{The irony, stated plainly}
+\label{sec:theorem-e-irony}
+
+\begin{record}
+Theorem~E (\texttt{thm:blowup-alignment}, line~4858) asserted, in \Sn{30},
+that any blow-up forces \(\sigma(t)\to0\). Its proof rests on
+\texttt{thm:sigma-gronwall}, which Defect~D5 shows is conditional on the
+Beale--Kato--Majda criterion, and on Regime~I, which Defect~D6 shows requires
+a viscosity larger than universal constants. It is not among the objects the
+audit certifies as surviving.
+
+\smallskip
+The single deep open problem of the entire later programme --- named as such
+in \Sn{38}, reframed as structural rigidity in \Sn{39}, and carried as
+\texttt{target:disorder-depletion} (line~7490) --- is: \emph{force
+\(\sstar(t)\to0\) along a putative Type-I blow-up sequence.}
+
+\smallskip
+These are the same statement. The programme's central unsolved problem is a
+theorem it once believed it had proved, and whose proof it withdrew.
+\end{record}
+
+This is not a curiosity. It is the sharpest available measure of what the
+\Sn{31} audit actually cost: not a step in an argument, but the argument's
+conclusion, which then had to be rebuilt as a target and has resisted every
+attempt since. Fifteen sessions of work \Sn{32}--\Sn{45} --- the level-set
+Moser scheme, the magnitude Caccioppoli, the second rung, the
+\(K\)-self-absorption identity, the localised Constantin--Fefferman
+derivation, the Regime-A impossibility proof, the profile-rigidity reframe,
+the annulus iteration, the band conjecture, four sessions of numerics ---
+were all, directly or indirectly, attempts to recover it honestly.
+
+\section{Second inheritance: Defect 8 becomes the Calder\'on--Zygmund
+logarithm}
+\label{sec:cz-inheritance}
+
+This is the most important inheritance in the book, and the one the programme
+came closest to losing.
+
+\subsection{What D8 actually said}
+
+The second half of Defect~D8 is a single sentence in
+\texttt{sec:audit-s31}:
+
+\begin{record}
+``Moreover the stretching estimate invokes
+\(\norm{\nabla u}_{L^\infty(B_{\rstar})}\le CM\), but Calder\'on--Zygmund
+operators are unbounded on \(L^\infty\); the correct bound carries a
+logarithmic factor, which matters precisely because \S22 relies on
+log-corrected estimates.''
+\end{record}
+
+That is the whole of it. It is stated as a defect in one lemma. It is in fact
+a statement about the architecture of every estimate the programme would go on
+to write.
+
+\subsection{Why it is structural, not local}
+
+The programme's estimates all have the same shape. A budget is written for a
+quantity built from the vorticity --- local enstrophy, angular energy, a
+coupling density. The budget's dangerous term is vortex stretching, which
+involves \(\nabla u\). And \(\nabla u\) is not available: only \(\omega\) is,
+and \(\nabla u\) must be recovered from it by Biot--Savart. Biot--Savart is a
+Calder\'on--Zygmund operator. Taking a supremum of a Calder\'on--Zygmund image
+costs a logarithm --- the \(L^\infty\) endpoint fails --- and so
+\[
+  \norm{\nabla u}_{L^\infty} \;\lesssim\; M\,\Lfac,
+  \qquad \Lfac = \log\bigl(e+\norm{u}_{H^3}/M\bigr).
+\]
+The factor is paid \emph{once}, at that step, and then inherited by everything
+downstream. It is not a bookkeeping artefact of any single estimate, and no
+amount of care in the downstream algebra removes it.
+
+\subsection{The four appearances}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}l p{0.32\textwidth} p{0.46\textwidth}@{}}
+\toprule
+When & Where & What was said \\
+\midrule
+\Sn{31} & \texttt{sec:audit-s31}, D8
+  & The bound \(\norm{\nabla u}_{L^\infty}\le CM\) is false; the correct
+    bound carries a logarithm. \\[3pt]
+\Sn{32} & \texttt{rem:marginality} (5443)
+  & The connection is still live: the remark states that the logarithm ``is
+    mandatory: Calder\'on--Zygmund operators are unbounded on \(L^\infty\) ---
+    this was Defect~8 of the S31 audit''. The direction equation is
+    consequently \emph{exactly critical} at the scale \(\rstar\), up to a
+    logarithm. \\[3pt]
+\Sn{33} & \texttt{lem:local-enstrophy-typeI} (5701), \(\Lfac\) defined at 5712
+  & The factor enters the formal machinery and acquires its symbol. Every
+    budget from here on carries it. \\[3pt]
+\Sn{34} & \texttt{prop:crude-K} (5903)
+  & \textbf{First rediscovery.} The coupling term re-enters at top order
+    multiplied by \(\Lfac\): ``the crude route misses closing the loop by
+    exactly one logarithm''. \\[3pt]
+\Sn{41} & \texttt{rem:s41-shortfall} (8395)
+  & \textbf{Second rediscovery.} Absorption of the annulus core requires
+    \(C\Lfac\le\delta\nu\), which fails for fixed \(\nu\) as
+    \(\Lfac\to\infty\); the shortfall is ``exactly the same single
+    logarithm''. \\[3pt]
+\Sn{44} & \texttt{prop:s44-linfty-route} (9209)
+  & \textbf{Third rediscovery.} Both remaining conjectures close if and only
+    if the correlation constant \emph{decays} like \(C_1/\Lfac\).
+    Boundedness is not enough, because the hypothesis is used precisely to
+    cancel the \(\Lfac\) the budget carries. \\[3pt]
+\Sn{39} & \texttt{prop:transfer-audit}(d) (6941)
+  & The one apparent escape: on a Type-I profile, ``the logarithmic factor
+    \(\Lfac\) may be replaced by an absolute constant''. But this is
+    \PROVEDMOD{(R)}, and hypothesis~(R) \emph{is} an assumed log-free gradient
+    bound. The barrier is relocated, not removed. Wall~2. \\[3pt]
+\Sn{45} & \texttt{scale\_diagnostics.py}
+  & The decay \Sn{44} requires is measured. Slope of \(\log c_K\) on
+    \(\log\Lfac\): \(-0.196\) (\(r^2=0.05\)) and \(+0.088\) (\(r^2=0.02\)),
+    against the required \(-1\). Flat. \\[3pt]
+\Sn{47} & Wall~1
+  & Consolidated. Classification \OPEN{} and structural: no proof says the
+    logarithm cannot be removed, but the three appearances establish that it
+    is one obstacle seen three times, not three obstacles. And explicitly:
+    the factor ``is not a later regression but the audit's finding carried
+    forward''. \\
+\bottomrule
+\end{tabular}
+\caption[The life of the Calder\'on--Zygmund logarithm]{The obstruction's
+career, from a clause in a defect list to the programme's central structural
+barrier. Between \Sn{34} and \Sn{44} it was rediscovered three times as an
+apparently new difficulty.}
+\label{tab:cz-life}
+\end{table}
+
+\subsection{Why it was nearly lost}
+
+\texttt{PROGRESS.md} recorded the \Sn{31} audit as having \emph{seven} grounds.
+The omitted one was D8. For sixteen sessions, the programme's own navigational
+summary --- the file every session was instructed to read first --- did not
+contain the observation that its central obstruction had already been
+identified.
+
+The consequence was not a miscount. It was that each rediscovery looked like a
+new difficulty. \Sn{34} reports missing closure ``by exactly one logarithm'' as
+a finding about the crude \(K\)-route. \Sn{41} reports the annulus core falling
+short by ``exactly the same single logarithm'' and notes, correctly, that this
+is the known obstruction resurfacing --- but relates it to \Sn{34}, not to the
+audit. \Sn{44} establishes that the closure needs decay rather than
+boundedness, which is the sharpest form of the same statement.
+
+Only in \Sn{47}, when the walls document was written under the rule that the
+proof document governs, did the count get checked and the chain get closed.
+Wall~0's final clause is the repair: ``Defect~D8 is the first appearance of
+Wall~1 below; it was already flagged in the audit and is the reason the
+logarithm is not a later regression.''
+
+\begin{obsv}[The general lesson]
+\label{obs:summary-loss}
+A research programme's navigational summary is a lossy compression of its
+record, and what it loses is not random: it loses the items that do not fit
+the current narrative. In \Sn{31} the narrative was ``the recursion is broken'',
+and seven of the eight defects are about the recursion. D8's second half is
+about something else entirely --- an architectural feature of every future
+estimate --- and it was the item dropped. The rule that the primary document
+governs its own summaries is what recovered it, sixteen sessions late.
+\end{obsv}
+
+\section{Third inheritance: the withdrawal becomes the house rules}
+\label{sec:withdrawal-to-rules}
+
+The \Sn{31} audit is the direct ancestor of every rule in
+Chapter~\ref{ch:house-rules}. The mapping is close enough to tabulate.
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.14\textwidth} p{0.30\textwidth} p{0.48\textwidth}@{}}
+\toprule
+Defect & Rule it produced & Mechanism \\
+\midrule
+D1--D3
+  & Independent re-derivation before merge (\Sn{41})
+  & Three arithmetic errors reached a public claim because nobody recomputed
+    them. The gate requires the orchestrator to re-derive load-bearing steps
+    by hand. It caught the inverted volume factor in \Sn{44}. \\[3pt]
+D4
+  & State the quantifier class and check every step against it
+  & The \Sn{33} rebuild opens with a non-circularity remark: the pincer is a
+    contradiction argument at a putative \emph{first} singularity, so all
+    estimates run on the smooth interval and D4 cannot recur by design. \\[3pt]
+D5
+  & Do not assume an equivalent of the conclusion
+  & Every statement in \Sn{32} onward is labelled \emph{Proved},
+    \emph{Conditional} or \emph{Open target}, and conditional hypotheses are
+    named. \\[3pt]
+D8 (first half)
+  & Never assert a coercivity without deriving it
+  & The \Sn{35} ``second good term'' was asserted and then found by \Sn{36} to
+    cancel exactly (\texttt{lem:w2-cancel}); Wall~7 records it as one of three
+    instances of ``a favourable statement written down before the computation
+    producing it was closed''. \\[3pt]
+D8 (second half)
+  & The primary document governs its summaries
+  & \Sn{47}. See \S\ref{sec:cz-inheritance}. \\[3pt]
+The whole episode
+  & Report negatives as negatives
+  & \Sn{41} returns a proof that its own assignment is impossible; \Sn{45}
+    reports the measurement its own closure route needs as absent;
+    \Sn{47} declines to upgrade Wall~1 from \OPEN{} to \IMPOSSIBLE{}. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{What is still load-bearing, and what is dead}
+\label{sec:load-bearing}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}p{0.44\textwidth} p{0.44\textwidth}@{}}
+\toprule
+\textbf{Still load-bearing today} & \textbf{Dead} \\
+\midrule
+\texttt{lem:grad-omega-split}. Used in the \Sn{34} magnitude Caccioppoli and
+the \Sn{36} Gram negativity; without it neither works.
+  & \texttt{thm:uniform-enstrophy} and the two corollaries. Withdrawn, never
+    repaired, and Wall~0 states what repair would require. \\[6pt]
+The scale invariance of \(\sigma\), through
+\(\sstar\le16\sigma\), and \(\sstar\) itself. Every session \Sn{32}--\Sn{45}
+is about \(\sstar\).
+  & \texttt{lem:A-evol}'s coercivity. Never derived; the later programme
+    derives the direction equation from scratch instead. \\[6pt]
+\texttt{thm:routeC}. Still the terminal step of any closure that produces a
+\(\delta_0>0\).
+  & \texttt{thm:sigma-gronwall} as a route to regularity. D5 is not
+    repairable: the hypothesis is the conclusion. \\[6pt]
+Defect~D8's second half, as \emph{the obstruction}. It is the thing every
+open item in Parts~IV and VI is ultimately about.
+  & Regime~A (bounded enstrophy near a singularity). \Sn{38} proves it
+    impossible: at a genuine blow-up \(\limsup\Omega=\infty\). Not dormant ---
+    \IMPOSSIBLE. \\[6pt]
+The verification discipline, in full.
+  & The \(c_K\) measurement programme as \emph{evidence}. Wall~6:
+    \IMPOSSIBLE{} as a test. \\[6pt]
+\textbf{Dormant, not dead:} \texttt{thm:shear-claimA},
+\texttt{thm:near-shear}, \texttt{prop:theta-cacc},
+\texttt{lem:pressure-traceless}, the Gagliardo--Nirenberg mean localisation,
+the \(\Gamma(r)\) hierarchy, \texttt{lem:pressure-forcing}. All proved, none
+refuted, none used since \Sn{31}. This is the largest body of correct
+machinery in the document that nothing currently stands on.
+  & \S19's gradient recursion. Superseded by a withdrawn argument, which
+    leaves it in an odd position: it was replaced by something worse, and the
+    replacement's failure does not restore it, because \S19's own exponent was
+    sublinear. \\
+\bottomrule
+\end{tabular}
+\caption[Load-bearing against dead]{The early work, sorted by whether anything
+currently rests on it.}
+\label{tab:load-bearing}
+\end{table}
+
+\begin{obsv}[The shape of the inheritance]
+\label{obs:inheritance-shape}
+Almost nothing that the early work \emph{claimed} survived. Almost everything
+that the early work \emph{noticed} did. The split identity is an observation;
+the scale invariance of \(\sigma\) is an observation; the failure of
+Calder\'on--Zygmund on \(L^\infty\) is an observation. All three are still in
+use. The theorems built on top of them --- the recursion, the induction, the
+Gr\"onwall bound, Theorem~E --- are gone.
+
+That asymmetry is the practical content of the \Sn{31} audit and the reason
+this book keeps the early work rather than deleting it. A programme that
+discarded its failed chapter would have discarded the three observations along
+with the theorems, and the three observations are what the later programme is
+made of.
+\end{obsv}

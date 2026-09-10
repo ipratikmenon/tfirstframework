@@ -1,0 +1,316 @@
+% =====================================================================
+%  Chapter 00 — How to read this book
+% =====================================================================
+% ---------------------------------------------------------------------
+%  REPAIR --- not a new feature, and not mine to put here by choice.
+%
+%  The `record' environment as defined in the master file
+%  tfirst-book.tex (lines 87--91) is malformed.  Its begin-code group
+%  closes early: the brace that opens \colorbox's argument is matched by
+%  the brace that \newenvironment reads as the end of the begin-code, so
+%  \newenvironment absorbs the intended end-code into the begin-code and
+%  no end-code is left.  Verified with \show: \endrecord expands to
+%  \begin.  Every \end{record} then raises
+%      "Extra }, or forgotten \endgroup."
+%  and the document does not compile.
+%
+%  The definition below is the intended behaviour, written with an
+%  explicit save box so that \colorbox's argument is balanced.
+%  IT BELONGS IN THE MASTER PREAMBLE.  It is here only because this
+%  agent was instructed not to modify the master file; move it there and
+%  delete this block.
+% ---------------------------------------------------------------------
+\newsavebox{\tfrecordbox}
+\renewenvironment{record}
+  {\par\medskip\noindent
+   \begin{lrbox}{\tfrecordbox}%
+   \begin{minipage}{\dimexpr\linewidth-2\fboxsep\relax}%
+   \vspace{2pt}\small}
+  {\vspace{2pt}\end{minipage}\end{lrbox}%
+   \noindent\colorbox{panelgrey}{\usebox{\tfrecordbox}}\par\medskip}
+
+\chapter{How to Read This Book}
+\label{ch:how-to-read}
+
+This book is a record of a research programme that did not achieve its goal.
+It is written for a mathematician who has never seen the programme, and its
+purpose is to make the whole of it --- the reasoning, the constructions, the
+numerical apparatus, the corrections and the retractions --- legible and
+checkable by somebody who was not present for any of it.
+
+Three things must be said before anything else.
+
+\begin{record}
+\textbf{First.} This book \emph{states} results. It does not \emph{prove}
+them. The proofs, where they exist, live in
+\texttt{proofs/claim\_a\_3d\_proof\_attempt.tex}, a \(10{,}462\)-line
+\LaTeX{} document that compiles to \(142\) pages. Every mathematical
+statement in this book is a report on an object in that document, cited by
+its label and, where useful, its line number.
+
+\smallskip
+\textbf{Second.} The programme has \emph{not} proved the Clay Millennium
+Prize problem. It claimed a proof once, in session~\Sn{29}, and withdrew that
+claim in session~\Sn{31} on eight independent grounds. Global regularity for
+general \(u_0\in H^1(\T^3)\) is \OPEN{} in the proof document, and is
+recorded as such throughout.
+
+\smallskip
+\textbf{Third.} The programme's credibility, such as it is, rests entirely on
+the failures being reported as crisply as the successes. A wall is a wall. A
+withdrawn claim is withdrawn. Nothing in the chapters that follow softens a
+negative result, and where a negative result was once softened, the softening
+is itself reported.
+\end{record}
+
+\section{The status labels}
+\label{sec:status-labels}
+
+Every substantive claim in this book carries exactly one status label. The
+labels are not decoration; they are the compressed verdict, and they come
+from the classification scheme the proof document itself adopted in
+\texttt{sec:walls-s47} (line~9717).
+
+\begin{center}
+\small
+\begin{tabular}{@{}l p{0.72\textwidth}@{}}
+\toprule
+Label & Meaning \\
+\midrule
+\PROVED
+  & A proof exists in the proof document, is unconditional within its stated
+    hypothesis class, and has survived every audit since. \\[2pt]
+\OPEN
+  & Nothing is proved against it. It is unfinished and remains available. An
+    \OPEN{} item is not a weak \PROVED{}; it is an absence of a proof. \\[2pt]
+\IMPOSSIBLE
+  & A proof in the document rules the route out, and no choice of parameters
+    inside the route can help. This label is used only where such a proof
+    exists, and it is never weakened in the prose. \\[2pt]
+\WITHDRAWN
+  & An assertion was made in the document and has been retracted. The
+    retraction is permanent unless the underlying defect is repaired and
+    named as repaired. \\[2pt]
+\SUPERSEDED
+  & The route was replaced by a different formulation of the same target,
+    which carries its own status. Superseded is not a synonym for refuted. \\[2pt]
+\PROVEDMOD{X}
+  & Proved except for enumerated verifications of class~\(X\); the missing
+    items involve no new estimate. \\[2pt]
+\CONDITIONAL{(H)}
+  & Proved on the assumption of a named hypothesis \((H)\) which is itself
+    not proved here. The hypothesis must be carried in the same sentence as
+    the conclusion. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Two of these distinctions did real work and are worth dwelling on.
+
+\begin{obsv}[\IMPOSSIBLE{} is narrower than it sounds]
+\label{obs:impossible-narrow}
+Three of the programme's ten walls carry \IMPOSSIBLE{}, and each is
+\emph{qualified}. Wall~4 (nested level iteration) is proved impossible for
+that route, while the target it was meant to serve is merely \SUPERSEDED{}.
+Wall~8 is proved impossible \emph{as written}, with a hypothetical localized
+substitute left \OPEN{}. Wall~9 is proved impossible \emph{as an import}, and
+the underlying question it concerns is of course \OPEN{} --- it is the Prize.
+Where a qualification exists, this book carries it.
+\end{obsv}
+
+\begin{obsv}[The most important label in the book is \OPEN]
+\label{obs:open-is-honest}
+The programme's central structural obstruction --- the Calder\'on--Zygmund
+logarithm \(\Lfac\) of Chapter~\ref{ch:inheritance} --- is \OPEN{}, not
+\IMPOSSIBLE{}. No proof in the document says the logarithm cannot be removed.
+What is established is that it is paid once, at a single identifiable step,
+and inherited everywhere downstream. Recording it as a proved barrier would
+have overstated it; recording it as a minor bookkeeping nuisance would have
+understated it. It is neither.
+\end{obsv}
+
+\section{Session tags}
+\label{sec:session-tags}
+
+The programme ran as forty-seven working sessions between April and September
+2026. A tag of the form \Sn{31} names session thirty-one. Tags are used
+constantly and mean something precise: they locate a claim in time, and they
+identify the session log in \texttt{SESSION-LOG/} that carries the primary
+account of what happened. Session \Sn{31} is the audit; \Sn{29} is the Prize
+claim it withdrew; \Sn{40} is the comparison with the forced-blowup
+construction of Chapter~\ref{ch:openai}; \Sn{46} is the strategic audit and
+\Sn{47} the walls document.
+
+Sessions are not uniform in size or kind. Some are a single analytical
+derivation, some are a numerical production run, one (\Sn{31}) is an audit
+that produced no new mathematics and changed everything. Numbering has gaps
+where a session produced nothing worth logging; \Sn{39} carries two logs
+because two independent tracks ran under it.
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l p{0.52\textwidth}@{}}
+\toprule
+Range & Period & Character \\
+\midrule
+\Sn{1}--\Sn{17} & Apr 2026 & The numerical programme: property engine, 2D
+  solvers, 3D solvers, diagnostics. Milestones M0--M10. \\
+\Sn{18}--\Sn{27} & May 2026 & The Claim-A proof attempt
+  (Chapter~\ref{ch:claim-a}). \\
+\Sn{29}--\Sn{30} & May 2026 & The Prize claim and the \(\sigma\)-framework
+  (Chapter~\ref{ch:prize-claim}). \\
+\Sn{31} & Jul 2026 & The audit; withdrawal (Chapter~\ref{ch:audit}). \\
+\Sn{32}--\Sn{39} & Jul 2026 & The alignment pincer and profile rigidity. \\
+\Sn{40} & Sep 2026 & The forced-blowup comparison
+  (Chapter~\ref{ch:openai}). \\
+\Sn{41}--\Sn{45} & Sep 2026 & The annulus residual, the band conjecture, the
+  scale diagnostics. \\
+\Sn{46}--\Sn{47} & Sep 2026 & Strategic audit; first successful compile; the
+  walls document. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{The source hierarchy}
+\label{sec:source-hierarchy}
+
+The programme generated four kinds of record, and they do not always agree.
+When they disagree, the following order decides, and the disagreement is
+footnoted rather than silently resolved.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  node distance=6mm,
+  box/.style={draw, rounded corners=2pt, align=center, inner sep=4pt,
+              font=\small, minimum width=52mm},
+  lbl/.style={font=\scriptsize\itshape, align=left, text width=52mm}
+]
+\node[box, fill=panelgrey] (doc)
+  {\textbf{1. The proof document}\\[1pt]
+   \texttt{proofs/claim\_a\_3d\_proof\_attempt.tex}};
+\node[lbl, right=4mm of doc] (doclbl)
+  {governs all mathematical statements; compiles; labels are primary, line
+   numbers secondary};
+
+\node[box, below=of doc] (db)
+  {\textbf{2. The results database}\\[1pt]
+   \texttt{results/results.db} (31 tables)};
+\node[lbl, right=4mm of db] (dblbl)
+  {governs all quantitative experimental claims: \texttt{claim\_id},
+   \texttt{key\_metric}, \texttt{verdict}};
+
+\node[box, below=of db] (logs)
+  {\textbf{3. The session logs}\\[1pt]
+   \texttt{SESSION-LOG/} (40 files)};
+\node[lbl, right=4mm of logs] (logslbl)
+  {govern narrative: what was tried, why, what was believed at the time};
+
+\node[box, below=of logs] (prog)
+  {\textbf{4. The summaries}\\[1pt]
+   \texttt{PROGRESS.md}, \texttt{HANDOVER-S46-OPUS.md}};
+\node[lbl, right=4mm of prog] (proglbl)
+  {navigational only; known to contain errors of omission; never decisive};
+
+\draw[-{Latex[length=2mm]}, thick] (doc) -- (db);
+\draw[-{Latex[length=2mm]}, thick] (db) -- (logs);
+\draw[-{Latex[length=2mm]}, thick] (logs) -- (prog);
+
+\node[left=3mm of doc, font=\scriptsize, rotate=90, anchor=south]
+  {decreasing authority};
+\end{tikzpicture}
+\caption[The source hierarchy]{The source hierarchy. Where two sources
+disagree, the higher one governs and the disagreement is footnoted. This is
+not a hypothetical policy: applying it in \Sn{47} caught three overstatements
+in the summaries, one of them material.}
+\label{fig:source-hierarchy}
+\end{figure}
+
+The rule earned its place. In \Sn{47}, checking the summaries against the
+document found three claims the document does not support. The most
+consequential: \texttt{PROGRESS.md} records the \Sn{31} audit as having
+\emph{seven} grounds. The document's \texttt{sec:audit-s31} (line~5218) lists
+\emph{eight}, D1--D8. The omitted one, D8, is the first appearance of the
+Calder\'on--Zygmund logarithm --- the obstruction that came to dominate every
+later session. Losing it from the summary was not neutral: it made the
+programme's central difficulty look like a later regression rather than
+something the audit had already named.\footnote{The two other \Sn{47}
+corrections: \texttt{HANDOVER-S46-OPUS.md} described
+\texttt{conj:lc-s44} as ``a common \emph{weaker} target'' than
+\texttt{conj:K-refined}, whereas by \texttt{rem:s44-lc-reading} (line~9453)
+neither implies the other; and the phrase ``\(c_K\) and band-absorption
+proved independent'' drops the qualifier that \texttt{rem:s44-scope}
+(line~8822) insists on --- the counterexamples are over admissible test
+configurations, not over Navier--Stokes solutions.}
+
+The reader should assume more such errors remain in the summaries. This book
+was written against the document, the database and the logs, in that order.
+
+\section{Citing the proof document}
+\label{sec:citing}
+
+References into the proof document are given as text, never as a \LaTeX{}
+cross-reference: for example \texttt{prop:transfer-audit}, line~6941. Labels
+are primary and stable; line numbers are secondary, quoted as of \Sn{47}, and
+will rot as the document grows. Where this book gives a line number it has
+been checked against the current file.
+
+One trap is pre-existing and worth stating once. Parts of \S20--\S22 of the
+proof document carry \emph{hand-written} numbers in their prose and
+subsection headings --- ``Lemma 20.1'', ``Theorem 20.4'' --- which are off by
+one from the numbers \LaTeX{} assigns; those statements live in the section
+\LaTeX{} numbers 21. The drift was exposed by the document's first successful
+compilation, in \Sn{47}, and has not been repaired. This book uses labels, so
+it is unaffected, but a reader who follows a hand-written number will be sent
+to the wrong section.
+
+\section{A minimal notation crib}
+\label{sec:crib}
+
+The full glossary is an appendix. These few symbols recur from
+Chapter~\ref{ch:origin} onwards and are worth fixing now.
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l p{0.60\textwidth}@{}}
+\toprule
+Symbol & Reads as & Meaning \\
+\midrule
+\(T(x,t)\) & --- & Temperature: a \emph{scalar} field, the master variable of
+  the founding thesis (Chapter~\ref{ch:origin}). \\
+\(A(T)\) & --- & Thermal diffusivity \(k(T)/(\rho c_v)\), required strictly
+  positive by the second law. \\
+\(\theta\) & theta & The auxiliary scalar of Route~2:
+  \(\partial_t\theta+u\cdot\nabla\theta=\nu\Delta\theta+\nu\abs{\nabla u}^2\). \\
+\(M(t)\) & --- & \(\norm{\omega(\cdot,t)}_{L^\infty}\), the vorticity maximum. \\
+\(\rstar\) & r-star & The self-similar scale \(M^{-1/2}\). \\
+\(\sstar\) & sigma-star & The instantaneous coherence deficit, \texttt{def:sigma-star}
+  (line~5393): a scale-invariant measure of vortex-direction disorder at
+  scale \(\rstar\). \\
+\(\Lfac\) & script-L & \(\log(e+\norm{u}_{H^3}/M)\), the Calder\'on--Zygmund
+  logarithm. The single most important symbol in this book. \\
+\(\ehat\) & e-hat & The vorticity direction field \(\omega/\abs{\omega}\). \\
+\(\Aann\) & --- & The annulus residual of \Sn{36}--\Sn{41}. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{The shape of the book}
+\label{sec:shape}
+
+Part~I gives the founding thesis, the three routes it generated, the
+architecture it planned, and the verification discipline it eventually
+learned. Part~II is the numerical programme, layer by layer, with the actual
+numbers. Part~III is \emph{the early work}: the Claim-A proof attempt, the
+Prize claim that grew out of it, the audit that withdrew it, and --- the
+chapter that carries the most weight for the rest of the book --- what the
+later work inherited from all three. Part~IV is the later analytical
+programme. Part~V places the programme against a contemporaneous result on
+the forced equations. Part~VI is the walls. Part~VII is what the programme
+learned about method, and Part~VIII is where it stands.
+
+The early work is retained in full and read forward. It was not deleted, and
+it is not quietly superseded. That decision was the owner's, and it is the
+right one: the programme's single most consequential structural finding was
+first written down in the audit that destroyed its central claim, and a
+history that discarded the failure would have discarded the finding with it.

@@ -1,0 +1,328 @@
+% =====================================================================
+%  Chapter 04 — House rules
+% =====================================================================
+\chapter{House Rules: The Verification Discipline}
+\label{ch:house-rules}
+
+Most of the rules in this chapter were written after something went wrong.
+That is why they are worth reading: a rule invented in advance records what
+somebody thought would matter, and a rule written after a failure records what
+actually did. This chapter states each rule, and states the failure it was a
+reaction to.
+
+The chapter exists because of a single episode. In \Sn{29} the programme
+announced that it had proved the Clay Prize problem for \(u_0\in H^1(\T^3)\)
+and began preparing an \texttt{arXiv} submission. In \Sn{31} an independent
+line-by-line audit found eight defects in the argument, three of them
+elementary --- an arithmetically impossible induction, an invalid H\"older
+triple, a reversed Jensen inequality --- and the claim was withdrawn.
+Chapter~\ref{ch:audit} is the audit. This chapter is what the programme did
+about it.
+
+\section{The numerical rules}
+\label{sec:numerical-rules}
+
+\subsection{Method}
+
+Spectral methods only, FFT-based; finite differences are not acceptable.
+Dealiasing by the \(2/3\) rule on every run. RK4 time integration throughout,
+with an adaptive CFL step. In Route~1, \(\rho=\mathrm{const}\) and
+\(\nabla\cdot u=0\) are enforced \emph{exactly} --- by a spectral Leray
+projection --- not approximately.
+
+The rationale is that the quantities the programme measures are
+high-derivative, small-scale objects: \(\abs{\nabla\ehat}^2\),
+\(\abs{\nabla^2\ehat}^2\), palinstrophy. A method with numerical dissipation
+at the grid scale would manufacture exactly the smoothness the programme is
+looking for. Spectral accuracy makes the observed smoothness attributable to
+the equations.
+
+Exactness of the divergence constraint is not pedantry either. \Sn{08}
+found a genuine bug in the Leray projector arising from the Nyquist mode:
+\texttt{numpy.fft.fftfreq} places the Nyquist frequency at \(-N/2\), so the
+mode and its conjugate partner land at the same index, the Hermitian symmetry
+required for a real inverse transform fails on the Nyquist planes, and the
+divergence escapes --- to an RMS of \(1.465\) at \(N=16\). Zeroing the three
+Nyquist planes before the projection fixed it, and the divergence dropped to
+below \(10^{-11}\). The programme's reported divergence residuals thereafter
+are \(9.85\times10^{-16}\) (NumPy, float64) and \(5.16\times10^{-7}\) (JAX,
+float32) on the Taylor--Green benchmark.
+
+\subsection{Recording}
+
+\begin{record}
+\textbf{Rule.} Every run saves a parameters JSON, its raw output, its figures
+and its \textsf{PASS}/\textsf{FAIL} verdict. Random seeds are always set and
+logged. Grid resolution is always logged. Results are appended to
+\texttt{results/results.db}. \emph{A result without a logged
+\texttt{claim\_id} is not a result}, and \textsf{PASS} may not be claimed
+without a logged \texttt{key\_metric}.
+\end{record}
+
+The programme broke this rule once, and the breach is instructive. \Sn{30}
+reports two experiments, \texttt{EXP-L4-SIGMA-TG-001} and
+\texttt{EXP-L4-SIGMA-SH-001}, with \(\sigma\) values and a verdict --- but
+they were written to a Markdown file, \texttt{results/S30\_sigma\_results.md},
+and never to the database. They are consequently not in the thirty-one tables,
+cannot be queried, and cannot be cross-checked against a later run. The
+\(\sigma\)-framework they supported is the material the \Sn{31} audit hit
+hardest.
+
+\section{The verification rules}
+\label{sec:verification-rules}
+
+\subsection{Worktree isolation and independent re-derivation}
+
+This is the strongest rule the programme has, and it was established in
+\Sn{41}.
+
+\begin{record}
+\textbf{Rule (the merge gate).} Analytical work delegated to a subagent is
+performed in an isolated \texttt{git} worktree, not against the shared proof
+document. Nothing merges until the orchestrator has \emph{independently
+re-derived the load-bearing computations by hand}. A self-report, however
+carefully written, is not verification.
+\end{record}
+
+Figure~\ref{fig:merge-gate} shows the gate. Its value is not hypothetical. In
+\Sn{44} a subagent returned a favourable-sounding headline: that the
+band-absorption conjecture was strictly \emph{weaker} than the \(c_K\)
+decorrelation conjecture, needing only an \(O(1)\) constant where \(c_K\)
+needs a decaying one, so that the programme's four sessions of measurements at
+\(c_K\approx1\) already supported it. Verification found the supporting lemma
+inverted: it stated
+\[
+  \Xi[\mathbf 1_E] \;=\; c_K\,\frac{\abs{E}}{\abs{Q(\rstar)}} \;\le\; c_K
+  \qquad\text{(wrong)},
+\]
+whereas the correct relation carries the reciprocal volume factor,
+\[
+  \Xi[\mathbf 1_E] \;=\; c_K\,\frac{\abs{Q(\rstar)}}{\abs{E}} \;\ge\; c_K .
+\]
+Three conclusions drawn from the inverted form were withdrawn
+(\texttt{rem:s44-corrigendum}, line~8708), and the corrected reading
+\emph{inverts the headline}: the volume-normalised statistic is stronger, not
+weaker, and the logarithm is not an artefact. Had the inverted lemma merged,
+it would have entered the document as good news and steered later sessions
+toward the wrong target.
+
+The checks the orchestrator ran that located it are worth naming, because they
+are cheap and general: re-derive the algebra directly from the definitions; run
+a numerical check on a handful of random configurations (the stated form
+matched nothing, the corrected form matched to machine precision); and test
+the sanity case (constant densities on \(E\) give \(c_K=1\), uncorrelated, but
+\(\Xi=\abs{Q}/\abs{E}\gg1\)). The error also contradicted two of the
+subagent's own results elsewhere in the same submission, and that internal
+inconsistency is what drew attention to it.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  >={Latex[length=2mm]},
+  st/.style={draw, rounded corners=2pt, font=\small, align=center,
+             inner sep=4pt, minimum height=9mm, text width=31mm},
+  gate/.style={draw, thick, diamond, aspect=2.1, font=\small, align=center,
+               inner sep=1pt, fill=panelgrey},
+  ar/.style={->, thick}
+]
+\node[st] (task) at (0,0) {task scoped to \emph{one} item};
+\node[st, right=9mm of task] (wt) {isolated worktree\\\footnotesize (agent edits a copy)};
+\node[gate, right=9mm of wt] (g) {orchestrator\\re-derives};
+\node[st, right=9mm of g] (merge) {merge into\\the proof document};
+\node[st, below=9mm of g] (rej) {returned, with the\\defect named};
+
+\draw[ar] (task)--(wt);
+\draw[ar] (wt)--(g);
+\draw[ar] (g)-- node[above, font=\scriptsize] {checks out} (merge);
+\draw[ar] (g)-- node[right, font=\scriptsize] {does not} (rej);
+\draw[ar] (rej.west) to[out=180,in=-90] (wt.south);
+
+\node[below=2.5mm of merge, font=\scriptsize\itshape, text width=30mm,
+      align=center, text=rulegrey]
+  {also checked: brace balance, environment multiset, duplicate
+   labels, dangling refs};
+\end{tikzpicture}
+\caption[The merge gate]{The merge gate established in \Sn{41}. The
+orchestrator re-derives the load-bearing steps before anything enters the
+shared document. This gate caught the inverted volume factor of \Sn{44}.}
+\label{fig:merge-gate}
+\end{figure}
+
+\subsection{The proof document governs}
+
+Where \texttt{PROGRESS.md}, a handover file or a session log disagrees with
+\texttt{proofs/}\allowbreak\texttt{claim\_a\_3d\_}\allowbreak\texttt{proof\_attempt.tex}, the document wins and the
+disagreement is recorded. \Sn{47} applied this rule to its own commissioning
+brief and caught three overstatements, all in work produced one session
+earlier. They are set out in \S\ref{sec:source-hierarchy} of
+Chapter~\ref{ch:how-to-read}; the material one is that the \Sn{31} audit has
+\emph{eight} grounds, not seven, and the omitted ground is the first
+appearance of the programme's central obstruction.
+
+\subsection{Compile; do not grep}
+
+Until \Sn{47}, the proof document had \emph{never been compiled}. Every prior
+``verification'' was brace counting by \texttt{grep}. \Sn{39} discovered that
+\texttt{conjecture} and \texttt{fact} had been used as environments across
+several sessions without ever being declared, so the file would have failed on
+first compile --- an error class that brace counting cannot see by
+construction. \Sn{47} installed a toolchain and compiled: \(142\) pages, and
+three further defects that only a compiler finds. \(\backslash\)\texttt{fint}
+and \(\backslash\)\texttt{colonequals} were undefined, which meant three
+formulas \emph{were not typesetting at all}.
+
+Two toolchain facts are recorded in the programme's rules because each costs
+an hour:
+
+\begin{enumerate}[leftmargin=2em]
+\item \texttt{cm-super} must be installed, or \texttt{microtype}'s font
+  expansion aborts the run with ``auto expansion is only possible with
+  scalable fonts'' and the toolchain looks broken when it is not.
+\item \texttt{-file-line-error} reformats \TeX{} errors as
+  \texttt{file:line:} with \textbf{no leading} \texttt{!}. Grepping for
+  \verb|^!| silently reports zero errors on a run that has five. This actually
+  happened in \Sn{47}.
+\end{enumerate}
+
+The structural checker \texttt{scripts/check\_proof.py} was written in the
+same session --- brace balance, \(\backslash\)\texttt{begin}/%
+\(\backslash\)\texttt{end} multiset \emph{and nesting order via a stack},
+undeclared environments, duplicate labels, unresolved references, and the
+malformed \verb|\end{env>| typo class found in \Sn{44}. Its docstring states
+explicitly that green is \emph{necessary but not sufficient}: it cannot see
+undefined macros, which is precisely how the three \Sn{47} defects survived
+every previous check.
+
+\subsection{Never guess a cross-reference}
+
+\Sn{47} resolved four dangling references. The named trap is that a guessed
+target injects a false cross-reference into a mathematical document, so each
+resolution had to be justified by evidence and each site now carries a comment
+recording it --- for instance, \texttt{thm:vorticity-uniform} resolved to
+\texttt{thm:uniform-enstrophy} because the citing line quotes that theorem's
+displayed conclusion, \(Z(r,z_0)\le D\,r^{2/3}\), verbatim. Where no
+identification is possible, the reference must be \emph{declared} dangling
+with a marker and a visible note in the body, never guessed.
+
+\section{The reporting rules}
+\label{sec:reporting-rules}
+
+\subsection{A negative result is reported as negative}
+
+The book's named failure mode is narrative drift into self-defence: softening
+``proved impossible'', upgrading ``conditional'' to ``proved'', describing an
+unfavourable measurement as inconclusive but promising. Three episodes set
+the standard.
+
+\Sn{45} measured the quantity on which one of the two remaining closure routes
+depends --- the \(\Lfac\)-dependence of the correlation constant \(c_K\) ---
+and found the regression slope of \(\log c_K\) on \(\log\Lfac\) to be
+\(-0.196\) with \(r^2=0.05\) on one pool and \(+0.088\) with \(r^2=0.02\)
+across all twelve runs, against the \(-1\) a clean \(C/\Lfac\) law requires,
+over \(\Lfac\in[1.35,4.68]\). The session log states the finding as a negative
+signal and states, in the same paragraph, both that it does not refute the
+conjecture and that the programme had by then been looking at \(c_K\approx1\)
+for four sessions without ever seeing the decay it needs.
+
+\Sn{41} was commissioned to close the last mechanical step in a chain and
+returned a proof that the step \emph{cannot} be closed by the proposed method,
+for any choice of parameters. The result is logged as the main finding of the
+session, and the item it concerns was reclassified from ``open-mechanical'' to
+genuinely open --- a strictly worse position than the programme believed it
+was in, honestly recorded.
+
+\Sn{47} classified the Calder\'on--Zygmund logarithm as \OPEN{} rather than
+\IMPOSSIBLE{}, on the ground that no proof in the document says it cannot be
+removed. Recording it as a proved barrier would have overstated it in the
+programme's own favour --- it would have made the wall sound like a discovery
+rather than a difficulty.
+
+\subsection{Specification errors are named as loudly as mathematical ones}
+
+In \Sn{39} a numerical verification track returned two runs with margins of
+\(5.5\times10^{19}\) and \(2.0\times10^{14}\), reported as \textsf{PARTIAL}.
+The subsequent addendum states flatly that the original \emph{specification}
+was wrong and the runs were vacuous: accumulating \(\exp\int_0^T A\,ds\) over
+a twenty-time-unit window with \(A\sim O(1\text{--}3.5)\) gives \(e^{70}\),
+so the margin could not have been satisfied by any residual, however small.
+The addendum names this as an error in the coordinator's specification, not in
+the implementation, ``because the programme's convention is that spec errors
+get named as explicitly as mathematical ones''. The windowed re-run that
+followed reduced the Gr\"onwall factor from \(\sim10^{12}\) to \(O(3\text{--}5)\)
+and produced informative comparisons.
+
+\subsection{Self-audit before building on your own work}
+
+\Sn{34} opens with a corrigendum to \Sn{33} --- a dimensional re-audit of the
+previous session's own section, performed \emph{before} building on it, which
+found and fixed four defects. \Sn{36} corrects a ``bonus'' good term claimed in
+\Sn{35}, showing it cancels exactly (\texttt{lem:w2-cancel}, line~6166).
+\Sn{37} catches its own first-pass assumption that the global enstrophy is
+\(O(1)\) near a putative singularity, which is false, and redoes the
+derivation. \Sn{43} corrects \Sn{42}'s reading of a set of numerical spikes,
+finding that ``likely resolution artefacts'' was half wrong --- the spikes grew
+under refinement --- and replaces it with the accurate characterisation.
+
+\section{The rules and what they cost}
+\label{sec:rules-table}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}p{0.30\textwidth} c p{0.50\textwidth}@{}}
+\toprule
+Rule & Written after & What it was a reaction to \\
+\midrule
+Spectral only; \(2/3\) dealias; RK4; exact Leray
+  & \Sn{2}, \Sn{8}
+  & A dealiasing routine that broke Hermitian symmetry, and a Nyquist-mode
+    bug that let divergence reach RMS \(1.465\). \\[3pt]
+\texttt{claim\_id} \(+\) \texttt{key\_metric} \(+\) verdict, in the database
+  & \Sn{4} onward
+  & Enforced from the start; broken once, in \Sn{30}, whose \(\sigma\)
+    experiments exist only in a Markdown file. \\[3pt]
+Property engine is the single source
+  & \Sn{1}
+  & Makes \(A_{\min}\) values comparable across solvers, which is what lets
+    \Sn{15} attribute \(A_{\min}\) to the background temperature. \\[3pt]
+Worktree isolation \(+\) independent re-derivation before merge
+  & \Sn{41}
+  & The \Sn{31} audit; immediately justified in \Sn{44} by catching an
+    inverted volume factor that would have entered as a favourable headline. \\[3pt]
+The proof document governs the summaries
+  & \Sn{47}
+  & Caught three overstatements from \Sn{46}, including the loss of the
+    audit's eighth defect. \\[3pt]
+Compile, do not grep; \texttt{cm-super}; do not grep for \verb|^!|
+  & \Sn{39}, \Sn{47}
+  & A document that had never been compiled in 47 sessions, with three
+    formulas silently not typesetting. \\[3pt]
+Never guess a cross-reference; declare dangling ones
+  & \Sn{47}
+  & Four unresolved references; a guessed target is a false statement in a
+    mathematical document. \\[3pt]
+No detached background runs
+  & \Sn{34}, \Sn{36}
+  & Agents detaching long numerical runs and ending their turn; the runs died
+    with them, three separate times. Mitigation: query the database directly
+    rather than trusting a self-report. \\[3pt]
+Report negatives as negatives
+  & \Sn{45}, \Sn{47}
+  & The named failure mode of the whole enterprise. \\
+\bottomrule
+\end{tabular}
+\caption[The house rules and their origins]{Each rule and the failure that
+produced it. Several were written in blood.}
+\label{tab:house-rules}
+\end{table}
+
+\begin{obsv}[What the discipline did and did not buy]
+\label{obs:discipline-limits}
+The discipline of this chapter caught, in the sessions after it was installed:
+an inverted lemma (\Sn{44}), a retracted good term (\Sn{36}), a wrong
+enstrophy assumption (\Sn{37}), a wrong reading of numerical spikes
+(\Sn{43}), three summary overstatements and three non-typesetting formulas
+(\Sn{47}), and a vacuous specification (\Sn{39}). It did not produce a single
+new theorem. Verification discipline is a way of not being wrong; it is not a
+way of being right.
+\end{obsv}

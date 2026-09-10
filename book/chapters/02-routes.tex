@@ -1,0 +1,249 @@
+% =====================================================================
+%  Chapter 02 — The three routes
+% =====================================================================
+\chapter{Three Routes to the Prize}
+\label{ch:routes}
+
+The founding thesis of Chapter~\ref{ch:origin} does not by itself say which
+system to work in. Temperature is the master variable, but a proof has to be
+carried out in some specific set of equations, and the choice of that set is
+the choice between being physically natural and being \emph{admissible} for
+the Prize. The programme's specification identifies three, ranks them, and
+states the limit that carries each back to the Prize equations.
+
+\section{The three systems side by side}
+\label{sec:three-systems}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}l p{0.27\textwidth} c p{0.22\textwidth} p{0.17\textwidth}@{}}
+\toprule
+Route & System & Prize geometry? & Final limit & Rank \\
+\midrule
+\textbf{1} & Incompressible NS with \(\mu(T)\), plus a scalar transport
+  equation for \(T\)
+  & yes, from the start
+  & \(\mu(T)\to\nu\): uniform temperature, thermal relaxation
+  & primary \\[4pt]
+\textbf{2} & The \emph{exact} Prize equations, plus an auxiliary scalar
+  \(\theta\) slaved to the velocity
+  & yes, exactly
+  & \(\varepsilon\to0\), elementary; and at \(\varepsilon=0\) nothing to take
+  & backup \\[4pt]
+\textbf{3} & Compressible Navier--Stokes--Fourier
+  & no: \(\rho\) is variable
+  & \(\mathrm{Ma}\to0\), hard
+  & completeness \\
+\bottomrule
+\end{tabular}
+\caption[The three routes]{The three routes, as specified. The ranking is the
+programme's own, from its architecture document. It is worth noting that the
+route ranked ``backup'' is the one every result in Parts~III--VI is stated
+in.}
+\label{tab:three-routes}
+\end{table}
+
+\section{Route~1: incompressible with temperature-dependent viscosity}
+\label{sec:route1}
+
+Route~1 was written down in Chapter~\ref{ch:origin} as
+\eqref{eq:route1-u}--\eqref{eq:route1-T}. Its virtue is that it stays in Prize
+geometry throughout: \(\rho\) is constant and \(\nabla\cdot u=0\) is enforced
+exactly, not approximately, by a spectral Leray projection at every step.
+Nothing in Route~1 has to be argued away at the end except the temperature
+dependence of \(\mu\) itself.
+
+Its defect is that it is a genuinely different system. Global strong
+solvability of the incompressible Navier--Stokes equations with
+temperature-dependent viscosity, for large data in three dimensions, is
+\emph{open in the literature}; the programme's own list of priority questions
+names it first. Route~1 therefore does not reduce the Prize to something
+easier. It substitutes a hard open problem for a hard open problem, in
+exchange for a mechanism --- the scalar maximum principle --- that the Prize
+equations do not obviously offer.
+
+The limit \(\mu(T)\to\nu\) is nevertheless simple in a way that matters. It is
+a limit of \emph{coefficients}, not of geometry. Parametrise the initial
+temperature as \(T_0=\bar T+\delta\,g(x)\) with \(\norm{g}_{L^\infty}=1\); as
+\(\delta\to0\) the temperature field becomes uniform and \(\mu(T)\to\mu(\bar
+T)=\nu\). What the programme measured is whether anything degenerates in that
+limit, and it does not: Chapter~\ref{ch:layer3} reports
+\(\abs{\varepsilon(\delta)}\propto\delta^{0.980}\) with \(R^2>0.99\) across
+three decades of \(\delta\), an entirely regular, first-order approach.
+
+\section{Route~2: the exact Prize equations plus a diagnostic scalar}
+\label{sec:route2}
+
+Route~2 is the programme's answer to an objection, and understanding the
+objection is the fastest way to understand the route.
+
+\subsection{Tao's objection}
+
+Any regularity argument that proceeds by modifying the equations --- adding a
+regularising term, changing the viscosity law, working in a different
+symmetry class --- owes an account of the limit back to the unmodified
+problem. The objection, associated with Terence Tao's writing on the
+supercriticality barrier, is that this account is where the difficulty
+usually reappears: the modified problem is regular \emph{because} of the
+modification, the constants degenerate as the modification is removed, and
+nothing has been learned about the original equations. Route~1 is exposed to
+exactly this: its regularity mechanism is \(A(T)>0\), and \(A\) is a property
+of the modified system.
+
+\subsection{The construction}
+
+Route~2 evades the objection by not modifying anything. Take a solution
+\(u\) of the exact Prize equations \eqref{eq:NS-prize} and \emph{define}
+\begin{equation}\label{eq:theta-def}
+  \partial_t\theta + u\cdot\nabla\theta
+    = \nu\Delta\theta + \nu\abs{\nabla u}^2,
+  \qquad \theta(\cdot,0)=0 .
+\end{equation}
+At \(\varepsilon=0\) this scalar does not appear anywhere in
+\eqref{eq:NS-prize}. As the proof document states at line~152, it is
+\emph{purely diagnostic}: its equation is an \emph{identity satisfied by any
+solution}, not an additional equation imposed on one. The velocity field is
+completely unaffected by \(\theta\)'s existence.
+
+The optional regularisation --- an effective viscosity
+\(\mu_{\mathrm{eff}}=\nu+\varepsilon f(\theta)\) with \(f(0)=0\), \(f\ge0\)
+--- exists only so that a limit \(\varepsilon\to0\) can be discussed. If the
+argument runs at \(\varepsilon=0\), the limit is vacuous: there is nothing to
+take.
+
+\begin{obsv}[The numerics say the limit is vacuous]
+\label{obs:eps-vacuous}
+The programme tested this directly. In \Sn{05}, the 2D \(\varepsilon\)-sweep
+\texttt{EXP-L2-R2-001} through \texttt{-004} at
+\(\varepsilon\in\{1,0.1,0.01,0.001\}\) returned
+\(\theta_{\max}=2.6045\times10^{-4}\) --- \emph{identical to five significant
+figures across all four}, because the source \(\nu\abs{\nabla u}^2\) does not
+depend on \(\varepsilon\), and the vorticity evolution is byte-identical
+because \(\varepsilon\) never enters it. In \Sn{10} and \Sn{17} the same
+comparison was run in 3D including \(\varepsilon=0\) exactly: the regularity
+exponent \(\delta_{\max}=1.50\) for Taylor--Green and \(0.50\) for the shear
+layer, unchanged at every \(\varepsilon\) including zero
+(\texttt{EXP-L3-R2-TG-128}, \texttt{EXP-L3-R2-SH-128}, both at
+\texttt{eps\_param}\(=0\), both \textsf{PASS}).
+\end{obsv}
+
+That is the whole content of the answer to Tao's objection. Route~2's
+regularity statement is a statement about solutions of the exact Prize
+equations; the auxiliary scalar is a lens, not an ingredient. Whatever the
+route proves, it proves about \eqref{eq:NS-prize}.
+
+\subsection{What Route~2 has to deliver}
+
+The price of working in the exact equations is that no free mechanism comes
+with them. Route~2 has to earn its regularity, and the whole of Part~III is
+the story of the attempt. The target is a single quantitative statement, which
+the proof document names \emph{Claim~A} (\texttt{def:claimA}, line~163):
+\begin{equation}\label{eq:claimA}
+  \norm{\nu\abs{\nabla u}^2}_{L^{1+\delta}(Q_T)} \le C(\nu,E_0,T)<\infty
+  \qquad\text{for some }\delta>0 .
+\end{equation}
+The energy inequality gives \eqref{eq:claimA} with \(\delta=0\) and nothing
+more. Any \(\delta>0\), however small, is enough: the Route~C bootstrap of
+\texttt{thm:routeC} (line~508) then drives \(\delta_n\to\infty\), and
+Prodi--Serrin gives smoothness. That reduction is unconditional and is one of
+the very few things in this book that has never been in doubt.
+
+\section{Route~3: compressible Navier--Stokes--Fourier}
+\label{sec:route3}
+
+Route~3 is the full compressible system with a genuine energy equation, and
+it is where the T-first thesis is most at home: temperature is a real
+thermodynamic variable, \(\rho\), \(p\), \(\mu\), \(k\) are all functions of
+the state, and the second law is not an assumption but a structural
+constraint on the system.
+
+It was demoted for one reason, and the reason is decisive: the density is not
+constant. The Prize problem is posed for the incompressible equations with
+\(\nabla\cdot u=0\); a compressible solution reaches them only through the
+low-Mach-number limit \(\mathrm{Ma}\to0\). That limit is a genuine research
+area in its own right --- it involves acoustic waves whose speed diverges,
+initial layers, and delicate uniform estimates --- and it is exactly the kind
+of place where, per Tao's objection, the difficulty could reappear entirely
+intact.
+
+Route~3 therefore became an \emph{independent completeness argument}: evidence
+that the T-first mechanism is not an artefact of the incompressible
+idealisation, and nothing more. Two locked baseline experiment suites,
+\texttt{verified/tfirst\_verify.py} (ideal gas, five experiments) and
+\texttt{verified/sco2\_verify.py} (supercritical CO\textsubscript{2} via
+\textsc{CoolProp}, seven claims), belong to this line and pass. They are not
+cited in support of any regularity claim anywhere in this book.
+
+\section{How the three routes relate}
+\label{sec:routes-relate}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  >={Latex[length=2.2mm]},
+  sys/.style={draw, thick, rounded corners=3pt, align=center, inner sep=5pt,
+              font=\small, minimum width=42mm, minimum height=13mm},
+  prize/.style={draw, very thick, rounded corners=3pt, align=center,
+                inner sep=6pt, font=\small\bfseries, fill=panelgrey,
+                minimum width=44mm},
+  lim/.style={font=\scriptsize, align=center, inner sep=2pt}
+]
+\node[sys] (r1) at (0, 3.0)
+  {\textbf{Route 1}\\[1pt]
+   \(\nabla\!\cdot\!(\mu(T)\nabla u)\), scalar \(T\)\\[1pt]
+   \(\nabla\!\cdot\!u=0\), \(\rho\) const};
+\node[sys] (r2) at (0, 0.4)
+  {\textbf{Route 2}\\[1pt]
+   exact \eqref{eq:NS-prize} \(+\) scalar \(\theta\)\\[1pt]
+   \(\mu_{\mathrm{eff}}=\nu+\varepsilon f(\theta)\)};
+\node[sys] (r3) at (0,-2.3)
+  {\textbf{Route 3}\\[1pt]
+   compressible NSF\\[1pt]
+   \(\rho\) variable};
+
+\node[prize] (P) at (8.4, 0.4)
+  {The Prize equations\\
+   \(\partial_tu+(u\!\cdot\!\nabla)u=-\nabla p+\nu\Delta u\)};
+
+\draw[->, thick] (r1.east) to[out=0, in=140]
+  node[lim, above, pos=0.42, sloped] {\(\mu(T)\to\nu\)}
+  node[lim, below, pos=0.42, sloped] {simple} (P.north west);
+
+\draw[->, very thick] (r2.east) --
+  node[lim, above] {\(\varepsilon\to0\); at \(\varepsilon=0\), \emph{already there}}
+  (P.west);
+
+\draw[->, thick, dashed] (r3.east) to[out=0, in=-140]
+  node[lim, above, pos=0.42, sloped] {\(\mathrm{Ma}\to0\)}
+  node[lim, below, pos=0.42, sloped] {hard} (P.south west);
+
+\node[font=\scriptsize\itshape, text=rulegrey, right=2mm of r3, yshift=-9mm,
+      align=left, text width=52mm]
+  {demoted to an independent completeness argument: the limit is where the
+   difficulty could reappear};
+\end{tikzpicture}
+\caption[The three routes and their limits]{The three routes and the limits
+that carry each back to the Prize equations. Route~2's arrow is drawn heavy
+because it is not really a limit at all: at \(\varepsilon=0\) the system
+\emph{is} the Prize system, and the auxiliary scalar is a diagnostic
+identity.}
+\label{fig:routes}
+\end{figure}
+
+The relation between them, stated once and for the record: Route~1 buys a
+mechanism at the cost of changing the equations; Route~2 keeps the equations
+and must find its mechanism; Route~3 keeps the physics and must pay for it in
+the limit. Every route was built, tested and instrumented
+(Chapters~\ref{ch:layer12}--\ref{ch:layer4}). Every analytical result the
+programme produced after \Sn{18} is a Route~2 result.
+
+\begin{record}
+\textbf{The correction the reader should carry forward.} The programme's own
+architecture calls Route~1 primary and Route~2 backup. That ranking was
+never formally revised, and it is still what the specification says. It is
+also, by the evidence of the proof document, wrong: from \Sn{18} to \Sn{47}
+the entire analytical effort is Route~2, working inside the exact Prize
+equations at constant viscosity. Route~1 remains a fully built and tested
+numerical programme with no analytical theory attached to it.
+\end{record}

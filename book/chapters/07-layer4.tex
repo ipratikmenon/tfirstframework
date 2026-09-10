@@ -1,0 +1,521 @@
+% =====================================================================
+%  Chapter 07 — Layer 4
+% =====================================================================
+\chapter{Layer 4: Diagnostics, and What They Could and Could Not Decide}
+\label{ch:layer4}
+
+Layer~4 is the largest layer by module count and the one with the most
+complicated relationship to the mathematics. Each module was built to measure
+a specific quantity appearing in a specific labelled statement of the proof
+document. Some of those measurements were decisive about the mechanism they
+probed. One large family of them was, as the programme eventually proved, incapable
+of deciding anything at all --- and that finding, Wall~6, is as much a result
+of this chapter as any number in it.
+
+\section{The diagnostic inventory}
+\label{sec:layer4-inventory}
+
+\begin{table}[ht]
+\centering
+\footnotesize
+\begin{tabular}{@{}l l p{0.42\textwidth}@{}}
+\toprule
+Module & Session & What it measures, and for which statement \\
+\midrule
+\texttt{delta\_extractor.py} & \Sn{10}
+  & \(\delta(t)\) and Sobolev norms of \(\theta\); the Claim-A exponent. \\
+\texttt{cz\_integrability.py} & \Sn{10}
+  & \(\norm{S_\theta}_{L^p}\) for \(p\in\{1,1.1,1.25,1.5,2\}\); how far the
+    Calder\'on--Zygmund gain reaches. \\
+\texttt{lps\_monitor\_3d.py} & \Sn{10}
+  & \(\norm{u}_{L^p}\), enstrophy, palinstrophy, Prodi--Serrin margin. \\
+\texttt{mean\_morrey\_diagnostic.py} & \Sn{23}, \Sn{25}
+  & \(r^{-1+\alpha}\abs{\langle u\rangle_{B_r}}^3\); the mean-Morrey gap of
+    \S14 of the proof document. \\
+\texttt{gamma\_adversarial\_search.py} & \Sn{27}
+  & \(\Gamma(r)\) under adversarial data; the \S15 gradient-concentration
+    condition. \\
+\texttt{geometric\_disorder.py} & \Sn{30}
+  & \(M\), \(\rstar\), \(A_{\mathrm{loc}}\), \(\sigma=A_{\mathrm{loc}}/M^{3/2}\),
+    \(R_{\log}\). \\
+\texttt{alignment\_bridge.py} & \Sn{32}, \Sn{33}
+  & The bridge ratio \(\norm{\nabla\ehat}_{L^\infty}\rstar/\sqrt{\sstar}\);
+    \texttt{conj:bridge} (line~5466). \\
+\texttt{k\_correlation.py} & \Sn{34}
+  & \(c_K\), the decorrelation constant of \texttt{conj:K-refined}
+    (line~5917). \\
+\texttt{kcorr\_reynolds\_sweep.py} & \Sn{35}--\Sn{37}
+  & \(c_K\) against viscosity and resolution. \\
+\texttt{depletion\_diagnostic.py} & \Sn{36}
+  & \(\alpha(x^*)/M\); the depletion hypothesis H2. \\
+\texttt{enstrophy\_exponent.py} & \Sn{37}
+  & \(p\) in \(\Omega\sim M^p\); the Regime~A/B dichotomy. \\
+\texttt{aposteriori\_verification.py} & \Sn{39}
+  & Residual-based Gr\"onwall margin (a diagnostic, never a proof). \\
+\texttt{band\_concentration.py} & \Sn{42}, \Sn{43}
+  & Band/bulk concentration ratios; \texttt{target:band-absorption}
+    (line~8435). \\
+\texttt{scale\_diagnostics.py} & \Sn{45}
+  & \(\abs{E}/\abs{Q(\rstar)}\), \(c_K^{\mathrm{band}}\), and the
+    \(\Lfac\)-dependence demanded by \texttt{prop:s44-linfty-route}
+    (line~9209). \\
+\texttt{continuation\_criterion.py} & \Sn{16}
+  & \(A_{\min}\), \(\mu_{\min}\) against the Phase-0 criterion. \\
+\bottomrule
+\end{tabular}
+\caption[The Layer-4 diagnostic inventory]{The Layer-4 modules, in the order
+they were built, with the statement each targets. The chronology matters: the
+modules from \Sn{32} onward all serve the alignment programme of Part~IV, and
+\S\ref{sec:wall6} explains why that whole family could not deliver what it was
+asked for.}
+\label{tab:layer4-inventory}
+\end{table}
+
+\section{The early diagnostics: Claim~A made visible}
+\label{sec:early-diagnostics}
+
+The first three modules exist to make the Claim-A exponent measurable. Their
+verdict, from \Sn{10}:
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l r l@{}}
+\toprule
+\texttt{exp\_id} & IC & key metric & verdict \\
+\midrule
+\texttt{EXP-L4-CZ-TG-032} & Taylor--Green & \(\varepsilon_{\mathrm{CZ}}=1.00\); Claim~A on \(100\%\) of steps & \textsf{PASS} \\
+\texttt{EXP-L4-CZ-SHEAR-032} & shear & \(\varepsilon_{\mathrm{CZ}}=1.00\); Claim~A on \(100\%\) of steps & \textsf{PASS} \\
+\texttt{EXP-L4-LPS-TG-032} & Taylor--Green & \(Z_{\max}=4.14\!\times\!10^{-1}\), \(\norm{u}_{L^6}\le0.639\) & \textsf{PASS} \\
+\texttt{EXP-L4-LPS-SHEAR-032} & shear, \(\varepsilon=0\) & \(Z_{\max}=1.703\), \(\norm{u}_{L^6}\le0.998\) & \textsf{PASS} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+\(\varepsilon_{\mathrm{CZ}}=1.00\) means the dissipation \(S_\theta\) was
+controlled all the way up to \(L^2\), i.e.\ one full unit of integrability
+beyond the \(L^1\) the energy inequality gives. The five \(\delta\)-extractor
+rows \texttt{EXP-L4-DELTA-EPS-TG-032-eps\{1.0,0.1,0.01,0.001,0.0\}} all return
+\(\delta_{\min}=\delta_{\max}=\delta_{\mathrm{mean}}=1.50\), positive from
+\(t=0.05\) onwards, at every \(\varepsilon\) including zero. This is the same
+\(\varepsilon\)-independence seen in Chapters~\ref{ch:routes} and
+\ref{ch:layer3}, measured a third way.
+
+\section{A lesson about sampling}
+\label{sec:sampling-lesson}
+
+The mean-Morrey diagnostic produced the programme's cleanest methodological
+warning, and it is worth a section because the failure mode is not specific to
+this programme.
+
+The quantity is a supremum: \(\sup_r r^{-1+\alpha}\abs{\langle
+u\rangle_{B_r}}^3\), a worst-case bound over balls. The first implementation
+sampled eight ball centres on a fixed grid. For Taylor--Green and shear-layer
+fields --- which are built from sines and cosines --- those centres land on
+symmetry nodes where the mean vanishes identically by construction. The
+measured maximum came out at \(7.70\times10^{-47}\).
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l l r r@{}}
+\toprule
+\texttt{exp\_id} & IC & sampling & \(M_\alpha^{\max}\) & \(\gamma\) \\
+\midrule
+\texttt{EXP-L4-MM-TG-001} & TG & deterministic, 8 fixed & \(7.70\!\times\!10^{-47}\) & \(+0.090\) \\
+\texttt{EXP-L4-MM-SH-001} & shear & deterministic, 8 fixed & \(2.72\!\times\!10^{-47}\) & \(+0.055\) \\
+\texttt{EXP-L4-MM-TG-002} & TG & random, 64, seed 42 & \(\mathbf{11.03}\) & \(+0.139\) \\
+\texttt{EXP-L4-MM-SH-002} & shear & random, 64, seed 42 & \(\mathbf{14.82}\) & \(+0.384\) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+Forty-seven orders of magnitude of pure sampling bias. The scaling exponent
+\(\gamma\) --- the quantity the diagnostic actually exists to estimate --- is
+positive in all four cases and so the qualitative conclusion survives, but the
+magnitudes in the first two rows are meaningless. Both sets of rows are
+retained in the database, which is why the comparison can be made at all.
+
+\begin{record}
+\textbf{The rule this produced.} When the quantity is a supremum over a
+family, sample the family randomly with a logged seed, not on a lattice that
+shares the field's symmetries. The programme's later diagnostics
+(\texttt{scale\_diagnostics.py}, \texttt{band\_concentration.py}) sample at the
+vorticity maximum rather than on a grid, for the same reason.
+\end{record}
+
+\section{A negative result, correctly read}
+\label{sec:gamma-negative}
+
+\texttt{EXP-L4-GAM-ADV-001} is the programme's most-quoted single negative
+row, and its \texttt{verdict} field is not \textsf{PASS} or \textsf{FAIL} but
+a sentence:
+
+\begin{record}
+\texttt{NOT SUPPRESSED: NS evolution does not increase Gamma exponent
+(0.000 -> -3.263). Possible gap in Claim A conjecture for adversarial ICs.}
+\end{record}
+
+The run constructs a divergence-free bump concentrated at scale \(r\),
+evolves it, and measures whether \(\Gamma(r)\) is suppressed. It is not: the
+fitted exponent goes to \(-3.263\).
+
+The \Sn{27} log's reading is the correct one and is worth reproducing,
+because it is a model of how to handle a result that appears to contradict
+one's own conjecture. The evolution in that run is \emph{free viscous decay},
+\(\partial_tu=\nu\Delta u\), with no nonlinear term. The mechanism the
+conjecture appeals to --- the scale-recursive redistribution of energy ---
+lives entirely in the nonlinearity that was omitted. So the run does not
+falsify the conjecture; it establishes that linear diffusion alone does not
+suppress gradient concentration, which nobody had claimed. The stated next
+step was to rerun the adversarial data through the full spectral solver.
+
+That rerun was never performed under this identifier. The row stands in the
+database, with its sentence, unresolved.
+
+\section{The alignment diagnostics}
+\label{sec:alignment-diagnostics}
+
+From \Sn{32} the diagnostics serve the alignment programme, whose central
+open estimate is the Bridge Lemma (\texttt{conj:bridge}, line~5466): does
+\emph{averaged} coherence of the vorticity direction field upgrade to
+\emph{pointwise} coherence? The measurable proxy is the bridge ratio
+\(R=\norm{\nabla\ehat}_{L^\infty,\mathrm{high}}\,\rstar/\sqrt{\sstar}\), which
+the lemma predicts should stay \(O(1)\).
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}l l r r r r@{}}
+\toprule
+\texttt{exp\_id} & IC & \(N\) & \(R_{\max}\) & \(R_{\mathrm{med}}\) &
+\(\sstar\) range \\
+\midrule
+\texttt{EXP-L4-BRIDGE-TG-001} & TG & \(32\) & \(0.982\) & \(0.682\) & \([0.62,\,58.5]\) \\
+\texttt{EXP-L4-BRIDGE-SH-001} & shear & \(32\) & \(0.719\) & \(0.639\) & \([12.6,\,35.8]\) \\
+\texttt{EXP-L4-BRIDGE-TG-002} & TG & \(64\) & \(1.264\) & \(0.764\) & \([0.47,\,177.9]\) \\
+\texttt{EXP-L4-BRIDGE-SH-002} & shear & \(64\) & \(0.763\) & \(0.587\) & \([4.01,\,128.1]\) \\
+\texttt{EXP-L4-BRIDGE-ADV-001} & anti-par.\ tubes & \(64\) & \(1.364\) & \(1.059\) & \([3.18,\,9.38]\) \\
+\texttt{EXP-L4-BRIDGE-ADV-002} & tubes, \(\nu=5\!\times\!10^{-4}\) & \(64\) & \(1.521\) & \(0.995\) & \([1.28,\,2.77]\) \\
+\bottomrule
+\end{tabular}
+\caption[The bridge-ratio measurements]{All six bridge-ratio runs. The lemma's
+own ceiling in the conjectured form is a constant \(C_B\); the measured ratio
+never exceeded \(1.53\) in any run, including a \(4\times\) refinement and an
+escalated-amplitude, lower-viscosity adversarial run.}
+\label{tab:bridge}
+\end{table}
+
+The scientifically interesting row is \texttt{EXP-L4-BRIDGE-ADV-001}. The
+anti-parallel tube configuration --- a direction-reversal interface, precisely
+where a Bridge Lemma counterexample would live --- runs at \(R\) in a tight
+band \([0.92,1.36]\) for the whole simulation, \emph{nearly saturating} the
+inequality without ever violating it. Pointwise and averaged coherence move in
+near-exact lockstep. Meanwhile Taylor--Green stresses the other axis: \(M\)
+grows by \(10.5\times\) and \(R\) still stays below \(1.27\).
+
+The caveat is the one that governs this entire family of measurements and is
+stated in \S\ref{sec:wall6}: these are globally regular flows at moderate
+Reynolds number, and the lemma is a statement about the near-singular regime.
+
+\section{The decorrelation constant, and four sessions of it}
+\label{sec:ck}
+
+\texttt{conj:K-refined} (line~5917) asks for a decorrelation constant
+\(c_K\lesssim C/\Lfac\) near a putative Type-I singularity. The programme
+measured \(c_K\) in \Sn{34}, \Sn{35}, \Sn{42}--\Sn{43} and \Sn{45}.
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l r r r l@{}}
+\toprule
+\texttt{exp\_id} & IC & \(\nu\) & \(N\) & \(c_K\) median & note \\
+\midrule
+\texttt{EXP-L4-KCORR-TG-001} & TG & \(10^{-3}\) & \(64\) & \(1.063\) & \\
+\texttt{EXP-L4-KCORR-SH-001} & shear & \(10^{-3}\) & \(64\) & \(1.935\) & worst split residual \\
+\texttt{EXP-L4-KCORR-ADV-001} & tubes & \(10^{-3}\) & \(64\) & \(1.156\) & well resolved \\
+\texttt{EXP-L4-KCORR-NU-TG-002} & TG & \(5\!\times\!10^{-4}\) & \(64\) & \(1.021\) & tail frac.\ \(0.33\) \\
+\texttt{EXP-L4-KCORR-NU-TG-003} & TG & \(2.5\!\times\!10^{-4}\) & \(64\) & \(1.020\) & tail frac.\ \(0.59\) \\
+\texttt{EXP-L4-KCORR-NU-ADV-003} & tubes & \(2.5\!\times\!10^{-4}\) & \(64\) & \(1.113\) & tail frac.\ \(6\!\times\!10^{-5}\) \\
+\texttt{EXP-L4-KCORR-NU-TG-101} & TG & \(10^{-3}\) & \(\mathbf{128}\) & \(\mathbf{2.235}\) & resolved \\
+\texttt{EXP-L4-KCORR-NU-TG-102} & TG & \(5\!\times\!10^{-4}\) & \(\mathbf{128}\) & \(\mathbf{2.238}\) & resolved \\
+\texttt{EXP-L4-KCORR-NU-TG-103} & TG & \(2.5\!\times\!10^{-4}\) & \(\mathbf{128}\) & \(\mathbf{2.239}\) & resolved \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+Two findings, one of them a correction of the other.
+
+The \Sn{35} headline was that \(c_K\) does not grow with Reynolds number: over
+a fourfold decrease in viscosity it sat at \(1.02\)--\(1.16\) with regression
+slopes of \(-0.031\) against \(\log(1/\nu)\) for both Taylor--Green and the
+adversarial tubes. That removed the one numerical failure mode --- strong
+positive correlation, \(c_K\gg1\) --- that could have defeated the absorption
+argument outright.
+
+The \Sn{36}--\Sn{37} correction is that the \(N=64\) Taylor--Green numbers were
+\emph{resolution-suppressed by roughly a factor of two}. The tail fraction of
+the spectrum at \(N=64\) ranged from \(0.07\) to \(0.59\); at \(N=128\) it fell
+to \(1.3\times10^{-5}\)--\(2.6\times10^{-5}\), and the measured \(c_K\) rose
+from \(\approx1.05\) to \(\approx2.24\). That is systematic spectral pile-up at
+the grid cutoff, not noise. Taylor--Green sits noticeably \emph{above} the
+adversarial series, not beside it as the under-resolved comparison had
+suggested. A further probe, \texttt{EXP-L4-KCORR-NU-TG-104}, showed the tail
+fraction climbing back to \(0.0082\) late in the Taylor--Green cascade even at
+\(N=128\): resolution adequacy is time-window-dependent, not a property of
+\((N,\nu)\) alone. That caveat was flagged and never resolved.
+
+\section{The measurement the closure route actually needs}
+\label{sec:l-dependence}
+
+\Sn{44} identified two closure routes for the remaining core term, and its
+\texttt{prop:s44-linfty-route} (line~9209) requires not boundedness of the
+correlation constant but \emph{decay}: \(c_K\le C_1/\Lfac\). \Sn{45} built
+\texttt{scale\_diagnostics.py} to measure exactly that, computing every
+quantity inside the ball \(B_{\rstar}(x^*)\) rather than over the whole box,
+and regressing \(\log c_K\) on \(\log\Lfac\).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=0.82\textwidth, height=6.6cm,
+  xlabel={\(\Lfac\) (median over samples)},
+  ylabel={\(c_K\) (median over samples)},
+  xmin=1.2, xmax=3.7, ymin=0, ymax=2.0,
+  grid=both, grid style={gray!18},
+  legend pos=north east, legend cell align=left,
+  legend style={font=\scriptsize, draw=gray!40},
+  tick label style={font=\scriptsize}, label style={font=\small}
+]
+\addplot[only marks, mark=*, color=openblue] coordinates {
+  (3.3189,1.1013) (3.1710,1.0000) (1.7460,1.1812)
+  (3.3805,1.1003) (3.4809,1.0000) (2.0984,1.2048)
+};
+\addlegendentry{TG / shear / tubes, two viscosities}
+\addplot[only marks, mark=square*, color=provedgreen] coordinates {
+  (1.4111,1.0749) (1.3767,1.0911) (1.3886,1.0716)
+  (1.4371,1.0257) (1.6064,0.9819) (2.0603,0.9178)
+};
+\addlegendentry{jet strain sweep}
+\addplot[dashed, thick, impossiblered, domain=1.2:3.7, samples=40]
+  {1.5/x};
+\addlegendentry{what closure needs: \(c_K\propto1/\Lfac\)}
+\addplot[thick, gray, domain=1.2:3.7, samples=2] {1.08};
+\addlegendentry{what was measured: flat}
+\end{axis}
+\end{tikzpicture}
+\caption[The \(\Lfac\)-decay test]{The measurement the closure route requires,
+and what came back. A clean \(C/\Lfac\) law (dashed) would fall by a factor of
+about \(2.5\) across the measured range. The twelve runs instead sit pinned
+between \(0.92\) and \(1.21\). The fitted slope of \(\log c_K\) on
+\(\log\Lfac\) is \(-0.196\) (\(r^2=0.05\)) on the first pool and \(+0.088\)
+(\(r^2=0.02\)) across all twelve, against the \(-1\) required. The low
+\(r^2\) is not a failure of the fit --- it is the finding.}
+\label{fig:l-decay}
+\end{figure}
+
+The same session made the first measurement of the volume hypotheses at scale
+\(\rstar\). The bulk hypothesis (NB-E) is comfortably satisfied:
+\(\abs{E}/\abs{Q(\rstar)}\) ranges over \(0.45\)--\(0.99\) with
+\(\Lfac\approx1.7\)--\(3.5\), giving a product of \(1.4\)--\(2.6\). The band
+hypothesis (NB) is not: \(\abs{\Band}/\abs{Q(\rstar)}\) ranges over
+\(0.00\)--\(0.18\), and in one run --- shear at \(\nu=10^{-3}\) --- it is
+\emph{exactly zero}: the transition band \(\{M/8\le\abs{\omega}\le M/4\}\) was
+empty inside \(B_{\rstar}\), with all the vorticity there lying above
+\(M/4\). Where that happens the band question is locally vacuous and the
+volume route is unavailable precisely there.
+
+So both of the two routes \Sn{44} laid out came back unsupported: the first
+needs a decay that cannot be detected, and the second needs a hypothesis that
+measurably fails.
+
+\section{The jet sweep: the aligned corner, probed on purpose}
+\label{sec:jet-sweep}
+
+The one place the alignment programme predicts something must happen is the
+\(\sstar\to0\) corner: a singularity, if there is one, must approach it.
+\Sn{45} built a bipolar swirling jet and swept the strain-to-swirl ratio at
+fixed energy, driving the flow deliberately toward alignment.
+
+\begin{center}
+\small
+\begin{tabular}{@{}l r r r r r@{}}
+\toprule
+\texttt{exp\_id} & strain ratio & \(\abs{E}/\abs{Q}\) &
+\(\abs{\Band}/\abs{Q}\) & \(c_K\) & \(\sstar\) \\
+\midrule
+\texttt{EXP-L4-JET000-064} & \(0.00\) & \(0.632\) & \(0.141\) & \(1.075\) & \(11.72\) \\
+\texttt{EXP-L4-JET025-064} & \(0.25\) & \(0.609\) & \(0.159\) & \(1.091\) & \(14.91\) \\
+\texttt{EXP-L4-JET050-064} & \(0.50\) & \(0.553\) & \(0.170\) & \(1.072\) & \(8.05\) \\
+\texttt{EXP-L4-JET100-064} & \(1.00\) & \(0.459\) & \(0.159\) & \(1.026\) & \(6.71\) \\
+\texttt{EXP-L4-JET200-064} & \(2.00\) & \(0.300\) & \(0.125\) & \(0.982\) & \(\mathbf{4.31}\) \\
+\texttt{EXP-L4-JET400-064} & \(4.00\) & \(0.405\) & \(0.136\) & \(0.918\) & \(21.54\) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+\(\sstar\) falls from \(11.72\) at pure swirl to a minimum of \(4.31\) at
+strain ratio \(2\), then jumps to \(21.54\) --- consistent with the jet
+destabilising once strain dominates swirl. The descent confirms the physical
+picture that motivated the experiment. And \(c_K\) stays between \(0.92\) and
+\(1.09\) across the entire sweep, \emph{including at the \(\sstar\)
+minimum}. The aligned corner was probed on purpose, and the correlation
+constants did not degrade there: mild positive evidence for their robustness,
+and a null result for the hope that this geometry would expose adversarial
+structure.
+
+A resolution caveat is flagged in the source and repeated here: the ball
+\(B_{\rstar}\) at \(N=64\) contains only \(81\) grid cells for Taylor--Green.
+Shear has \(147\)--\(179\); the adversarial runs about \(1650\)--\(1750\); the
+jet runs \(1300\)--\(4000\). A Taylor-Green-only reading of these numbers would
+not be trustworthy; the better-resolved runs tell the same story, which is why
+the conclusions are stated at all.
+
+\section{The band conjecture, and a correction to a correction}
+\label{sec:band}
+
+\texttt{target:band-absorption} (line~8435) asks that the coupling density on
+the transition band not be concentrated there relative to the bulk. \Sn{42}
+built the diagnostic and ran it at \(N=64\); \Sn{43} repeated at \(N=128\), at
+a cost of about \(2.7\) hours per run.
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l r r r r r@{}}
+\toprule
+\texttt{exp\_id} & IC & \(N\) & \(\mathrm{conc}_Y\) med & \(\mathrm{conc}_Y\) max &
+\(\mathrm{conc}_D\) med & \(\mathrm{conc}_D\) max \\
+\midrule
+\texttt{EXP-L4-BAND-TG-001} & TG & \(64\) & \(0.460\) & \(26.57\) & \(1.308\) & \(63.15\) \\
+\texttt{EXP-L4-BAND-SH-001} & shear & \(64\) & \(0.061\) & \(2.301\) & \(6.505\) & \(192.77\) \\
+\texttt{EXP-L4-BAND-ADV-001} & tubes & \(64\) & \(1.526\) & \(9.810\) & \(2.890\) & \(5.184\) \\
+\texttt{EXP-L4-BAND-TG-101} & TG & \(128\) & \(0.405\) & \(135.95\) & \(1.299\) & \(214.44\) \\
+\texttt{EXP-L4-BAND-SH-101} & shear & \(128\) & \(0.378\) & \(0.950\) & \(3.916\) & \(75.01\) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+The medians are resolution-robust: Taylor--Green's \(\mathrm{conc}_D\) median
+moves by \(0.7\%\) across a \(2\times\) refinement. The maxima are not, and
+they move in \emph{opposite directions} --- Taylor--Green's grew fivefold,
+shear's shrank. A statistic that moves in opposite directions under refinement
+on two initial conditions is not converged, and nothing can rest on it.
+
+\Sn{42} had read the spikes as ``likely resolution artefacts''.
+\Sn{43} records that this was \emph{half wrong} and replaces it: the spikes
+grew under refinement, so they are not resolution artefacts in the sense
+supposed. Splitting each run's timeseries at \(t=3\) settles what they are ---
+in every run, at both resolutions, on all three IC families, \emph{every
+maximum occurs at \(t<3\)}, in the early transient, while the high-vorticity
+set has not yet been developed by nonlinear mixing and band statistics over
+few unrepresentative points are volatile. Taylor--Green at \(N=128\), the run
+with the largest spike in the study at \(135.95\), never exceeds \(0.63\)
+anywhere in the bulk; its bulk maxima agree with the \(N=64\) run to within
+\(7\)--\(9\%\).
+
+The bulk regime is the one the conjecture concerns. There the density is tame,
+stable across initial conditions and across refinement. The conjecture is
+numerically supported --- to exactly the standard the programme applied to
+\(c_K\), which is to say ``supported, not proved'', and which
+\S\ref{sec:wall6} is about to qualify much more sharply.
+
+\section{The a posteriori diagnostic, and a specification error}
+\label{sec:aposteriori}
+
+\texttt{aposteriori\_verification.py} implements a verification-\emph{style}
+diagnostic in the shape of the Chernyshenko--Constantin--Robinson--Titi
+technique. Its own documentation is emphatic that it does not produce a proof:
+a rigorous computer-assisted argument requires validated interval arithmetic on
+the residual and on every norm entering the Gr\"onwall estimate, and everything
+here is ordinary floating point with an underived constant. The module never
+returns a certificate, only a margin.
+
+The first two runs returned margins of \(5.51\times10^{19}\) and
+\(2.02\times10^{14}\), reported \textsf{PARTIAL}. The addendum to the session
+log states what happened: the runs were \emph{vacuous}, and the fault was in
+the specification. Accumulating \(\exp\int_0^TA\,ds\) over a twenty-time-unit
+window with \(A\sim O(1\text{--}3.5)\) gives \(e^{70}\approx10^{30}\), so the
+margin could not have been met by any residual whatsoever. The underlying
+trajectories were perfectly well behaved throughout: the \(H^{-1}\) residual
+peaked at \(4.0\times10^{-3}\) for Taylor--Green and stayed below \(0.074\)
+for shear.
+
+The windowed rerun fixed it, resetting the error at each window start:
+
+\begin{center}
+\small
+\begin{tabular}{@{}l r r r r@{}}
+\toprule
+IC & window \(W\) & windows & fraction satisfied & max Gr\"onwall factor \\
+\midrule
+TG & \(0.5\) & \(26\) & \(0.423\) & \(5.11\) \\
+TG & \(1.0\) & \(13\) & \(0.154\) & \(28.6\) \\
+TG & \(2.0\) & \(7\)  & \(0.000\) & \(920\) \\
+shear & \(0.5\) & \(23\) & \(\mathbf{0.957}\) & \(3.37\) \\
+shear & \(1.0\) & \(12\) & \(0.917\) & \(9.81\) \\
+shear & \(2.0\) & \(6\)  & \(0.833\) & \(79.2\) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+The Gr\"onwall factor fell from \(\sim10^{12}\) to \(O(3\text{--}5)\), so the
+comparisons became informative --- but neither trajectory reaches a clean pass
+at any window length, and both experiments remain \textsf{PARTIAL}. The
+shear-versus-Taylor--Green difference is real but reflects the size of the
+numerical residual against an arbitrary threshold, not either flow's proximity
+to a singularity. One suspected artefact was flagged and not fixed: shear's
+very first window fails at all three lengths, most likely because a one-sided
+time difference at step zero gives a poor estimate of \(\partial_tu\).
+
+\section{Wall 6: why most of this chapter could not decide anything}
+\label{sec:wall6}
+
+The programme measured \(c_K\) in four separate sessions. In \Sn{47} it proved
+that none of those measurements could ever have been evidence, and the proof
+does not depend on any number any run produced.
+
+\begin{record}
+\textbf{Wall 6} (\texttt{subsec:wall6-numerics}). \texttt{conj:K-refined} and
+\texttt{conj:lc-s44} are \emph{conditional} statements: each asserts a bound
+\emph{near a putative Type-I singularity}, in the limit \(\Lfac\to\infty\). A
+solver that remains globally regular is never in that regime. So neither the
+conjecture nor its negation predicts anything about the numbers such a solver
+produces --- both predict the same thing, namely nothing --- and a measurement
+that both sides of a disjunction predict cannot separate them.
+
+\smallskip
+\texttt{prop:regime-A-impossible} (line~6514) removes the one reading under
+which a regular run could still have served as a proxy. It proves that at a
+genuine blow-up time \(\limsup_{t\to T^-}\Omega(t)=\infty\); a resolved
+simulation is a bounded-enstrophy object throughout, so the regime the
+conjectures speak about is not merely one the runs did not visit --- it is not
+of the type a resolved run represents.
+
+\smallskip
+Classification: \IMPOSSIBLE{} as a test of the conjectures.
+\end{record}
+
+The consequence is a prohibition, and it is stated in the document: measuring
+\(c_K\), \(c_K^{\mathrm{band}}\) or the band ratios \emph{as evidence} for or
+against those conjectures is forbidden. They may be computed as context. What
+remains permitted, and useful, are measurements whose answer differs between
+competing mechanisms \emph{in a regular flow} --- questions about a mechanism,
+not proxies for blow-up.
+
+\begin{obsv}[What Layer~4 is still good for]
+\label{obs:layer4-value}
+Wall~6 indicts a family of measurements, not the layer. The diagnostic suite
+itself is \OPEN{} and valid for other purposes, and several of its results are
+of the mechanism kind Wall~6 permits: the \(\varepsilon\)-independence of
+\(\delta\), which is a fact about the equations; the sampling-bias discovery;
+the resolution correction to \(c_K\); the early-transient explanation of the
+band spikes; the demonstration that free viscous decay does not suppress
+gradient concentration. Each of those told the programme something true. What
+none of them could do was decide a conditional statement about a regime no
+regular solver can enter.
+\end{obsv}

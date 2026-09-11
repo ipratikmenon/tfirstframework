@@ -1,0 +1,458 @@
+% =====================================================================
+%  Chapter 12 — The alignment pincer (S32–S38)
+% =====================================================================
+\chapter{The Alignment Pincer}
+\label{ch:pincer}
+
+\begin{record}
+\textbf{What this chapter covers.} Sessions \Sn{32}--\Sn{38}: the programme
+rebuilt after the audit. Its object is a scalar, \(\sstar\), measuring how
+disordered the vorticity direction field is at the self-similar scale. Its
+strategy is a pincer: two named hypotheses, H1 and H2, which together forbid a
+Type-I singularity from ever becoming coherent. Its result, at the end of the
+arc, is that the one alternative escape route is \IMPOSSIBLE{}, and therefore
+that the hypothesis the pincer needs is not one option among several but
+\emph{necessary}. That is a sharpening of the problem, and it is also a
+narrowing of the programme's own options. Both readings are correct and both
+are recorded.
+
+\smallskip
+Sessions \Sn{36} and \Sn{37} belong to this arc but are treated separately, in
+Chapter~\ref{ch:unification}, because their content --- verification of a
+derived identity, and the collapse of two open problems into one --- is of a
+different kind from the construction described here.
+\end{record}
+
+\section{The starting position}
+\label{sec:pincer-start}
+
+Chapter~\ref{ch:inheritance} established what \Sn{32} had to work with. The
+\Sn{31} audit left two sound objects on the geometric side: the orthogonal
+split identity \(\abs{\nabla\omega}^2=\abs{\nabla m}^2+m^2\abs{\nabla\ehat}^2\)
+(\texttt{lem:grad-omega-split}, line~4564) and the exact scale invariance of
+\(\sigma=A_{\mathrm{loc}}/M^{3/2}\). It left one defect that later became the
+programme's central obstruction. Everything else on that side --- the
+coercivity, the Gr\"onwall closure, Theorem~E --- was withdrawn.
+
+\Sn{32} rebuilt on the two survivors and nothing else. That constraint is the
+reason the chapter's first three constructions are \emph{re-derivations of
+things the withdrawn work had asserted}, and it is the reason they are sound.
+
+\subsection{The direction equation, derived rather than assumed}
+
+Write \(m=\abs{\omega}\), \(\ehat=\omega/\abs{\omega}\),
+\(\alpha=\ehat\cdot S\ehat\) for the stretching rate, \(\Dt=\partial_t+u\cdot\nabla\),
+and \(w=\abs{\nabla\ehat}^2\). Constantin's pair of equations
+(\texttt{lem:direction-eq}, line~5349) is:
+\begin{align}
+  \Dt m &= \alpha m + \nu\bigl(\Delta m - m\,w\bigr),
+    \label{eq:pincer-mag}\\
+  \Dt\ehat &= \nu\Delta\ehat + 2\nu(\nabla\log m\cdot\nabla)\ehat
+    + \nu\,w\,\ehat + P_{\ehat^{\perp}}\bigl((\ehat\cdot\nabla)u\bigr).
+    \label{eq:pincer-dir}
+\end{align}
+
+Two features of this pair do all the work in the sessions that follow. First,
+\emph{no pressure appears}. The document says so in terms: this is the same
+structural advantage the withdrawn \S20 was reaching for, obtained without any
+invalid estimate. Second, the magnitude equation \eqref{eq:pincer-mag} carries
+a good-sign sink \(-\nu m w\) --- the radial equation dissipates exactly the
+quantity the angular equation needs controlled. \Sn{34} and \Sn{35} are both
+built on that observation.
+
+\subsection{\texorpdfstring{The coherence deficit \(\sstar\)}{The coherence deficit sigma-star}}
+
+\begin{defn}[\texttt{def:sigma-star}, line~5393]
+\label{def:sstar}
+Let \(M(t)=\norm{\omega(\cdot,t)}_{L^\infty}\), let \(\rstar=M^{-1/2}\) be the
+self-similar scale, and let \(x^*\) be a point with \(\abs{\omega(x^*)}\ge
+M/2\). Then
+\[
+  \sstar(t) \;=\; (\rstar)^{-1}\int_{B_{\rstar}(x^*)}
+    \abs{\nabla\ehat}^2\,\mathbf 1_{\{\abs{\omega}\ge M/4\}}\dee x .
+\]
+\end{defn}
+
+\texttt{prop:sigma-star-invariant} (line~5402) proves that this is exactly
+invariant under the Navier--Stokes scaling group, and the calibration remark
+that follows fixes what its size means: if \(\abs{\nabla\ehat}\sim1/\rstar\)
+throughout the ball --- borderline Constantin--Fefferman coherence at the
+self-similar scale --- then \(\sstar\sim1\). So \(\sstar\ll1\) is
+\emph{better} than borderline, and \(\sstar\) is the natural small parameter
+for an \(\varepsilon\)-regularity statement about the direction field.
+
+\texttt{prop:sigma-controls} (line~5424) proves \(\sstar\le16\sigma\) in four
+lines. That inequality is the formal moment of inheritance: the quantity the
+audit certified controls the quantity the new programme uses.
+
+\subsection{\texorpdfstring{Why \(\rstar\) is the right scale: marginality}{Why r-star is the right scale: marginality}}
+
+\texttt{rem:marginality} (line~5443) is short and is the structural reason the
+route was thought plausible at all. In any parabolic estimate for
+\eqref{eq:pincer-dir} on the cylinder
+\(Q(\rstar)=B_{\rstar}\times[t_0-(\rstar)^2,t_0]\), the stretching term acts as
+a potential of size \(\norm{\nabla u}_{L^\infty}\). Over the time span
+\((\rstar)^2=M^{-1}\), its Gr\"onwall exponent is
+\[
+  \norm{\nabla u}_{L^\infty}\cdot(\rstar)^2
+  \;\lesssim\; M\cdot M^{-1}\cdot\Lfac \;=\; \Lfac .
+\]
+The direction equation is therefore \emph{exactly critical} at scale
+\(\rstar\), up to a logarithm --- where the corresponding statement for \(u\)
+itself, the object CKN treats, is supercritical. This is the whole appeal of
+working with \(\ehat\) rather than \(u\).
+
+It is also where the logarithm enters, and \texttt{rem:marginality} says so
+explicitly, naming its source: ``the logarithm is mandatory:
+Calder\'on--Zygmund operators are unbounded on \(L^\infty\) --- this was
+Defect~8 of the S31 audit''. Chapter~\ref{ch:cz-log} follows that factor
+through the whole programme. For this chapter it is enough to note that the
+marginality which makes the route plausible and the logarithm which obstructs
+it are \emph{the same fact}, read twice.
+
+\section{The pincer itself}
+\label{sec:pincer-statement}
+
+\begin{statement}[H1, the Bridge Lemma --- \texttt{conj:bridge}, line~5466]
+\label{st:h1}
+There exist \(\varepsilon_0>0\) and \(C_B\ge1\) (possibly degrading
+logarithmically in \(M\)) such that, if \(u\) satisfies the Type-I bound and
+\(\sup_{t}\sstar(t)\le\varepsilon_0\) over the cylinder, then
+\[
+  \norm{\nabla\ehat}_{L^\infty\left(Q(\rstar/2)\cap\{\abs{\omega}\ge M/2\}\right)}
+  \;\le\; \frac{C_B}{\rstar}.
+\]
+Status: \OPEN{} target. It upgrades \emph{averaged} coherence to
+\emph{pointwise} coherence.
+\end{statement}
+
+\begin{statement}[H2, localized Constantin--Fefferman]
+\label{st:h2}
+Pointwise coherence \(\norm{\nabla\ehat}_{L^\infty}\le C_B/\rstar\) on
+\(Q(\rstar/2)\cap\{\abs{\omega}\ge M/2\}\) implies the depletion bound
+\(\alpha(x^*,t)\le C M^{1/2+\theta}\) for some \(\theta<1/2\) near a putative
+Type-I blow-up time. Status: \OPEN{} target at \Sn{32}; derived in \Sn{37} and
+found to split into two regimes (Chapter~\ref{ch:unification}).
+\end{statement}
+
+\begin{statement}[The pincer --- \texttt{thm:pincer-conditional}, line~5495]
+\label{st:pincer}
+\CONDITIONAL{H1, H2} No Type-I singularity can satisfy
+\(\liminf_{t\to T^-}\sstar(t)\le\varepsilon_0\). Every Type-I singularity must
+maintain \emph{persistent geometric disorder}, \(\sstar(t)>\varepsilon_0\), for
+all \(t\) close to \(T\).
+\end{statement}
+
+The proof given H1 and H2 is three lines and is the part of the construction
+nobody has ever disputed. If \(\sstar(t_k)\le\varepsilon_0\) along
+\(t_k\to T^-\), then H1 gives pointwise coherence, H2 converts it into
+\(\tfrac{\dee}{\dee t}\log M=\alpha(x^*,t)\le CM^{1/2+\theta}\) with
+\(1/2+\theta<1\), and \(\int^T M^{1/2+\theta}\dee t\) converges under
+\(M\le C_I/(T-t)\) precisely when \(1/2+\theta<1\). So \(M\) stays bounded,
+contradicting blow-up.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  >={Latex[length=2mm]},
+  bx/.style={draw, rounded corners=2pt, font=\scriptsize, align=center,
+             inner sep=3.5pt, text width=33mm, minimum height=10mm},
+  hyp/.style={bx, draw=openblue, thick, fill=panelgrey},
+  prv/.style={bx, draw=provedgreen, very thick},
+  cnc/.style={bx, draw=impossiblered, thick},
+  ar/.style={->, thick}
+]
+\node[bx] (assume) at (0,0)
+  {\textbf{Assume:} a Type-I singularity at \(T\), and\\
+   \(\liminf_{t\to T^-}\sstar(t)\le\varepsilon_0\)};
+
+\node[hyp] (h1) at (4.9,1.5)
+  {\textbf{H1} Bridge Lemma\\ averaged \(\Rightarrow\) pointwise\\
+   \(\norm{\nabla\ehat}_\infty\le C_B/\rstar\)};
+\node[hyp] (h2) at (4.9,-1.5)
+  {\textbf{H2} localized CF\\ coherence \(\Rightarrow\) depletion\\
+   \(\alpha\le CM^{1/2+\theta}\), \(\theta<\tfrac12\)};
+
+\node[bx] (int) at (9.6,0)
+  {\(\dfrac{\dee}{\dee t}\log M\le CM^{1/2+\theta}\)\\[2pt]
+   integrable under Type~I};
+\node[cnc] (contra) at (9.6,-2.7)
+  {\(M\) stays bounded:\\ \textbf{contradiction}};
+
+\draw[ar] (assume) -- (h1);
+\draw[ar] (h1) -- (h2);
+\draw[ar] (h2) -- (int);
+\draw[ar] (int) -- (contra);
+
+\node[prv, below=17mm of assume] (s38)
+  {\Sn{38}: Regime~A \IMPOSSIBLE\\
+   \(\Rightarrow\) \(\sstar\)-decay is \emph{necessary}};
+\draw[ar, provedgreen, dashed] (s38.north) -- (assume.south);
+
+\node[font=\scriptsize\itshape, text=rulegrey, align=left, text width=52mm]
+  at (4.6,-4.0)
+  {The conclusion is \emph{persistent disorder}, not regularity. Closing the
+   pincer excludes coherent Type-I singularities only; the remaining
+   possibility --- a singularity that stays disordered --- is what
+   \(\sstar\)-decay would have to rule out.};
+\end{tikzpicture}
+\caption[The alignment pincer]{The pincer of \texttt{thm:pincer-conditional}
+(line~5495). Two hypotheses close on the assumption of eventual coherence and
+produce a contradiction with blow-up. \Sn{38}'s contribution, shown dashed, is
+that the disjunction the argument sits inside has only one other branch, and
+that branch is \IMPOSSIBLE{} --- which makes \(\sstar\)-decay necessary rather
+than convenient.}
+\label{fig:pincer}
+\end{figure}
+
+\section{H1 attacked: the level-set Moser scheme}
+\label{sec:moser}
+
+H1 is a Moser iteration for \(w=\abs{\nabla\ehat}^2\), which by
+\eqref{eq:pincer-dir} satisfies a drift-diffusion inequality. Two obstacles
+were named at \Sn{32} and neither is cosmetic.
+
+\begin{enumerate}[leftmargin=2.2em]
+\item \emph{The singular drift.} The drift is \(u+2\nu\nabla\log m\). On
+  \(\{\abs{\omega}\ge M/4\}\) one has \(\abs{\nabla\log m}\le4\abs{\nabla\omega}/M\),
+  which requires a pointwise gradient bound that is not available.
+\item \emph{The marginal potential.} By \texttt{rem:marginality} the potential
+  is critical up to the logarithm, so the iteration constants degrade
+  logarithmically.
+\end{enumerate}
+
+\subsection{\texorpdfstring{\Sn{33}: the first rung}{S33: the first rung}}
+
+The device that disposes of obstacle~(i) is to run the iteration on
+\emph{level sets} of \(\abs{\omega}\), where the drift enters only through its
+divergence structure. \Sn{33} builds a composite cutoff
+\(\eta=\psi(x,t)\cdot\chi(\abs{\omega}/M)\) and proves
+(\texttt{sec:moser-s33}) that each of the three second-derivative-of-magnitude
+terms --- \(\nabla^2\log m\) from the drift, \(\Delta m\) inside
+\(\Dt\chi\), and the \(\chi'\)-cutoff terms --- integrates by parts onto
+first-order factors bounded by \(4\abs{\nabla m}/M\), and is then absorbed by
+Young's inequality against \(\nu\abs{\nabla^2\ehat}^2\). The level-set boundary
+contributes nothing, because \(\chi\) vanishes below \(M/4\).
+
+The session also opens with a non-circularity remark that is worth naming,
+because it is a direct answer to the audit. The pincer is a contradiction
+argument at a putative \emph{first} singularity, so every estimate runs on the
+smooth interval \([0,T)\); Defect~D4 --- the Leray--Hopf circularity --- cannot
+recur on this route by construction.
+
+The output is \texttt{prop:first-rung} (line~5740), a Caccioppoli inequality
+for the angular energy, \PROVEDMOD{four enumerated routine items}. It is here
+that the logarithm formally enters the machinery: \texttt{lem:local-enstrophy-typeI}
+(line~5701) states the local enstrophy-gradient bound
+\(\nu\iint_{Q(2\rho)}\abs{\nabla\omega}^2\lesssim M^2\rho^3\Lfac\), and defines
+\(\Lfac=\log(e+\norm{u}_{H^3}/M)\) at line~5712.\footnote{Line numbers in this
+chapter and in Chapters~\ref{ch:unification}--\ref{ch:non-implication} are
+checked against the proof document as it stands after \Sn{48}. They differ
+from the numbers quoted in Chapters~\ref{ch:inheritance} and \ref{ch:walls}
+for every object after line~6900, because \Sn{48} inserted an amendment
+paragraph into the \Sn{39} ledger and a repair into
+\texttt{prop:profile-extraction}: \texttt{prop:transfer-audit} moved from
+6941 to 6955, \texttt{rem:s39-distance} from 7670 to 7703,
+\texttt{rem:s41-shortfall} from 8395 to 8428, and
+\texttt{prop:s44-linfty-route} from 9209 to 9242. The labels are unchanged and
+are what should be cited.}
+
+\subsection{\texorpdfstring{\Sn{34}: an a priori bound, and the first sighting of the wall}{S34: an a priori bound, and the first sighting of the wall}}
+
+\Sn{34} opens with a corrigendum to \Sn{33} --- a dimensional re-audit of the
+previous session's own section, performed \emph{before} building on it, which
+found four defects and fixed them. Two inhomogeneous terms had the wrong power
+of \(\rstar\); the corrected terms vanish as \(\rstar\to0\), so the fix is
+favourable. A third item, previously filed as routine bookkeeping, was
+reclassified: the \(\nu w\ehat\) term of \eqref{eq:pincer-dir} yields the
+critical quadratic \(\nu\iint w^2\), which is the standard critical
+nonlinearity and needs the smallness hypothesis \(\sstar\le\varepsilon_0\).
+That is where H1's own hypothesis enters its own proof, as it should.
+
+The session's positive result is the first unconditional quantitative output
+of the whole pincer programme.
+
+\begin{statement}[A priori coherence bound --- \texttt{thm:apriori-sigma}, line~5873]
+\label{st:apriori}
+\PROVED{} Near a Type-I singularity,
+\[
+  \langle\sstar\rangle
+  \;=\; (\rstar)^{-3}\iint_{Q(\rstar/2)} w\,\mathbf 1_{\{\abs{\omega}\ge M/2\}}
+  \;\le\; C(C_I)\,\frac{\Lfac}{\nu}.
+\]
+\end{statement}
+
+The proof tests \eqref{eq:pincer-mag} against \(m\eta^2\), which puts the
+good-sign sink \(\nu\iint m^2w\eta^2\) on the left. The key device is the
+pointwise consequence of the split identity,
+\(m^2\abs{\nabla\ehat}^2=\abs{\nabla\omega}^2-\abs{\nabla m}^2\le\abs{\nabla\omega}^2\),
+which sends every transition-annulus term straight to the local
+enstrophy-gradient budget with \emph{no absorption argument at all}. That is
+\texttt{lem:grad-omega-split}, the audit's survivor, doing load-bearing work
+fifteen sessions later.
+
+The coherence deficit near a Type-I singularity is therefore a priori bounded,
+at order \(\log\). What H1 needs is \(\sstar\le\varepsilon_0\). The gap between
+``automatic'' and ``needed'' is the explicit factor \(C\Lfac/(\nu\varepsilon_0)\)
+--- which converts the programme's smallness requirement into a \emph{decay}
+question for the \(\sstar\) dynamics. That reformulation is what the rest of
+the programme is about.
+
+The same session states the negative half sharply.
+\texttt{prop:crude-K} (line~5903) proves that the crude route to absorbing the
+coupling term \(K\) re-enters at top order multiplied by \(\Lfac\): it ``misses
+closing the loop by exactly one logarithm''. And it names the hypothesis that
+would close it, \texttt{conj:K-refined} (line~5917): the correlation constant
+\[
+  c_K \;=\; \frac{\langle\abs{\nabla m}^2 w\rangle_E}
+                 {\langle\abs{\nabla m}^2\rangle_E\,\langle w\rangle_E},
+  \qquad E=Q(\rstar)\cap\{m\ge M/4\},
+\]
+satisfies \(c_K\le C/\Lfac\) near a Type-I singularity. The mechanism is
+equipartition: by the split identity, \(\abs{\nabla m}^2\) and \(m^2w\) are
+competitors for the same \(\abs{\nabla\omega}^2\) budget, so only strong
+\emph{positive} correlation could defeat absorption.
+
+That conjecture is the origin of four sessions of numerics and of
+Chapter~\ref{ch:numerical-lessons}'s hardest lesson. Its measurement history
+is in Chapter~\ref{ch:layer4}; what it could and could not decide is Wall~6.
+
+\subsection{\texorpdfstring{\Sn{35}: the second rung, and a term that did not exist}{S35: the second rung, and a term that did not exist}}
+
+\texttt{prop:second-rung} (line~5986) disposes of the critical quadratic
+\(\nu\iint w^2\eta^2\) by the pointwise split \(w^2=f^{10/3}w^{1/3}\) with
+\(f=\abs{\nabla\ehat}\eta\), the parabolic embedding
+\(L^\infty L^2\cap L^2H^1\hookrightarrow L^{10/3}(Q)\), and Young. Under
+\(\sstar\le\varepsilon_0\) the inhomogeneous remainder is
+\(O((\Lfac\varepsilon_0)^{5/2}\rstar)\), superlinear in \(\varepsilon_0\) and
+therefore harmless. The entire nonlinearity of the direction equation is
+subordinate to \(\sstar\)-smallness.
+
+The same session recorded \texttt{prop:K-self} (line~6026), explicitly marked
+\emph{provisional}, claiming \emph{two} good terms on the left of a weighted
+identity. \Sn{36} found that the second cancels exactly
+(\texttt{lem:w2-cancel}, line~6166) and it was withdrawn. That episode is
+Wall~7 and is discussed in Chapter~\ref{ch:unification}; it is mentioned here
+because \Sn{35} is also the session in which the programme wrote down, in the
+proof document itself, an honest answer to the owner's direct question of
+whether any of this proves existence. The answer recorded was \emph{no}:
+weak-solution global existence is Leray 1934, the open question is smoothness,
+and the near-term realistic target is the conditional disorder-barrier
+theorem, ``a real contribution, not the Prize''.
+
+\section{\texorpdfstring{\Sn{38}: Regime A is impossible, and what that costs}{S38: Regime A is impossible, and what that costs}}
+\label{sec:regime-a}
+
+By the end of \Sn{37} the programme's open analytical content had been reduced
+to two items (Chapter~\ref{ch:unification}): the annulus residual, then
+believed mechanical, and one deep gap --- forcing \(\sstar(t)\to0\). \Sn{37}
+had also left one apparent escape: Regime~A, in which the global enstrophy
+\(\Omega=\norm{\omega}_{L^2}^2\) stays bounded near the putative singularity,
+and in which \texttt{prop:regime-A} (line~6430) gives depletion with
+\(\theta=2/5<1/2\) unconditionally, using only the a priori bound and no decay
+at all.
+
+\Sn{38} checked that escape route first, as a fact-check, before deriving
+anything --- and closed it.
+
+\begin{statement}[\texttt{prop:regime-A-impossible}, line~6514]
+\label{st:regime-a-impossible}
+\IMPOSSIBLE{} At any genuine blow-up time \(T\),
+\(\limsup_{t\to T^-}\Omega(t)=\infty\). Hence Regime~A cannot occur.
+\end{statement}
+
+The argument is short and standard, which is why it is decisive. By
+Fujita--Kato local well-posedness, a solution with bounded \(H^1\) norm extends
+for a time depending only on that norm, so blow-up forces
+\(\limsup\norm{u}_{H^1}=\infty\); the energy inequality makes
+\(\norm{u}_{L^2}\) non-increasing, so \(\norm{\nabla u}_{L^2}\to\infty\); and
+Biot--Savart on \(\T^3\) turns that into \(\Omega\to\infty\).
+
+\begin{obsv}[A proof that narrows its own programme]
+\label{obs:regime-a-cost}
+\Sn{38} is the clearest instance in this book of a result that is
+simultaneously a genuine advance and a loss of ground. Before it, the
+programme had two ways to reach H2: prove \(\sstar\)-decay, or establish
+bounded enstrophy. After it, there is one. The document states the consequence
+without softening: ``\(\sstar\)-decay is not one of several paths to H2 ---
+given H1, it is \textbf{necessary}''.
+
+\smallskip
+The same proposition is what makes Wall~6 provable. A resolved numerical
+simulation is a bounded-enstrophy object throughout, so the regime the
+programme's conjectures speak about is not merely one the runs failed to
+visit; it is not of the type a resolved run represents. That inference is
+recorded in Chapter~\ref{ch:layer4} and again in
+Chapter~\ref{ch:numerical-lessons}, and it is the reason four sessions of
+\(c_K\) measurement were never going to decide anything.
+\end{obsv}
+
+\Sn{38} also declined to force a result. The natural next step --- assembling
+the proved first rung, second rung and amended \(K\)-absorption into a genuine
+scale recursion for \(\sstar(\rho)\) as \(\rho\to0\) --- was attempted and left
+\OPEN{}, with the reason stated: whether the effective coefficient is
+subcritical (\(<1\), self-improving regardless of the starting value) or
+critical (\(\ge1\), needing a priori smallness, which is the fate that
+befell \S19 and \S20) was not determined. A preliminary scaling check on
+leading terms showed consistent powers of \(M\), which the document notes is
+necessary but not sufficient. The session log gives the reason for the
+restraint plainly: the programme had by then made three mid-session
+corrections on exactly this class of multi-term scaling argument, and a fourth
+was not wanted.
+
+\section{The arc, session by session}
+\label{sec:pincer-ledger}
+
+\begin{table}[ht]
+\centering
+\footnotesize
+\begin{tabular}{@{}l p{0.40\textwidth} p{0.35\textwidth}@{}}
+\toprule
+Session & What it added & Status of the addition today \\
+\midrule
+\Sn{32} & Direction equation re-derived; \(\sstar\) defined and proved
+  scale-invariant; \(\sstar\le16\sigma\); marginality; H1, H2 and the pincer
+  stated
+  & \PROVED{} except H1 and H2, both \OPEN{} \\[3pt]
+\Sn{33} & Level-set Moser cutoff; three integrations by parts;
+  \(\Lfac\) enters at \texttt{lem:local-enstrophy-typeI}; first rung
+  & \PROVEDMOD{four routine items}, all discharged in \Sn{36} \\[3pt]
+\Sn{34} & Corrigendum to \Sn{33} (four defects, fixed favourably);
+  \(\langle\sstar\rangle\le C\Lfac/\nu\); crude \(K\) fails by one
+  logarithm; \texttt{conj:K-refined}
+  & \PROVED{}; \PROVED{} sharp; \OPEN{} \\[3pt]
+\Sn{35} & Second rung (critical quadratic subordinated to \(\varepsilon_0\));
+  \(K\)-self-absorption identity, marked provisional; honest
+  distance-to-Prize remark
+  & \PROVED{}; second good term \WITHDRAWN{} at \Sn{36} \\[3pt]
+\Sn{36} & C1, C2 verified; Gram negativity; \(w^2\) cancellation;
+  routine items discharged; annulus residual isolated
+  & Chapter~\ref{ch:unification} \\[3pt]
+\Sn{37} & Localized Constantin--Fefferman derived; Regime A/B dichotomy;
+  H2 and \(\sstar\)-decay unified
+  & Chapter~\ref{ch:unification} \\[3pt]
+\Sn{38} & Regime~A \IMPOSSIBLE{}; \(\sstar\)-decay necessary; closure target
+  posed and deliberately left open
+  & \IMPOSSIBLE{}; the target is \OPEN{} \\
+\bottomrule
+\end{tabular}
+\caption[The pincer arc]{Sessions \Sn{32}--\Sn{38}. Three of the seven
+sessions begin by correcting the previous one. Two of the seven produce a
+proof that closes off one of the programme's own options.}
+\label{tab:pincer-arc}
+\end{table}
+
+\begin{obsv}[What the pincer is, and what it is not]
+\label{obs:pincer-ceiling}
+Even fully closed --- H1 proved, H2 proved --- the pincer yields
+Statement~\ref{st:pincer}: \emph{every Type-I singularity maintains persistent
+geometric disorder}. That is not regularity. It excludes coherent Type-I
+singularities and says nothing whatever about disordered ones, and nothing at
+all about Type-II. Turning it into ``no Type-I singularity'' requires the
+further step of forcing \(\sstar(t)\to0\), which is
+\texttt{target:disorder-depletion} and is \OPEN{}; turning \emph{that} into
+the Prize requires Type-II exclusion, which \texttt{rem:s39-distance} places
+outside these methods entirely. Chapter~\ref{ch:profile-rigidity} states the
+ceiling in the document's own words, and Chapter~\ref{ch:where-it-stands}
+keeps it in view.
+\end{obsv}

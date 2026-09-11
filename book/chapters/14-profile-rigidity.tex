@@ -1,0 +1,499 @@
+% =====================================================================
+%  Chapter 14 — Profile rigidity (S39)
+% =====================================================================
+\chapter{Profile Rigidity, and the Ceiling}
+\label{ch:profile-rigidity}
+
+\begin{record}
+\textbf{What this chapter covers.} Session \Sn{39}, and the section
+\texttt{sec:rigidity-s39} it produced --- the largest single addition the proof
+document ever received (\(6667\to7737\) lines). Its idea is a change of
+object: instead of trying to force \(\sstar(t)\to0\) as a statement about a
+solution's behaviour in time, pass to a Type-I blow-up profile and ask whether
+the \emph{limit object} can have a given value of \(\sstar\). Decay becomes
+rigidity. \(\sstar\) stops being a quantity that must be shown to fall and
+becomes an invariant of an ancient solution.
+
+\smallskip
+This chapter also carries the sentence that bounds the whole later programme.
+\texttt{rem:s39-distance} (line~7703) states that even with every remaining
+hypothesis discharged and both horns closed, the conclusion is \emph{no
+Type-I singularity} --- ``strictly less than the Clay problem''. That is the
+ceiling. It has not moved since, including at \Sn{48}, and this chapter states
+it plainly rather than at the end.
+\end{record}
+
+\section{Why the object had to change}
+\label{sec:why-reframe}
+
+By the close of \Sn{38} the position was exact and unpromising. One deep open
+problem remained --- force \(\sstar(t)\to0\) along a putative Type-I blow-up
+sequence --- and \Sn{38} had proved it \emph{necessary}, closing the only
+alternative. Every direct attempt on it had failed in the same way, three
+times, over the programme's history:
+
+\begin{itemize}[leftmargin=1.6em]
+\item \S19's gradient recursion produced a sublinear exponent
+  (\texttt{rem:prop19-gap}) and reduced to CKN;
+\item \S20's vorticity recursion produced the \Sn{31} audit;
+\item \Sn{38}'s own closure target --- assembling the proved first rung,
+  second rung and amended \(K\)-absorption into a scale recursion --- could
+  not be shown subcritical, and was deliberately left \OPEN{} rather than
+  forced.
+\end{itemize}
+
+All three are the same manoeuvre: iterate an inequality down scales and hope
+the effective coefficient falls below one. \Sn{39} stopped attempting it.
+
+\section{The construction}
+\label{sec:rigidity-construction}
+
+\subsection{Rescaling, and the ancient class}
+
+Fix a putative Type-I singularity at \((x^*,T)\) and set
+\begin{equation}\label{eq:rescale}
+  u_\lambda(y,s) \;=\; \lambda\,u\!\left(x^*+\lambda y,\;T+\lambda^2 s\right),
+  \qquad \lambda\in(0,1],\; s<0 .
+\end{equation}
+Under the Type-I bounds --- both of them, the vorticity bound
+\(M(t)\le C_I/(T-t)\) \emph{and} the velocity bound
+\(\sup\abs{u}\le C_I(T-t)^{-1/2}\), which line~5565 of the proof document
+assumes outright --- the rescaled family is uniformly bounded, and a
+subsequence converges to an \emph{ancient} solution \(U\) on
+\(\R^3\times(-\infty,0)\) in the class \(\mathcal{A}(c_I)\).
+
+\texttt{lem:typeI-scaleinv-bounds} (line~6729) proves that this class is
+closed under the Navier--Stokes scaling group \emph{with the same constant},
+and that \(\sstar(U_\mu)(s)=\sstar(U)(\mu^2 s)\). That invariance is not
+decoration: it is what makes a \emph{second} compactness extraction legal
+later, in \texttt{prop:two-step-reduction}.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  >={Latex[length=2mm]},
+  bx/.style={draw, rounded corners=2pt, font=\scriptsize, align=center,
+             inner sep=3.5pt, text width=34mm, minimum height=10mm},
+  hy/.style={bx, draw=openblue, thick, fill=panelgrey},
+  gd/.style={bx, draw=provedgreen, very thick},
+  op/.style={bx, draw=openblue, thick},
+  ar/.style={->, thick}
+]
+\node[bx] (u) at (0,0)
+  {\(u\) on \(\T^3\times[0,T)\)\\ Type-I: \emph{both} bounds\\ (line~5565)};
+\node[hy] (fam) at (4.8,0)
+  {rescaled family \eqref{eq:rescale}\\
+   uniform in \(\lambda\) by \textbf{(R)}};
+\node[gd] (U) at (9.6,0)
+  {ancient profile \(U\)\\ on \(\R^3\times(-\infty,0)\)\\
+   \(\sstar(U)\) an \emph{invariant}};
+
+\draw[ar] (u) -- node[above, font=\scriptsize] {\(\lambda\to0\)} (fam);
+\draw[ar] (fam) -- node[above, font=\scriptsize] {\(C^\infty_{\mathrm{loc}}\)} (U);
+\node[font=\scriptsize, below=1mm of fam, text=rulegrey, text width=34mm,
+      align=center] {needs \textbf{(N)}: the strength must not escape the
+      window};
+
+\node[gd] (horn1) at (6.6,-3.0)
+  {\textbf{Aligned horn}\\ \(\sstar(U)\equiv0\)\\
+   \(\Rightarrow\) \(\partial_3U=0\), 2D\\
+   \(\Rightarrow\) Liouville \(\Rightarrow\) trivial};
+\node[op] (horn2) at (12.0,-3.0)
+  {\textbf{Disordered horn}\\ \(\sstar(U)\ge\delta>0\)\\
+   over an infinite past\\
+   \OPEN{}: \texttt{target:disorder-depletion}};
+
+\draw[ar] (U.south) to[out=-120,in=90] (horn1.north);
+\draw[ar] (U.south) to[out=-60,in=90] (horn2.north);
+
+\node[bx, draw=impossiblered, thick, text width=52mm] (ceiling) at (5.0,-5.6)
+  {\textbf{Ceiling} (\texttt{rem:s39-distance}, line~7703):
+   both horns closed \(\Rightarrow\) \emph{no Type-I singularity} ---
+   strictly less than the Clay problem};
+\draw[->, thick, impossiblered, dashed] (horn1.south) -- (ceiling.east);
+\end{tikzpicture}
+\caption[The profile-rigidity reframe]{The \Sn{39} construction. A putative
+Type-I singularity is rescaled to an ancient limit profile on which
+\(\sstar\) is a scale invariant rather than a decaying quantity; the argument
+then splits into two horns. The dashed arrow is the part that must be kept in
+view: closing both horns gives a Type-I exclusion, not the Prize.}
+\label{fig:rigidity}
+\end{figure}
+
+\subsection{Step 1: extraction, and the two hypotheses it costs}
+
+\texttt{prop:profile-extraction} (line~6870) performs the extraction, and it
+carries two hypotheses that the rest of the chapter has to keep track of.
+
+\begin{statement}[\textbf{(R)}, scale-uniform interior regularity]
+\label{st:R}
+\(\norm{\nabla^k u_\lambda}_{L^\infty}\le C_k(c_I)(1+R)S_1^{-(k+1)/2}\),
+uniformly in \(\lambda\), which upgrades the convergence to
+\(C^\infty_{\mathrm{loc}}\).
+Status at \Sn{39}: \CONDITIONAL{Serrin-type}. \textbf{Status now:} \PROVED{},
+in a stronger form, by \texttt{thm:s48-R} --- see \S\ref{sec:s48-effect}.
+\end{statement}
+
+\begin{statement}[\textbf{(N)}, non-degeneracy]
+\label{st:N}
+The singularity's strength does not escape the rescaling window, so the limit
+\(U\) is nontrivial. Status: \OPEN{}, assumed. CKN
+\(\varepsilon\)-regularity supplies the right scale-invariant lower bound only
+on \(Q_1(0)\), a cylinder that touches the terminal slice \(s=0\) where
+compactness fails; pushing mass off it needs a Type-I-improved
+\(\varepsilon\)-regularity theorem which is not proved here
+(\texttt{rem:N-discussion}, line~6842).
+\end{statement}
+
+\subsection{Step 2: the transfer audit}
+
+\texttt{prop:transfer-audit} (line~6955) asks, part by part, which of the
+programme's machinery survives the limit. Its framing matters and is easy to
+misread: parts (a)--(c) are \emph{re-derived from scratch on \(U\)}, not
+transferred as limits of inequalities. \(U\) is a smooth solution with
+scale-invariant Type-I bounds, and every one of those proofs is local and
+pointwise, so they simply hold.
+
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+\item[(a)--(c)] The magnitude equation, the direction equation, the orthogonal
+  split and Gram negativity all hold on any profile. \PROVED{}.
+\item[(d)] \emph{Profiles are \(\Lfac\)-free}: on the profile ``the
+  logarithmic factor \(\Lfac\) may be replaced by an absolute constant''. At
+  \Sn{39} this was \PROVEDMOD{(R)}; it is now \PROVED{}
+  (\texttt{cor:s48-transfer-d}, line~10257).
+\item[(e)] \(\nu\langle\sstar\rangle\le C(c_I)\) on \(U\). At \Sn{39},
+  \PROVEDMOD{(R)}; now \PROVEDMOD{saturation} --- see
+  \S\ref{sec:s48-effect}.
+\end{enumerate}
+
+Part~(d) is the reason the S39 route looked like an escape from the
+Calder\'on--Zygmund logarithm. Chapter~\ref{ch:cz-log} follows what happened
+to that reading; the short version is that it was recorded at \Sn{47} as a
+relocation rather than a removal (Wall~2), and \Sn{48} withdrew that reading
+--- the profile route never incurs the logarithm at all, because it never
+passes through the Calder\'on--Zygmund operator.
+
+\subsection{What does not transfer}
+
+Two prohibitions were found in the same step, and both constrain earlier work.
+
+\begin{statement}[\texttt{rem:s39-nontransfer}(i), line~7045]
+\label{st:nontransfer-i}
+\IMPOSSIBLE{} as written. \texttt{prop:localized-cf} --- the entire H2 /
+Regime-B engine of \Sn{37} --- does \emph{not} survive passage to the profile.
+Its far-field step bounds
+\(\int_{\abs{y}\ge\rho'}\abs{\omega(x^*-y)}\abs{y}^{-3}\dee y\) by
+\(C(\rho')^{-3/2}\Omega^{1/2}\), and for \(U\in\mathcal{A}(c_I)\) on \(\R^3\)
+there is no reason for \(\norm{\omega_U}_{L^2(\R^3)}\) to be finite; the naive
+substitute \(\abs{\omega_U}\le M_U\) makes the integral logarithmically
+divergent at large \(\abs{y}\). The document's phrasing: ``the entire
+H2/Regime-B analysis of \S\ref{sec:s37} is unavailable on the profile as
+written''.
+\end{statement}
+
+\begin{statement}[\texttt{rem:s39-nontransfer}(ii), line~7045]
+\label{st:nontransfer-ii}
+Forbidden. The Bridge Lemma may not be pulled back to the approximating
+sequence. \texttt{lem:sigma-semicontinuity} (line~7075) gives
+\(\sstar(U)\le\liminf\sstar(u_{\lambda_j})\) and \emph{no reverse inequality};
+so \(\sstar(U)=0\) does not give \(\sstar(u_{\lambda_j})\to0\), and the hybrid
+strategy ``the profile is coherent, therefore apply H1 and H2 to the original
+sequence'' is invalid. The \Sn{39} dichotomy is built to obtain its
+contradiction entirely on \(U\) for exactly this reason.
+\end{statement}
+
+The semicontinuity direction that \emph{is} available is the useful one:
+smallness descends to the limit, which is what
+\texttt{prop:two-step-reduction} (line~7557) uses to absorb the oscillatory
+middle case --- \(\liminf\sstar=0\) but \(\sstar\) never zero --- into the
+aligned horn by a second compactness extraction.
+
+\section{The aligned horn}
+\label{sec:aligned-horn}
+
+Suppose \(\sstar(U)=0\). \texttt{lem:alignment-local} (line~7164) gives local
+alignment: \(\ehat\) is constant on the relevant component of the
+high-vorticity set. Then comes the session's genuinely new mathematics.
+
+\begin{statement}[\texttt{lem:harmonic-reduction}, line~7245]
+\label{st:harmonic}
+\PROVED{} (at \Sn{39}, modulo \textbf{(R)}; unconditionally since \Sn{48}).
+If \(\omega_U\parallel e_3\) globally, then \(\partial_3U\equiv0\),
+\(U_3=U_3(s)\), and the horizontal part \(U_h\) solves the two-dimensional
+Navier--Stokes equations exactly.
+\end{statement}
+
+The proof is five steps and was re-verified independently before the section
+was merged. \(\operatorname{div}\omega=0\) forces \(\partial_3\zeta=0\), so
+\(f:=\partial_3U\) is both curl-free and divergence-free, hence componentwise
+harmonic; the Type-I bounds make it bounded, so Liouville forces \(f=f(s)\);
+writing \(U=f(s)y_3+\tilde U\) and using boundedness of \(U\) in \(y_3\)
+forces \(f\equiv0\).
+
+This step is what makes any Liouville theorem applicable at all. General
+three-dimensional bounded-ancient Liouville is open; no version of the aligned
+horn can work without a genuine dimensional reduction, and this is it. With it,
+\texttt{thm:aligned-horn} (line~7310) invokes the two-dimensional
+bounded-ancient Liouville theorem of \cite{KNSS2009} --- with a flagged
+mild-solution class caveat --- and concludes triviality.
+
+The horn is complete except for one hypothesis.
+
+\begin{statement}[\textbf{(A-up)}, the global alignment upgrade]
+\label{st:aup}
+\OPEN{} --- the largest new gap \Sn{39} created. Local, one-time,
+one-component alignment must be upgraded to global \(\omega\parallel e_0\) on
+\(\R^3\times(-\infty,0)\), because the harmonic Liouville step has no ball
+version. \texttt{rem:A-up-discussion} (line~7187) canvasses three mechanisms:
+unique continuation for the \(w\)-inequality, which reduces to the programme's
+own Kato-class problem and is judged mildly positive; backward uniqueness in
+the Escauriaza--Seregin--\v{S}ver\'ak sense, which lacks the spatial decay;
+and scale exhaustion, which would need \(\sstar\equiv0\) for \emph{all} \(s\),
+which the dichotomy does not deliver.
+\end{statement}
+
+\section{The disordered horn}
+\label{sec:disordered-horn}
+
+Suppose instead \(\sstar(U)\ge\delta>0\) persistently. The natural first
+attempt --- accumulate a budget over the infinite past until it diverges ---
+was named in advance as a likely trap, and \Sn{39} converted the trap into a
+theorem.
+
+\begin{statement}[\texttt{prop:no-summable-budget}, line~7356]
+\label{st:nobudget}
+\IMPOSSIBLE{} The naive infinite-past budget argument cannot work. Dyadic past
+shells and self-similar cylinders are commensurate, and every cylinder carries
+the same dimensionless bound with no decay in \(k\) --- identically so, for an
+exactly self-similar profile, by scale invariance. Hence
+\(\sum_k\langle\sstar\rangle=\infty\) is \emph{forced} by the class, and
+divergence of the sum carries no information.
+\end{statement}
+
+That negative result dictates the only viable framework: a bounded quantity
+that is monotone in \emph{logarithmic} time. \Sn{39} found one.
+
+\begin{statement}[\texttt{prop:logtime-necessary}, line~7459]
+\label{st:logtime}
+\PROVED{} (modulo attainment of the spatial supremum). Put
+\(\tau=\log\abs{s}\) and \(\Phi(\tau)=\abs{s}M_U(s)\in(0,c_I]\). Evaluating
+the magnitude equation at the vorticity maximum --- where \(\Delta\abs{\omega}\le0\)
+by Hamilton's trick --- gives
+\[
+  \frac{\dee\log\Phi}{\dee\tau}
+  \;\ge\; 1 + \abs{s}w_{\max} - \abs{s}\alpha_{\max}.
+\]
+Since \(\Phi\) is bounded over infinite \(\tau\)-length,
+\[
+  \limsup_{\text{log-time average}}
+    \bigl[\abs{s}\alpha_{\max} - \abs{s}w_{\max}\bigr] \;\ge\; 1 .
+\]
+\end{statement}
+
+The sign structure is favourable: disorder drives \(\Phi\) up, and \(\Phi\) is
+bounded. What remains is to make that pay.
+
+\begin{statement}[\texttt{target:disorder-depletion}, line~7504]
+\label{st:target-dd}
+\OPEN{}, and \emph{marginal}. Persistent \(\sstar\ge\delta\) must force the
+log-time average to be \(\le1-c(\delta)\).
+\end{statement}
+
+\texttt{rem:target-decomposition} (line~7520) splits it into (T4a), an
+average-to-point statement for \(w\) at the vorticity maximum --- natural
+mechanism: weak Harnack, which plugs into the existing \(K\)-family machinery
+--- and (T4b), profile depletion of \(\alpha\), which is the harder half and
+which, by Statement~\ref{st:nontransfer-i}, is now known to need a genuinely
+different far-field control from the one \Sn{37} built.
+
+The word \emph{marginal} is load-bearing and the document flags it as such:
+the target must beat the constant \(1\) \emph{exactly}. The programme's own
+history is that marginal targets are where its errors hid. The mitigating
+difference, noted but not oversold, is that this target compares two averages
+by a fixed constant, rather than being a recursion needing bootstrapped
+smallness.
+
+\section{\texorpdfstring{What \Sn{48} changed, and what it did not}{What S48 changed, and what it did not}}
+\label{sec:s48-effect}
+
+\Sn{48} settled hypothesis \textbf{(R)} against the literature, in a stronger
+form than \Sn{39} had stated it (\texttt{thm:s48-R},
+\S\,\texttt{sec:hypR-s48}). The full statement and its route are the subject of
+Chapter~\ref{ch:cz-log}, \S\ref{sec:s48-R}. Its effect on this chapter's
+ledger is mechanical and is recorded in the document as an amendment: every
+row reading ``mod (R)'' should be read with the (R) deleted.
+
+One exception is recorded, and it is not small.
+
+\begin{obsv}[Saturation: what (e) still needs]
+\label{obs:saturation}
+\texttt{prop:transfer-audit}(d) states \emph{two} things. The first,
+\(\norm{\nabla U}_{L^\infty}\le C_1(c_I)\abs{s}^{-1}\), is now proved. The
+second, \(\norm{\nabla U(\cdot,s)}_{L^\infty}\le C(c_I)M_U(s)\), carries a
+\emph{pre-existing} proviso --- ``whenever the Type-I upper bound is
+saturated'', i.e.\ at times with \(M_U(s)\ge c_I^{-1}\abs{s}^{-1}\). Part~(e)
+uses the second form, because it measures the gradient against \(M_U\) and
+takes \(\rstar=M_U(s_0)^{-1/2}\). The two forms differ by
+\(\left(\abs{s}M_U(s)\right)^{-1}\), which is \(O(1)\) only on the saturated
+set.
+
+\smallskip
+So (e) moves from \PROVEDMOD{(R)} to \PROVEDMOD{saturation}, not to \PROVED{}.
+Whether \(M_U(s)\gtrsim\abs{s}^{-1}\) holds for all \(s<0\) or only on a set is
+not settled by \textbf{(R)} and is not settled anywhere. Under \textbf{(N)},
+\(M_U(s)>0\) for every \(s<0\), but positivity is weaker than saturation. The
+proviso was verified as genuinely pre-existing, not introduced by the session
+that found it.
+\end{obsv}
+
+Nothing else in the ledger moves. \textbf{(N)}, \textbf{(N\('\))},
+\textbf{(A-up)} and \texttt{target:disorder-depletion} are untouched, and the
+ceiling stands verbatim.
+
+\section{The ledger}
+\label{sec:s39-ledger}
+
+{\footnotesize
+\begin{longtable}{@{}p{0.36\textwidth} p{0.26\textwidth} p{0.30\textwidth}@{}}
+\caption[The \Sn{39} ledger, with the \Sn{48} amendment]{The
+\texttt{sec:rigidity-s39} ledger as the document carries it, with the
+\Sn{48} amendment applied in the third column. Twenty-six rows; four of them
+are proofs that something cannot be done. The last row is the one that bounds
+everything above it.}
+\label{tab:s39-ledger}\\
+\toprule
+Item & Status at \Sn{39} & Status after \Sn{48} \\
+\midrule
+\endfirsthead
+\toprule
+Item & Status at \Sn{39} & Status after \Sn{48} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+Type-I ancient class scaling-closed
+  & Proved (\texttt{lem:typeI-scaleinv-bounds}) & \PROVED \\
+Rescaled bounds \(\lambda\)-uniform
+  & Proved & \PROVED \\
+Scale-uniform interior regularity \textbf{(R)}
+  & \textbf{Conditional} (Serrin-type) & \PROVED{} (\texttt{thm:s48-R}) \\
+Non-degeneracy / no escape \textbf{(N)}
+  & \textbf{Assumed}; CKN gives it only on \(Q_1(0)\) & \OPEN{} (unchanged) \\
+Profile extraction
+  & Proved mod (R),(N) & \PROVEDMOD{N} \\
+Magnitude, direction, split, Gram on \(U\)
+  & \textbf{Proved} (re-derived, not transferred) & \PROVED \\
+Profiles are \(\Lfac\)-free
+  & Proved mod (R) & \PROVED{} (\texttt{cor:s48-transfer-d}) \\
+\(\nu\langle\sstar\rangle\le C(c_I)\) on \(U\)
+  & Proved mod (R) & \PROVEDMOD{saturation} \\
+\(\sstar\) transfer: lower semicontinuity
+  & \textbf{Proved} (the available direction) & \PROVED \\
+\(\sstar\) transfer: equality
+  & Proved mod (R),(N) & \PROVEDMOD{N} \\
+Pull-back of H1 to the sequence
+  & \textbf{Forbidden} (no reverse inequality) & Forbidden \\
+\texttt{prop:localized-cf} on profiles
+  & \textbf{Fails} (\(\Omega=\infty\)) & \IMPOSSIBLE{} as written \\
+Local alignment from \(\sstar=0\)
+  & \textbf{Proved} & \PROVED \\
+Global alignment upgrade \textbf{(A-up)}
+  & \textbf{Open} --- largest new gap & \OPEN{} (unchanged) \\
+Aligned \(\Rightarrow\) 2D (\(\partial_3U=0\))
+  & \textbf{Proved} mod (R) & \PROVED \\
+2D bounded ancient Liouville
+  & Cited \cite{KNSS2009}; class caveat & cited, caveat stands \\
+Aligned horn
+  & Proved mod (R),(A-up) & \PROVEDMOD{A-up} \\
+Naive finite-budget argument
+  & \textbf{Proved impossible} & \IMPOSSIBLE \\
+Log-time amplitude ODE
+  & Proved mod (R), attainment & \PROVEDMOD{attainment} \\
+Averaged necessary condition
+  & \textbf{Proved} mod (R), attainment & \PROVEDMOD{attainment} \\
+Disorder--depletion target
+  & \textbf{Open target}, marginal & \OPEN{} (unchanged) \\
+\quad (T4a) average-to-point for \(w\)
+  & Open; plugs into the \(K\)-family & \OPEN \\
+\quad (T4b) profile depletion of \(\alpha\)
+  & Open; needs a new far field & \OPEN \\
+Two-step reduction
+  & Proved mod (R),(N\('\)) & \PROVEDMOD{N\('\)} \\
+Reframed dichotomy
+  & Conditional on 5 inputs & \CONDITIONAL{4 inputs} \\
+Type-II exclusion
+  & Open (outside all present methods) & \OPEN{} (unchanged) \\
+\end{longtable}}
+
+\section{The ceiling, stated plainly}
+\label{sec:ceiling}
+
+\begin{record}
+\textbf{\texttt{rem:s39-distance}} (line~7703), the document's own words.
+Suppose both horns closed completely --- \textbf{(A-up)} proved and
+\texttt{target:disorder-depletion} proved, with \textbf{(R)}, \textbf{(N)},
+\textbf{(N\('\))} discharged. \emph{The conclusion would be: no Type-I
+singularity. That is strictly less than the Clay problem.} What would remain:
+
+\smallskip
+\textbf{(1) Type-II exclusion.} Every estimate in \S33--\S39 uses the Type-I
+rates, and the profile extraction uses them \emph{essentially}: without
+\(M(t)\lesssim(T-t)^{-1}\) the rescaled family \eqref{eq:rescale} has no
+uniform bound and there is no limit object at all. ``A Type-II singularity
+would rescale to nothing, and the entire reframe would be vacuous against
+it.'' This is outside these methods, and no part of the document should be
+read as progress on it.
+
+\smallskip
+\textbf{(2) The nontriviality input.} Even in the Type-I case, \textbf{(N)} is
+not a technicality. Until it is discharged, ``no Type-I singularity'' should
+be read as ``no Type-I singularity \emph{at a non-degenerate point}''.
+
+\smallskip
+\textbf{(3) Marginality of the surviving target.}
+\texttt{target:disorder-depletion} must beat the constant \(1\) exactly, and
+the programme's history is that marginal targets are where errors hide.
+\end{record}
+
+Three things about that remark deserve emphasis, because a reader skimming
+this book for the good news will otherwise mis-weight them.
+
+First, it is not a caveat appended to a result. It is a statement about the
+\emph{construction}, and the reason is structural rather than technical: the
+compactness that makes the whole reframe possible is powered by the Type-I
+rates, so the machinery cannot see the regime where those rates fail. A
+sharper estimate does not help. A different tool is required, and none is on
+offer here.
+
+Second, it has survived every subsequent session unchanged. \Sn{41},
+\Sn{44} and \Sn{48} all record explicitly that they do not touch it. The
+\Sn{48} residue list says it ``stands verbatim''; the \Sn{48} scope remark
+says the session ``does not bring the programme nearer to the Clay problem
+than \texttt{rem:s39-distance} already states''. Wall~3
+(Chapter~\ref{ch:walls}) is this remark, promoted to a wall.
+
+Third, the honest one-line summary of \Sn{39} is the one the document itself
+gives, and it is not a claim of progress toward the Prize: \emph{the single
+deep gap of \Sn{38} has been replaced by two structurally unrelated gaps, one
+of which is now complete except for a single clearly stated propagation
+hypothesis, and one of which has yielded a proved averaged necessary condition
+and a sharply-posed marginal target.} ``No claim is made beyond this.''
+
+\begin{obsv}[What the reframe bought, and what it cost]
+\label{obs:reframe-ledger}
+\emph{Bought:} a change of object that made the aligned side nearly complete;
+a genuinely new lemma (\texttt{lem:harmonic-reduction}) supplying the
+dimensional reduction without which no Liouville theorem applies; a proof that
+the obvious infinite-past argument is impossible, which saved later sessions
+from attempting it; a log-time monotone quantity, which is the correct
+framework the impossibility proof pointed to; and --- as a consequence
+nine sessions later --- a branch on which the Calder\'on--Zygmund logarithm
+turned out never to be incurred.
+
+\smallskip
+\emph{Cost:} one new hypothesis larger than anything it removed
+(\textbf{(A-up)}); a proof that the \Sn{37} depletion machinery is unavailable
+on profiles, invalidating the natural attack on the hard half of the remaining
+target; and a ceiling, stated in the same section, that no amount of further
+work inside the construction can raise.
+\end{obsv}

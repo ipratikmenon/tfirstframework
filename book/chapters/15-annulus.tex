@@ -1,0 +1,394 @@
+% =====================================================================
+%  Chapter 15 — The annulus residual (S41)
+% =====================================================================
+\chapter{The Annulus: A Route Proved Impossible}
+\label{ch:annulus}
+
+\begin{record}
+\textbf{What this chapter covers.} Session \Sn{41}. It was commissioned to
+close the last technical item in H1's estimate layer --- an item \Sn{36} had
+classified as \emph{open-mechanical}, ``bookkeeping\dots{} it involves no new
+estimate''. It returned a proof that the proposed method \emph{cannot} close
+it, for any choice of parameters, together with a second, independent proof
+that no variant of the method can either.
+
+\smallskip
+The session is the programme's cleanest example of its own reporting rule.
+It was asked for a closure and delivered an impossibility; the impossibility
+is logged as the main finding, and the item it concerns was reclassified from
+``mechanical'' to genuinely \OPEN{} --- a strictly worse position than the
+programme believed it was in. It is also the session that established the
+merge gate of Chapter~\ref{ch:house-rules}, which caught the inverted lemma
+three sessions later.
+\end{record}
+
+\section{What was to be closed}
+\label{sec:annulus-setting}
+
+\texttt{prop:K-amended} (line~6215) bounds the \(K\)-coupling with an absolute
+constant --- no logarithm, no correlation hypothesis --- modulo the annulus
+residual \(\Aann\) of Definition~\ref{def:aann}: the cutoff-derivative terms
+supported on the transition band \(\{M/8\le\abs{\omega}\le M/4\}\), carrying
+\emph{incomplete} weights \(\psi\abs{\chi'}\) instead of the full \(\eta^2\).
+
+\texttt{rem:level-iteration} (line~6249) proposed the standard De Giorgi
+device. Replace the single level pair \((\tfrac18,\tfrac14)\) by a nested
+sequence \(\theta_k=\tfrac18+2^{-k-3}\) with cutoffs \(\chi_k\) at levels
+\((\theta_{k+1},\theta_k)\). Each level-\(k\) annulus term is dominated by the
+full-weight quantities at level \(k+1\) with constant \(C4^k\), and the
+iteration is closed by choosing Young parameters \(\delta_k=\delta_08^{-k}\).
+The principle invoked was ``geometric beats geometric''.
+
+Nobody had carried it out.
+
+\section{The positive half: an exact inventory}
+\label{sec:inventory}
+
+Before attacking the iteration, \Sn{41} enumerated what actually has to be
+absorbed. The weighted magnitude identity produces exactly eight families of
+\(\chi\)-derivative terms, and \texttt{prop:s41-core} (line~8011) classifies
+all eight.
+
+\begin{table}[ht]
+\centering
+\footnotesize
+\begin{tabular}{@{}l l p{0.42\textwidth} l@{}}
+\toprule
+Family & Source & Form & Disposal \\
+\midrule
+G1 & \(R_3\)
+  & \(-\tfrac{2\nu}{M}\iint m\,w\abs{\nabla m}^2\psi^2\chi\chi'\)
+  & good sign, discarded \\
+G2 & \(R_5\), sink \(-\nu m w\)
+  & \(-\tfrac{\nu}{M}\iint m^3w^2\psi^2\chi\chi'\)
+  & good sign, discarded \\
+G3 & \(R_5\), \(\nu\Delta m\), \((\chi')^2\) piece
+  & \(-\tfrac{\nu}{M^2}\iint m^2w\abs{\nabla m}^2\psi^2(\chi')^2\)
+  & good sign, discarded \\
+G4 & same, \(\nabla(m^2)\) piece
+  & \(-\tfrac{2\nu}{M}\iint m\,w\abs{\nabla m}^2\psi^2\chi\chi'\)
+  & good sign, discarded \\
+\addlinespace
+I1 & \(R_5\), through \(\alpha m\)
+  & \(\tfrac1M\iint\alpha m^3w\,\psi^2\chi\chi'\),
+    \(\le C\Lfac^2M^{3/2}\nu^{-1}\)
+  & allowed inhomogeneous class \\
+I2 & \(R_5\), through \(-m\dot M/M\)
+  & same bound, via \(\abs{\dot M}/M\le\norm{\nabla u}_{L^\infty}\le CM\Lfac\)
+  & allowed inhomogeneous class \\
+\addlinespace
+\textbf{S1} & \(\chi\chi''\) piece of G3's integration by parts
+  & \(-\tfrac{\nu}{M^2}\iint m^2w\abs{\nabla m}^2\psi^2\chi\chi''\),
+    \emph{indefinite sign}
+  & \textbf{survives} \\
+\textbf{S2} & cross family, from \(R_5\) and \(R_4\)
+  & \(\tfrac{c\nu}{M}\iint m^2\psi^2\chi\chi'\,\nabla m\cdot\nabla w\),
+    \(\abs{c}\le2\), \emph{indefinite sign}
+  & \textbf{survives} \\
+\bottomrule
+\end{tabular}
+\caption[The eight cutoff-derivative families]{The complete inventory of
+\texttt{prop:s41-core} (line~8011). Six of the eight families are disposed of
+outright. The irreducible core is exactly two, both of indefinite sign, and
+the negative results of \S\ref{sec:noclose} are all about them.}
+\label{tab:s41-families}
+\end{table}
+
+This inventory is worth its own emphasis. It is a genuine positive result of a
+session whose headline is negative: three quarters of the residual is not
+there at all, and everything the programme now has to argue about is
+\(\abs{\mathrm{S1}}+\abs{\mathrm{S2}}\).
+
+\section{The negative half: the iteration cannot close}
+\label{sec:noclose}
+
+\subsection{No contraction, for any parameter}
+
+Executing the sketched iteration on the core gives a recursion
+\(Y_k\le G_k+\Lambda_k Y_{k+1}\) with
+\begin{equation}\label{eq:s41-lambda}
+  \Lambda_k \;=\; 2^{8}\cdot4^{k} \;+\; 2^{8}\,\delta_k^{-1}\cdot4^{k}.
+\end{equation}
+
+\begin{statement}[\texttt{prop:s41-nocontraction}, line~8189]
+\label{st:nocontraction}
+\IMPOSSIBLE{} \(\Lambda_k\ge2^{8}\cdot4^{k}\ge2^{8}>1\) for \emph{every}
+sequence \((\delta_k)\). The recursion never contracts.
+\end{statement}
+
+The reason Young's inequality cannot help is visible in
+\eqref{eq:s41-lambda}: the first term does not involve \(\delta_k\) at all.
+The S1 family is not a product of a dissipative factor with anything else, so
+there is no place to insert a small parameter. Three consequences follow
+immediately and each is recorded:
+
+\begin{itemize}[leftmargin=1.6em]
+\item the originally proposed \(\delta_k=\delta_08^{-k}\) makes matters
+  \emph{strictly worse}: \(\Lambda_k\sim32^k\) rather than \(4^k\);
+\item the summability \(\sum_k\delta_k\le\tfrac12\) that absorption
+  independently requires forces \(\delta_k^{-1}\ge2\), so the two geometric
+  factors land on the same side and reinforce;
+\item ``geometric beats geometric'' has no realization here.
+\end{itemize}
+
+\subsection{The unrolled form is worse than trivial}
+
+\begin{statement}[\texttt{prop:s41-vacuous}, line~8224]
+\label{st:vacuous}
+\IMPOSSIBLE{} The unrolled inequality is implied by \(Y_0\le Y_0\) and carries
+no information, for every \(N\); letting \(N\to\infty\) does not help. The
+remainder coefficient \(\prod_i\Lambda_i\) diverges while \(Y_N\ge Y_0\) by
+monotonicity.
+\end{statement}
+
+\subsection{Why no cleverer choice of levels exists}
+
+The two results above concern one scheme. The third rules out the family.
+
+\begin{statement}[\texttt{prop:s41-coarea}, line~8303]
+\label{st:coarea}
+\IMPOSSIBLE{} As \(k\to\infty\) the nested cutoffs converge weakly-\(*\) to a
+Dirac mass at the boundary level, so the residual converges to a literal
+\emph{flux through the level set} \(\{\abs{\omega}=M/8\}\) --- which is exactly
+the pointwise information H1 is trying to produce in the first place. More
+generally, by the scale-free normalisation \(\int\abs{\chi'}\dee s=1\),
+\emph{any} admissible level cutoff produces a residual that is a level density
+of the underlying measure \(\mu_F\), bounded above only by
+\((\theta_+-\theta_-)^{-1}\le16\) times a total mass, and bounded below not at
+all.
+\end{statement}
+
+A pigeonhole check makes the last point concrete and is worth reproducing
+because it explains why redistributing levels is futile: with \(N\)
+equally-spaced levels, \(\abs{\chi'}\le16N\) runs against a best-annulus mass
+\(\le1/N\), and the two cancel exactly. Uniform, geometric or optimally chosen
+levels all land in the same place.
+
+\subsection{The root cause}
+
+\texttt{rem:s41-whichlemma} (line~8249) identifies why neither classical
+iteration lemma is available, and this is the part of the session that
+generalises.
+
+\begin{itemize}[leftmargin=1.6em]
+\item The \emph{linear} lemma --- Ladyzhenskaya--Ural'tseva, or
+  Giaquinta--Giusti hole-filling --- needs a contraction factor below one,
+  which Statement~\ref{st:nocontraction} proves impossible.
+\item The \emph{nonlinear} lemma --- Stampacchia--De Giorgi --- needs the
+  coarse level bounded by the fine one with a superlinear gain and small
+  initial data. Three failures occur simultaneously: the recursion runs
+  coarse-to-fine, the opposite of standard De Giorgi truncation; it is
+  homogeneous of degree one, so there is no superlinear gain; and smallness of
+  \(Y_0\) is the sought \emph{conclusion}, not an available hypothesis.
+\end{itemize}
+
+\begin{obsv}[Why De Giorgi truncation does not apply here]
+\label{obs:degiorgi}
+De Giorgi truncation gains because the truncated sets \emph{shrink}: superlevel
+sets contract to measure zero, and the nonlinear gain feeds on that decay of
+measure. In this problem the truncation is not in the solution but in an
+\emph{auxiliary} variable, \(\abs{\omega}\), and it is confined to a fixed band
+\(\{M/8\le\abs{\omega}\le M/4\}\). No set shrinks. No measure decays. There is
+nothing for a nonlinear gain to feed on.
+
+\smallskip
+This is a statement about the geometry of the problem and not about the
+skill of the execution, which is why \texttt{prop:s41-coarea} can rule out
+every level selection at once rather than one at a time.
+\end{obsv}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  >={Latex[length=2mm]},
+  font=\scriptsize
+]
+% --- left panel: classical De Giorgi ---
+\begin{scope}
+\node[font=\small\bfseries] at (2.1,3.3) {Classical De Giorgi};
+\foreach \k/\yb/\yt/\op in {0/0.0/2.4/12, 1/0.45/2.05/26, 2/0.85/1.7/40,
+                            3/1.15/1.45/58}{
+  \fill[provedgreen, opacity=0.\op] (0,\yb) rectangle (4.2,\yt);
+}
+\draw[thick] (0,0) rectangle (4.2,2.4);
+\node[align=center, text width=40mm] at (2.1,-0.75)
+  {superlevel sets \emph{shrink} to measure zero;\\
+   the nonlinear gain feeds on that decay};
+\draw[->, thick, provedgreen] (4.5,1.2) -- (5.15,1.2)
+  node[right, text=provedgreen] {closes};
+\end{scope}
+% --- right panel: the annulus band ---
+\begin{scope}[xshift=7.6cm]
+\node[font=\small\bfseries] at (2.1,3.3) {The annulus residual};
+\fill[panelgrey] (0,0) rectangle (4.2,2.4);
+\fill[impossiblered, opacity=0.18] (0,0.85) rectangle (4.2,1.55);
+\foreach \k in {0,1,2,3}{
+  \draw[impossiblered, thin] (0,0.85+0.09*\k) -- (4.2,0.85+0.09*\k);
+  \draw[impossiblered, thin] (0,1.55-0.09*\k) -- (4.2,1.55-0.09*\k);
+}
+\draw[thick] (0,0) rectangle (4.2,2.4);
+\node[right, font=\scriptsize] at (4.25,1.55) {\(\abs{\omega}=M/4\)};
+\node[right, font=\scriptsize] at (4.25,0.85) {\(\abs{\omega}=M/8\)};
+\node[align=center, text width=44mm] at (2.1,-0.85)
+  {truncation is in the \emph{auxiliary} variable \(\abs{\omega}\),
+   inside a \emph{fixed} band: nesting the levels moves nothing,
+   and no set shrinks};
+\draw[->, thick, impossiblered] (-0.75,1.2) -- (-0.1,1.2);
+\node[left, text=impossiblered, align=right, text width=17mm] at (-0.8,1.2)
+  {\(\Lambda_k\ge2^8\)\\ always};
+\end{scope}
+\end{tikzpicture}
+\caption[Why the level iteration cannot work]{The structural difference
+\texttt{rem:s41-whichlemma} (line~8249) identifies. On the left, the mechanism
+that makes De Giorgi iteration work. On the right, the configuration
+\(\Aann\) actually presents: the levels are nested inside a band of fixed
+relative width, so refining them buys no measure decay, and by
+\texttt{prop:s41-coarea} the limit of the nesting is a flux through a level
+set --- the very object the argument was trying to produce.}
+\label{fig:annulus}
+\end{figure}
+
+\section{\texorpdfstring{The shortfall: \texttt{rem:s41-shortfall}}{The shortfall}}
+\label{sec:s41-shortfall}
+
+What survives unconditionally is a crude bound.
+\texttt{prop:s41-crude} (line~8395) gives, in the \(K\)-units of
+\texttt{prop:crude-K},
+\[
+  M^{-2}\,\Aann^{\mathrm{core}}
+  \;\le\; C\left(1+\delta^{-1}\right)\Lfac\,\norm{w}_{L^\infty}(\rstar)^3
+    \;+\;\delta D_\flat .
+\]
+
+\begin{record}
+\textbf{\texttt{rem:s41-shortfall}} (line~8428).
+``\texttt{prop:s41-crude} reproduces, term for term, the bound of
+\texttt{prop:crude-K}. The quantity that \texttt{prop:second-rung} is able to
+absorb is \(\delta\nu(\rstar)^3\norm{w}_{L^\infty}\); what
+\texttt{prop:s41-crude} delivers is \(C\Lfac\norm{w}_{L^\infty}(\rstar)^3\).
+Absorption therefore requires \(C\Lfac\le\delta\nu\), which fails for fixed
+\(\nu\) as \(\Lfac\to\infty\). So the annulus residual is short of closure by
+exactly the same single logarithm that \texttt{prop:crude-K} identified for
+\(K\) itself --- and, by \texttt{rem:s41-reading}, no level scheme recovers
+it.''
+\end{record}
+
+This is the second of the Calder\'on--Zygmund logarithm's three appearances,
+and \Sn{41} recognised it as a recurrence rather than a new difficulty --- but
+related it to \Sn{34}, not to Defect~D8 of the audit, which is where it
+originated. Chapter~\ref{ch:cz-log} follows the whole chain, and
+Chapter~\ref{ch:inheritance} explains why the connection to the audit took
+sixteen sessions to make.
+
+\section{The replacement target}
+\label{sec:band-target}
+
+\texttt{rem:s41-endtarget} (line~8442) states exactly what would have to be
+proved for \texttt{prop:K-amended}'s ``modulo \(\Aann\)'' caveat to be
+removable, and stresses two points that a later session could easily get
+wrong.
+
+First, the absorbed term must carry \emph{the same} cutoff \(\eta\) as the
+left-hand side. An annulus bound in terms of a fuller weight --- \(\psi^2\) on
+the band, or \(\eta_{k+1}^2\) --- does not absorb, ``and this, not the value of
+any constant, is what defeats the nested scheme''.
+
+Second, by \texttt{lem:s41-admissible} (line~7830) it suffices to prove the
+target for a \emph{single} admissible level pair, because all such pairs are
+interchangeable downstream. The difficulty is therefore genuinely analytic and
+not a matter of choosing levels cleverly --- which is the same conclusion the
+co-area argument reaches from the other side.
+
+The statement is then packaged as \texttt{target:band-absorption} (line~8468),
+``the replacement for \texttt{rem:level-iteration}'': there exist levels
+\(\theta_-<\theta_+\) in \([\tfrac1{16},\tfrac14]\), a cutoff \(\chi\) and a
+constant \(C\) such that, with \(\Band=\{\theta_-M\le m\le\theta_+M\}\cap\operatorname{supp}\psi\),
+\begin{align}
+  \nu\iint_{\Band}\abs{\nabla m}^2w\,\psi^2
+    &\le 2^{-11}\nu\iint\abs{\nabla m}^2w\,\eta^2
+      + CM^2\nu\iint\abs{\nabla^2\ehat}^2\eta^2
+      + C\Lfac^2M^{3/2}\nu^{-1},
+      \label{eq:bandY}\\
+  M^2\nu\iint_{\Band}\abs{\nabla^2\ehat}^2\psi^2
+    &\le CM^2\nu\iint\abs{\nabla^2\ehat}^2\eta^2 + \cdots
+      \label{eq:bandD}
+\end{align}
+Equation~\eqref{eq:bandY} is the \(Y\)-half and \eqref{eq:bandD} the
+\(D\)-half. The distinction matters and is the subject of
+Chapter~\ref{ch:non-implication}: they are not the same kind of statement, and
+no hypothesis in the programme's family covers the second.
+
+\section{The consequence for the ledger}
+\label{sec:s41-ledger}
+
+\begin{record}
+\textbf{The reclassification.} \(\Aann\) moves from \emph{open-mechanical}
+--- \Sn{36}'s belief that it was free bookkeeping --- to genuinely \OPEN{}.
+H1 still rests on exactly two things: (a) \(\sstar\le\varepsilon_0\), and
+(b) \texttt{target:band-absorption}. The \emph{count} is unchanged. What
+changed is that (b) is now known to be real analytical content rather than a
+formality.
+
+\smallskip
+The session log states the reading without softening: ``This is not progress
+toward closing H1, and is reported as such; it is, however, a correction of a
+false expectation, and the honest thing to log.''
+\end{record}
+
+Nothing else moved. H2, \(\sstar\)-decay, Type-II exclusion, the withdrawn
+\S20--\S22 material and the Prize and Claim-A conclusions were all untouched,
+and the merge diff was confined to three locations: the superseded block
+inside \texttt{rem:level-iteration}, one row of the \Sn{36} status table, and
+the new section.
+
+\section{The session that built the gate}
+\label{sec:s41-gate}
+
+\Sn{41} is where the merge gate of Chapter~\ref{ch:house-rules} was
+established, and the reasoning behind it was explicit: the programme's history
+--- \Sn{31}'s arithmetically impossible induction, reversed Jensen inequality
+and circularity; \Sn{35}'s retracted bonus term --- made a self-report an
+unacceptable basis for merging into the shared document.
+
+The subagent worked in an isolated \texttt{git} worktree and was instructed to
+trace every symbol to its real definition rather than guess notation, to carry
+out the convergent-series computation rather than assert it, to report a clean
+failure if the argument did not close, and to stay scoped to one item. The
+orchestrator then, before merging:
+
+\begin{itemize}[leftmargin=1.6em]
+\item checked brace balance programmatically (final depth zero, never
+  negative) and the \(\backslash\)\texttt{begin}/\(\backslash\)\texttt{end}
+  multiset;
+\item confirmed every environment used was standard or declared, flagging two
+  pre-existing undeclared environments as \emph{not} the session's own and
+  verifying that they predated the diff;
+\item confirmed via \texttt{git diff --stat} that exactly one file changed,
+  \(864\) insertions and \(6\) deletions, all in three locations;
+\item \textbf{re-derived the two load-bearing computations by hand} --- the
+  Young step \(4XZ\le\delta X^2+4\delta^{-1}Z^2\), and the formula
+  \eqref{eq:s41-lambda} for \(\Lambda_k\) --- rather than trusting them;
+\item read the whole new section once as a sceptical referee, watching for the
+  specific error classes previous audits had caught.
+\end{itemize}
+
+Only then was the file copied out of the worktree. Three sessions later the
+same procedure caught an inverted volume factor that would otherwise have
+entered the document as good news. That episode is
+Chapter~\ref{ch:non-implication}.
+
+\begin{obsv}[The value of executing a sketch]
+\label{obs:execute-the-sketch}
+\texttt{rem:level-iteration} had stood in the document for five sessions,
+labelled ``no new estimate'', and everything built on top of it was
+provisionally sound on that basis. The cost of finding out otherwise was one
+session. The cost of \emph{not} finding out would have been every subsequent
+ledger in the programme carrying a false entry in the column that says how
+much work remains.
+
+\smallskip
+This is the strongest practical argument in the book for the discipline of
+Chapter~\ref{ch:house-rules}: a claim marked ``mechanical'' is a claim, and it
+is the kind of claim least likely ever to be checked, because nobody
+volunteers to verify bookkeeping.
+\end{obsv}

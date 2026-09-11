@@ -1,0 +1,391 @@
+% =====================================================================
+%  Chapter 13 — Unification (S36–S37)
+% =====================================================================
+\chapter{Unification: Two Open Problems Become One}
+\label{ch:unification}
+
+\begin{record}
+\textbf{What this chapter covers.} Sessions \Sn{36} and \Sn{37}, run
+back-to-back on the same day. \Sn{36} verifies the two couplings the previous
+session had left pending, retracts a term that session had claimed, and
+isolates the one residue that survives. \Sn{37} derives H2 from H1 and
+discovers that in the generic case H2's remaining content and the
+\(\sstar\)-decay gap are \emph{the same open problem}.
+
+\smallskip
+That discovery is the programme's cleanest structural result. It reduced three
+nominally independent open items to two, and it did so without proving
+anything new about either. It is worth being precise about what such a result
+is: a reduction in the number of things that must be proved, obtained by
+showing that two of them were always one. Nothing became easier. The map
+became accurate.
+\end{record}
+
+\section{\texorpdfstring{\Sn{36}: verification, retraction, residue}{S36: verification, retraction, residue}}
+\label{sec:s36}
+
+\Sn{35} had recorded \texttt{prop:K-self} (line~6026), the
+\(K\)-self-absorption identity, explicitly marked \emph{provisional}, with two
+couplings flagged for verification:
+
+\begin{itemize}[leftmargin=1.6em]
+\item \textbf{C1}, the \(\Dt w\) substitution, including a
+  \(\nabla\log m\cdot\nabla w\) re-entry whose constant had to come out below
+  one;
+\item \textbf{C2}, the \(\alpha\)-weighted marginal terms, a constant chase
+  with logarithmic degradation.
+\end{itemize}
+
+If both verified, the consequence stated in advance was substantial:
+\texttt{conj:K-refined} --- the \(c_K\) hypothesis --- would become
+\emph{unnecessary}, and H1 would reduce to \(\sstar\le\varepsilon_0\) plus
+routine items.
+
+\subsection{C2, and then C1}
+
+\textbf{C2 verified.} The \(\alpha\)-weighted terms close via the a priori
+bound of \texttt{thm:apriori-sigma} (line~5873), at the cost of an
+\(\Lfac^2\) degradation --- which lands in the class the estimate already
+allows.
+
+\textbf{C1 verified, modulo one item, and the mechanism is better than
+required.} The dangerous couplings are the drift--curvature terms, and they do
+not merely turn out to be bounded: they are \emph{good-signed}.
+
+\begin{statement}[Gram negativity --- \texttt{lem:gram-negativity}, line~6180]
+\label{st:gram}
+\PROVED{} The drift--curvature terms contract \(\nabla m\otimes\nabla m\)
+against the Gram tensor \(G_{jk}=\partial_j\ehat\cdot\partial_k\ehat\) with a
+\emph{negative} sign. Since \(G\) is positive semi-definite by construction,
+the most dangerous couplings help rather than merely fail to hurt.
+\end{statement}
+
+This is the second place in the programme where
+\texttt{lem:grad-omega-split} --- the audit's survivor --- is what makes the
+argument work: it is the identity that makes \(G\) the natural object and the
+negativity a statement about a positive semi-definite tensor rather than a
+computation with signs to be tracked term by term.
+
+The stretching and commutator couplings close via the Biot--Savart near/far
+split already in place. One item resisted: the transition-annulus terms,
+supported on \(\{M/8\le\abs{\omega}\le M/4\}\), which appeared to require the
+standard De Giorgi nested-level iteration. \Sn{36} classified that as
+\emph{open-mechanical} --- ``classical bookkeeping, distinct in kind from the
+genuinely open items''.
+
+That classification was wrong, and Chapter~\ref{ch:annulus} is the session
+that proved it wrong.
+
+\subsection{The retraction}
+
+\Sn{35}'s identity had claimed \emph{two} good terms on the left: the
+\(K\)-density \(\nu\iint\abs{\nabla m}^2w\eta^2\), and additionally
+\(\nu\iint m^2w^2\eta^2\) --- the critical quadratic with a favourable weight,
+presented as reinforcing the second rung.
+
+\begin{statement}[\texttt{lem:w2-cancel}, line~6166]
+\label{st:w2cancel}
+\WITHDRAWN{} The \(+\nu w\ehat\) term of the direction equation contributes
+exactly \(+\nu w^2\) to \(\tfrac12\Dt w\), which cancels the sink
+\(-\nu\iint m^2w^2\eta^2\) \emph{identically}. The second left-hand term does
+not exist.
+\end{statement}
+
+The \(K\)-control conclusion survives with amended constants, and no
+downstream conclusion had depended on the cancelled term --- the critical
+quadratic is handled solely by \texttt{prop:second-rung}, which suffices. The
+episode is nonetheless recorded as Wall~7, and the walls document is explicit
+about why: it is one of three instances of the same failure mode, ``a
+favourable statement written down before the computation producing it was
+closed''. The other two are the \Sn{34} corrigendum and the inverted lemma of
+\Sn{44} (Chapter~\ref{ch:non-implication}).
+
+Two things are worth noting about the retraction. It was found by the
+programme auditing its own previous session before building on it, which is
+the rule of \S\ref{sec:reporting-rules} in Chapter~\ref{ch:house-rules}. And
+the provisional label was on the proposition from the start: \Sn{35} wrote
+down what it had, marked what it had not checked, and named the two items ---
+which is why \Sn{36} knew where to look.
+
+\subsection{What \texorpdfstring{\Sn{36}}{S36} left standing}
+
+The routine items (i) transport, (ii) commutator and (iv) time slice were
+discharged with short proofs. \texttt{prop:K-amended} (line~6215) then bounds
+the \(K\)-coupling with an \emph{absolute constant}, no logarithm and no
+correlation hypothesis --- modulo one thing.
+
+\begin{defn}[The annulus residual --- \texttt{def:annulus-residual}, line~6234]
+\label{def:aann}
+\(\Aann\) consists of the cutoff-derivative terms supported on the transition
+annulus \(\mathrm{Ann}=\{M/8\le\abs{\omega}\le M/4\}\cap\operatorname{supp}\psi\):
+\[
+  \nu\iint_{\mathrm{Ann}}\abs{\nabla m}^2\,w\,\psi\abs{\chi'},
+  \qquad
+  \nu\iint_{\mathrm{Ann}}m^2w^2\,\psi\abs{\chi'},
+\]
+and lower-order variants, all carrying \emph{incomplete} cutoff weights
+\(\psi\abs{\chi'}\) rather than \(\eta^2\).
+\end{defn}
+
+\texttt{rem:level-iteration} (line~6249) sketched the disposal: replace the
+single level pair by a nested sequence \(\theta_k=\tfrac18+2^{-k-3}\) with
+Young parameters \(\delta_k=\delta_08^{-k}\), on the principle that
+``geometric beats geometric''. The remark ends: ``This is bookkeeping of the
+same class as Ladyzhenskaya--Ural'tseva Chapter~II; it involves no new
+estimate.''
+
+The remark now carries a red superseded block, added at \Sn{41}. The scheme
+was executed and does not close.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}p{0.34\textwidth} p{0.28\textwidth} p{0.28\textwidth}@{}}
+\toprule
+Component of H1 & Status after \Sn{36} & Status today \\
+\midrule
+First rung (angular Caccioppoli) & Proved; items (i),(ii),(iv) discharged
+  & \PROVED \\[2pt]
+Critical quadratic & Proved given \(\sstar\le\varepsilon_0\)
+  & \CONDITIONAL{\(\varepsilon_0\)} \\[2pt]
+\(K\)-absorption & Proved modulo \(\Aann\)
+  & \PROVEDMOD{\(\Aann\)} \\[2pt]
+C2 (\(\alpha\)-terms) & Verified & \PROVED \\[2pt]
+Gram negativity & Proved, good signs & \PROVED \\[2pt]
+\(w^2\) cancellation & Corrects \Sn{35} & \WITHDRAWN{} (the claimed term) \\[2pt]
+\(\Aann\): families G1--G4 & --- & \PROVED{} good-signed, discarded (\Sn{41}) \\[2pt]
+\(\Aann\): families I1--I2 & --- & \PROVED{} in the allowed class (\Sn{41}) \\[2pt]
+\(\Aann\): core S1\,+\,S2 & ``open-mechanical''
+  & \OPEN{}; level iteration \IMPOSSIBLE{} \\
+\bottomrule
+\end{tabular}
+\caption[H1 after \Sn{36}, and now]{The consolidated status of H1's estimate
+layer, as \Sn{36} recorded it and as it stands. The only row that changed is
+the last, and it changed for the worse: what \Sn{36} believed was free
+bookkeeping is genuine analytical content.}
+\label{tab:h1-status}
+\end{table}
+
+\subsection{The depletion diagnostic}
+
+\Sn{36} also built the first numerical instrument aimed at H2:
+\texttt{layer4/depletion\_diagnostic.py}, measuring \(\alpha(x^*)/M\), the
+quantity H2 needs to be small and falling.
+
+\begin{center}
+\small
+\begin{tabular}{@{}l r r r r@{}}
+\toprule
+\texttt{exp\_id} & median ratio & max & final & \(M\) range \\
+\midrule
+\texttt{EXP-L4-DEPLETION-TG-001} & \(0.231\) & \(0.538\) & \(0.271\)
+  & \([1.40,\,20.94]\) \\
+\texttt{EXP-L4-DEPLETION-ADV-001} & \(0.016\) & \(0.032\) & \(0.021\)
+  & \([1.75,\,1.96]\) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+The Taylor--Green timeseries anti-correlates the ratio with \(M\): it is
+\(0.538\) at \(M=1.40\), near the minimum of \(M\), and falls to \(0.085\) at
+\(M=18.4\), near the peak. The recorded \(\theta_{\mathrm{eff}}\) --- the
+effective scaling exponent of \(\alpha\) in \(M\), defined only for \(M>10\)
+--- has median \(-0.080\), which puts the observed exponent near \(0.42\),
+well below the naive value \(1\). Read as a statement about ordinary vortex
+dynamics, this is evidence of genuine depletion. Read as evidence about H2 it
+is worth much less, for the reason Wall~6 gives and
+Chapter~\ref{ch:numerical-lessons} presses: the flow is globally regular and
+decaying.
+
+\section{\texorpdfstring{\Sn{37}: deriving H2, and finding it is \(\sstar\)-decay}{S37: deriving H2, and finding it is sigma-star-decay}}
+\label{sec:s37}
+
+H2 was stated at \Sn{32} as an open target with a named literature to adapt:
+Constantin--Fefferman assumes coherence at a \emph{fixed} scale \(\rho\),
+whereas the pincer needs it at the \emph{shrinking} scale \(\rstar(t)\).
+\Sn{37} carried out the adaptation.
+
+\subsection{The derivation}
+
+\texttt{prop:localized-cf} (line~6381) is classical technique applied to the
+programme's geometry. Constantin's representation of the stretching rate
+carries a geometric kernel with an exact pointwise cancellation,
+\(D(e,e,\sigma)=0\). Lipschitz continuity of \(\ehat\) --- which is exactly
+what H1's Bridge Lemma delivers --- controls the near field; Cauchy--Schwarz
+against the global enstrophy \(\Omega=\norm{\omega}_{L^2}^2\) controls the far
+field. Optimizing the cutoff radius between the two gives
+\[
+  \abs{\alpha(x^*)} \;\lesssim\; (KM)^{3/5}\,\Omega^{1/5},
+  \qquad K = \frac{C_B(\sstar)^{1/2}}{\rstar} = C_B(\sstar)^{1/2}M^{1/2},
+\]
+and substituting \(K\),
+\begin{equation}\label{eq:cf-master}
+  \abs{\alpha(x^*)} \;\le\; C\,(\sstar)^{3/10}\,M^{9/10}\,\Omega^{1/5}.
+\end{equation}
+
+\begin{record}
+\textbf{A self-audit inside the derivation.} The session's first-pass sketch
+assumed \(\Omega=O(1)\) for free. That is false near a putative singularity:
+for an exactly self-similar Type-I profile,
+\(\omega(x,t)\sim(T-t)^{-1}\Omega_0\!\left((x-x^*)/\sqrt{T-t}\right)\) gives
+\(\norm{\omega(\cdot,t)}_{L^2}^2\sim(T-t)^{-1/2}\sim M(t)^{1/2}\), not
+\(O(1)\). Assuming bounded enstrophy near a singularity is close to assuming
+there is no singularity. The derivation was redone with the correct scaling,
+and that redoing is what produced the dichotomy below.
+\end{record}
+
+\subsection{The dichotomy}
+
+Everything now turns on how \(\Omega\) grows.
+
+\begin{statement}[Regime A --- \texttt{prop:regime-A}, line~6430]
+\label{st:regA}
+If \(\Omega(t)=O(1)\) then \eqref{eq:cf-master} gives
+\(\abs{\alpha(x^*)}\le C(\sstar)^{3/10}M^{9/10}\), i.e.\ \(\theta=2/5<1/2\):
+\textbf{H2 holds unconditionally given H1}, using only the a priori bound
+\(\sstar\le C\Lfac/\nu\), with no decay required.
+\end{statement}
+
+\begin{statement}[Regime B --- \texttt{prop:regime-B}, line~6442]
+\label{st:regB}
+If \(\Omega(t)\sim M(t)^{1/2}\) --- the scaling of a genuine self-similar
+Type-I profile --- then
+\(\abs{\alpha(x^*)}\le C(\sstar)^{3/10}M^{9/10}\cdot M^{1/10}
+= C(\sstar)^{3/10}M\), which is \textbf{exactly borderline},
+\(\theta=1/2\). The near/far optimization gains nothing beyond the constant
+prefactor \((\sstar)^{3/10}\). Strict depletion requires \(\sstar(t)\to0\),
+not merely \(\sstar\) bounded.
+\end{statement}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  >={Latex[length=2mm]},
+  bx/.style={draw, rounded corners=2pt, font=\scriptsize, align=center,
+             inner sep=3.5pt, text width=37mm, minimum height=10mm},
+  gd/.style={bx, draw=provedgreen, thick},
+  bd/.style={bx, draw=impossiblered, thick},
+  nx/.style={bx, draw=openblue, thick, fill=panelgrey},
+  ar/.style={->, thick}
+]
+\node[bx] (cf) at (0,0)
+  {\eqref{eq:cf-master}:\\
+   \(\abs{\alpha}\lesssim(\sstar)^{3/10}M^{9/10}\Omega^{1/5}\)};
+
+\node[gd] (A) at (5.6,1.6)
+  {\textbf{Regime A}: \(\Omega=O(1)\)\\
+   \(\theta=2/5<\tfrac12\)\\ H2 unconditional given H1};
+\node[nx] (B) at (5.6,-1.6)
+  {\textbf{Regime B}: \(\Omega\sim M^{1/2}\)\\
+   \(\theta=\tfrac12\) exactly\\ needs \(\sstar\to0\)};
+
+\node[bd] (Aimp) at (11.0,1.6)
+  {\Sn{38}: \IMPOSSIBLE\\
+   \(\limsup\Omega=\infty\) at any\\ genuine blow-up};
+\node[nx] (unif) at (11.0,-1.6)
+  {\(\Rightarrow\) H2 \(\equiv\) \(\sstar\)-decay\\
+   \emph{one} open problem, not two};
+
+\draw[ar] (cf) -- (A);
+\draw[ar] (cf) -- (B);
+\draw[ar, impossiblered] (A) -- (Aimp);
+\draw[ar] (B) -- (unif);
+
+\node[font=\scriptsize\itshape, text=rulegrey, align=center, text width=95mm]
+  at (5.6,-3.4)
+  {\Sn{37} produced the dichotomy and unified the lower branch. \Sn{38}
+   removed the upper branch. What remains is a single statement, and it is the
+   statement \Sn{30} once believed it had proved.};
+\end{tikzpicture}
+\caption[The Regime A/B dichotomy and its collapse]{The two regimes of
+\texttt{prop:regime-A} and \texttt{prop:regime-B} (lines 6430, 6442), and what
+happened to each. The programme entered \Sn{37} with three open items and left
+\Sn{38} with one deep one --- by proving that one branch was already the
+other, and that the remaining branch does not exist.}
+\label{fig:regimes}
+\end{figure}
+
+\subsection{The unification}
+
+\begin{statement}[\texttt{cor:unification}, line~6456]
+\label{st:unification}
+In the generic case --- Regime~B or worse --- \textbf{H2's remaining content
+and the \(\sstar\)-decay gap are the same open problem}. Both require
+\(\sstar(t)\to0\), not merely the a priori bound. The programme's genuinely
+open analytical content therefore reduces from three nominally independent
+items (H1's annulus step, H2, \(\sstar\)-decay) to two: the annulus
+level-iteration, then thought mechanical, and a single deep gap.
+\end{statement}
+
+The corollary as written keeps Regime~A available: it notes that a genuine
+subcritical enstrophy bound near the singularity ``remains an interesting
+alternative target, since it does not require touching \(\sstar\) at all''.
+That sentence was true for one session. \Sn{38} proved Regime~A impossible
+(Chapter~\ref{ch:pincer}, \S\ref{sec:regime-a}), and with it the only
+alternative.
+
+\subsection{The enstrophy exponent, measured}
+
+The natural diagnostic follows immediately: which regime does a real flow sit
+in? \Sn{37} built \texttt{layer4/enstrophy\_exponent.py} and fitted \(p\) in
+\(\Omega\sim M^p\) on the Taylor--Green stretching run, chosen with the same
+seed and parameters as \texttt{EXP-L4-DEPLETION-TG-001} for direct
+comparability.
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l r r r@{}}
+\toprule
+\texttt{exp\_id} & fit window & \(p\) & \(r^2\) & points \\
+\midrule
+\texttt{EXP-L4-ENSTROPHY-EXPONENT-TG-001} & all, \(M>5\) & \(1.226\) & \(0.624\) & \(33\) \\
+\texttt{EXP-L4-ENSTROPHY-EXPONENT-TG-001} & growth phase only & \(\mathbf{0.891}\) & \(\mathbf{0.914}\) & \(19\) \\
+\texttt{EXP-L4-ENSTROPHY-EXPONENT-ADV-001} & fallback, \(M>3\) & \(16.088\) & \(1.000\) & \(\mathbf{2}\) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+The Taylor--Green growth-phase fit, \(p\approx0.89\) with \(r^2=0.91\), lands
+\emph{above} both Regime~A (\(p\approx0\)) and Regime~B (\(p=1/2\)) ---
+nominally worse than borderline. The session's own reading is the correct one
+and is not softened: this measures ordinary transient vortex stretching in a
+globally regular, \emph{decaying} flow whose \(M\) peaks and then falls, not
+the approach to a singularity. It is mild evidence against expecting bounded
+enstrophy as a free lunch even in ordinary dynamics, which sharpens the case
+that \(\sstar\)-decay is the unavoidable core difficulty. It does not test the
+theory.
+
+The adversarial row is the more instructive one for this book's purposes. Its
+\(M\) range is \([1.746,\,1.962]\) --- essentially flat --- so the fallback
+threshold admitted exactly two points, and a two-point fit returns
+\(r^2=1.000\) by arithmetic. The session log says the run was ``correctly
+reported as NaN/2-point artifact rather than forced''. The database row
+disagrees: it records \(p=16.088\), \(r^2=1.0000\), \(n=2\), and
+\texttt{verdict = PASS}, with a \texttt{note} field recording only the
+threshold fallback.\footnote{Source disagreement, resolved in favour of the
+database, which is the higher authority for experimental claims
+(Chapter~\ref{ch:how-to-read}, \S\ref{sec:source-hierarchy}). The narrative in
+\texttt{SESSION-LOG/2026-07-19-S37-cf-depletion-unification.md} is what the
+session intended; the row is what was written. A \textsf{PASS} on a two-point
+regression is not a result, and the row should be read as vacuous. It is
+listed in Appendix~\ref{ch:experiments} with that reading attached.}
+
+\begin{obsv}[What a unification is worth]
+\label{obs:unification-value}
+\Sn{37} is the session the programme is most likely to be proud of, and it is
+worth being exact about what it achieved. It proved no new estimate about
+\(\sstar\). It made no target easier. What it did was show that two of the
+programme's three open items had always been one, so that effort spent on
+either was effort spent on both --- and, in the same stroke, that the more
+attractive of the two branches (Regime A, unconditional depletion, no decay
+required) was the one that depended on an assumption nobody had checked.
+\Sn{38} then checked it.
+
+\smallskip
+The pattern is worth naming because it recurs: in this programme, the sessions
+that improved the \emph{map} were more valuable than the sessions that
+extended the \emph{route}, and they were also the sessions that most often
+delivered bad news.
+\end{obsv}

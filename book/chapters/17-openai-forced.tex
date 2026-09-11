@@ -456,46 +456,62 @@ with the forcing term as the dividing line.}
 \label{tab:comparison}
 \end{table}
 
-\section{An unresolved discrepancy in the primary sources}
-\label{sec:s49-discrepancy}
+\section{Two strands, and what each actually claims}
+\label{sec:s49-two-strands}
 
-Recorded at \Sn{49}, after the rest of this chapter was written, because it
-bears directly on the attribution in \S\ref{sec:their-theorem} and is not
-settled.
+Recorded at \Sn{49}, after the rest of this chapter was written. \Sn{40} read
+a single expository document and treated the work as one result. It is two,
+by different people, and they claim different things. The distinction matters
+because only one of them is a claim on the Prize.
 
-Two primary sources do not agree about what was proved.
+\subsection*{Strand one: Alp\"oge--Buckmaster}
 
-\begin{enumerate}[label=(\roman*)]
-\item An expository document, of the kind \S\ref{sec:their-theorem} records,
-  states the theorem for the \emph{forced three-dimensional incompressible
-  Navier--Stokes equations} with \(\nu>0\) arbitrary, \(f\in C^\infty_c\) and
-  \(u(\cdot,0)=0\).
-\item The authors' own public announcement lists the released results as
-  finite-time blow-up with smooth forcing for the \emph{incompressible porous
-  medium} equation, for \emph{Boussinesq}, and for \emph{three-dimensional
-  incompressible Euler} --- and states that the Navier--Stokes claim is for
-  \emph{hypo-dissipative} Navier--Stokes, that it is \emph{not} being
-  released, that its Lean verification has not finished, and that it is
-  ``suggestive of a path to unforced Euler''. The same announcement credits
-  the underlying programme to C\'ordoba and Mart\'inez-Zoroa.
-\end{enumerate}
+Building on a programme of C\'ordoba and Mart\'inez-Zoroa, who had obtained
+forced blow-up with \emph{rough} forcing, Alp\"oge and Buckmaster pushed the
+construction to \emph{smooth} forcing and released three results: finite-time
+blow-up with smooth forcing for the \textbf{incompressible porous medium}
+equation, for \textbf{Boussinesq}, and for \textbf{three-dimensional
+incompressible Euler}. The arguments are formalised in Lean. A further claim
+for \textbf{hypo-dissipative} Navier--Stokes is stated as believed but was
+not released, its Lean verification unfinished.
 
-The difference is not cosmetic, and three consequences follow if (ii) is the
-operative statement.
+None of these is the Prize problem. Euler is excluded from it explicitly ---
+Fefferman writes that the Euler problems are ``also open and very
+important \dots\ although the Euler equation is not on the Clay Institute's
+list of prize problems''. Hypo-dissipative Navier--Stokes replaces
+\(\nu\Delta u\) with a weaker fractional dissipation \(-\nu(-\Delta)^\alpha\),
+\(\alpha<1\), and is not the system of \S\ref{sec:four-alternatives}.
+Reviewing this strand, Tao's assessment was that the authors ``do not quite
+achieve these goals yet'', while judging it ``very feasible to complete these
+goals in the near future''.
 
-\textbf{Euler is not a Prize problem.} Fefferman says so in the problem
-description itself: the Euler case is ``also open and very important \dots\
-although the Euler equation is not on the Clay Institute's list of prize
-problems''.
+\subsection*{Strand two: the OpenAI claim}
 
-\textbf{Hypo-dissipative Navier--Stokes is not the Prize operator.} Replacing
-\(\nu\Delta u\) by \(-\nu(-\Delta)^\alpha\) with \(\alpha<1\) weakens the
-dissipation, and the resulting equation is not the Navier--Stokes system of
-\S\ref{sec:four-alternatives}. It is the regime in which blow-up for
-modified Navier--Stokes has long been considered more accessible.
+Separately, OpenAI claims a result for the \emph{full} three-dimensional
+incompressible Navier--Stokes equations at \emph{arbitrary} positive
+viscosity: a solution starting from rest that develops unbounded velocity in
+finite time while its kinetic energy stays uniformly bounded, with an
+analytical proof and a Lean formalisation. The claim is stated on their own
+pages as resolving the Navier--Stokes Millennium Prize problem ``by
+establishing statement `C' (and also `D')''.
 
-\textbf{On that reading, no Clay alternative has been established} --- not
-(A), not (B), and not (C) or (D) either.
+\textbf{Taken at face value, that is a claim on the Prize, and a legitimate
+one in kind.} It is also, by its authors' own account, silent on the unforced
+case: their overview states that the Millennium Problem ``also asks about the
+case where \(f=0\) (unforced flow)'' and that the work ``provides the
+definitive answer for the forced case''.
+
+\begin{record}
+\textbf{What this book asserts, and what it does not.} This section reports
+claims; it does not adjudicate them. The Alp\"oge--Buckmaster results and
+their Lean formalisation were read here through secondary summaries, and the
+OpenAI paper likewise. A Lean formalisation is strong evidence about a proof,
+but what it certifies is the statement \emph{as formalised}, and whether that
+statement is Fefferman's (C) --- including the decay hypothesis on \(f\) and
+the finite-energy and smoothness conditions on the excluded solutions --- is a
+question for the community, not for this book. Nothing in this programme
+depends on the outcome.
+\end{record}
 
 \begin{obsv}[Two corrections this programme owes its own record]
 \label{obs:s49-two-corrections}
@@ -504,8 +520,12 @@ Alternatives (C) and (D) are Prize-eligible: Fefferman asks ``for a proof of
 one of the following four statements'', and (C) and (D) are two of the four.
 A proof of forced three-dimensional Navier--Stokes breakdown, with \(f\)
 satisfying the decay hypothesis, would resolve the Millennium Prize problem.
-The reason the work does not bear on this programme is the stronger and
-simpler one recorded above, not the alternative it targets.
+Fefferman offered (C) and (D) deliberately, ``to give reasonable leeway to
+solvers while retaining the heart of the problem''; taking the leeway is not
+cheating, it is the stated rules. An earlier draft of this chapter treated
+``only (C) and (D)'' as though it were itself the refutation. It is not, and
+the correct reason is the second observation below --- which is stronger,
+because it does not depend on anyone's claim being wrong.
 
 \emph{Second, and this is the load-bearing observation:} (A) and (C) are
 \emph{not mutually exclusive}. Unforced global regularity and forced
@@ -513,11 +533,22 @@ breakdown can both be true, and most experts expect exactly that. Hence a
 proof of (C) would win the Prize and would leave \textbf{(A) open as a
 mathematical question} --- the question this programme is attacking. This
 programme's target survives the Prize being claimed by someone else.
+
+What does change, and should be said plainly rather than managed, is the
+\emph{description} of this programme. If (C) is established and accepted,
+then ``an attempt on the Navier--Stokes Millennium Prize problem'' ceases to
+be an accurate subtitle for this work, and the accurate one is an attempt on
+\textbf{global regularity for the unforced equations} --- alternatives (A)
+and (B). That is what every chapter of this book has actually been about:
+the programme has never once introduced a forcing term, by the owner's
+standing rule, and \S\ref{sec:de-forcing} records the one occasion the
+question was even asked. The target does not move. Only the name does.
 \end{obsv}
 
 \begin{obsv}[Their profile is Type-II, and this programme cannot see it]
 \label{obs:s49-typeII}
-In the expository statement of \S\ref{sec:their-theorem} the azimuthal
+In the expository statement of \S\ref{sec:their-theorem} --- strand two of
+\S\ref{sec:s49-two-strands} --- the azimuthal
 component obeys \(u_\vartheta\sim\tau^{-A}\) with \(A=\tfrac12+h\), \(h>0\),
 along the approach to the singular time. Velocity Type-I is
 \(\abs{u}\lesssim(T-t)^{-1/2}\). With \(h>0\) the constructed field therefore

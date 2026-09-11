@@ -1,0 +1,481 @@
+% =====================================================================
+%  Chapter 21 — Numerical lessons
+% =====================================================================
+\chapter{What the Numerics Taught, Including the Hard Part}
+\label{ch:numerical-lessons}
+
+\begin{record}
+\textbf{The hardest-won lesson in the book, stated once, without hedging.}
+
+\smallskip
+\emph{The \(c_K\) numerics were never discriminating.} Not
+under-resolved, not inconclusive, not promising-but-limited: \textbf{incapable
+of separating the hypothesis from its negation}, for a reason that was
+available before the first run and that the programme itself proved in
+\Sn{38}.
+
+\smallskip
+Four sessions --- \Sn{34}, \Sn{35}, \Sn{42}--\Sn{43}, \Sn{45} --- measured
+\(c_K\) and its relatives. Every one of them returned a number. Not one of
+them was evidence. The programme built the diagnostics carefully, ran them on
+three initial-condition families at two resolutions and two viscosities,
+swept the Reynolds number, corrected a resolution bias, corrected a misread
+transient, calibrated the regression instrument on synthetic data, and probed
+the one geometric corner the theory says matters --- and the whole of that
+effort was, as evidence about the conjecture, worth exactly nothing.
+
+\smallskip
+Chapter~\ref{ch:layer4} gives the numbers. This chapter gives the reason, and
+the three other lessons the numerical programme did produce.
+\end{record}
+
+\section{The non-discrimination argument}
+\label{sec:nondiscrimination}
+
+\subsection{The argument in four steps}
+
+\begin{enumerate}[leftmargin=2.2em]
+\item \texttt{conj:K-refined} is a \emph{conditional} statement. It asserts
+  \(c_K\le C/\Lfac\) \emph{near a putative Type-I singularity}, in the limit
+  \(\Lfac\to\infty\). It says nothing whatever about a flow that has no
+  singularity.
+\item A solver that remains globally regular is never in that regime. So
+  neither the conjecture nor its negation predicts anything about the numbers
+  such a solver produces. \emph{Both predict the same thing --- nothing.}
+\item There is one reading on which a regular run could still have been a
+  proxy: if the singular regime were merely a place the runs happened not to
+  visit, a well-chosen run might approach it.
+  \texttt{prop:regime-A-impossible} (line~6514) removes that reading. At a
+  genuine blow-up time \(\limsup_{t\to T^-}\Omega(t)=\infty\); a resolved
+  simulation is a bounded-enstrophy object throughout. The regime is not one
+  the runs did not visit --- it is not of the \emph{type} a resolved run
+  represents.
+\item \Sn{38} proved, in the same proposition, that \(\sstar\)-decay is
+  \emph{necessary} for blow-up given H1. A flow that never blows up therefore
+  never exhibits the decay. It measures \(c_K\approx1\), and
+  \(c_K\approx1\) is what \emph{both} hypotheses predict on any flow the
+  solver can produce.
+\end{enumerate}
+
+A measurement that both sides of a disjunction predict cannot separate them.
+That is the whole of Wall~6, and it depends on no number any run reported, on
+no resolution, on no viscosity, and on no initial condition.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  >={Latex[length=2mm]},
+  bx/.style={draw, rounded corners=2pt, font=\scriptsize, align=center,
+             inner sep=4pt, text width=36mm, minimum height=11mm},
+  hy/.style={bx, draw=openblue, thick, fill=panelgrey},
+  ms/.style={bx, draw=rulegrey},
+  bad/.style={bx, draw=impossiblered, thick},
+  ar/.style={->, thick}
+]
+\node[hy] (h) at (0,1.5)   {\textbf{H}: \(c_K\le C/\Lfac\)\\ near a Type-I
+                            singularity};
+\node[hy] (nh) at (0,-1.5) {\(\neg\)\textbf{H}: \(c_K\) does not decay\\
+                            near a Type-I singularity};
+\node[ms] (pred) at (5.6,0) {What each predicts for a\\
+                             \emph{globally regular} solver};
+\node[bad] (same) at (11.0,0)
+  {\textbf{the same thing:}\\ nothing.\\
+   Measured: \(c_K=0.92\)--\(2.24\)};
+
+\draw[ar] (h) -- (pred);
+\draw[ar] (nh) -- (pred);
+\draw[ar] (pred) -- (same);
+
+\node[bx, draw=provedgreen, very thick, text width=52mm] (s38) at (5.4,-3.2)
+  {\Sn{38}, \texttt{prop:regime-A-impossible}: at any genuine blow-up
+   \(\limsup\Omega=\infty\). A resolved run is bounded-enstrophy throughout,
+   so it is not merely outside the regime --- it is not of that type};
+\draw[ar, provedgreen, dashed] (s38.north) -- (pred.south);
+
+\node[font=\scriptsize\itshape, text=impossiblered, align=center,
+      text width=100mm] at (5.5,-4.8)
+  {Four sessions of measurement. Zero bits of evidence. This was derivable
+   before the first run.};
+\end{tikzpicture}
+\caption[Why the \(c_K\) measurements could not decide]{Wall~6 in diagram
+form. The two hypotheses differ only on flows the solver cannot produce, and
+agree on every flow it can. The measurements are real; their evidential value
+is zero.}
+\label{fig:nondiscrimination}
+\end{figure}
+
+\subsection{What each of the four sessions actually established}
+
+The runs were not worthless as engineering. They were worthless as evidence
+for the thing they were run for, and the two should be separated cleanly.
+
+\begin{center}
+\footnotesize
+\begin{tabular}{@{}l p{0.34\textwidth} p{0.36\textwidth}@{}}
+\toprule
+Session & What it reported & What it established \\
+\midrule
+\Sn{34} & \(c_K\approx1\) in every flow; median \(1.06\)--\(1.94\); drifting
+  toward \(1\) late-time; escalation lowered it
+  & That the diagnostic runs and is stable. Nothing about the conjecture. \\[3pt]
+\Sn{35} & \(c_K\) does not grow with Reynolds number over a fourfold viscosity
+  range; slopes \(-0.031\)
+  & That the diagnostic is not viscosity-sensitive in the accessible range.
+    Nothing about the conjecture. \\[3pt]
+\Sn{42}--\Sn{43} & Band concentration medians tame and resolution-robust;
+  the spikes are an early transient, not concentration
+  & A real correction to \Sn{42}'s own reading, and a real fact about
+    transients. Nothing about the conjecture. \\[3pt]
+\Sn{45} & \(\Lfac\)-slope of \(\log c_K\): \(-0.196\) (\(r^2=0.05\)) and
+  \(+0.088\) (\(r^2=0.02\)) against the required \(-1\); (NB) fails outright
+  in one run
+  & That the decay's onset is not visible anywhere accessible. Which is what
+    both hypotheses predict. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{How the sessions themselves reported it}
+
+The programme's own reporting was better than the programme's own strategy,
+and that distinction is worth making because it is the difference between an
+error of judgement and a failure of honesty.
+
+\Sn{34} wrote that the measurement ``cannot yet distinguish \(c_K=O(1)\) from
+the stronger conjectured \(c_K\le C/\Lfac\)''. \Sn{37} attached to a related
+measurement the caveat that it ``measures ordinary transient vortex stretching
+in a globally-regular, DECAYING flow \dots\ not the approach to an actual
+singularity --- which by definition cannot be produced by a solver known to
+stay regular''. \Sn{45}'s log records the negative slope as a negative signal
+and adds, in the same paragraph, that ``the program has now been looking at
+\(c_K\approx1\) for four sessions without ever seeing the decay the closure
+needs''.
+
+Every session named the limitation. No session drew the conclusion that the
+limitation was fatal by construction. That inference waited for \Sn{46}, which
+recorded it in one line --- ``\(c_K\) numerics were never discriminating'' ---
+and for \Sn{47}, which turned it into Wall~6.
+
+\begin{obsv}[The specific shape of the mistake]
+\label{obs:conditional-proxy}
+The error was not measuring the wrong quantity. \(c_K\) is exactly the
+quantity the conjecture is about, computed exactly as the conjecture defines
+it. The error was measuring \emph{a conditional statement's consequent on flows
+that do not satisfy its antecedent}, and treating agreement as support.
+
+\smallskip
+The general form: before running a diagnostic for a conditional claim, write
+down what the claim's \emph{negation} predicts for the flows you can actually
+produce. If the two predictions coincide, the diagnostic is not an experiment.
+This costs one paragraph and would have saved four sessions.
+\end{obsv}
+
+\begin{obsv}[What Wall 6 does not indict]
+\label{obs:wall6-scope}
+It indicts a family of measurements, not the layer, and the document is
+careful about the line. \emph{Permitted:} measurements whose answer differs
+between competing mechanisms \emph{in a regular flow} --- questions about a
+mechanism, not proxies for blow-up. \emph{Forbidden:} computing \(c_K\),
+\(c_K^{\mathrm{band}}\) or the band ratios again \emph{as evidence} for or
+against the conjectures. They may be computed as context.
+
+\smallskip
+Several Layer-4 results are of the permitted kind and are genuine: the
+\(\varepsilon\)-independence of \(\delta\), which is a fact about the
+equations; the sampling-bias discovery; the resolution correction to \(c_K\);
+the early-transient explanation of the band spikes; and the demonstration that
+free viscous decay alone does not suppress gradient concentration.
+\end{obsv}
+
+\section{Resolution: three ways it lied}
+\label{sec:resolution}
+
+\subsection{Systematic suppression, found by refining}
+
+The \(N=64\) Taylor--Green \(c_K\) values were resolution-suppressed by
+roughly a factor of two. At \(N=64\) the spectral tail fraction ranged over
+\(0.07\)--\(0.59\); at \(N=128\) it fell to
+\(1.3\times10^{-5}\)--\(2.6\times10^{-5}\), and the measured \(c_K\) rose from
+\(\approx1.05\) to \(\approx2.24\). That is systematic spectral pile-up at the
+grid cutoff, not noise, and it moved Taylor--Green from ``beside the
+adversarial series'' to ``noticeably above it''.
+
+A further probe, \texttt{EXP-L4-KCORR-NU-TG-104}, showed the tail fraction
+climbing back to \(0.0082\) late in the Taylor--Green cascade \emph{even at}
+\(N=128\).
+
+\begin{record}
+\textbf{The rule this produced, and it was never discharged.} Resolution
+adequacy is \emph{time-window-dependent}, not a property of \((N,\nu)\) alone.
+A run can be well resolved for the first half of its trajectory and marginal
+for the second. Reporting a single tail fraction per run therefore conceals
+exactly the regime --- late-time, high-\(M\) --- that every one of the
+programme's conjectures is about. \Sn{36} flagged this and it was never
+resolved; an \(N=256\) check was named as the test if the exact magnitude of
+\(c_K\) ever became analytically load-bearing. It did not, because of Wall~6.
+\end{record}
+
+\subsection{A hard grid floor masquerading as a physical threshold}
+
+\Sn{40}'s anisotropic-collapse sweep produced the programme's only \textsf{FAIL}
+verdict in Layer~3: \texttt{EXP-L3-R2-ANISO0050-JAX-128}, at aspect ratio
+\(0.05\), with \(\delta_{\max}=0.00\) exactly. The run was not truncated ---
+\(\theta\) stayed non-negative, energy decayed normally from
+\(1.328\times10^{-3}\) to \(7.63\times10^{-4}\), and it completed all \(69\)
+steps.
+
+Before treating that as a finding, the session checked for an artefact. At
+\(N=128\), the module's axial length \(\ell_z\) hits a hard grid floor: the
+requested \(0.05\times\ell_r=0.0393\) is below one grid cell, so it is clamped
+to exactly \(2\pi/128=0.0491\). The intended core geometry is representable as
+literally one grid point.
+
+A control isolated the explanation.
+
+\begin{center}
+\small
+\begin{tabular}{@{}l r r l r l@{}}
+\toprule
+\texttt{exp\_id} & \(N\) & aspect & floor-clamped? & \(\delta_{\max}\) & verdict \\
+\midrule
+\texttt{EXP-L3-R2-ANISO0100-JAX-064} & \(64\) & \(0.10\)
+  & yes (\(\ell_z=2\pi/64\)) & \(0.50\) & \textsf{PASS} \\
+\texttt{EXP-L3-R2-ANISO0100-JAX-128} & \(128\) & \(0.10\)
+  & no (\(\ell_z=0.0785\)) & \(0.50\) & \textsf{PASS} \\
+\texttt{EXP-L3-R2-ANISO0050-JAX-128} & \(128\) & \(0.05\)
+  & \textbf{yes} (\(\ell_z=2\pi/128\)) & \(\mathbf{0.00}\) & \textsf{FAIL} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+Aspect ratio \(0.10\) is genuinely resolution-converged --- identical
+\(\delta_{\max}\) at two resolutions. The sole \textsf{FAIL} coincides exactly
+with the one configuration pinned to the floor. The session's conclusion is
+stated with the right strength and no more: ``most likely a discretization
+artefact \dots\ This is inference from a single controlled comparison, not
+proof the floor explains everything.'' Cleanly testing the real \(0.05\)
+geometry needs \(N\gtrsim512\), which was not attempted.
+
+The honest state of that sweep is therefore: \(\delta_{\max}>0\) at every
+\emph{properly resolved} aspect ratio tested, down to \(0.1\), confirmed at two
+resolutions; and no genuine adversarial anisotropy threshold found --- only a
+hard numerical resolution floor.
+
+\begin{obsv}[Design the diagnostic so its own limits are visible]
+\label{obs:floor-visible}
+The floor-clamp was catchable only because the module recorded the
+\emph{requested} and \emph{realised} \(\ell_z\) separately, so a human could
+see that they differed. Had it silently clamped, the \textsf{FAIL} would have
+entered the record as an anisotropy threshold --- a physical finding, and a
+false one, in the single most adversarial experiment the programme ran.
+\end{obsv}
+
+\subsection{An early transient mistaken for a resolution artefact, and then
+correctly identified}
+
+\Sn{42} ran the band-concentration diagnostic at \(N=64\) and found the
+medians tame but two maxima extreme: \(\mathrm{conc}_D=63.1\) for
+Taylor--Green and \(192.8\) for shear. It flagged them as ``likely resolution
+artefacts'', explicitly citing the programme's own documented \(N=64\)
+under-resolution history --- flagged, not explained away.
+
+\Sn{43} refined to \(N=128\), at about \(2.7\) hours per run, and found the
+reading \emph{half wrong}. Taylor--Green's spikes \emph{grew} fivefold under
+refinement; shear's shrank. A statistic that moves in opposite directions under
+refinement on two initial conditions is not converged, and nothing can rest on
+it.
+
+The decisive analysis was neither more resolution nor more runs: it was
+splitting each recorded timeseries at \(t=3\). Across \emph{all} runs, both
+resolutions, all three initial-condition families, \emph{every} maximum occurs
+at \(t<3\). Taylor--Green at \(N=128\) --- the largest spike in the whole
+study, \(135.95\) --- never exceeds \(0.63\) anywhere in the bulk, and its bulk
+maxima agree with the \(N=64\) run to within \(7\)--\(9\%\).
+
+The accurate characterisation is an \emph{early-transient} effect: the initial
+conditions are still smooth and symmetric, the high-vorticity set has not been
+developed by nonlinear mixing, and band statistics over few unrepresentative
+points are volatile. That is the wrong time regime to bear on a conjecture
+about the approach to a singularity. \Sn{43} also notes what it did
+\emph{not} establish: which of two plausible mechanisms produces the
+volatility. Both are offered as hypotheses, not claims.
+
+\begin{obsv}[Two corrections, and the second one corrects the first]
+\label{obs:s43-self-correction}
+\Sn{43}'s own Result~3 said bulk maxima ``converge downward under
+refinement''. Its addendum corrects that: the generalisation came from shear
+alone, and Taylor--Green's bulk maxima in fact \emph{rose} slightly,
+\(1.57\to1.71\). The accurate statement is that bulk statistics are
+resolution-\emph{stable}, moving by under \(10\%\), and where they moved
+substantially they moved downward.
+
+\smallskip
+Nothing in the conclusion depended on the direction --- only on the bulk being
+small and stable. But the correction was made anyway, in the same document, in
+the same session. That is the standard this book is trying to record.
+\end{obsv}
+
+\section{Sampling: the forty-seven orders of magnitude}
+\label{sec:sampling}
+
+Chapter~\ref{ch:layer4} tells this story with the numbers; it belongs here as
+a lesson because the failure mode is not specific to fluid dynamics.
+
+The mean-Morrey quantity is a \emph{supremum} over balls. The first
+implementation sampled eight ball centres on a fixed grid. For Taylor--Green
+and shear fields --- built from sines and cosines --- those centres land on
+symmetry nodes where the mean vanishes identically by construction. The
+measured maximum was \(7.70\times10^{-47}\). With \(64\) random centres and a
+logged seed, it was \(11.03\).
+
+\begin{record}
+\textbf{The rule.} When the quantity is a supremum over a family, sample the
+family randomly with a logged seed --- never on a lattice that shares the
+field's symmetries. The programme's later diagnostics sample at the vorticity
+maximum rather than on a grid, for the same reason.
+
+\smallskip
+\textbf{Why the comparison was possible at all:} both sets of rows were
+retained in the database. A programme that had overwritten the bad rows with
+the good ones would have the right numbers and no record that the failure
+mode exists.
+\end{record}
+
+\section{Calibrate the instrument on planted data}
+\label{sec:calibration}
+
+\Sn{45}'s regression of \(\log c_K\) on \(\log\Lfac\) is the one place the
+programme's answer depended on the behaviour of a statistical instrument, and
+it is the one place the instrument was calibrated before use.
+
+\texttt{l\_dependence\_summary} was tested against \emph{planted synthetic
+power laws} and recovers slopes of \(-1.0\) and \(-0.5\) exactly, with
+\(r^2=1\). \texttt{sobolev\_H3\_norm} was checked against its analytic value
+on a single Fourier mode.
+
+This matters for how the negative result is read. When the instrument then
+returns \(-0.196\) with \(r^2=0.05\), the low \(r^2\) cannot be dismissed as a
+defect of the fit --- the fit is known to be exact on data of the shape being
+looked for. The low \(r^2\) \emph{is} the finding: across
+\(\Lfac\in[1.35,4.68]\), a \(3.5\times\) span over which a clean \(C/\Lfac\)
+law would force a \(3.5\times\) drop, \(c_K\) stays pinned between \(0.92\) and
+\(1.21\).
+
+The same session records two design decisions of the same character, both
+worth generalising:
+
+\begin{itemize}[leftmargin=1.6em]
+\item \emph{Hold energy fixed and sweep a ratio.} Sweeping raw strain
+  amplitude would have confounded ``more strain'' with ``more energy'' and
+  moved every diagnostic for a trivial reason. The swept parameter is the
+  strain-to-swirl ratio at fixed energy.
+\item \emph{The tilt perturbation is mandatory, not cosmetic.} A perfectly
+  aligned axisymmetric jet has \(\ehat\) constant, so \(w=\abs{\nabla\ehat}^2\equiv0\)
+  and every correlation diagnostic collapses to its zero-by-convention branch.
+  An experiment that returns zeros because its target quantity is identically
+  zero is not a null result.
+\end{itemize}
+
+\begin{obsv}[Calibration is what makes a negative result usable]
+\label{obs:calibration-value}
+The \(\Lfac\)-decay measurement is, by Wall~6, not evidence about the
+conjecture. It is nonetheless the best-executed measurement in the programme,
+and the reason is the calibration: it is the only result whose \emph{null}
+reading can be trusted, because the instrument was shown in advance to detect
+the signal it failed to find.
+
+\smallskip
+That is the general point. A positive result survives a poorly characterised
+instrument; a negative one does not. The programme learned this at the end,
+and applied it exactly once.
+\end{obsv}
+
+\section{A diagnostic whose regime does not match its conjecture's}
+\label{sec:gamma}
+
+\texttt{EXP-L4-GAM-ADV-001} is the programme's most-quoted negative row and
+its \texttt{verdict} field is a sentence rather than a verdict:
+``\textsf{NOT SUPPRESSED: NS evolution does not increase Gamma exponent
+(0.000 -> -3.263). Possible gap in Claim A conjecture for adversarial ICs.}''
+
+The reading in the \Sn{27} log is the correct one. The evolution in that run
+is \emph{free viscous decay}, \(\partial_tu=\nu\Delta u\), with the nonlinear
+term omitted --- and the mechanism the conjecture appeals to lives entirely in
+the nonlinearity that was omitted. The run does not falsify the conjecture; it
+establishes that linear diffusion alone does not suppress gradient
+concentration, which nobody had claimed. The stated next step, rerunning the
+adversarial data through the full spectral solver, was never performed under
+that identifier, and the row stands in the database unresolved.
+
+Chapter~\ref{ch:inheritance} calls this a prefiguring of Wall~6, and it is the
+same disease in a milder form: \emph{a diagnostic whose regime does not match
+the conjecture's cannot test it}. In \Sn{27} the mismatch was an omitted term
+and could have been fixed by rerunning. In \Sn{34}--\Sn{45} the mismatch was
+between a regular flow and a singular one, and could not be fixed at all.
+
+\section{The lessons, collected}
+\label{sec:numerics-lessons-table}
+
+\begin{table}[ht]
+\centering
+\footnotesize
+\begin{tabular}{@{}p{0.30\textwidth} p{0.28\textwidth} p{0.34\textwidth}@{}}
+\toprule
+Lesson & Where it was learned & Cost of not knowing it \\
+\midrule
+Before running a diagnostic for a conditional claim, write down what the
+claim's \emph{negation} predicts on the flows you can produce
+  & \Sn{46}, \Sn{47}; provable from \Sn{38}
+  & Four sessions of measurement with zero evidential value \\[3pt]
+Resolution adequacy is time-window-dependent
+  & \Sn{36}, \Sn{37}
+  & A factor of two, systematic, in the headline statistic \\[3pt]
+Record requested \emph{and} realised parameters so a clamp is visible
+  & \Sn{40}
+  & A grid floor would have entered the record as a physical threshold \\[3pt]
+Split a timeseries by regime before believing an extremum
+  & \Sn{43}
+  & A \(214\times\) spike read as concentration rather than transient \\[3pt]
+Sample a supremum randomly, with a logged seed
+  & \Sn{25}
+  & \(47\) orders of magnitude of bias \\[3pt]
+Calibrate a fitting instrument on planted data before trusting a null
+  & \Sn{45}
+  & A null result that cannot be distinguished from a broken fit \\[3pt]
+Sweep a ratio at fixed energy, not an amplitude
+  & \Sn{45}
+  & Every diagnostic moving for a trivial reason \\[3pt]
+Retain superseded rows in the database
+  & \Sn{25}, \Sn{36}
+  & No record that the failure mode exists \\[3pt]
+Match the diagnostic's regime to the conjecture's
+  & \Sn{27}, and again \Sn{34}--\Sn{45}
+  & An unresolved sentence in a verdict field; then Wall~6 \\
+\bottomrule
+\end{tabular}
+\caption[The numerical lessons]{Nine lessons, and what each cost. Only the
+first is fatal: the others are corrigible errors that the programme did in
+fact correct.}
+\label{tab:numerical-lessons}
+\end{table}
+
+\begin{obsv}[The honest verdict on the numerical programme]
+\label{obs:numerics-verdict}
+Roughly \(124\) logged experiments across four layers, thirty-one database
+tables, and something over a thousand tests. The Layer-1 to Layer-3 work is
+sound and did what it was built for: it validated the property engine,
+confirmed \(A(T)>0\) across every fluid and every profile, verified the
+\(\mu(T)\to\nu\) limit in two and three dimensions, and searched for blow-up
+at three resolutions without finding it. Layer~4 produced five results of
+genuine mechanism-level interest.
+
+\smallskip
+And the single family of measurements the later analytical programme most
+needed --- the one that ran for four sessions and consumed the largest share
+of the numerical effort after \Sn{33} --- was incapable of answering the
+question it was built for, on grounds the programme itself had proved. That is
+the numerical programme's headline, and it is not a resolution problem, a
+compute problem, or a modelling problem. It is a problem of not having asked,
+in advance, what the negation predicted.
+\end{obsv}

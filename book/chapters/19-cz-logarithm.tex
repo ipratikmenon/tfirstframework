@@ -1,0 +1,500 @@
+% =====================================================================
+%  Chapter 19 — The Calderón–Zygmund logarithm
+% =====================================================================
+\chapter{\texorpdfstring{The Calder\'on--Zygmund Logarithm}{The Calderon-Zygmund Logarithm}}
+\label{ch:cz-log}
+
+\begin{record}
+\textbf{The single symbol this book is about.}
+\[
+  \Lfac \;=\; \log\!\left(e + \frac{\norm{u}_{H^3}}{M}\right),
+  \qquad M=\norm{\omega}_{L^\infty}.
+\]
+It is defined at line~5712 of the proof document, inside
+\texttt{lem:local-enstrophy-typeI} (line~5701), and it arrives with the
+inequality
+\begin{equation}\label{eq:cz-endpoint}
+  \norm{\nabla u}_{L^\infty} \;\lesssim\; M\,\Lfac ,
+\end{equation}
+which is the \(L^\infty\) endpoint of the Biot--Savart operator. Every
+enstrophy budget the programme writes from \Sn{33} onward carries it. Three
+separate closure attempts fail by exactly one factor of it. It is the audit's
+eighth defect, and it is Wall~1.
+
+\smallskip
+This chapter is its biography: where it comes from, why it is not removable by
+care in the downstream algebra, what kind of object it is in the language of
+the renormalisation group, and what \Sn{48} did and did not do to it.
+\end{record}
+
+\section{Where it comes from}
+\label{sec:cz-origin}
+
+The programme's estimates all have the same shape. A budget is written for a
+quantity built from the vorticity --- local enstrophy, angular energy, a
+coupling density. The budget's dangerous term is vortex stretching, which
+involves \(\nabla u\). And \(\nabla u\) is not available: only \(\omega\) is,
+and \(\nabla u\) must be recovered from it by Biot--Savart, which is a
+Calder\'on--Zygmund operator.
+
+Calder\'on--Zygmund operators are bounded on \(L^p\) for \(1<p<\infty\). They
+are \emph{not} bounded on \(L^\infty\); the correct endpoint is
+\(L^\infty\to\mathrm{BMO}\). Recovering a genuine sup-norm therefore costs
+something, and what it costs is a logarithm.
+
+\subsection{The mechanism, in one paragraph}
+
+The cleanest derivation in the document is not in \S33 where the factor first
+appears, but in \Sn{48}'s \texttt{lem:s48-biotsavart} (line~10047), which
+proves a \emph{different} estimate and notices the logarithm's origin on the
+way past. Decompose \(v\) into Littlewood--Paley blocks. For the velocity
+itself, divergence-freeness gives
+\(\Delta_j v = 2^{-j}\mathcal{K}_j\widetilde\Delta_j\omega\), so
+\(\norm{\Delta_j v}_{L^\infty}\le C2^{-j}\norm{\omega}_{L^\infty}\) --- and
+the geometric factor \(2^{-j}\) makes the sum over blocks converge. For the
+\emph{gradient}, the same decomposition gives
+\[
+  \norm{\Delta_j\nabla v}_{L^\infty} \;\le\; C\norm{\omega}_{L^\infty}
+  \qquad\text{with \emph{no} decaying factor,}
+\]
+and summing over the \(O(\Lfac)\) active blocks produces exactly
+\eqref{eq:cz-endpoint}.
+
+\begin{obsv}[The logarithm counts scales]
+\label{obs:log-counts-scales}
+That is the whole of it, and it is worth saying in words. Each dyadic scale
+contributes an equal amount to \(\norm{\nabla u}_{L^\infty}\). Nothing
+suppresses the small scales and nothing suppresses the large ones. So the
+total is the per-scale contribution times \emph{the number of active scales},
+and the number of active scales between the energy scale and the vorticity
+scale is \(\Lfac\).
+
+\smallskip
+This is why no rearrangement of the downstream algebra removes it: the factor
+is not an inefficiency in an estimate, it is a count of how many scales are
+simultaneously in play. To remove it one has to change what is being summed,
+not how carefully.
+\end{obsv}
+
+\section{The genealogy}
+\label{sec:cz-genealogy}
+
+The factor was first written down as a criticism, not as a symbol.
+Chapter~\ref{ch:inheritance} tells that story in full and
+Table~\ref{tab:cz-life} there traces it session by session; this section gives
+the mathematical spine.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  >={Latex[length=2mm]},
+  ev/.style={draw, rounded corners=2pt, font=\scriptsize, align=left,
+             inner sep=4pt, text width=52mm},
+  bad/.style={ev, draw=impossiblered, thick},
+  neu/.style={ev, draw=rulegrey},
+  gd/.style={ev, draw=provedgreen, very thick},
+  ar/.style={->, thick, rulegrey}
+]
+\node[bad] (d8) at (0,0)
+  {\Sn{31} \textbf{Defect D8}, \texttt{sec:audit-s31}\\
+   ``\(\norm{\nabla u}_{L^\infty}\le CM\) \dots\ the correct bound carries a
+   logarithmic factor''};
+\node[neu, below=5mm of d8] (marg)
+  {\Sn{32} \texttt{rem:marginality} (5443)\\
+   the logarithm is \emph{mandatory}; the direction equation is exactly
+   critical at \(\rstar\) up to it};
+\node[neu, below=5mm of marg] (born)
+  {\Sn{33} \texttt{lem:local-enstrophy-typeI} (5701)\\
+   \(\Lfac\) defined at 5712; enters the machinery};
+\node[bad, below=5mm of born] (crude)
+  {\Sn{34} \texttt{prop:crude-K} (5903)\\
+   \emph{first rediscovery}: misses closing the loop by exactly one logarithm};
+\node[bad, below=5mm of crude] (ann)
+  {\Sn{41} \texttt{rem:s41-shortfall} (8428)\\
+   \emph{second}: absorption needs \(C\Lfac\le\delta\nu\); fails as
+   \(\Lfac\to\infty\)};
+\node[bad, below=5mm of ann] (band)
+  {\Sn{44} \texttt{prop:s44-linfty-route} (9242)\\
+   \emph{third}: closure needs \(c_K\le C_1/\Lfac\) --- \emph{decay}, not
+   boundedness};
+\node[neu, below=5mm of band] (meas)
+  {\Sn{45} \texttt{scale\_diagnostics.py}\\
+   slope of \(\log c_K\) on \(\log\Lfac\): \(-0.196\), \(+0.088\);
+   required \(-1\). Flat};
+\node[neu, below=5mm of meas] (w1)
+  {\Sn{47} \textbf{Wall 1} --- \OPEN{}, structural.\\
+   One obstacle seen three times, not three obstacles};
+
+\foreach \a/\b in {d8/marg, marg/born, born/crude, crude/ann, ann/band,
+                   band/meas, meas/w1}{\draw[ar] (\a) -- (\b);}
+
+\node[gd, right=9mm of crude, text width=48mm] (s48)
+  {\Sn{48} \texttt{thm:s48-R}\\
+   On the \emph{profile} branch the logarithm is never \emph{incurred}: the
+   route does not pass through the CZ operator. Wall~2 \WITHDRAWN{}};
+\node[bad, below=6mm of s48, text width=48mm] (s48b)
+  {\dots\ but \texttt{obs:s48-wall1} (10400): \S33--\S37 need \(\nabla u\)
+   against \(M(t)\), not \((T-t)^{-1}\). \textbf{Wall 1 is untouched}};
+\draw[->, thick, provedgreen] (band.east) to[out=20,in=-90] (s48.south);
+\draw[->, thick, impossiblered, dashed] (s48b.west) to[out=180,in=0] (w1.east);
+\end{tikzpicture}
+\caption[The life of the logarithm]{From a clause in a defect list to the
+programme's central structural barrier, and the one branch on which it turned
+out never to have been incurred. The dashed red arrow is the point most easily
+lost: \Sn{48}'s result does not reach Wall~1.}
+\label{fig:cz-genealogy}
+\end{figure}
+
+\subsection{Why the three appearances are one}
+
+The three closure attempts differ completely in their subject matter. The
+first is about absorbing a coupling term in a Caccioppoli inequality for the
+angular energy. The second is about a residue of level-set truncation on a
+band of vorticity magnitudes. The third is about whether a correlation
+constant on the transition band is small.
+
+They fail identically. In each case, the quantity that the second rung is able
+to absorb is \(\delta\nu(\rstar)^3\norm{w}_{L^\infty}\), and the quantity the
+budget delivers is \(C\Lfac\norm{w}_{L^\infty}(\rstar)^3\). Absorption
+requires \(C\Lfac\le\delta\nu\), which fails for fixed \(\nu\) as
+\(\Lfac\to\infty\). \texttt{prop:s41-crude} ``reproduces, term for term, the
+bound of \texttt{prop:crude-K}''.
+
+That identity is the substance of Wall~1's classification. The wall does not
+say the logarithm is unbeatable; it says that beating it in one of the three
+places means beating it in all three, and that treating them as separate
+problems is an error.
+
+\subsection{Decay, not boundedness}
+
+The sharpest form of the obstruction is \Sn{44}'s, and it is worth isolating
+because it is what makes the numerical programme of
+Chapter~\ref{ch:numerical-lessons} futile in principle rather than merely in
+practice.
+
+\texttt{prop:s44-linfty-route} (line~9242) closes the band route if and only
+if \(c_K^{\mathrm{band}}\le C_1/\Lfac\). Not \(O(1)\): \emph{decaying}. The
+reason is visible in the proof's arithmetic. The region measure cancels
+exactly; the enstrophy budget contributes its \(\Lfac M^{1/2}\); and the
+hypothesised \(C_1/\Lfac\) is what cancels the \(\Lfac\) the budget carries,
+landing the term in the class the second rung absorbs. The hypothesis is being
+asked to do exactly one job, and that job is to eat the logarithm. A bounded
+correlation constant does not eat it. It leaves it exactly where it was.
+
+\section{A marginal logarithm}
+\label{sec:marginality-rg}
+
+\begin{record}
+\textbf{Status of this section.} What follows is a way of thinking, recorded
+in the \Sn{46} session log as ``the right mental model'' and reproduced here
+because it makes the shape of the difficulty legible. \emph{It is not
+mathematics in this programme}: no statement in the proof document depends on
+it, and nothing in this book is proved with it. A reader who dislikes physical
+analogies can skip to \S\ref{sec:s48-R} without loss.
+\end{record}
+
+\subsection{The dimensional accident}
+
+\texttt{rem:marginality} (line~5443) records the calculation. On the
+self-similar cylinder \(Q(\rstar)=B_{\rstar}\times[t_0-(\rstar)^2,t_0]\), with
+\(\rstar=M^{-1/2}\), the stretching term in the direction equation acts as a
+potential of size \(\norm{\nabla u}_{L^\infty}\), and its Gr\"onwall exponent
+over the cylinder's time span is
+\[
+  \norm{\nabla u}_{L^\infty}\cdot(\rstar)^2
+  \;\lesssim\; M\cdot M^{-1}\cdot\Lfac \;=\; \Lfac .
+\]
+The powers of \(M\) cancel \emph{exactly}. What is left is a logarithm, and a
+logarithm alone.
+
+That exact cancellation is what ``marginal'' means. A quantity that scaled as
+a positive power of \(M\) would be irrelevant --- it would die as the scale
+shrinks, and the estimate would close trivially. A quantity that scaled as a
+negative power would be relevant, would blow up, and the route would be dead.
+The programme's quantity does neither. It sits exactly at the boundary, and
+whether it is fatal is decided by what a dimensionless, slowly varying factor
+does.
+
+\subsection{The analogy, and its limits}
+
+In the language of the renormalisation group, a coupling whose classical
+scaling dimension vanishes is \emph{marginal}, and the signature of
+marginality is precisely a logarithm: the coupling does not scale, it
+\emph{runs}, and it runs logarithmically in the scale. Three-dimensional
+Navier--Stokes at the self-similar scale is a marginal-dimension problem in
+exactly this sense --- structurally the same position as a four-dimensional
+gauge theory, where the coupling is classically dimensionless and everything
+depends on the sign of the logarithmic running.
+
+Marginal theories go two ways.
+
+\begin{itemize}[leftmargin=1.6em]
+\item \emph{Marginally irrelevant.} The logarithms resum with a favourable
+  sign; the effective coupling weakens as the scale shrinks; the theory is
+  controlled in the ultraviolet. This is asymptotic freedom.
+\item \emph{Marginally relevant.} The logarithms resum with the other sign;
+  the effective coupling strengthens without bound at short distance. This is
+  the Landau-pole scenario.
+\end{itemize}
+
+\begin{obsv}[What \(c_K\le C/\Lfac\) is, in this reading]
+\label{obs:ck-is-resummation}
+The programme's remaining closure hypothesis says that a correlation constant
+\emph{decays like one over the logarithm}. Read through the analogy above,
+that is precisely the statement that the marginal coupling is marginally
+\emph{irrelevant}: that the accumulation of equal contributions from each of
+the \(\Lfac\) active scales is offset by a decorrelation between those scales
+that grows at exactly the same rate.
+
+\smallskip
+So the question ``does the marginal coupling resum harmlessly or pile up?''
+and the question ``is \(c_K\le C/\Lfac\)?'' are the same question, asked in
+two vocabularies. The programme has posed it precisely, and has not answered
+it. \Sn{45} measured the closest accessible proxy and found the constant
+\emph{flat} in \(\Lfac\) over the range a regular solver can reach --- which
+Chapter~\ref{ch:numerical-lessons} explains is exactly what both answers
+predict on such a flow, and therefore no evidence at all.
+\end{obsv}
+
+The analogy's limits should be stated with the analogy. There is no
+Navier--Stokes renormalisation group in the sense there is one for a
+quantum field theory: no exact scale transformation with a well-defined
+generator, no beta function, and no theorem that the logarithms exponentiate.
+What survives the analogy is a way of asking the question and a warning about
+what kind of answer would be needed --- an exact cancellation at leading
+order, not a better constant.
+
+\section{\texorpdfstring{\Sn{48}: the branch where it is never incurred}{S48: the branch where it is never incurred}}
+\label{sec:s48-R}
+
+Chapter~\ref{ch:profile-rigidity}'s \Sn{39} reframe carried, in
+\texttt{prop:transfer-audit}(d), the observation that on a Type-I profile
+``the logarithmic factor \(\Lfac\) may be replaced by an absolute constant''.
+That was labelled \PROVEDMOD{(R)}, and \textbf{(R)} was itself an assumed
+log-free gradient bound --- which is why \Sn{47} recorded it as Wall~2: the
+barrier relocated, not removed.
+
+\Sn{48} settled \textbf{(R)}.
+
+\subsection{The theorem}
+
+\begin{statement}[\texttt{thm:s48-R}, \S\,\texttt{sec:hypR-s48}]
+\label{st:s48R}
+\PROVED{}. Assume the standing Type-I bounds of line~5565 --- \emph{both}
+\(M(t)\le C_I/(T-t)\) and \(\sup_{\T^3}\abs{u(\cdot,t)}\le C_I(T-t)^{-1/2}\)
+--- and let \(u_\lambda\) be the rescaled family. Then for every
+\(k,l\ge0\) there is \(C_{k,l}(c_I)\) with
+\[
+  \norm{\nabla^k\partial_s^{\,l}u_\lambda(\cdot,s)}_{L^\infty(\Lambda_\lambda)}
+  \;\le\; C_{k,l}(c_I)\,\abs{s}^{-\frac{k+1}{2}-l},
+\]
+for every \(\lambda\in(0,1]\) and every admissible \(s<0\). Taking \(k=1\),
+\(l=0\) is exactly \textbf{(R)} --- \emph{without} the factor \((1+R)\) and
+\emph{without} any dependence on \(S_2\).
+\end{statement}
+
+\subsection{Why the named trap never bit}
+
+The hypothesis had been carried for nine sessions, and the reason nobody
+discharged it was a specific and correct worry:
+\(\varepsilon\)-regularity theorems require \emph{smallness} of a scaled local
+energy, while Type-I supplies only \emph{boundedness}. That trap is real. This
+route never touches it.
+
+\begin{record}
+\textbf{\texttt{rem:s48-subcritical}} (line~9822). The bound actually
+available on the rescaled family is an \(L^\infty_tL^\infty_x\) \emph{velocity}
+bound, so the exponent pair is \(s'=s=\infty\) and
+\[
+  \frac{2}{s'}+\frac{3}{s} \;=\; 0 \;<\; 1 .
+\]
+This is the \emph{strict-inequality} range of Serrin's interior regularity
+criterion --- ``the range Serrin himself proved in 1962, not the borderline
+equality case that needed Struwe and Takahashi''. Boundedness suffices; no
+smallness is required, and none is available. ``This single observation is
+what decides the present question, and it is why the \(\varepsilon\)-regularity
+literature is the wrong shelf: those theorems live at the critical scale, where
+smallness is the whole content.''
+\end{record}
+
+The quantitative, scale-invariant form comes from the \(L^\infty\)-based local
+theory of \cite[\S4]{KNSS2009} and \cite[Thm.~2.4]{SereginSverak2009}, neither
+of which uses a local energy, a pressure norm or a smallness hypothesis. The
+mechanism is a restart argument on the KNSS estimate, transferred to
+\(\Lambda_\lambda=\lambda^{-1}\T^3\) by a periodised Oseen kernel whose only
+estimate, \(\int\abs{K^{(L)}}\le Ct^{-1/2}\), is uniform in the period;
+parasitic solutions are excluded outright because a harmonic function on a
+closed manifold is constant.
+
+\subsection{The correction to the document's own reasoning}
+
+\begin{record}
+\textbf{\texttt{rem:s48-mechanism}} (line~10315). The proof of
+\texttt{prop:transfer-audit}(d) had explained the disappearance of \(\Lfac\)
+by saying that ``\(U\) has, by construction, no structure below the scale
+\(\abs{s}^{1/2}\) that is not already visible at scale \(\abs{s}^{1/2}\)''.
+That is a heuristic, it is not proved anywhere in the document, and \emph{it
+is not the reason}. The reason is the strict subcriticality above:
+\(\nabla U\) is obtained by \emph{parabolic smoothing} from \(U\), not by a
+Calder\'on--Zygmund bound on \(\omega_U\), and parabolic smoothing has no
+endpoint failure.
+
+\smallskip
+The correct one-line statement: \emph{the logarithm is not removed on the
+profile; it is never incurred, because the profile route does not pass through
+the Calder\'on--Zygmund operator at all.}
+\end{record}
+
+The correction strengthens the result and is a good example of the source
+hierarchy doing its job: a conclusion that was right, supported by a reason
+that was wrong, found by checking the reason rather than the conclusion.
+
+\subsection{Consequences}
+
+\texttt{prop:transfer-audit}(d), first clause: \PROVEDMOD{(R)} becomes
+\PROVED{}. \textbf{Wall~2} moves from \OPEN{} to \WITHDRAWN{}. Every row of
+the \Sn{39} ledger reading ``mod (R)'' loses the (R)
+(Table~\ref{tab:s39-ledger}).
+
+\section{The three things that did not happen}
+\label{sec:s48-limits}
+
+This is the part of the \Sn{48} result that a summary would drop, and it is
+the part that decides what the programme should do next.
+
+\subsection{Part (e) is proved modulo saturation}
+
+\texttt{prop:transfer-audit}(d) states \emph{two} things. The first,
+\(\norm{\nabla U}_{L^\infty}\le C_1(c_I)\abs{s}^{-1}\), is now proved. The
+second, \(\norm{\nabla U(\cdot,s)}_{L^\infty}\le C(c_I)M_U(s)\), carries a
+\emph{pre-existing} proviso: ``whenever the Type-I upper bound is saturated''.
+Part~(e) uses the second form. The two differ by
+\(\left(\abs{s}M_U(s)\right)^{-1}\), which is \(O(1)\) only on the saturated
+set. So (e) is \PROVEDMOD{saturation}, not \PROVED{}. Whether
+\(M_U(s)\gtrsim\abs{s}^{-1}\) holds for all \(s<0\) or only on a set is not
+settled by \textbf{(R)} and is not settled anywhere.
+
+\subsection{Wall 1 is untouched}
+
+\begin{record}
+\textbf{\texttt{obs:s48-wall1}} (line~10400), recorded in the document and
+deliberately used nowhere. The same estimate applies verbatim to \(u\) itself
+on \(\T^3\), giving, under the standing hypotheses,
+\[
+  \norm{\nabla u(\cdot,t)}_{L^\infty(\T^3)} \;\le\; C(c_I)\,(T-t)^{-1},
+  \qquad\text{logarithm-free.}
+\]
+``This does \emph{not} remove Wall~1. Every estimate of \S33--\S37 needs
+\(\nabla u\) measured against \(M(t)\), not against \((T-t)^{-1}\), and the two
+agree only where the Type-I upper bound is saturated --- the same proviso as
+residue~(1) above, one level down.''
+\end{record}
+
+\begin{obsv}[Saturation, not the logarithm, may be what both branches need]
+\label{obs:saturation-is-the-target}
+The two obstructions in the previous two subsections are the same statement at
+two levels: on the profile, is \(M_U(s)\gtrsim\abs{s}^{-1}\)? On the torus, is
+\(M(t)\gtrsim(T-t)^{-1}\)? Both ask whether the Type-I \emph{upper} bound is
+matched by a lower bound of the same order --- whether the singularity is
+saturating its own rate.
+
+\smallskip
+That question is cheaper and better defined than either wall. It is a
+statement about \emph{one scalar function of one variable}. It did not exist
+as a named question before \Sn{48}. It is the sharpest live target the
+programme has, and Chapter~\ref{ch:where-it-stands} says so.
+\end{obsv}
+
+\subsection{The ceiling is unchanged}
+
+\texttt{rem:s39-distance} stands verbatim, including its Type-II reservation.
+Wall~3 is unaffected. \texttt{rem:s48-scope} says so directly: the section
+``does not close either horn of the pincer, does not bear on
+\(\sstar\)-decay, does not touch Type-II, and does not bring the programme
+nearer to the Clay problem than \texttt{rem:s39-distance} already states''.
+
+\section{A route permanently closed}
+\label{sec:bridge-fails}
+
+One further \Sn{48} result belongs here, because it is about the logarithm and
+because it forecloses an attempt a future session would otherwise make.
+
+The programme's Type-I hypothesis is often \emph{stated} on the vorticity, and
+it is natural to ask whether the velocity bound at line~5565 could be derived
+rather than assumed. It cannot.
+
+\begin{statement}[\texttt{prop:s48-bridge-fails}, line~10086]
+\label{st:bridge-fails}
+\IMPOSSIBLE{}. If
+\(\norm{v}_{L^\infty}\le C\norm{\operatorname{curl}v}_{L^\infty}^{\theta}\norm{v}_{L^2}^{1-\theta}\)
+holds for all smooth compactly supported divergence-free \(v\) on \(\R^3\),
+then \(\theta=3/5\) --- forced by homogeneity under
+\(v_\mu(x)=\mu^a v(\mu x)\), and attained. Consequently, from the vorticity
+Type-I bound and the energy bound alone, the best obtainable velocity bound is
+\(\norm{u}_{L^\infty}\le CC_I^{3/5}E_0^{1/5}(T-t)^{-3/5}\); and
+\(3/5>1/2\), so the Type-I velocity rate is \emph{not} implied. The rescaled
+family then satisfies only \(\abs{u_\lambda}\le C\lambda^{-1/5}\abs{s}^{-3/5}\),
+which diverges as \(\lambda\downarrow0\): no uniform bound, and no limit
+object.
+\end{statement}
+
+The irony is worth recording. The velocity bridge \emph{is} logarithm-free ---
+\texttt{lem:s48-biotsavart} proves it, and the reason is exactly the
+convergent \(2^{-j}\) sum of \S\ref{sec:cz-origin} --- and it is still
+useless, because the exponent it forces is the wrong one. The near-field
+heuristic (near field \(\lesssim\rstar M\) with \(\rstar=M^{-1/2}\), giving
+\(M^{1/2}=(T-t)^{-1/2}\)) is correct as far as it goes; it is the \emph{far}
+field that fails, contributing \((T-t)^{-3/4}E_0^{1/2}\), worse than the near
+field, and pushing the optimal balance to \(3/5\).
+
+So the velocity Type-I bound is an independent hypothesis and must stay one.
+
+\section{Two miscitations, found on the way}
+\label{sec:cz-miscitations}
+
+\texttt{rem:s48-miscitations} (line~10011) records two citation defects in the
+document's own text, found while looking for \textbf{(R)} on the wrong shelf.
+They are recorded here because they are the kind of error that a book like
+this exists to catch.
+
+\begin{itemize}[leftmargin=1.6em]
+\item \cite{Seregin2012} is cited at three places as authority for Type-I
+  local regularity technology --- lines 6810, 6848 and 7689.\footnote{The
+  document's own remark says the paper is cited ``twice'' and then names three
+  line numbers; the session log likewise says twice and names two. Three
+  citing sites exist. The discrepancy is immaterial to the finding and is
+  recorded because this book's rule is to record them.} The paper is a
+  \emph{critical-endpoint} \(L^3\) blow-up result --- its abstract states a
+  necessary condition \(\lim_{t\uparrow T}\norm{v(\cdot,t)}_{L^3}=\infty\) ---
+  and it contains no Type-I-improved \(\varepsilon\)-regularity theorem. The
+  intended reference is presumably \cite{SereginSverak2009} or
+  \cite{AlbrittonBarker2019}. \textbf{(N)} is unaffected: it remains assumed.
+\item \cite{LadyzhenskayaSeregin1999} is offered at line~6798 as a
+  ``sharpening'' of Serrin's criterion by local-pressure theory. It is an
+  \(\varepsilon\)-regularity paper for \emph{suitable} weak solutions requiring
+  \(p\in L^{3/2}_{\mathrm{loc}}\) and a smallness hypothesis. It is not the
+  tool, and no local-pressure theory is needed at all.
+\end{itemize}
+
+A third item in the same family: \textbf{(R)}'s own caveat~(ii) --- that the
+\(\lambda\)-uniformity must be checked against \(u_\lambda\) having no uniform
+global energy bound --- is \emph{void}. The premise is true and the inference
+invalid: the \(L^\infty\)-based local theory uses no energy anywhere, global
+or local.
+
+\begin{obsv}[The shape of the whole chapter]
+\label{obs:cz-shape}
+The Calder\'on--Zygmund logarithm was identified as a defect in \Sn{31},
+formalised as a symbol in \Sn{33}, met as an apparently new difficulty three
+separate times, consolidated as a wall in \Sn{47}, and shown in \Sn{48} never
+to have existed on one of the two branches --- for a reason that had nothing
+to do with any of the sixteen sessions of work aimed at it, and everything to
+do with a criterion Serrin proved in 1962.
+
+\smallskip
+On the other branch it is exactly where it was. What changed at \Sn{48} is not
+the size of the obstacle but the identity of the question: from ``can the
+logarithm be removed?'' to ``is the Type-I upper bound saturated?''. Whether
+that is progress will be decided by whether the new question is easier. Nobody
+knows yet, and this book does not claim otherwise.
+\end{obsv}

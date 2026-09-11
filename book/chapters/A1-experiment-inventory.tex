@@ -1,0 +1,394 @@
+% =====================================================================
+%  Appendix A1 — Experiment inventory
+% =====================================================================
+\chapter{Experiment Inventory}
+\label{ch:experiments}
+
+\begin{record}
+\textbf{Source and method.} Every row below was read from
+\texttt{results/results.db} by direct query. Nothing here is reconstructed
+from a session log or a summary; where a log and the database disagree, the
+database governs, and the disagreement is footnoted.
+
+\smallskip
+The database has \(31\) tables. Twenty-one of them are \emph{summary} tables,
+one row per experiment, carrying \texttt{exp\_id}, \texttt{claim\_id},
+\texttt{key\_metric} and \texttt{verdict}; nine are \emph{timeseries} tables
+recording per-snapshot traces; one (\texttt{sqlite\_sequence}) is
+\texttt{SQLite}'s own bookkeeping. The twenty-one summary tables hold
+\textbf{124 experiments} in total.
+\end{record}
+
+\section{The identifier convention}
+\label{sec:a1-ids}
+
+Experiment identifiers follow \texttt{EXP-L\{layer\}-\{route\}-\{tag\}-\{nnn\}}:
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R1-\allowbreak{}CCF-\allowbreak{}003} is Layer~2, Route~1, CCF profile, third run;
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}BRIDGE-\allowbreak{}ADV-\allowbreak{}002} is Layer~4, the bridge diagnostic, adversarial
+initial condition, second run. Layer-4 identifiers name the diagnostic rather
+than the route, because from \Sn{32} onward every Layer-4 module serves the
+alignment programme and the route label stopped discriminating.
+
+The house rule is that a result without a logged \texttt{claim\_id} is not a
+result, and that \textsf{PASS} may not be claimed without a logged
+\texttt{key\_metric}. Both are honoured almost everywhere. The exceptions are
+enumerated in \S\ref{sec:a1-exceptions} rather than hidden.
+
+\section{The tables}
+\label{sec:a1-tables}
+
+\begin{center}
+\footnotesize
+\begin{longtable}{@{}l r l@{}}
+\caption[The results database]{Every table in \texttt{results/results.db},
+with its row count and kind. Timeseries rows are per-snapshot traces behind
+the summary rows and are not enumerated individually in this appendix.}
+\label{tab:a1-db}\\
+\toprule
+Table & Rows & Kind \\
+\midrule
+\endfirsthead
+\toprule
+Table & Rows & Kind \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\texttt{band\_concentration\_experiments} & 5 & summary \\
+\texttt{experiments} & 14 & summary \\
+\texttt{gamma\_adversarial\_results} & 1 & summary \\
+\texttt{layer4\_aposteriori\_experiments} & 4 & summary \\
+\texttt{layer4\_aposteriori\_timeseries} & 706 & timeseries \\
+\texttt{layer4\_aposteriori\_windows} & 87 & timeseries \\
+\texttt{layer4\_bridge\_experiments} & 6 & summary \\
+\texttt{layer4\_bridge\_timeseries} & 206 & timeseries \\
+\texttt{layer4\_cz\_experiments} & 2 & summary \\
+\texttt{layer4\_cz\_timeseries} & 40 & timeseries \\
+\texttt{layer4\_delta\_experiments} & 5 & summary \\
+\texttt{layer4\_delta\_timeseries} & 100 & timeseries \\
+\texttt{layer4\_depletion\_experiments} & 2 & summary \\
+\texttt{layer4\_depletion\_timeseries} & 82 & timeseries \\
+\texttt{layer4\_enstrophy\_exponent} & 2 & summary \\
+\texttt{layer4\_enstrophy\_exponent\_timeseries} & 82 & timeseries \\
+\texttt{layer4\_kcorr\_experiments} & 4 & summary \\
+\texttt{layer4\_kcorr\_sweep} & 10 & summary \\
+\texttt{layer4\_kcorr\_timeseries} & 164 & timeseries \\
+\texttt{layer4\_lps\_experiments} & 2 & summary \\
+\texttt{layer4\_lps\_timeseries} & 40 & timeseries \\
+\texttt{m8\_mu\_sweep\_3D} & 10 & summary \\
+\texttt{m9\_blowup\_search} & 3 & summary \\
+\texttt{mean\_morrey\_results} & 6 & summary \\
+\texttt{mu\_limit\_experiments} & 10 & summary \\
+\texttt{route2\_3D\_experiments} & 10 & summary \\
+\texttt{route2\_jax\_experiments} & 13 & summary \\
+\texttt{scale\_diagnostics\_experiments} & 12 & summary \\
+\texttt{sqlite\_sequence} & 29 & internal \\
+\texttt{tg\_experiments} & 1 & summary \\
+\texttt{tg\_jax\_experiments} & 2 & summary \\
+\end{longtable}
+\end{center}
+
+\section{Layer 2 --- the two-dimensional solvers}
+\label{sec:a1-l2}
+
+The lambda sweep is the M3 test of Conjecture~3.5, run at the six
+Wang et al.\ values plus an adversarial one. Every run returns the same
+\(A_{\min}=3.0801\times10^{-5}\), which is not a coincidence and not a bug:
+\(A_{\min}\) is set by the background temperature through the property engine,
+not by the flow. The suppression ratio falls monotonically with \(\lambda\)
+and no threshold \(\lambda_c\) appears. The MULIMIT series is the Phase-4
+\(\mu(T)\to\nu\) limit, with \(\abs{\varepsilon(\delta)}\) falling linearly in
+\(\delta\) across four decades.
+
+{\scriptsize
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.185\textwidth} >{\raggedright\arraybackslash}p{0.145\textwidth} l l >{\raggedright\arraybackslash}p{0.29\textwidth} l@{}}
+\caption[Layer 2 experiments]{All Layer-2 rows, from tables \texttt{experiments} (14) and \texttt{mu\_limit\_experiments} (10). The lambda sweep is the M3 test of Conjecture~3.5; the MULIMIT series is the Phase-4 $\mu(T)\to\nu$ limit.}
+\label{tab:a1-layer2}\\
+\toprule
+\texttt{exp\_id} & \texttt{claim\_id} & $\lambda$ or $\delta$ & $N$ & \texttt{key\_metric} & verdict\\
+\midrule
+\endfirsthead
+\toprule
+\texttt{exp\_id} & \texttt{claim\_id} & $\lambda$ or $\delta$ & $N$ & \texttt{key\_metric} & verdict\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R1-\allowbreak{}CCF-\allowbreak{}001} & \texttt{Conjecture\_\allowbreak{}3.5} & 1.2 & 64 & A\_\allowbreak{}min=\allowbreak{}3.0801e-05  supp\_\allowbreak{}ratio\_\allowbreak{}final=\allowbreak{}9.1896e+00  omega\_\allowbreak{}max=\allowbreak{}9.8858e-01  steps=\allowbreak{}5 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R1-\allowbreak{}CCF-\allowbreak{}002} & \texttt{Conjecture\_\allowbreak{}3.5} & 0.9 & 64 & A\_\allowbreak{}min=\allowbreak{}3.0801e-05  supp\_\allowbreak{}ratio\_\allowbreak{}final=\allowbreak{}7.4643e+00  omega\_\allowbreak{}max=\allowbreak{}9.8943e-01  steps=\allowbreak{}5 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R1-\allowbreak{}CCF-\allowbreak{}003} & \texttt{Conjecture\_\allowbreak{}3.5} & 0.6057 & 64 & A\_\allowbreak{}min=\allowbreak{}3.0801e-05  supp\_\allowbreak{}ratio\_\allowbreak{}final=\allowbreak{}6.0869e+00  omega\_\allowbreak{}max=\allowbreak{}1.0217e+00  steps=\allowbreak{}5 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R1-\allowbreak{}CCF-\allowbreak{}004} & \texttt{Conjecture\_\allowbreak{}3.5} & 0.4703 & 64 & A\_\allowbreak{}min=\allowbreak{}3.0801e-05  supp\_\allowbreak{}ratio\_\allowbreak{}final=\allowbreak{}5.5416e+00  omega\_\allowbreak{}max=\allowbreak{}1.0368e+00  steps=\allowbreak{}5 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R1-\allowbreak{}CCF-\allowbreak{}005} & \texttt{Conjecture\_\allowbreak{}3.5} & 0.3 & 64 & A\_\allowbreak{}min=\allowbreak{}3.0801e-05  supp\_\allowbreak{}ratio\_\allowbreak{}final=\allowbreak{}4.9246e+00  omega\_\allowbreak{}max=\allowbreak{}1.0558e+00  steps=\allowbreak{}5 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R1-\allowbreak{}CCF-\allowbreak{}006} & \texttt{Conjecture\_\allowbreak{}3.5} & 0.1 & 64 & A\_\allowbreak{}min=\allowbreak{}3.0801e-05  supp\_\allowbreak{}ratio\_\allowbreak{}final=\allowbreak{}4.2871e+00  omega\_\allowbreak{}max=\allowbreak{}1.0781e+00  steps=\allowbreak{}5 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R1-\allowbreak{}BOUS-\allowbreak{}001} & \texttt{Conjecture\_\allowbreak{}3.5\_\allowbreak{}Boussinesq} & 1.921 & 64 & A\_\allowbreak{}min=\allowbreak{}3.0801e-05  supp\_\allowbreak{}ratio\_\allowbreak{}final=\allowbreak{}1.5143e+01  omega\_\allowbreak{}max=\allowbreak{}9.8746e-01  steps=\allowbreak{}5 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R1-\allowbreak{}BOUS-\allowbreak{}002} & \texttt{Conjecture\_\allowbreak{}3.5\_\allowbreak{}Boussinesq} & 1.399 & 64 & A\_\allowbreak{}min=\allowbreak{}3.0801e-05  supp\_\allowbreak{}ratio\_\allowbreak{}final=\allowbreak{}1.0549e+01  omega\_\allowbreak{}max=\allowbreak{}9.8746e-01  steps=\allowbreak{}5 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R1-\allowbreak{}BOUS-\allowbreak{}003} & \texttt{Conjecture\_\allowbreak{}3.5\_\allowbreak{}Boussinesq} & 1.184 & 64 & A\_\allowbreak{}min=\allowbreak{}3.0801e-05  supp\_\allowbreak{}ratio\_\allowbreak{}final=\allowbreak{}9.0901e+00  omega\_\allowbreak{}max=\allowbreak{}9.8746e-01  steps=\allowbreak{}5 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R1-\allowbreak{}ADV-\allowbreak{}001} & \texttt{Conjecture\_\allowbreak{}3.5\_\allowbreak{}adversarial} & 0.01 & 64 & A\_\allowbreak{}min=\allowbreak{}3.1740e-05  supp\_\allowbreak{}ratio\_\allowbreak{}final=\allowbreak{}4.0278e+00  omega\_\allowbreak{}max=\allowbreak{}9.9993e-01  steps=\allowbreak{}5 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R2-\allowbreak{}001} & \texttt{Route2\_\allowbreak{}LPS\_\allowbreak{}margin} & 0.6057 & 64 & lps\_\allowbreak{}margin\_\allowbreak{}min=\allowbreak{}0.0000e+00  mu\_\allowbreak{}eff\_\allowbreak{}min=\allowbreak{}1.0000e-03  theta\_\allowbreak{}max\_\allowbreak{}final=\allowbreak{}2.6045e-04  steps=\allowbreak{}5 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R2-\allowbreak{}002} & \texttt{Route2\_\allowbreak{}LPS\_\allowbreak{}margin} & 0.6057 & 64 & lps\_\allowbreak{}margin\_\allowbreak{}min=\allowbreak{}0.0000e+00  mu\_\allowbreak{}eff\_\allowbreak{}min=\allowbreak{}1.0000e-03  theta\_\allowbreak{}max\_\allowbreak{}final=\allowbreak{}2.6045e-04  steps=\allowbreak{}5 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R2-\allowbreak{}003} & \texttt{Route2\_\allowbreak{}LPS\_\allowbreak{}margin} & 0.6057 & 64 & lps\_\allowbreak{}margin\_\allowbreak{}min=\allowbreak{}0.0000e+00  mu\_\allowbreak{}eff\_\allowbreak{}min=\allowbreak{}1.0000e-03  theta\_\allowbreak{}max\_\allowbreak{}final=\allowbreak{}2.6045e-04  steps=\allowbreak{}5 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R2-\allowbreak{}004} & \texttt{Route2\_\allowbreak{}LPS\_\allowbreak{}margin} & 0.6057 & 64 & lps\_\allowbreak{}margin\_\allowbreak{}min=\allowbreak{}0.0000e+00  mu\_\allowbreak{}eff\_\allowbreak{}min=\allowbreak{}1.0000e-03  theta\_\allowbreak{}max\_\allowbreak{}final=\allowbreak{}2.6045e-04  steps=\allowbreak{}5 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R1-\allowbreak{}MULIMIT-\allowbreak{}001} & \texttt{claim\_\allowbreak{}phase4\_\allowbreak{}mu\_\allowbreak{}limit\_\allowbreak{}2D} & $\delta=\allowbreak{}1$ & 64 & A\_\allowbreak{}min=\allowbreak{}3.0614e-05 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R1-\allowbreak{}MULIMIT-\allowbreak{}002} & \texttt{claim\_\allowbreak{}phase4\_\allowbreak{}mu\_\allowbreak{}limit\_\allowbreak{}2D} & $\delta=\allowbreak{}0.5$ & 64 & A\_\allowbreak{}min=\allowbreak{}3.0708e-05 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R1-\allowbreak{}MULIMIT-\allowbreak{}003} & \texttt{claim\_\allowbreak{}phase4\_\allowbreak{}mu\_\allowbreak{}limit\_\allowbreak{}2D} & $\delta=\allowbreak{}0.2$ & 64 & A\_\allowbreak{}min=\allowbreak{}3.0764e-05 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R1-\allowbreak{}MULIMIT-\allowbreak{}004} & \texttt{claim\_\allowbreak{}phase4\_\allowbreak{}mu\_\allowbreak{}limit\_\allowbreak{}2D} & $\delta=\allowbreak{}0.1$ & 64 & A\_\allowbreak{}min=\allowbreak{}3.0783e-05 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R1-\allowbreak{}MULIMIT-\allowbreak{}005} & \texttt{claim\_\allowbreak{}phase4\_\allowbreak{}mu\_\allowbreak{}limit\_\allowbreak{}2D} & $\delta=\allowbreak{}0.05$ & 64 & A\_\allowbreak{}min=\allowbreak{}3.0792e-05 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R1-\allowbreak{}MULIMIT-\allowbreak{}006} & \texttt{claim\_\allowbreak{}phase4\_\allowbreak{}mu\_\allowbreak{}limit\_\allowbreak{}2D} & $\delta=\allowbreak{}0.02$ & 64 & A\_\allowbreak{}min=\allowbreak{}3.0798e-05 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R1-\allowbreak{}MULIMIT-\allowbreak{}007} & \texttt{claim\_\allowbreak{}phase4\_\allowbreak{}mu\_\allowbreak{}limit\_\allowbreak{}2D} & $\delta=\allowbreak{}0.01$ & 64 & A\_\allowbreak{}min=\allowbreak{}3.0799e-05 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R1-\allowbreak{}MULIMIT-\allowbreak{}008} & \texttt{claim\_\allowbreak{}phase4\_\allowbreak{}mu\_\allowbreak{}limit\_\allowbreak{}2D} & $\delta=\allowbreak{}0.005$ & 64 & A\_\allowbreak{}min=\allowbreak{}3.0800e-05 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R1-\allowbreak{}MULIMIT-\allowbreak{}009} & \texttt{claim\_\allowbreak{}phase4\_\allowbreak{}mu\_\allowbreak{}limit\_\allowbreak{}2D} & $\delta=\allowbreak{}0.002$ & 64 & A\_\allowbreak{}min=\allowbreak{}3.0801e-05 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L2-\allowbreak{}R1-\allowbreak{}MULIMIT-\allowbreak{}010} & \texttt{claim\_\allowbreak{}phase4\_\allowbreak{}mu\_\allowbreak{}limit\_\allowbreak{}2D} & $\delta=\allowbreak{}0.001$ & 64 & A\_\allowbreak{}min=\allowbreak{}3.0801e-05 & \textsf{PASS}\\
+\end{longtable}}
+
+\section{Layer 3 --- the three-dimensional solvers}
+\label{sec:a1-l3}
+
+Taylor--Green is the validation benchmark: energy ratio \(0.9999\),
+\(E_0\) error \(0.00\%\), divergence RMS \(9.85\times10^{-16}\) in NumPy and
+\(5.16\times10^{-7}\) in JAX float32. The Route-2 series carries the
+programme's most-repeated finding --- \(\delta_{\max}\) is unchanged across
+the whole \(\varepsilon\) sweep including \(\varepsilon=0\), i.e.\ on the exact
+Prize equations. The M9 blow-up search found no blow-up at \(N=64\), \(128\)
+or \(256\), with \(Z_{\max}/Z_0\approx0.982\) --- enstrophy \emph{decreasing}
+throughout.
+
+The one \textsf{FAIL} in the whole database is
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}ANISO0050-\allowbreak{}JAX-\allowbreak{}128}. It is discussed in
+Chapter~\ref{ch:numerical-lessons}, \S\ref{sec:resolution}: the configuration
+is pinned to the module's hard grid floor, its axial extent representable as
+one grid cell, and the controlled comparison at aspect ratio \(0.1\) passes at
+both resolutions.
+
+{\scriptsize
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.195\textwidth} >{\raggedright\arraybackslash}p{0.165\textwidth} l l >{\raggedright\arraybackslash}p{0.265\textwidth} l@{}}
+\caption[Layer 3 experiments]{All Layer-3 rows: Taylor--Green validation, Route-2 3D (NumPy and JAX), the M8 $\mu$-sweep, and the M9 blow-up search. The single \textsf{FAIL} is the floor-clamped anisotropy run of Chapter~\ref{ch:numerical-lessons}, \S\ref{sec:resolution}.}
+\label{tab:a1-layer3}\\
+\toprule
+\texttt{exp\_id} & \texttt{claim\_id} & backend & $N$ & \texttt{key\_metric} & verdict\\
+\midrule
+\endfirsthead
+\toprule
+\texttt{exp\_id} & \texttt{claim\_id} & backend & $N$ & \texttt{key\_metric} & verdict\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R1-\allowbreak{}TG-\allowbreak{}032} & \texttt{claim\_\allowbreak{}m5\_\allowbreak{}taylor\_\allowbreak{}green\_\allowbreak{}3D} & numpy & 32 & E0\_\allowbreak{}err=\allowbreak{}0.00\%  E\_\allowbreak{}ratio=\allowbreak{}0.9999  A\_\allowbreak{}min=\allowbreak{}3.080e-05 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R1-\allowbreak{}TG-\allowbreak{}JAX-\allowbreak{}032} & \texttt{claim\_\allowbreak{}m5\_\allowbreak{}taylor\_\allowbreak{}green\_\allowbreak{}3D\_\allowbreak{}jax} & CPU-\allowbreak{}JIT & 32 & E0\_\allowbreak{}err=\allowbreak{}0.0000\%  E\_\allowbreak{}ratio=\allowbreak{}0.9999  A\_\allowbreak{}min=\allowbreak{}3.080e-05  step=\allowbreak{}13.8ms & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R1-\allowbreak{}TG-\allowbreak{}JAX-\allowbreak{}064} & \texttt{claim\_\allowbreak{}m5\_\allowbreak{}taylor\_\allowbreak{}green\_\allowbreak{}3D\_\allowbreak{}jax} & CPU-\allowbreak{}JIT & 64 & E0\_\allowbreak{}err=\allowbreak{}0.0000\%  E\_\allowbreak{}ratio=\allowbreak{}0.9999  A\_\allowbreak{}min=\allowbreak{}3.080e-05  step=\allowbreak{}58.4ms & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}TG-\allowbreak{}032\_\allowbreak{}eps1.0} & \texttt{claim\_\allowbreak{}m5b\_\allowbreak{}route2\_\allowbreak{}3D\_\allowbreak{}taylor\_\allowbreak{}green} & numpy & 32 & E0\_\allowbreak{}err=\allowbreak{}0.000\%  $\theta$\_\allowbreak{}max=\allowbreak{}2.295e-03  $\delta$\_\allowbreak{}max=\allowbreak{}1.50  $\varepsilon$\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}TG-\allowbreak{}032\_\allowbreak{}eps0.1} & \texttt{claim\_\allowbreak{}m5b\_\allowbreak{}route2\_\allowbreak{}3D\_\allowbreak{}taylor\_\allowbreak{}green} & numpy & 32 & E0\_\allowbreak{}err=\allowbreak{}0.000\%  $\theta$\_\allowbreak{}max=\allowbreak{}2.295e-03  $\delta$\_\allowbreak{}max=\allowbreak{}1.50  $\varepsilon$\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}TG-\allowbreak{}032\_\allowbreak{}eps0.01} & \texttt{claim\_\allowbreak{}m5b\_\allowbreak{}route2\_\allowbreak{}3D\_\allowbreak{}taylor\_\allowbreak{}green} & numpy & 32 & E0\_\allowbreak{}err=\allowbreak{}0.000\%  $\theta$\_\allowbreak{}max=\allowbreak{}2.295e-03  $\delta$\_\allowbreak{}max=\allowbreak{}1.50  $\varepsilon$\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}TG-\allowbreak{}032\_\allowbreak{}eps0.001} & \texttt{claim\_\allowbreak{}m5b\_\allowbreak{}route2\_\allowbreak{}3D\_\allowbreak{}taylor\_\allowbreak{}green} & numpy & 32 & E0\_\allowbreak{}err=\allowbreak{}0.000\%  $\theta$\_\allowbreak{}max=\allowbreak{}2.295e-03  $\delta$\_\allowbreak{}max=\allowbreak{}1.50  $\varepsilon$\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}TG-\allowbreak{}032\_\allowbreak{}eps0.0} & \texttt{claim\_\allowbreak{}m5b\_\allowbreak{}route2\_\allowbreak{}3D\_\allowbreak{}taylor\_\allowbreak{}green} & numpy & 32 & E0\_\allowbreak{}err=\allowbreak{}0.000\%  $\theta$\_\allowbreak{}max=\allowbreak{}2.295e-03  $\delta$\_\allowbreak{}max=\allowbreak{}1.50  $\varepsilon$\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}TG-\allowbreak{}032} & \texttt{claim\_\allowbreak{}m5b\_\allowbreak{}route2\_\allowbreak{}3D\_\allowbreak{}taylor\_\allowbreak{}green} & numpy & 32 & E0\_\allowbreak{}err=\allowbreak{}0.000\%  $\theta$\_\allowbreak{}max=\allowbreak{}1.033e-03  $\delta$\_\allowbreak{}max=\allowbreak{}1.50  $\varepsilon$\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}SH-\allowbreak{}032} & \texttt{claim\_\allowbreak{}m5b\_\allowbreak{}route2\_\allowbreak{}3D\_\allowbreak{}shear\_\allowbreak{}route\_\allowbreak{}A} & numpy & 32 & $\theta$\_\allowbreak{}max=\allowbreak{}3.387e-02  $\delta$\_\allowbreak{}max=\allowbreak{}1.00  $\varepsilon$\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}TG-\allowbreak{}064} & \texttt{claim\_\allowbreak{}m5b\_\allowbreak{}route2\_\allowbreak{}3D\_\allowbreak{}taylor\_\allowbreak{}green} & numpy & 64 & E0\_\allowbreak{}err=\allowbreak{}0.000\%  $\theta$\_\allowbreak{}max=\allowbreak{}1.034e-03  $\delta$\_\allowbreak{}max=\allowbreak{}1.50  $\varepsilon$\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}TG-\allowbreak{}128} & \texttt{claim\_\allowbreak{}m5b\_\allowbreak{}route2\_\allowbreak{}3D\_\allowbreak{}taylor\_\allowbreak{}green} & numpy & 128 & E0\_\allowbreak{}err=\allowbreak{}0.000\%  $\theta$\_\allowbreak{}max=\allowbreak{}2.684e-03  $\delta$\_\allowbreak{}max=\allowbreak{}1.50  $\varepsilon$\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}SH-\allowbreak{}128} & \texttt{claim\_\allowbreak{}m5b\_\allowbreak{}route2\_\allowbreak{}3D\_\allowbreak{}shear\_\allowbreak{}route\_\allowbreak{}A} & numpy & 128 & $\theta$\_\allowbreak{}max=\allowbreak{}3.787e-01  $\delta$\_\allowbreak{}max=\allowbreak{}0.50  $\varepsilon$\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}TG-\allowbreak{}JAX-\allowbreak{}032} & \texttt{claim\_\allowbreak{}m5b\_\allowbreak{}route2\_\allowbreak{}3D\_\allowbreak{}jax\_\allowbreak{}taylor\_\allowbreak{}green} & jax & 32 & E0\_\allowbreak{}err=\allowbreak{}0.000\%  $\delta$\_\allowbreak{}max=\allowbreak{}1.50  $\varepsilon$\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000  step=\allowbreak{}11.4ms & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}SH-\allowbreak{}JAX-\allowbreak{}032} & \texttt{claim\_\allowbreak{}m5b\_\allowbreak{}route2\_\allowbreak{}3D\_\allowbreak{}jax\_\allowbreak{}shear\_\allowbreak{}route\_\allowbreak{}A} & jax & 32 & $\delta$\_\allowbreak{}max=\allowbreak{}1.00  $\varepsilon$\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000  step=\allowbreak{}11.6ms & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}TG-\allowbreak{}JAX-\allowbreak{}064} & \texttt{claim\_\allowbreak{}m5b\_\allowbreak{}route2\_\allowbreak{}3D\_\allowbreak{}jax\_\allowbreak{}taylor\_\allowbreak{}green} & jax & 64 & E0\_\allowbreak{}err=\allowbreak{}0.000\%  $\delta$\_\allowbreak{}max=\allowbreak{}1.50  $\varepsilon$\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000  step=\allowbreak{}71.2ms & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}SH-\allowbreak{}JAX-\allowbreak{}064} & \texttt{claim\_\allowbreak{}m5b\_\allowbreak{}route2\_\allowbreak{}3D\_\allowbreak{}jax\_\allowbreak{}shear\_\allowbreak{}route\_\allowbreak{}A} & jax & 64 & $\delta$\_\allowbreak{}max=\allowbreak{}0.50  $\varepsilon$\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000  step=\allowbreak{}55.7ms & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}CCF1-\allowbreak{}JAX-\allowbreak{}064} & \texttt{claim\_\allowbreak{}m6\_\allowbreak{}wang\_\allowbreak{}3D\_\allowbreak{}CCF\_\allowbreak{}1st\_\allowbreak{}unstable} & jax & 64 & $\lambda$=\allowbreak{}0.6057  $\delta$\_\allowbreak{}max=\allowbreak{}1.50  $\varepsilon$\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000  step=\allowbreak{}47.4ms & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}CCF2-\allowbreak{}JAX-\allowbreak{}064} & \texttt{claim\_\allowbreak{}m6\_\allowbreak{}wang\_\allowbreak{}3D\_\allowbreak{}CCF\_\allowbreak{}2nd\_\allowbreak{}unstable} & jax & 64 & $\lambda$=\allowbreak{}0.4703  $\delta$\_\allowbreak{}max=\allowbreak{}1.50  $\varepsilon$\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000  step=\allowbreak{}46.6ms & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}ADV3D-\allowbreak{}JAX-\allowbreak{}064} & \texttt{claim\_\allowbreak{}m6\_\allowbreak{}wang\_\allowbreak{}3D\_\allowbreak{}adversarial\_\allowbreak{}min} & jax & 64 & $\lambda$=\allowbreak{}0.0500  $\delta$\_\allowbreak{}max=\allowbreak{}1.00  $\varepsilon$\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000  step=\allowbreak{}56.4ms & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}ANISO1000-\allowbreak{}JAX-\allowbreak{}064} & \texttt{claim\_\allowbreak{}l3\_\allowbreak{}aniso\_\allowbreak{}collapse} & jax & 64 & aspect\_\allowbreak{}ratio=\allowbreak{}1.000  delta\_\allowbreak{}max=\allowbreak{}1.50  eps\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000  step=\allowbreak{}207.1ms & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}ANISO0500-\allowbreak{}JAX-\allowbreak{}064} & \texttt{claim\_\allowbreak{}l3\_\allowbreak{}aniso\_\allowbreak{}collapse} & jax & 64 & aspect\_\allowbreak{}ratio=\allowbreak{}0.500  delta\_\allowbreak{}max=\allowbreak{}1.50  eps\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000  step=\allowbreak{}154.5ms & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}ANISO0200-\allowbreak{}JAX-\allowbreak{}064} & \texttt{claim\_\allowbreak{}l3\_\allowbreak{}aniso\_\allowbreak{}collapse} & jax & 64 & aspect\_\allowbreak{}ratio=\allowbreak{}0.200  delta\_\allowbreak{}max=\allowbreak{}0.50  eps\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000  step=\allowbreak{}161.5ms & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}ANISO0100-\allowbreak{}JAX-\allowbreak{}064} & \texttt{claim\_\allowbreak{}l3\_\allowbreak{}aniso\_\allowbreak{}collapse} & jax & 64 & aspect\_\allowbreak{}ratio=\allowbreak{}0.100  delta\_\allowbreak{}max=\allowbreak{}0.50  eps\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000  step=\allowbreak{}159.2ms & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}ANISO0050-\allowbreak{}JAX-\allowbreak{}128} & \texttt{claim\_\allowbreak{}l3\_\allowbreak{}aniso\_\allowbreak{}collapse} & jax & 128 & aspect\_\allowbreak{}ratio=\allowbreak{}0.050  delta\_\allowbreak{}max=\allowbreak{}0.00  eps\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000  step=\allowbreak{}2075.1ms & \textsf{FAIL}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R2-\allowbreak{}ANISO0100-\allowbreak{}JAX-\allowbreak{}128} & \texttt{claim\_\allowbreak{}l3\_\allowbreak{}aniso\_\allowbreak{}collapse} & jax & 128 & aspect\_\allowbreak{}ratio=\allowbreak{}0.100  delta\_\allowbreak{}max=\allowbreak{}0.50  eps\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000  step=\allowbreak{}2096.5ms & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R1-\allowbreak{}MULIMIT-\allowbreak{}001} & \texttt{claim\_\allowbreak{}phase4\_\allowbreak{}mu\_\allowbreak{}limit\_\allowbreak{}3D} & CPU-\allowbreak{}JIT & 64 & $\delta$=\allowbreak{}1.000  A\_\allowbreak{}min=\allowbreak{}3.0636e-05  A\_\allowbreak{}ref=\allowbreak{}3.0801e-05  $\varepsilon$($\delta$)=-\allowbreak{}1.6498e-07 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R1-\allowbreak{}MULIMIT-\allowbreak{}002} & \texttt{claim\_\allowbreak{}phase4\_\allowbreak{}mu\_\allowbreak{}limit\_\allowbreak{}3D} & CPU-\allowbreak{}JIT & 64 & $\delta$=\allowbreak{}0.500  A\_\allowbreak{}min=\allowbreak{}3.0719e-05  A\_\allowbreak{}ref=\allowbreak{}3.0801e-05  $\varepsilon$($\delta$)=-\allowbreak{}8.2575e-08 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R1-\allowbreak{}MULIMIT-\allowbreak{}003} & \texttt{claim\_\allowbreak{}phase4\_\allowbreak{}mu\_\allowbreak{}limit\_\allowbreak{}3D} & CPU-\allowbreak{}JIT & 64 & $\delta$=\allowbreak{}0.200  A\_\allowbreak{}min=\allowbreak{}3.0768e-05  A\_\allowbreak{}ref=\allowbreak{}3.0801e-05  $\varepsilon$($\delta$)=-\allowbreak{}3.3004e-08 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R1-\allowbreak{}MULIMIT-\allowbreak{}004} & \texttt{claim\_\allowbreak{}phase4\_\allowbreak{}mu\_\allowbreak{}limit\_\allowbreak{}3D} & CPU-\allowbreak{}JIT & 64 & $\delta$=\allowbreak{}0.100  A\_\allowbreak{}min=\allowbreak{}3.0785e-05  A\_\allowbreak{}ref=\allowbreak{}3.0801e-05  $\varepsilon$($\delta$)=-\allowbreak{}1.6484e-08 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R1-\allowbreak{}MULIMIT-\allowbreak{}005} & \texttt{claim\_\allowbreak{}phase4\_\allowbreak{}mu\_\allowbreak{}limit\_\allowbreak{}3D} & CPU-\allowbreak{}JIT & 64 & $\delta$=\allowbreak{}0.050  A\_\allowbreak{}min=\allowbreak{}3.0793e-05  A\_\allowbreak{}ref=\allowbreak{}3.0801e-05  $\varepsilon$($\delta$)=-\allowbreak{}8.2618e-09 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R1-\allowbreak{}MULIMIT-\allowbreak{}006} & \texttt{claim\_\allowbreak{}phase4\_\allowbreak{}mu\_\allowbreak{}limit\_\allowbreak{}3D} & CPU-\allowbreak{}JIT & 64 & $\delta$=\allowbreak{}0.020  A\_\allowbreak{}min=\allowbreak{}3.0798e-05  A\_\allowbreak{}ref=\allowbreak{}3.0801e-05  $\varepsilon$($\delta$)=-\allowbreak{}3.3106e-09 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R1-\allowbreak{}MULIMIT-\allowbreak{}007} & \texttt{claim\_\allowbreak{}phase4\_\allowbreak{}mu\_\allowbreak{}limit\_\allowbreak{}3D} & CPU-\allowbreak{}JIT & 64 & $\delta$=\allowbreak{}0.010  A\_\allowbreak{}min=\allowbreak{}3.0800e-05  A\_\allowbreak{}ref=\allowbreak{}3.0801e-05  $\varepsilon$($\delta$)=-\allowbreak{}1.7062e-09 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R1-\allowbreak{}MULIMIT-\allowbreak{}008} & \texttt{claim\_\allowbreak{}phase4\_\allowbreak{}mu\_\allowbreak{}limit\_\allowbreak{}3D} & CPU-\allowbreak{}JIT & 64 & $\delta$=\allowbreak{}0.005  A\_\allowbreak{}min=\allowbreak{}3.0800e-05  A\_\allowbreak{}ref=\allowbreak{}3.0801e-05  $\varepsilon$($\delta$)=-\allowbreak{}8.5856e-10 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R1-\allowbreak{}MULIMIT-\allowbreak{}009} & \texttt{claim\_\allowbreak{}phase4\_\allowbreak{}mu\_\allowbreak{}limit\_\allowbreak{}3D} & CPU-\allowbreak{}JIT & 64 & $\delta$=\allowbreak{}0.002  A\_\allowbreak{}min=\allowbreak{}3.0801e-05  A\_\allowbreak{}ref=\allowbreak{}3.0801e-05  $\varepsilon$($\delta$)=-\allowbreak{}3.6016e-10 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R1-\allowbreak{}MULIMIT-\allowbreak{}010} & \texttt{claim\_\allowbreak{}phase4\_\allowbreak{}mu\_\allowbreak{}limit\_\allowbreak{}3D} & CPU-\allowbreak{}JIT & 64 & $\delta$=\allowbreak{}0.001  A\_\allowbreak{}min=\allowbreak{}3.0801e-05  A\_\allowbreak{}ref=\allowbreak{}3.0801e-05  $\varepsilon$($\delta$)=-\allowbreak{}1.9645e-10 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R1-\allowbreak{}ADV-\allowbreak{}064} & \texttt{claim\_\allowbreak{}m9\_\allowbreak{}blowup\_\allowbreak{}search\_\allowbreak{}3D} & CPU-\allowbreak{}JIT & 64 & A\_\allowbreak{}min=\allowbreak{}8.7236e-06  Z\_\allowbreak{}max/Z0=\allowbreak{}0.981  P\_\allowbreak{}max=\allowbreak{}2.9106e+02  u$\infty$=\allowbreak{}9.5369e-01  blowup=\allowbreak{}False & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R1-\allowbreak{}ADV-\allowbreak{}128} & \texttt{claim\_\allowbreak{}m9\_\allowbreak{}blowup\_\allowbreak{}search\_\allowbreak{}3D} & CPU-\allowbreak{}JIT & 128 & A\_\allowbreak{}min=\allowbreak{}8.7236e-06  Z\_\allowbreak{}max/Z0=\allowbreak{}0.982  P\_\allowbreak{}max=\allowbreak{}4.1727e+03  u$\infty$=\allowbreak{}9.5376e-01  blowup=\allowbreak{}False & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L3-\allowbreak{}R1-\allowbreak{}ADV-\allowbreak{}256} & \texttt{claim\_\allowbreak{}m9\_\allowbreak{}blowup\_\allowbreak{}search\_\allowbreak{}3D} & CPU-\allowbreak{}JIT & 256 & A\_\allowbreak{}min=\allowbreak{}8.7236e-06  Z\_\allowbreak{}max/Z0=\allowbreak{}0.982  P\_\allowbreak{}max=\allowbreak{}6.7204e+04  u$\infty$=\allowbreak{}9.5378e-01  blowup=\allowbreak{}False & \textsf{PASS}\\
+\end{longtable}}
+
+\section{Layer 4 --- the diagnostics}
+\label{sec:a1-l4}
+
+Layer~4 is the largest layer by module count and the one whose relationship to
+the mathematics is most complicated. Chapter~\ref{ch:layer4} reads the results;
+Chapter~\ref{ch:numerical-lessons} says which of them could have decided
+anything. The reader should carry two facts into this table.
+
+First, every row from \texttt{EXP-L4-KCORR-*} onward that bears on
+\texttt{conj:K-refined}, \texttt{target:band-absorption} or
+\texttt{conj:lc-s44} is, by Wall~6, \emph{not evidence} about those
+statements. The numbers are real and correctly computed; their evidential
+value with respect to the conjectures is zero.
+
+Second, four \texttt{verdict} fields need reading with care, and they are
+listed in \S\ref{sec:a1-exceptions}.
+
+{\scriptsize
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.20\textwidth} >{\raggedright\arraybackslash}p{0.16\textwidth} >{\raggedright\arraybackslash}p{0.13\textwidth} >{\raggedright\arraybackslash}p{0.295\textwidth} l@{}}
+\caption[Layer 4 experiments]{All Layer-4 diagnostic rows, in the order the modules were built. Sixteen rows carry no \texttt{claim\_id}, all from the early $\delta$/CZ/LPS/Morrey/$\Gamma$ diagnostics of \Sn{10}--\Sn{27}, before the convention was enforced.}
+\label{tab:a1-layer4}\\
+\toprule
+\texttt{exp\_id} & \texttt{claim\_id} & parameters & \texttt{key\_metric} & verdict\\
+\midrule
+\endfirsthead
+\toprule
+\texttt{exp\_id} & \texttt{claim\_id} & parameters & \texttt{key\_metric} & verdict\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}DELTA-\allowbreak{}EPS-\allowbreak{}TG-\allowbreak{}032-\allowbreak{}eps1.0} & --\allowbreak{}-\allowbreak{} & tg, $N=\allowbreak{}32$ & $\delta$\_\allowbreak{}max=\allowbreak{}1.50  $\delta$\_\allowbreak{}mean=\allowbreak{}1.50  $\delta$\_\allowbreak{}frac=\allowbreak{}100.00\%  t\_\allowbreak{}first\_\allowbreak{}$\delta$>0=\allowbreak{}0.05 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}DELTA-\allowbreak{}EPS-\allowbreak{}TG-\allowbreak{}032-\allowbreak{}eps0.1} & --\allowbreak{}-\allowbreak{} & tg, $N=\allowbreak{}32$ & $\delta$\_\allowbreak{}max=\allowbreak{}1.50  $\delta$\_\allowbreak{}mean=\allowbreak{}1.50  $\delta$\_\allowbreak{}frac=\allowbreak{}100.00\%  t\_\allowbreak{}first\_\allowbreak{}$\delta$>0=\allowbreak{}0.05 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}DELTA-\allowbreak{}EPS-\allowbreak{}TG-\allowbreak{}032-\allowbreak{}eps0.01} & --\allowbreak{}-\allowbreak{} & tg, $N=\allowbreak{}32$ & $\delta$\_\allowbreak{}max=\allowbreak{}1.50  $\delta$\_\allowbreak{}mean=\allowbreak{}1.50  $\delta$\_\allowbreak{}frac=\allowbreak{}100.00\%  t\_\allowbreak{}first\_\allowbreak{}$\delta$>0=\allowbreak{}0.05 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}DELTA-\allowbreak{}EPS-\allowbreak{}TG-\allowbreak{}032-\allowbreak{}eps0.001} & --\allowbreak{}-\allowbreak{} & tg, $N=\allowbreak{}32$ & $\delta$\_\allowbreak{}max=\allowbreak{}1.50  $\delta$\_\allowbreak{}mean=\allowbreak{}1.50  $\delta$\_\allowbreak{}frac=\allowbreak{}100.00\%  t\_\allowbreak{}first\_\allowbreak{}$\delta$>0=\allowbreak{}0.05 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}DELTA-\allowbreak{}EPS-\allowbreak{}TG-\allowbreak{}032-\allowbreak{}eps0.0} & --\allowbreak{}-\allowbreak{} & tg, $N=\allowbreak{}32$ & $\delta$\_\allowbreak{}max=\allowbreak{}1.50  $\delta$\_\allowbreak{}mean=\allowbreak{}1.50  $\delta$\_\allowbreak{}frac=\allowbreak{}100.00\%  t\_\allowbreak{}first\_\allowbreak{}$\delta$>0=\allowbreak{}0.05 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}CZ-\allowbreak{}TG-\allowbreak{}032} & --\allowbreak{}-\allowbreak{} & tg, $N=\allowbreak{}32$ & $\varepsilon$\_\allowbreak{}CZ\_\allowbreak{}max=\allowbreak{}1.00  $\varepsilon$\_\allowbreak{}CZ\_\allowbreak{}mean=\allowbreak{}1.00  Claim\_\allowbreak{}A\_\allowbreak{}frac=\allowbreak{}100.00\% & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}CZ-\allowbreak{}SHEAR-\allowbreak{}032} & --\allowbreak{}-\allowbreak{} & shear, $N=\allowbreak{}32$ & $\varepsilon$\_\allowbreak{}CZ\_\allowbreak{}max=\allowbreak{}1.00  $\varepsilon$\_\allowbreak{}CZ\_\allowbreak{}mean=\allowbreak{}1.00  Claim\_\allowbreak{}A\_\allowbreak{}frac=\allowbreak{}100.00\% & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}LPS-\allowbreak{}TG-\allowbreak{}032} & --\allowbreak{}-\allowbreak{} & tg, $N=\allowbreak{}32$ & Z\_\allowbreak{}max=\allowbreak{}4.1395e-01  $\|$u$\|$\_\allowbreak{}L6\_\allowbreak{}max=\allowbreak{}6.3929e-01  $\varepsilon$\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000  blowup=\allowbreak{}False & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}LPS-\allowbreak{}SHEAR-\allowbreak{}032} & --\allowbreak{}-\allowbreak{} & shear, $N=\allowbreak{}32$ & Z\_\allowbreak{}max=\allowbreak{}1.7034e+00  $\|$u$\|$\_\allowbreak{}L6\_\allowbreak{}max=\allowbreak{}9.9830e-01  $\varepsilon$\_\allowbreak{}LPS\_\allowbreak{}min=\allowbreak{}0.0000  blowup=\allowbreak{}False & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}MM-\allowbreak{}TG-\allowbreak{}001} & --\allowbreak{}-\allowbreak{} & TG, $N=\allowbreak{}32$ & Morrey max $$7.700\!\times\!10^{-47}$$, $\gamma=\allowbreak{}0.09027$ & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}MM-\allowbreak{}SH-\allowbreak{}001} & --\allowbreak{}-\allowbreak{} & shear, $N=\allowbreak{}32$ & Morrey max $$2.722\!\times\!10^{-47}$$, $\gamma=\allowbreak{}0.05482$ & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}MM-\allowbreak{}TG-\allowbreak{}001} & --\allowbreak{}-\allowbreak{} & TG, $N=\allowbreak{}32$ & Morrey max $$7.700\!\times\!10^{-47}$$, $\gamma=\allowbreak{}0.09027$ & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}MM-\allowbreak{}SH-\allowbreak{}001} & --\allowbreak{}-\allowbreak{} & shear, $N=\allowbreak{}32$ & Morrey max $$2.722\!\times\!10^{-47}$$, $\gamma=\allowbreak{}0.05482$ & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}MM-\allowbreak{}TG-\allowbreak{}002} & --\allowbreak{}-\allowbreak{} & TG, $N=\allowbreak{}32$ & Morrey max $11.03$, $\gamma=\allowbreak{}0.1389$ & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}MM-\allowbreak{}SH-\allowbreak{}002} & --\allowbreak{}-\allowbreak{} & shear, $N=\allowbreak{}32$ & Morrey max $14.82$, $\gamma=\allowbreak{}0.3843$ & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}GAM-\allowbreak{}ADV-\allowbreak{}001} & --\allowbreak{}-\allowbreak{} & $N=\allowbreak{}32$ & $\Gamma$ exponent $0\to-\allowbreak{}3.263$ & \textsf{NOT SUPP.}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}BRIDGE-\allowbreak{}TG-\allowbreak{}001} & \texttt{bridge-lemma-\allowbreak{}tg} & tg, $N=\allowbreak{}32$ & max\_\allowbreak{}bridge\_\allowbreak{}ratio=\allowbreak{}0.9822 median\_\allowbreak{}bridge\_\allowbreak{}ratio=\allowbreak{}0.6825 final\_\allowbreak{}bridge\_\allowbreak{}ratio=\allowbreak{}0.6448 sigma\_\allowbreak{}star\_\allowbreak{}range=\allowbreak{}[6.243e-01,5.851e+01] & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}BRIDGE-\allowbreak{}SH-\allowbreak{}001} & \texttt{bridge-lemma-\allowbreak{}shear} & shear, $N=\allowbreak{}32$ & max\_\allowbreak{}bridge\_\allowbreak{}ratio=\allowbreak{}0.7191 median\_\allowbreak{}bridge\_\allowbreak{}ratio=\allowbreak{}0.6394 final\_\allowbreak{}bridge\_\allowbreak{}ratio=\allowbreak{}0.6447 sigma\_\allowbreak{}star\_\allowbreak{}range=\allowbreak{}[1.263e+01,3.581e+01] & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}BRIDGE-\allowbreak{}TG-\allowbreak{}002} & \texttt{bridge-lemma-\allowbreak{}tg-\allowbreak{}64} & tg, $N=\allowbreak{}64$ & max\_\allowbreak{}bridge\_\allowbreak{}ratio=\allowbreak{}1.2639 median\_\allowbreak{}bridge\_\allowbreak{}ratio=\allowbreak{}0.7640 final\_\allowbreak{}bridge\_\allowbreak{}ratio=\allowbreak{}0.8552 sigma\_\allowbreak{}star\_\allowbreak{}range=\allowbreak{}[4.746e-01,1.779e+02] & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}BRIDGE-\allowbreak{}SH-\allowbreak{}002} & \texttt{bridge-lemma-\allowbreak{}shear-\allowbreak{}64} & shear, $N=\allowbreak{}64$ & max\_\allowbreak{}bridge\_\allowbreak{}ratio=\allowbreak{}0.7629 median\_\allowbreak{}bridge\_\allowbreak{}ratio=\allowbreak{}0.5867 final\_\allowbreak{}bridge\_\allowbreak{}ratio=\allowbreak{}0.5457 sigma\_\allowbreak{}star\_\allowbreak{}range=\allowbreak{}[4.009e+00,1.281e+02] & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}BRIDGE-\allowbreak{}ADV-\allowbreak{}001} & \texttt{bridge-lemma-\allowbreak{}adv} & adv, $N=\allowbreak{}64$ & max\_\allowbreak{}bridge\_\allowbreak{}ratio=\allowbreak{}1.3643 median\_\allowbreak{}bridge\_\allowbreak{}ratio=\allowbreak{}1.0593 final\_\allowbreak{}bridge\_\allowbreak{}ratio=\allowbreak{}0.9807 sigma\_\allowbreak{}star\_\allowbreak{}range=\allowbreak{}[3.180e+00,9.382e+00] & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}BRIDGE-\allowbreak{}ADV-\allowbreak{}002} & \texttt{bridge-lemma-\allowbreak{}adv-\allowbreak{}escalated} & adv, $N=\allowbreak{}64$ & max\_\allowbreak{}bridge\_\allowbreak{}ratio=\allowbreak{}1.5213 median\_\allowbreak{}bridge\_\allowbreak{}ratio=\allowbreak{}0.9952 final\_\allowbreak{}bridge\_\allowbreak{}ratio=\allowbreak{}1.0251 sigma\_\allowbreak{}star\_\allowbreak{}range=\allowbreak{}[1.283e+00,2.771e+00] & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}KCORR-\allowbreak{}TG-\allowbreak{}001} & \texttt{k-\allowbreak{}absorption-\allowbreak{}corr-\allowbreak{}tg} & tg, $N=\allowbreak{}64$ & median\_\allowbreak{}c\_\allowbreak{}K=\allowbreak{}1.0634 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}KCORR-\allowbreak{}SH-\allowbreak{}001} & \texttt{k-\allowbreak{}absorption-\allowbreak{}corr-\allowbreak{}shear} & shear, $N=\allowbreak{}64$ & median\_\allowbreak{}c\_\allowbreak{}K=\allowbreak{}1.9354 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}KCORR-\allowbreak{}ADV-\allowbreak{}001} & \texttt{k-\allowbreak{}absorption-\allowbreak{}corr-\allowbreak{}adv} & adv, $N=\allowbreak{}64$ & median\_\allowbreak{}c\_\allowbreak{}K=\allowbreak{}1.1560 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}BRIDGE-\allowbreak{}ADV-\allowbreak{}002} & \texttt{bridge-lemma-\allowbreak{}adv-\allowbreak{}escalated} & adv, $N=\allowbreak{}64$ & median\_\allowbreak{}c\_\allowbreak{}K=\allowbreak{}1.0923 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}KCORR-\allowbreak{}NU-\allowbreak{}TG-\allowbreak{}001} & \texttt{kcorr-\allowbreak{}reynolds-\allowbreak{}tg} & tg, $N=\allowbreak{}64$, $\nu=\allowbreak{}0.001$ & cK\_\allowbreak{}median=\allowbreak{}1.0634 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}KCORR-\allowbreak{}NU-\allowbreak{}TG-\allowbreak{}002} & \texttt{kcorr-\allowbreak{}reynolds-\allowbreak{}tg} & tg, $N=\allowbreak{}64$, $\nu=\allowbreak{}5.000\!\times\!10^{-4}$ & cK\_\allowbreak{}median=\allowbreak{}1.0208 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}KCORR-\allowbreak{}NU-\allowbreak{}TG-\allowbreak{}003} & \texttt{kcorr-\allowbreak{}reynolds-\allowbreak{}tg} & tg, $N=\allowbreak{}64$, $\nu=\allowbreak{}2.500\!\times\!10^{-4}$ & cK\_\allowbreak{}median=\allowbreak{}1.0204 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}KCORR-\allowbreak{}NU-\allowbreak{}ADV-\allowbreak{}001} & \texttt{kcorr-\allowbreak{}reynolds-\allowbreak{}adv} & adv, $N=\allowbreak{}64$, $\nu=\allowbreak{}0.001$ & cK\_\allowbreak{}median=\allowbreak{}1.1560 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}KCORR-\allowbreak{}NU-\allowbreak{}ADV-\allowbreak{}002} & \texttt{kcorr-\allowbreak{}reynolds-\allowbreak{}adv} & adv, $N=\allowbreak{}64$, $\nu=\allowbreak{}5.000\!\times\!10^{-4}$ & cK\_\allowbreak{}median=\allowbreak{}1.1201 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}KCORR-\allowbreak{}NU-\allowbreak{}ADV-\allowbreak{}003} & \texttt{kcorr-\allowbreak{}reynolds-\allowbreak{}adv} & adv, $N=\allowbreak{}64$, $\nu=\allowbreak{}2.500\!\times\!10^{-4}$ & cK\_\allowbreak{}median=\allowbreak{}1.1128 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}KCORR-\allowbreak{}NU-\allowbreak{}TG-\allowbreak{}102} & \texttt{kcorr-\allowbreak{}reynolds-\allowbreak{}tg-\allowbreak{}resolved} & tg, $N=\allowbreak{}128$, $\nu=\allowbreak{}5.000\!\times\!10^{-4}$ & cK\_\allowbreak{}median=\allowbreak{}2.2376 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}KCORR-\allowbreak{}NU-\allowbreak{}TG-\allowbreak{}103} & \texttt{kcorr-\allowbreak{}reynolds-\allowbreak{}tg-\allowbreak{}resolved} & tg, $N=\allowbreak{}128$, $\nu=\allowbreak{}2.500\!\times\!10^{-4}$ & cK\_\allowbreak{}median=\allowbreak{}2.2390 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}KCORR-\allowbreak{}NU-\allowbreak{}TG-\allowbreak{}101} & \texttt{kcorr-\allowbreak{}reynolds-\allowbreak{}tg-\allowbreak{}resolved} & tg, $N=\allowbreak{}128$, $\nu=\allowbreak{}0.001$ & cK\_\allowbreak{}median=\allowbreak{}2.2352 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}KCORR-\allowbreak{}NU-\allowbreak{}TG-\allowbreak{}104} & \texttt{kcorr-\allowbreak{}reynolds-\allowbreak{}tg-\allowbreak{}resolved-\allowbreak{}400step-\allowbreak{}probe} & tg, $N=\allowbreak{}128$, $\nu=\allowbreak{}0.001$ & cK\_\allowbreak{}median=\allowbreak{}2.2352 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}DEPLETION-\allowbreak{}TG-\allowbreak{}001} & \texttt{depletion-\allowbreak{}h2-\allowbreak{}tg} & tg, $N=\allowbreak{}64$ & median\_\allowbreak{}depletion\_\allowbreak{}ratio=\allowbreak{}0.2313 max\_\allowbreak{}depletion\_\allowbreak{}ratio=\allowbreak{}0.5379 final\_\allowbreak{}depletion\_\allowbreak{}ratio=\allowbreak{}0.2707 M\_\allowbreak{}range=\allowbreak{}[1.397e+00,2.094e+01] & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}DEPLETION-\allowbreak{}ADV-\allowbreak{}001} & \texttt{depletion-\allowbreak{}h2-\allowbreak{}adv} & adv, $N=\allowbreak{}64$ & median\_\allowbreak{}depletion\_\allowbreak{}ratio=\allowbreak{}0.0158 max\_\allowbreak{}depletion\_\allowbreak{}ratio=\allowbreak{}0.0317 final\_\allowbreak{}depletion\_\allowbreak{}ratio=\allowbreak{}0.0209 M\_\allowbreak{}range=\allowbreak{}[1.746e+00,1.962e+00] & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}ENSTROPHY-\allowbreak{}EXPONENT-\allowbreak{}TG-\allowbreak{}001} & \texttt{enstrophy-\allowbreak{}exponent-\allowbreak{}tg} & tg, $N=\allowbreak{}64$ & p\_\allowbreak{}fit\_\allowbreak{}growth\_\allowbreak{}phase=\allowbreak{}0.8912 r\_\allowbreak{}squared=\allowbreak{}0.9136 n\_\allowbreak{}points=\allowbreak{}19 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}ENSTROPHY-\allowbreak{}EXPONENT-\allowbreak{}ADV-\allowbreak{}001} & \texttt{enstrophy-\allowbreak{}exponent-\allowbreak{}adv} & adv, $N=\allowbreak{}64$ & p\_\allowbreak{}fit\_\allowbreak{}growth\_\allowbreak{}phase=\allowbreak{}16.0883 r\_\allowbreak{}squared=\allowbreak{}1.0000 n\_\allowbreak{}points=\allowbreak{}2 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}VERIFY-\allowbreak{}TG-\allowbreak{}001} & \texttt{aposteriori-\allowbreak{}tg} & tg, $N=\allowbreak{}64$ & E\_\allowbreak{}final=\allowbreak{}5.5066e+16  margin\_\allowbreak{}final=\allowbreak{}5.5066e+19  margin\_\allowbreak{}max=\allowbreak{}5.5066e+19  threshold=\allowbreak{}1.0000e-03  (diagnostic satisfied, NOT a proof of regularity) & \textsf{PARTIAL}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}VERIFY-\allowbreak{}SH-\allowbreak{}001} & \texttt{aposteriori-\allowbreak{}shear} & shear, $N=\allowbreak{}64$ & E\_\allowbreak{}final=\allowbreak{}2.0171e+11  margin\_\allowbreak{}final=\allowbreak{}2.0171e+14  margin\_\allowbreak{}max=\allowbreak{}2.0171e+14  threshold=\allowbreak{}1.0000e-03  (diagnostic satisfied, NOT a proof of regularity) & \textsf{PARTIAL}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}VERIFY-\allowbreak{}TG-\allowbreak{}002} & \texttt{aposteriori-\allowbreak{}tg-\allowbreak{}windowed} & tg, $N=\allowbreak{}64$ & E\_\allowbreak{}final=\allowbreak{}9.1278e+09  margin\_\allowbreak{}final=\allowbreak{}9.1278e+12  margin\_\allowbreak{}max=\allowbreak{}9.1278e+12  threshold=\allowbreak{}1.0000e-03  (diagnostic satisfied, NOT a proof of regularity) & \textsf{PARTIAL}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}VERIFY-\allowbreak{}SH-\allowbreak{}002} & \texttt{aposteriori-\allowbreak{}shear-\allowbreak{}windowed} & shear, $N=\allowbreak{}64$ & E\_\allowbreak{}final=\allowbreak{}6.5782e+05  margin\_\allowbreak{}final=\allowbreak{}6.5782e+08  margin\_\allowbreak{}max=\allowbreak{}6.5782e+08  threshold=\allowbreak{}1.0000e-03  (diagnostic satisfied, NOT a proof of regularity) & \textsf{PARTIAL}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}BAND-\allowbreak{}TG-\allowbreak{}001} & \texttt{target-\allowbreak{}band-\allowbreak{}absorption-\allowbreak{}tg} & tg, $N=\allowbreak{}64$ & median\_\allowbreak{}conc\_\allowbreak{}Y=\allowbreak{}0.4596 median\_\allowbreak{}conc\_\allowbreak{}D=\allowbreak{}1.3079 max\_\allowbreak{}conc\_\allowbreak{}Y=\allowbreak{}26.5698 max\_\allowbreak{}conc\_\allowbreak{}D=\allowbreak{}63.1465 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}BAND-\allowbreak{}SH-\allowbreak{}001} & \texttt{target-\allowbreak{}band-\allowbreak{}absorption-\allowbreak{}shear} & shear, $N=\allowbreak{}64$ & median\_\allowbreak{}conc\_\allowbreak{}Y=\allowbreak{}0.0606 median\_\allowbreak{}conc\_\allowbreak{}D=\allowbreak{}6.5048 max\_\allowbreak{}conc\_\allowbreak{}Y=\allowbreak{}2.3010 max\_\allowbreak{}conc\_\allowbreak{}D=\allowbreak{}192.7696 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}BAND-\allowbreak{}ADV-\allowbreak{}001} & \texttt{target-\allowbreak{}band-\allowbreak{}absorption-\allowbreak{}adv} & adv, $N=\allowbreak{}64$ & median\_\allowbreak{}conc\_\allowbreak{}Y=\allowbreak{}1.5264 median\_\allowbreak{}conc\_\allowbreak{}D=\allowbreak{}2.8901 max\_\allowbreak{}conc\_\allowbreak{}Y=\allowbreak{}9.8103 max\_\allowbreak{}conc\_\allowbreak{}D=\allowbreak{}5.1840 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}BAND-\allowbreak{}TG-\allowbreak{}101} & \texttt{target-\allowbreak{}band-\allowbreak{}absorption-\allowbreak{}tg-\allowbreak{}128} & tg, $N=\allowbreak{}128$ & median\_\allowbreak{}conc\_\allowbreak{}Y=\allowbreak{}0.4046 median\_\allowbreak{}conc\_\allowbreak{}D=\allowbreak{}1.2990 max\_\allowbreak{}conc\_\allowbreak{}Y=\allowbreak{}135.9510 max\_\allowbreak{}conc\_\allowbreak{}D=\allowbreak{}214.4357 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}BAND-\allowbreak{}SH-\allowbreak{}101} & \texttt{target-\allowbreak{}band-\allowbreak{}absorption-\allowbreak{}shear-\allowbreak{}128} & shear, $N=\allowbreak{}128$ & median\_\allowbreak{}conc\_\allowbreak{}Y=\allowbreak{}0.3781 median\_\allowbreak{}conc\_\allowbreak{}D=\allowbreak{}3.9165 max\_\allowbreak{}conc\_\allowbreak{}Y=\allowbreak{}0.9502 max\_\allowbreak{}conc\_\allowbreak{}D=\allowbreak{}75.0144 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}SCALE-\allowbreak{}TG-\allowbreak{}001} & \texttt{s44-\allowbreak{}scale-diagnostics-\allowbreak{}tg} & tg, $N=\allowbreak{}64$ & fE=\allowbreak{}0.8025 fB=\allowbreak{}0.0990 cK=\allowbreak{}1.101 cKband=\allowbreak{}0.931 L=\allowbreak{}3.319 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}SCALE-\allowbreak{}SH-\allowbreak{}001} & \texttt{s44-\allowbreak{}scale-diagnostics-\allowbreak{}shear} & shear, $N=\allowbreak{}64$ & fE=\allowbreak{}0.6848 fB=\allowbreak{}0.0000 cK=\allowbreak{}1.000 cKband=\allowbreak{}0.000 L=\allowbreak{}3.171 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}SCALE-\allowbreak{}ADV-\allowbreak{}001} & \texttt{s44-\allowbreak{}scale-diagnostics-\allowbreak{}adv} & adv, $N=\allowbreak{}64$ & fE=\allowbreak{}0.9868 fB=\allowbreak{}0.0132 cK=\allowbreak{}1.181 cKband=\allowbreak{}1.004 L=\allowbreak{}1.746 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}SCALE-\allowbreak{}TG-\allowbreak{}002} & \texttt{s44-\allowbreak{}scale-diagnostics-\allowbreak{}tg} & tg, $N=\allowbreak{}64$ & fE=\allowbreak{}0.8246 fB=\allowbreak{}0.1053 cK=\allowbreak{}1.100 cKband=\allowbreak{}0.975 L=\allowbreak{}3.381 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}SCALE-\allowbreak{}SH-\allowbreak{}002} & \texttt{s44-\allowbreak{}scale-diagnostics-\allowbreak{}shear} & shear, $N=\allowbreak{}64$ & fE=\allowbreak{}0.4490 fB=\allowbreak{}0.1789 cK=\allowbreak{}1.000 cKband=\allowbreak{}1.000 L=\allowbreak{}3.481 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}SCALE-\allowbreak{}ADV-\allowbreak{}002} & \texttt{s44-\allowbreak{}scale-diagnostics-\allowbreak{}adv} & adv, $N=\allowbreak{}64$ & fE=\allowbreak{}0.9891 fB=\allowbreak{}0.0109 cK=\allowbreak{}1.205 cKband=\allowbreak{}0.995 L=\allowbreak{}2.098 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}JET000-\allowbreak{}064} & \texttt{jet-\allowbreak{}strain-\allowbreak{}sweep-\allowbreak{}0.00} & jet, $N=\allowbreak{}64$ & fE=\allowbreak{}0.6316 fB=\allowbreak{}0.1406 cK=\allowbreak{}1.075 cKband=\allowbreak{}1.007 L=\allowbreak{}1.411 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}JET025-\allowbreak{}064} & \texttt{jet-\allowbreak{}strain-\allowbreak{}sweep-\allowbreak{}0.25} & jet, $N=\allowbreak{}64$ & fE=\allowbreak{}0.6086 fB=\allowbreak{}0.1593 cK=\allowbreak{}1.091 cKband=\allowbreak{}0.999 L=\allowbreak{}1.377 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}JET050-\allowbreak{}064} & \texttt{jet-\allowbreak{}strain-\allowbreak{}sweep-\allowbreak{}0.50} & jet, $N=\allowbreak{}64$ & fE=\allowbreak{}0.5531 fB=\allowbreak{}0.1702 cK=\allowbreak{}1.072 cKband=\allowbreak{}0.985 L=\allowbreak{}1.389 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}JET100-\allowbreak{}064} & \texttt{jet-\allowbreak{}strain-\allowbreak{}sweep-\allowbreak{}1.00} & jet, $N=\allowbreak{}64$ & fE=\allowbreak{}0.4594 fB=\allowbreak{}0.1586 cK=\allowbreak{}1.026 cKband=\allowbreak{}0.970 L=\allowbreak{}1.437 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}JET200-\allowbreak{}064} & \texttt{jet-\allowbreak{}strain-\allowbreak{}sweep-\allowbreak{}2.00} & jet, $N=\allowbreak{}64$ & fE=\allowbreak{}0.3002 fB=\allowbreak{}0.1251 cK=\allowbreak{}0.982 cKband=\allowbreak{}0.948 L=\allowbreak{}1.606 & \textsf{PASS}\\
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}JET400-\allowbreak{}064} & \texttt{jet-\allowbreak{}strain-\allowbreak{}sweep-\allowbreak{}4.00} & jet, $N=\allowbreak{}64$ & fE=\allowbreak{}0.4047 fB=\allowbreak{}0.1357 cK=\allowbreak{}0.918 cKband=\allowbreak{}1.457 L=\allowbreak{}2.060 & \textsf{PASS}\\
+\end{longtable}}
+
+\section{Exceptions, rule breaches and rows that should not be read as results}
+\label{sec:a1-exceptions}
+
+The house rules say that a result without a \texttt{claim\_id} is not a result
+and that \textsf{PASS} requires a logged \texttt{key\_metric}. Enumerating the
+exceptions is more useful than asserting compliance.
+
+\begin{center}
+\footnotesize
+\begin{tabular}{@{}p{0.28\textwidth} p{0.62\textwidth}@{}}
+\toprule
+Row(s) & What is wrong with them, and how to read them \\
+\midrule
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}DELTA-\allowbreak{}EPS-\allowbreak{}TG-\allowbreak{}032-\allowbreak{}*} (5), \texttt{EXP-\allowbreak{}L4-\allowbreak{}CZ-\allowbreak{}*} (2),
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}LPS-\allowbreak{}*} (2), \texttt{EXP-\allowbreak{}L4-\allowbreak{}MM-\allowbreak{}*} (6),
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}GAM-\allowbreak{}ADV-\allowbreak{}001}
+  & No \texttt{claim\_id}. All from \Sn{10}--\Sn{27}, before the convention was
+    enforced. The metrics are logged and the rows are usable; they simply
+    cannot be joined to a labelled statement automatically. \\[3pt]
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}MM-\allowbreak{}*}
+  & Six rows under \emph{four} distinct \texttt{exp\_id}s: the \texttt{-001}
+    pair appears twice, once from the deterministic eight-centre sampling and
+    once from the re-run. Both were deliberately retained so the
+    \(47\)-order-of-magnitude sampling bias of
+    Chapter~\ref{ch:layer4}, \S\ref{sec:sampling-lesson} can be seen. No
+    \texttt{key\_metric} is recorded for any of them. \\[3pt]
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}GAM-\allowbreak{}ADV-\allowbreak{}001}
+  & Its \texttt{verdict} field is a sentence, not a verdict: \textsf{NOT
+    SUPPRESSED\dots\ Possible gap in Claim A conjecture for adversarial ICs.}
+    The run is free viscous decay with the nonlinear term omitted, so it
+    tests a mechanism the conjecture does not appeal to. The rerun through
+    the full solver was never performed under this identifier. \\[3pt]
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}VERIFY-\allowbreak{}*} (4)
+  & All four \textsf{PARTIAL}. The first two are \emph{vacuous}: the
+    Gr\"onwall factor over the full window is \(e^{70}\), so no residual
+    could have met the threshold. The fault was in the specification, not the
+    implementation. The windowed pair is informative but still does not reach
+    a clean pass at any window length. \\[3pt]
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}ENSTROPHY-\allowbreak{}\newline EXPONENT-\allowbreak{}ADV-\allowbreak{}001}
+  & \textsf{PASS}, with \(p=16.088\), \(r^2=1.0000\), from \textbf{two}
+    points --- a two-point regression returns \(r^2=1\) by arithmetic. Its
+    \(M\) range is \([1.746,1.962]\), essentially flat. The session log
+    describes the run as correctly reported as an artefact; the row records
+    \textsf{PASS}. Read the row as vacuous.\footnote{Source disagreement
+    between \texttt{SESSION-LOG/2026-07-19-S37-cf-depletion-unification.md}
+    and the database, resolved in favour of the database, which governs
+    experimental claims. See Chapter~\ref{ch:unification}.} \\[3pt]
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}SCALE-\allowbreak{}SH-\allowbreak{}001}
+  & \(\abs{\Band}/\abs{Q(\rstar)}=0.0000\) exactly: the transition band was
+    \emph{empty} inside \(B_{\rstar}\). The hypothesis (NB) fails outright
+    there, and \(c_K^{\mathrm{band}}\) is degenerate-by-convention. This is a
+    structural finding, not a numerical failure. \\[3pt]
+\texttt{EXP-\allowbreak{}L4-\allowbreak{}SIGMA-\allowbreak{}TG-\allowbreak{}001}, \texttt{EXP-\allowbreak{}L4-\allowbreak{}SIGMA-\allowbreak{}SH-\allowbreak{}001}
+  & \textbf{Not in the database at all.} \Sn{30} wrote them to
+    \texttt{results/S30\_sigma\_results.md} instead --- the programme's only
+    breach of its own logging rule. They cannot be queried or cross-checked,
+    and the \(\sigma\)-framework they supported is the material the \Sn{31}
+    audit hit hardest. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{obsv}[What the inventory shows about verdicts]
+\label{obs:a1-verdicts}
+Of \(124\) logged experiments, \(118\) are \textsf{PASS}, four are
+\textsf{PARTIAL}, one is \textsf{FAIL}, and one carries a sentence instead of
+a verdict. A pass rate of \(95\%\) should not be read as success. It is a
+consequence of what the verdicts \emph{are}: nearly every one is a check that
+the solver conserved what it should, that \(A_{\min}\) stayed positive, that
+\(\delta\) stayed non-negative, or that a diagnostic's median stayed below a
+threshold chosen as ``\(O(1)\) or below''. Those are instrument checks, and an
+instrument that fails them is broken.
+
+\smallskip
+The one \textsf{FAIL} is a grid artefact. The four \textsf{PARTIAL}s are a
+specification error and its repair. The single row that ever contradicted a
+programme claim is the one whose verdict field is a sentence --- and its
+reading, correctly, is that it tested the wrong equation.
+
+\smallskip
+A numerical programme whose verdicts almost never fail is not being asked
+questions that could come out either way. That is the same finding as
+Chapter~\ref{ch:numerical-lessons}'s, arrived at by counting.
+\end{obsv}

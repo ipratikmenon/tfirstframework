@@ -1,0 +1,282 @@
+% =====================================================================
+%  Appendix A2 — Session index
+% =====================================================================
+\chapter{Session Index}
+\label{ch:sessions}
+
+\begin{record}
+\textbf{Source and method.} Compiled from \texttt{SESSION-LOG/} (41 files) and
+the session table in \texttt{PROGRESS.md}, cross-checked against the proof
+document and \texttt{results/results.db}. Where a summary and the document
+disagree, the entry follows the document and says so.
+
+\smallskip
+\textbf{A counting fact worth stating once.} The sessions are numbered to
+\Sn{48}, and there are \textbf{forty-seven} of them: \emph{there is no
+\Sn{19}}. Neither \texttt{PROGRESS.md} nor \texttt{SESSION-LOG/} contains one,
+and no artefact is attributed to it. The gap is why this book's title page and
+its opening chapter both say forty-seven while the highest tag is \(48\). The
+row is kept below, empty, rather than silently closed up.
+
+\smallskip
+A further tag is in use. \Sn{49} is the session that wrote
+Chapters~\ref{ch:pincer}--\ref{ch:where-it-stands} and these appendices, and
+that returned to primary sources for Chapter~\ref{ch:openai}. It has no
+session log at the time of writing and appears as the last row.
+
+\smallskip
+Seven sessions have no dedicated log file --- \Sn{01}, \Sn{07}, \Sn{11},
+\Sn{20}, \Sn{21}, \Sn{24} and \Sn{28} --- and are reconstructed from
+\texttt{PROGRESS.md} alone. \Sn{39} carries \emph{two} logs, because two
+independent tracks ran under it. Forty-one log files, forty sessions logged,
+forty-seven sessions run.
+\end{record}
+
+\section{The index}
+\label{sec:a2-index}
+
+{\scriptsize
+\begin{longtable}{@{}l l p{0.40\textwidth} p{0.30\textwidth}@{}}
+\caption[The forty-seven sessions]{Every session, in order. The last column
+records what the session \emph{left behind} --- an artefact, a theorem, or a
+retraction. Retractions are marked in the column, not softened out of it.}
+\label{tab:a2-sessions}\\
+\toprule
+\# & Date & What it did & What it produced, or retracted \\
+\midrule
+\endfirsthead
+\toprule
+\# & Date & What it did & What it produced, or retracted \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\Sn{01} & 18 Apr & Repo initialised for T-First; M1 Layer-1 property engine
+  & \texttt{layer1/tfirst\_props.py}; 52/52 tests; Conjecture~3.5 confirmed at
+    all six Wang \(\lambda\) values \\
+\Sn{02} & 19 Apr & M2 self-similar IC generator
+  & \texttt{self\_similar\_IC.py}; a Hermitian-symmetry bug in
+    \texttt{dealias\_23} found and fixed \\
+\Sn{03} & 19 Apr & PRD v0.4 absorbed; Route 1/2/3 architecture; M0 Route-1 2D
+  solver
+  & \texttt{T\_solver\_2D.py}, \texttt{LPS\_monitor.py},
+    \texttt{stretching\_2D.py}; 188/188 \\
+\Sn{04} & 19 Apr & M3 lambda sweep 2D
+  & 10 experiments \texttt{EXP-L2-R1-\{CCF,BOUS,ADV\}-*}; no \(\lambda_c\)
+    found \\
+\Sn{05} & 19 Apr & M2 Route-2 2D: exact Prize NS plus auxiliary \(\theta\)
+  & \texttt{route2\_2D.py}; \(\theta\) confirmed \(\varepsilon\)-independent \\
+\Sn{06} & 19 Apr & M4 \(\mu(T)\to\nu\) limit in 2D
+  & 10 \(\delta\) runs; \(A_{\min}\) plateau \(=A_{\mathrm{ref}}\);
+    \(\abs{\varepsilon(\delta)}\propto\delta\) \\
+\Sn{07} & 25 Apr & JAX installed; PRD v1.0 read; Route 2 becomes primary
+  & \texttt{route1\_3D.py} (Leray projector bug left open) \\
+\Sn{08} & 25 Apr & Nyquist-mode Leray bug fixed; JAX port
+  & Divergence RMS \(1.465\to<10^{-11}\);
+    \texttt{EXP-L3-R1-TG-032}; \(2.67\times\) speed-up \\
+\Sn{09} & 25 Apr & Route-2 3D solver
+  & \texttt{route2\_3D.py}; 89/89; \(\delta_{\max}=1.50\) (TG), \(1.00\)
+    (shear) \\
+\Sn{10} & 26 Apr & \(\varepsilon\) sweep; Layer 4 built
+  & \texttt{delta\_extractor}, \texttt{cz\_integrability},
+    \texttt{lps\_monitor\_3d}; \(\delta_{\max}=1.50\) at every \(\varepsilon\)
+    \emph{including} \(0\) \\
+\Sn{11} & 26 Apr & Route-2 3D JAX port
+  & \(3.13\times\) speed-up; 634/634 \\
+\Sn{12} & 27 Apr & \(N=64\) production runs
+  & \(4.56\times\) speed-up at \(N=64\) \\
+\Sn{13} & 27 Apr & M6 Wang profiles in 3D
+  & \texttt{wang\_profiles\_3D.py}; CCF 1st/2nd unstable and adversarial all
+    pass \\
+\Sn{14} & 27 Apr & M8 \(\mu(T)\to\nu\) in 3D
+  & 10/10 pass; \(\abs{\varepsilon(\delta)}\propto\delta^{0.980}\) \\
+\Sn{15} & 28 Apr & M9 blow-up search
+  & \texttt{blowup\_search\_3D.py}; \(N=64,128,256\); no blow-up;
+    \(Z_{\max}/Z_0\approx0.982\) \\
+\Sn{16} & 28 Apr & M10 diagnostics suite
+  & \texttt{continuation\_criterion}, \texttt{gronwall\_fitter},
+    \texttt{viscosity\_scaling}, \texttt{mu\_limit\_tracker} \\
+\Sn{17} & 1 May & M7 complete at \(128^3\); papers assembled
+  & \texttt{thm:routeC} proved --- still the terminal step of any closure \\
+\Sn{18} & 2 May & Claim-A 3D proof attempt; three attack angles
+  & Route-C bootstrap; single gap isolated; all three angles obstructed \\
+\Sn{19} & --- & \textbf{No session. No log, no \texttt{PROGRESS.md} row, no
+  artefact.}
+  & --- \\
+\Sn{20} & 2 May & \S11: complete proof of Claim~A for shear-layer data
+  & \texttt{thm:shear-claimA}, \texttt{prop:lambda-zero}
+    (\(\lambda_{\max}=0\)) --- both survive the audit \\
+\Sn{21} & 2 May & \S12 near-shear perturbation; \S13 traceless CZ
+  & \texttt{thm:near-shear}; \texttt{lem:pressure-traceless}
+    (\(C_{\mathrm{tr}}=\tfrac12C_{\mathrm{CZ}}\)) \\
+\Sn{22} & 2 May & \S14 Route B via Gagliardo--Nirenberg
+  & \texttt{lem:gn-divfree}, \texttt{prop:mean-obstacle},
+    \texttt{thm:routeB-closure}; mean is the sole obstacle \\
+\Sn{23} & 3 May & \S15 Gr\"onwall analysis of the mean
+  & \texttt{thm:conditional-mean-morrey};
+    \texttt{mean\_morrey\_diagnostic.py} \\
+\Sn{24} & 3 May & \S16 vorticity--enstrophy bound
+  & The stretching obstacle isolated; \texttt{EXP-L4-MM-*} first runs \\
+\Sn{25} & 3 May & \S17 CKN \(\varepsilon\)-regularity; conditional hierarchy
+  & \texttt{cor:complete-hierarchy}; \textbf{random-centre re-run exposes
+    \(47\) orders of magnitude of sampling bias} \\
+\Sn{26} & 4 May & \S18 Gr\"onwall forcing estimate
+  & \texttt{lem:pressure-forcing}: \(F_p\le Cr^{-23/15}\); better than
+    \(r^{-2}\), still divergent \\
+\Sn{27} & 4 May & \S19 scale-recursive inequality; adversarial \(\Gamma\)
+  search
+  & \texttt{prop:scale-recursive}; \texttt{EXP-L4-GAM-ADV-001}
+    \textsf{NOT SUPPRESSED} --- correctly read as a statement about free
+    viscous decay \\
+\Sn{28} & 4 May & \S19 gap identified; \S20 vorticity scale recursion written
+  & \texttt{thm:uniform-enstrophy} claimed --- \textbf{later withdrawn} \\
+\Sn{29} & 4 May & \textbf{Prize claimed} for \(u_0\in H^1(\T^3)\); arXiv prep
+  begun
+  & \texttt{cor:claim-a-enstrophy}, \texttt{cor:prize-h1} ---
+    \textbf{both withdrawn at \Sn{31}} \\
+\Sn{30} & 8 May & \S21--\S22 geometric disorder and the logarithmic regulator
+  & \texttt{lem:grad-omega-split} and \(\sigma\)-invariance
+    \textbf{survive}; Theorem~E and \texttt{lem:A-evol} do not.
+    \(\sigma\) runs logged to Markdown, \emph{not} the database \\
+\Sn{31} & 18 Jul & \textbf{Independent audit of \S20--\S22}
+  & \textbf{Prize claim withdrawn on eight grounds, D1--D8.} D8 becomes
+    Wall~1 \\
+\Sn{32} & 18 Jul & Alignment pincer launched
+  & \texttt{lem:direction-eq}, \texttt{def:sigma-star},
+    \(\sstar\le16\sigma\), \texttt{rem:marginality}, H1, H2,
+    \texttt{thm:pincer-conditional}; \texttt{alignment\_bridge.py} \\
+\Sn{33} & 18--19 Jul & Level-set Moser scheme, first rung; \(N=64\)
+  adversarial bridge runs
+  & \texttt{prop:first-rung}; \(\Lfac\) enters at
+    \texttt{lem:local-enstrophy-typeI}; adversarial run nearly saturates the
+    bridge inequality without violating it \\
+\Sn{34} & 19 Jul & Corrigendum to \Sn{33}; magnitude Caccioppoli; \(c_K\)
+  measured
+  & \texttt{thm:apriori-sigma}; \texttt{prop:crude-K} (``misses by exactly one
+    logarithm''); \texttt{conj:K-refined}; four defects in \Sn{33}
+    \textbf{corrected} \\
+\Sn{35} & 19 Jul & Second rung; \(K\)-self-absorption identity; Reynolds sweep
+  & \texttt{prop:second-rung}; \texttt{prop:K-self} marked
+    \emph{provisional}; honest distance-to-Prize remark added to the document \\
+\Sn{36} & 19 Jul & C1/C2 verified; depletion diagnostic
+  & \texttt{lem:gram-negativity}; \texttt{prop:K-amended};
+    \textbf{\Sn{35}'s second good term retracted} (\texttt{lem:w2-cancel});
+    \(\Aann\) isolated as ``open-mechanical'' \\
+\Sn{37} & 19 Jul & Localized Constantin--Fefferman derived; H2/\(\sstar\)
+  unification
+  & \texttt{prop:localized-cf}; \texttt{cor:unification} --- three open items
+    become two; own first-pass \(\Omega=O(1)\) assumption \textbf{corrected} \\
+\Sn{38} & 19 Jul & Regime~A checked as a fact-check, then closed
+  & \texttt{prop:regime-A-impossible} --- \textbf{Regime~A impossible};
+    \(\sstar\)-decay is \emph{necessary}. Closure target deliberately left
+    open \\
+\Sn{39} & 26 Jul & \emph{(two logs)} Profile-rigidity reframe; a posteriori
+  verification module
+  & \texttt{sec:rigidity-s39} (\(+1070\) lines);
+    \texttt{lem:harmonic-reduction}; \texttt{prop:no-summable-budget};
+    \texttt{rem:s39-distance} --- \textbf{the ceiling}. Also: the document has
+    never been compiled \\
+\Sn{40} & 9 Sep & Forced-blow-up comparison; anisotropic-collapse IC
+  & Wall~9; \texttt{aniso\_collapse\_IC.py} (geometry only, \(f\equiv0\));
+    the one \textsf{FAIL} row, later explained as a grid floor \\
+\Sn{41} & 9 Sep & Annulus level iteration \emph{executed}
+  & \textbf{Proved it cannot close}: \texttt{prop:s41-nocontraction},
+    \texttt{prop:s41-vacuous}, \texttt{prop:s41-coarea}. \(\Aann\)
+    reclassified open-mechanical \(\to\) \OPEN{}. \textbf{Merge gate
+    established} \\
+\Sn{42} & 9 Sep & Band-concentration diagnostic built and run at \(N=64\)
+  & \texttt{band\_concentration.py}; medians tame, spikes flagged as
+    ``likely resolution artefacts'' \\
+\Sn{43} & 9 Sep & \(N=128\) resolution check
+  & \textbf{\Sn{42}'s reading corrected}: the spikes are an early transient,
+    not a resolution artefact; bulk statistics resolution-stable \\
+\Sn{44} & 10 Sep & Are \(c_K\) and band absorption the same conjecture?
+  & \textbf{No implication over (A1)--(A3)}; (LC) isolated;
+    \textbf{\texttt{lem:s44-xi-vs-cK} caught inverted in review}, three
+    conclusions withdrawn, headline reversed \\
+\Sn{45} & 10 Sep & The three \Sn{44}-requested quantities, measured at scale
+  \(\rstar\); jet strain sweep
+  & \(\Lfac\)-slope \(-0.196\)/\(+0.088\) against the required \(-1\):
+    \textbf{no decay}. (NB) fails outright in one run. Instrument calibrated
+    on planted data first \\
+\Sn{46} & 10 Sep & Strategic audit against the document; handover written
+  & Walls 1, 2, 3, 6 identified; one interim conclusion \textbf{overturned} by
+    checking the document; \texttt{HANDOVER-S46-OPUS.md} \\
+\Sn{47} & 10 Sep & WP0 verification substrate; WP1 walls document
+  & \textbf{The document compiles for the first time}: \(142\) pages, three
+    formulas found not typesetting. \texttt{check\_proof.py}.
+    \texttt{sec:walls-s47}. \textbf{Three of its own commissioner's
+    overstatements caught} \\
+\Sn{48} & 10--11 Sep & WP2: hypothesis (R) settled; the book begun
+  & \textbf{\texttt{thm:s48-R}: (R) is a theorem}, in a stronger form.
+    \textbf{Wall~2 withdrawn.} Residue: \emph{saturation}.
+    \texttt{prop:s48-bridge-fails} closes the \(\omega\to u\) route
+    permanently. Book Parts I--III and the Landscape chapter, 13 chapters,
+    108 pp. A steer of the orchestrator's own \textbf{refuted} \\
+\Sn{49} & 11 Sep & Parts IV--VIII and the appendices; primary sources
+  re-read for Chapter~\ref{ch:openai}
+  & Chapters~\ref{ch:pincer}--\ref{ch:where-it-stands} and
+    Appendices~\ref{ch:experiments}--\ref{ch:glossary} and the
+    bibliography.
+    \textbf{\Sn{40}'s single-result reading of the landscape corrected}: it is
+    two efforts, and the ``(C)/(D)'' framing was wrong \\
+\end{longtable}}
+
+\section{What the index shows}
+\label{sec:a2-shape}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.34\textwidth} r p{0.44\textwidth}@{}}
+\toprule
+Kind of session & Count & Which \\
+\midrule
+Numerical construction and production
+  & 17 & \Sn{01}--\Sn{17}: Layers 1--4 built. No analytical content \\
+Analytical construction
+  & 19 & \Sn{18}, \Sn{20}--\Sn{30}, \Sn{32}--\Sn{37}, \Sn{39} \\
+Numerical diagnostics, later programme
+  & 4 & \Sn{40}, \Sn{42}, \Sn{43}, \Sn{45} \\
+Impossibility or settlement
+  & 4 & \Sn{38}, \Sn{41}, \Sn{44}, \Sn{48} \\
+Audit, strategy and record
+  & 4 & \Sn{31}, \Sn{46}, \Sn{47}, \Sn{49} \\
+\midrule
+\emph{Total} & 48 & 47 programme sessions plus the book session \Sn{49};
+  there is no \Sn{19} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+Two cross-cutting counts, which overlap the partition above rather than
+extending it. \textbf{Five} sessions retracted a prior claim of the
+programme's own: \Sn{31}, \Sn{34}, \Sn{36}, \Sn{43}, \Sn{44}.
+\textbf{One} session discharged a hypothesis the programme had been carrying:
+\Sn{48}.
+
+\begin{obsv}[The rhythm of the record]
+\label{obs:a2-rhythm}
+Three features of the index are worth naming.
+
+\smallskip
+\emph{The programme's productive period was seven days.}
+\Sn{32}--\Sn{38} ran between 18 and 19 July 2026 --- the alignment pincer, the
+Moser scheme, the a priori bound, both rungs, Gram negativity, the localized
+Constantin--Fefferman derivation and the Regime-A impossibility. Everything
+after \Sn{39} is verification, consolidation, or the removal of a route.
+
+\smallskip
+\emph{Corrections cluster immediately after the work they correct.}
+\Sn{34} corrects \Sn{33}; \Sn{36} corrects \Sn{35}; \Sn{43} corrects \Sn{42};
+\Sn{47} corrects \Sn{46}; \Sn{49} corrects \Sn{40}. The one exception is the
+big one: \Sn{31} corrects \Sn{29}, and the interval is two and a half months,
+during which an \texttt{arXiv} submission was being prepared.
+
+\smallskip
+\emph{Four of the last eight sessions produced impossibility proofs or
+retractions.} That is not decay; it is what a programme looks like once its
+map is accurate enough that routes can be ruled out rather than merely
+abandoned.
+\end{obsv}

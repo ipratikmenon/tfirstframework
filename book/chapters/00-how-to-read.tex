@@ -1,33 +1,11 @@
 % =====================================================================
 %  Chapter 00 — How to read this book
 % =====================================================================
-% ---------------------------------------------------------------------
-%  REPAIR --- not a new feature, and not mine to put here by choice.
-%
-%  The `record' environment as defined in the master file
-%  tfirst-book.tex (lines 87--91) is malformed.  Its begin-code group
-%  closes early: the brace that opens \colorbox's argument is matched by
-%  the brace that \newenvironment reads as the end of the begin-code, so
-%  \newenvironment absorbs the intended end-code into the begin-code and
-%  no end-code is left.  Verified with \show: \endrecord expands to
-%  \begin.  Every \end{record} then raises
-%      "Extra }, or forgotten \endgroup."
-%  and the document does not compile.
-%
-%  The definition below is the intended behaviour, written with an
-%  explicit save box so that \colorbox's argument is balanced.
-%  IT BELONGS IN THE MASTER PREAMBLE.  It is here only because this
-%  agent was instructed not to modify the master file; move it there and
-%  delete this block.
-% ---------------------------------------------------------------------
-\newsavebox{\tfrecordbox}
-\renewenvironment{record}
-  {\par\medskip\noindent
-   \begin{lrbox}{\tfrecordbox}%
-   \begin{minipage}{\dimexpr\linewidth-2\fboxsep\relax}%
-   \vspace{2pt}\small}
-  {\vspace{2pt}\end{minipage}\end{lrbox}%
-   \noindent\colorbox{panelgrey}{\usebox{\tfrecordbox}}\par\medskip}
+% The master's `record' environment was malformed (\colorbox's argument
+% brace was split across \newenvironment's begin- and end-code, so TeX
+% absorbed the end-code into the begin-code).  Diagnosed here at S48 and
+% REPAIRED IN THE MASTER PREAMBLE via \newsavebox/lrbox; the local
+% \renewenvironment that stood here is therefore removed as redundant.
 
 \chapter{How to Read This Book}
 \label{ch:how-to-read}

@@ -1,0 +1,441 @@
+% =====================================================================
+%  Chapter 16 — Non-implication (S44)
+% =====================================================================
+\chapter{Two Hypotheses That Are Not One}
+\label{ch:non-implication}
+
+\begin{record}
+\textbf{What this chapter covers.} Session \Sn{44}. The proof document had
+three times described \texttt{conj:K-refined} (the \(c_K\) decorrelation
+hypothesis, \Sn{34}) and \texttt{target:band-absorption} (the annulus
+replacement target, \Sn{41}) as being ``of the same analytic type'', and had
+observed that their crude bounds fail by exactly the same single logarithm.
+Nobody had checked whether the resemblance was substantive. If one implied the
+other, or both followed from a common hypothesis, the programme's open-item
+count would fall --- the same kind of win as \Sn{37}'s unification.
+
+\smallskip
+The answer is no, in a precisely bounded sense, and this chapter is careful
+about the bound because the programme's own summaries were not. Two things in
+particular must be stated exactly, because both were stated wrongly once and
+corrected: the direction of the inequality relating the two statistics, and
+the scope of the word ``independent''.
+\end{record}
+
+\section{The setting: what a non-implication can even mean}
+\label{sec:s44-setting}
+
+Neither conjecture can be refuted or verified by exhibiting a Navier--Stokes
+solution. Both are asserted only \emph{near a putative Type-I singularity},
+whose existence is the open question. So the question \Sn{44} could actually
+settle is narrower and is stated in the document before any result:
+\emph{does either implication follow from the a priori structure the two
+hypotheses are formulated against?}
+
+\begin{defn}[Admissible test configuration --- \texttt{def:s44-config}, line~8835]
+\label{def:s44config}
+Fix \(\nu>0\), \(M\ge1\), \(\rstar=M^{-1/2}\), \(\Lfac\ge1\) and a cutoff
+\(\psi\). An admissible test configuration is a triple \((m,w,h)\) on
+\(Q(\rstar)\) with \(m\) Lipschitz and \(w,h\ge0\) measurable, satisfying
+\begin{enumerate}[label=\textup{(A\arabic*)},leftmargin=2.6em]
+\item \(0\le m\le M\) and \(\sup_{Q(\rstar)}m=M\);
+\item the enstrophy budget
+  \(\nu\iint_{Q(\rstar)}\left(\abs{\nabla m}^2+m^2w\right)\le C_{\mathcal E}\Lfac M^{1/2}\);
+\item the pointwise link \(\abs{\nabla w}\le2w^{1/2}h^{1/2}\), with \(h\)
+  standing for \(\abs{\nabla^2\ehat}^2\).
+\end{enumerate}
+\end{defn}
+
+That is the whole of the structure both hypotheses are phrased in. Nothing
+else is imposed: no evolution equation, and no requirement that \(w\) actually
+be \(\abs{\nabla\ehat}^2\) for a unit field.
+
+\section{The structural reason, found first}
+\label{sec:disjoint}
+
+The result that makes everything else obvious once stated is a remark about
+supports.
+
+\begin{statement}[\texttt{rem:s44-disjoint}, line~8771]
+\label{st:disjoint}
+\texttt{conj:K-refined} is a statement about \(E=Q(\rstar)\cap\{m\ge M/4\}\).
+\texttt{target:band-absorption} is a statement about
+\(\Band\subseteq\{m\le M/4\}\). The two regions meet only in the level set
+\(\{m=M/4\}\), which carries no measure whenever \(M(t)/4\) is a regular
+value. \textbf{Neither hypothesis constrains any integral supported in the
+other's region.}
+\end{statement}
+
+``Same analytic type'' is a statement about the \emph{form} of the two
+hypotheses --- both are decorrelation statements normalised the same way ---
+and not about their content. They are the same kind of statement about
+disjoint parts of the same object.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[font=\scriptsize]
+% vertical axis of |omega| levels
+\draw[thick,->] (0,-0.3) -- (0,5.4) node[above] {\(\abs{\omega}\)};
+\foreach \y in {5.0, 2.9, 1.9, 1.25}{ \draw (-0.1,\y) -- (0.1,\y); }
+\node[left] at (-0.15,5.0) {\(M\)};
+\node[left] at (-0.15,2.9) {\(M/4\)};
+\node[left] at (-0.15,1.9) {\(M/8\)};
+\node[left] at (-0.15,1.25) {\(M/16\)};
+% E region
+\fill[provedgreen, opacity=0.18] (0.5,2.9) rectangle (5.3,5.0);
+\draw[provedgreen, thick] (0.5,2.9) rectangle (5.3,5.0);
+\node[provedgreen, font=\small\bfseries] at (2.9,4.5) {\(E\)};
+\node[align=center, text width=44mm] at (2.9,3.55)
+  {\(E=Q(\rstar)\cap\{m\ge M/4\}\)\\
+   \texttt{conj:K-refined} lives here: \(c_K\le C/\Lfac\)};
+% Band region
+\fill[impossiblered, opacity=0.16] (0.5,1.9) rectangle (5.3,2.9);
+\draw[impossiblered, thick] (0.5,1.9) rectangle (5.3,2.9);
+\node[impossiblered, font=\small\bfseries] at (1.15,2.62) {\(\Band\)};
+\node[align=center, text width=42mm] at (3.2,2.28)
+  {\texttt{target:band-absorption} lives here};
+% overlap line
+\draw[very thick, black] (0.5,2.9) -- (5.3,2.9);
+\node[right, align=left, text width=32mm] at (5.45,2.9)
+  {they meet only on \(\{m=M/4\}\):\\ a null set};
+% LC region bracket
+\draw[decorate, decoration={brace, amplitude=5pt}, openblue, very thick]
+  (5.9,1.25) -- (5.9,5.0);
+\node[right, openblue, align=left, text width=34mm] at (6.25,3.1)
+  {\textbf{(LC)}, \texttt{conj:lc-s44}:\\ verbatim the \(c_K\) hypothesis,
+   asserted on the \emph{larger} region \(\{m\ge M/16\}\) --- which contains
+   both};
+\draw[openblue, dashed] (0.5,1.25) rectangle (5.3,5.0);
+\end{tikzpicture}
+\caption[Why neither hypothesis sees the other]{The level decomposition of
+\texttt{rem:s44-disjoint} (line~8771). The two hypotheses are supported on
+disjoint regions, so neither constrains the other, and the counterexamples of
+\S\ref{sec:counterexamples} merely make that concrete. (LC) covers both by
+being asserted on a region containing both --- which is why it implies neither
+of them as a statement.}
+\label{fig:s44-levels}
+\end{figure}
+
+The disjointness has independent corroboration from the programme's own code.
+\texttt{layer4/test\_band\_concentration.py}, written at \Sn{42} with none of
+this in view, contains a test named
+\texttt{test\_band\_and\_E\_are\_essentially\_disjoint}, asserting exactly this
+numerically.
+
+\section{The two non-implications}
+\label{sec:counterexamples}
+
+\begin{statement}[\texttt{prop:s44-b-fails}, line~8879]
+\label{st:bfails}
+There is a family of admissible test configurations in which both band
+left-hand sides vanish identically --- so
+\texttt{target:band-absorption} holds with \(C=0\) --- while
+\(c_K\ge\abs{E}/(8\ell^5)\to\infty\). Band absorption therefore implies
+\emph{no upper bound on \(c_K\) whatsoever}.
+\end{statement}
+
+\begin{statement}[\texttt{prop:s44-a-fails}, line~8980]
+\label{st:afails}
+There is a family with \(c_K=0\) --- the strongest possible form of
+\texttt{conj:K-refined} --- for which every admissible level pair of width
+\(\ge1/16\) violates \eqref{eq:bandY} by a factor \((\rstar/\ell)^5\to\infty\).
+The adversary is \(\abs{\omega}\) oscillating rapidly \emph{inside} the band,
+so \(\abs{\nabla m}^2\) and \(w\) co-concentrate exactly where the \(c_K\)
+hypothesis has no purchase.
+\end{statement}
+
+\section{The scope, stated as the document states it}
+\label{sec:s44-scope}
+
+This is the first of the two things that must be exact.
+
+\begin{record}
+\textbf{\texttt{rem:s44-scope}} (line~8855), quoted. ``An admissible test
+configuration need not come from a solution of the Navier--Stokes equations:
+\(w\) need not equal \(\abs{\nabla\ehat}^2\) for a unit field \(\ehat\), \(h\)
+need not be its second-derivative density, and no evolution equation is
+imposed. Consequently \texttt{prop:s44-b-fails} and \texttt{prop:s44-a-fails}
+do \emph{not} say that the two conjectures are independent as statements about
+Navier--Stokes solutions; that question is not decidable by any argument
+available here. What they do say, and all they say, is: \emph{no implication
+between} \texttt{conj:K-refined} \emph{and} \texttt{target:band-absorption}
+\emph{can be derived from} (A1)--(A3), i.e.\ from the a priori budgets and the
+pointwise structure in terms of which the two statements are phrased.''
+\end{record}
+
+\begin{obsv}[``Proved independent'' is the wrong phrase, and the programme used it]
+\label{obs:not-independent}
+\texttt{PROGRESS.md}'s \Sn{44} entry is headed ``\(c_K\) and band-absorption
+proved INDEPENDENT''. The session log's own summary uses ``proved independent
+rather than suspected equivalent''. Both drop the qualifier, and
+\texttt{rem:s47-handover-corrigenda} in the walls document records the
+correction: ``\emph{Proved independent} without that qualifier overstates
+them.''
+
+\smallskip
+The distinction is not pedantry. An implication between the two conjectures
+could still hold for Navier--Stokes solutions, supplied by PDE structure that
+\Sn{44}'s test class deliberately omits; what is ruled out is deriving one
+from the other using only the budgets both are written against. A future
+session that reads ``independent'' and stops looking would be acting on a
+statement the document does not support.
+\end{obsv}
+
+\section{The inverted lemma}
+\label{sec:s44-inversion}
+
+This is the second thing that must be exact, and it is the part of the session
+most worth reading.
+
+Round one of the delegated work returned a favourable headline:
+\texttt{target:band-absorption} is strictly \emph{weaker} than
+\texttt{conj:K-refined}, needing only an \(O(1)\) equipartition constant where
+\(c_K\) needs the decaying \(C/\Lfac\); and therefore the programme's four
+sessions of measurements at \(c_K\approx1\) already supported it directly.
+That would have been genuinely good news, and it would have redirected later
+sessions toward the wrong target.
+
+The supporting lemma was inverted.
+
+\begin{statement}[\texttt{lem:s44-xi-vs-cK}, line~8700 --- the correct direction]
+\label{st:xi-vs-ck}
+With \(\Xi\) the volume-normalised coupling excess and \(c_K\) as in
+\texttt{conj:K-refined},
+\[
+  \Xi[\mathbf 1_E] \;=\; c_K\,\frac{\abs{Q(\rstar)}}{\abs{E}} \;\ge\; c_K ,
+\]
+and more generally \(\Xi[\varpi]=c_K[\varpi]\,\abs{Q(\rstar)}/\abs{R}\) for any
+weight \(\varpi\) supported in \(R\subseteq Q(\rstar)\). Consequently:
+\begin{enumerate}[label=(\roman*),leftmargin=2.4em]
+\item a bound \(\Xi[\varpi]\le\kappa\) is \emph{strictly stronger} than the
+  correlation bound \(c_K[\varpi]\le\kappa\), by exactly the volume ratio;
+\item \texttt{conj:K-refined} gives only
+  \(\Xi[\mathbf 1_E]\le(C/\Lfac)\abs{Q(\rstar)}/\abs{E}\), which is \(O(1)\)
+  \emph{only} under a volume lower bound on \(E\);
+\item \(\Xi[\varpi]\ge1\) whenever the two densities share a support of measure
+  \(\le\abs{Q(\rstar)}\) and are uncorrelated on it --- constants on \(R\) give
+  \(c_K=1\) but \(\Xi=\abs{Q(\rstar)}/\abs{R}\gg1\).
+\end{enumerate}
+\end{statement}
+
+The first draft had recorded \(\Xi[\mathbf 1_E]=c_K\abs{E}/\abs{Q(\rstar)}\le c_K\)
+--- the reciprocal volume factor, hence the wrong direction.
+
+\begin{record}
+\textbf{How it was caught}, from \texttt{rem:s44-corrigendum} (line~8741) and
+the session log. Three checks, all cheap:
+\begin{enumerate}[label=(\roman*),leftmargin=2.4em]
+\item re-derive the algebra directly from \texttt{conj:K-refined}'s own
+  definition and \texttt{def:s44-excess};
+\item a numerical check on four random configurations --- the stated form
+  matched nothing; the corrected form matched to machine precision;
+\item the sanity case: \(\abs{\nabla m}^2\) and \(w\) constant on \(E\) and
+  zero off it give \(c_K=1\), uncorrelated as they should be, but
+  \(\Xi=\abs{Q}/\abs{E}\gg1\).
+\end{enumerate}
+The error also contradicted \emph{two of the same submission's own results}
+--- \texttt{rem:s44-jle-status}, which correctly computes
+\(\Xi=\abs{Q(\rstar)}/\abs{S}\) under concentration, and
+\texttt{prop:s44-transport} --- and that internal inconsistency is what drew
+attention to it.
+\end{record}
+
+Three conclusions drawn from the inverted form were withdrawn: that
+\(\Xi\)-boundedness is weaker than \(c_K\)-boundedness; that
+\texttt{conj:K-refined} could be weakened to an \(O(1)\) statement without
+loss; and that the measured \(c_K\approx1\) was direct evidence for
+\(\Xi=O(1)\).
+
+\subsection{What the correction does to the headline}
+
+It reverses it. The corrected reading is delivered by
+\texttt{prop:s44-linfty-route} (line~9242), which was re-derived by hand
+before merging: routed through \(\norm{w}_{L^\infty}\) --- the route needing no
+measure information at all --- \texttt{target:band-absorption} requires
+\[
+  c_K^{\mathrm{band}} \;\le\; \frac{C_1}{\Lfac},
+\]
+the \emph{exact analogue} of \texttt{conj:K-refined} on the band. So band
+absorption is \textbf{not weaker}; the logarithm is \textbf{not an artefact}
+but the price of that route; and in this narrow sense the document's ``same
+analytic type'' language is vindicated --- precisely the opposite of what the
+first draft reported. The \(O(1)\) alternative exists only in the
+volume-normalised statistic, and that statistic is strictly stronger.
+
+The mechanism of the proof is worth one sentence, because it shows where the
+logarithm enters and leaves: the region measure \(\abs{R}\) cancels exactly
+against \(\iint_R w\psi^2\le\norm{w}_{L^\infty}\abs{R}\); the enstrophy budget
+contributes \(\Lfac M^{1/2}\); \(M^{-3/2}=(\rstar)^3\); and the hypothesised
+\(C_1/\Lfac\) is exactly what cancels the logarithm the budget carries,
+landing the term in the class \texttt{prop:second-rung} absorbs.
+
+\begin{figure}[ht]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+  >={Latex[length=2mm]},
+  bx/.style={draw, rounded corners=2pt, font=\scriptsize, align=center,
+             inner sep=3.5pt, text width=34mm, minimum height=11mm},
+  op/.style={bx, draw=openblue, thick, fill=panelgrey},
+  ar/.style={->, thick},
+  no/.style={->, thick, impossiblered}
+]
+\node[op] (ck) at (0,0)
+  {\texttt{conj:K-refined}\\ \(c_K\le C/\Lfac\) on \(E\)\\ \OPEN};
+\node[op] (band) at (7.4,0)
+  {\texttt{target:band-absorption}\\ \eqref{eq:bandY}, \eqref{eq:bandD} on
+   \(\Band\)\\ \OPEN};
+
+\draw[no] (ck) to[bend left=18]
+  node[above, font=\scriptsize, text=impossiblered]
+  {\texttt{prop:s44-a-fails}} (band);
+\draw[no] (band) to[bend left=18]
+  node[below, font=\scriptsize, text=impossiblered]
+  {\texttt{prop:s44-b-fails}} (ck);
+\node[font=\Large, text=impossiblered] at (3.7,0.62) {\(\nRightarrow\)};
+\node[font=\Large, text=impossiblered] at (3.7,-0.62) {\(\nLeftarrow\)};
+
+\node[op] (lc) at (3.7,-3.2)
+  {\textbf{(LC)}, \texttt{conj:lc-s44}\\
+   the \(c_K\) hypothesis verbatim,\\ on \(\{m\ge M/16\}\)\\ \OPEN};
+\draw[ar, provedgreen] (lc.west) to[out=170,in=-90]
+  node[left, font=\scriptsize, text=provedgreen, pos=0.6]
+  {covers the \(Y\)-half} (ck.south);
+\draw[ar, provedgreen] (lc.east) to[out=10,in=-90]
+  node[right, font=\scriptsize, text=provedgreen, pos=0.6]
+  {covers the \(Y\)-half} (band.south);
+
+\node[bx, draw=impossiblered, text width=44mm] (dhalf) at (11.6,-3.2)
+  {The \(D\)-half \eqref{eq:bandD} is covered by \textbf{nothing}:
+   \texttt{rem:s44-bandD} shows it contains no product of densities and no
+   correlation at all};
+
+\node[font=\scriptsize\itshape, text=rulegrey, align=center, text width=96mm]
+  at (4.4,-5.3)
+  {The scope of the two crossed arrows: no implication follows from
+   (A1)--(A3). This is \emph{not} independence for Navier--Stokes solutions
+   (\texttt{rem:s44-scope}, line~8855).};
+\end{tikzpicture}}
+\caption[The \Sn{44} relation map]{What \Sn{44} settled. Neither conjecture
+implies the other over the a priori structure they are written against; a
+single new hypothesis covers the \(Y\)-half of both; and the \(D\)-half of the
+band target is covered by no hypothesis in the family.}
+\label{fig:s44-map}
+\end{figure}
+
+\section{The common target, and its exact position}
+\label{sec:lc}
+
+A common hypothesis does exist, and the better of the two candidates was found
+second.
+
+Round one proposed \texttt{conj:jle-s44} (JLE, line~9512), built on the
+volume-normalised excess \(\Xi\). It is strong: (JLE-1) yields \(K\)-absorption
+outright, with no angular term, no \(\norm{w}_{L^\infty}\) and no annulus
+residual, and it also yields \eqref{eq:bandY}. But it degrades like
+\(\abs{Q(\rstar)}/\abs{S}\) under concentration on a small set \(S\), which is
+exactly the regime near a singularity.
+
+Round two produced the better one.
+
+\begin{statement}[(LC) --- \texttt{conj:lc-s44}, line~9445]
+\label{st:lc}
+\OPEN{}. (LC) is \emph{verbatim} \texttt{conj:K-refined} --- same
+normalisation, same \(C/\Lfac\) decay --- asserted on \(\{m\ge M/16\}\) instead
+of \(\{m\ge M/4\}\). That region contains both \(E\) and \(\Band\), and the
+integrand is non-negative, so \texttt{prop:s44-lc-implies} (line~9461) bounds
+both \(Y\)-halves \emph{with no volume hypothesis}.
+\end{statement}
+
+Its position is easy to misstate and the document is emphatic about it.
+\texttt{rem:s44-lc-reading} (line~9486): (LC) does \textbf{not} imply
+\texttt{conj:K-refined} --- correlation ratios are not monotone under
+restriction --- and the converse fails too. (LC) supplies the
+\emph{conclusion} both conjectures were designed to give, not either
+conjecture as a statement. It is ``a genuinely new hypothesis of an old
+form''. It is weaker than JLE in the regime that matters; it is \emph{not}
+weaker than \texttt{conj:K-refined}.
+
+\begin{obsv}[The second overstatement in the summaries]
+\label{obs:lc-not-weaker}
+\texttt{HANDOVER-S46-OPUS.md} described (LC) as ``a common \emph{weaker}
+target'' than \texttt{conj:K-refined}. By \texttt{rem:s44-lc-reading} it is
+neither weaker nor stronger; the two do not compare.
+\texttt{rem:s47-handover-corrigenda} records the correction. This is the
+second of the three overstatements \Sn{47} caught in work one session old, and
+like the first --- the audit's missing eighth defect --- it runs in the
+programme's own favour.
+\end{obsv}
+
+\section{The half nothing covers}
+\label{sec:dhalf}
+
+\texttt{rem:s44-bandD} is a correction to the surrounding prose and is easy to
+overlook. Equation~\eqref{eq:bandD}, the \(D\)-half of the closure target,
+contains \emph{no product of two densities and no correlation at all}: it is a
+bare level non-concentration statement for \(\nu\abs{\nabla^2\ehat}^2\psi^2\).
+No decorrelation hypothesis in this family bears on it.
+
+So ``same analytic type as \texttt{conj:K-refined}'' is accurate for the
+\(Y\)-half and \emph{inaccurate} for the \(D\)-half. Future sessions should not
+assume the \(D\)-half comes along for free. Nor is the constant condition
+\(CC_1\le\delta\nu\) covered by any of the hypotheses
+(\texttt{rem:s44-channel-caveat}).
+
+\section{What was not measured, and what \texorpdfstring{\Sn{45}}{S45} then measured}
+\label{sec:s44-numerics}
+
+\texttt{rem:s44-numerics} (line~9396) names three quantities that bear on all
+of this and had not been measured in the form needed, and it warns that
+\Sn{42}--\Sn{43}'s volume fractions were taken over the whole periodic box
+rather than over \(Q(\rstar)\), so they are motivation and \emph{not evidence}:
+
+\begin{enumerate}[label=(\roman*),leftmargin=2.4em]
+\item the volume fractions \(\abs{E}/\abs{Q(\rstar)}\) and
+  \(\abs{\Band}/\abs{Q(\rstar)}\) \emph{at scale} \(\rstar\) --- the
+  hypotheses (NB-E) and (NB);
+\item the band correlation constant \(c_K^{\mathrm{band}}\);
+\item the \(\Lfac\)-dependence of both correlation constants, since
+  \texttt{prop:s44-linfty-route} needs \emph{decay}, not boundedness, and
+  \Sn{34}--\Sn{35} explicitly could not distinguish \(c_K=O(1)\) from
+  \(c_K\le C/\Lfac\).
+\end{enumerate}
+
+\Sn{45} measured all three. The results are in Chapter~\ref{ch:layer4}: the
+\(\Lfac\)-slope of \(\log c_K\) came back at \(-0.196\) (\(r^2=0.05\)) on one
+pool and \(+0.088\) (\(r^2=0.02\)) across all twelve runs, against the \(-1\)
+a clean \(C/\Lfac\) law requires, over \(\Lfac\in[1.35,4.68]\); and (NB) failed
+outright in one run, where the band was \emph{empty} inside \(B_{\rstar}\).
+Chapter~\ref{ch:numerical-lessons} explains why neither number is evidence
+about either conjecture, and why that was knowable in advance.
+
+\section{Net effect}
+\label{sec:s44-net}
+
+\begin{record}
+The open-item count did \textbf{not} fall. Both conjectures remain \OPEN{},
+and no implication between them can be derived from (A1)--(A3). What improved
+is the targeting: one sharply-stated hypothesis (LC) covers both \(Y\)-halves
+instead of two separate ones; the \(D\)-half is explicitly flagged as covered
+by nothing; and the \(O(1)\) versus \(C/\Lfac\) confusion is resolved --- it
+was a route distinction, not a strength distinction.
+\end{record}
+
+\begin{obsv}[The value of checking a resemblance]
+\label{obs:resemblance}
+Three separate places in the document had described the two conjectures as
+being of the same analytic type, and one had suggested that proving either
+would deliver the other. That belief was in the record for three sessions and
+would have justified spending effort on whichever looked easier.
+\Sn{44} cost one session and established that the effort would not have
+transferred.
+
+\smallskip
+This is the third instance in this book of the same shape: a session
+commissioned in the hope of a reduction returns a proof that the reduction
+does not exist, and the programme is better off for knowing. \Sn{41} is the
+first, \Sn{38} the second in its own way, and \Sn{44} the third. In none of
+the three did the mathematics get easier; in all three the map got more
+accurate, and in two of the three the correction was in the direction that
+cost the programme something.
+\end{obsv}

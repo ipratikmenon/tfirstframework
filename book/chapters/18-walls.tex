@@ -1,0 +1,567 @@
+% =====================================================================
+%  Chapter 18 — The ten walls
+% =====================================================================
+\chapter{The Ten Walls}
+\label{ch:walls}
+
+\begin{record}
+\textbf{Source.} This chapter reports \texttt{sec:walls-s47}, the walls
+document written in \Sn{47} and amended in \Sn{48}. It occupies lines
+\(10493\)--\(11157\) of the proof document as it now stands.\footnote{The
+commissioning brief for this chapter, and \texttt{PROGRESS.md}, both give the
+range as \(9716\)--\(10348\). Those were the line numbers at \Sn{47}; \Sn{48}
+added \(847\) lines to the document, of which \(777\) fall ahead of this
+section --- and it also rewrote parts (c) and (d) of Wall~2 inside it. The
+label \texttt{sec:walls-s47} is what should be cited, and the line numbers are
+secondary for exactly this reason.}
+
+\smallskip
+\textbf{What a walls document is for.} It is a record, not an argument. Its
+stated purpose is ``so that a later session does not repeat a step already
+proved impossible, and so that the material exists in citable form outside the
+session logs''. Its own scope remark is explicit that it contains no new
+mathematics, that no statement in it is cited as a hypothesis anywhere else,
+and that it may be deleted without altering any proof.
+
+\smallskip
+\textbf{The template.} Every wall carries four parts, and this chapter keeps
+them: \emph{route} (what was attempted, and what it would have delivered),
+\emph{obstruction} (the statement that stops it, by label),
+\emph{classification} (exactly one label), and \emph{consequence} (what the
+wall forbids and what it leaves permitted). The classifications are the
+document's own and are reproduced without softening --- in particular Wall~1
+is \OPEN{}, not \IMPOSSIBLE{}, and Wall~2 is \WITHDRAWN{}.
+\end{record}
+
+\section{Wall 0 --- the \texorpdfstring{\(H^1\)}{H1} Prize claim of \S20--\S22}
+\label{sec:wall0}
+
+\textbf{Route.} A vorticity scale-recursion iterated down scales to give the
+uniform enstrophy cascade bound \(Z(r,z_0)\le D\,r^{2/3}\) for all
+\(u_0\in H^1(\T^3)\), from which Claim~A and ``the Prize for \(u_0\in H^1\)''
+were drawn.
+
+\textbf{Obstruction.} \texttt{sec:audit-s31} (line~5218) records \emph{eight}
+independent defects, not one. They are set out in full in
+Chapter~\ref{ch:audit}; in one line each: (D1) the induction requires \(D\)
+small and its base case requires \(D\) large; (D2) an invalid H\"older triple,
+\(\tfrac13+\tfrac12+\tfrac12>1\); (D3) a reversed Jensen inequality; (D4)
+regularity circularity plus global/local norm mixing; (D5) the Gr\"onwall
+theorem assumes the Beale--Kato--Majda criterion, i.e.\ an equivalent of its
+conclusion; (D6) the two-regime dichotomy needs a viscosity larger than
+universal constants; (D7) the Regime~II ODE conclusion is false, since
+\(\dot M=CM^{5/4}\) blows up in finite time; (D8) unproved coercivity,
+\emph{together with} the false bound \(\norm{\nabla u}_{L^\infty}\le CM\).
+
+\textbf{Classification.} \WITHDRAWN{}. Global regularity for general
+\(u_0\in H^1(\T^3)\) is \textbf{open} in the document.
+
+\textbf{Consequence.} \S20 remains usable only as a \emph{conditional
+small-data} statement, and only after D2--D4 are repaired and the
+superlinearity exponent re-derived. The audit's own survivors list is
+reproduced in Chapter~\ref{ch:inheritance}. And, in the wall's closing clause:
+``Defect~D8 is the first appearance of Wall~1 below; it was already flagged in
+the audit and is the reason the logarithm is not a later regression.''
+
+\section{Wall 1 --- the Calder\'on--Zygmund logarithm}
+\label{sec:wall1}
+
+\textbf{Route.} Every enstrophy-budget estimate from \Sn{33} to \Sn{44}
+controls the vortex stretching by a sup-norm of \(\nabla u\), recovered from
+\(\omega\) by Biot--Savart. Closing any of them requires that sup-norm to cost
+\(O(M)\).
+
+\textbf{Obstruction.} It costs \(M\Lfac\). The factor
+\(\Lfac=\log(e+\norm{u}_{H^3}/M)\) enters at
+\texttt{lem:local-enstrophy-typeI} (line~5701, definition on line~5712)
+through \(\norm{\nabla u}_{L^\infty}\lesssim M\Lfac\), the \(L^\infty\)
+endpoint failure of Biot--Savart. Every budget downstream inherits it, and it
+appears at three distinct closure attempts:
+
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.4em]
+\item \emph{Crude \(K\)-absorption}, \texttt{prop:crude-K} (line~5903): the
+  coupling term re-enters at top order multiplied by \(\Lfac\) --- ``the crude
+  route misses closing the loop by exactly one logarithm''.
+\item \emph{The annulus core}, \texttt{rem:s41-shortfall} (line~8428):
+  absorption requires \(C\Lfac\le\delta\nu\), which fails for fixed \(\nu\) as
+  \(\Lfac\to\infty\); the shortfall is ``exactly the same single logarithm''.
+\item \emph{The corrected band route}, \texttt{prop:s44-linfty-route}
+  (line~9242): both remaining conjectures close if and only if the correlation
+  constant \emph{decays} like \(C_1/\Lfac\); boundedness is not enough, because
+  the hypothesis is used precisely to cancel the \(\Lfac\) the budget carries.
+\end{enumerate}
+
+\textbf{Classification.} \OPEN{}, and structural. \emph{No proof in the
+document says the logarithm cannot be removed.} What the three items establish
+is that it is not a bookkeeping artefact of any one estimate: it is paid once,
+at the point where a sup-norm of a Calder\'on--Zygmund image is taken, and then
+inherited.
+
+\textbf{Consequence.} \emph{Forbidden:} presenting (i)--(iii) as separate
+obstacles to be attacked separately --- they are one obstacle seen three times.
+\emph{Forbidden:} closing any of them with a \emph{boundedness} hypothesis on a
+correlation constant; the required hypothesis is decay. \emph{Permitted:} any
+reformulation in which \(\nabla u\) is not recovered by an \(L^\infty\)
+Calder\'on--Zygmund bound. Two are on record: the profile reformulation, whose
+status is Wall~2 --- and which \Sn{48} showed never incurs the logarithm at
+all; and a symmetry-reduced setting in which \(\nabla u\) is recovered by
+lower-dimensional elliptic problems, which is untested and must be settled by a
+written estimate before anything is built on it.
+
+\begin{obsv}[Wall 1 is the book's most important \OPEN]
+\label{obs:wall1-open}
+It would have been easy, and flattering, to classify this one \IMPOSSIBLE{}.
+Three sessions had run into it independently; each concluded it could not get
+past. But ``three attempts failed'' is not a proof, and \Sn{47} declined to
+promote it. Chapter~\ref{ch:cz-log} is devoted to it, and to why the question
+of whether it can be removed is the sharpest technical question the programme
+has posed.
+\end{obsv}
+
+\section{Wall 2 --- the profile route and hypothesis (R): \texorpdfstring{\WITHDRAWN}{withdrawn}}
+\label{sec:wall2}
+
+This entry was written at \Sn{47} and classified \OPEN{}. \Sn{48} settled
+\textbf{(R)} and the entry is now \WITHDRAWN{}. The document retains the \Sn{47}
+text in parts (a) and (b), because the record is the point of the section, and
+rewrites (c) and (d). This chapter does the same.
+
+\textbf{Route.} Type-I blow-up-profile compactness
+(Chapter~\ref{ch:profile-rigidity}): pass to a rescaled limit \(U\) and work on
+the profile, where \texttt{prop:transfer-audit}(d) (line~6955) states that ``on
+the profile the logarithmic factor \(\Lfac\) may be replaced by an absolute
+constant''. If unconditional, Wall~1 would be removed for every estimate
+transferred to \(U\).
+
+\textbf{Obstruction, as recorded at \Sn{47}.} It was held not to be
+unconditional. \texttt{prop:transfer-audit}(d) was labelled
+\PROVEDMOD{(R)}, and its proof stated the mechanism plainly: ``the CZ step is
+replaced by the interior estimate (R), which is logarithm-free''. Hypothesis
+\textbf{(R)} \emph{is} an assumed log-free gradient bound. On that reading the
+barrier was relocated, not removed.
+
+\textbf{Classification.} \WITHDRAWN{}. The assertion that the barrier is
+``relocated, not removed'' is retracted. \texttt{thm:s48-R} proves
+\textbf{(R)}, and \texttt{cor:s48-transfer-d} proves
+\texttt{prop:transfer-audit}(d) unconditionally. Why the \Sn{47} reading was
+wrong is recorded in \texttt{rem:s48-subcritical} (line~9822): the hypothesis
+actually available on the rescaled family is an \(L^\infty_tL^\infty_x\)
+\emph{velocity} bound --- line~5565 assumes it outright, alongside the
+vorticity bound --- and the pair \(s'=s=\infty\) satisfies \(2/s'+3/s=0<1\),
+the \emph{strict}, subcritical range of Serrin's criterion, where boundedness
+suffices and no smallness is required. \Sn{47} looked for \textbf{(R)} on the
+\(\varepsilon\)-regularity shelf, where the smallness-versus-boundedness
+objection is real; the statement is not on that shelf.
+\texttt{rem:s48-mechanism} corrects the mechanism stated inside
+\texttt{prop:transfer-audit}(d): the logarithm is not \emph{removed} on the
+profile, it is never \emph{incurred}, because the profile route does not pass
+through the Calder\'on--Zygmund operator.
+
+\textbf{Consequence.} \emph{Permitted, and now correct:} describing the profile
+route as logarithm-free without carrying \textbf{(R)}. \emph{Forbidden:}
+reading this withdrawal as removing Wall~1 --- Wall~1 concerns \(u\) on
+\(\T^3\) measured against \(M(t)\), and stands; the closest the result comes to
+it is \texttt{obs:s48-wall1} (line~10400), recorded there as an open item and
+used nowhere. \emph{Forbidden:} reading it as progress on the Prize; Wall~3 is
+unaffected and \textbf{(N)}, \textbf{(N\('\))}, \textbf{(A-up)} and
+\texttt{target:disorder-depletion} are exactly where \Sn{47} left them.
+\emph{The one live successor:} the saturation proviso inside
+\texttt{prop:transfer-audit}(d), which part~(e) uses and which \textbf{(R)}
+never covered. \emph{Also forbidden, permanently:} attempting to weaken the
+standing hypotheses to a vorticity-only Type-I bound ---
+\texttt{prop:s48-bridge-fails} (line~10086) shows the velocity rate cannot be
+recovered from \(\norm{\omega}_{L^\infty}\) and the energy, the interpolation
+exponent being forced to \(3/5\), not \(1/2\).
+
+\section{Wall 3 --- the ceiling is below the Prize}
+\label{sec:wall3}
+
+\textbf{Route.} The alignment pincer of \Sn{32}--\Sn{39}, closed at both horns.
+
+\textbf{Obstruction.} \texttt{rem:s39-distance} (line~7703). If \textbf{(A-up)}
+and \texttt{target:disorder-depletion} were proved and \textbf{(R)},
+\textbf{(N)}, \textbf{(N\('\))} discharged, the conclusion would be \emph{no
+Type-I singularity} --- ``strictly less than the Clay problem''. The reason is
+not a gap but the construction: every estimate uses the Type-I rates, and the
+profile extraction uses them \emph{essentially} --- without
+\(M(t)\lesssim(T-t)^{-1}\) the rescaled family has no uniform bound and there
+is no limit object. ``A Type-II singularity would rescale to nothing, and the
+entire reframe would be vacuous against it.'' Two further reservations:
+\textbf{(N)} restricts the conclusion to non-degenerate points, and the
+surviving target must beat the constant \(1\) exactly --- the marginal pattern
+the \Sn{31} audit identified as where errors hide.
+
+\textbf{Classification.} \OPEN{}, and outside the present methods.
+
+\textbf{Consequence.} \emph{Forbidden:} reading any part of \Sn{33}--\Sn{44} as
+progress on Type-II; the document says so in terms. \emph{Forbidden:} reporting
+a closed pincer as the Prize. \emph{Permitted:} closing the pincer as a Type-I
+exclusion result, provided it is stated as such --- and, in a symmetry class
+where Type-I is already excluded in the literature, only if the prior exclusion
+is cited rather than re-derived.
+
+\begin{obsv}[Wall 3 has just been made concrete]
+\label{obs:wall3-concrete}
+Until \Sn{49}, Wall~3 was a statement about a hypothetical. It is no longer.
+The blow-up profile described in Chapter~\ref{ch:openai} has azimuthal
+component \(u_\vartheta\sim\tau^{-(1/2+h)}\) with \(h>0\), which diverges
+strictly faster than velocity Type-I: it is a \textbf{Type-II} profile. So the
+one explicitly constructed singular geometry now in the literature for a
+Navier--Stokes-type system sits precisely in the regime this programme's
+machinery cannot see. That is recorded because it cuts against the programme,
+and it is the sharpest available illustration of what Wall~3 excludes.
+\end{obsv}
+
+\section{Wall 4 --- level iteration for the annulus residual}
+\label{sec:wall4}
+
+\textbf{Route.} \texttt{rem:level-iteration} proposed absorbing the annulus
+residual by a nested family of level cutoffs \(\chi_k\) with Young parameters
+\(\delta_k=\delta_08^{-k}\), on the ``geometric beats geometric'' principle.
+
+\textbf{Obstruction.} Three propositions in \texttt{sec:annulus-s41}, each
+independent of the others: \texttt{prop:s41-\allowbreak{}nocontraction} (line~8189), the
+recursion never contracts, \(\Lambda_k\ge2^84^k>1\) for every sequence
+\((\delta_k)\); \texttt{prop:s41-vacuous} (line~8224), the unrolled inequality
+is implied by \(Y_0\le Y_0\); \texttt{prop:s41-coarea} (line~8303), by a
+co-area identity the residual produced by \emph{any} admissible cutoff is a
+level density of the underlying measure, so no cleverer choice of levels exists
+to be found. Chapter~\ref{ch:annulus} gives all three.
+
+\textbf{Classification.} \IMPOSSIBLE{} for the route, and \SUPERSEDED{} as a
+target: \texttt{target:band-absorption} (line~8468) is stated as ``the
+replacement for \texttt{rem:level-iteration}'' and is itself \OPEN{}.
+
+\textbf{Consequence.} \emph{Forbidden:} any further attempt to close the
+annulus residual by choosing levels, cutoffs or Young parameters. What would
+actually have to be proved is \texttt{rem:s41-endtarget} (line~8442), which
+stresses that the absorbed term must carry \emph{the same} cutoff \(\eta\) as
+the left-hand side --- ``this, not the value of any constant, is what defeats
+the nested scheme'' --- and that one admissible level pair suffices, so the
+difficulty is analytic and not combinatorial. This wall is what reclassified
+\(\Aann\) from \emph{open-mechanical} to \emph{open}.
+
+\section{Wall 5 --- \texorpdfstring{\(c_K\)}{c\_K} and band absorption are not the same hypothesis}
+\label{sec:wall5}
+
+\textbf{Route.} The document had described \texttt{conj:K-refined} and
+\texttt{target:band-absorption} as ``of the same analytic type'', with the hope
+that proving one would deliver the other, or that the apparently absolute
+constants of the band statement made it the weaker target.
+
+\textbf{Obstruction.} \texttt{sec:relation-s44} settles both hopes negatively:
+disjoint supports (\texttt{rem:s44-disjoint}, line~8771); counterexamples both
+ways (\texttt{prop:s44-b-fails}, line~8879; \texttt{prop:s44-a-fails},
+line~8980); and the strength claim inverted
+(\texttt{rem:s44-corrigendum}, line~8741). Chapter~\ref{ch:non-implication}
+gives all four.
+
+\textbf{Classification.} \IMPOSSIBLE{} for the implication, \emph{in a
+precisely bounded sense}, and \WITHDRAWN{} for the strength claim. The bound on
+the sense is in the document, not added here: by \texttt{rem:s44-scope}
+(line~8855) an admissible test configuration need not come from a solution of
+Navier--Stokes, so the two propositions do \emph{not} establish that the
+conjectures are independent as statements about Navier--Stokes solutions ---
+``that question is not decidable by any argument available here''. What is
+proved is that no implication can be derived from the a priori budgets and
+pointwise structure (A1)--(A3) in terms of which both are phrased.
+
+\textbf{Consequence.} \emph{Forbidden:} treating a proof of either conjecture
+as progress on the other. \emph{Permitted:} \texttt{conj:lc-s44} (line~9445),
+the single hypothesis (LC) that covers both \(Y\)-halves. Its exact position is
+easy to misstate: (LC) is \emph{verbatim} the \(c_K\) hypothesis --- same
+normalisation, same \(1/\Lfac\) decay --- asserted on the \emph{larger} region
+\(\{m\ge M/16\}\); by \texttt{rem:s44-lc-reading} it implies neither
+\texttt{conj:K-refined} nor conversely, and is ``a genuinely new hypothesis of
+an old form''. It is weaker than the alternative common hypothesis (JLE-1) in
+the regime that matters, not weaker than \texttt{conj:K-refined}. Neither the
+angular half nor the constant condition \(CC_1\le\delta\nu\) is covered by any
+of them.
+
+\section{Wall 6 --- the \texorpdfstring{\(c_K\)}{c\_K} numerics cannot discriminate}
+\label{sec:wall6-walls}
+
+\textbf{Route.} Measure \(c_K\) in direct numerical simulation and use the
+result as evidence for or against \texttt{conj:K-refined}. Four sessions did
+so: \Sn{34}, \Sn{35}, \Sn{42}--\Sn{43}, \Sn{45}.
+
+\textbf{Obstruction.} The measurement is uninformative for a logical reason,
+independent of what any run reports.
+
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.4em]
+\item \texttt{conj:K-refined} and \texttt{conj:lc-s44} are \emph{conditional}
+  statements: each asserts a bound near a putative Type-I singularity, in the
+  limit \(\Lfac\to\infty\). A solver that remains globally regular is never in
+  that regime, so neither the conjecture nor its negation predicts anything
+  about the numbers such a solver produces. Both predict the same thing ---
+  nothing --- and a measurement that both sides of a disjunction predict
+  cannot separate them.
+\item \texttt{prop:regime-A-\allowbreak{}impossible} (line~6514) removes the one reading
+  under which a regular run could still have served as a proxy. At a genuine
+  blow-up time \(\limsup_{t\to T^-}\Omega(t)=\infty\); a resolved simulation is
+  a bounded-enstrophy object throughout. So the regime the conjectures speak
+  about is not merely one the runs did not visit; it is not of the type a
+  resolved run represents, and the decay is not something such a run could
+  exhibit.
+\item Independently, \texttt{rem:s44-numerics} (line~9396) states that the
+  \(O(1)\) measurements of \Sn{34}--\Sn{35} are ``consistent with, but do not
+  establish'' either conjecture, that a measured \(c_K\approx1\) does
+  \emph{not} support \(\Xi=O(1)\) after the \Sn{44} correction, and that the
+  discrepancy is worst exactly in the thin, filamentary configurations expected
+  near a singularity.
+\end{enumerate}
+
+\textbf{Classification.} \IMPOSSIBLE{} as a test of the conjectures. The ground
+is (i)--(ii), an observation about the \emph{form} of the statements; no new
+mathematics is required for it, and it does not depend on resolution, viscosity
+or initial condition. The diagnostic suite itself is \OPEN{} and valid for
+other purposes.
+
+\textbf{Consequence.} \emph{Forbidden:} measuring \(c_K\),
+\(c_K^{\mathrm{band}}\) or the band ratios again \emph{as evidence} for or
+against those conjectures; they may be computed as context. \emph{Permitted:}
+measurements whose answer differs between competing mechanisms \emph{in a
+regular flow} --- questions about a mechanism, not proxies for blow-up. The
+\Sn{45} data are fenced in the document inside a paragraph marked ``outside
+this document'', with the explicit note that they do not refute the conjecture
+and that no statement in the document rests on them.
+Chapter~\ref{ch:numerical-lessons} is about this wall.
+
+\section{Wall 7 --- the \texorpdfstring{\Sn{35}}{S35} second good term does not exist}
+\label{sec:wall7}
+
+\textbf{Route.} \texttt{prop:K-self} (line~6026), \emph{provisional} as stated,
+recorded an identity with \emph{two} good terms on the left: the \(K\)-density
+and, additionally, the critical quadratic with a favourable weight, presented
+as reinforcing the second rung.
+
+\textbf{Obstruction.} \texttt{lem:w2-cancel} (line~6166): the \(+\nu w\ehat\)
+term of the direction equation contributes exactly \(+\nu w^2\) to
+\(\tfrac12\Dt w\), which cancels the sink \(-\nu\iint m^2w^2\eta^2\)
+\emph{identically}.
+
+\textbf{Classification.} \WITHDRAWN{}, and repaired. The \(K\)-control
+conclusion stands with amended constants; the critical quadratic is handled
+solely by \texttt{prop:second-rung}, which suffices, so no downstream
+conclusion depended on the cancelled term.
+
+\textbf{Consequence.} \emph{Forbidden:} citing the identity in its original
+two-term form, or invoking the \(w^2\) term as an independent source of
+smallness. ``This is the smallest of the walls and is recorded because it is
+one of three instances --- with Wall~5(iii) and the corrigendum of \Sn{34} ---
+of the same failure mode: a favourable statement written down before the
+computation producing it was closed.'' Note also
+\texttt{rem:if-verified}: if couplings C1--C2 verified in full,
+\texttt{conj:K-refined} would become \emph{unnecessary}. That conditional
+remains conditional.
+
+\section{Wall 8 --- localized Constantin--Fefferman does not transfer to profiles}
+\label{sec:wall8}
+
+\textbf{Route.} Carry the H2 / Regime-B analysis of \Sn{37}, whose engine is
+\texttt{prop:localized-cf} (line~6381), across the rescaling limit onto the
+Type-I profile \(U\), so that the \Sn{39} reframe inherits it.
+
+\textbf{Obstruction.} \texttt{rem:s39-nontransfer}(i) (line~7045): the
+far-field step bounds
+\(\int_{\abs{y}\ge\rho'}\abs{\omega(x^*-y)}\abs{y}^{-3}\dee y\) by
+\(C(\rho')^{-3/2}\Omega^{1/2}\) with \(\Omega=\norm{\omega}_{L^2}^2\), and for
+\(U\in\mathcal{A}(c_I)\) on \(\R^3\) there is no reason for
+\(\norm{\omega_U(\cdot,s)}_{L^2(\R^3)}\) to be finite; the naive substitute
+\(\abs{\omega_U}\le M_U\) makes the integral logarithmically divergent at large
+\(\abs{y}\). ``The entire H2/Regime-B analysis is unavailable on the profile as
+written.''
+
+\textbf{Classification.} \IMPOSSIBLE{} \emph{as written} --- the obstruction is
+a divergence, not a missing estimate. Whether some localized substitute exists
+on \(\R^3\) is \OPEN{} and untried.
+
+\textbf{Consequence.} \emph{Forbidden:} ``Any future session that uses
+\texttt{prop:localized-cf} on a profile is in error.'' The companion
+prohibition, \texttt{rem:s39-nontransfer}(ii), is equally binding and easier to
+violate by accident: the Bridge Lemma may \emph{not} be pulled back, because
+\texttt{lem:sigma-semicontinuity} gives semicontinuity in the wrong direction
+and \(\sstar(U)=0\) does not give \(\sstar(u_{\lambda_j})\to0\). Any argument
+that routes a profile conclusion back through H1 on the approximating sequence
+is invalid; the \Sn{39} dichotomy is built to obtain its contradiction entirely
+on \(U\) for exactly this reason.
+
+\section{Wall 9 --- forced blow-up constructions cannot be de-forced}
+\label{sec:wall9}
+
+This entry is recorded \emph{outside the mathematics} of the proof document.
+It carries no label there because no part of the document uses it; it is
+included because it bounds what future sessions may import. Its source is the
+\Sn{40} session log.
+
+\textbf{Route.} Import the mechanism of a published finite-time blow-up
+construction for the \emph{forced} Navier--Stokes equations --- an axisymmetric
+anisotropic self-similar collapsing vortex core, with
+\(\ell_r\asymp\tau^{1/2}\), \(\ell_z\asymp\tau^{1/2-h}\) and
+\(\mathrm{Re}_\vartheta\to\infty\) while \(\mathrm{Re}_r=O(1)\) --- by deleting
+the forcing term, and read the result against the Prize equations.
+
+\textbf{Obstruction.} The forcing is load-bearing at three separate points of
+that construction, not decorative: an exponentially small external force seeds
+each oscillatory pulse; what remains of the momentum residual after pulse
+cancellation \emph{becomes} part of \(f\); and the compact-support cutoff
+introduces a further force term. The forcing is \emph{defined} as the
+Navier--Stokes residual of the constructed field. Setting \(f\equiv0\) is
+therefore not a simplification of the construction but a different question,
+which the source does not claim to answer.
+
+\textbf{Classification.} \IMPOSSIBLE{} as an import route --- there is nothing
+to de-force, since the residual is the forcing by construction. The underlying
+blow-up question for the unforced equations is of course \OPEN{}; that is the
+Prize.
+
+\textbf{Consequence.} \emph{Forbidden:} forcing terms, modified equations and
+``weak internal forces'' as mechanisms anywhere in this programme;
+\emph{forbidden:} reading a forced blow-up result as evidence about the
+unforced equations in either direction. \emph{Permitted:} the \emph{geometry}
+of such constructions as a source of adversarial initial data for the unforced
+solver, which is how \texttt{layer3/aniso\_collapse\_IC.py} was built and fed
+to an unmodified \(f\equiv0\) solver. The one substantive observation, recorded
+as an observation and not as evidence: sustaining that anisotropic collapse
+against dissipation required an externally injected, precisely tuned force.
+
+\begin{record}
+\textbf{Wall 9's framing needs one correction, made at \Sn{49}.} The wall as
+written adds, after the classification, that ``in Fefferman's formulation the
+result establishes alternatives (C) and (D), not (A)/(B)''. That sentence is
+accurate, but it was read in \Sn{40} and \Sn{47} as though it were itself the
+reason the work does not bear on this programme. It is not.
+
+\smallskip
+Alternatives (C) and (D) are Prize-eligible; Fefferman offered them
+deliberately, ``to give reasonable leeway to solvers while retaining the heart
+of the problem''. A correct proof of (C) wins the Millennium Prize. The reason
+the work does not bear on this programme is the stronger and simpler one:
+\textbf{(A) and (C) are not mutually exclusive}. Unforced global regularity
+and forced breakdown can both be true, and most experts expect exactly that.
+The landscape as of \Sn{49} --- two separate efforts, with different systems
+and different claims --- is set out in Chapter~\ref{ch:openai},
+\S\ref{sec:s49-two-strands}, which supersedes the \Sn{40} reading this wall was
+built on. Wall~9's \emph{prohibition} is unaffected: the forcing still cannot
+be deleted, and the geometry may still be borrowed.
+\end{record}
+
+\section{The status table}
+\label{sec:walls-table}
+
+{\footnotesize
+\begin{longtable}{@{}l >{\raggedright\arraybackslash}p{0.27\textwidth} >{\raggedright\arraybackslash}p{0.30\textwidth} >{\raggedright\arraybackslash}p{0.24\textwidth}@{}}
+\caption[The walls, with classifications]{The walls document's own status
+table, reproduced with the \Sn{48} amendment to row~2 and no other change.
+Four walls carry \IMPOSSIBLE{}, and every one of the four is
+\emph{qualified} --- for a route, over a structure, as a test, or as an
+import.}
+\label{tab:walls}\\
+\toprule
+\# & Route & Classification & Primary reference \\
+\midrule
+\endfirsthead
+\toprule
+\# & Route & Classification & Primary reference \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+0 & \S20--\S22 \(H^1\) Prize claim & \WITHDRAWN{} (8 grounds)
+  & \texttt{sec:audit-s31} \\
+1 & Sup-norm of a CZ image; crude \(K\) & \OPEN{} (structural)
+  & \texttt{prop:crude-K} \\
+1\('\) & \quad same log, annulus core & \OPEN
+  & \texttt{rem:s41-shortfall} \\
+1\(''\) & \quad same log, corrected band & \OPEN{}; needs \emph{decay}
+  & \texttt{prop:s44-\allowbreak{}linfty-route} \\
+2 & Profile route as log-free & \WITHDRAWN{} at \Sn{48}; (R) proved
+  & \texttt{thm:s48-R}, \texttt{cor:s48-\allowbreak{}transfer-d} \\
+3 & Pincer closed \(\Rightarrow\) Prize & \OPEN{}; ceiling is Type-I only
+  & \texttt{rem:s39-distance} \\
+4 & Nested level iteration & \IMPOSSIBLE
+  & \texttt{prop:s41-\allowbreak{}nocontraction} \\
+4\('\) & \quad unrolled form & \IMPOSSIBLE{} (vacuous)
+  & \texttt{prop:s41-vacuous} \\
+4\(''\) & \quad any level selection & \IMPOSSIBLE{} (co-area)
+  & \texttt{prop:s41-coarea} \\
+4\('''\) & \quad replacement target & \SUPERSEDED{}; \OPEN
+  & \texttt{target:band-\allowbreak{}absorption} \\
+5 & \(c_K\Rightarrow\) band absorption
+  & \IMPOSSIBLE{} over (A1)--(A3) & \texttt{prop:s44-a-fails} \\
+5\('\) & band absorption \(\Rightarrow c_K\)
+  & \IMPOSSIBLE{} over (A1)--(A3) & \texttt{prop:s44-b-fails} \\
+5\(''\) & \quad scope of 5, 5\('\)
+  & Test configurations, \emph{not} NS solutions & \texttt{rem:s44-scope} \\
+5\('''\) & band is the weaker target & \WITHDRAWN{} (lemma inverted)
+  & \texttt{rem:s44-corrigendum} \\
+5\('''\,'\) & common hypothesis (LC) & \OPEN{}; covers both \(Y\)-halves
+  & \texttt{conj:lc-s44} \\
+6 & \(c_K\) numerics as evidence & \IMPOSSIBLE{} (logical)
+  & \texttt{prop:regime-A-\allowbreak{}impossible} \\
+6\('\) & \quad in-document assessment & Consistent with, does not establish
+  & \texttt{rem:s44-numerics} \\
+7 & \Sn{35} second good term & \WITHDRAWN{} (exact cancellation)
+  & \texttt{lem:w2-cancel} \\
+8 & Localized CF on profiles & \IMPOSSIBLE{} (\(\Omega=\infty\))
+  & \texttt{rem:s39-\allowbreak{}nontransfer}(i) \\
+8\('\) & Pull-back of H1 to the sequence
+  & Forbidden (no reverse inequality) & \texttt{rem:s39-\allowbreak{}nontransfer}(ii) \\
+9 & De-forcing a forced blow-up & \IMPOSSIBLE{} as an import
+  & \Sn{40} log (outside the document) \\
+\end{longtable}}
+
+\section{Two remarks the document closes with}
+\label{sec:walls-closing}
+
+\subsection{The handover corrigenda}
+
+\texttt{rem:s47-handover-corrigenda} records that the execution plan which
+commissioned the walls document states two things the document does not
+support, and that the document governs.
+
+\begin{enumerate}[label=(\roman*),leftmargin=2.4em]
+\item It refers to ``the S31 audit (all seven grounds)''.
+  \texttt{sec:audit-s31} lists \textbf{eight}, D1--D8. D8 is the one most
+  easily dropped from a summary and is also the first appearance of Wall~1, so
+  the omission is not neutral.
+\item It describes \texttt{conj:lc-s44} as ``a common \emph{weaker} target''.
+  By \texttt{rem:s44-lc-reading} it neither implies nor is implied by
+  \texttt{conj:K-refined}.
+\end{enumerate}
+
+A third statement is correct but routinely rounded off: the \Sn{44}
+non-implications are proved over (A1)--(A3), \emph{not} for Navier--Stokes
+solutions. ``\emph{Proved independent} without that qualifier overstates
+them.''
+
+\subsection{What the section does not do}
+
+\begin{record}
+\texttt{rem:s47-scope}, quoted. ``It does not assess whether any wall can be
+broken, and it contains no encouragement to try. Walls~1, 2, 3 and
+5\('''\,'\) are open questions with no proof against them; Walls~4, 6, 8 and 9
+carry proofs, and the proofs are in the propositions cited, not here. Nothing
+in this section bears on H2, on \(\sstar\)-decay, on hypothesis \textbf{(R)},
+on gap \textbf{(A-up)}, on the withdrawn material of \S20--\S22, or on any
+Prize or Claim~A conclusion, all of which retain the status they had before it
+was written.''
+
+\smallskip
+One item in that list has since moved: hypothesis \textbf{(R)} is now a
+theorem, and Wall~2 is withdrawn in consequence. The rest stand.
+\end{record}
+
+\begin{obsv}[What the shape of the wall list says]
+\label{obs:wall-shape}
+Ten walls. Three are \WITHDRAWN{} claims of the programme's own --- an entire
+Prize claim, a relocated barrier, a cancelled term. Four are \IMPOSSIBLE{},
+each qualified, and three of those four were produced by sessions
+commissioned to do the opposite. Two are \OPEN{} and structural, and one of
+those --- Wall~3 --- is not a difficulty at all but a limit on what the
+construction can conclude even if everything works.
+
+\smallskip
+Only one wall, Wall~1, is a live technical problem in the ordinary sense: a
+thing that might yield to an idea. That is why it has a chapter of its own.
+\end{obsv}

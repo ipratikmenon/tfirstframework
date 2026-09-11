@@ -1,0 +1,458 @@
+% =====================================================================
+%  Appendix A3 — Glossary
+% =====================================================================
+\chapter{Glossary of Symbols and Named Objects}
+\label{ch:glossary}
+
+\begin{record}
+Every symbol and named object used in this book, with the place it is defined
+in the proof document where one exists. Line numbers are as of \Sn{48} and are
+secondary; labels are primary and stable.
+
+\smallskip
+Two conventions recur and are worth stating here rather than repeating. A
+\emph{hypothesis} in bold parentheses --- \textbf{(R)}, \textbf{(N)},
+\textbf{(A-up)} --- is an assumption carried explicitly in a statement's
+hypothesis list. A \texttt{conj:} or \texttt{target:} label is an
+\OPEN{} statement the programme would like to prove and has not.
+\end{record}
+
+\section{Fields and scalars}
+\label{sec:a3-fields}
+
+{\footnotesize
+\begin{longtable}{@{}l p{0.30\textwidth} p{0.46\textwidth}@{}}
+\caption[Fields and scalars]{The programme's field variables and derived
+scalars. \(T\) and \(A(T)\) belong to the founding thesis and do not appear in
+the later analytical work; everything from \(m\) downward is used constantly
+from \Sn{32} on.}
+\label{tab:a3-fields}\\
+\toprule
+Symbol & Name & Meaning and where defined \\
+\midrule
+\endfirsthead
+\toprule
+Symbol & Name & Meaning and where defined \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\(u\) & velocity & The Prize variable. Divergence-free throughout;
+  \(\rho=\mathrm{const}\) \\
+\(p\) & pressure & Recovered from \(u\) by an elliptic problem; eliminated
+  entirely in the direction-field framework \\
+\(\omega\) & vorticity & \(\omega=\nabla\times u\) \\
+\(T(x,t)\) & temperature & The founding thesis's master variable: a
+  \emph{scalar}, so the strong maximum principle applies. Route~1 only;
+  absent from the proof document's mathematics
+  (Chapter~\ref{ch:origin}, \S\ref{sec:where-thesis-went}) \\
+\(A(T)\) & thermal diffusivity & \(k(T)/(\rho c_v)\), required strictly
+  positive by the second law. Measured as \(A_{\min}\) in every Layer-2 and
+  Layer-3 run; always \(>0\) \\
+\(\mu(T)\) & dynamic viscosity & \(\mu_0(T/T_0)^{3/2}\) in Route~1; the
+  Prize equations are recovered as \(\mu(T)\to\nu\) \\
+\(k(T)\), \(c_v\), \(\rho\) & conductivity, specific heat, density
+  & Thermophysical inputs; \(\rho\) constant in Route~1 \\
+\(\theta\) & the auxiliary scalar & Route~2:
+  \(\partial_t\theta+u\cdot\nabla\theta=\nu\Delta\theta+\nu\abs{\nabla u}^2\),
+  \(\theta(\cdot,0)=0\). \emph{This} is the scalar the proof document actually
+  uses \\
+\(\mu_{\mathrm{eff}}\) & effective viscosity & Route~2:
+  \(\nu+\varepsilon f(\theta)\); the Prize equations are recovered as
+  \(\varepsilon\to0\), and every measurement found the results
+  \(\varepsilon\)-independent \emph{including at} \(\varepsilon=0\) \\
+\(m\) & vorticity magnitude & \(m=\abs{\omega}\) \\
+\(\ehat\) & vorticity direction & \(\ehat=\omega/\abs{\omega}\), defined where
+  \(\omega\ne0\). Singular on \(\{\omega=0\}\), which is why every estimate is
+  localised to a high-vorticity set \\
+\(w\) & angular energy density & \(w=\abs{\nabla\ehat}^2\). The quantity the
+  Moser iteration of H1 is run on \\
+\(\alpha\) & stretching rate & \(\alpha=\ehat\cdot S\ehat\), with \(S\) the
+  strain tensor. \(\tfrac{\dee}{\dee t}\log M=\alpha(x^*,t)\) at the maximum \\
+\(M(t)\) & vorticity maximum & \(\norm{\omega(\cdot,t)}_{L^\infty}\) \\
+\(M_U(s)\) & profile vorticity maximum & the same for an ancient profile \(U\) \\
+\(\Omega(t)\) & enstrophy & \(\norm{\omega(\cdot,t)}_{L^2}^2\). Bounded in
+  Regime~A, \(\sim M^{1/2}\) in Regime~B; \(\limsup\Omega=\infty\) at any
+  genuine blow-up \\
+\(U\) & the ancient profile & The \(C^\infty_{\mathrm{loc}}\) limit of the
+  rescaled family, in the class \(\mathcal{A}(c_I)\) on
+  \(\R^3\times(-\infty,0)\) \\
+\(\Phi(\tau)\) & log-time amplitude & \(\abs{s}M_U(s)\in(0,c_I]\) with
+  \(\tau=\log\abs{s}\); bounded over infinite \(\tau\)-length, which is what
+  \texttt{prop:logtime-necessary} exploits \\
+\end{longtable}}
+
+\section{Scales, regions and sets}
+\label{sec:a3-regions}
+
+{\footnotesize
+\begin{longtable}{@{}l p{0.28\textwidth} p{0.48\textwidth}@{}}
+\caption[Scales, regions and sets]{The geometry the later estimates live on.
+The disjointness of \(E\) and \(\Band\) is the content of Wall~5.}
+\label{tab:a3-regions}\\
+\toprule
+Symbol & Name & Meaning \\
+\midrule
+\endfirsthead
+\toprule
+Symbol & Name & Meaning \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\(\rstar\) & the self-similar scale & \(\rstar=M^{-1/2}\). The unique scale at
+  which the direction equation is marginal (\texttt{rem:marginality},
+  line~5443) \\
+\(x^*\) & the working point & a point with \(\abs{\omega(x^*)}\ge M/2\) \\
+\(Q(\rstar)\) & the working cylinder &
+  \(B_{\rstar}(x^*)\times[t_0-(\rstar)^2,t_0]\) \\
+\(E\) & the bulk region & \(Q(\rstar)\cap\{m\ge M/4\}\). Where
+  \texttt{conj:K-refined} lives \\
+\(\Band\) & the transition band &
+  \(\{\theta_-M\le m\le\theta_+M\}\cap\operatorname{supp}\psi\) with
+  \(\tfrac1{16}\le\theta_-<\theta_+\le\tfrac14\). Where
+  \texttt{target:band-absorption} lives. \(E\) and \(\Band\) meet only on a
+  null level set \\
+\(\mathrm{Ann}\) & the annulus & \(\{M/8\le\abs{\omega}\le M/4\}\), the default
+  band of \texttt{def:annulus-residual} (line~6234) \\
+\(\Aann\) & the annulus residual & the cutoff-derivative terms supported on
+  \(\mathrm{Ann}\), carrying \emph{incomplete} weights \(\psi\abs{\chi'}\).
+  Eight families, six disposed of, two surviving (S1, S2) \\
+\(\eta,\psi,\chi\) & the composite cutoff & \(\eta=\psi(x,t)\chi(m/M)\): a
+  space--time cutoff times a level-set cutoff in \(\abs{\omega}\) \\
+\(\mathcal{A}(c_I)\) & the ancient Type-I class & scaling-closed with the same
+  constant (\texttt{lem:typeI-scaleinv-bounds}, line~6729) \\
+\(\Lambda_\lambda\) & the rescaled torus & \(\lambda^{-1}\T^3\), the domain of
+  \(u_\lambda\) \\
+\end{longtable}}
+
+\section{The programme's own quantities}
+\label{sec:a3-quantities}
+
+{\footnotesize
+\begin{longtable}{@{}l p{0.28\textwidth} p{0.48\textwidth}@{}}
+\caption[The programme's own quantities]{The scalars the later programme
+invented, and the one it inherited. \(\sstar\) and \(\Lfac\) are the two most
+important symbols in this book.}
+\label{tab:a3-quantities}\\
+\toprule
+Symbol & Name & Meaning and status \\
+\midrule
+\endfirsthead
+\toprule
+Symbol & Name & Meaning and status \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\(\sigma\) & the \Sn{30} coherence quantity & \(A_{\mathrm{loc}}/M^{3/2}\); the
+  exponent \(3/2\) is the unique fixed point of the NS scaling group. One of
+  the two objects that survived the \Sn{31} audit \\
+\(\sstar\) & \textbf{the coherence deficit} &
+  \((\rstar)^{-1}\int_{B_{\rstar}(x^*)}\abs{\nabla\ehat}^2
+   \mathbf 1_{\{\abs{\omega}\ge M/4\}}\dee x\)
+  (\texttt{def:sigma-star}, line~5393). Exactly scale-invariant.
+  \(\sstar\sim1\) is borderline Constantin--Fefferman coherence, so
+  \(\sstar\ll1\) is \emph{better} than borderline.
+  \(\sstar\le16\sigma\) (\texttt{prop:sigma-controls}, line~5424) \\
+\(\langle\sstar\rangle\) & the averaged deficit &
+  \((\rstar)^{-3}\iint_{Q(\rstar/2)}w\,\mathbf 1_{\{\abs{\omega}\ge M/2\}}\);
+  bounded a priori by \(C(C_I)\Lfac/\nu\)
+  (\texttt{thm:apriori-sigma}, line~5873) \\
+\(\varepsilon_0\) & the smallness threshold & the value of \(\sstar\) below
+  which H1 is asserted to apply \\
+\(\Lfac\) & \textbf{the CZ logarithm} & \(\log(e+\norm{u}_{H^3}/M)\), defined
+  at line~5712. Arrives with
+  \(\norm{\nabla u}_{L^\infty}\lesssim M\Lfac\), the \(L^\infty\) endpoint
+  failure of Biot--Savart. Wall~1. Chapter~\ref{ch:cz-log} \\
+\(K\) & the coupling term & the \(\abs{\nabla m}^2\)-weighted quantity that
+  must be absorbed for H1 to close. \texttt{prop:K-amended} bounds it modulo
+  \(\Aann\) \\
+\(c_K\) & the decorrelation constant &
+  \(\langle\abs{\nabla m}^2w\rangle_E/
+   (\langle\abs{\nabla m}^2\rangle_E\langle w\rangle_E)\).
+  \texttt{conj:K-refined} asks \(c_K\le C/\Lfac\). Measured
+  \(0.92\)--\(2.24\) in every run; see Wall~6 \\
+\(c_K^{\mathrm{band}}\) & the band correlation constant & the same statistic on
+  \(\Band\). \texttt{prop:s44-linfty-route} needs
+  \(c_K^{\mathrm{band}}\le C_1/\Lfac\) \\
+\(\Xi\) & the volume-normalised excess & \(\Xi[\varpi]=c_K[\varpi]\,
+  \abs{Q(\rstar)}/\abs{R}\ge c_K[\varpi]\) for \(\varpi\) supported in \(R\)
+  (\texttt{lem:s44-xi-vs-cK}, line~8700). \emph{Strictly stronger} than the
+  correlation bound. The reciprocal form was recorded once and withdrawn \\
+\(\theta\) (exponent) & the depletion exponent & in
+  \(\alpha\le CM^{1/2+\theta}\); H2 needs \(\theta<1/2\). Regime~A gives
+  \(2/5\), Regime~B gives exactly \(1/2\) \\
+\(\lambda\) & the Wang scaling parameter & the self-similar profile family's
+  parameter. Sweep values \(\{1.2,\,0.9,\,0.6057,\,0.4703,\,0.3,\,0.1\}\) \\
+\(\lambda_c\) & the hypothetical threshold & the value at which \(\mu(T)\)
+  scaling would fail to defeat self-similar blow-up. Conjecture~3.5 says none
+  exists; the M3 sweep found none \\
+\(\lambda\) (rescaling) & the compactness parameter & unrelated to the above:
+  the scale in \(u_\lambda(y,s)=\lambda u(x^*+\lambda y,T+\lambda^2s)\) \\
+\(\delta_0\) & the Claim-A exponent & the integrability gain
+  \(\nu\abs{\nabla u}^2\in L^{1+\delta_0}\). Any \(\delta_0>0\) gives
+  smoothness by \texttt{thm:routeC}. No session ever produced one \\
+\(\delta\) & the measured \(\delta\)-gain & the Layer-3/4 diagnostic;
+  \(\delta_{\max}=1.50\) for Taylor--Green at every \(\varepsilon\) including
+  zero \\
+\(E_0,E_1,E_2\) & the energy hierarchy & the \(L^2\), \(H^1\) and \(H^2\)
+  levels. \(E_1\) is the level at which \texttt{gronwall\_fitter.py} extracts
+  a damping constant \\
+\(\Gamma(r)\) & local gradient concentration & the \S15--\S16 quantity; the
+  hierarchy Prodi--Serrin \(\Rightarrow\) \(\Gamma\le Cr^\beta\)
+  \(\Rightarrow\) Claim~A. \texttt{EXP-L4-GAM-ADV-001} tests it and is
+  misread if taken as a test of the conjecture \\
+\(S_{ij},\tau_{ij}\) & strain and viscous stress & downstream of \(u\); never
+  primary variables \\
+\(C_I,c_I\) & the Type-I constants & in \(M(t)\le C_I/(T-t)\) and
+  \(\sup\abs{u}\le C_I(T-t)^{-1/2}\), and their scale-invariant counterpart on
+  the profile \\
+\end{longtable}}
+
+\section{Named hypotheses}
+\label{sec:a3-hypotheses}
+
+{\footnotesize
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.42\textwidth} >{\raggedright\arraybackslash}p{0.30\textwidth}@{}}
+\caption[Named hypotheses]{The assumptions carried explicitly in statement
+hypothesis lists. One of the six has been discharged.}
+\label{tab:a3-hyp}\\
+\toprule
+Name & Statement & Status \\
+\midrule
+\endfirsthead
+\toprule
+Name & Statement & Status \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\textbf{Type-I} & \emph{Both} \(M(t)\le C_I/(T-t)\) \emph{and}
+  \(\sup_{\T^3}\abs{u(\cdot,t)}\le C_I(T-t)^{-1/2}\), assumed outright at
+  line~5565
+  & Standing hypothesis of \S33 onward. The velocity half cannot be derived
+    from the vorticity half (\texttt{prop:s48-bridge-fails}) \\
+\textbf{H1} & the Bridge Lemma: averaged coherence upgrades to pointwise,
+  \(\norm{\nabla\ehat}_{L^\infty}\le C_B/\rstar\) given \(\sstar\le\varepsilon_0\)
+  (\texttt{conj:bridge}, line~5466)
+  & \OPEN{}. Estimate layer proved except \(\sstar\le\varepsilon_0\) and
+    \(\Aann\) \\
+\textbf{H2} & localized Constantin--Fefferman: pointwise coherence gives
+  \(\alpha\le CM^{1/2+\theta}\), \(\theta<1/2\)
+  & \OPEN{}. In the generic regime it \emph{is} \(\sstar\)-decay
+    (\texttt{cor:unification}) \\
+\textbf{(R)} & scale-uniform interior regularity of the rescaled family,
+  \(\norm{\nabla^ku_\lambda}_\infty\le C_k(c_I)(1+R)S_1^{-(k+1)/2}\)
+  & \PROVED{} at \Sn{48} (\texttt{thm:s48-R}), in a stronger form and without
+    the \((1+R)\) factor \\
+\textbf{(N)} & non-degeneracy: the singularity's strength does not escape the
+  rescaling window, so the limit is nontrivial
+  & \OPEN{}, assumed. Needs a Type-I-improved \(\varepsilon\)-regularity
+    theorem \\
+\textbf{(N\('\))} & the nontriviality input for the \emph{second} compactness
+  extraction, in \texttt{prop:two-step-reduction}
+  & \OPEN{}, assumed \\
+\textbf{(A-up)} & the global alignment upgrade: local one-time one-component
+  alignment \(\Rightarrow\) global \(\omega\parallel e_0\) on
+  \(\R^3\times(-\infty,0)\)
+  & \OPEN{} --- the largest gap \Sn{39} created \\
+\textbf{saturation} & \(M_U(s)\gtrsim\abs{s}^{-1}\) for all \(s<0\) (profile),
+  or \(M(t)\gtrsim(T-t)^{-1}\) (torus): the Type-I \emph{upper} bound matched
+  below
+  & \OPEN{}. Named only at \Sn{48}. The common requirement of both branches
+    and the sharpest live target \\
+\textbf{(NB)}, \textbf{(NB-E)} & volume lower bounds
+  \(\abs{\Band}\ge\kappa_1\abs{Q(\rstar)}/\Lfac\) and
+  \(\abs{E}\ge\kappa_2\abs{Q(\rstar)}/\Lfac\)
+  & (NB-E) comfortably satisfied in measurement; (NB) tight, and
+    \textbf{failed outright} in one run \\
+\textbf{(A1)--(A3)} & the admissible test configuration structure
+  (\texttt{def:s44-config}, line~8835): a magnitude bound, the enstrophy
+  budget, and the pointwise link \(\abs{\nabla w}\le2w^{1/2}h^{1/2}\)
+  & The structure over which the \Sn{44} non-implications are proved ---
+    \emph{not} Navier--Stokes solutions \\
+\end{longtable}}
+
+\section{Conjectures and targets}
+\label{sec:a3-conjectures}
+
+{\footnotesize
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.21\textwidth} >{\raggedright\arraybackslash}p{0.40\textwidth} >{\raggedright\arraybackslash}p{0.26\textwidth}@{}}
+\caption[Conjectures and open targets]{Every \texttt{conj:} and
+\texttt{target:} label in the proof document that this book refers to. All are
+\OPEN{}.}
+\label{tab:a3-conj}\\
+\toprule
+Label & Statement & Note \\
+\midrule
+\endfirsthead
+\toprule
+Label & Statement & Note \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\texttt{conj:bridge} (5466) & H1, the Bridge Lemma
+  & The programme's central open estimate, replacing the invalid
+    superlinearity of \S20 \\
+\texttt{conj:K-refined} (5917) & \(c_K\le C/\Lfac\) near a Type-I singularity
+  & Would make crude \(K\)-absorption close. Wall~6 forbids testing it
+    numerically \\
+\texttt{target:band-absorption} (8468) & the \(Y\)-half \eqref{eq:bandY} and
+  \(D\)-half \eqref{eq:bandD} on the transition band
+  & ``The replacement for \texttt{rem:level-iteration}'', after Wall~4 \\
+\texttt{conj:lc-s44} (9445) & (LC): \emph{verbatim} \texttt{conj:K-refined},
+  asserted on \(\{m\ge M/16\}\)
+  & Covers both \(Y\)-halves with no volume hypothesis. Implies
+    \emph{neither} conjecture \\
+\texttt{conj:jle-s44} (9512) & (JLE): joint level equipartition, on the
+  volume-normalised \(\Xi\)
+  & Stronger conclusion; degrades under concentration, which is the regime
+    that matters \\
+\texttt{target:disorder-} \texttt{depletion} (7504)
+  & persistent \(\sstar\ge\delta\) forces the log-time average
+    \(\le1-c(\delta)\)
+  & \emph{Marginal}: must beat the constant \(1\) exactly. The disordered
+    horn's remaining inequality \\
+\quad (T4a) & average-to-point for \(w\) at the vorticity maximum
+  & weak Harnack; plugs into the existing \(K\)-family machinery \\
+\quad (T4b) & profile depletion of \(\alpha\)
+  & needs a far-field control other than \texttt{prop:localized-cf}, which
+    Wall~8 forbids on profiles \\
+Conjecture 3.5 & \(\mu(T)\) scaling defeats self-similar blow-up for
+  \emph{all} \(\lambda>0\); no \(\lambda_c\)
+  & The founding numerical conjecture. Confirmed at every swept \(\lambda\);
+    formerly numbered 3.4 \\
+\end{longtable}}
+
+\section{Key labelled objects in the proof document}
+\label{sec:a3-labels}
+
+{\footnotesize
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.24\textwidth} l >{\raggedright\arraybackslash}p{0.49\textwidth}@{}}
+\caption[Key labelled objects]{The labels this book cites most. Line numbers
+are as of \Sn{48}; labels are primary.}
+\label{tab:a3-labels}\\
+\toprule
+Label & Line & What it says \\
+\midrule
+\endfirsthead
+\toprule
+Label & Line & What it says \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\texttt{thm:routeC} & 508 & any \(\delta_0>0\) gives smoothness \\
+\texttt{lem:grad-omega-split} & 4564 &
+  \(\abs{\nabla\omega}^2=\abs{\nabla m}^2+m^2\abs{\nabla\ehat}^2\) \\
+\texttt{thm:uniform-enstrophy} & 4407 & the withdrawn cascade bound \\
+\texttt{cor:prize-h1} & 4467 & the withdrawn Prize claim \\
+\texttt{thm:blowup-alignment} & 4858 & ``Theorem E''; its \emph{statement} is
+  the programme's central open problem \\
+\texttt{sec:audit-s31} & 5218 & the audit; eight defects, D1--D8 \\
+\texttt{lem:direction-eq} & 5349 & the magnitude and direction equations \\
+\texttt{def:sigma-star} & 5393 & \(\sstar\) \\
+\texttt{prop:sigma-star-} \texttt{invariant} & 5402 & exact scale invariance \\
+\texttt{prop:sigma-controls} & 5424 & \(\sstar\le16\sigma\) \\
+\texttt{rem:marginality} & 5443 & the direction equation is critical at
+  \(\rstar\) up to \(\Lfac\) \\
+\texttt{conj:bridge} & 5466 & H1 \\
+\texttt{thm:pincer-conditional} & 5495 & the pincer \\
+line 5565 & 5565 & the standing Type-I hypotheses, \emph{both} of them \\
+\texttt{lem:local-enstrophy-} \texttt{typeI} & 5701 & where \(\Lfac\) enters;
+  defined at 5712 \\
+\texttt{prop:first-rung} & 5740 & the angular Caccioppoli \\
+\texttt{thm:apriori-sigma} & 5873 & \(\langle\sstar\rangle\le C\Lfac/\nu\) \\
+\texttt{prop:crude-K} & 5903 & misses closure by exactly one logarithm \\
+\texttt{prop:second-rung} & 5986 & the critical quadratic \\
+\texttt{prop:K-self} & 6026 & the provisional identity; second term withdrawn \\
+\texttt{lem:w2-cancel} & 6166 & the exact cancellation \\
+\texttt{lem:gram-negativity} & 6180 & the good-signed drift--curvature terms \\
+\texttt{prop:K-amended} & 6215 & \(K\)-absorption modulo \(\Aann\) \\
+\texttt{def:annulus-residual} & 6234 & \(\Aann\) \\
+\texttt{rem:level-iteration} & 6249 & the scheme that does not close \\
+\texttt{prop:localized-cf} & 6381 & localized Constantin--Fefferman \\
+\texttt{prop:regime-A} & 6430 & Regime A: \(\theta=2/5\) \\
+\texttt{prop:regime-B} & 6442 & Regime B: exactly borderline \\
+\texttt{cor:unification} & 6456 & H2 \(\equiv\) \(\sstar\)-decay \\
+\texttt{prop:regime-A-} \texttt{impossible} & 6514 & \(\limsup\Omega=\infty\)
+  at any genuine blow-up \\
+\texttt{lem:typeI-scaleinv-} \texttt{bounds} & 6729 & the ancient class is
+  scaling-closed \\
+\texttt{prop:profile-} \texttt{extraction} & 6870 & the compactness step \\
+\texttt{prop:transfer-audit} & 6955 & what survives the limit, (a)--(e) \\
+\texttt{rem:s39-nontransfer} & 7045 & (i) CF fails on profiles; (ii) no
+  pull-back \\
+\texttt{lem:sigma-} \texttt{semicontinuity} & 7075 & one direction only \\
+\texttt{lem:alignment-local} & 7164 & \(\sstar=0\Rightarrow\ehat\) locally
+  constant \\
+\texttt{rem:A-up-discussion} & 7187 & three mechanisms for (A-up) \\
+\texttt{lem:harmonic-} \texttt{reduction} & 7245 & aligned \(\Rightarrow\)
+  \(\partial_3U=0\) \\
+\texttt{thm:aligned-horn} & 7310 & the closed horn \\
+\texttt{prop:no-summable-} \texttt{budget} & 7356 & the naive budget argument
+  is impossible \\
+\texttt{prop:logtime-} \texttt{necessary} & 7459 & the averaged necessary
+  condition \\
+\texttt{target:disorder-} \texttt{depletion} & 7504 & the marginal target \\
+\texttt{thm:rigidity-} \texttt{dichotomy} & 7589 & the reframed dichotomy \\
+\texttt{rem:s39-distance} & 7703 & \textbf{the ceiling} \\
+\texttt{prop:s41-core} & 8011 & the eight-family inventory \\
+\texttt{prop:s41-} \texttt{nocontraction} & 8189 & \(\Lambda_k\ge2^8\) always \\
+\texttt{prop:s41-vacuous} & 8224 & the unrolled form is trivial \\
+\texttt{rem:s41-whichlemma} & 8249 & neither iteration lemma applies \\
+\texttt{prop:s41-coarea} & 8303 & no level selection helps \\
+\texttt{prop:s41-crude} & 8395 & the unconditional crude bound \\
+\texttt{rem:s41-shortfall} & 8428 & short by exactly one logarithm \\
+\texttt{rem:s41-endtarget} & 8442 & what would have to be proved \\
+\texttt{target:band-} \texttt{absorption} & 8468 & the replacement target \\
+\texttt{lem:s44-xi-vs-cK} & 8700 & \(\Xi=c_K\abs{Q}/\abs{E}\ge c_K\) \\
+\texttt{rem:s44-corrigendum} & 8741 & the inversion, recorded \\
+\texttt{rem:s44-disjoint} & 8771 & \(E\) and \(\Band\) are disjoint \\
+\texttt{def:s44-config} & 8835 & (A1)--(A3) \\
+\texttt{rem:s44-scope} & 8855 & \emph{not} independence for NS solutions \\
+\texttt{prop:s44-b-fails} & 8879 & band absorption bounds no correlation \\
+\texttt{prop:s44-a-fails} & 8980 & \(c_K=0\) with band absorption violated \\
+\texttt{prop:s44-linfty-} \texttt{route} & 9242 & closure needs \emph{decay} \\
+\texttt{rem:s44-numerics} & 9396 & the three unmeasured quantities \\
+\texttt{conj:lc-s44} & 9445 & (LC) \\
+\texttt{rem:s44-lc-reading} & 9486 & (LC) implies neither conjecture \\
+\texttt{rem:s48-subcritical} & 9822 & \(2/s'+3/s=0<1\): strict Serrin range \\
+\texttt{prop:s48-bridge-fails} & 10086 & the exponent is forced to \(3/5\) \\
+\texttt{lem:s48-torus-knss} & 10160 & the periodised Oseen kernel \\
+\texttt{thm:s48-R} & 10200 & \textbf{(R) is a theorem} \\
+\texttt{cor:s48-transfer-d} & 10257 & (d) unconditionally \\
+\texttt{rem:s48-mechanism} & 10315 & the logarithm is never \emph{incurred} \\
+\texttt{obs:s48-wall1} & 10400 & recorded, used nowhere; Wall~1 untouched \\
+\texttt{rem:s48-doc-errors} & 10421 & three corrections to the document's own
+  text \\
+\texttt{sec:walls-s47} & 10493 & the walls document \\
+\end{longtable}}
+
+\section{Abbreviations}
+\label{sec:a3-abbrev}
+
+\begin{center}
+\small
+\begin{tabular}{@{}l p{0.72\textwidth}@{}}
+\toprule
+BKM & Beale--Kato--Majda continuation criterion. Defect~D5 is that a claimed
+  theorem assumed it, i.e.\ assumed an equivalent of its conclusion \\
+CF & Constantin--Fefferman: the direction-of-vorticity regularity criterion \\
+CKN & Caffarelli--Kohn--Nirenberg partial regularity \\
+CZ & Calder\'on--Zygmund \\
+ESS & Escauriaza--Seregin--\v{S}ver\'ak \(L^{3,\infty}\) theorem \\
+KNSS & Koch--Nadirashvili--Seregin--\v{S}ver\'ak Liouville theorems; the
+  source of the \(L^\infty\)-based local theory used by \texttt{thm:s48-R} \\
+LPS & Ladyzhenskaya--Prodi--Serrin regularity criteria \\
+LSU & Ladyzhenskaya--Solonnikov--Ural'tseva parabolic embedding \\
+(LC) & the level-uniform decorrelation hypothesis, \texttt{conj:lc-s44} \\
+(JLE) & joint level equipartition, \texttt{conj:jle-s44} \\
+M0--M10 & the numerical programme's milestones \\
+(A)--(D) & Fefferman's four alternative Prize statements. This programme
+  targets (A)/(B), the unforced case \\
+\bottomrule
+\end{tabular}
+\end{center}

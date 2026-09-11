@@ -1,0 +1,461 @@
+% =====================================================================
+%  Chapter 20 — Methodology
+% =====================================================================
+\chapter{What the Programme Learned About Method}
+\label{ch:methodology}
+
+\begin{record}
+\textbf{What this chapter is.} Chapter~\ref{ch:house-rules} states the rules
+and the failure each was a reaction to. This chapter asks the harder question:
+\emph{which mechanisms actually caught things}, which caught nothing, and
+which failure modes recurred even after a rule was written against them.
+
+\smallskip
+The answer is uncomfortable in one specific way. The programme's verification
+apparatus has a good record --- it caught an inverted lemma, a cancelled term,
+a wrong enstrophy assumption, a misread numerical signal, three summary
+overstatements, three formulas that were not typesetting, a vacuous
+specification and a refuted strategic steer. It produced no theorems. And the
+single failure mode the rules exist to prevent --- \emph{reading a summary
+instead of the document} --- recurred at \Sn{48}, in the work of the agent
+that was enforcing the rules.
+\end{record}
+
+\section{The delegation architecture}
+\label{sec:delegation}
+
+The programme ran as an orchestrator plus subagents, and the division of
+labour changed twice in ways that mattered.
+
+\begin{center}
+\small
+\begin{tabular}{@{}l p{0.30\textwidth} p{0.42\textwidth}@{}}
+\toprule
+From & Arrangement & Why it changed \\
+\midrule
+\Sn{01}--\Sn{31}
+  & Single agent, all work
+  & --- \\[3pt]
+\Sn{32}
+  & Orchestrator plans and derives; execution agents write code and insert
+    text
+  & Saved as a standing preference after the \Sn{31} withdrawal: the
+    derivation and its transcription became separate jobs. \\[3pt]
+\Sn{39}
+  & Analytical derivation delegated to a stronger subagent owning the proof
+    document exclusively; the orchestrator specifies the programme, names the
+    expected failure modes \emph{in advance}, and verifies the returned
+    mathematics
+  & The \Sn{39} reframe was too large for the previous arrangement. Naming
+    the failure modes in advance is what made the \emph{crux} of Step~2
+    identifiable when the work came back. \\[3pt]
+\Sn{41}
+  & The same, plus \textbf{isolated \texttt{git} worktree} and mandatory
+    independent re-derivation before merge
+  & The programme's history of over-claimed results. This is the merge gate
+    of Figure~\ref{fig:merge-gate}. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+Two details of the \Sn{39} arrangement generalise and are worth naming
+separately from the gate.
+
+\emph{Name the failure modes before the work starts.} The \Sn{39} brief
+identified, in advance, that the crux would be whether \(\sstar\) transfers in
+the direction the argument needs, and that the infinite-past budget argument
+was a likely trap. Both predictions were correct: the transfer question became
+hypothesis \textbf{(R)}, and the budget argument became
+\texttt{prop:no-summable-budget}, a theorem that it cannot work. A brief that
+names what it expects to go wrong converts a vague ``verify this'' into a
+checkable question.
+
+\emph{Scope to one item.} The \Sn{41} brief was explicit: attack the annulus
+step and nothing else. The resulting diff touched one file in three locations
+and \(864\) lines, which is a diff a human can actually read as a sceptical
+referee. Every subsequent delegated session used the same constraint.
+
+\section{The merge gate, and what it caught}
+\label{sec:gate-record}
+
+The gate is stated in Chapter~\ref{ch:house-rules}: nothing merges until the
+orchestrator has independently re-derived the load-bearing computations by
+hand. A self-report, however carefully written, is not verification.
+
+\subsection{\texorpdfstring{\Sn{44}: the inverted volume factor}{S44: the inverted volume factor}}
+
+This is the gate's clearest justification and is set out fully in
+Chapter~\ref{ch:non-implication}. The submission's headline was favourable:
+band absorption is strictly weaker than the \(c_K\) hypothesis, and the
+programme's existing measurements already support it. The supporting lemma had
+the volume ratio upside down. Corrected, the headline inverts.
+
+Three things about the catch generalise.
+
+\begin{enumerate}[leftmargin=2.2em]
+\item \emph{The checks that found it were cheap.} Re-derive the algebra from
+  the definitions; run the formula on four random configurations; test the
+  sanity case. Total effort: minutes. The stated form matched nothing
+  numerically; the corrected form matched to machine precision.
+\item \emph{The error announced itself internally.} It contradicted two of the
+  same submission's own results, and that internal inconsistency is what drew
+  attention to it. A submission that is internally consistent is not
+  necessarily right, but a submission that is not is certainly worth a second
+  look, and inconsistency is mechanically detectable in a way that
+  wrongness is not.
+\item \emph{The error was in the favourable direction.} So was the \Sn{35}
+  bonus term. So were all three of the \Sn{47} summary overstatements. So was
+  the \Sn{48} steer. Every unforced error this book records runs in the
+  programme's own favour, and none runs against it. That asymmetry is not
+  coincidence and it is the reason a verification step has to be a separate
+  job from the derivation.
+\end{enumerate}
+
+\subsection{\texorpdfstring{\Sn{47}: three overstatements, all one session old}{S47: three overstatements, all one session old}}
+
+\Sn{47} applied the rule that the proof document governs its own summaries ---
+to its own commissioning brief, written one session earlier by the same
+orchestrator. It found three claims the document does not support:
+
+\begin{enumerate}[label=(\roman*),leftmargin=2.4em]
+\item ``the S31 audit (all seven grounds)''. There are \textbf{eight},
+  D1--D8, and the omitted one is the first appearance of the programme's
+  central obstruction. Chapter~\ref{ch:inheritance} explains why the omission
+  was not neutral: for sixteen sessions the navigational summary did not
+  contain the observation that the central difficulty had already been named.
+\item \texttt{conj:lc-s44} described as ``a common \emph{weaker} target''. It
+  is neither weaker nor stronger than \texttt{conj:K-refined}; the two do not
+  compare.
+\item ``\(c_K\) and band-absorption proved independent''. What is proved is
+  that no implication follows from (A1)--(A3), over admissible test
+  configurations which need not come from Navier--Stokes solutions.
+\end{enumerate}
+
+\subsection{\texorpdfstring{\Sn{48}: a steer of the orchestrator's own, refuted}{S48: a steer of the orchestrator's own, refuted}}
+
+\begin{record}
+The \Sn{48} pre-read for the work package that settled \textbf{(R)} asserted
+that the programme's Type-I hypothesis is on the \emph{vorticity}, so that
+building an \(\omega\to u\) bridge would be the real work.
+
+\smallskip
+The premise was false. Line~5565 of the proof document assumes \emph{both}
+Type-I bounds outright --- the vorticity bound and the velocity bound. And the
+bridge is impossible anyway: \texttt{prop:s48-bridge-fails} shows the
+interpolation exponent is forced to \(3/5\), not \(1/2\)
+(Chapter~\ref{ch:cz-log}, \S\ref{sec:bridge-fails}).
+
+\smallskip
+The session log records the diagnosis in the first person and without
+mitigation: ``I had read the summaries rather than the document --- the exact
+failure mode the house rules exist to catch. Recorded because the erroneous
+steer is in the scratchpad and in my own messages.''
+\end{record}
+
+\begin{obsv}[The rule was written in \Sn{47} and broken in \Sn{48}]
+\label{obs:rule-broken-next-session}
+This is the most instructive single episode in the chapter, and it should not
+be filed as a curiosity. The rule that the primary document governs its
+summaries was installed one session earlier, by the same orchestrator, after
+catching three instances of exactly this error. It was then broken
+immediately, in the very next session, by the person who installed it.
+
+\smallskip
+The lesson is not that the rule is bad. The lesson is about \emph{where} the
+rule needs to bind. It bound where it was consciously applied --- when
+checking a subagent's returned work, when writing a walls document. It did not
+bind where the reading was casual and upstream: forming a strategic view
+before the work starts. A brief is written from memory and from summaries,
+because that is what is at hand; and a brief is precisely the artefact that
+determines what a subagent spends a session doing.
+
+\smallskip
+The mitigating fact, and the reason this is recorded as a success of the
+system rather than only a failure of it, is that the subagent \emph{refuted the
+steer} and the refutation was accepted. The architecture was right even where
+the instruction was wrong, because the subagent was told to work from the
+document.
+\end{obsv}
+
+\section{The verification ladder}
+\label{sec:ladder}
+
+The programme ended with four distinct verification mechanisms, and they do
+not overlap as much as one would hope.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  >={Latex[length=2mm]},
+  rung/.style={draw, rounded corners=2pt, font=\scriptsize, align=left,
+               inner sep=4pt, text width=54mm, minimum height=12mm},
+  hole/.style={font=\scriptsize\itshape, align=left, text width=54mm,
+               text=impossiblered}
+]
+\node[rung, fill=panelgrey] (grep) at (0,0)
+  {\textbf{1. Brace counting by \texttt{grep}}\\
+   used \Sn{01}--\Sn{46}};
+\node[hole, right=4mm of grep] (gh)
+  {blind to: undeclared environments (\Sn{39}), undefined macros,
+   nesting order, everything semantic};
+
+\node[rung, above=7mm of grep, fill=panelgrey] (check)
+  {\textbf{2. \texttt{scripts/check\_proof.py}} (\Sn{47})\\
+   braces, \(\backslash\)begin/\(\backslash\)end multiset \emph{and} nesting
+   via a stack, undeclared environments, duplicate labels, unresolved
+   refs/cites, the \texttt{\textbackslash end\{env>} typo class};
+\node[hole, right=4mm of check] (ch)
+  {blind to: undefined control sequences. Its own docstring says green is
+   \emph{necessary but not sufficient}};
+
+\node[rung, above=7mm of check, fill=panelgrey] (compile)
+  {\textbf{3. \texttt{pdflatex}} (first run \Sn{47})\\
+   undefined macros, real errors, page count};
+\node[hole, right=4mm of compile] (coh)
+  {blind to: everything mathematical. A document can compile perfectly and be
+   entirely wrong};
+
+\node[rung, above=7mm of compile, draw=provedgreen, very thick]
+  (rederive)
+  {\textbf{4. Independent re-derivation by hand} (\Sn{41})\\
+   the load-bearing computations, recomputed by someone who did not write
+   them};
+\node[hole, right=4mm of rederive, text=rulegrey] (rh)
+  {blind to: whatever the verifier does not think to check. Caught the
+   \Sn{44} inversion because the algebra was re-done from the definitions};
+
+\foreach \a/\b in {grep/check, check/compile, compile/rederive}{
+  \draw[->, thick] (\a) -- (\b);}
+\node[left=2mm of check, font=\scriptsize, rotate=90, anchor=south,
+      text=rulegrey] {increasing coverage};
+\end{tikzpicture}
+\caption[The verification ladder and its holes]{Four mechanisms, each catching
+an error class the one below cannot see, and each with a blind spot named in
+the programme's own record. Rungs 2 and 3 were installed in \Sn{47}, after
+forty-six sessions in which rung~1 was the whole of ``verification''.}
+\label{fig:ladder}
+\end{figure}
+
+\subsection{Why grep-based verification failed for forty-six sessions}
+
+Until \Sn{47} the proof document had \emph{never been compiled}. Every prior
+verification was brace counting. The problem is not that brace counting is
+weak; it is that brace counting is blind \emph{by construction} to entire
+error classes, and nothing in the process surfaced that fact.
+
+\Sn{39} found the first instance: \texttt{conjecture} and \texttt{fact} had
+been used as environments across several sessions without ever being declared,
+so the file would have failed on first compile. Three of the five sites
+predated \Sn{39}. Brace counting cannot see this, because the braces are
+balanced.
+
+\Sn{47} installed a toolchain and compiled: \(142\) pages, and three further
+defects that only a compiler finds. \(\backslash\)\texttt{colonequals} and
+\(\backslash\)\texttt{fint} were undefined at three sites, which means
+\emph{three formulas were not typesetting at all}. A document nobody had ever
+rendered had three invisible equations in it.
+
+\begin{obsv}[The general form of the failure]
+\label{obs:proxy-verification}
+For forty-six sessions the programme used a \emph{proxy} for verification ---
+a cheap check correlated with the thing it wanted --- and never measured how
+good the proxy was. The proxy was not weakly correlated; for the specific
+classes it covered it was exact. It simply did not cover the classes that
+mattered, and its coverage was never written down.
+
+\smallskip
+The repair, when it came, was not a better proxy. It was to run the real
+thing once. Everything the compile found had been present for many sessions
+and would have been found on the first day the document was rendered.
+\end{obsv}
+
+\subsection{Why a structural check is necessary but not sufficient}
+
+\texttt{scripts/check\_proof.py} was written in \Sn{47} and is the programme's
+one piece of genuinely reusable infrastructure. Its docstring states its own
+limitation: green is necessary, not sufficient --- it cannot see undefined
+macros, which is precisely how the three \Sn{47} defects survived every
+previous check.
+
+Its most interesting feature is not a check but an escape hatch. A reference
+with no resolvable target must be \emph{declared} rather than guessed, via a
+\texttt{\% CHECK-PROOF: ALLOW-DANGLING} marker plus a visible red note in the
+body. The reasoning behind that design is the sharpest methodological point in
+the toolchain: \emph{a guessed cross-reference injects a false statement into a
+mathematical document}. \Sn{47} resolved four dangling references and justified
+each with recorded evidence --- the highest-risk one because the citing line
+quotes the target theorem's displayed conclusion verbatim --- rather than by
+plausibility.
+
+\subsection{Two toolchain facts that each cost an hour}
+
+Both are in Chapter~\ref{ch:house-rules} and both are repeated here because
+they are the kind of thing that makes a working system look broken.
+
+\emph{\texttt{cm-super} is not optional.} Without it \texttt{microtype}'s font
+expansion aborts with ``auto expansion is only possible with scalable
+fonts''.
+
+\emph{Do not grep for \texttt{\^{}!}.} The \texttt{-file-line-error} flag
+reformats \TeX{} errors as \texttt{file:line:} with no leading bang, so
+\verb|grep "^!"| reports zero errors on a run that has five. This actually
+happened, in the session that installed the toolchain.
+
+\section{Failure modes that survived the rules}
+\label{sec:surviving-failures}
+
+\subsection{Detached background runs}
+
+Three separate times in \Sn{34} and \Sn{36}, an agent detached a long
+numerical run into a background shell and ended its turn; the run sometimes
+survived and sometimes died with the session. The mitigation that worked was
+not a prohibition but a change of trust model: \emph{query the database
+directly rather than trusting a self-report}, and, when a process is confirmed
+alive, block on it in the orchestrator's own shell rather than the subagent's.
+
+The failure recurred in a new form at \Sn{43}, where a background waiter used
+a \texttt{pgrep -f} pattern that appeared in the waiter's own command line, so
+it matched itself, could never exit, and never fired. The recorded fix is to
+grep the log for a completion marker plus failure signatures rather than
+\texttt{pgrep} for a string the waiter itself contains.
+
+\subsection{Claims marked ``mechanical''}
+
+\texttt{rem:level-iteration} stood for five sessions labelled ``it involves no
+new estimate''. \Sn{41} executed it and proved it cannot close
+(Chapter~\ref{ch:annulus}). A claim marked mechanical is still a claim, and it
+is the class of claim least likely ever to be checked, because nobody
+volunteers to verify bookkeeping.
+
+\subsection{Environments that are never exercised}
+
+The book's own master file carried a malformed \texttt{record} environment ---
+\(\backslash\)\texttt{colorbox}'s argument split across the begin- and
+end-code of \(\backslash\)\texttt{newenvironment}, leaving the begin-code
+brace-unbalanced. \TeX{} mis-parses that at \emph{definition} time and fails
+only on first \emph{use}, which is exactly why it survived a build of the book
+with every chapter empty. The note recorded at the time generalises: \emph{an
+environment that is never exercised is never tested.}
+
+\subsection{Warning counts that are true and misleading}
+
+An agent reported ``0 LaTeX warnings'' for a build. That was true for
+\texttt{LaTeX Warning} proper. The build carried \(113\) hyperref bookmark
+warnings against a baseline of \(109\) --- four new, all from a single
+unguarded math subsection heading, fixed with
+\(\backslash\)\texttt{texorpdfstring}. The lesson is about baselines: a count
+reported without the number it is being compared against is not a measurement.
+
+\section{Specification errors are named as loudly as mathematical ones}
+\label{sec:spec-errors}
+
+\Sn{39}'s numerical track returned two runs with Gr\"onwall margins of
+\(5.5\times10^{19}\) and \(2.0\times10^{14}\), reported \textsf{PARTIAL}. The
+addendum states flatly that the runs were \emph{vacuous} and that the fault was
+in the \emph{specification}: accumulating \(\exp\int_0^TA\dee s\) over a
+twenty-time-unit window with \(A\sim O(1\text{--}3.5)\) gives \(e^{70}\), so
+the margin could not have been met by any residual whatsoever. The underlying
+trajectories were fine --- the \(H^{-1}\) residual peaked at
+\(4.0\times10^{-3}\) for Taylor--Green.
+
+The addendum names this as an error in the coordinator's specification, not in
+the implementation, ``because the programme's convention is that spec errors
+get named as explicitly as mathematical ones''. The windowed rerun reduced the
+Gr\"onwall factor from \(\sim10^{12}\) to \(O(3\text{--}5)\) and produced
+informative comparisons.
+
+This convention matters more than it sounds. In a delegated architecture the
+default attribution for a bad result is to the executor, and the default
+attribution is usually wrong: a subagent that does exactly what it was asked
+has produced a correct execution of a wrong question.
+
+\section{The catalogue}
+\label{sec:catalogue}
+
+{\footnotesize
+\begin{longtable}{@{}l p{0.36\textwidth} p{0.34\textwidth}@{}}
+\caption[Every recorded catch, and what caught it]{The programme's
+verification record. The right-hand column is the mechanism, not the person:
+what would have to have been in place for the error to be found. Note that no
+row is a theorem.}
+\label{tab:catches}\\
+\toprule
+Session & What was caught & Mechanism that caught it \\
+\midrule
+\endfirsthead
+\toprule
+Session & What was caught & Mechanism that caught it \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\Sn{08} & Nyquist-mode bug in the Leray projector; divergence RMS \(1.465\)
+  & A physical invariant checked numerically (\(\nabla\cdot u=0\)) \\
+\Sn{25} & \(47\) orders of magnitude of sampling bias in the mean-Morrey
+  diagnostic
+  & Changing the sampling rule and comparing; both sets of rows retained \\
+\Sn{31} & Eight defects in the Prize claim, three elementary
+  & Independent line-by-line audit of a completed argument \\
+\Sn{34} & Four dimensional defects in \Sn{33}'s own section
+  & Self-audit before building on the previous session \\
+\Sn{36} & \Sn{35}'s ``bonus'' good term cancels exactly
+  & Verification of an explicitly \emph{provisional} claim \\
+\Sn{37} & Own first-pass assumption \(\Omega=O(1)\) is false near a
+  singularity
+  & Checking a background assumption against Type-I scaling \\
+\Sn{38} & Regime~A is impossible, closing the programme's own escape route
+  & Fact-checking an escape route before deriving on it \\
+\Sn{39} & \texttt{conjecture} and \texttt{fact} used undeclared for several
+  sessions
+  & Attempting to install a toolchain \\
+\Sn{39} & A specification that made two runs vacuous
+  & Reading the magnitude of the reported margin and asking what it implied \\
+\Sn{41} & ``Open-mechanical'' was wrong: the iteration cannot close
+  & Executing a sketch that had stood for five sessions \\
+\Sn{43} & \Sn{42}'s ``resolution artefact'' reading was half wrong
+  & Refinement plus a time-split of the recorded series \\
+\Sn{44} & \texttt{lem:s44-xi-vs-cK} inverted; three conclusions withdrawn
+  & Merge gate: hand re-derivation + numerical spot check + sanity case \\
+\Sn{47} & Three summary overstatements, all one session old
+  & The rule that the document governs its summaries \\
+\Sn{47} & Three undefined macros; three formulas not typesetting
+  & Compiling the document for the first time \\
+\Sn{47} & \verb|grep "^!"| reports zero errors on a failing run
+  & Noticing that the compile failed while the check passed \\
+\Sn{48} & The mechanism stated inside \texttt{prop:transfer-audit}(d) is an
+  unproved heuristic and is wrong
+  & Checking the \emph{reason} for a conclusion already believed \\
+\Sn{48} & Two miscitations and a void caveat in the document's own text
+  & Reading the cited papers' abstracts \\
+\Sn{48} & The orchestrator's own strategic steer, refuted
+  & A subagent instructed to work from the document, not the brief \\
+\Sn{48} & ``0 LaTeX warnings'' true but misleading; \(113\) vs \(109\)
+  & Comparing against a recorded baseline \\
+\Sn{48} & The master's \texttt{record} environment malformed
+  & First use of an environment that had never been exercised \\
+\Sn{49} & \Sn{40} treated two separate efforts as one result
+  & Returning to primary sources rather than a session log \\
+\end{longtable}}
+
+\begin{obsv}[What the discipline is for]
+\label{obs:discipline-purpose}
+Twenty-one recorded catches. Not one of them is a new theorem, and
+Chapter~\ref{ch:house-rules} says the same thing in fewer words: verification
+discipline is a way of not being wrong; it is not a way of being right.
+
+\smallskip
+What the table does show is a change in \emph{kind} over time. The early
+catches are numerical bugs and sampling errors --- things a careful
+implementation avoids. The middle catches are mathematical: a cancelled term,
+a false assumption, an inverted lemma. The late catches are almost all about
+the \emph{record}: summaries that lost a defect, citations that do not say
+what they are cited for, a reason that does not support a conclusion, two
+efforts read as one. As a programme accumulates results, the dominant error
+class stops being ``the mathematics is wrong'' and becomes ``the account of
+the mathematics is wrong'', and the account is what the next session acts on.
+
+\smallskip
+That is the argument for a book like this one, and it is the only argument for
+it that does not depend on the programme having succeeded.
+\end{obsv}

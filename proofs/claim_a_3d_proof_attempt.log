@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.10)  11 SEP 2026 09:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.10)  11 SEP 2026 18:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -391,7 +391,7 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count301
 \l__pdf_internal_box=\box56
 )
-(/tmp/wp2bbuild/claim_a_3d_proof_attempt.aux)
+(/tmp/finalcheck/claim_a_3d_proof_attempt.aux)
 \openout1 = `claim_a_3d_proof_attempt.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 89.
@@ -465,8 +465,8 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring OFF on input line 89.
-(/tmp/wp2bbuild/claim_a_3d_proof_attempt.out)
-(/tmp/wp2bbuild/claim_a_3d_proof_attempt.out)
+(/tmp/finalcheck/claim_a_3d_proof_attempt.out)
+(/tmp/finalcheck/claim_a_3d_proof_attempt.out)
 \@outlinefile=\write3
 \openout3 = `claim_a_3d_proof_attempt.out'.
 
@@ -531,7 +531,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-(/tmp/wp2bbuild/claim_a_3d_proof_attempt.toc [1
+(/tmp/finalcheck/claim_a_3d_proof_attempt.toc [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/
 dvips/cm-super/cm-super-ts1.enc}] [2] [3] [4] [5] [6])
@@ -1659,28 +1659,30 @@ Overfull \hbox (39.95003pt too wide) in paragraph at lines 11312--11339
  [] 
  []
 
-[151] [152] [153] [154] [155] [156] [157] [158] [159]
-Underfull \hbox (badness 1412) in paragraph at lines 11986--11987
+[151] [152] [153] [154] [155] [156] [157] [158] [159] [160] [161] [162]
+[163] [164] [165] [166] [167] [168] [169] [170] [171] [172]
+Underfull \hbox (badness 1412) in paragraph at lines 13049--13050
 []\OT1/cmr/bx/n/10 (+20) Withdrawn \OT1/cmr/m/n/10 (+20) (ex-act can-cel-la-
  []
 
-[160] [161] [162] [163] [164] (/tmp/wp2bbuild/claim_a_3d_proof_attempt.aux)
+[173] [174] [175] [176] [177] [178]
+(/tmp/finalcheck/claim_a_3d_proof_attempt.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `claim_a_3d_proof_attempt.out' has not change
 d.
-(rerunfilecheck)             Checksum: 40AF635D76E13B448BB5220AE6FC512D;66154.
+(rerunfilecheck)             Checksum: 62A8F98CA5FA79D376FCF589F484B4B9;69646.
  ) 
 Here is how much of TeX's memory you used:
- 16366 strings out of 476106
- 248664 string characters out of 5793933
+ 16557 strings out of 476106
+ 251270 string characters out of 5793933
  1948975 words of memory out of 5000000
- 36406 multiletter control sequences out of 15000+600000
- 596659 words of font info for 384 fonts, out of 8000000 for 9000
+ 36477 multiletter control sequences out of 15000+600000
+ 597357 words of font info for 393 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 75i,16n,79p,1028b,850s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,16n,79p,1028b,838s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texli
@@ -1714,11 +1716,11 @@ b></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/
 fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/c
 m-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1095.pfb
 >
-Output written on /tmp/wp2bbuild/claim_a_3d_proof_attempt.pdf (164 pages, 14271
-89 bytes).
+Output written on /tmp/finalcheck/claim_a_3d_proof_attempt.pdf (178 pages, 1518
+332 bytes).
 PDF statistics:
- 5124 PDF objects out of 5155 (max. 8388607)
- 4781 compressed objects within 48 object streams
- 1228 named destinations out of 1440 (max. 500000)
- 73985 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 5479 PDF objects out of 6186 (max. 8388607)
+ 5118 compressed objects within 52 object streams
+ 1330 named destinations out of 1440 (max. 500000)
+ 74049 words of extra memory for PDF output out of 74296 (max. 10000000)
 

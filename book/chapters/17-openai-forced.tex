@@ -456,6 +456,91 @@ with the forcing term as the dividing line.}
 \label{tab:comparison}
 \end{table}
 
+\section{An unresolved discrepancy in the primary sources}
+\label{sec:s49-discrepancy}
+
+Recorded at \Sn{49}, after the rest of this chapter was written, because it
+bears directly on the attribution in \S\ref{sec:their-theorem} and is not
+settled.
+
+Two primary sources do not agree about what was proved.
+
+\begin{enumerate}[label=(\roman*)]
+\item An expository document, of the kind \S\ref{sec:their-theorem} records,
+  states the theorem for the \emph{forced three-dimensional incompressible
+  Navier--Stokes equations} with \(\nu>0\) arbitrary, \(f\in C^\infty_c\) and
+  \(u(\cdot,0)=0\).
+\item The authors' own public announcement lists the released results as
+  finite-time blow-up with smooth forcing for the \emph{incompressible porous
+  medium} equation, for \emph{Boussinesq}, and for \emph{three-dimensional
+  incompressible Euler} --- and states that the Navier--Stokes claim is for
+  \emph{hypo-dissipative} Navier--Stokes, that it is \emph{not} being
+  released, that its Lean verification has not finished, and that it is
+  ``suggestive of a path to unforced Euler''. The same announcement credits
+  the underlying programme to C\'ordoba and Mart\'inez-Zoroa.
+\end{enumerate}
+
+The difference is not cosmetic, and three consequences follow if (ii) is the
+operative statement.
+
+\textbf{Euler is not a Prize problem.} Fefferman says so in the problem
+description itself: the Euler case is ``also open and very important \dots\
+although the Euler equation is not on the Clay Institute's list of prize
+problems''.
+
+\textbf{Hypo-dissipative Navier--Stokes is not the Prize operator.} Replacing
+\(\nu\Delta u\) by \(-\nu(-\Delta)^\alpha\) with \(\alpha<1\) weakens the
+dissipation, and the resulting equation is not the Navier--Stokes system of
+\S\ref{sec:four-alternatives}. It is the regime in which blow-up for
+modified Navier--Stokes has long been considered more accessible.
+
+\textbf{On that reading, no Clay alternative has been established} --- not
+(A), not (B), and not (C) or (D) either.
+
+\begin{obsv}[Two corrections this programme owes its own record]
+\label{obs:s49-two-corrections}
+\emph{First:} ``it is only (C) and (D)'' is not, by itself, a dismissal.
+Alternatives (C) and (D) are Prize-eligible: Fefferman asks ``for a proof of
+one of the following four statements'', and (C) and (D) are two of the four.
+A proof of forced three-dimensional Navier--Stokes breakdown, with \(f\)
+satisfying the decay hypothesis, would resolve the Millennium Prize problem.
+The reason the work does not bear on this programme is the stronger and
+simpler one recorded above, not the alternative it targets.
+
+\emph{Second, and this is the load-bearing observation:} (A) and (C) are
+\emph{not mutually exclusive}. Unforced global regularity and forced
+breakdown can both be true, and most experts expect exactly that. Hence a
+proof of (C) would win the Prize and would leave \textbf{(A) open as a
+mathematical question} --- the question this programme is attacking. This
+programme's target survives the Prize being claimed by someone else.
+\end{obsv}
+
+\begin{obsv}[Their profile is Type-II, and this programme cannot see it]
+\label{obs:s49-typeII}
+In the expository statement of \S\ref{sec:their-theorem} the azimuthal
+component obeys \(u_\vartheta\sim\tau^{-A}\) with \(A=\tfrac12+h\), \(h>0\),
+along the approach to the singular time. Velocity Type-I is
+\(\abs{u}\lesssim(T-t)^{-1/2}\). With \(h>0\) the constructed field therefore
+diverges \emph{strictly faster} than Type-I: it is a \textbf{Type-II} profile.
+
+This cuts against the programme and is recorded for that reason. Every
+estimate of \S33--\S39 uses Type-I rates essentially, and
+\texttt{rem:s39-distance} states the consequence plainly --- ``a Type-II
+singularity would rescale to nothing''. So even if the forcing in this
+construction were removable, which \Sn{40} found it is not, the resulting
+geometry would lie in precisely the regime the machinery of this book is
+blind to. Wall~3 is not a technicality; this is what it excludes.
+\end{obsv}
+
+\begin{record}
+\textbf{Status of this section.} The discrepancy between sources (i) and
+(ii) is \emph{not resolved here}. It was identified from secondary
+reproductions, not from the preprints themselves, and the chapter's
+attribution in \S\ref{sec:their-theorem} is left as \Sn{40} recorded it
+pending a reading of the primary documents. No claim in this book depends on
+which reading is correct.
+\end{record}
+
 \section{A note on how it was reported}
 \label{sec:reporting}
 

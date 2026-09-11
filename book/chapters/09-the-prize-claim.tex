@@ -37,8 +37,11 @@ framework on top of it. Ten weeks after that, both were withdrawn.
 \item That the vorticity equation is pressure-free --- which is true, and was
   the whole point.
 \item For \Sn{30}: the exact algebraic identity
-  \(\abs{\nabla\omega}^2=\abs{\nabla\abs{\omega}}^2+\abs{\omega}^2
-  \abs{\nabla\ehat}^2\) (\texttt{lem:grad-omega-split}, line~4564), valid
+  \[
+    \abs{\nabla\omega}^2=\abs{\nabla\abs{\omega}}^2
+      +\abs{\omega}^2\abs{\nabla\ehat}^2
+  \]
+  (\texttt{lem:grad-omega-split}, line~4564), valid
   pointwise wherever \(\omega\neq0\); and the definition
   \(\sigma=A_{\mathrm{loc}}/M^{3/2}\) (\texttt{eq:sigma-def}, line~4595) with
   \(A_{\mathrm{loc}}=\int_{B_{\rstar}(x^*)}\abs{\omega}^2\abs{\nabla\ehat}^2
@@ -298,8 +301,9 @@ as the single open step.
 Both at \(N=16\), \(\nu=0.1\), \(T=0.5\); both consistent with Theorem~E in
 the weak sense that \(R_{\log}\) stayed bounded and \(M\) did not grow.
 
-These two rows are \emph{not in} \texttt{results/results.db}. They exist only
-in \texttt{results/S30\_sigma\_results.md}. By the programme's own rule --- a
+These two rows are \emph{not in} \texttt{results/}\allowbreak\texttt{results.db}.
+They exist only in \texttt{results/}\allowbreak\texttt{S30\_sigma\_}\allowbreak
+\texttt{results.md}. By the programme's own rule --- a
 result without a logged \texttt{claim\_id} is not a result --- they do not
 count, and they cannot be queried, cross-checked or re-derived against later
 runs. It is the only breach of that rule in the programme's history, and it

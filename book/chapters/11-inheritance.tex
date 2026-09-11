@@ -141,7 +141,7 @@ the only one that would transfer unchanged to a different problem.
     small-data statement, after D2--D4 are fixed and the exponent re-derived
   & \WITHDRAWN \\[3pt]
 
-\texttt{cor:claim-a-enstrophy} (4451), \newline \texttt{cor:prize-h1} (4467)
+\texttt{cor:claim-a-} \texttt{enstrophy} (4451), \newline \texttt{cor:prize-h1} (4467)
   & Claimed proved, \Sn{29}
   & Defect~D1
   & --- & \WITHDRAWN \\[3pt]
@@ -409,13 +409,21 @@ amount of care in the downstream algebra removes it.
 
 \subsection{The four appearances}
 
-\begin{table}[ht]
-\centering
-\small
-\begin{tabular}{@{}l p{0.32\textwidth} p{0.46\textwidth}@{}}
+{\small
+\begin{longtable}{@{}l p{0.32\textwidth} p{0.46\textwidth}@{}}
+\caption[The life of the Calder\'on--Zygmund logarithm]{The obstruction's
+career, from a clause in a defect list to the programme's central structural
+barrier. Between \Sn{34} and \Sn{44} it was rediscovered three times as an
+apparently new difficulty; \Sn{48} closed one of its three branches.}
+\label{tab:cz-life}\\
 \toprule
 When & Where & What was said \\
 \midrule
+\endfirsthead
+\toprule
+When & Where & What was said \\
+\midrule
+\endhead
 \Sn{31} & \texttt{sec:audit-s31}, D8
   & The bound \(\norm{\nabla u}_{L^\infty}\le CM\) is false; the correct
     bound carries a logarithm. \\[3pt]
@@ -446,7 +454,8 @@ When & Where & What was said \\
   & The one apparent escape: on a Type-I profile, ``the logarithmic factor
     \(\Lfac\) may be replaced by an absolute constant''. But this is
     \PROVEDMOD{(R)}, and hypothesis~(R) \emph{is} an assumed log-free gradient
-    bound. The barrier is relocated, not removed. Wall~2. \\[3pt]
+    bound. The barrier is relocated, not removed. Wall~2.
+    \emph{Amended at \Sn{48}: see the final row.} \\[3pt]
 \Sn{45} & \texttt{scale\_diagnostics.py}
   & The decay \Sn{44} requires is measured. Slope of \(\log c_K\) on
     \(\log\Lfac\): \(-0.196\) (\(r^2=0.05\)) and \(+0.088\) (\(r^2=0.02\)),
@@ -456,15 +465,25 @@ When & Where & What was said \\
     logarithm cannot be removed, but the three appearances establish that it
     is one obstacle seen three times, not three obstacles. And explicitly:
     the factor ``is not a later regression but the audit's finding carried
-    forward''. \\
+    forward''. \\[3pt]
+\Sn{48} & \texttt{thm:s48-R} (\S\,\texttt{sec:hypR-s48})
+  & \textbf{The escape is real after all --- on that branch only.}
+    Hypothesis~(R) is proved, in a stronger form than it was stated:
+    \(\|\nabla^k\partial_s^l u_\lambda\|_\infty\le
+    C_{k,l}(c_I)|s|^{-(k+1)/2-l}\), uniformly in \(\lambda\). The route is
+    Serrin's criterion in its \emph{strict} subcritical range --- the
+    available bound is an \(L^\infty\) \emph{velocity} bound, and
+    \(2/s'+3/s=0<1\), so boundedness suffices and smallness is never needed.
+    Consequence: \texttt{prop:transfer-audit}(d) first clause \PROVED{};
+    \textbf{Wall~2 \WITHDRAWN{}}. The profile route does not relocate
+    \(\Lfac\) --- it never passes through the Calder\'on--Zygmund operator
+    at all. Two cautions, both load-bearing: part~(e) inherits a
+    pre-existing \emph{saturation} proviso and is only
+    \textsc{proved mod saturation}; and Wall~1 itself is untouched, because
+    \S33--\S37 need \(\nabla u\) measured against \(M(t)\), not
+    \((T-t)^{-1}\), and those agree only on the saturated set. \\
 \bottomrule
-\end{tabular}
-\caption[The life of the Calder\'on--Zygmund logarithm]{The obstruction's
-career, from a clause in a defect list to the programme's central structural
-barrier. Between \Sn{34} and \Sn{44} it was rediscovered three times as an
-apparently new difficulty.}
-\label{tab:cz-life}
-\end{table}
+\end{longtable}}
 
 \subsection{Why it was nearly lost}
 

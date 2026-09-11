@@ -119,16 +119,16 @@ inconsistency is what drew attention to it.
 \centering
 \begin{tikzpicture}[
   >={Latex[length=2mm]},
-  st/.style={draw, rounded corners=2pt, font=\small, align=center,
-             inner sep=4pt, minimum height=9mm, text width=31mm},
-  gate/.style={draw, thick, diamond, aspect=2.1, font=\small, align=center,
-               inner sep=1pt, fill=panelgrey},
+  st/.style={draw, rounded corners=2pt, font=\footnotesize, align=center,
+             inner sep=3pt, minimum height=9mm, text width=26mm},
+  gate/.style={draw, thick, diamond, aspect=1.7, font=\footnotesize,
+               align=center, inner sep=0pt, fill=panelgrey},
   ar/.style={->, thick}
 ]
 \node[st] (task) at (0,0) {task scoped to \emph{one} item};
-\node[st, right=9mm of task] (wt) {isolated worktree\\\footnotesize (agent edits a copy)};
-\node[gate, right=9mm of wt] (g) {orchestrator\\re-derives};
-\node[st, right=9mm of g] (merge) {merge into\\the proof document};
+\node[st, right=6mm of task] (wt) {isolated worktree\\\scriptsize (agent edits a copy)};
+\node[gate, right=6mm of wt] (g) {orchestrator\\re-derives};
+\node[st, right=6mm of g] (merge) {merge into\\the proof document};
 \node[st, below=9mm of g] (rej) {returned, with the\\defect named};
 
 \draw[ar] (task)--(wt);

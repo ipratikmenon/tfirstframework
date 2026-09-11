@@ -83,12 +83,20 @@
 \theoremstyle{remark}
 \newtheorem{obsv}[statement]{Observation}
 
-% A boxed "record" environment for load-bearing verbatim findings
+% A boxed "record" environment for load-bearing verbatim findings.
+% NOTE: \colorbox must receive its argument as one complete group, so the
+% body is captured in an lrbox first.  Splitting "\colorbox{c}{" across the
+% begin-code and end-code of \newenvironment leaves the begin-code
+% brace-unbalanced, which TeX mis-parses at definition time and only fails
+% on first use -- which is exactly how this survived the empty-chapter build.
+\newsavebox{\recordbox}
 \newenvironment{record}
-  {\par\medskip\noindent\begin{minipage}{\linewidth}%
-   \colorbox{panelgrey}{\begin{minipage}{\dimexpr\linewidth-2\fboxsep}%
+  {\par\medskip\noindent\begin{lrbox}{\recordbox}%
+   \begin{minipage}{\dimexpr\linewidth-2\fboxsep}%
    \vspace{2pt}\small}
-  {\vspace{2pt}\end{minipage}}\end{minipage}\par\medskip}
+  {\vspace{2pt}\end{minipage}%
+   \end{lrbox}%
+   \colorbox{panelgrey}{\usebox{\recordbox}}\par\medskip}
 
 % ---------------------------------------------------------------------
 %  Headers

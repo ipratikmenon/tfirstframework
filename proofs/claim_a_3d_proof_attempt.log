@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.10)  11 SEP 2026 04:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.10)  11 SEP 2026 09:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -391,7 +391,7 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count301
 \l__pdf_internal_box=\box56
 )
-(/tmp/verifybuild/claim_a_3d_proof_attempt.aux)
+(/tmp/wp2bbuild/claim_a_3d_proof_attempt.aux)
 \openout1 = `claim_a_3d_proof_attempt.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 89.
@@ -465,8 +465,8 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring OFF on input line 89.
-(/tmp/verifybuild/claim_a_3d_proof_attempt.out)
-(/tmp/verifybuild/claim_a_3d_proof_attempt.out)
+(/tmp/wp2bbuild/claim_a_3d_proof_attempt.out)
+(/tmp/wp2bbuild/claim_a_3d_proof_attempt.out)
 \@outlinefile=\write3
 \openout3 = `claim_a_3d_proof_attempt.out'.
 
@@ -531,7 +531,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-(/tmp/verifybuild/claim_a_3d_proof_attempt.toc [1
+(/tmp/wp2bbuild/claim_a_3d_proof_attempt.toc [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/
 dvips/cm-super/cm-super-ts1.enc}] [2] [3] [4] [5] [6])
@@ -604,7 +604,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 545.
 
-
+[13]
 Overfull \hbox (6.9702pt too wide) in paragraph at lines 584--586
 [][]\OT1/cmr/bx/n/10.95 (-20) Lemma 4.1 \OT1/cmr/m/n/10.95 (-20) (Lo-cal part e
 s-ti-mate)\OT1/cmr/bx/n/10.95 (-20) . []$[][] \OMS/cmsy/m/n/10.95 ^^T \OML/cmm/
@@ -612,7 +612,7 @@ m/it/10.95 C [][] \OMS/cmsy/m/n/10.95 ^^T \OML/cmm/m/it/10.95 C [][]$\OT1/cmr/m
 /it/10.95 (-20) . 
  []
 
-[13] [14]
+[14]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 706.
@@ -647,7 +647,7 @@ ar set)\OT1/cmr/bx/n/10.95 (-20) . []$\OMS/cmsy/m/n/10.95 S \OT1/cmr/m/n/10.95
 sy/m/n/10.95 g \OT1/cmr/m/n/10.95 (-20) = []$. 
  []
 
-[16]
+[16] [17]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 890.
@@ -656,7 +656,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 890.
 
-[17] [18]
+[18]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1021.
@@ -733,6 +733,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1100.
 
+[20]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1125.
@@ -745,7 +746,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1125.
 
-[20]
+
 Overfull \hbox (79.32901pt too wide) in paragraph at lines 1167--1172
 []\OT1/cmr/bx/it/10.95 (-20) [Local pres-sure clos-able] \OT1/cmr/m/it/10.95 (-
 20) Uni-form lo-cal pres-sure es-ti-mate: $[]  [] \OMS/cmsy/m/n/10.95 ^^@[]j\OM
@@ -753,7 +754,7 @@ L/cmm/m/it/10.95 p\OMS/cmsy/m/n/10.95 j[] ^^T \OML/cmm/m/it/10.95 B[]  [][]$\OT
 1/cmr/m/it/10.95 (-20) ,
  []
 
-
+[21]
 Overfull \hbox (6.49355pt too wide) in paragraph at lines 1188--1191
 []\OT1/cmr/m/n/10.95 (-20) (G1)$\OMS/cmsy/m/n/10.95 )$\OT1/cmr/m/n/10.95 (-20) 
 (G2): By CZ and Sobolev--Poincar^^Se, $[]  [] \OMS/cmsy/m/n/10.95 j\OML/cmm/m/i
@@ -762,7 +763,31 @@ t/10.95 p\OMS/cmsy/m/n/10.95 j[] ^^T \OML/cmm/m/it/10.95 C\OT1/cmr/m/n/10.95 (-
 T1/cmr/m/n/10.95 (-20) )[] \OMS/cmsy/m/n/10.95 ^^T
  []
 
-[21] [22]
+[22]
+pdfTeX warning (ext4): destination with the same identifier (name{equation.9.37
+}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1292 \end{minipage}}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.9.37
+}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1292 \end{minipage}}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.9.37
+}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1292 \end{minipage}}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.9.37
+}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1292 \end{minipage}}
+                      
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1296.
@@ -787,13 +812,7 @@ t/10.95 x; t[]\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ^^^\OT1/cmr/m/n/10.95 (\O
 ML/cmm/m/it/10.95 x; t[]\OT1/cmr/m/n/10.95 ) \OML/cmm/m/it/10.95 dx:
  []
 
-[23
-pdfTeX warning (ext4): destination with the same identifier (name{equation.9.37
-}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1369   \end{align}
-                    ]
+[23]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1412.
@@ -811,8 +830,26 @@ pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
 4}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1476   \begin{equation}
-                         \label{eq:K-approx}
+l.1436   \begin{equation}
+                         \tag{$\dagger\dagger$}
+pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
+4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1436   \begin{equation}
+                         \tag{$\dagger\dagger$}
+pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
+4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1436   \begin{equation}
+                         \tag{$\dagger\dagger$}
+pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
+4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1436   \begin{equation}
+                         \tag{$\dagger\dagger$}
 pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
 4}) has been already used, duplicate ignored
 <to be read again> 
@@ -830,13 +867,13 @@ pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
 <to be read again> 
                    \relax 
 l.1476   \begin{equation}
-                         \label{eq:K-approx} [25
+                         \label{eq:K-approx}
 pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
 4}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1509 \end{remark}
-                   ]
+<to be read again> 
+                   \relax 
+l.1476   \begin{equation}
+                         \label{eq:K-approx} [25]
 Overfull \hbox (249.4543pt too wide) in paragraph at lines 1553--1571
  [] 
  []
@@ -1561,7 +1598,7 @@ cmm/m/it/10.95 s\OMS/cmsy/m/n/10.95 j[]\OT1/cmr/m/n/10.95 (-20) ] =
  []
 
 [138] [139]
-Overfull \hbox (2.78702pt too wide) in paragraph at lines 10409--10413
+Overfull \hbox (2.78702pt too wide) in paragraph at lines 10420--10424
 [][]\OT1/cmr/m/it/10.95 (-20) Observation \OT1/cmr/m/n/10.95 (-20) 36.19 (The s
 ame es-ti-mate ap-plies to $\OML/cmm/m/it/10.95 u$ \OT1/cmr/m/n/10.95 (-20) it-
 self --- recorded, not claimed)\OT1/cmr/m/it/10.95 (-20) . []\OT1/cmr/m/n/10.95
@@ -1569,36 +1606,81 @@ self --- recorded, not claimed)\OT1/cmr/m/it/10.95 (-20) . []\OT1/cmr/m/n/10.95
  []
 
 
-Overfull \hbox (30.48871pt too wide) in paragraph at lines 10457--10485
+Overfull \hbox (30.48871pt too wide) in paragraph at lines 10476--10504
  [] 
  []
 
-[140] [141] [142] [143] [144] [145] [146] [147] [148]
-Underfull \hbox (badness 1412) in paragraph at lines 11116--11117
+[140] [141] [142] [143] [144] [145] [146]
+Overfull \hbox (46.53941pt too wide) in paragraph at lines 10970--10982
+[]\OT1/cmr/m/n/10.95 (-20) Exactly the restart of Ob-ser-va-tion []36.19[], car
+-ried out for gen-eral $\OML/cmm/m/it/10.95 k$\OT1/cmr/m/n/10.95 (-20) . Put $\
+OML/cmm/m/it/10.95 ^^\ \OT1/cmr/m/n/10.95 (-20) = [][]\OML/cmm/m/it/10.95 "\OT1
+/cmr/m/n/10.95 (-20) (\OML/cmm/m/it/10.95 k; \OT1/cmr/m/n/10.95 (-20) 0)\OML/cm
+m/m/it/10.95 c[]; [][]\OT1/cmr/m/n/10.95 (-20) (\OML/cmm/m/it/10.95 T \OMS/cmsy
+/m/n/10.95 ^^@
+ []
+
+
+Overfull \hbox (1.06955pt too wide) in paragraph at lines 10985--10988
+[][]\OT1/cmr/bx/n/10.95 (-20) Lemma 37.18 \OT1/cmr/m/n/10.95 (-20) (The log-a-r
+ithm is at most one log-a-rithm)\OT1/cmr/bx/n/10.95 (-20) . []\OT1/cmr/m/it/10.
+95 (-20) With $\OMS/cmsy/m/n/10.95 L\OT1/cmr/m/n/10.95 (-20) (\OML/cmm/m/it/10.
+95 t\OT1/cmr/m/n/10.95 (-20) ) = [](\OML/cmm/m/it/10.95 e \OT1/cmr/m/n/10.95 (-
+20) + \OMS/cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 u\OT1/cmr/m/n/10.95 (-20) (\OMS/
+cmsy/m/n/10.95 ^^A\OML/cmm/m/it/10.95 ; t\OT1/cmr/m/n/10.95 (-20) )\OMS/cmsy/m/
+n/10.95 k[]\OML/cmm/m/it/10.95 =M\OT1/cmr/m/n/10.95 (-20) (\OML/cmm/m/it/10.95 
+t\OT1/cmr/m/n/10.95 (-20) ))$
+ []
+
+[147] [148] [149]
+Overfull \hbox (45.70116pt too wide) in paragraph at lines 11212--11220
+[]\OT1/cmr/m/it/10.95 (-20) (2) The stretch-ing term. \OT1/cmr/m/n/10.95 (-20) 
+In Lemma []28.1[](a), $[] [] \OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 \OMS/cms
+y/m/n/10.95 j\OML/cmm/m/it/10.95 m[]^^Q[] \OMS/cmsy/m/n/10.95 ^^T kr\OML/cmm/m/
+it/10.95 U\OMS/cmsy/m/n/10.95 k[]\OML/cmm/m/it/10.95 M[]r[] \OMS/cmsy/m/n/10.95
+ ^^T \OML/cmm/m/it/10.95 C[]\OT1/cmr/m/n/10.95 (-20) (\OML/cmm/m/it/10.95 c[]\O
+T1/cmr/m/n/10.95 (-20) )\OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 s[]\OMS/cmsy/m
+/n/10.95 j[]\OML/cmm/m/it/10.95 M[]\OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 s[]
+\OMS/cmsy/m/n/10.95 j[] \OT1/cmr/m/n/10.95 (-20) =
+ []
+
+[150]
+Overfull \hbox (4.25131pt too wide) in paragraph at lines 11301--11309
+\OT1/cmr/bx/n/10.95 (-20) Residual gap, stated ex-actly. \OT1/cmr/m/n/10.95 (-2
+0) Prove or dis-prove: there is $\OML/cmm/m/it/10.95 K \OT1/cmr/m/n/10.95 (-20)
+ = \OML/cmm/m/it/10.95 K\OT1/cmr/m/n/10.95 (-20) (\OML/cmm/m/it/10.95 c[]\OT1/c
+mr/m/n/10.95 (-20) )$ with $\OMS/cmsy/m/n/10.95 kr\OML/cmm/m/it/10.95 u\OT1/cmr
+/m/n/10.95 (-20) (\OMS/cmsy/m/n/10.95 ^^A\OML/cmm/m/it/10.95 ; t\OT1/cmr/m/n/10
+.95 (-20) )\OMS/cmsy/m/n/10.95 k[] ^^T
+ []
+
+
+Overfull \hbox (39.95003pt too wide) in paragraph at lines 11312--11339
+ [] 
+ []
+
+[151] [152] [153] [154] [155] [156] [157] [158] [159]
+Underfull \hbox (badness 1412) in paragraph at lines 11986--11987
 []\OT1/cmr/bx/n/10 (+20) Withdrawn \OT1/cmr/m/n/10 (+20) (ex-act can-cel-la-
  []
 
-[149] [150] [151] [152] (/tmp/verifybuild/claim_a_3d_proof_attempt.aux)
+[160] [161] [162] [163] [164] (/tmp/wp2bbuild/claim_a_3d_proof_attempt.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `claim_a_3d_proof_attempt.out' has not change
 d.
-(rerunfilecheck)             Checksum: AC92BB910D2A72A693F38A7C7C4A57B7;64046.
+(rerunfilecheck)             Checksum: 40AF635D76E13B448BB5220AE6FC512D;66154.
  ) 
 Here is how much of TeX's memory you used:
- 16221 strings out of 476106
- 246644 string characters out of 5793933
+ 16366 strings out of 476106
+ 248664 string characters out of 5793933
  1948975 words of memory out of 5000000
- 36343 multiletter control sequences out of 15000+600000
- 596531 words of font info for 381 fonts, out of 8000000 for 9000
+ 36406 multiletter control sequences out of 15000+600000
+ 596659 words of font info for 384 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 75i,16n,79p,1028b,795s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,16n,79p,1028b,850s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texli
@@ -1632,11 +1714,11 @@ b></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/
 fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/c
 m-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1095.pfb
 >
-Output written on /tmp/verifybuild/claim_a_3d_proof_attempt.pdf (152 pages, 135
-0185 bytes).
+Output written on /tmp/wp2bbuild/claim_a_3d_proof_attempt.pdf (164 pages, 14271
+89 bytes).
 PDF statistics:
- 4737 PDF objects out of 5155 (max. 8388607)
- 4409 compressed objects within 45 object streams
- 1152 named destinations out of 1200 (max. 500000)
- 73921 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 5124 PDF objects out of 5155 (max. 8388607)
+ 4781 compressed objects within 48 object streams
+ 1228 named destinations out of 1440 (max. 500000)
+ 73985 words of extra memory for PDF output out of 74296 (max. 10000000)
 

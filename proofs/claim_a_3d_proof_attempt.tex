@@ -10384,6 +10384,17 @@ respects that, and asserts nothing at $s=0$, where
   saturation. This is the sharpest surviving gap on the profile branch and it
   is a good target: it is a statement about one scalar function of one
   variable on an ancient solution.
+  \emph{Amended at S50.} It is a sharply posed target and, on the evidence of
+  \S\ref{sec:saturation-s50}, a poor one. The strength (e) actually needs is
+  saturation at the single reference time $s_0$
+  (Lemma~\ref{lem:s50-comparability}), not at every $s$; (e)'s only
+  mathematical consumer is
+  Proposition~\ref{prop:no-summable-budget}(b), which itself has none
+  (Observation~\ref{obs:s50-leaf}) and can be discharged without saturation at
+  the Type-I scale (Corollary~\ref{cor:s50-budget-unconditional}); and on the
+  global branch logarithm-free saturation is equivalent to Wall~1
+  (Theorem~\ref{thm:s50-equivalence}). The status of (e) itself is
+  unchanged.
 \item \textbf{(R) as used exceeded (R) as stated, and the excess is now
   supplied elsewhere.} See Remark~\ref{rem:s48-doc-errors}(c). No
   circularity results, because the replacement input
@@ -10423,6 +10434,14 @@ respects that, and asserts nothing at $s=0$, where
   branches actually need, and because a future session should test it before
   attacking either wall separately. It is not a revision of
   \S\ref{subsec:wall1-cz} and is not used anywhere in this document.
+  \emph{Amended at S50.} The test was carried out in
+  \S\ref{sec:saturation-s50} and the diagnosis is half right: saturation
+  \emph{is} what both branches need, and it is \emph{not} a separate,
+  cheaper question. By Theorem~\ref{thm:s50-equivalence} the bound displayed
+  above, combined with logarithm-free saturation, is equivalent to removing
+  Wall~1 in the sense of \S\ref{subsec:wall1-cz}(a), losslessly in the
+  constants. The observation is used in that proof --- in the direction
+  saturation~$\Rightarrow$~Wall~1 only --- and nowhere else.
 \end{observation}
 
 \begin{remark}[Three places where this document's own text needs correcting]
@@ -10495,6 +10514,839 @@ Type-II exclusion & Open & unchanged \\
   of residue~(1): \emph{is the Type-I upper bound saturated?}
 \end{remark}
 
+
+% ════════════════════════════════════════════════════════════════════════════
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Saturation of the Type-I Bound (Session S50)}
+\label{sec:saturation-s50}
+
+Session~S48 removed hypothesis \textbf{(R)} and, in doing so, left two
+statements standing on a single common proviso: the second clause of
+Proposition~\ref{prop:transfer-audit}(d), which Part~(e) uses, and
+Observation~\ref{obs:s48-wall1}, which records a logarithm-free bound on
+$\|\nabla u\|_{L^\infty}$ that §\ref{sec:moser-s33}--§\ref{sec:cf-s37} cannot
+consume. Remark~\ref{rem:s48-scope} named the resulting question --- \emph{is
+the Type-I upper bound saturated?} --- and proposed it as a target cheaper and
+better defined than either wall. This section settles what can be settled and
+reports, as the principal finding, that the proposal was wrong: log-free
+saturation is not a cheaper target than Wall~1, because
+\emph{it is the same target} (Theorem~\ref{thm:s50-equivalence}).
+
+Three things are proved here. First, an audit of who actually needs saturation
+and in what strength (§\ref{subsec:s50-audit}), which finds the requirement
+both weaker and less consequential than S48 recorded. Second, a theorem: under
+the standing hypotheses the Type-I vorticity bound \emph{is} saturated up to a
+single logarithm, at every time and not merely along a sequence
+(Theorem~\ref{thm:s50-log-saturation}); and a corollary that this is worth
+nothing, being a restatement of an estimate the document already carried
+(Corollary~\ref{cor:s50-restatement}). Third, the equivalence with Wall~1, in
+both directions, on both branches (Theorem~\ref{thm:s50-equivalence},
+Proposition~\ref{prop:s50-profile-equivalence}).
+
+One route is opened rather than closed: Proposition~\ref{prop:s50-typeI-scale}
+discharges the only mathematical consumer of Part~(e) without saturation, by
+running the estimate at the Type-I scale $|s_0|^{1/2}$ instead of the amplitude
+scale $M_U(s_0)^{-1/2}$.
+
+\medskip
+\noindent\textbf{Standing hypotheses.} Throughout this section $u$ is smooth
+on $\T^3\times[0,T)$ with putative first singularity at $T$ and satisfies the
+standing Type-I bounds of §\ref{sec:moser-s33} (line~5565): \emph{both}
+$M(t)=\|\omega(\cdot,t)\|_{L^\infty}\leq C_I/(T-t)$ \emph{and}
+$\sup_{\T^3}|u(\cdot,t)|\leq C_I(T-t)^{-1/2}$. We write $c_I=C_I$ for
+consistency with §\ref{sec:hypR-s48}, normalise $|\T^3|=1$ and $\nu=1$ (as in
+Remark~\ref{rem:s39-units}), and set
+\[
+  \Lambda(t) \;:=\; \log\frac{1}{T-t}, \qquad T-t<1 .
+\]
+By Proposition~\ref{prop:s48-bridge-fails} the velocity bound is an
+\emph{independent} hypothesis and is used as such; nothing below attempts to
+derive it from the vorticity bound.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{What saturation is, and what is free}
+\label{subsec:s50-statement}
+
+\begin{definition}[Saturation]\label{def:s50-saturation}
+  Define the \emph{Type-I amplitude}
+  \[
+    \Phi(t) \;:=\; (T-t)\,M(t) \in (0,C_I],
+  \]
+  the torus analogue of the profile amplitude $\Phi$ of
+  Lemma~\ref{lem:logtime}. The \emph{saturated set} at level $c>0$ is
+  $\mathcal{S}_c := \{t<T : \Phi(t)\geq c\}$. We distinguish:
+  \begin{enumerate}[label=\textup{(\textbf{Sat-\arabic*})},leftmargin=3.8em]
+  \item\label{it:S1} \textbf{Log-free saturation.} There are $c=c(c_I)>0$ and
+    $t^*<T$ with $\Phi(t)\geq c$ for \emph{all} $t\in(t^*,T)$; equivalently
+    $M(t)\geq c\,(T-t)^{-1}$ there.
+  \item\label{it:S2} \textbf{Saturation up to a logarithm.} There are
+    $c>0$, $t^*<T$ with $\Phi(t)\geq c/(1+\Lambda(t))$ for all $t\in(t^*,T)$.
+  \item\label{it:S3} \textbf{Sequential saturation.}
+    $\limsup_{t\uparrow T}\Phi(t)\geq c$.
+  \item\label{it:S4} \textbf{Saturation on a set.} $\mathcal{S}_c$ accumulates
+    at $T$, or meets infinitely many dyadic shells
+    $(T-2^{-k-1},T-2^{-k})$.
+  \end{enumerate}
+  The profile forms are the same with $U\in\mathcal{A}(c_I)$,
+  $\Phi_U(s)=|s|M_U(s)$ and $|s|$ in place of $T-t$, asserted as $s\to-\infty$
+  (the regime Proposition~\ref{prop:no-summable-budget} inhabits).
+\end{definition}
+
+\begin{remark}[Velocity saturation is free; it is the vorticity that is
+  open]\label{rem:s50-velocity-free}
+  The name ``Type~I'' \emph{is} the assertion that the velocity bound is
+  saturated. Cheskidov, Dai and Palasek state it thus \cite[§2.2]{CDP2026}:
+  \begin{quote}\itshape
+    A basic consequence of Leray's local theory is that
+    $\|u(t)\|_{L^\infty}$ diverges at least as fast as
+    $(T_*-t)^{-\frac12}$ before a finite-time blow-up at $t=T_*$. A blow-up
+    that saturates this critical lower bound is referred to as Type~I.
+  \end{quote}
+  So the standing hypothesis $\sup|u|\leq C_I(T-t)^{-1/2}$ together with the
+  classical lower bound gives
+  $\|u(\cdot,t)\|_{L^\infty}\asymp(T-t)^{-1/2}$ exactly, with no gap. The
+  question of this section is \emph{not} of that kind. It asks for the
+  matching lower bound on $\|\omega\|_{L^\infty}$, whose Type-I upper bound is
+  one Biot--Savart degree away; and the distance between the two is precisely
+  the distance Wall~1 measures. That observation is not a proof, but it
+  already indicates where the difficulty must live, and
+  Theorem~\ref{thm:s50-equivalence} confirms it.
+\end{remark}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{Audit: who needs saturation, and how much}
+\label{subsec:s50-audit}
+
+The S48 residue (§\ref{subsec:s48-residue}, item~(1)) records the proviso as
+``load-bearing''. That is correct about the step
+(d)$\,\to\,$(e) and incorrect about (e)'s own weight. The following audit
+re-derives every line number against the present file.
+
+\begin{proposition}[Audit of the three users]\label{prop:s50-audit}
+  In the present document saturation is required at exactly three places, in
+  the following strengths.
+  \begin{enumerate}[label=\textup{(\alph*)},leftmargin=2.4em]
+  \item \textbf{Proposition~\ref{prop:transfer-audit}(d), second clause}
+    (lines~6983--6985). The clause
+    $\|\nabla U(\cdot,s)\|_{L^\infty}\leq C(c_I)M_U(s)$ is asserted exactly on
+    $\{s : M_U(s)\geq c_I^{-1}|s|^{-1}\}$, i.e.\ on the saturated set. It is
+    not a hypothesis of the proposition but a restriction on its conclusion,
+    and it is \emph{equivalent} to saturation at $s$: given the first clause
+    (Corollary~\ref{cor:s48-transfer-d}) the second holds at $s$ iff
+    $\Phi_U(s)\gtrsim1$.
+  \item \textbf{Proposition~\ref{prop:transfer-audit}(e)} (lines~6986--6995),
+    through Lemma~\ref{lem:mag-rhs}(a) (line~5852), where
+    $\|\nabla u\|_{L^\infty}M^2(r^*)^5$ is converted using $M(r^*)^2=1$ with
+    $r^*=M_U(s_0)^{-1/2}$. The requirement is saturation \emph{at the single
+    reference time $s_0$}, not throughout $Q(r^*)$: by
+    Lemma~\ref{lem:s50-comparability} saturation at $s_0$ propagates over the
+    whole time extent of the cube.
+  \item \textbf{Observation~\ref{obs:s48-wall1}} (line~10408). Its bound
+    $\|\nabla u\|_{L^\infty}\leq C(c_I)(T-t)^{-1}$ is usable by
+    §\ref{sec:moser-s33}--§\ref{sec:cf-s37} at time $t$ iff $t\in\mathcal{S}_c$.
+    Every estimate there measures $\nabla u$ against $M(t)$.
+  \end{enumerate}
+  \emph{[Proved --- (a) and (c) by inspection of the cited lines; (b) is
+  Lemma~\ref{lem:s50-comparability}.]}
+\end{proposition}
+
+\begin{lemma}[Saturation at one time propagates across the cube]
+  \label{lem:s50-comparability}
+  Let $U\in\mathcal{A}(c_I)$, let $s_0<0$ satisfy $\Phi_U(s_0)\geq c$, and put
+  $r^*=M_U(s_0)^{-1/2}$, $h=(r^*/2)^2=\tfrac14M_U(s_0)^{-1}$. Then for all
+  $s\in[s_0-h,\,s_0]$,
+  \[
+    M_U(s) \;\geq\; \bigl(1+\tfrac1{4c}\bigr)^{-C_1(c_I)}\,M_U(s_0),
+  \]
+  where $C_1(c_I)$ is the constant of Corollary~\ref{cor:s48-transfer-d}.
+  The identical statement holds on $\T^3$ with $(T-t)$ for $|s|$ and
+  Observation~\ref{obs:s48-wall1} for Corollary~\ref{cor:s48-transfer-d}.
+  \emph{[Proved.]}
+\end{lemma}
+\begin{proof}
+  Saturation at $s_0$ gives $h=\tfrac14M_U(s_0)^{-1}\leq|s_0|/(4c)$, so
+  $|s|\leq|s_0|(1+\tfrac1{4c})$ on the interval. By
+  Lemma~\ref{lem:logtime}(c) (Hamilton's trick applied to
+  \eqref{eq:mag-eq}; the supremum is attained here because
+  $M_U(s)>0$ and the estimate is local) and $w\geq0$,
+  \[
+    \frac{d}{ds}\log M_U \;\leq\; \alpha_{\max} \;\leq\;
+      \|\nabla U(\cdot,s)\|_{L^\infty} \;\leq\; C_1(c_I)|s|^{-1},
+  \]
+  the last step by Corollary~\ref{cor:s48-transfer-d}. Integrating from $s$ to
+  $s_0$ gives
+  $\log M_U(s_0)-\log M_U(s)\leq C_1\log(|s|/|s_0|)
+  \leq C_1\log(1+\tfrac1{4c})$.
+\end{proof}
+
+\begin{remark}[The requirement is weaker than S48 recorded --- and this is the
+  correct reading of the proviso]\label{rem:s50-weaker-requirement}
+  Proposition~\ref{prop:s50-audit}(b) with Lemma~\ref{lem:s50-comparability}
+  says that (e) holds \emph{at every $s_0$ of the saturated set}. So the
+  saturated set is not merely where (d)'s second clause is stated: it is
+  exactly the set of times at which (e)'s conclusion
+  \eqref{eq:profile-apriori} is available. Consequently \ref{it:S4} --- not
+  \ref{it:S1} --- is the form (e) needs, provided its consumers only sample
+  times.
+\end{remark}
+
+\begin{observation}[Part (e) is a leaf]\label{obs:s50-leaf}
+  In the present document, \eqref{eq:profile-apriori} and
+  Proposition~\ref{prop:transfer-audit}(e) are invoked at exactly one
+  mathematical location: Proposition~\ref{prop:no-summable-budget}(b)
+  (lines~7364--7370), whose proof cites ``Proposition~\ref{prop:transfer-audit}(e)
+  plus Lemma~\ref{lem:typeI-scaleinv-bounds}'' (line~7384). Every other
+  occurrence of (e) is a ledger row or a summary sentence
+  (lines~7629, 7661, 7696, 9775, 10466, 10726). Proposition~\ref{prop:no-summable-budget}
+  is itself cited only three times (lines~7389, 7634, 7671), all three
+  rhetorical: a transitional sentence, a summary bullet and a ledger row. It
+  has no mathematical consumer.
+
+  \emph{Consequence.} (e) is a leaf of the dependency graph, and the statement
+  it supports is an \emph{impossibility} result --- ``the naive infinite-past
+  argument fails'' --- so if saturation were false, the effect on the
+  programme would be to \emph{weaken an obstruction}, not to lose a tool.
+  The live profile machinery (Lemma~\ref{lem:logtime},
+  Proposition~\ref{prop:logtime-necessary},
+  Conjecture~\ref{target:disorder-depletion}) is saturation-free: the proof of
+  Proposition~\ref{prop:logtime-necessary} uses only $\Phi_U\leq c_I$ and
+  $\Phi_U(\tau_0)>0$, i.e.\ the Type-I \emph{upper} bound and nontriviality.
+  \emph{[Proved, by exhaustive search of the cross-reference graph.]}
+\end{observation}
+
+\begin{remark}[Two inaccuracies in the document's own handling of saturation]
+  \label{rem:s50-doc-inaccuracies}
+  \emph{(a)} The proof of Theorem~\ref{thm:apriori-sigma} (line~5883) writes
+  ``on $\{|\omega|\geq M/2\}\cap\{\eta=1\}$ we have $m^2\geq M^2/4$'' and then
+  removes $M^2$ from a space-\emph{time} integral, although the cutoff
+  $\chi(|\omega(x,t)|/M(t))$ of Definition~\ref{def:composite-cutoff} makes
+  $M$ time-dependent while $r^*$ is built from $M(t_0)$. The step therefore
+  carries an unstated requirement, $M(t)\gtrsim M(t_0)$ on $Q(r^*/2)$, which
+  Type~I does not supply. It is not an additional gap:
+  Lemma~\ref{lem:s50-comparability} shows it follows from saturation at $t_0$
+  together with the logarithm-free gradient bound. But it was not stated, it
+  is inherited verbatim by Proposition~\ref{prop:transfer-audit}(e), and it is
+  a second, independent reason (e) needs saturation.
+
+  \emph{(b)} Lemma~\ref{lem:local-enstrophy-typeI} (line~5701) uses
+  $\|\nabla u\|_{L^\infty}\lesssim M\log(e+\|u\|_{H^3}/M)$ with no citation,
+  and Wall~1 (§\ref{subsec:wall1-cz}) rests on it. The inequality is
+  Beale--Kato--Majda \cite[(15)]{BKM1984}, refined by Kozono--Taniuchi
+  \cite{KozonoTaniuchi2000} --- the latter \emph{is} in the bibliography but
+  is never cited for this. BKM's literal form is
+  $\|\nabla u\|_{L^\infty}\leq C\{(1+\log^+\|u\|_{H^3})\|\omega\|_{L^\infty}
+  +\|\omega\|_{L^2}\}$; the document's $\mathcal{L}$ is the scale-invariant
+  variant. Under the standing hypotheses the two agree up to constants
+  (Lemma~\ref{lem:s50-Lbound}), so nothing downstream changes; the citation is
+  added here.
+\end{remark}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{What the literature actually proves}
+\label{subsec:s50-literature}
+
+Statements are quoted, not recalled. Where a display failed to extract from a
+scanned source this is said explicitly rather than reconstructed.
+
+\begin{fact}[Leray; Giga]\label{fact:s50-leray}
+  The classical lower bounds, as recalled verbatim in
+  \cite[§1]{CortissozMontero2016}: ``$\|u(t)\|_{L^p}\geq c(T-t)^{-(1-3/p)/2}$''
+  for $p\in[3,\infty)$ and ``$\|u(t)\|_{L^\infty}\geq c(T-t)^{-1/2}$''. Their
+  provenance, quoted from the same source: ``These blow-up estimates were
+  first stated for the $L^p$ spaces, $p>3$, without proof by Leray in his
+  remarkable paper \cite{Leray1934}, and proved by Giga in \cite{Giga1986} via
+  semigroup theory.'' (In this quotation the source's reference numerals
+  \textup{[9]} and \textup{[7]} have been replaced by the corresponding keys of
+  this bibliography; nothing else is altered.) These hold for \emph{all} $t$ in a left neighbourhood of
+  $T$; they are not limsup statements. The mechanism is local well-posedness
+  run backwards, and the exponent is the scaling deficit of the norm halved.
+\end{fact}
+
+\begin{fact}[Cortissoz--Montero, optimal Sobolev rate on the torus]
+  \label{fact:s50-cm}
+  \cite[Thm.~2.1]{CortissozMontero2016}, verbatim: ``\emph{Let $u(x,t)$ be a
+  solution Navier--Stokes equations whose maximum interval of existence is
+  $(0,T)$, $0<T<\infty$, and such that
+  $u\in C((0,T),\dot H^s(\T^3)\cap\dot H^{s+1}(\T^3))$, with
+  $\tfrac12<s<\tfrac52$. Then the following estimate holds}
+  $C_s\,t^{-\frac12(s-\frac12)}\leq\|u(T-s)\|_{\dot H^s(\T^3)}$.'' The paper
+  uses $s$ for both the Sobolev index and the elapsed time in this display;
+  read unambiguously it is
+  \[
+    \|u(\cdot,t)\|_{\dot H^\sigma(\T^3)}
+      \;\geq\; C_\sigma\,(T-t)^{-\frac{2\sigma-1}{4}},
+    \qquad \tfrac12<\sigma<\tfrac52,
+  \]
+  for \emph{all} $t$ in the interval, matching the exponent
+  $-(2s-1)/4$ the same paper attributes to Robinson--Sadowski--Silva
+  \cite{RobinsonSadowskiSilva2012}. Taking $\sigma=1$ and
+  $\|\nabla u\|_{L^2}=\|\omega\|_{L^2}$ for divergence-free fields on $\T^3$:
+  \begin{equation}\label{eq:s50-quarter}
+    M(t) \;\geq\; \|\omega(\cdot,t)\|_{L^2(\T^3)}
+      \;\geq\; C\,(T-t)^{-1/4}
+    \qquad\text{for all } t<T .
+  \end{equation}
+  (With $|\T^3|=1$; otherwise a factor $|\T^3|^{-1/2}$ appears.)
+\end{fact}
+
+\begin{fact}[Beale--Kato--Majda]\label{fact:s50-bkm}
+  \cite[Theorem]{BKM1984}, verbatim: ``\emph{Let $u$ be a solution of Euler's
+  equations as described above, and suppose there is a time $T_*$ such that
+  the solution cannot be continued in the class \textup{(2)} to $T=T_*$.
+  Assume that $T_*$ is the first such time. Then}
+  $\int_0^{T_*}|\omega(t)|_{L^\infty}dt=\infty$, \emph{and in particular}
+  $[\dots]$.'' The paper adds: ``\emph{Similar statements hold for the
+  Navier--Stokes equations; the arguments below apply equally well in this
+  case.}'' The displayed ``in particular'' consequence did not extract from
+  the scanned original and is therefore not quoted from it; it is quoted
+  instead from \cite[(1.4)]{IngimarsonKukavica2026}, which renders BKM as
+  $\int_0^{T_*}\|\omega(t)\|_{L^\infty}=\infty$ ``\emph{and, consequently,}''
+  $\limsup_{t\to T_*^-}\|\omega(t)\|_{L^\infty}=\infty$. \textbf{BKM is an
+  integral-divergence statement whose pointwise shadow is a
+  $\limsup$.}
+\end{fact}
+
+\begin{lemma}[BKM does not deliver saturation on any set]
+  \label{lem:s50-bkm-insufficient}
+  Non-integrability of $M$ implies none of
+  \ref{it:S1}--\ref{it:S4}, even given the Type-I upper bound.
+  \emph{[Proved.]}
+\end{lemma}
+\begin{proof}
+  Pass to logarithmic time $x=\log\frac1{T-t}$ and set
+  $g(x)=\Phi(t)=(T-t)M(t)$, so that $\int_{t_0}^TM\,dt=\int_{x_0}^\infty g\,dx$
+  and the Type-I upper bound reads $0<g\leq C_I$. The pair of conditions
+  ``$\int^\infty g=\infty$ and $g\leq C_I$'' is satisfied by $g(x)=1/x$, for
+  which $g\to0$: \ref{it:S3} fails, hence so do \ref{it:S1} and \ref{it:S2};
+  and for every $c>0$ the set $\{g\geq c\}$ is the bounded interval
+  $[x_0,1/c]$, so \ref{it:S4} fails as well. Thus BKM constrains $\Phi$ only
+  through a divergent integral in logarithmic time, which is compatible with
+  $\Phi\to0$.
+\end{proof}
+
+\begin{fact}[Ingimarson--Kukavica: the best known vorticity rate, and it is a
+  limsup with a logarithm]\label{fact:s50-ik}
+  \cite[§1]{IngimarsonKukavica2026}, on the state of the art for
+  \emph{Euler}: ``\emph{However, not much is known regarding the rate at which
+  either of the two quantities \textup{(1.3)} or \textup{(1.4)} blow up.}''
+  Their Theorem~2.1, verbatim: under the hypothesis that $T_*$ is the first
+  time the solution leaves the class \textup{(1.2)},
+  \[
+    \int_0^t\|\omega(s)\|_{L^\infty}ds
+      \;\geq\; \frac1C\log\log\frac1{T_*-t},
+    \qquad T_*-t<\frac1C,
+  \]
+  ``\emph{and, moreover,}''
+  \[
+    \limsup_{t\to T_*^-}\ (T_*-t)\log\Bigl(\frac1{T_*-t}\Bigr)
+      \|\omega(t)\|_{L^\infty} \;\geq\; \frac1C .
+  \]
+  Two features are decisive for us. \emph{(i)} The bound is a $\limsup$, and
+  the authors are deliberate about this: in the same paper
+  Theorems~2.5--2.7 state lower bounds on $\|D^k\omega\|_{L^\infty}$
+  ``\emph{for all $t\in[0,T_*)$}'', so the $\limsup$ in Theorem~2.1 is not a
+  stylistic default. \emph{(ii)} It is weaker than exponent~$1$ by exactly one
+  logarithm: it asserts
+  $\|\omega\|_{L^\infty}\geq c/\bigl((T_*-t)\log\frac1{T_*-t}\bigr)$ along a
+  sequence, not $c/(T_*-t)$.
+
+  Their mechanism is the vorticity ODE. Verbatim from their proof:
+  ``\emph{Following Lagrangian trajectories, we obtain}
+  $\frac{d}{dt}\|\omega\|_{L^\infty}\lesssim\|Du\|_{L^\infty}
+  \|\omega\|_{L^\infty}$'', combined with
+  ``$\|Du\|_{L^\infty}\leq\widetilde C(1+\|\omega\|_{L^\infty}
+  (1+\log^+\|u\|_{H^3}))$, \emph{see} \cite{KozonoTaniuchi2000}''. Lacking a
+  Type-I hypothesis they must close $\|u\|_{H^3}$ by Gr\"onwall, obtaining
+  $1+\log^+\|u(t)\|_{H^3}\lesssim\exp(\widetilde C\int_0^t\|\omega\|_{L^\infty})$,
+  which is what degrades the conclusion to $\log\log$ and to a $\limsup$.
+  §\ref{subsec:s50-ode} runs the same ODE \emph{with} the Type-I hypothesis and
+  does better on both counts.
+\end{fact}
+
+\begin{fact}[Cheskidov--Dai--Palasek: a constructed Type-I solution whose
+  vorticity lower bound is sequential]\label{fact:s50-cdp}
+  \cite[Thm.~1.1]{CDP2026} constructs, on $\T^d$ for any smooth
+  divergence-free datum, a weak solution blowing up instantaneously at $T_*$
+  with, verbatim, ``\emph{for some $c>0$},
+  $\|u(t_n)\|_{L^\infty}\geq\frac{c}{\sqrt{t_n-T_*}}$,
+  $\|\nabla\wedge u(t_n)\|_{L^\infty}\geq\frac{c}{t_n-T_*}$
+  \emph{along a sequence of times $t_n\to T_*+$}'' (Property~2), while
+  ``\emph{the blow-up is of Type I}:
+  $\|u(t)\|_{L^\infty}\leq\frac{C}{\sqrt{t-T_*}}$,
+  $\|\nabla u(t)\|_{L^\infty}\leq\frac{C}{t-T_*}$ \emph{for all
+  $t\in(T_*,T]$}'' (Property~4).
+
+  \emph{What this is and is not.} It is \emph{not} a counterexample to
+  saturation: the construction is a forward (instantaneous) blow-up, the
+  bounds run for $t>T_*$, and the Navier--Stokes equations are not
+  time-reversible, so the maximum-principle argument of
+  Lemma~\ref{lem:s50-ode} --- which runs \emph{toward} the singularity ---
+  has no image in that setting. It is evidence of a different kind: in a
+  bespoke example engineered to be Type~I in both $u$ and $\nabla u$, the
+  authors assert the \emph{upper} bounds at all times and the \emph{vorticity
+  lower} bound only along a sequence. If a general pointwise vorticity lower
+  bound were available from Type~I, it would have been free to them.
+\end{fact}
+
+\begin{remark}[The limsup/liminf finding, stated plainly]
+  \label{rem:s50-limsup}
+  Collecting Facts~\ref{fact:s50-leray}--\ref{fact:s50-cdp}: every known
+  \emph{pointwise} (all-times) lower bound is a \emph{velocity} or Sobolev
+  bound whose exponent is the halved scaling deficit --- $1/2$ for
+  $\|u\|_{L^\infty}$, $(2\sigma-1)/4$ for $\dot H^\sigma$, hence $1/4$ for
+  $\|\omega\|_{L^2}$. Every known lower bound on $\|\omega\|_{L^\infty}$ is
+  either an integral divergence (BKM) or a $\limsup$ carrying a logarithm
+  (Ingimarson--Kukavica), or holds only along a constructed sequence
+  (Cheskidov--Dai--Palasek). \emph{No source in this list gives
+  \ref{it:S1}, and none gives \ref{it:S4}.} This matters because, by
+  Proposition~\ref{prop:s50-audit}, \ref{it:S3} alone is useless to us: (d)'s
+  second clause and Observation~\ref{obs:s48-wall1} are applied at the
+  particular times where §\ref{sec:moser-s33}--§\ref{sec:cf-s37} run their
+  estimates, and a $\limsup$ names no such time.
+\end{remark}
+
+\begin{remark}[Why the scaling heuristic predicts exponent 1, and why that is
+  not a proof]\label{rem:s50-scaling}
+  Under $u\mapsto\lambda u(\lambda\,\cdot,\lambda^2\,\cdot)$ one has
+  $\|\omega\|_{L^\infty}\mapsto\lambda^2\|\omega\|_{L^\infty}$, deficit
+  $\alpha=2$, so the rule ``exponent $=\alpha/2$'' that reproduces
+  Fact~\ref{fact:s50-leray} and Fact~\ref{fact:s50-cm} predicts
+  $M(t)\geq c(T-t)^{-1}$. The rule is a corollary of local well-posedness with
+  existence time $\gtrsim\|u_0\|_X^{-2/\alpha}$; here that would be a local
+  existence theorem with existence time $\gtrsim\|\omega_0\|_{L^\infty}^{-1}$.
+  No such theorem exists, and the reason is structural: the mild iteration for
+  the vorticity equation must estimate the stretching term
+  $\omega\cdot\nabla u$, i.e.\ must bound $\|\nabla u\|_{L^\infty}$ by
+  $\|\omega\|_{L^\infty}$ --- \emph{the Wall~1 bound}. Running the iteration
+  through $\|u\|_{L^\infty}$ instead costs a Biot--Savart degree and returns
+  exponent $1/2$, as in Fact~\ref{fact:s50-leray}. The scaling heuristic and
+  Wall~1 are therefore not independent pieces of evidence; they are one piece,
+  and Theorem~\ref{thm:s50-equivalence} makes that exact.
+\end{remark}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{The vorticity ODE, and where the logarithm enters}
+\label{subsec:s50-ode}
+
+\begin{lemma}[Amplitude differential inequality on the torus]
+  \label{lem:s50-ode}
+  $M$ is locally Lipschitz on $[0,T)$, $M>0$, and for a.e.\ $t<T$
+  \begin{equation}\label{eq:s50-ode}
+    \frac{d}{dt}\log M(t) \;\leq\; \alpha_{\max}(t) - w_{\max}(t)
+      \;\leq\; \|\nabla u(\cdot,t)\|_{L^\infty(\T^3)} .
+  \end{equation}
+  \emph{[Proved.]}
+\end{lemma}
+\begin{proof}
+  Identical to Lemma~\ref{lem:logtime}(c), with one simplification: on the
+  compact manifold $\T^3$ the supremum of $|\omega(\cdot,t)|$ is
+  \emph{attained}, so the caveat of Remark~\ref{rem:attainment} is vacuous
+  here. Local Lipschitz continuity of $M$ follows from boundedness of
+  $\nabla\omega$ and $\partial_t\omega$ on compact subsets of $\T^3\times[0,T)$
+  ($u$ is smooth there). At a point $x_{\max}(t)$ of spatial maximum,
+  $M(t)>0$, hence $\omega\neq0$ nearby and $|\omega|$ is smooth there;
+  $\nabla|\omega|=0$ and $\Delta|\omega|\leq0$ at $x_{\max}$, so
+  \eqref{eq:mag-eq} and Hamilton's trick give
+  $\frac{d}{dt}\log M\leq\alpha_{\max}-w_{\max}$ for a.e.\ $t$. Finally
+  $w=|\nabla\hat e|^2\geq0$ and
+  $|\alpha|=|\hat e\cdot S\hat e|\leq\|S\|_{L^\infty}
+  \leq\|\nabla u\|_{L^\infty}$. That $M>0$: $\omega(\cdot,t)\equiv0$ on $\T^3$
+  would force $u(\cdot,t)$ constant, hence (mean zero) $u\equiv0$ and no
+  singularity.
+\end{proof}
+
+\begin{lemma}[All derivatives on the torus, logarithm-free]
+  \label{lem:s50-highderiv}
+  Under the standing hypotheses, for every $k\geq0$ there is $C_k(c_I)$ with
+  \begin{equation}\label{eq:s50-highderiv}
+    \bigl\|\nabla^ku(\cdot,t)\bigr\|_{L^\infty(\T^3)}
+      \;\leq\; C_k(c_I)\,(T-t)^{-\frac{k+1}{2}}
+  \end{equation}
+  for all $t$ with $T-t$ small enough that $t\geq\tau$ below.
+  \emph{[Proved; this is Observation~\ref{obs:s48-wall1} with its $k=1$
+  specialisation removed.]}
+\end{lemma}
+\begin{proof}
+  Exactly the restart of Observation~\ref{obs:s48-wall1}, carried out for
+  general $k$. Put
+  $\tau=\min\bigl(\varepsilon(k,0)c_I^{-2},\tfrac12\bigr)(T-t)$ and apply
+  Lemma~\ref{lem:s48-torus-knss} with $L=1$ to
+  $w(\cdot,r)=u(\cdot,t-\tau+r)$, $r\in[0,\tau]$. Its datum obeys
+  $A=\|u(\cdot,t-\tau)\|_{L^\infty}\leq c_I(T-t+\tau)^{-1/2}\leq
+  c_I(T-t)^{-1/2}$, and $\tau\leq\varepsilon(k,0)A^{-2}$ because
+  $A^{-2}\geq c_I^{-2}(T-t)$. At $r=\tau$,
+  $\|\nabla^ku(\cdot,t)\|_{L^\infty}\leq C(k,0)A\tau^{-k/2}
+  =C_k(c_I)(T-t)^{-\frac{k+1}{2}}$.
+  No pressure, energy or smallness hypothesis enters, per
+  Remark~\ref{rem:s48-doc-errors}(a).
+\end{proof}
+
+\begin{lemma}[The logarithm is at most one logarithm]\label{lem:s50-Lbound}
+  With $\mathcal{L}(t)=\log(e+\|u(\cdot,t)\|_{H^3}/M(t))$ as in
+  Lemma~\ref{lem:local-enstrophy-typeI} (definition on line~5712), there is
+  $C(c_I)$ with
+  \[
+    \mathcal{L}(t) \;\leq\; C(c_I)\bigl(1+\Lambda(t)\bigr),
+    \qquad
+    \int_t^T\mathcal{L}(r)\,dr \;\leq\; C(c_I)\,(T-t)\bigl(1+\Lambda(t)\bigr),
+  \]
+  for all $t$ with $T-t<1$ and close enough to $T$. \emph{[Proved.]}
+\end{lemma}
+\begin{proof}
+  By Lemma~\ref{lem:s50-highderiv} and $|\T^3|=1$,
+  $\|u\|_{H^3}\leq C\sum_{k\leq3}\|\nabla^ku\|_{L^\infty}
+  \leq C(c_I)(T-t)^{-2}$, the $k=3$ term dominating. By
+  \eqref{eq:s50-quarter}, $M(t)\geq C(T-t)^{-1/4}$. Hence
+  $\|u\|_{H^3}/M\leq C(c_I)(T-t)^{-7/4}$ and
+  $\mathcal{L}\leq\log\bigl(e+C(c_I)(T-t)^{-7/4}\bigr)
+  \leq C'(c_I)(1+\Lambda)$. For the integral, substitute $r=T-\rho$ and use
+  $\int_0^h\log\frac1\rho\,d\rho=h\bigl(1+\log\frac1h\bigr)$, giving
+  $\int_t^T(1+\Lambda(r))dr=(T-t)\bigl(2+\Lambda(t)\bigr)$.
+\end{proof}
+
+\begin{theorem}[The Type-I vorticity bound is saturated up to one logarithm,
+  at every time]\label{thm:s50-log-saturation}
+  Under the standing hypotheses there are $c=c(c_I)>0$ and $t^*<T$ such that
+  \begin{equation}\label{eq:s50-log-saturation}
+    M(t) \;\geq\; \frac{c}{(T-t)\bigl(1+\Lambda(t)\bigr)}
+    \qquad\text{for all } t\in(t^*,T),
+  \end{equation}
+  i.e.\ \ref{it:S2} holds. The statement is pointwise in $t$, not a
+  $\limsup$. \emph{[Proved.]}
+\end{theorem}
+\begin{proof}
+  By Lemma~\ref{lem:s50-ode} and the Beale--Kato--Majda inequality in the form
+  carried by Lemma~\ref{lem:local-enstrophy-typeI},
+  $\|\nabla u\|_{L^\infty}\leq C\,M\mathcal{L}$, we have for a.e.\ $t$
+  \[
+    \frac{d}{dt}M \;\leq\; \|\nabla u\|_{L^\infty}M
+      \;\leq\; C\,\mathcal{L}(t)\,M^2 .
+  \]
+  Since $M>0$ and $M$ is locally Lipschitz, $G:=1/M$ is locally Lipschitz and
+  $G'\geq-C\mathcal{L}$ a.e., so for $t<t'<T$
+  \[
+    G(t) \;\leq\; G(t') + C\int_t^{t'}\mathcal{L}(r)\,dr .
+  \]
+  By \eqref{eq:s50-quarter}, $M(t')\to\infty$ as $t'\uparrow T$, so
+  $G(t')\to0$; letting $t'\uparrow T$ and applying
+  Lemma~\ref{lem:s50-Lbound},
+  \[
+    \frac1{M(t)} \;\leq\; C\int_t^T\mathcal{L}
+      \;\leq\; C(c_I)\,(T-t)\bigl(1+\Lambda(t)\bigr),
+  \]
+  which is \eqref{eq:s50-log-saturation}. \emph{Dimensional check}: with
+  $\nu=1$, $[M]=L^{-2}=[(T-t)^{-1}]$ and $\Lambda$ is dimensionless.
+
+  \emph{Non-circularity} (the trap named in the S50 brief). The only inputs
+  are \eqref{eq:mag-eq}, the Type-I \emph{upper} bounds (through
+  Lemma~\ref{lem:s50-highderiv}, which uses
+  Lemma~\ref{lem:s48-torus-knss} and the velocity hypothesis only),
+  Fact~\ref{fact:s50-cm}, and Beale--Kato--Majda. No lower bound on $M$ of
+  exponent $1$ is used, and Observation~\ref{obs:s48-wall1} is \emph{not}
+  used: the proof needs $\|\nabla u\|_{L^\infty}$ measured against $M$, which
+  is the very thing Observation~\ref{obs:s48-wall1} cannot supply off the
+  saturated set.
+\end{proof}
+
+\begin{remark}[Where $\mathcal{L}$ enters, and whether it can be avoided]
+  \label{rem:s50-where-L}
+  It enters at exactly one place: the conversion of
+  $\frac{d}{dt}M\leq\|\nabla u\|_{L^\infty}M$ into a \emph{Riccati} inequality
+  $\frac{d}{dt}M\leq\Psi\,M^2$. Only a Riccati inequality integrates to a
+  lower bound on $M$; a linear inequality $\frac{d}{dt}M\leq K(t)M$ integrates
+  to a statement about ratios and is useless here. Concretely, feeding
+  Observation~\ref{obs:s48-wall1}'s logarithm-free
+  $\|\nabla u\|_{L^\infty}\leq C(c_I)(T-t)^{-1}$ into \eqref{eq:s50-ode} gives
+  $M(t)\geq M(t')\bigl((T-t')/(T-t)\bigr)^{C}$, and the Type-I \emph{upper}
+  bound at $t'$ makes the right-hand side tend to $0$ as $t'\uparrow T$
+  whenever $C>1$: nothing is obtained. So the factor $\Psi$ must be
+  $\|\nabla u\|_{L^\infty}/M$, which is $\mathcal{L}$ by
+  Lemma~\ref{lem:local-enstrophy-typeI} and is $O(1)$ precisely under Wall~1's
+  target bound. \textbf{The logarithm in
+  Theorem~\ref{thm:s50-log-saturation} cannot be removed by any refinement of
+  the ODE argument: it is Wall~1 in the integrand.}
+\end{remark}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{The equivalence with Wall 1}
+\label{subsec:s50-equivalence}
+
+\begin{theorem}[Log-free saturation and Wall 1 are the same statement]
+  \label{thm:s50-equivalence}
+  Under the standing hypotheses the following are equivalent.
+  \begin{enumerate}[label=\textup{(\Alph*)},leftmargin=2.6em]
+  \item\label{it:s50-S} \textup{(Saturation, \ref{it:S1})} There are
+    $c>0$ and $t^*<T$ with $M(t)\geq c\,(T-t)^{-1}$ for all $t\in(t^*,T)$.
+  \item\label{it:s50-W} \textup{(Wall~1's target)} There are $K<\infty$ and
+    $t^*<T$ with $\|\nabla u(\cdot,t)\|_{L^\infty(\T^3)}\leq K\,M(t)$ for all
+    $t\in(t^*,T)$.
+  \end{enumerate}
+  Moreover the passage is lossless in the constants:
+  \ref{it:s50-W}$\Rightarrow$\ref{it:s50-S} with $c=1/K$, and
+  \ref{it:s50-S}$\Rightarrow$\ref{it:s50-W} with $K=C_1(c_I)/c$, where
+  $C_1(c_I)$ is the constant of Observation~\ref{obs:s48-wall1}.
+  \emph{[Proved.]}
+\end{theorem}
+\begin{proof}
+  \ref{it:s50-W}$\Rightarrow$\ref{it:s50-S}. By Lemma~\ref{lem:s50-ode},
+  $\frac{d}{dt}M\leq KM^2$ a.e.\ on $(t^*,T)$, so $G=1/M$ satisfies
+  $G'\geq-K$ and $G(t)\leq G(t')+K(t'-t)$ for $t<t'<T$. By
+  \eqref{eq:s50-quarter}, $M(t')\to\infty$, so $G(t')\to0$; letting
+  $t'\uparrow T$ gives $1/M(t)\leq K(T-t)$.
+
+  \ref{it:s50-S}$\Rightarrow$\ref{it:s50-W}. By
+  Observation~\ref{obs:s48-wall1},
+  $\|\nabla u(\cdot,t)\|_{L^\infty}\leq C_1(c_I)(T-t)^{-1}$, and by
+  \ref{it:s50-S}, $(T-t)^{-1}\leq M(t)/c$.
+
+  Neither direction is circular. The first uses only the maximum principle and
+  \ref{it:s50-W}. The second uses Observation~\ref{obs:s48-wall1}, which is
+  derived from the Type-I \emph{upper} bounds through
+  Lemma~\ref{lem:s48-torus-knss} and Serrin's criterion, with no lower bound
+  on $M$ anywhere.
+\end{proof}
+
+\begin{corollary}[Theorem~\ref{thm:s50-log-saturation} is a restatement, not
+  progress]\label{cor:s50-restatement}
+  Feeding \eqref{eq:s50-log-saturation} into
+  Observation~\ref{obs:s48-wall1} yields
+  \[
+    \|\nabla u(\cdot,t)\|_{L^\infty}
+      \;\leq\; C_1(c_I)(T-t)^{-1}
+      \;\leq\; \frac{C_1(c_I)}{c}\,M(t)\bigl(1+\Lambda(t)\bigr),
+  \]
+  which by Lemma~\ref{lem:s50-Lbound} is, up to constants depending only on
+  $c_I$, the bound $\|\nabla u\|_{L^\infty}\lesssim M\mathcal{L}$ already
+  carried by Lemma~\ref{lem:local-enstrophy-typeI}. \textbf{Saturation up to a
+  logarithm buys the document nothing it did not already have.}
+  \emph{[Proved.]}
+\end{corollary}
+
+\begin{proposition}[The same equivalence on the profile, in the infinite past]
+  \label{prop:s50-profile-equivalence}
+  Let $U\in\mathcal{A}(c_I)$ be nontrivial. The following are equivalent.
+  \begin{enumerate}[label=\textup{(\Alph*$'$)},leftmargin=2.9em]
+  \item There are $c>0$, $S>0$ with $M_U(s)\geq c|s|^{-1}$ for all $s\leq-S$.
+  \item There are $K<\infty$, $S>0$ with
+    $\|\nabla U(\cdot,s)\|_{L^\infty(\R^3)}\leq K\,M_U(s)$ for all $s\leq-S$.
+  \end{enumerate}
+  \emph{[Proved.]}
+\end{proposition}
+\begin{proof}
+  $(\mathrm{B}')\Rightarrow(\mathrm{A}')$. By Lemma~\ref{lem:logtime}(c),
+  $\frac{d}{ds}M_U\leq\|\nabla U\|_{L^\infty}M_U\leq KM_U^2$ a.e., so
+  $G=1/M_U$ obeys $G'\geq-K$, whence for $s<s_0\leq-S$,
+  $G(s)\leq G(s_0)+K(s_0-s)\leq G(s_0)+K|s|$. Therefore
+  $M_U(s)\geq\bigl(G(s_0)+K|s|\bigr)^{-1}\geq\tfrac1{2K}|s|^{-1}$ as soon as
+  $|s|\geq G(s_0)/K=1/(KM_U(s_0))$. Note that, unlike the torus case, no
+  divergence of $M_U$ is needed: the infinite past supplies the largeness of
+  $|s|$ instead. (Conversely, for $s\uparrow0^-$ the implication genuinely
+  fails without a blow-up hypothesis at $s=0$, which
+  $\mathcal{A}(c_I)$ does not impose.)
+
+  $(\mathrm{A}')\Rightarrow(\mathrm{B}')$ is
+  Corollary~\ref{cor:s48-transfer-d}:
+  $\|\nabla U(\cdot,s)\|_{L^\infty}\leq C_1(c_I)|s|^{-1}\leq
+  (C_1(c_I)/c)M_U(s)$.
+\end{proof}
+
+\begin{remark}[What S48 actually did to this question]\label{rem:s50-s48-role}
+  Before S48 only the direction \ref{it:s50-S}$\Rightarrow$\ref{it:s50-W} was
+  a possibility, and it was not available: it needs
+  Observation~\ref{obs:s48-wall1}, which did not exist. S48 supplied it. The
+  net effect of S48 on this branch is therefore to upgrade ``saturation would
+  suffice to remove Wall~1'' to ``saturation is \emph{equivalent} to removing
+  Wall~1''. That is a real gain in knowledge and a loss in strategy: the
+  reduction Remark~\ref{rem:s48-scope} proposed --- replace the wall by the
+  sharper question --- does not shrink the problem, because the sharper
+  question has the same content. \emph{This is a negative result and it should
+  be recorded as one.}
+\end{remark}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{Discharging the only consumer of Part (e), without saturation}
+\label{subsec:s50-typeI-scale}
+
+By Observation~\ref{obs:s50-leaf} the whole weight of
+Proposition~\ref{prop:transfer-audit}(e) rests on
+Proposition~\ref{prop:no-summable-budget}(b). That consumer does not need
+$\langle\sigma^*_U\rangle$ at the amplitude scale $M_U(s_0)^{-1/2}$; it needs
+a scale-invariant cylinder family, commensurate with the dyadic shells,
+carrying a bound that does not decay. The Type-I scale supplies one
+unconditionally.
+
+\begin{proposition}[Type-I-scale coherence bound on the profile]
+  \label{prop:s50-typeI-scale}
+  Let $U\in\mathcal{A}(c_I)$ and for $s_0<0$ put $r_I:=|s_0|^{1/2}$,
+  \[
+    \langle\sigma^{*,I}_U\rangle(s_0)
+      \;:=\; r_I^{-3}\iint_{Q(r_I/2)} |\nabla\hat e_U|^2\,
+        \mathbf{1}_{\{|\omega_U|\geq M_U/2\}}\,dy\,ds .
+  \]
+  Then $\langle\sigma^{*,I}_U\rangle(s_0)\leq C(c_I)$ for every $s_0<0$, with
+  no saturation hypothesis; and $\langle\sigma^{*,I}_U\rangle$ is exactly
+  scale-invariant, $\langle\sigma^{*,I}_{U_\mu}\rangle(s)
+  =\langle\sigma^{*,I}_U\rangle(\mu^2s)$.
+  \emph{[Proved modulo routine verification, in the sense of
+  Proposition~\ref{prop:first-rung}: the three load-bearing ingredients are
+  proved below; what remains is the term-for-term repetition of
+  Lemma~\ref{lem:mag-rhs}(b),(c) at the new radius, in which every exponent
+  is unchanged.]}
+\end{proposition}
+\begin{proof}
+  Write $M=M_U(s_0)$ and note the Type-I upper bound
+  $M_U(s)\leq c_I|s|^{-1}$, so $r_I\leq c_I^{1/2}M^{-1/2}$: the new cube is
+  contained in the old one, and the two coincide exactly on the saturated set.
+  Three ingredients.
+
+  \emph{(1) Amplitude comparability, now unconditional.} The time extent of
+  $Q(r_I/2)$ is $r_I^2/4=|s_0|/4$, so $|s|\leq\tfrac54|s_0|$ on it, and
+  Corollary~\ref{cor:s48-transfer-d} with Lemma~\ref{lem:logtime}(c) gives, as
+  in Lemma~\ref{lem:s50-comparability},
+  $M_U(s)\geq(\tfrac54)^{-C_1(c_I)}M_U(s_0)$ there. This is the step that
+  needed saturation at the amplitude scale
+  (Remark~\ref{rem:s50-doc-inaccuracies}(a)) and needs nothing here, because
+  the cube's temporal extent is now tied to $|s_0|$ rather than to
+  $M_U(s_0)^{-1}$.
+
+  \emph{(2) The stretching term.} In Lemma~\ref{lem:mag-rhs}(a),
+  $\iint|\alpha|m^2\eta^2\leq\|\nabla U\|_{L^\infty}M^2r_I^5
+  \leq C_1(c_I)|s_0|^{-1}M^2|s_0|^{5/2}=C_1(c_I)M^2r_I^3$,
+  using only the \emph{first} clause of
+  Proposition~\ref{prop:transfer-audit}(d), which is
+  Corollary~\ref{cor:s48-transfer-d} and carries no proviso. At the amplitude
+  scale the same computation needs $\|\nabla U\|_{L^\infty}\leq CM$, i.e.\ the
+  second clause.
+
+  \emph{(3) The transport term.} $|D_t\psi|\leq|\partial_s\psi|+|U||\nabla\psi|
+  \leq Cr_I^{-2}+c_I|s|^{-1/2}\cdot Cr_I^{-1}\leq C(1+c_I)r_I^{-2}$, the two
+  contributions balancing exactly because $r_I^2=|s_0|$. At the amplitude
+  scale the ratio of the second to the first is $(|s_0|M)^{-1/2}$, which is
+  $O(1)$ \emph{only on the saturated set} --- so the transport term, not only
+  the stretching term, carries the proviso there. This does not appear to have
+  been noticed.
+
+  With (1)--(3), the vorticity Caccioppoli inequality of
+  Lemma~\ref{lem:local-enstrophy-typeI}, re-run on $U$ at radius
+  $\rho\leq r_I$, gives
+  $\iint_{Q(2\rho)}|\nabla\omega_U|^2\leq CM^2\rho^3
+  +\|\nabla U\|_{L^\infty}M^2\rho^5\leq C(c_I)M^2\rho^3$
+  --- logarithm-free and proviso-free, using $\rho^2\leq|s_0|$ in the second
+  term. Substituting into \eqref{eq:mag-caccioppoli} and dividing by the
+  left-hand coefficient $M_U(s)^2/4\geq c(c_I)M^2$ from (1) gives
+  $\iint_{Q(r_I/2)}w\,\mathbf{1}\leq C(c_I)r_I^3$. Scale invariance is
+  Lemma~\ref{lem:typeI-scaleinv-bounds} together with the covariance
+  $r_I(U_\mu,s)=\mu^{-1}r_I(U,\mu^2s)$.
+\end{proof}
+
+\begin{corollary}[Proposition~\ref{prop:no-summable-budget} is unconditional]
+  \label{cor:s50-budget-unconditional}
+  Proposition~\ref{prop:no-summable-budget} holds with
+  $\langle\sigma^{*,I}_U\rangle$ in place of $\langle\sigma^*_U\rangle$ and
+  $r_{I,k}=|s_k|^{1/2}$ in place of $r^*_k$, without saturation. Part~(a)
+  becomes an identity, $r_{I,k}^2=|s_k|$, so each dyadic shell carries exactly
+  one cylinder; part~(b) is Proposition~\ref{prop:s50-typeI-scale}; part~(c)
+  is unchanged. \emph{[Proved modulo the same routine verification.]}
+\end{corollary}
+
+\begin{remark}[What this does and does not do for Part (e)]
+  \label{rem:s50-not-e}
+  It does \emph{not} prove Proposition~\ref{prop:transfer-audit}(e), which is
+  a statement about $\langle\sigma^*_U\rangle$ at the amplitude scale and
+  remains \textbf{Proved mod saturation}; off the saturated set the two
+  quantities are averages over different cubes and neither dominates the
+  other. What it does is remove (e)'s only consumer from the list of
+  statements that depend on saturation. Since the Bridge Lemma
+  (Conjecture~\ref{conj:bridge}) requires smallness of $\sigma^*$ at the
+  amplitude scale $r^*=M^{-1/2}$, $\langle\sigma^{*,I}\rangle$ is
+  \emph{not} a substitute there, and no claim is made that it is.
+\end{remark}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{Verdict}
+\label{subsec:s50-verdict}
+
+\begin{remark}[Verdict of S50]\label{rem:s50-verdict}
+  The question posed was: does a putative first singularity satisfy
+  $M(t)\geq c(T-t)^{-1}$ near $T$, with $c=c(c_I)$, logarithm-free? The
+  verdict is \textbf{(iii)}: a weaker form is a theorem, the strong form is
+  open, and the residue is exactly Wall~1.
+  \begin{enumerate}[label=\textup{(\arabic*)},leftmargin=2.4em]
+  \item \textbf{\ref{it:S2} is a theorem}
+    (Theorem~\ref{thm:s50-log-saturation}), pointwise in $t$ and not a
+    $\limsup$. Under the standing hypotheses this is strictly stronger than
+    anything in Fact~\ref{fact:s50-bkm} or Fact~\ref{fact:s50-ik}; the gain
+    over the latter is entirely attributable to the Type-I hypothesis, which
+    replaces their Gr\"onwall control of $\|u\|_{H^3}$ by
+    Lemma~\ref{lem:s50-highderiv}. It is not a claim about the Euler
+    literature and does not compete with it.
+  \item \textbf{\ref{it:S1} is open}, and the gap has a name:
+    by Theorem~\ref{thm:s50-equivalence} it \emph{is} Wall~1. There is no
+    separate obstruction to find.
+  \item \textbf{\ref{it:S2} is worth nothing}
+    (Corollary~\ref{cor:s50-restatement}): it returns exactly the estimate
+    Lemma~\ref{lem:local-enstrophy-typeI} already carried. The intuition
+    recorded in Observation~\ref{obs:s48-wall1} --- that saturation, not the
+    logarithm, is what both branches need --- is correct as a diagnosis and
+    wrong as a strategy: the two are the same quantity.
+  \item \textbf{The target was over-rated.} By
+    Observation~\ref{obs:s50-leaf}, Proposition~\ref{prop:transfer-audit}(e)
+    is a leaf whose sole consumer is an impossibility statement, and by
+    Corollary~\ref{cor:s50-budget-unconditional} that consumer can be
+    discharged at the Type-I scale without saturation. Saturation should
+    therefore be removed from the programme's priority list: on the profile
+    branch it is nearly weightless, and on the global branch it is Wall~1
+    under a different name.
+  \end{enumerate}
+  \noindent\textbf{Residual gap, stated exactly.} Prove or disprove: there is
+  $K=K(c_I)$ with $\|\nabla u(\cdot,t)\|_{L^\infty(\T^3)}\leq K\,M(t)$ for all
+  $t$ near a putative Type-I first singularity --- equivalently
+  (Theorem~\ref{thm:s50-equivalence}), $\liminf_{t\uparrow T}(T-t)M(t)>0$.
+  Nothing in this document or in the sources of
+  §\ref{subsec:s50-literature} decides it in either direction; in particular
+  Wall~1 remains \textsc{open}, not \textsc{proved impossible}, and
+  Theorem~\ref{thm:s50-equivalence} is not evidence that it cannot be removed.
+\end{remark}
+
+\begin{center}
+\begin{tabular}{@{}l l l@{}}
+\hline
+Item & Status before S50 & Status after S50 \\
+\hline
+\ref{it:S1} log-free saturation
+  & unexamined & \textsc{open}; $=$ Wall~1 (Thm.~\ref{thm:s50-equivalence}) \\
+\ref{it:S2} saturation mod one log
+  & unexamined & \textbf{Proved} (Thm.~\ref{thm:s50-log-saturation}) \\
+\ref{it:S2} as a tool
+  & unexamined & \textbf{Vacuous} (Cor.~\ref{cor:s50-restatement}) \\
+Strength (e) needs
+  & ``at every time'' & at the reference time only (Lem.~\ref{lem:s50-comparability}) \\
+Consumers of (e)
+  & unstated & one, itself unconsumed (Obs.~\ref{obs:s50-leaf}) \\
+Prop.~\ref{prop:no-summable-budget}
+  & Proved mod saturation & \textbf{Proved} at the Type-I scale
+    (Cor.~\ref{cor:s50-budget-unconditional}) \\
+Prop.~\ref{prop:transfer-audit}(e)
+  & Proved mod saturation & unchanged (Rem.~\ref{rem:s50-not-e}) \\
+Wall~1 (§\ref{subsec:wall1-cz})
+  & \textsc{open}, structural & \textsc{open}, structural; scope widened \\
+Thm.~\ref{thm:apriori-sigma} hidden hypothesis
+  & unnoticed & recorded (Rem.~\ref{rem:s50-doc-inaccuracies}(a)) \\
+BKM citation for $\mathcal{L}$
+  & absent & \cite{BKM1984,KozonoTaniuchi2000} \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{remark}[Scope discipline]\label{rem:s50-scope}
+  This section proves one theorem, one equivalence and one audit. It does not
+  close either horn of the pincer, does not remove Wall~1, does not bear on
+  \textbf{(N)}, \textbf{(N$'$)}, \textbf{(A-up)} or Type-II, and does not
+  bring the programme nearer to the Clay problem than
+  Remark~\ref{rem:s39-distance} already states, which stands verbatim. Its
+  principal effect is subtractive: it removes a target the programme had
+  placed at the head of its list.
+\end{remark}
 
 % ════════════════════════════════════════════════════════════════════════════
 % ══════════════════════════════════════════════════════════════════════════════
@@ -10641,15 +11493,33 @@ claim of \S20--\S22}
         boundedness is not enough, because the hypothesis is used precisely
         to cancel the $\mathcal{L}$ carried by the budget
         \eqref{eq:s41-budget}.
+      \item \textbf{Saturation of the Type-I bound.} \emph{Added at S50.}
+        Theorem~\ref{thm:s50-equivalence}: the statement
+        $M(t)\geq c(T-t)^{-1}$ near a putative Type-I first singularity is
+        \emph{equivalent}, with reciprocal constants, to
+        $\|\nabla u\|_{L^\infty}\leq KM$ --- the bound item~(a) above
+        requires. It is a fourth face of this wall, not a route around it.
     \end{enumerate}
   \item \textbf{Classification.} \textsc{open}, and structural. No proof in
-    this document says the logarithm cannot be removed; what the three items
+    this document says the logarithm cannot be removed; what the items
     above establish is that it is not a bookkeeping artefact of any one
     estimate, since it is paid once, at the point where a sup-norm of a
     Calder\'on--Zygmund image is taken, and then inherited.
-  \item \textbf{Consequence.} \emph{Forbidden:} presenting any of (i)--(iii)
+    \emph{Amended at S50:} item~(iv) widens the scope of the entry without
+    changing its classification. Theorem~\ref{thm:s50-equivalence} is an
+    equivalence, not an impossibility proof: it says the saturation route and
+    the Calder\'on--Zygmund route have the same content, and says nothing
+    about whether either can be closed. A proof that Wall~1 \emph{cannot} be
+    removed would be a new result and is not in this document.
+  \item \textbf{Consequence.} \emph{Forbidden:} presenting any of (i)--(iv)
     as a separate obstacle to be attacked separately; they are one obstacle
-    seen three times. \emph{Forbidden:} closing any of them with a
+    seen four times. \emph{Forbidden (added at S50):} presenting logarithm-free
+    saturation of the Type-I vorticity bound as a cheaper, sharper or
+    better-defined target than this wall, as Remark~\ref{rem:s48-scope}
+    proposed; by Theorem~\ref{thm:s50-equivalence} it is the same target, and
+    by Corollary~\ref{cor:s50-restatement} the logarithm-carrying form that
+    \emph{is} provable (Theorem~\ref{thm:s50-log-saturation}) returns only
+    the estimate the document already had. \emph{Forbidden:} closing any of them with a
     \emph{boundedness} hypothesis on a correlation constant --- by
     Proposition~\ref{prop:s44-linfty-route} the required hypothesis is decay.
     \emph{Permitted:} any reformulation in which $\nabla u$ is \emph{not}
@@ -11311,6 +12181,64 @@ because it bounds what future sessions may import. The source is
   O.~A.~Ladyzhenskaya, N.~N.~Ural'tseva,
   \emph{Linear and Quasilinear Elliptic Equations},
   Academic Press, 1968. (Chapter~II: De~Giorgi level truncation.)
+
+% ── S50: sources fetched and quoted in \S\ref{sec:saturation-s50} ────────────
+
+\bibitem{BKM1984}
+  J.~T.~Beale, T.~Kato, A.~Majda,
+  Remarks on the breakdown of smooth solutions for the 3-D Euler equations,
+  \emph{Comm. Math. Phys.}, 94(1):61--66, 1984.
+  (The Theorem on p.~62 and inequality~(15) on p.~64 are the statements
+  quoted in \S\ref{subsec:s50-literature}. Inequality~(15) is the source of
+  the factor $\mathcal{L}$ of Lemma~\ref{lem:local-enstrophy-typeI}, which
+  had carried no citation before S50. The paper states, p.~62: ``Similar
+  statements hold for the Navier--Stokes equations; the arguments below
+  apply equally well in this case.'')
+
+\bibitem{Leray1934}
+  J.~Leray,
+  Sur le mouvement d'un liquide visqueux emplissant l'espace,
+  \emph{Acta Math.}, 63(1):193--248, 1934.
+  (Origin of the $L^p$ lower blow-up rates, stated there without proof; see
+  \cite[\S1]{CortissozMontero2016}.)
+
+\bibitem{Giga1986}
+  Y.~Giga,
+  Solutions for semilinear parabolic equations in $L^p$ and regularity of
+  weak solutions of the Navier--Stokes system,
+  \emph{J. Differential Equations}, 62(2):186--212, 1986.
+  (Proof, by semigroup theory, of the rates Leray stated.)
+
+\bibitem{RobinsonSadowskiSilva2012}
+  J.~C.~Robinson, W.~Sadowski, R.~P.~Silva,
+  Lower bounds on blow up solutions of the three-dimensional Navier--Stokes
+  equations in homogeneous Sobolev spaces,
+  \emph{J. Math. Phys.}, 53(11):115618, 15 pp., 2012.
+
+\bibitem{CortissozMontero2016}
+  J.~C.~Cortissoz, J.~A.~Montero,
+  Lower bounds for possible singular solutions for the Navier--Stokes and
+  Euler equations revisited,
+  \emph{J. Math. Fluid Mech.}, 2016; arXiv:1503.03063v2.
+  (Theorem~2.1 is quoted verbatim in Fact~\ref{fact:s50-cm}; \S1 is quoted
+  for the classical Leray--Giga rates.)
+
+\bibitem{IngimarsonKukavica2026}
+  B.~Ingimarson, I.~Kukavica,
+  Lower bounds on the blowup rate of vorticity in the Euler equations,
+  arXiv:2603.17431v2, 2026.
+  (Theorems~2.1 and 2.5 and the proof of Theorem~2.1 are quoted in
+  Fact~\ref{fact:s50-ik}. This is the state of the art for a lower bound on
+  $\|\omega\|_{L^\infty}$, and it is a $\limsup$ carrying a logarithm.)
+
+\bibitem{CDP2026}
+  A.~Cheskidov, M.~Dai, S.~Palasek,
+  Instantaneous Type~I blow-up and non-uniqueness of smooth solutions of the
+  Navier--Stokes equations,
+  arXiv:2511.09556v2, 2026.
+  (\S2.2 is quoted in Remark~\ref{rem:s50-velocity-free} for the definition
+  of Type~I as saturation of the velocity lower bound; Theorem~1.1,
+  Properties~2 and~4, in Fact~\ref{fact:s50-cdp}.)
 
 \end{thebibliography}
 

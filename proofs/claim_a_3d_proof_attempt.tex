@@ -12413,6 +12413,588 @@ Source & Hypothesis on the swirl & Conclusion \\
 \end{remark}
 
 % ══════════════════════════════════════════════════════════════════════════════
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Type-II Blowup: What Is Known, Why This Document's Rescaling Is
+Vacuous Against It, and Which Branch of Mathematics Owns the Question
+(Session S53, WP-T1)}
+\label{sec:typeII-wpt1}
+
+This section is a \emph{reconnaissance}, commissioned as WP-T1 of
+\texttt{HANDOVER-S52-TYPE2.md} after the four work packages of the S46 plan
+were exhausted. It proves no new theorem about the Navier--Stokes equations
+and it proposes no new programme. Its purposes are three:
+
+\begin{enumerate}[label=(\roman*)]
+  \item to record what the literature actually contains on Type-II blowup for
+    the \emph{true} three-dimensional incompressible Navier--Stokes equations
+    --- sources read during the session, not recalled
+    (\S\ref{subsec:wpt1-known});
+  \item to replace this document's own assertion that ``a Type-II singularity
+    would rescale to nothing'' (Remark~\ref{rem:s39-distance}(1)) by a
+    derivation, and to correct that assertion where the derivation does not
+    support it (\S\ref{subsec:wpt1-dichotomy});
+  \item to state, in the manner of Remark~\ref{rem:s39-distance} itself, the
+    verdict on whether Type-II is reachable by any adaptation of the
+    machinery of \S\ref{sec:moser-s33}--\S\ref{sec:axisym-s51}
+    (\S\ref{subsec:wpt1-verdict}).
+\end{enumerate}
+
+Labels in this section carry the prefix \texttt{wpt1} rather than a session
+number. Three consecutive sessions of this programme have had their session
+tag claimed concurrently by a parallel agent, and \S\ref{sec:axisym-s51}
+carries \texttt{s51} labels for what the session log records as~S52. A
+work-package prefix cannot collide.
+
+% ──────────────────────────────────────────────────────────────────────────────
+\subsection{Three inequivalent meanings of ``Type~I'', and which one each
+source uses}
+\label{subsec:wpt1-conventions}
+
+Remark~\ref{rem:s51-handover} already records that ``Type~I'' carries two
+incompatible meanings in this subject. The Type-II literature supplies a
+\emph{third}, and it is the one the only extant results are stated in. All
+three must be separated before any result is quoted.
+
+\begin{definition}[Three conventions]\label{def:wpt1-conventions}
+  Let $u$ be a solution with a putative first singularity at time $T$ and
+  singular point $x^*$; write $M(t)=\|\omega(\cdot,t)\|_{L^\infty}$.
+  \begin{enumerate}[label=\textbf{(\Alph*)},leftmargin=2.6em]
+    \item[\textbf{(T)}] \emph{Temporal (this document; \cite{KNSS2009};
+      \cite{BarkerPrange2023} eq.~(4.2)).}
+      $M(t)\leq C_I(T-t)^{-1}$ and $\sup_x|u(x,t)|\leq C_I(T-t)^{-1/2}$.
+      This is the standing assumption of \S\ref{sec:moser-s33} (line~5565)
+      and the hypothesis used \emph{essentially} in
+      \S\ref{subsec:s39-step1}.
+    \item[\textbf{(S)}] \emph{Spatial (much of the axisymmetric literature).}
+      $|u(x,t)|\leq C/r$, $r=|x'|$ the distance to the symmetry axis. This is
+      what makes the swirl equation critical; it neither implies nor is
+      implied by \textbf{(T)}. Recorded at S52 as
+      Remark~\ref{rem:s51-handover}.
+    \item[\textbf{(E)}] \emph{Scale-invariant energy (Caffarelli--Kohn--%
+      Nirenberg; Seregin).} With
+      \[
+        A(v,r)=\sup_{-r^2<t<0}\frac1r\int_{B(r)}|v(x,t)|^2dx,\quad
+        E(v,r)=\frac1r\iint_{Q(r)}|\nabla v|^2dz,\quad
+        C(v,r)=\frac1{r^2}\iint_{Q(r)}|v|^3dz,
+      \]
+      the origin is a Type-I blowup if these stay bounded as $r\to0$. Two
+      variants are in use by the same author: $g=\max\{\limsup_{r\to0}A,
+      \limsup_{r\to0}E,\limsup_{r\to0}C\}<\infty$
+      in \cite{Seregin2024TypeII}, and
+      $g_0=\min\{\liminf_{r\to0}A,\liminf_{r\to0}E,\liminf_{r\to0}C\}<\infty$
+      in \cite{Seregin2026Potential}. Type-II means the negation.
+      Since $g_0\leq g$, Type-II in the $g_0$ sense is the \emph{stronger}
+      requirement: it asks that all three quantities diverge.
+  \end{enumerate}
+  \emph{[Definitions transcribed from the cited sources during this session;
+  the three displayed quantities are quoted from
+  \cite{Seregin2026Potential}, which states $C$ with $|v|^3$.]}
+\end{definition}
+
+\begin{fact}[\textbf{(T)} implies \textbf{(E)}]\label{fact:wpt1-T-implies-E}
+  The pointwise bound $\sqrt{T-t}\,|u(x,t)|\leq M'$ implies the
+  \emph{generalised} Type-I bound
+  \[
+    \sup_{\bar x\in\R^3}\ \sup_{r\in(0,r_0)}\ \sup_{T-r^2<t<T}
+      r^{-1/2}\Bigl(\int_{B_{\bar x}(r)}|u(x,t)|^2dx\Bigr)^{1/2}\ \leq\ M,
+  \]
+  i.e.\ a uniform bound on the quantity $A$ of
+  Definition~\ref{def:wpt1-conventions}\textbf{(E)}. The implication is not
+  formal --- it is a theorem of Seregin--Zaj\c{a}czkowski
+  \cite{SereginZajaczkowski2006}; see \cite{BarkerPrange2023}, footnote~8,
+  which states it in exactly these terms (``It turns out to be true, see
+  \cite{SereginZajaczkowski2006} and the review article
+  \cite{SereginSverakHandbook}, pages 844--849. This makes (4.1) a good
+  notion.'').
+  \emph{[Cited, not proved here.]}
+\end{fact}
+
+\begin{corollary}[Seregin's Type-II is a strictly smaller hypothesis class
+  than this document's]\label{cor:wpt1-inclusion}
+  A blowup that is Type-II in the sense of \cite{Seregin2026Potential}
+  ($g_0=\infty$) is Type-II in the sense of this document (\textbf{(T)}
+  fails). The converse implication is available from no source read here.
+  \emph{[Proof: contrapositive of Fact~\ref{fact:wpt1-T-implies-E}, since
+  $\liminf_{r\to0}A<\infty$ already gives $g_0<\infty$.]}
+\end{corollary}
+
+\begin{remark}[The middle band, and why it is the interesting one]
+  \label{rem:wpt1-middle-band}
+  Corollary~\ref{cor:wpt1-inclusion} splits the space of putative
+  singularities into three, not two:
+  \begin{enumerate}[label=\textup{(R\arabic*)},leftmargin=2.8em]
+    \item \textbf{\textbf{(T)} holds.} The target of
+      \S\ref{sec:pincer-s32}--\S\ref{sec:rigidity-s39}. Open in general;
+      closed in the axisymmetric class by Fact~\ref{fact:s51-ss}.
+    \item \textbf{\textbf{(T)} fails but $g_0<\infty$.} The scale-invariant
+      energies stay bounded while the pointwise rate is supercritical.
+      Whether this region contains a solution is unknown; so is whether it is
+      empty. \emph{Nothing addresses it}: the machinery of this document
+      needs \textbf{(T)}, and Seregin's Type-II papers assume $g_0=\infty$.
+      Seregin \cite{Seregin2024TypeII} states of the corresponding Type-I
+      question: ``The question about Type I blowups is whether the
+      boundedness of $g$ allows blowups or not. It is still open.''
+    \item \textbf{$g_0=\infty$.} Seregin's Type-II programme,
+      Fact~\ref{fact:wpt1-seregin}.
+  \end{enumerate}
+  The existence of (R2) is the first reason
+  Remark~\ref{rem:s39-distance}(1) overstates its case; see
+  Remark~\ref{rem:wpt1-correction}.
+\end{remark}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\subsection{Deliverable 1 --- the state of knowledge, with sources}
+\label{subsec:wpt1-known}
+
+\begin{fact}[The Type-II literature for true 3D Navier--Stokes is one
+  author's programme, and it is entirely conditional]
+  \label{fact:wpt1-seregin}
+  Four papers, all by Seregin, all read during this session:
+  \cite{Seregin2024TypeII} (arXiv:2304.04045, CPAA 23(10):1389--1406, 2024),
+  \cite{Seregin2026Axisym} (arXiv:2402.13229v3, 8 Aug 2026),
+  \cite{Seregin2026Scenarios} (arXiv:2507.08733, rev.\ 3 Jan 2026),
+  \cite{Seregin2026Potential} (arXiv:2606.29468, 28 Jun 2026). Their shape is
+  uniform:
+  \begin{enumerate}[label=(\alph*)]
+    \item A \emph{scenario} is fixed: a rate function $g$ (or an exponent
+      $m_0$) quantifying how fast $M^{s,l}_\kappa(v,r)$ diverges, plus a
+      second family of bounds $A_f+E_f+D_f\leq M_1$ on weighted energy
+      quantities. Nothing is assumed about a pointwise rate.
+    \item A \emph{zoom based on the Euler scaling}
+      $v^{\lambda,\alpha}(y,\tau)=\lambda^\alpha v(\lambda y,
+      \lambda^{\alpha+1}\tau)$, $\alpha>1$, extracts a nontrivial ancient
+      solution of the \textbf{Euler} equations on $\R^3\times(-\infty,0)$
+      satisfying a local energy inequality
+      (\cite{Seregin2024TypeII}, Prop.~1.2; \cite{Seregin2026Potential},
+      Thm.~2.1).
+    \item A \emph{Liouville theorem} for ancient Euler solutions in the
+      weighted class defined by the scenario then contradicts nontriviality,
+      and the scenario is excluded.
+  \end{enumerate}
+  What is actually excluded is narrow and explicitly so. In
+  \cite{Seregin2024TypeII}: the limit ``cannot be irrotational'', and $m<1/2$
+  is impossible, so the parameter is confined to $m\geq1/2$
+  ($m_0\geq4/5$ suffices). In \cite{Seregin2026Scenarios}, Thm.~5.1 excludes
+  one scenario \emph{under an added Ladyzhenskaya--Prodi--Serrin-type
+  hypothesis} $v\in L^{s_2,l_2}(Q)$ with $3/s_2+(\alpha+1)/l_2=\alpha$; the
+  author's own Remark~5.2 says it ``is impossible under the additional
+  assumption (5.2)''. In \cite{Seregin2026Potential}, Thm.~2.1 excludes the
+  pair of scenarios $(g,f)$ whenever an explicit exponent inequality between
+  $g$ and $f$ holds.
+  \textbf{No unconditional exclusion of Type-II blowup for 3D Navier--Stokes
+  exists in this literature, and none is claimed.}
+\end{fact}
+
+\begin{fact}[What \emph{is} unconditional is rate-free, and it constrains
+  rather than excludes]\label{fact:wpt1-ratefree}
+  A separate branch says things about \emph{every} blowup and therefore about
+  Type-II, at the cost of saying only that critical norms must diverge:
+  \begin{enumerate}[label=(\alph*)]
+    \item Leray's lower bounds $\|u(\cdot,t)\|_{L^q(\R^3)}\gtrsim
+      (T-t)^{-\frac12(\frac13-\frac1q)}$ for $q\in(3,\infty)$
+      (\cite{BarkerPrange2023}, eq.~(5.1)). Type-I is the matching
+      \emph{upper} rate; Type-II is everything faster.
+    \item Escauriaza--Seregin--\v{S}ver\'ak
+      \cite{EscauriazaSereginSverak2003}: no blowup with
+      $u\in L^\infty_tL^3_x$. No rate is assumed, so it applies verbatim to
+      Type-II.
+    \item Tao \cite{Tao2019}: quantitatively, the critical $L^3$ norm must
+      exceed $(\log\log\log\frac1{T-t})^{c}$ along a sequence of times. Again
+      rate-free.
+    \item Barker--Prange \cite{BarkerPrange2023}, Result~D: a slightly
+      supercritical Orlicz norm $L^3(\log\log\log L)^{-c}$ blows up, for
+      Leray--Hopf solutions, with no Type-I hypothesis.
+  \end{enumerate}
+  None of these excludes Type-II. They exclude \emph{bounded critical norm},
+  which a Type-II blowup would in any case violate. Their quantitative
+  content --- a triple logarithm --- is far below any rate that would
+  separate Type-I from Type-II.
+  Barker--Prange also state the boundary of the conditional theory in terms:
+  ``the regularity in the Type~I case is proved only for axisymmetric flows''
+  (\cite{BarkerPrange2023}, \S7), which is
+  Fact~\ref{fact:s51-ss} seen from the other side.
+\end{fact}
+
+\begin{fact}[The best unforced numerical scenario is Type-I-shaped, not
+  Type-II]\label{fact:wpt1-hou}
+  Hou \cite{Hou2022} (arXiv:2107.06509v2; FoCM 2022) reports, for the 3D
+  axisymmetric Navier--Stokes equations with smooth finite-energy data:
+  ``Both $R(t)$ and $Z(t)$ seem to scale like $O((T-t)^{1/2})$. The maximum
+  vorticity grows like $O((T-t)^{-1})$.'' That is \textbf{(T)} exactly ---
+  isotropic scales, vorticity at the critical rate. The same paper records
+  the caveat that matters here: ``the potentially singular solution of the
+  Navier--Stokes equations cannot be asymptotically self-similar
+  [Ne\v{c}as--R\r{u}\v{z}i\v{c}ka--\v{S}ver\'ak; Tsai]. Thus the potential
+  blow-up rate is most likely not exactly equal to $1/2$'', and that the
+  uniform upper bound $\|u(t)\|_{L^\infty}\leq c(T-t)^{-1/2}$ ``would be
+  almost impossible to verify numerically''. So the numerics are
+  \emph{consistent with} Type-I and cannot rule out a mild Type-II
+  correction; what they do \emph{not} do is supply any positive indication of
+  Type-II.
+\end{fact}
+
+\begin{fact}[The one Type-II profile in the true-3D-NS literature is forced,
+  and it is anisotropic]\label{fact:wpt1-openai}
+  The OpenAI construction \cite{OpenAI2026} (Theorem~1.1: for every $\nu>0$
+  there is $f\in C_c^\infty$ and a smooth $u$ on $\R^3\times[0,1)$ with
+  $u(\cdot,0)=0$, $\sup_t\|u(t)\|_{L^2}<\infty$ and
+  $\limsup_{t\uparrow1}\|u(t)\|_{L^\infty}=\infty$) has, in the paper's own
+  notation with $\tau=1-t$,
+  \[
+    \ell_r\asymp\tau^{1/2},\qquad
+    \ell_z\asymp\tau^{1/2-h},\qquad 0<h<1/100,
+  \]
+  \[
+    |u^{(0)}_\theta|,\ |u^{(0)}_z|\asymp\tau^{-1/2-h},
+    \qquad |u^{(0)}_r|=O(\tau^{-1/2}).
+  \]
+  Two things follow, and only the first was on record in this programme (in
+  the companion volume, ch.~17, \texttt{sec:s49-two-strands}; not in this
+  document). \emph{First}, the
+  profile is Type-II in the sense \textbf{(T)}: the velocity exceeds
+  $(T-t)^{-1/2}$ by $\tau^{-h}$. \emph{Second, and this is the sharper
+  point}: the two length scales differ, $\ell_r/\ell_z\asymp\tau^h\to0$. A
+  single-parameter parabolic rescaling has one length; it cannot resolve a
+  two-scale core whatever its amplitude. The obstruction of
+  Remark~\ref{rem:s39-distance}(1) is therefore not only a rate mismatch, it
+  is a geometry mismatch, and the geometry mismatch is the one exhibited by
+  the only construction in existence.
+  \emph{[The construction is \textbf{forced}. Wall~9 of
+  \S\ref{sec:walls-s47} governs: a forced blowup is not evidence about the
+  unforced equations in either direction. It is quoted here as a
+  \emph{profile}, not as evidence.]}
+\end{fact}
+
+\begin{remark}[``Open'' versus ``expected'', kept apart]
+  \label{rem:wpt1-open-vs-expected}
+  On the evidence assembled above:
+  \begin{itemize}
+    \item Type-II blowup for unforced 3D Navier--Stokes is \textbf{open}. No
+      source read here excludes it, unconditionally or under any hypothesis
+      discharged by the equations.
+    \item Type-II is \textbf{not} ``expected'' in the sense of heuristic or
+      numerical support. No source read here asserts it occurs. The only
+      unforced numerical candidate is Type-I-shaped
+      (Fact~\ref{fact:wpt1-hou}); the only Type-II profile is forced
+      (Fact~\ref{fact:wpt1-openai}); and Seregin's four papers treat Type-II
+      throughout as a possibility to be \emph{ruled out}, never as an
+      expectation.
+    \item What \emph{is} on record against the alternative is that the
+      cleanest Type-I mechanism is dead: backward self-similar blowup with
+      finite energy is excluded (\cite{NecasRuzickaSverak1996}, and Tsai's
+      improvement, as cited by \cite{Hou2022}). So neither type has positive
+      evidence; one of them has a specific mechanism excluded.
+  \end{itemize}
+  These are three different states of knowledge and this section does not
+  merge them. In particular nothing here supports a sentence of the form
+  ``Type-II is the expected scenario''.
+\end{remark}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\subsection{Deliverable 2 --- the vacuity, derived; and exactly how general
+it is}
+\label{subsec:wpt1-dichotomy}
+
+Remark~\ref{rem:s39-distance}(1) asserts that without $M(t)\lesssim(T-t)^{-1}$
+``the rescaled family \eqref{eq:rescaling} has no uniform bound and there is
+no limit object at all''. The first clause is re-derived and confirmed below;
+the second is too strong, and the correct statement is more useful.
+
+\begin{lemma}[The two-parameter rescaling family and its effective
+  viscosity]\label{lem:wpt1-nueff}
+  Let $u,p$ solve $\partial_tu+(u\cdot\nabla)u-\nu\Delta u+\nabla p=0$,
+  $\divg u=0$. For $A,L,\tau>0$ set
+  \[
+    v(y,s):=A\,u(x^*+Ly,\ T+\tau s),\qquad
+    \tilde p(y,s):=\tfrac{A\tau}{L}\,p(x^*+Ly,\ T+\tau s).
+  \]
+  Then $\divg_y v=0$ and
+  \[
+    \partial_s v+\frac{\tau}{AL}\,(v\cdot\nabla_y)v
+      -\nu\frac{\tau}{L^2}\,\Delta_yv+\nabla_y\tilde p=0 .
+  \]
+  In particular, normalising the nonlinearity by $\tau=AL$ gives
+  \[
+    \partial_s v+(v\cdot\nabla_y)v-\nu_{\mathrm{eff}}\Delta_yv
+      +\nabla_y\tilde p=0,
+    \qquad
+    \boxed{\ \nu_{\mathrm{eff}}=\nu\,\frac{A}{L}\ }.
+  \]
+  \emph{[Proved here, by direct computation.]}
+\end{lemma}
+\begin{proof}
+  $\partial_sv=A\tau(\partial_tu)$;
+  $(v\cdot\nabla_y)v=A^2L\,(u\cdot\nabla_x)u$;
+  $\Delta_yv=AL^2\Delta_xu$; and
+  $\nabla_y\tilde p=\frac{A\tau}{L}\cdot L\,\nabla_xp=A\tau\nabla_xp$.
+  Multiply the equation for $u$ by $A\tau$ and substitute:
+  $A\tau\partial_tu=\partial_sv$,
+  $A\tau(u\cdot\nabla)u=\frac{\tau}{AL}(v\cdot\nabla_y)v$,
+  $\nu A\tau\Delta u=\nu\frac{\tau}{L^2}\Delta_yv$, and
+  $A\tau\nabla p=\nabla_y\tilde p$. Divergence-freeness is immediate.
+\end{proof}
+
+\begin{corollary}[Normalisation trichotomy: the Type-I rate is not a
+  convenience, it is the fixed point]\label{cor:wpt1-trichotomy}
+  Suppose $\sup_x|u(x,t)|\asymp(T-t)^{-\beta}$ for some $\beta>0$ and require
+  the rescaled family of Lemma~\ref{lem:wpt1-nueff} (with $\tau=AL$) to be
+  $O(1)$ in $L^\infty$ on a fixed cylinder, i.e.\ $A\tau^{-\beta}\asymp1$.
+  Then $A=L^{\beta/(1-\beta)}$ for $\beta\neq1$, and
+  \[
+    \frac{\nu_{\mathrm{eff}}}{\nu}=\frac{A}{L}=L^{\frac{2\beta-1}{1-\beta}} .
+  \]
+  Consequently, as $L\downarrow0$:
+  \begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.6em]
+    \item $\beta<\tfrac12$: $\nu_{\mathrm{eff}}\to\infty$ --- the limit is a
+      Stokes/heat flow; no blowup mechanism survives.
+    \item $\beta=\tfrac12$: $A=L$, $\tau=L^2$, $\nu_{\mathrm{eff}}=\nu$.
+      This is \eqref{eq:rescaling} exactly, and it is the \emph{unique}
+      member of the family that preserves the Navier--Stokes equations.
+    \item $\tfrac12<\beta<1$: $\nu_{\mathrm{eff}}\to0$ --- the limit solves
+      the \textbf{Euler} equations. This is Seregin's Euler scaling: putting
+      $A=\lambda^\alpha$, $L=\lambda$ gives $\tau=\lambda^{\alpha+1}$,
+      $\nu_{\mathrm{eff}}=\nu\lambda^{\alpha-1}$ and
+      $\beta=\alpha/(\alpha+1)$, so $\alpha>1\iff\beta>\tfrac12$, and
+      $\alpha\in(1,\tfrac32]$ (the range of \cite{Seregin2026Axisym},
+      $\alpha=2-m$, $\tfrac12\leq m<1$) corresponds to
+      $\beta\in(\tfrac12,\tfrac35]$.
+    \item $\beta\geq1$: no member of the family works at all. At $\beta=1$
+      the normalisation forces $L=1$ (no spatial zoom); for $\beta>1$ it
+      forces $\tau=AL\to\infty$, contradicting $\tau\leq T$.
+  \end{enumerate}
+  \emph{[Proved here. Item (iv) is a scope limit on the Euler-zoom method
+  itself and is recorded because no source read here states it.]}
+\end{corollary}
+
+\begin{remark}[Correction to Remark~\ref{rem:s39-distance}(1): what is right,
+  what is too strong, and what the right statement is]
+  \label{rem:wpt1-correction}
+  \emph{Confirmed.} With $\beta=\tfrac12$ and $M(t)\leq C_I(T-t)^{-1}$,
+  $|u_\lambda|=\lambda|u|\leq\lambda C_I(\lambda^2|s|)^{-1/2}=C_I|s|^{-1/2}$
+  and $|\omega_\lambda|=\lambda^2|\omega|\leq C_I|s|^{-1}$, both independent
+  of $\lambda$; and if instead $M(t)\leq C(T-t)^{-1-\delta}$ with $\delta>0$
+  then $|\omega_\lambda|\leq C\lambda^{-2\delta}|s|^{-1-\delta}\to\infty$.
+  The rescaled family really does lose its uniform bound, and
+  Corollary~\ref{cor:wpt1-trichotomy}(ii) shows this is structural, not an
+  artefact: \eqref{eq:rescaling} is the only NS-preserving rescaling there
+  is.
+
+  \emph{Too strong.} ``There is no limit object at all'' does not follow, for
+  two independent reasons.
+  \begin{enumerate}[label=(\alph*)]
+    \item \textbf{Within the same rescaling.} A limit object requires uniform
+      bounds in \emph{some} topology, not in $L^\infty$. Under the strictly
+      weaker hypothesis $g<\infty$ of
+      Definition~\ref{def:wpt1-conventions}\textbf{(E)}, the same
+      $\lambda$-family \eqref{eq:rescaling} is bounded in
+      $L^\infty_tL^2_{\mathrm{loc}}\cap L^2_t\dot H^1_{\mathrm{loc}}$
+      uniformly on every fixed cylinder, because
+      $A(u_\lambda,a)=A(u,\lambda a)\leq g$ and likewise for $E$ and $C$;
+      with the pressure controlled, the classical
+      Caffarelli--Kohn--Nirenberg/Lin compactness produces an ancient
+      \emph{suitable weak} solution of Navier--Stokes. This document already
+      knows the phenomenon --- the remark following
+      Proposition~\ref{prop:profile-extraction} says the
+      $C^\infty_{\mathrm{loc}}$ topology is ``far more than the weak-$*$
+      $L^\infty$ / weak $L^2_{\mathrm{loc}}$ convergence one gets from energy
+      bounds alone'' --- but Remark~\ref{rem:s39-distance}(1) does not carry
+      the qualification. This is region (R2) of
+      Remark~\ref{rem:wpt1-middle-band}.
+    \item \textbf{Outside it.} Even when $g=\infty$, the Euler zoom of
+      Corollary~\ref{cor:wpt1-trichotomy}(iii) produces a nontrivial ancient
+      limit (Fact~\ref{fact:wpt1-seregin}). ``Rescale to nothing'' is false
+      there too.
+  \end{enumerate}
+
+  \emph{The correct statement}, and it is worse for this programme than the
+  one it replaces, is:
+  \begin{quote}
+    A rescaling that normalises a supercritical blowup rate in $L^\infty$
+    necessarily has $\nu_{\mathrm{eff}}=\nu A/L\to0$, so its limit object
+    solves \emph{Euler}. The vacuity is not that nothing survives; it is that
+    what survives is \textbf{inviscid}, and every tool of
+    \S\ref{sec:moser-s33}--\S\ref{sec:relation-s44} is parabolic --- Moser
+    iteration, the magnitude Caccioppoli inequality, De~Giorgi level
+    iteration, Lemma~\ref{lem:local-enstrophy-typeI}, the
+    $\varepsilon$-regularity of \cite{CKN1982}, the backward uniqueness of
+    \cite{EscauriazaSereginSverak2003}. None of them says anything about a
+    solution of the Euler equations.
+  \end{quote}
+  A future session should quote this paragraph rather than
+  Remark~\ref{rem:s39-distance}(1), which remains correct about the
+  \emph{conclusion} and imprecise about the \emph{reason}.
+\end{remark}
+
+\begin{corollary}[Dimensional reading: circulation and viscosity vanish
+  together, so no Euler zoom can keep the swirl]\label{cor:wpt1-swirl}
+  In the axisymmetric class let $\Gamma=r\,u_\theta$ be the swirl invariant of
+  Lemma~\ref{lem:s51-gamma}. Under the rescaling of
+  Lemma~\ref{lem:wpt1-nueff},
+  \[
+    \Gamma_{\mathrm{new}}(y,s)=|y'|\,v_\theta(y,s)
+      =\frac{|x'|}{L}\cdot A\,u_\theta
+      =\frac{A}{L}\,\Gamma(x,t)
+      =\frac{\nu_{\mathrm{eff}}}{\nu}\,\Gamma(x,t).
+  \]
+  Hence $\Gamma$ and $\nu$ rescale by \emph{the same} factor $A/L$ --- as they
+  must, both having dimension $(\text{length})^2/(\text{time})$ --- and the
+  ratio $\Gamma/\nu$ is invariant across the entire family. Two consequences:
+  \begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.6em]
+    \item Since $\|\Gamma(t)\|_\infty\leq\|\Gamma(0)\|_\infty$ for free by the
+      maximum principle (Lemma~\ref{lem:s51-gamma}), any zoom with
+      $\nu_{\mathrm{eff}}\to0$ has $\Gamma\to0$: \textbf{the Euler-zoom limit
+      of an axisymmetric Type-II blowup is swirl-free.} This reproduces, in
+      one line and from dimensions alone, the computation of
+      \cite{Seregin2026Axisym} (``The latter means that our limiting Euler
+      equations have no swirl, i.e., $u_\vartheta$ vanishes''); no novelty is
+      claimed for the conclusion, only for the reading.
+    \item Conversely --- and this is the part that matters here ---
+      \textbf{any rescaling that retains the swirl retains the viscosity},
+      i.e.\ is \eqref{eq:rescaling}, i.e.\ requires \textbf{(T)}. There is no
+      rate-adapted rescaling that keeps both. The hope of an ``Euler zoom
+      that keeps the swirl'' is dimensionally impossible, not merely unknown.
+  \end{enumerate}
+  \emph{[Proved here.]}
+\end{corollary}
+
+\begin{remark}[Where this leaves the S52 coincidence]
+  \label{rem:wpt1-s52-coincidence}
+  Proposition~\ref{prop:s51-aligned} found that the aligned horn forces
+  $\omega_r\equiv0$, hence $\partial_z\Gamma\equiv0$, so that the programme's
+  aligned configuration sits exactly on the boundary of the solved
+  swirl-free case. Corollary~\ref{cor:wpt1-swirl} finds that the Type-II
+  Euler zoom forces $\Gamma\equiv0$ outright. The two degenerations are
+  different in strength ($\partial_z\Gamma\equiv0$ admits $\Gamma=\Gamma(r)$;
+  $\Gamma\equiv0$ does not) and arise for unrelated reasons, and \emph{no
+  connection between them is asserted}. They are recorded together only so
+  that a future session does not mistake one for the other.
+\end{remark}
+
+\begin{remark}[What the other Type-II literatures need, and why it is not
+  available here]\label{rem:wpt1-other-pdes}
+  The handover asked whether a Giga--Kohn- or Merle--Zaag-type modulation
+  analysis transfers. The pattern in those literatures is uniform and the
+  obstruction is the same in each case.
+  \begin{itemize}
+    \item \emph{Semilinear heat.} Giga--Kohn similarity variables
+      \cite{GigaKohn1987} characterise blowup under a Type-I bound; below the
+      Sobolev exponent every blowup \emph{is} Type-I, and Type-II appears
+      only in the energy-critical and supercritical ranges. Its construction
+      is by stabilisation of an explicit \emph{bubble} --- Collot--Merle--%
+      Rapha\"el \cite{CollotMerleRaphael2017} construct anisotropic Type-II
+      blowup for $\partial_tu=\Delta u+u^p$, $p\geq3$, $d\geq14$, by
+      ``construction and stabilization of type II bubbles in the parabolic
+      setting''. The bubble is the stationary ground state of the equation.
+    \item \emph{Geometric flows.} Type-II singularities of mean curvature
+      flow are analysed by Hamilton's point selection, whose limit is an
+      \emph{eternal} solution identified as a translating soliton via the
+      equality case of a differential Harnack inequality.
+  \end{itemize}
+  Both routes need an object Navier--Stokes does not supply: an explicit
+  stationary or self-similar profile to linearise around, or a differential
+  Harnack inequality. The candidate profile for NS would be a backward
+  self-similar solution, and those are excluded with finite energy
+  (\cite{NecasRuzickaSverak1996}); NS has no Harnack inequality of Hamilton
+  type. \emph{This is a statement about what is missing, not a proof that no
+  substitute exists.} What Seregin's programme does instead is exactly the
+  admission of this: it abandons the attempt to keep a limit object solving
+  the same equation and accepts an Euler limit, moving the whole difficulty
+  into Liouville theorems for ancient Euler flows.
+\end{remark}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\subsection{Deliverable 3 --- verdict}
+\label{subsec:wpt1-verdict}
+
+\begin{remark}[Verdict, in the form of Remark~\ref{rem:s39-distance}]
+  \label{rem:wpt1-verdict}
+  WP-T1 was to end in one of three ways: a scoped technical target, a
+  reasoned negative, or a referral to a different branch of mathematics. The
+  honest answer is the third, with the second as its justification. It is
+  \textbf{not} the first, and no target is manufactured.
+  \begin{enumerate}[label=(\arabic*)]
+    \item \textbf{Negative, and now derived rather than asserted.} Type-II is
+      not reachable by any adaptation of the machinery of
+      \S\ref{sec:moser-s33}--\S\ref{sec:axisym-s51}. The obstruction is
+      Corollary~\ref{cor:wpt1-trichotomy}: within the family of rescalings
+      that preserve the Euler part, $\nu_{\mathrm{eff}}=\nu A/L$, and
+      $L^\infty$-normalising a supercritical rate forces
+      $\nu_{\mathrm{eff}}\to0$. Every estimate this document owns is
+      parabolic. Adapting the rescaling does not adapt the tools; it deletes
+      the term they are built on. Corollary~\ref{cor:wpt1-swirl} closes the
+      one apparent loophole in the axisymmetric class:
+      $\Gamma$ and $\nu$ have the same dimension and vanish together.
+    \item \textbf{The branch of mathematics that owns the question is named,
+      and it is not this one.} It is \emph{Liouville theorems for ancient
+      solutions of the three-dimensional Euler equations in weighted classes
+      defined by a blowup scenario}. The papers to read are
+      \cite{Seregin2024TypeII}, \cite{Seregin2026Axisym},
+      \cite{Seregin2026Scenarios}, \cite{Seregin2026Potential}, in that
+      order; \cite{Seregin2026Axisym} is the one closest to the class of
+      \S\ref{sec:axisym-s51}, where the residual problem is a Liouville
+      theorem for \emph{swirl-free} ancient axisymmetric Euler. This
+      programme has no foothold in that subject: it has never written an
+      estimate for the Euler equations, and \S\ref{sec:axisym-s51} already
+      established (Remark~\ref{rem:s51-torus}) that entering the axisymmetric
+      class at all requires first moving the standing framework from $\T^3$
+      to $\R^3$.
+    \item \textbf{Three cautions on the entry cost}, so that a future session
+      prices it correctly.
+      \begin{enumerate}[label=\textup{(\alph*)},leftmargin=2.4em]
+        \item Seregin's results are \emph{scenario-conditional}
+          (Fact~\ref{fact:wpt1-seregin}), and one of them
+          (\cite{Seregin2026Scenarios}, Thm.~5.1) buys its exclusion with an
+          added Ladyzhenskaya--Prodi--Serrin hypothesis. Producing another
+          such result is producing another conditional statement, not
+          progress on the Clay problem. This is the same trap as
+          Proposition~\ref{prop:s51-boundedness}: a criterion whose
+          hypothesis is not discharged is not an advance.
+        \item The Euler-zoom family itself stops at $\beta=1$
+          (Corollary~\ref{cor:wpt1-trichotomy}(iv)). Velocity blowup at
+          $(T-t)^{-1}$ or faster is outside \emph{both} methods.
+        \item Region (R2) of Remark~\ref{rem:wpt1-middle-band} --- Type-II in
+          the sense of \textbf{(T)} but Type-I in the sense of \textbf{(E)}
+          --- is addressed by neither this document nor Seregin's papers.
+          Whether it is empty is unknown. Any future claim to have
+          ``covered Type-II'' must say what it does about (R2).
+      \end{enumerate}
+    \item \textbf{What does not change.} Wall~3
+      (\S\ref{subsec:wall3-typeII}) keeps its classification
+      \textsc{open}. Nothing in this section is progress on Type-II, on
+      Type-I, on Wall~1, or on any Prize or Claim~A conclusion. It is a map
+      of a region this programme has not entered and, on the evidence here,
+      should not enter with its present tools.
+  \end{enumerate}
+\end{remark}
+
+\begin{remark}[Scope, and one defect found in passing]
+  \label{rem:wpt1-scope}
+  \emph{Scope.} This section quotes; it does not adjudicate. Seregin's four
+  papers were read in the arXiv versions cited and their statements
+  transcribed, not verified line by line. \cite{OpenAI2026} was read for its
+  Theorem~1.1 and \S2 scaling only, and is quoted as a profile under Wall~9,
+  not as evidence about the unforced equations. Facts
+  \ref{fact:wpt1-T-implies-E} and \ref{fact:wpt1-ratefree} are cited, not
+  proved. What is proved here is Lemma~\ref{lem:wpt1-nueff} and its two
+  corollaries, and those are elementary.
+
+  \emph{Defect found in passing, recorded rather than repaired.} The
+  parenthetical line numbers carried by \S\ref{sec:walls-s47} have drifted.
+  An automated audit of every ``\texttt{(line~N)}'' citation whose target
+  bears a resolvable label found twelve citations low by exactly~$33$
+  (among them Remark~\ref{rem:s39-distance}, cited in
+  \S\ref{subsec:wall3-typeII} as line~7670 and in fact at line~7703, and
+  Propositions~\ref{prop:s41-nocontraction}, \ref{prop:s41-vacuous},
+  \ref{prop:s41-coarea}), one badly wrong
+  (Lemma~\ref{lem:typeI-scaleinv-bounds}, cited as line~7384, in fact
+  line~6729), four low by $10$--$18$, one high by $11$, and eight exact. The
+  \verb|\ref| targets themselves all resolve, so nothing is broken; but the
+  line numbers are decoration that has silently gone stale, and a reader who
+  navigates by them will land in the wrong place. They are left untouched
+  here because this section is inserted \emph{before}
+  \S\ref{sec:walls-s47}, so every one of them keeps the value it had; a
+  session that repairs them should do so as its own change.
+\end{remark}
 \section{Routes and Walls: A Referenced Record (Session S47)}
 \label{sec:walls-s47}
 
@@ -13024,6 +13606,15 @@ because it bounds what future sessions may import. The source is
   & Thm.~\ref{thm:s48-R}, Cor.~\ref{cor:s48-transfer-d} \\
 3 & Pincer closed $\Rightarrow$ Prize & \textbf{Open}; ceiling is Type-I only
   & Rem.~\ref{rem:s39-distance} \\
+3$'$ & \quad rate-adapted rescaling as an escape
+  & \textbf{Proved impossible} for these tools:
+  $\nu_{\mathrm{eff}}=\nu A/L\to0$, so the limit solves Euler
+  & Cor.~\ref{cor:wpt1-trichotomy} \\
+3$''$ & \quad an Euler zoom that keeps the swirl
+  & \textbf{Proved impossible} ($\Gamma$ and $\nu$ share a dimension)
+  & Cor.~\ref{cor:wpt1-swirl} \\
+3$'''$ & \quad Type-II itself & \textbf{Open}; owned by Liouville theory for
+  ancient Euler & Rem.~\ref{rem:wpt1-verdict} \\
 4 & Nested level iteration & \textbf{Proved impossible}
   & Prop.~\ref{prop:s41-nocontraction} \\
 4$'$ & \quad unrolled form & \textbf{Proved impossible} (vacuous)
@@ -13387,6 +13978,81 @@ because it bounds what future sessions may import. The source is
   one entry of the velocity gradient tensor,
   \emph{Arch. Ration. Mech. Anal.}, 202(3):919--932, 2011.
 
+
+% ── S53 (WP-T1): Type-II reconnaissance ───────────────────────────────────────
+
+\bibitem{Seregin2024TypeII}
+  G.~Seregin,
+  Remarks on Type~II blowups of solutions to the Navier--Stokes equations,
+  \emph{Commun. Pure Appl. Anal.}, 23(10):1389--1406, 2024;
+  arXiv:2304.04045v1, 8~April 2023.
+
+\bibitem{Seregin2026Axisym}
+  G.~Seregin,
+  A note on potential Type~II blowups of axisymmetric solutions to the
+  Navier--Stokes equations,
+  arXiv:2402.13229v3, 8~August 2026.
+
+\bibitem{Seregin2026Scenarios}
+  G.~Seregin,
+  A note on certain scenarios of Type~II blowups of suitable weak solutions to
+  the Navier--Stokes equations,
+  arXiv:2507.08733, submitted 11~July 2025, revised 3~January 2026.
+
+\bibitem{Seregin2026Potential}
+  G.~Seregin,
+  On potential Type~II blowups for the Navier--Stokes equations,
+  arXiv:2606.29468v1, 28~June 2026.
+
+\bibitem{SereginZajaczkowski2006}
+  G.~Seregin, W.~Zaj\c{a}czkowski,
+  A sufficient condition of local regularity for the Navier--Stokes equations,
+  \emph{Zap. Nauchn. Sem. POMI}, 336:46--54, 2006.
+
+\bibitem{SereginSverakHandbook}
+  G.~Seregin, V.~\v{S}ver\'ak,
+  Regularity criteria for Navier--Stokes solutions,
+  in Y.~Giga, A.~Novotn\'y (eds.), \emph{Handbook of Mathematical Analysis in
+  Mechanics of Viscous Fluids}, Springer, Cham, pp.~829--867.
+
+\bibitem{Tao2019}
+  T.~Tao,
+  Quantitative bounds for critically bounded solutions to the Navier--Stokes
+  equations,
+  arXiv:1908.04958v2; in \emph{Nine Mathematical Challenges}
+  (A.~Kechris et al., eds.), Proc. Sympos. Pure Math.
+
+\bibitem{BarkerPrange2023}
+  T.~Barker, C.~Prange,
+  From concentration to quantitative regularity: a short survey of recent
+  developments for the Navier--Stokes equations,
+  \emph{Vietnam J. Math.}, 2023; arXiv:2211.16215.
+
+\bibitem{Hou2022}
+  T.~Y.~Hou,
+  Potentially singular behavior of the 3D Navier--Stokes equations,
+  \emph{Found. Comput. Math.}, 2022;
+  arXiv:2107.06509v2 (``The potentially singular behavior of the 3D
+  Navier--Stokes equations''), 26~May 2022.
+
+\bibitem{OpenAI2026}
+  OpenAI,
+  Finite time blowup for Navier--Stokes,
+  manuscript, 2026.
+  \emph{[Read for Theorem~1.1 and \S2 only. A \textbf{forced} construction:
+  $f\in C_c^\infty$. Quoted in \S\ref{sec:typeII-wpt1} as a profile, under
+  Wall~9 of \S\ref{sec:walls-s47}, not as evidence about the unforced
+  equations.]}
+
+\bibitem{GigaKohn1987}
+  Y.~Giga, R.~V.~Kohn,
+  Characterizing blowup using similarity variables,
+  \emph{Indiana Univ. Math. J.}, 36(1):1--40, 1987.
+
+\bibitem{CollotMerleRaphael2017}
+  C.~Collot, F.~Merle, P.~Rapha\"el,
+  On strongly anisotropic type~II blow up,
+  arXiv:1709.04941, 14~September 2017.
 \end{thebibliography}
 
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.10)  11 SEP 2026 18:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.10)  12 SEP 2026 11:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -391,7 +391,7 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count301
 \l__pdf_internal_box=\box56
 )
-(/tmp/finalcheck/claim_a_3d_proof_attempt.aux)
+(/tmp/wpt1build/claim_a_3d_proof_attempt.aux)
 \openout1 = `claim_a_3d_proof_attempt.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 89.
@@ -465,8 +465,8 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring OFF on input line 89.
-(/tmp/finalcheck/claim_a_3d_proof_attempt.out)
-(/tmp/finalcheck/claim_a_3d_proof_attempt.out)
+(/tmp/wpt1build/claim_a_3d_proof_attempt.out)
+(/tmp/wpt1build/claim_a_3d_proof_attempt.out)
 \@outlinefile=\write3
 \openout3 = `claim_a_3d_proof_attempt.out'.
 
@@ -531,14 +531,14 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-(/tmp/finalcheck/claim_a_3d_proof_attempt.toc [1
+(/tmp/wpt1build/claim_a_3d_proof_attempt.toc [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/
-dvips/cm-super/cm-super-ts1.enc}] [2] [3] [4] [5] [6])
+dvips/cm-super/cm-super-ts1.enc}] [2] [3] [4] [5] [6] [7])
 \tf@toc=\write4
 \openout4 = `claim_a_3d_proof_attempt.toc'.
 
- [7] [8] [9] [10]
+ [8] [9] [10]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 392.
@@ -555,6 +555,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 392.
 
+[11]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 425.
@@ -579,7 +580,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 425.
 
-[11] [12]
+[12]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 545.
@@ -638,7 +639,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 754.
 
-
+[16]
 Overfull \hbox (153.865pt too wide) in paragraph at lines 782--785
 [][]\OT1/cmr/bx/n/10.95 (-20) Definition 6.2 \OT1/cmr/m/n/10.95 (-20) (Sin-gu-l
 ar set)\OT1/cmr/bx/n/10.95 (-20) . []$\OMS/cmsy/m/n/10.95 S \OT1/cmr/m/n/10.95 
@@ -647,7 +648,7 @@ ar set)\OT1/cmr/bx/n/10.95 (-20) . []$\OMS/cmsy/m/n/10.95 S \OT1/cmr/m/n/10.95
 sy/m/n/10.95 g \OT1/cmr/m/n/10.95 (-20) = []$. 
  []
 
-[16] [17]
+[17]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 890.
@@ -656,7 +657,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 890.
 
-[18]
+[18] [19]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1021.
@@ -669,7 +670,6 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1021.
 
-[19]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1057.
@@ -709,6 +709,7 @@ Overfull \hbox (11.76889pt too wide) in paragraph at lines 1072--1078
 /10.95 jr\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 j[] ^^T
  []
 
+[20]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1100.
@@ -733,7 +734,6 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1100.
 
-[20]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1125.
@@ -746,7 +746,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1125.
 
-
+[21]
 Overfull \hbox (79.32901pt too wide) in paragraph at lines 1167--1172
 []\OT1/cmr/bx/it/10.95 (-20) [Local pres-sure clos-able] \OT1/cmr/m/it/10.95 (-
 20) Uni-form lo-cal pres-sure es-ti-mate: $[]  [] \OMS/cmsy/m/n/10.95 ^^@[]j\OM
@@ -754,7 +754,7 @@ L/cmm/m/it/10.95 p\OMS/cmsy/m/n/10.95 j[] ^^T \OML/cmm/m/it/10.95 B[]  [][]$\OT
 1/cmr/m/it/10.95 (-20) ,
  []
 
-[21]
+
 Overfull \hbox (6.49355pt too wide) in paragraph at lines 1188--1191
 []\OT1/cmr/m/n/10.95 (-20) (G1)$\OMS/cmsy/m/n/10.95 )$\OT1/cmr/m/n/10.95 (-20) 
 (G2): By CZ and Sobolev--Poincar^^Se, $[]  [] \OMS/cmsy/m/n/10.95 j\OML/cmm/m/i
@@ -812,7 +812,7 @@ t/10.95 x; t[]\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ^^^\OT1/cmr/m/n/10.95 (\O
 ML/cmm/m/it/10.95 x; t[]\OT1/cmr/m/n/10.95 ) \OML/cmm/m/it/10.95 dx:
  []
 
-[23]
+[23] [24]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1412.
@@ -825,31 +825,13 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1412.
 
-[24]
+[25
 pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
 4}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1436   \begin{equation}
-                         \tag{$\dagger\dagger$}
-pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
-4}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1436   \begin{equation}
-                         \tag{$\dagger\dagger$}
-pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
-4}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1436   \begin{equation}
-                         \tag{$\dagger\dagger$}
-pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
-4}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1436   \begin{equation}
-                         \tag{$\dagger\dagger$}
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1467   \]
+           ]
 pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
 4}) has been already used, duplicate ignored
 <to be read again> 
@@ -873,12 +855,12 @@ pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
 <to be read again> 
                    \relax 
 l.1476   \begin{equation}
-                         \label{eq:K-approx} [25]
+                         \label{eq:K-approx} [26]
 Overfull \hbox (249.4543pt too wide) in paragraph at lines 1553--1571
  [] 
  []
 
-[26]
+[27]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1654.
@@ -895,7 +877,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1654.
 
-[27] [28] [29]
+[28] [29] [30]
 Overfull \hbox (7.75558pt too wide) in paragraph at lines 1886--1893
 []\OT1/cmr/m/n/10.95 (-20) The clas-si-cal Fujita--Kato the-ory (adapted to the
  torus) gives $\OML/cmm/m/it/10.95 u \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 
@@ -904,7 +886,7 @@ r/m/n/10.95 (-20) ); \OML/cmm/m/it/10.95 H[]\OT1/cmr/m/n/10.95 (-20) ) \OMS/cms
 y/m/n/10.95 \
  []
 
-[30] [31]
+[31]
 Overfull \hbox (60.35963pt too wide) in paragraph at lines 1998--2005
 [][]\OT1/cmr/bx/n/10.95 (-20) Remark 12.5 \OT1/cmr/m/n/10.95 (-20) (Cov-er-age 
 of M7 shear ex-per-i-ment)\OT1/cmr/bx/n/10.95 (-20) . []\OT1/cmr/m/n/10.95 (-20
@@ -920,8 +902,8 @@ pdfTeX warning (ext4): destination with the same identifier (name{equation.13.5
 5}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2234   \]
-           ] [35] [36] [37] [38] [39]
+l.2187 \end{remark}
+                   ] [35] [36] [37] [38] [39]
 Overfull \hbox (3.0476pt too wide) in paragraph at lines 2628--2636
 []\OT1/cmr/m/it/10.95 (-20) Viscous term. $[]\OT1/cmr/bx/n/10.95 (-20) m \OMS/c
 msy/m/n/10.95 ^^A \OML/cmm/m/it/10.95 ^^W [][] \OMS/cmsy/m/n/10.95 r\OML/cmm/m/
@@ -933,7 +915,7 @@ it/10.95 u \OMS/cmsy/m/n/10.95 ^^A \OML/cmm/m/it/10.95 n[] \OT1/cmr/m/n/10.95 (
 []\OMS/cmsy/m/n/10.95 kr[]\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 k[]$
  []
 
-
+[40]
 Overfull \hbox (0.17065pt too wide) in paragraph at lines 2667--2669
 []\OT1/cmr/m/it/10.95 (-20) The mean Mor-rey con-di-tion [] holds with $\OML/cm
 m/m/it/10.95  \OT1/cmr/m/n/10.95 (-20) = [](\OML/cmm/m/it/10.95 ^^L; \OT1/cmr/
@@ -943,7 +925,7 @@ m/it/10.95 C\OT1/cmr/m/n/10.95 (-20) (\OML/cmm/m/it/10.95 E[]; ^^W; T; C[]\OT1/
 cmr/m/n/10.95 (-20) )[]\OML/cmm/m/it/10.95 r[]$\OT1/cmr/m/it/10.95 (-20) . 
  []
 
-[40] [41] [42] [43] [44]
+[41] [42] [43] [44] [45]
 Overfull \hbox (39.51497pt too wide) in paragraph at lines 3055--3060
 []\OT1/cmr/bx/n/10.95 (-20) (i) $\OMS/cmsy/m/n/10.95 )$ \OT1/cmr/bx/n/10.95 (-2
 0) (ii): \OT1/cmr/m/n/10.95 (-20) Un-der Prodi--Serrin, $\OML/cmm/m/it/10.95 u 
@@ -953,12 +935,12 @@ lies by H^^?older: $\OMS/cmsy/m/n/10.95 kr\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10
 MS/cmsy/m/n/10.95 k[] ^^T
  []
 
-[45]
+[46]
 Overfull \hbox (643.5024pt too wide) in paragraph at lines 3145--3222
  [] 
  []
 
-[46]
+[47]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 3233.
@@ -971,7 +953,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 3233.
 
-[47]
+[48]
 Overfull \hbox (4.8554pt too wide) in paragraph at lines 3273--3277
 []\OT1/cmr/m/n/10.95 (-20) At a CKN reg-u-lar point, The-o-rem []6.1[] gives $\
 OML/cmm/m/it/10.95 u \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 L[]\OT1/cmr/m/n/
@@ -981,7 +963,7 @@ OML/cmm/m/it/10.95 u \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 L[]\OT1/cmr/m/n/
 ^T
  []
 
-[48]
+[49]
 Overfull \hbox (19.41422pt too wide) in paragraph at lines 3345--3350
 []$\OML/cmm/m/it/10.95 L[]$ \OT1/cmr/bx/n/10.95 (-20) bound []: \OT1/cmr/m/n/10
 .95 (-20) The en-ergy iden-tity for the NS equa-tions gives $\OMS/cmsy/m/n/10.9
@@ -1003,7 +985,7 @@ mm/m/it/10.95 C\OMS/cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 u\OT1/cmr/m/n/10.95 (-2
 OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 k[] ^^A
  []
 
-[49] [50] [51] [52] [53]
+[50] [51] [52] [53] [54]
 Overfull \hbox (4.76263pt too wide) in paragraph at lines 3728--3731
 [][]\OT1/cmr/bx/n/10.95 (-20) Lemma 19.4 \OT1/cmr/m/n/10.95 (-20) (Con-vec-tive
  forc-ing bound)\OT1/cmr/bx/n/10.95 (-20) . []\OT1/cmr/m/it/10.95 (-20) The con
@@ -1013,13 +995,13 @@ MS/cmsy/m/n/10.95
 
  []
 
-[54]
+[55]
 Overfull \hbox (17.02365pt too wide) in paragraph at lines 3829--3829
 []\OT1/cmr/bx/n/14.4 (-20) Scale-Recursive In-equal-ity and the No-Concentratio
 n-Cascade
  []
 
-[55]
+[56]
 Overfull \hbox (27.0409pt too wide) in paragraph at lines 3896--3904
 []\OT1/cmr/bx/n/10.95 (-20) Estimate []. \OT1/cmr/m/n/10.95 (-20) Since $\OML/c
 mm/m/it/10.95 p[]$ \OT1/cmr/m/n/10.95 (-20) is har-monic in $\OML/cmm/m/it/10.9
@@ -1048,7 +1030,7 @@ OML/cmm/m/it/10.95 r[] \OMS/cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 u[]\OMS/cmsy/m/
 n/10.95 k[]  \OT1/cmr/m/n/10.95 =  \OML/cmm/m/it/10.95 C r[];
  []
 
-[56] [57] [58] [59] [60] [61] [62] [63] [64] [65] [66]
+[57] [58] [59] [60] [61] [62] [63] [64] [65] [66] [67]
 Overfull \hbox (69.655pt too wide) detected at line 4776
 \OML/cmm/m/it/10.95 Z\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 r\OT1/cmr/m/n/10.9
 5 ) \OMS/cmsy/m/n/10.95 ^^T \OML/cmm/m/it/10.95 D \OMS/cmsy/m/n/10.95 ^^A \OML/
@@ -1060,7 +1042,7 @@ cmm/m/it/10.95 r[]  \OMS/cmsy/m/n/10.95 )  \OML/cmm/m/it/10.95 ^^W\OMS/cmsy/m/n
  )  \OML/cmm/m/it/10.95 u \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 C[]:
  []
 
-[67] [68] [69] [70]
+[68] [69] [70] [71]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 5047.
@@ -1073,7 +1055,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 5047.
 
-[71] [72]
+[72] [73]
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
@@ -1086,7 +1068,7 @@ Overfull \hbox (76.40797pt too wide) in paragraph at lines 5159--5161
 .py\OT1/cmr/m/n/10.95 (-20) ,
  []
 
-[73] [74] [75] [76]
+[74] [75] [76] [77]
 Overfull \hbox (12.68839pt too wide) in paragraph at lines 5433--5439
 []\OT1/cmr/m/n/10.95 (-20) On $\OMS/cmsy/m/n/10.95 fj\OML/cmm/m/it/10.95 !\OMS/
 cmsy/m/n/10.95 j ^^U \OML/cmm/m/it/10.95 M=\OT1/cmr/m/n/10.95 (-20) 4\OMS/cmsy/
@@ -1099,19 +1081,19 @@ mm/m/it/10.95 =M[]\OT1/cmr/m/n/10.95 (-20) ) [] \OMS/cmsy/m/n/10.95 j\OML/cmm/m
 n/10.95 (-20) =
  []
 
-[77] [78] [79]
+[78] [79] [80]
 Overfull \hbox (34.94618pt too wide) in paragraph at lines 5667--5671
 \OT1/cmr/m/it/10.95 (-20) Consequently, ap-ply-ing Young's in-equal-ity with pa
 -ram-e-ter $[]$ to ev-ery prod-uct $\OMS/cmsy/m/n/10.95 jr[][]j ^^B \OT1/cmr/m/
 n/10.95 (-20) ([])$\OT1/cmr/m/it/10.95 (-20) ,
  []
 
-[80]
+[81]
 Overfull \hbox (36.96912pt too wide) detected at line 5750
 []
  []
 
-[81]
+[82]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 5809.
@@ -1132,25 +1114,25 @@ it/10.95 ^^W [] [] \OMS/cmsy/m/n/10.95 jr\OML/cmm/m/it/10.95 m\OMS/cmsy/m/n/10.
 it/10.95 :
  []
 
-[82]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 5900.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 5900.
-
 [83]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 5900.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 5900.
+
+[84]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 5966.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 5966.
 
-[84]
+[85]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 6019.
@@ -1168,7 +1150,7 @@ L/cmm/m/it/10.95 ^^W [] [] \OMS/cmsy/m/n/10.95 jr\OML/cmm/m/it/10.95 m\OMS/cmsy
 /m/n/10.95 j[]\OML/cmm/m/it/10.95 w^^Q[] \OMS/cmsy/m/n/10.95 ^^@
  []
 
-[85]
+[86]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 6144.
@@ -1193,7 +1175,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 6160.
 
-[86]
+[87]
 Overfull \hbox (40.20761pt too wide) in paragraph at lines 6205--6213
 \OMS/cmsy/m/n/10.95 jr[]\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 jjr[]j$ \OT1/c
 mr/m/it/10.95 (-20) part, af-ter the near/far Biot--Savart split and Cauchy--Sc
@@ -1202,12 +1184,12 @@ hwarz, is $\OMS/cmsy/m/n/10.95 ^^T \OML/cmm/m/it/10.95 C \OMS/cmsy/m/n/10.95 L[
 ]\OML/cmm/m/it/10.95 ^^W[]M[]$\OT1/cmr/m/it/10.95 (-20) .
  []
 
-[87]
+[88]
 Overfull \hbox (29.20215pt too wide) in paragraph at lines 6308--6323
  [] 
  []
 
-[88]
+[89]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 6351.
@@ -1243,7 +1225,7 @@ m/n/10.95 j ^^T \OML/cmm/m/it/10.95 C K\OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95
 T \OML/cmm/m/it/10.95 ^^Z\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 :
  []
 
-[89]
+[90]
 Overfull \hbox (25.54205pt too wide) in paragraph at lines 6409--6414
 []\OT1/cmr/bx/n/10.95 (-20) Far field \OT1/cmr/m/n/10.95 (-20) ($\OMS/cmsy/m/n/
 10.95 j\OML/cmm/m/it/10.95 y\OMS/cmsy/m/n/10.95 j ^^U \OML/cmm/m/it/10.95 ^^Z[]
@@ -1268,7 +1250,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 6421.
 
-[90]
+[91]
 Overfull \hbox (30.54453pt too wide) in paragraph at lines 6492--6505
  [] 
  []
@@ -1289,7 +1271,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 6508.
 
-[91]
+[92]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 6560.
@@ -1306,7 +1288,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 6560.
 
-[92]
+[93]
 Overfull \hbox (73.32053pt too wide) in paragraph at lines 6642--6655
  [] 
  []
@@ -1327,7 +1309,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 6658.
 
-[93] [94] [95]
+[94] [95] [96]
 Overfull \hbox (2.83786pt too wide) detected at line 6852
 \OML/cmm/m/it/10.95 r[] [] [][] \OMS/cmsy/m/n/10.95 jr\OML/cmm/m/it/10.95 u\OMS
 /cmsy/m/n/10.95 j[] \OML/cmm/m/it/10.95 dx dt  \OMS/cmsy/m/n/10.95 ^^U  \OML/cm
@@ -1337,7 +1319,7 @@ MS/cmsy/m/n/10.95 j[] \OML/cmm/m/it/10.95 dx dt  \OT1/cmr/m/n/10.95 =  [] [][]
 /it/10.95 dy ds;
  []
 
-[96]
+[97]
 Overfull \hbox (7.22693pt too wide) detected at line 6994
 [][][]\OMS/cmsy/m/n/10.95 h\OML/cmm/m/it/10.95 ^^[[]\OMS/cmsy/m/n/10.95 i\OT1/c
 mr/m/n/10.95 (\OML/cmm/m/it/10.95 s[]\OT1/cmr/m/n/10.95 )  :=  (\OML/cmm/m/it/1
@@ -1348,18 +1330,18 @@ n/10.95 1[] \OML/cmm/m/it/10.95 dy ds  \OMS/cmsy/m/n/10.95 ^^T  \OML/cmm/m/it/1
  (\OML/cmm/m/it/10.95 s[]\OT1/cmr/m/n/10.95 )[]\OML/cmm/m/it/10.95 ;
  []
 
-[97]
+[98]
 Overfull \hbox (29.34724pt too wide) in paragraph at lines 7048--7060
 [][]\OT1/cmr/bx/n/10.95 (-20) Proposition []31.2[]
  []
 
-[98]
+[99]
 Overfull \hbox (2.08504pt too wide) in paragraph at lines 7130--7135
 [][]\OT1/cmr/m/n/10.95 (-20) The derivative-level ob-struc-tion is \OT1/cmr/bx/
 n/10.95 (-20) real
  []
 
-[99]
+[100]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 7161.
@@ -1376,17 +1358,17 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 7161.
 
-[100] [101] [102] [103]
+[101] [102] [103] [104]
 Overfull \hbox (7.2043pt too wide) in paragraph at lines 7522--7535
 [][]\OT1/cmr/m/it/10.95 (-20) Average-
  []
 
-[104] [105]
+[105] [106]
 Overfull \hbox (40.85168pt too wide) in paragraph at lines 7650--7682
  [] 
  []
 
-[106] [107] [108] [109]
+[107] [108] [109] [110]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 7968.
@@ -1409,7 +1391,7 @@ cmm/m/it/10.95 m[]w^^Q[] \OT1/cmr/m/n/10.95 (-20) + \OML/cmm/m/it/10.95 ^^W []
 \OML/cmm/m/it/10.95 mw^^Q[] \OMS/cmsy/m/n/10.95 ^^@
  []
 
-[110]
+[111]
 Overfull \hbox (63.10707pt too wide) in paragraph at lines 8023--8027
 []\OT1/cmr/m/it/10.95 (-20) from $\OML/cmm/m/it/10.95 R[]$ \OT1/cmr/m/it/10.95 
 (-20) through $\OML/cmm/m/it/10.95 ^^W\OT1/cmr/m/n/10.95 (-20) ^^A\OML/cmm/m/it
@@ -1439,7 +1421,7 @@ OT1/cmr/m/it/10.95 (-20) piece of the dif-fer-en-ti-ated di-rec-tion equa-tion,
 sy/m/n/10.95 r\OML/cmm/m/it/10.95 m \OMS/cmsy/m/n/10.95 ^^A
  []
 
-[111]
+[112]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 8122.
@@ -1479,7 +1461,7 @@ t/10.95 m\OMS/cmsy/m/n/10.95 j[]\OML/cmm/m/it/10.95 w  []  \OMS/cmsy/m/n/10.95
 5 ^^N[]\OT1/cmr/m/n/10.95 4[]\OML/cmm/m/it/10.95 Y[];
  []
 
-[112] [113]
+[113] [114]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 8286.
@@ -1496,7 +1478,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 8286.
 
-[114]
+[115]
 Overfull \hbox (19.608pt too wide) detected at line 8407
 \OMS/cmsy/m/n/10.95 A[]  ^^T  \OML/cmm/m/it/10.95 ^^N M[]D[]  \OT1/cmr/m/n/10.9
 5 +  \OML/cmm/m/it/10.95 C[]\OT1/cmr/m/n/10.95 1 + \OML/cmm/m/it/10.95 ^^N[][] 
@@ -1506,7 +1488,7 @@ m/n/10.95 L k\OML/cmm/m/it/10.95 w\OMS/cmsy/m/n/10.95 k[] \OML/cmm/m/it/10.95 M
 []  \OT1/cmr/m/n/10.95 +  \OML/cmm/m/it/10.95 ^^NM[]D[];
  []
 
-[115] [116]
+[116] [117]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 8541.
@@ -1536,7 +1518,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 8587.
 
-[117]
+[118]
 Overfull \hbox (52.0423pt too wide) detected at line 8675
 \OML/cmm/m/it/10.95 Q[]  \OT1/cmr/m/n/10.95 :=  \OML/cmm/m/it/10.95 Q\OT1/cmr/m
 /n/10.95 (\OML/cmm/m/it/10.95 ^^Z[]\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 \ f
@@ -1550,7 +1532,7 @@ MS/cmsy/m/n/10.95 ^^T \OML/cmm/m/it/10.95 m \OMS/cmsy/m/n/10.95 ^^T \OML/cmm/m/
 it/10.95 ^^R[]M\OMS/cmsy/m/n/10.95 g \ [] \OML/cmm/m/it/10.95  ;
  []
 
-[118]
+[119]
 Overfull \hbox (3.51476pt too wide) in paragraph at lines 8731--8738
 []\OT1/cmr/m/n/10.95 (-20) Writing out the two av-er-ages in Con-jec-ture []28.
 5[] gives $\OML/cmm/m/it/10.95 c[] \OT1/cmr/m/n/10.95 (-20) = \OMS/cmsy/m/n/10.
@@ -1559,7 +1541,7 @@ OMS/cmsy/m/n/10.95 j[]\OML/cmm/m/it/10.95 w[][][] [][] \OMS/cmsy/m/n/10.95 jr\O
 ML/cmm/m/it/10.95 m\OMS/cmsy/m/n/10.95 j[] ^^A
  []
 
-[119] [120] [121]
+[120] [121] [122]
 Overfull \hbox (63.283pt too wide) detected at line 8998
 \OML/cmm/m/it/10.95 ^^W [] [][] \OMS/cmsy/m/n/10.95 jr\OML/cmm/m/it/10.95 m\OMS
 /cmsy/m/n/10.95 j[]\OML/cmm/m/it/10.95 w  []  \OMS/cmsy/m/n/10.95 ^^U  [] \OT1/
@@ -1570,12 +1552,12 @@ m/m/it/10.95 m\OMS/cmsy/m/n/10.95 j[]\OML/cmm/m/it/10.95 w ^^Q[]  \OMS/cmsy/m/n
 [][][] \OT1/cmr/m/n/10.95 + [][][][][]^^@\OML/cmm/m/it/10.95 :
  []
 
-[122] [123] [124] [125] [126] [127] [128] [129]
+[123] [124] [125] [126] [127] [128] [129] [130]
 Overfull \hbox (213.83548pt too wide) in paragraph at lines 9657--9704
  [] 
  []
 
-[130] [131] [132] [133] [134] [135] [136]
+[131] [132] [133] [134] [135] [136] [137]
 Overfull \hbox (55.79733pt too wide) detected at line 10243
 []\OMS/cmsy/m/n/10.95 r[]\OML/cmm/m/it/10.95 @[]u[]\OT1/cmr/m/n/10.95 (\OMS/cms
 y/m/n/10.95 ^^A\OML/cmm/m/it/10.95 ; s[]\OT1/cmr/m/n/10.95 )[][]  \OMS/cmsy/m/n
@@ -1588,7 +1570,7 @@ ML/cmm/m/it/10.95 c[]S[] [][][]"\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 k; l\OT
 5 ) \OML/cmm/m/it/10.95 S[];
  []
 
-[137]
+[138]
 Overfull \hbox (1.05118pt too wide) in paragraph at lines 10250--10254
 []\OT1/cmr/m/it/10.95 (-20) Dimensional check. \OT1/cmr/m/n/10.95 (-20) In unit
 s $\OML/cmm/m/it/10.95 ^^W \OT1/cmr/m/n/10.95 (-20) = 1$ (Re-mark []33.1[]), $[
@@ -1597,7 +1579,7 @@ L/cmm/m/it/10.95 L[]$ \OT1/cmr/m/n/10.95 (-20) and $[\OMS/cmsy/m/n/10.95 j\OML/
 cmm/m/it/10.95 s\OMS/cmsy/m/n/10.95 j[]\OT1/cmr/m/n/10.95 (-20) ] =
  []
 
-[138] [139]
+[139] [140]
 Overfull \hbox (2.78702pt too wide) in paragraph at lines 10420--10424
 [][]\OT1/cmr/m/it/10.95 (-20) Observation \OT1/cmr/m/n/10.95 (-20) 36.19 (The s
 ame es-ti-mate ap-plies to $\OML/cmm/m/it/10.95 u$ \OT1/cmr/m/n/10.95 (-20) it-
@@ -1610,7 +1592,7 @@ Overfull \hbox (30.48871pt too wide) in paragraph at lines 10476--10504
  [] 
  []
 
-[140] [141] [142] [143] [144] [145] [146]
+[141] [142] [143] [144] [145] [146] [147]
 Overfull \hbox (46.53941pt too wide) in paragraph at lines 10970--10982
 []\OT1/cmr/m/n/10.95 (-20) Exactly the restart of Ob-ser-va-tion []36.19[], car
 -ried out for gen-eral $\OML/cmm/m/it/10.95 k$\OT1/cmr/m/n/10.95 (-20) . Put $\
@@ -1632,7 +1614,7 @@ n/10.95 k[]\OML/cmm/m/it/10.95 =M\OT1/cmr/m/n/10.95 (-20) (\OML/cmm/m/it/10.95
 t\OT1/cmr/m/n/10.95 (-20) ))$
  []
 
-[147] [148] [149]
+[148] [149] [150]
 Overfull \hbox (45.70116pt too wide) in paragraph at lines 11212--11220
 []\OT1/cmr/m/it/10.95 (-20) (2) The stretch-ing term. \OT1/cmr/m/n/10.95 (-20) 
 In Lemma []28.1[](a), $[] [] \OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 \OMS/cms
@@ -1644,7 +1626,7 @@ T1/cmr/m/n/10.95 (-20) )\OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 s[]\OMS/cmsy/m
 \OMS/cmsy/m/n/10.95 j[] \OT1/cmr/m/n/10.95 (-20) =
  []
 
-[150]
+[151]
 Overfull \hbox (4.25131pt too wide) in paragraph at lines 11301--11309
 \OT1/cmr/bx/n/10.95 (-20) Residual gap, stated ex-actly. \OT1/cmr/m/n/10.95 (-2
 0) Prove or dis-prove: there is $\OML/cmm/m/it/10.95 K \OT1/cmr/m/n/10.95 (-20)
@@ -1659,30 +1641,48 @@ Overfull \hbox (39.95003pt too wide) in paragraph at lines 11312--11339
  [] 
  []
 
-[151] [152] [153] [154] [155] [156] [157] [158] [159] [160] [161] [162]
-[163] [164] [165] [166] [167] [168] [169] [170] [171] [172]
-Underfull \hbox (badness 1412) in paragraph at lines 13049--13050
+[152] [153] [154] [155] [156] [157] [158] [159] [160] [161] [162] [163]
+[164] [165]
+Overfull \hbox (44.3321pt too wide) detected at line 12479
+\OML/cmm/m/it/10.95 A\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 v; r\OT1/cmr/m/n/1
+0.95 ) = [] [] [][] \OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 v\OT1/cmr/m/n/10.9
+5 (\OML/cmm/m/it/10.95 x; t\OT1/cmr/m/n/10.95 )\OMS/cmsy/m/n/10.95 j[]\OML/cmm/
+m/it/10.95 dx;  E\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 v; r\OT1/cmr/m/n/10.95
+ ) = [] [] [][] \OMS/cmsy/m/n/10.95 jr\OML/cmm/m/it/10.95 v\OMS/cmsy/m/n/10.95 
+j[]\OML/cmm/m/it/10.95 dz;  C\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 v; r\OT1/c
+mr/m/n/10.95 ) = [] [] [][] \OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 v\OMS/cmsy
+/m/n/10.95 j[]\OML/cmm/m/it/10.95 dz;
+ []
+
+[166] [167] [168] [169] [170] [171] [172] [173] [174] [175] [176] [177]
+[178] [179] [180] [181]
+Underfull \hbox (badness 1412) in paragraph at lines 13640--13641
 []\OT1/cmr/bx/n/10 (+20) Withdrawn \OT1/cmr/m/n/10 (+20) (ex-act can-cel-la-
  []
 
-[173] [174] [175] [176] [177] [178]
-(/tmp/finalcheck/claim_a_3d_proof_attempt.aux)
+[182] [183] [184] [185] [186]
+Underfull \hbox (badness 2503) in paragraph at lines 14003--14006
+[]\OT1/cmr/m/n/10.95 (+20) G. Sere-gin, On po-ten-tial Type II blowups for the 
+Navier--Stokes equa-tions,
+ []
+
+[187] [188] (/tmp/wpt1build/claim_a_3d_proof_attempt.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `claim_a_3d_proof_attempt.out' has not change
 d.
-(rerunfilecheck)             Checksum: 62A8F98CA5FA79D376FCF589F484B4B9;69646.
+(rerunfilecheck)             Checksum: 6E5BC6FB51B980B4D58628CE1EBD48B1;71964.
  ) 
 Here is how much of TeX's memory you used:
- 16557 strings out of 476106
- 251270 string characters out of 5793933
+ 16690 strings out of 476106
+ 253041 string characters out of 5793933
  1948975 words of memory out of 5000000
- 36477 multiletter control sequences out of 15000+600000
- 597357 words of font info for 393 fonts, out of 8000000 for 9000
+ 36518 multiletter control sequences out of 15000+600000
+ 598134 words of font info for 403 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 75i,16n,79p,1028b,838s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,16n,79p,1028b,842s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texli
@@ -1716,11 +1716,11 @@ b></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/
 fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/c
 m-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1095.pfb
 >
-Output written on /tmp/finalcheck/claim_a_3d_proof_attempt.pdf (178 pages, 1518
-332 bytes).
+Output written on /tmp/wpt1build/claim_a_3d_proof_attempt.pdf (188 pages, 15702
+06 bytes).
 PDF statistics:
- 5479 PDF objects out of 6186 (max. 8388607)
- 5118 compressed objects within 52 object streams
- 1330 named destinations out of 1440 (max. 500000)
- 74049 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 5744 PDF objects out of 6186 (max. 8388607)
+ 5371 compressed objects within 54 object streams
+ 1402 named destinations out of 1440 (max. 500000)
+ 74089 words of extra memory for PDF output out of 74296 (max. 10000000)
 

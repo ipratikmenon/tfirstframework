@@ -13598,6 +13598,720 @@ had, and it does not need an ancient solution at all.
   \end{enumerate}
 \end{remark}
 
+% ══════════════════════════════════════════════════════════════════════════════
+\section{WP-T3: A Quantitative Floor on the Forcing in Wall 9
+  (Session S55)}
+\label{sec:wpt3-forcing-floor}
+
+Wall~9 (\S\ref{subsec:wall9-forcing}) records, as a qualitative finding, that
+the forcing in \cite{OpenAI2026} is \emph{load-bearing and not decorative}.
+This section turns that into a number. The whole of it is
+\textbf{documentation-sharpening}: it makes Wall~9 more precise and more
+citable, and it does nothing else. It is \emph{not} a step toward Fefferman's
+alternatives (A) or (B), \emph{not} a challenge to (C) or (D), and \emph{not}
+a statement about whether Theorem~1.1 of \cite{OpenAI2026} is correct. Wall~9's
+classification --- \textsc{proved impossible} as an import route --- is
+unchanged, and Wall~1, Wall~3 and the S54 exclusion
+(Proposition~\ref{prop:wpt2-swirl-exclusion}) are untouched. The scope is
+restated at its true size in Remark~\ref{rem:wpt3-scope}, which should be read
+with any quotation of this section.
+
+The lever that makes the sharpening tractable is structural and is proved
+first: in the axisymmetric class the swirl equation carries no pressure, and a
+forcing term enters it \emph{only} through its azimuthal component.
+
+% ──────────────────────────────────────────────────────────────────────────────
+\subsection{Deliverable 1 --- the forced maximum principle, as a standalone
+lemma}
+\label{subsec:wpt3-lemma}
+
+\begin{lemma}[The forced swirl equation: only $f_\theta$ enters, and it enters
+  as $rf_\theta$]\label{lem:wpt3-forced-swirl}
+  Let $(u,p)$ be axisymmetric ($\partial_\theta\equiv0$) and smooth on an open
+  set of $\R^3\times I$, with $\divg u=0$, and define the momentum residual
+  \[
+    f\;\coloneqq\;\partial_tu+(u\cdot\grad)u-\nu\Delta u+\grad p .
+  \]
+  Then $f$ is axisymmetric, and $\Gamma=ru_\theta$ satisfies
+  \begin{equation}\label{eq:wpt3-forced-gamma}
+    \partial_t\Gamma+u_r\partial_r\Gamma+u_z\partial_z\Gamma
+      \;=\;\nu\Bigl(\Delta-\frac2r\partial_r\Bigr)\Gamma
+      \;+\;r\,f_\theta ,
+    \qquad f_\theta:=f\cdot e_\theta .
+  \end{equation}
+  Neither $f_r$ nor $f_z$ appears, and no pressure term appears.
+  \emph{[Proved here, from the momentum equations, not taken from the WP-T3
+  handover.]}
+\end{lemma}
+\begin{proof}
+  Axisymmetry of $f$ is immediate: every operator on the right of its
+  definition preserves $\partial_\theta\equiv0$. For the equation, take the
+  $e_\theta$ component of the definition of $f$. Three ingredients, each of
+  which is where a forced version could go wrong and each of which is checked:
+  \begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+    \item \textbf{Pressure.} $(\grad p)_\theta=r^{-1}\partial_\theta p=0$,
+      because $p$ is axisymmetric. This is the one clean lever: the swirl
+      equation is pressure-free \emph{whether or not} the flow is forced.
+    \item \textbf{Advection.}
+      $\bigl((u\cdot\grad)u\bigr)_\theta
+       =u_r\partial_ru_\theta+\frac{u_\theta}{r}\partial_\theta u_\theta
+        +u_z\partial_zu_\theta+\frac{u_ru_\theta}{r}$, and the
+      $\partial_\theta$ term vanishes.
+    \item \textbf{Vector Laplacian.}
+      $(\Delta u)_\theta=\Delta u_\theta-\frac{u_\theta}{r^2}
+       +\frac{2}{r^2}\partial_\theta u_r
+       =\Delta u_\theta-\frac{u_\theta}{r^2}$, again by axisymmetry.
+  \end{enumerate}
+  Hence
+  \[
+    \partial_tu_\theta+u_r\partial_ru_\theta+u_z\partial_zu_\theta
+      +\frac{u_ru_\theta}{r}
+    =\nu\Bigl(\Delta u_\theta-\frac{u_\theta}{r^2}\Bigr)+f_\theta ,
+  \]
+  which is the equation in the proof of Lemma~\ref{lem:s51-gamma} with
+  $+f_\theta$ appended. Multiplying by $r$ and using the two identities
+  established there --- that $r$ times the left side is
+  $\partial_t\Gamma+u_r\partial_r\Gamma+u_z\partial_z\Gamma$ (the $r^{-2}$
+  terms cancelling exactly), and that
+  $r\bigl(\Delta u_\theta-u_\theta/r^2\bigr)
+    =\bigl(\Delta-\tfrac2r\partial_r\bigr)\Gamma$ --- gives
+  \eqref{eq:wpt3-forced-gamma}. The added term is $r\cdot f_\theta$ and
+  nothing else.
+\end{proof}
+
+The maximum principle now has to be run at a moving point, and the two places
+where such an argument goes wrong --- whether the maximum is attained and
+whether $t\mapsto\max\Gamma$ is differentiable --- are handled explicitly
+rather than assumed away.
+
+\begin{lemma}[Forced maximum principle at the running maximiser]
+  \label{lem:wpt3-forced-max}
+  Let $\nu>0$ and let $(u,p)$ be as in Lemma~\ref{lem:wpt3-forced-swirl} on
+  $\R^3\times[t_0,t_1)$, with residual $f$. Assume:
+  \begin{itemize}[leftmargin=2.6em]
+    \item[\textbf{(H1)}] \emph{(regularity)} $u$ is $C^1$ in $t$ and $C^2$ in
+      $x$ and $p$ is $C^1$ in $x$ on $\R^3\times[t_0,t_1)$; consequently
+      $\Gamma$, $\partial_t\Gamma$, $\grad\Gamma$, $D^2\Gamma$ and $f_\theta$
+      are continuous there.
+    \item[\textbf{(H2)}] \emph{(attainment, with uniform compactness)} For
+      each compact $J\subset[t_0,t_1)$ there is a compact $K_J\subset\R^3$
+      with
+      $\sup_{x\notin K_J}\Gamma(x,t)<\sup_{x}\Gamma(x,t)$ for all $t\in J$,
+      and $\sup_x\Gamma(x,t)<\infty$. (This holds in particular if
+      $\Gamma(\cdot,t)$ is compactly supported in a fixed compact set, or if
+      $\Gamma(x,t)\to0$ as $\abs x\to\infty$ uniformly for $t\in J$, together
+      with $\sup_x\Gamma>0$.)
+    \item[\textbf{(H3)}] \emph{(nondegeneracy)}
+      $M(t)\coloneqq\max_x\Gamma(x,t)>0$ for $t$ in the interval considered.
+  \end{itemize}
+  Write $\Sigma(t)\coloneqq\{x:\Gamma(x,t)=M(t)\}$, which by (H1)--(H2) is
+  nonempty and compact. Then:
+  \begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.6em]
+    \item \textbf{Every maximiser is off the axis.} $\Gamma$ vanishes on
+      $\{r=0\}$ (because $u_\theta$ is bounded there), so by (H3) every
+      $x_m\in\Sigma(t)$ has $r_m>0$. In particular the singular coefficient
+      $-2\nu/r$ of \eqref{eq:wpt3-forced-gamma} is never evaluated at $r=0$,
+      and \emph{no} exhaustion $\{r\geq\eps\}$ of the kind used in
+      Lemma~\ref{lem:s51-gamma} is needed.
+    \item \textbf{Pointwise differential inequality.} For every $t$ and every
+      $x_m\in\Sigma(t)$,
+      \begin{equation}\label{eq:wpt3-pointwise}
+        \partial_t\Gamma(x_m,t)\ \leq\ \bigl(rf_\theta\bigr)(x_m,t).
+      \end{equation}
+    \item \textbf{$M$ is locally Lipschitz, with one-sided derivatives
+      everywhere.} On each compact $J\subset[t_0,t_1)$, $M$ is Lipschitz, and
+      for every $t$ the one-sided derivatives exist and are given by
+      \begin{equation}\label{eq:wpt3-danskin}
+        \frac{d^{+}M}{dt}(t)=\max_{x\in\Sigma(t)}\partial_t\Gamma(x,t),
+        \qquad
+        \frac{d^{-}M}{dt}(t)=\min_{x\in\Sigma(t)}\partial_t\Gamma(x,t).
+      \end{equation}
+      Hence $M$ is differentiable at $t$ precisely when these agree, and (by
+      Rademacher) at almost every $t$.
+    \item \textbf{The forced maximum principle.} Combining (ii) and (iii),
+      \begin{equation}\label{eq:wpt3-dini}
+        \frac{d^{+}M}{dt}(t)\ \leq\ \max_{x\in\Sigma(t)}
+          \bigl(rf_\theta\bigr)(x,t)\qquad\text{for every }t,
+      \end{equation}
+      and, with no differentiability needed anywhere, the integrated form
+      \begin{equation}\label{eq:wpt3-integral}
+        M(t)-M(s)\ \leq\ \int_s^t\ \max_{x\in\Sigma(\sigma)}
+          \bigl(rf_\theta\bigr)(x,\sigma)\ d\sigma ,
+        \qquad t_0\leq s\leq t<t_1 .
+      \end{equation}
+      When $f\equiv0$ this returns $M(t)\leq M(s)$, i.e.\ the maximum
+      principle of Lemma~\ref{lem:s51-gamma}: \eqref{eq:wpt3-dini} is its
+      exact forced generalisation.
+    \item \textbf{The form for $\norm{\Gamma}_{L^\infty}$, with its sign
+      factor.} Let
+      $M_\Gamma(t)\coloneqq\norm{\Gamma(\cdot,t)}_{L^\infty}>0$ and let
+      $\Sigma_\pm(t)$ be the sets where $\Gamma=\pm M_\Gamma(t)$. Then
+      \begin{equation}\label{eq:wpt3-signed}
+        \frac{d^{+}M_\Gamma}{dt}(t)\ \leq
+        \max_{x\in\Sigma_+(t)\cup\Sigma_-(t)}
+          \operatorname{sgn}\bigl(\Gamma(x,t)\bigr)\,
+          \bigl(rf_\theta\bigr)(x,t)
+        \ \leq\ \max_{x\in\Sigma_+(t)\cup\Sigma_-(t)}
+          \abs{rf_\theta}(x,t).
+      \end{equation}
+      The sign factor is \emph{not} removable: see
+      Remark~\ref{rem:wpt3-handover-sign}.
+  \end{enumerate}
+  \emph{[Proved here.]}
+\end{lemma}
+
+\begin{proof}
+  \textbf{(i)} Smoothness of $u$ across the axis forces $u_\theta=O(r)$, so
+  $\Gamma=ru_\theta=O(r^2)$ and in particular $\Gamma\equiv0$ on $\{r=0\}$.
+  By (H3), $M(t)>0$, so no point of $\Sigma(t)$ lies on the axis.
+  Nonemptiness and compactness of $\Sigma(t)$ follow from (H1)--(H2).
+
+  \textbf{(ii)} Fix $t$ and $x_m\in\Sigma(t)$, with cylindrical coordinates
+  $(r_m,z_m)$, $r_m>0$ by (i). Because $\Gamma(\cdot,t)$ is axisymmetric, it
+  is a function of $(r,z)$ on the open half-plane $\{r>0\}$, and $(r_m,z_m)$
+  is an \emph{interior} global maximum of it there. Therefore
+  \[
+    \partial_r\Gamma(x_m,t)=\partial_z\Gamma(x_m,t)=0,
+    \qquad
+    \partial_r^2\Gamma(x_m,t)\leq0,\quad
+    \partial_z^2\Gamma(x_m,t)\leq0,
+  \]
+  the last two being the diagonal entries of a negative semidefinite Hessian.
+  Two consequences at $x_m$:
+  \begin{itemize}[leftmargin=2.2em]
+    \item the drift term vanishes,
+      $u_r\partial_r\Gamma+u_z\partial_z\Gamma=0$, whatever $u_r,u_z$ are ---
+      so \emph{no} bound on the drift is needed, which is why the lemma
+      requires nothing of $u_r,u_z$ beyond smoothness;
+    \item the diffusion term is nonpositive,
+      \[
+        \nu\Bigl(\Delta-\frac2r\partial_r\Bigr)\Gamma
+        =\nu\Bigl(\partial_r^2\Gamma-\frac{1}{r_m}\partial_r\Gamma
+          +\partial_z^2\Gamma\Bigr)
+        =\nu\bigl(\partial_r^2\Gamma+\partial_z^2\Gamma\bigr)\ \leq\ 0 ,
+      \]
+      the singular first-order coefficient being annihilated by
+      $\partial_r\Gamma(x_m,t)=0$. \textbf{This is the entire content of why
+      the unforced maximum principle holds}, and it is unaffected by adding
+      a forcing term.
+  \end{itemize}
+  Evaluating \eqref{eq:wpt3-forced-gamma} at $x_m$ gives
+  $\partial_t\Gamma(x_m,t)=0+(\leq0)+(rf_\theta)(x_m,t)$, which is
+  \eqref{eq:wpt3-pointwise}.
+
+  \textbf{(iii)} This is the Danskin/envelope argument, written out because
+  it is the step the statement of the deliverable was posed to make explicit.
+  Fix a compact $J=[a,b]\subset[t_0,t_1)$ and the compact $K_J$ of (H2);
+  enlarge $K_J$ to a compact $K$ with $K_J\subset\operatorname{int}K$. By
+  (H1), $\Gamma$ and $\partial_t\Gamma$ are bounded on $K\times J$, say
+  $\abs{\partial_t\Gamma}\leq\Lambda$. Since for $t\in J$ the supremum of
+  $\Gamma(\cdot,t)$ is attained in $K_J$, for $s,t\in J$ we have
+  $M(t)-M(s)\leq\max_{x\in K_J}\bigl(\Gamma(x,t)-\Gamma(x,s)\bigr)
+   \leq\Lambda\abs{t-s}$ and symmetrically, so $M$ is Lipschitz on $J$ with
+  constant $\Lambda$; in particular $M$ is continuous and, by Rademacher,
+  differentiable a.e.
+
+  For the right derivative, fix $t\in J$, $t<b$.
+
+  \emph{Lower bound.} For any $x_m\in\Sigma(t)$ and $s>0$ small,
+  $M(t+s)\geq\Gamma(x_m,t+s)=\Gamma(x_m,t)+s\,\partial_t\Gamma(x_m,t)+o(s)
+   =M(t)+s\,\partial_t\Gamma(x_m,t)+o(s)$. Dividing by $s$ and letting
+  $s\downarrow0$,
+  $\liminf_{s\downarrow0}\frac{M(t+s)-M(t)}{s}\geq\partial_t\Gamma(x_m,t)$,
+  and taking the maximum over the compact set $\Sigma(t)$ gives
+  $\liminf\geq\max_{\Sigma(t)}\partial_t\Gamma$.
+
+  \emph{Upper bound.} Choose $s_k\downarrow0$ realising the $\limsup$, and
+  $x_k\in\Sigma(t+s_k)$. By (H2) all $x_k$ lie in the compact $K_J$, so along
+  a subsequence $x_k\to\bar x\in K_J$. Joint continuity of $\Gamma$ and
+  continuity of $M$ give
+  $\Gamma(\bar x,t)=\lim\Gamma(x_k,t+s_k)=\lim M(t+s_k)=M(t)$, so
+  $\bar x\in\Sigma(t)$. Then
+  \[
+    M(t+s_k)-M(t)\ \leq\ \Gamma(x_k,t+s_k)-\Gamma(x_k,t)
+      \ =\ s_k\,\partial_t\Gamma(x_k,t+\vartheta_ks_k)
+  \]
+  for some $\vartheta_k\in(0,1)$, by the mean value theorem in $t$. Dividing
+  by $s_k$ and using uniform continuity of $\partial_t\Gamma$ on $K\times J$,
+  the right side tends to $\partial_t\Gamma(\bar x,t)$. Hence
+  $\limsup\leq\partial_t\Gamma(\bar x,t)\leq\max_{\Sigma(t)}\partial_t\Gamma$.
+
+  The two bounds coincide, so the right derivative exists and equals
+  $\max_{\Sigma(t)}\partial_t\Gamma$. The left derivative is identical with
+  the inequalities reversed, yielding the minimum.
+
+  \textbf{(iv)} \eqref{eq:wpt3-dini} is (iii) combined with (ii) applied at
+  each $x\in\Sigma(t)$. For \eqref{eq:wpt3-integral}: $M$ is Lipschitz on
+  $[s,t]$, hence absolutely continuous, hence
+  $M(t)-M(s)=\int_s^tM'(\sigma)\,d\sigma$ over the full-measure set where
+  $M'$ exists; at each such $\sigma$, $M'(\sigma)=\frac{d^+M}{dt}(\sigma)$ is
+  bounded by the integrand of \eqref{eq:wpt3-integral}. The integrand is
+  measurable, being the maximum of a continuous function over an upper
+  semicontinuous compact-valued multifunction, and is bounded on compact
+  subintervals; the inequality follows. \emph{This form assumes no
+  differentiability of $M$ at any point}, which is the point of recording it.
+
+  \textbf{(v)} Where $\Gamma(x,t)=+M_\Gamma(t)$, $x$ is a maximiser of
+  $\Gamma$ and (ii) applies verbatim. Where $\Gamma(x,t)=-M_\Gamma(t)$, $x$
+  is a global \emph{minimiser} of $\Gamma$; there $\grad\Gamma=0$ and the
+  Hessian is positive semidefinite, so the diffusion term is
+  $\geq0$ and \eqref{eq:wpt3-forced-gamma} gives
+  $\partial_t\Gamma(x,t)\geq(rf_\theta)(x,t)$, i.e.
+  $\partial_t\bigl(-\Gamma\bigr)(x,t)\leq-(rf_\theta)(x,t)$. Applying (iii)
+  to $M_\Gamma=\max_x\max\{\Gamma(x,\cdot),-\Gamma(x,\cdot)\}$ --- a maximum
+  over the disjoint union of two copies of the same compact set, to which the
+  same Danskin argument applies unchanged --- yields \eqref{eq:wpt3-signed}.
+\end{proof}
+
+\begin{remark}[What is pointwise and what is uniform --- read this before
+  citing the floor]\label{rem:wpt3-pointwise}
+  Lemma~\ref{lem:wpt3-forced-max} is a statement \textbf{at a single moving
+  point} $x_m(t)$, a set of measure zero in space-time. Three consequences,
+  two negative and one positive, are worth separating.
+  \begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+    \item \textbf{No positive-measure statement follows.} Nothing here shows
+      that $\abs{f_\theta}$ is large on \emph{any} set of positive measure. A
+      forcing consisting of a single tall spike, tracking the maximiser and
+      supported on a set of measure $\eps$, satisfies the conclusion.
+    \item \textbf{No $L^q$ bound follows for $q<\infty$.} The same spike has
+      $\norm{f}_{L^q}=O(\eps^{1/q})\to0$. Any statement about integrated
+      forcing needs a separate argument.
+    \item \textbf{The $L^\infty$ statement does follow, and is the weaker
+      one.} $\norm{rf_\theta}_{L^\infty}\geq(rf_\theta)(x_m(t),t)$ trivially,
+      so \eqref{eq:wpt3-dini} implies a floor on the sup-norm. The direction
+      matters: the pointwise statement is the strong one, and the sup-norm
+      statement is what one gets by throwing information away. The
+      \emph{uniform} statement one might want --- ``$\abs{f_\theta}$ is
+      bounded below throughout the core'' --- is a genuinely different and
+      stronger claim and is \textbf{not proved here.}
+  \end{enumerate}
+  Everything in \S\ref{subsec:wpt3-floor} and \S\ref{subsec:wpt3-compare} is
+  therefore stated pointwise at $x_m(t)$, and should be quoted that way.
+\end{remark}
+
+\begin{remark}[A correction to the WP-T3 handover's statement of the target]
+  \label{rem:wpt3-handover-sign}
+  The handover posed Deliverable~1 as: with
+  $M_\Gamma(t)\coloneqq\norm{\Gamma(\cdot,t)}_{L^\infty}$, prove
+  $\frac{d}{dt}M_\Gamma\leq(rf_\theta)(x_m(t),t)$. \textbf{As written for the
+  absolute-value norm this is false.} If the norm is attained at a point
+  where $\Gamma<0$, that point is a global \emph{minimum} of $\Gamma$, the
+  diffusion term there is $\geq0$ rather than $\leq0$, and the correct
+  inequality is $\frac{d}{dt}M_\Gamma\leq-(rf_\theta)(x_m,t)$ --- the
+  opposite sign. The statement is correct as posed only for the
+  \emph{signed} maximum $M(t)=\max_x\Gamma$, which is
+  Lemma~\ref{lem:wpt3-forced-max}(ii)/(iv); the norm version needs the sign
+  factor of \eqref{eq:wpt3-signed}. Nothing downstream changes, because
+  \S\ref{subsec:wpt3-floor} works with a signed maximum and reports a floor
+  on $\abs{rf_\theta}$, but the lemma had to be stated correctly to be
+  usable, and the erroneous form should not be propagated.
+\end{remark}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\subsection{Deliverable 2 --- the floor for the OpenAI leading field}
+\label{subsec:wpt3-floor}
+
+\begin{proposition}[Explicit power-law floor on the azimuthal residual]
+  \label{prop:wpt3-floor}
+  Let $(u^{(0)},p^{(0)})$ be the leading axisymmetric field
+  \eqref{eq:wpt2-ansatz} of Fact~\ref{fact:wpt2-source}, with the similarity
+  variables \eqref{eq:wpt2-simvars} and $\nu=1$ (the source's own
+  normalisation), and let
+  $f^{(0)}\coloneqq\partial_tu^{(0)}+(u^{(0)}\cdot\grad)u^{(0)}
+   -\Delta u^{(0)}+\grad p^{(0)}$
+  be its momentum residual --- which is exactly what \cite{OpenAI2026} calls
+  the force, by its (3.1). Then, at the running maximiser $x_m(t)$ of
+  $\Gamma^{(0)}$,
+  \begin{align}
+    \abs{\bigl(rf^{(0)}_\theta\bigr)(x_m(t),t)}
+      &\ \geq\ h\,c_*\ \tau^{-(1+h)}
+      \ =\ h\,c_*\,\tau^{-(A+\frac12)} ,
+      \label{eq:wpt3-floorA}\\[2pt]
+    \abs{f^{(0)}_\theta(x_m(t),t)}
+      &\ \geq\ \frac{h\,c_*}{c_r}\ \tau^{-(\frac32+h)}
+      \ =\ \frac{h\,c_*}{c_r}\,\tau^{-(A+1)} ,
+      \label{eq:wpt3-floorB}
+  \end{align}
+  with $c_*,c_r>0$ the fixed profile constants of the proof, and
+  $r\bigl(x_m(t)\bigr)=c_r\tau^{1/2}$.
+  \emph{[Proved here.]}
+\end{proposition}
+
+\begin{proof}
+  \textbf{Step 1: the swirl of the leading field, re-derived.} From
+  \eqref{eq:wpt2-ansatz}, $r=\sqrt{2qX}$ and $E=C^{-1}\sqrt{2X}\phi$,
+  \[
+    \Gamma^{(0)}=ru^{(0)}_\theta
+      =\sqrt{2qX}\cdot q^{-A}\cdot C^{-1}\sqrt{2X}\phi
+      =\frac{2X\phi}{C}\,q^{\frac12-A}
+      =q^{-h}H(X,\eta),\qquad H=\frac{2X\phi}{C},
+  \]
+  using $\tfrac12-A=-h$. This is \eqref{eq:wpt2-gamma}, re-derived here
+  independently of S54, and it is also the source's own identity (``the
+  angular equation is simplest in angular momentum
+  $ru_\theta^{(0)}=q^{-h}H$'').
+
+  \textbf{Step 2: the exact time law of the maximum.} By
+  \eqref{eq:wpt2-simvars}, $\tau=q(1-\eta^2)$, so $q=\tau/(1-\eta^2)$ and
+  \[
+    \Gamma^{(0)}=\tau^{-h}\,(1-\eta^2)^{h}\,H(X,\eta).
+  \]
+  At fixed $t$ the pair $(X,\eta)$ ranges over the whole profile domain as
+  $(r,z)$ ranges over the half-plane: $\eta$ and $q$ are fixed by $(z,\tau)$
+  and then $X=r^2/(2q)$ sweeps $(0,\infty)$ with $r$. Hence
+  \begin{equation}\label{eq:wpt3-Mexact}
+    M(t)\coloneqq\sup_x\Gamma^{(0)}(x,t)=c_*\,\tau^{-h},
+    \qquad
+    c_*\coloneqq\sup_{(X,\eta)}(1-\eta^2)^{h}H(X,\eta),
+  \end{equation}
+  and $c_*$ is a \emph{constant}, independent of $t$: the leading field is
+  exactly self-similar, so the maximum is an exact power, not merely
+  $\asymp\tau^{-h}$. This is what makes the floor exact rather than
+  heuristic.
+
+  \textbf{Step 3: the supremum is attained, off the axis and at finite
+  radius.} $H(0,\eta)=0$ since $H=2X\phi/C$; $H$ is bounded and
+  $H\to0$ as $X\to\infty$, since the exterior power of the source is
+  $H_{\mathrm{pow}}=\sqrt{2X}\,c_\infty X^{-A}=\sqrt2\,c_\infty X^{-h}$; and
+  the factor $(1-\eta^2)^h$ vanishes at $\eta=\pm1$ where $H$ stays bounded
+  (smoothness on the closed rectangle). So $(1-\eta^2)^hH$ attains its
+  supremum at some $(X_*,\eta_*)$ with $0<X_*<\infty$ and $\abs{\eta_*}<1$,
+  and $c_*\in(0,\infty)$. Hypotheses (H1)--(H3) of
+  Lemma~\ref{lem:wpt3-forced-max} hold for $\Gamma^{(0)}$ on any
+  $[t_0,1)$.
+
+  \textbf{Step 4: differentiate.} $\tau=1-t$, so $d\tau/dt=-1$ and, from
+  \eqref{eq:wpt3-Mexact}, $M$ is smooth in $t$ with
+  \begin{equation}\label{eq:wpt3-Mdot}
+    \frac{dM}{dt}(t)=c_*\,(-h)\,\tau^{-h-1}\cdot(-1)
+      =h\,c_*\,\tau^{-(1+h)}\ >\ 0 .
+  \end{equation}
+  (Here the differentiability subtlety of
+  Lemma~\ref{lem:wpt3-forced-max}(iii) does not bite --- $M$ happens to be
+  smooth --- but the lemma was stated so that it would not need to.)
+
+  \textbf{Step 5: the radius of the maximiser is an output, not an input.}
+  The maximiser sits at $(X_*,\eta_*)$, hence at
+  $q_*=\tau/(1-\eta_*^2)$ and
+  \begin{equation}\label{eq:wpt3-rm}
+    r\bigl(x_m(t)\bigr)=\sqrt{2q_*X_*}
+      =\underbrace{\Bigl(\frac{2X_*}{1-\eta_*^2}\Bigr)^{1/2}}_{=:c_r>0}
+        \ \tau^{1/2}.
+  \end{equation}
+  So $\ell_r\asymp\tau^{1/2}$ is not assumed here: the maximiser tracks the
+  core radius as a consequence of Steps 1--3, and $c_r$ is explicit.
+
+  \textbf{Step 6: apply the lemma.} By \eqref{eq:wpt3-dini} and
+  \eqref{eq:wpt3-Mdot},
+  \[
+    h\,c_*\,\tau^{-(1+h)}=\frac{dM}{dt}(t)
+      \ \leq\ \max_{x\in\Sigma(t)}\bigl(rf^{(0)}_\theta\bigr)(x,t),
+  \]
+  so at some (hence, by \eqref{eq:wpt3-rm}, at a radius $c_r\tau^{1/2}$)
+  maximiser $x_m(t)$ we get \eqref{eq:wpt3-floorA}. Dividing by
+  $r(x_m(t))=c_r\tau^{1/2}$ gives \eqref{eq:wpt3-floorB}. Finally
+  $A=\tfrac12+h$ gives $A+\tfrac12=1+h$ and $A+1=\tfrac32+h$, which is the
+  second form of each display.
+\end{proof}
+
+\begin{remark}[Calibration: the floor sits exactly at the size of every other
+  term]\label{rem:wpt3-calibration}
+  The exponent $\tau^{-(A+1)}$ of \eqref{eq:wpt3-floorB} is not an arbitrary
+  power. Every individual term of the leading field's own $\theta$-momentum
+  equation has the same size on the core, using
+  $\abs{u^{(0)}_\theta}\asymp\tau^{-A}$,
+  $\abs{u^{(0)}_r}=O(\tau^{-1/2})$,
+  $\ell_r\asymp\tau^{1/2}$, $\ell_z\asymp\tau^{D}$ from
+  Fact~\ref{fact:wpt2-source}:
+  \[
+    \abs{\partial_tu^{(0)}_\theta}\asymp\frac{\tau^{-A}}{\tau}
+      =\tau^{-(A+1)},\qquad
+    \abs{u^{(0)}_r\partial_ru^{(0)}_\theta}
+      \asymp\frac{\tau^{-1/2}\tau^{-A}}{\tau^{1/2}}=\tau^{-(A+1)},
+  \]
+  \[
+    \abs{\partial_r^2u^{(0)}_\theta}\asymp\frac{\tau^{-A}}{\tau}
+      =\tau^{-(A+1)} ,
+  \]
+  whereas the \emph{axial} viscous term is strictly smaller,
+  $\abs{\partial_z^2u^{(0)}_\theta}\asymp\tau^{-A}\tau^{-2D}
+    =\tau^{-(A+1)+2h}$,
+  by a factor $\tau^{2h}$. So the floor says: \textbf{the azimuthal residual
+  of the axisymmetric leading field is of full leading order in its own
+  momentum equation.} It is not a perturbation, it is not lower order, and it
+  cannot be made so by any choice of the free profile data --- the swirl
+  maximum principle fixes it. That is the quantitative content of Wall~9(b)'s
+  ``load-bearing, not decorative''. As a by-product the same computation
+  reproduces, from the floor's side, the source's own structural statement
+  (Fact~\ref{fact:wpt2-source}(iv)) that radial viscosity is retained in the
+  leading balance and axial viscosity is not.
+\end{remark}
+
+\begin{corollary}[The swirl maximum is forced into the active annulus]
+  \label{cor:wpt3-annulus}
+  Keep the hypotheses of Proposition~\ref{prop:wpt3-floor}, and let
+  $R^{(0)}_\theta\coloneqq R(u^{(0)},p^{(0)})\cdot e_\theta
+    +\partial_z^2u^{(0)}_\theta$ be the source's leading tangential residual
+  (its (4.12)). Then
+  \begin{equation}\label{eq:wpt3-Rtheta}
+    r\,R^{(0)}_\theta
+      =\Bigl(\partial_t+u^{(0)}_r\partial_r+u^{(0)}_z\partial_z\Bigr)
+         \Gamma^{(0)}
+       -\Bigl(\partial_r^2-\frac1r\partial_r\Bigr)\Gamma^{(0)},
+  \end{equation}
+  and consequently: \textbf{if $R^{(0)}_\theta$ vanishes on an open set
+  $\mathcal U$, then $x_m(t)\notin\mathcal U$.} Since \cite{OpenAI2026} makes
+  $R^{(0)}_\theta$ minus a cylindrical divergence of the stress
+  $T=q^{-A-1/2}T_0$ (its Proposition~4.2) and makes $T_0$ vanish for
+  $X\leq X_a$ and for $X\geq X_b$ (its Theorem~4.6(ii)), it follows that
+  \[
+    X_*\ \in\ [X_a,X_b] :
+  \]
+  the swirl maximum of the leading profile must lie in the closed active
+  annulus where the pulses act. This is a \emph{consequence} of the swirl
+  maximum principle, not a design choice. \emph{[Proved here; the
+  consistency of $X_*\in[X_a,X_b]$ with the source's profile is discussed,
+  and left open, in Remark~\ref{rem:wpt3-comparison}(d).]}
+\end{corollary}
+\begin{proof}
+  For \eqref{eq:wpt3-Rtheta}: at $\nu=1$,
+  Lemma~\ref{lem:wpt3-forced-swirl} gives
+  $D_t\Gamma^{(0)}
+   =\bigl(\partial_r^2-\tfrac1r\partial_r+\partial_z^2\bigr)\Gamma^{(0)}
+    +rf^{(0)}_\theta$
+  where $D_t$ is the material derivative along $(u_r^{(0)},u_z^{(0)})$, while
+  $rR^{(0)}_\theta=rf^{(0)}_\theta+r\partial_z^2u^{(0)}_\theta
+   =rf^{(0)}_\theta+\partial_z^2\Gamma^{(0)}$ (as $r$ does not depend on
+  $z$). Adding gives \eqref{eq:wpt3-Rtheta}.
+
+  Now suppose $x_m(t)\in\mathcal U$ with $R^{(0)}_\theta\equiv0$ on
+  $\mathcal U$. By \eqref{eq:wpt3-Rtheta},
+  $D_t\Gamma^{(0)}=(\partial_r^2-\tfrac1r\partial_r)\Gamma^{(0)}$ there ---
+  \emph{radial} diffusion only. At $x_m(t)$ the gradient vanishes
+  (Lemma~\ref{lem:wpt3-forced-max}(ii)), so the drift contributes nothing and
+  the first-order radial term is annihilated, leaving
+  \[
+    \frac{dM}{dt}(t)=\partial_t\Gamma^{(0)}(x_m,t)
+      =\partial_r^2\Gamma^{(0)}(x_m,t)\ \leq\ 0 ,
+  \]
+  which contradicts $dM/dt=h\,c_*\tau^{-(1+h)}>0$ from
+  \eqref{eq:wpt3-Mdot}.
+\end{proof}
+
+\begin{remark}[An independent check of \eqref{eq:wpt3-forced-gamma} against
+  the source's own (4.14)]\label{rem:wpt3-414-check}
+  The forced swirl equation can be tested directly against a formula
+  \cite{OpenAI2026} states for a different reason, and it passes. On
+  $X\leq X_a$ the profiles satisfy the source's (4.13), i.e.\
+  $-2L(X\phi_{XX}+2\phi_X)/\phi=S_q$, and its (4.14) reads
+  \[
+    \begin{aligned}
+      \bigl(\partial_t+u^{(0)}_r\partial_r+u^{(0)}_z\partial_z\bigr)
+        \bigl(q^{-h}H\bigr)
+      &=-\frac{q^{-h-1}}{L}\,H\,S_q
+       \;\overset{(4.13)}{=}\;
+       2q^{-h-1}\,\frac{H}{\phi}\,\bigl(X\phi_{XX}+2\phi_X\bigr)\\
+      &=\frac{4X}{C}\,q^{-h-1}\bigl(X\phi_{XX}+2\phi_X\bigr),
+    \end{aligned}
+  \]
+  using $H=2X\phi/C$. Independently, \eqref{eq:wpt3-Rtheta} with
+  $R^{(0)}_\theta=0$ (which holds there, $T_0$ being zero for $X\leq X_a$)
+  says the same material derivative equals
+  $(\partial_r^2-\tfrac1r\partial_r)\Gamma^{(0)}$. Computing that from
+  $\Gamma^{(0)}=q^{-h}H(X)$ with $X=r^2/(2q)$ and $\partial_r=(r/q)\partial_X$
+  at fixed $(z,t)$:
+  \[
+    \Bigl(\partial_r^2-\frac1r\partial_r\Bigr)\Gamma^{(0)}
+      =q^{-h}\frac{2X}{q}H_{XX}
+      =2Xq^{-h-1}\cdot\frac{2}{C}\bigl(2\phi_X+X\phi_{XX}\bigr)
+      =\frac{4X}{C}q^{-h-1}\bigl(X\phi_{XX}+2\phi_X\bigr).
+  \]
+  \textbf{The two agree identically.} This simultaneously checks the source's
+  (4.14), this document's \eqref{eq:wpt3-forced-gamma}, and the identity
+  \eqref{eq:wpt3-Rtheta} on which Corollary~\ref{cor:wpt3-annulus} rests.
+\end{remark}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\subsection{Deliverable 3 --- the floor against what the source states}
+\label{subsec:wpt3-compare}
+
+\begin{fact}[What \cite{OpenAI2026} states about the size of its forcing]
+  \label{fact:wpt3-source-forcing}
+  Re-fetched and read this session from the locator carried by the
+  bibliography entry \cite{OpenAI2026}. Four groups of statements are relevant,
+  and they are quoted rather than paraphrased.
+  \begin{enumerate}[label=(\roman*),leftmargin=2.6em]
+    \item \textbf{The force is defined as the residual.} \S2: ``For any
+      incompressible flow $u$ and pressure $p$, we can always define the
+      external force $f$ to be the residual in (1.1).'' At $\nu=1$ its (3.1)
+      is $R(u,p)=\partial_tu+(u\cdot\grad)u-\Delta u+\grad p$. This is
+      Wall~9(b)'s point, in the source's own words.
+    \item \textbf{Qualitatively, the background's residual diverges.} \S2:
+      ``For the background alone, the momentum residual becomes unbounded as
+      $t\uparrow1$, so it cannot supply the smooth force required by the
+      theorem.'' And \S2.2: ``\dots\ needed to sustain the background becomes
+      unbounded as $t\uparrow1$, so it cannot serve as the smooth external
+      force required by the construction.'' \emph{No rate is attached in
+      either sentence} --- this is the qualitative statement the present
+      section quantifies.
+    \item \textbf{Quantitatively, the rate is stated --- in \S4, as a stress
+      exponent.} After its (4.11): ``In the notation of Section~3, the
+      physical stress representation to be proved is $T=q^{-A-1/2}T_0$.''
+      Its Proposition~4.2: ``The residuals $R^{(0)}_\theta$, $R^{(0)}_z$ in
+      (4.12) are minus the cylindrical divergences $\partial_r+2/r$ and
+      $\partial_r+1/r$ of $q^{-A-1/2}T_0$.'' Its Theorem~4.6(iv) makes $T_0$
+      nondegenerate on the annulus, ``$\abs{T_0}\geq c\zeta$,
+      $\abs{\partial^\alpha T_0}\leq C_\alpha\zeta\delta^{-m_\alpha}$'',
+      with $\zeta>0$ exactly on $X_a<X<X_b$. In the proof of its
+      Proposition~4.2 the azimuthal case is written out:
+      ``The angular equation is simplest in angular momentum
+      $ru^{(0)}_\theta=q^{-h}H$'', with the material derivative
+      $-q^{-h-1}HS_q/L$, and ``The axial material derivative plus the
+      pressure gradient is similarly $-q^{-A-1}S_n/L$.''
+      Its Proposition~5.5 carries the same exponents to the full
+      axisymmetric background: its (5.41) is
+      $R(u_B,p_B)=-(\partial_r+2/r)T_{\mathrm{phys},\theta}e_\theta
+        -(\partial_r+1/r)T_{\mathrm{phys},z}e_z+E_B$ with
+      $\abs{\partial^\alpha E_B}\leq C_{\alpha,M}q^M$ for every $M$, and its
+      (5.43) fixes $\widehat T=q^{A+1/2}T_{\mathrm{phys}}$ with
+      $\abs{D^I(\widehat T-T_0)}\leq C_Iq^{2h}\zeta\delta^{-N_I}$.
+    \item \textbf{The \emph{final} force, by contrast, is flat.} Its
+      Theorem~3.1(iii):
+      ``$\abs{\partial_x^\alpha\partial_t^bR(u,p)}
+         \leq C_{\alpha,b,N,X_1}q^N$'' for every $N$ on $0\leq X\leq X_1$,
+      and ``For $X\geq X_{\mathrm{ext}}$ the residual is identically zero.''
+      This is a statement about the \emph{full, non-axisymmetric} field, to
+      which Lemma~\ref{lem:wpt3-forced-max} does not apply.
+  \end{enumerate}
+  \emph{[Primary source fetched and read this session; every quotation above
+  is verbatim from it.]}
+\end{fact}
+
+\begin{remark}[The comparison, reported exactly as it comes out]
+  \label{rem:wpt3-comparison}
+  \begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+    \item \textbf{Match the objects first.} The floor of
+      Proposition~\ref{prop:wpt3-floor} applies to any axisymmetric
+      divergence-free field whose swirl maximum grows like $\tau^{-h}$. Two
+      objects in \cite{OpenAI2026} qualify: the leading field $u^{(0)}$, and
+      the corrected axisymmetric background $u_B$ of its Proposition~5.5 ---
+      the latter because its (5.42) gives $q^Au_{\theta,B}=E_0+O(q^{2h})$, so
+      that $\Gamma_B=q^{-h}H\bigl(1+O(q^{2h})\bigr)$ and
+      $M_B(t)=c_*\tau^{-h}\bigl(1+o(1)\bigr)$. Neither of the two is the
+      object of Theorem~1.1, which is non-axisymmetric; see item~(e) below.
+    \item \textbf{Converting the source's number into the floor's variables.}
+      By Fact~\ref{fact:wpt3-source-forcing}(iii),
+      $f_{\theta,B}=-(\partial_r+2/r)T_{\mathrm{phys},\theta}+(E_B)_\theta$
+      with $T_{\mathrm{phys},\theta}
+        =q^{-A-1/2}\bigl(T_{0,\theta}+O(q^{2h})\bigr)$ and $E_B$ flat.
+      Hence $rf_{\theta,B}=-r^{-1}\partial_r
+        \bigl(r^2T_{\mathrm{phys},\theta}\bigr)+\text{flat}$; and since $q$
+      depends on $(z,t)$ only, $\partial_r=(r/q)\partial_X$ at fixed $(z,t)$
+      and $r^2=2qX$, so
+      \[
+        r\,f_{\theta,B}
+          =-2\,q^{-A-1/2}\,\partial_X\bigl(X\,T_{0,\theta}\bigr)
+           +O\bigl(q^{-A-1/2+2h}\bigr)+\text{flat}
+          \ \asymp\ q^{-A-1/2}=q^{-(1+h)}\asymp\tau^{-(1+h)}
+      \]
+      on the active annulus, where $q\asymp\tau$ and
+      $\abs{T_0}\geq c\zeta>0$. Dividing by $r\asymp\tau^{1/2}$,
+      $\abs{f_{\theta,B}}\asymp\tau^{-(A+1)}=\tau^{-(3/2+h)}$.
+    \item \textbf{Verdict: the source meets the floor, and the match is
+      exponent-exact with no slack.} The floor demanded
+      $\abs{rf_\theta}\gtrsim\tau^{-(A+1/2)}$ and
+      $\abs{f_\theta}\gtrsim\tau^{-(A+1)}$
+      (\eqref{eq:wpt3-floorA}, \eqref{eq:wpt3-floorB}); the source states
+      $q^{-A-1/2}$ for the stress and $q^{-A-1}$ for the axial material
+      derivative, i.e.\ the \emph{same two exponents}. This is a real
+      consistency check, and it is not circular: the floor comes from the
+      swirl maximum principle and the single exponent
+      $\Gamma^{(0)}\asymp\tau^{-h}$, while the source's exponent comes from
+      radially integrating its residual. Two different routes, one answer.
+      Wall~9's ``load-bearing, not decorative'' can now be quoted with a
+      number: \textbf{$\tau^{-(A+1)}$ pointwise at the swirl maximum, i.e.\
+      full leading order in the $\theta$-momentum equation}
+      (Remark~\ref{rem:wpt3-calibration}).
+    \item \textbf{One derived requirement the source does not state, recorded
+      as a fact to check and \emph{not} as a discrepancy.}
+      Corollary~\ref{cor:wpt3-annulus} forces $X_*\in[X_a,X_b]$. Partial
+      independent evidence from the source, in both directions: $H(0,\eta)=0$
+      and $H\sim\sqrt2c_\infty X^{-h}$ at large $X$, so $X_*$ is interior;
+      but its (4.30) gives $E=c_{\mathrm{patch}}(1+\eta^2)^{-1}X^{-1/2-\lambda}$
+      with $\lambda>0$ (its Theorem~4.6) on the reserved intervals
+      $I_{\mathrm{pos}},I_{\mathrm{mean}}\subset(X_a,X_v)$, so
+      $H=\sqrt{2X}E\propto X^{-\lambda}$ is already \emph{decreasing} there,
+      placing $X_*\leq\inf I_{\mathrm{pos}}$. The two together pin $X_*$ to
+      the narrow window $[X_a,\inf I_{\mathrm{pos}}]$ near the inner edge of
+      the annulus. \textbf{Nothing read this session confirms or contradicts
+      $X_*\geq X_a$}; settling it needs the inner-profile construction of the
+      source's Appendix~B, which was not re-derived here. It is recorded as a
+      requirement the leading profile must satisfy for its own stated swirl
+      growth to be possible --- checkable in one line by anyone holding the
+      profile --- and explicitly not as a defect: the construction's whole
+      design puts the momentum transport in that annulus, so the requirement
+      is the expected one.
+    \item \textbf{No tension with Theorem~1.1, and none is implied.} The
+      final force of \cite{OpenAI2026} is flat
+      (Fact~\ref{fact:wpt3-source-forcing}(iv)), and the floor says nothing
+      against that, for the reason Wall~9 already records: the full field is
+      \emph{not} axisymmetric --- the oscillatory pulses ``have zero angular
+      average'' as cylindrical velocity components but nonzero momentum
+      fluxes --- so Lemma~\ref{lem:wpt3-forced-max} does not apply to it at
+      all. What the floor quantifies is the size of the momentum source the
+      \emph{axisymmetric} background needs; the construction supplies it
+      internally, through the pulses' averaged quadratic products, rather
+      than through $f$. Read the other way round, the floor says that supply
+      cannot be small: \textbf{any mechanism that carries the axisymmetric
+      background's swirl from $O(1)$ to $\tau^{-h}$ must inject azimuthal
+      momentum at full leading order}, which is precisely why breaking
+      axisymmetry is not an optional convenience of the construction.
+    \item \textbf{Constants are not compared.} The floor's constant is
+      $hc_*$, and $h<1/100$, so the floor is weak at the level of constants;
+      the source states no numerical value for $T_0$ at any particular $X$.
+      \textbf{The comparison in (c) is exponent-level only}, and should be
+      quoted that way.
+  \end{enumerate}
+\end{remark}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\subsection{Verdict, at its true size}
+\label{subsec:wpt3-verdict}
+
+\begin{remark}[Scope --- read with any quotation of
+  \S\ref{sec:wpt3-forcing-floor}]\label{rem:wpt3-scope}
+  \begin{enumerate}[label=(\arabic*),leftmargin=2.4em]
+    \item \textbf{This is documentation-sharpening.} It makes Wall~9 more
+      precise and more citable. That is all it is for.
+    \item \textbf{It is not a step toward (A) or (B).} Nothing here bears on
+      global regularity for the unforced equations. It proves a lower bound
+      on a forcing, which is the opposite direction of travel.
+    \item \textbf{It is not a challenge to (C) or (D).} It asserts no error
+      in \cite{OpenAI2026} and finds none; where a derived requirement is not
+      settled by the text read, it is flagged as a fact to check
+      (Remark~\ref{rem:wpt3-comparison}(d)), not as a refutation. That
+      construction is not independently re-verifiable from outside in one
+      session, and this section does not attempt it.
+    \item \textbf{Wall~9's classification is unchanged}
+      (\S\ref{subsec:wall9-forcing}): \textsc{proved impossible} as an import
+      route. Wall~1, Wall~3, Region~(R2) and
+      Proposition~\ref{prop:wpt2-swirl-exclusion} are untouched.
+    \item \textbf{The class is axisymmetric and the statement is pointwise.}
+      Lemma~\ref{lem:wpt3-forced-max} is confined to the axisymmetric class,
+      and what it proves holds at one moving point
+      (Remark~\ref{rem:wpt3-pointwise}). No uniform, integrated or
+      non-axisymmetric version is proved.
+    \item \textbf{What is genuinely new here is small and worth naming
+      exactly:} the forced generalisation \eqref{eq:wpt3-dini} of
+      Lemma~\ref{lem:s51-gamma} (elementary, but it did not exist in this
+      document and the handover's form of it was wrong,
+      Remark~\ref{rem:wpt3-handover-sign}); the exponent
+      \eqref{eq:wpt3-floorB}; and Corollary~\ref{cor:wpt3-annulus}, which is
+      the only statement here that says something the source does not
+      already say about itself.
+  \end{enumerate}
+\end{remark}
+
 \section{Routes and Walls: A Referenced Record (Session S47)}
 \label{sec:walls-s47}
 
@@ -14186,6 +14900,20 @@ because it bounds what future sessions may import. The source is
     observation and not as evidence: sustaining that anisotropic collapse
     against dissipation required an externally injected, precisely tuned
     force.
+  \item \textbf{Quantitative addendum (S55).} Item~(b)'s ``load-bearing, not
+    decorative'' now carries a number, proved in
+    \S\ref{sec:wpt3-forcing-floor}: for the \emph{axisymmetric} leading field
+    and background of that construction, the swirl maximum principle alone
+    forces the azimuthal momentum residual to satisfy
+    $\abs{rf_\theta}\gtrsim\tau^{-(A+1/2)}$, hence
+    $\abs{f_\theta}\gtrsim\tau^{-(A+1)}=\tau^{-(3/2+h)}$, pointwise at the
+    running swirl maximum (Proposition~\ref{prop:wpt3-floor}) --- full
+    leading order in its own momentum equation. The source's stated stress
+    scaling $T=q^{-A-1/2}T_0$ meets this floor with the same exponents
+    (Remark~\ref{rem:wpt3-comparison}). The addendum sharpens the wording of
+    this entry and changes neither its classification nor its consequences,
+    and it asserts nothing about the correctness of that construction's
+    Theorem~1.1.
 \end{enumerate}
 
 \subsection{Status table}
@@ -14248,6 +14976,9 @@ because it bounds what future sessions may import. The source is
   & Rem.~\ref{rem:s39-nontransfer}(ii) \\
 9 & De-forcing a forced blowup & \textbf{Proved impossible} as an import
   & S40 log (outside doc) \\
+9$'$ & \quad how much forcing, quantitatively
+  & \textbf{Floor proved}: $\abs{f_\theta}\gtrsim\tau^{-(A+1)}$; source's
+  stated exponent agrees & Prop.~\ref{prop:wpt3-floor} \\
 10 & Axisymmetric-with-swirl pivot (S51) & Wall~1 \textbf{survives and is sharp}
   in this class & Prop.~\ref{prop:s51-poloidal-sharp} \\
 10$'$ & \quad its Type-I branch & \textbf{Closed by others}
@@ -14650,7 +15381,13 @@ because it bounds what future sessions may import. The source is
   $f\in C_c^\infty$, and the full flow is \emph{not} axisymmetric --- the
   oscillatory pulses carry nonzero azimuthal harmonics. Quoted throughout as
   a profile, under Wall~9 of \S\ref{sec:walls-s47}, not as evidence about
-  the unforced equations.]}
+  the unforced equations. Re-fetched and read again at WP-T3
+  (\S\ref{sec:wpt3-forcing-floor}) for the quantitative forcing statements:
+  \S2 and \S2.2 (the force is the residual; the background's residual
+  diverges), (3.1), Theorem~3.1(iii) and its (3.4)--(3.5), (4.11)--(4.14),
+  Proposition~4.2, Theorem~4.6(ii)/(iv)/(vi) and its (4.27), (4.30),
+  Proposition~5.5 with its (5.41)--(5.44), and Lemma~4.9 with its (4.32);
+  all quotations in Fact~\ref{fact:wpt3-source-forcing} are verbatim.]}
 
 \bibitem{GigaKohn1987}
   Y.~Giga, R.~V.~Kohn,

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.10)  12 SEP 2026 13:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.10)  12 SEP 2026 19:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -391,7 +391,7 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count301
 \l__pdf_internal_box=\box56
 )
-(/tmp/wpt2build/claim_a_3d_proof_attempt.aux)
+(/tmp/wpt3build/claim_a_3d_proof_attempt.aux)
 \openout1 = `claim_a_3d_proof_attempt.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 89.
@@ -465,8 +465,8 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring OFF on input line 89.
-(/tmp/wpt2build/claim_a_3d_proof_attempt.out)
-(/tmp/wpt2build/claim_a_3d_proof_attempt.out)
+(/tmp/wpt3build/claim_a_3d_proof_attempt.out)
+(/tmp/wpt3build/claim_a_3d_proof_attempt.out)
 \@outlinefile=\write3
 \openout3 = `claim_a_3d_proof_attempt.out'.
 
@@ -531,7 +531,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-(/tmp/wpt2build/claim_a_3d_proof_attempt.toc [1
+(/tmp/wpt3build/claim_a_3d_proof_attempt.toc [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/
 dvips/cm-super/cm-super-ts1.enc}] [2] [3] [4] [5] [6] [7])
@@ -626,6 +626,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 706.
 
+[16]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 754.
@@ -638,7 +639,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 754.
 
-[16]
+
 Overfull \hbox (153.865pt too wide) in paragraph at lines 782--785
 [][]\OT1/cmr/bx/n/10.95 (-20) Definition 6.2 \OT1/cmr/m/n/10.95 (-20) (Sin-gu-l
 ar set)\OT1/cmr/bx/n/10.95 (-20) . []$\OMS/cmsy/m/n/10.95 S \OT1/cmr/m/n/10.95 
@@ -1637,33 +1638,34 @@ mr/m/n/10.95 ) = [] [] [][] \OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 v\OMS/cmsy
 
 [166] [167] [168] [169] [170] [171] [172] [173] [174] [175] [176] [177]
 [178] [179] [180] [181] [182] [183] [184] [185] [186] [187] [188] [189]
-Underfull \hbox (badness 1412) in paragraph at lines 14243--14244
+[190] [191] [192] [193] [194] [195] [196] [197] [198] [199]
+Underfull \hbox (badness 1412) in paragraph at lines 14971--14972
 []\OT1/cmr/bx/n/10 (+20) Withdrawn \OT1/cmr/m/n/10 (+20) (ex-act can-cel-la-
  []
 
-[190] [191] [192] [193] [194]
-Underfull \hbox (badness 2503) in paragraph at lines 14606--14609
+[200] [201] [202] [203] [204]
+Underfull \hbox (badness 2503) in paragraph at lines 15337--15340
 []\OT1/cmr/m/n/10.95 (+20) G. Sere-gin, On po-ten-tial Type II blowups for the 
 Navier--Stokes equa-tions,
  []
 
-[195] [196] (/tmp/wpt2build/claim_a_3d_proof_attempt.aux)
+[205] [206] (/tmp/wpt3build/claim_a_3d_proof_attempt.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `claim_a_3d_proof_attempt.out' has not change
 d.
-(rerunfilecheck)             Checksum: B42CFA0983FE94E860D50B46286D4E0B;73906.
+(rerunfilecheck)             Checksum: ACE6FD503058EA6FAE9A9F39C51E2F07;75680.
  ) 
 Here is how much of TeX's memory you used:
- 16800 strings out of 476106
- 254511 string characters out of 5793933
+ 16909 strings out of 476106
+ 255891 string characters out of 5793933
  1948975 words of memory out of 5000000
- 36554 multiletter control sequences out of 15000+600000
- 598713 words of font info for 410 fonts, out of 8000000 for 9000
+ 36587 multiletter control sequences out of 15000+600000
+ 599062 words of font info for 415 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 75i,16n,79p,1028b,844s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,16n,79p,1028b,798s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texli
@@ -1697,11 +1699,11 @@ b></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/
 fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/c
 m-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1095.pfb
 >
-Output written on /tmp/wpt2build/claim_a_3d_proof_attempt.pdf (196 pages, 16189
-17 bytes).
+Output written on /tmp/wpt3build/claim_a_3d_proof_attempt.pdf (206 pages, 16796
+66 bytes).
 PDF statistics:
- 5953 PDF objects out of 6186 (max. 8388607)
- 5570 compressed objects within 56 object streams
- 1462 named destinations out of 1728 (max. 500000)
- 74129 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 6178 PDF objects out of 6186 (max. 8388607)
+ 5783 compressed objects within 58 object streams
+ 1528 named destinations out of 1728 (max. 500000)
+ 74169 words of extra memory for PDF output out of 74296 (max. 10000000)
 

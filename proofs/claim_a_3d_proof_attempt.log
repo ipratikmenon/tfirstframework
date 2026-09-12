@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.10)  12 SEP 2026 11:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.10)  12 SEP 2026 13:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -391,7 +391,7 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count301
 \l__pdf_internal_box=\box56
 )
-(/tmp/wpt1build/claim_a_3d_proof_attempt.aux)
+(/tmp/wpt2build/claim_a_3d_proof_attempt.aux)
 \openout1 = `claim_a_3d_proof_attempt.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 89.
@@ -465,8 +465,8 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring OFF on input line 89.
-(/tmp/wpt1build/claim_a_3d_proof_attempt.out)
-(/tmp/wpt1build/claim_a_3d_proof_attempt.out)
+(/tmp/wpt2build/claim_a_3d_proof_attempt.out)
+(/tmp/wpt2build/claim_a_3d_proof_attempt.out)
 \@outlinefile=\write3
 \openout3 = `claim_a_3d_proof_attempt.out'.
 
@@ -531,7 +531,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-(/tmp/wpt1build/claim_a_3d_proof_attempt.toc [1
+(/tmp/wpt2build/claim_a_3d_proof_attempt.toc [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/
 dvips/cm-super/cm-super-ts1.enc}] [2] [3] [4] [5] [6] [7])
@@ -613,7 +613,7 @@ m/it/10.95 C [][] \OMS/cmsy/m/n/10.95 ^^T \OML/cmm/m/it/10.95 C [][]$\OT1/cmr/m
 /it/10.95 (-20) . 
  []
 
-[14]
+[14] [15]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 706.
@@ -626,7 +626,6 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 706.
 
-[15]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 754.
@@ -670,6 +669,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1021.
 
+[20]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1057.
@@ -709,7 +709,6 @@ Overfull \hbox (11.76889pt too wide) in paragraph at lines 1072--1078
 /10.95 jr\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 j[] ^^T
  []
 
-[20]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1100.
@@ -763,31 +762,7 @@ t/10.95 p\OMS/cmsy/m/n/10.95 j[] ^^T \OML/cmm/m/it/10.95 C\OT1/cmr/m/n/10.95 (-
 T1/cmr/m/n/10.95 (-20) )[] \OMS/cmsy/m/n/10.95 ^^T
  []
 
-[22]
-pdfTeX warning (ext4): destination with the same identifier (name{equation.9.37
-}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1292 \end{minipage}}
-                      
-pdfTeX warning (ext4): destination with the same identifier (name{equation.9.37
-}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1292 \end{minipage}}
-                      
-pdfTeX warning (ext4): destination with the same identifier (name{equation.9.37
-}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1292 \end{minipage}}
-                      
-pdfTeX warning (ext4): destination with the same identifier (name{equation.9.37
-}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1292 \end{minipage}}
-                      
+[22] [23]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1296.
@@ -812,7 +787,13 @@ t/10.95 x; t[]\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ^^^\OT1/cmr/m/n/10.95 (\O
 ML/cmm/m/it/10.95 x; t[]\OT1/cmr/m/n/10.95 ) \OML/cmm/m/it/10.95 dx:
  []
 
-[23] [24]
+[24
+pdfTeX warning (ext4): destination with the same identifier (name{equation.9.37
+}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1369   \end{align}
+                    ]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1412.
@@ -825,37 +806,37 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1412.
 
-[25
+[25]
+pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
+4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1476   \begin{equation}
+                         \label{eq:K-approx}
+pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
+4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1476   \begin{equation}
+                         \label{eq:K-approx}
+pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
+4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1476   \begin{equation}
+                         \label{eq:K-approx}
+pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
+4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1476   \begin{equation}
+                         \label{eq:K-approx} [26
 pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
 4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1467   \]
-           ]
-pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
-4}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1476   \begin{equation}
-                         \label{eq:K-approx}
-pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
-4}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1476   \begin{equation}
-                         \label{eq:K-approx}
-pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
-4}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1476   \begin{equation}
-                         \label{eq:K-approx}
-pdfTeX warning (ext4): destination with the same identifier (name{equation.10.4
-4}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1476   \begin{equation}
-                         \label{eq:K-approx} [26]
+l.1509 \end{remark}
+                   ]
 Overfull \hbox (249.4543pt too wide) in paragraph at lines 1553--1571
  [] 
  []
@@ -886,7 +867,7 @@ r/m/n/10.95 (-20) ); \OML/cmm/m/it/10.95 H[]\OT1/cmr/m/n/10.95 (-20) ) \OMS/cms
 y/m/n/10.95 \
  []
 
-[31]
+[31] [32]
 Overfull \hbox (60.35963pt too wide) in paragraph at lines 1998--2005
 [][]\OT1/cmr/bx/n/10.95 (-20) Remark 12.5 \OT1/cmr/m/n/10.95 (-20) (Cov-er-age 
 of M7 shear ex-per-i-ment)\OT1/cmr/bx/n/10.95 (-20) . []\OT1/cmr/m/n/10.95 (-20
@@ -897,13 +878,13 @@ cmm/m/it/10.95 ; w\OT1/cmr/m/n/10.95 (-20) (\OML/cmm/m/it/10.95 x; y; t\OT1/cmr
 /m/n/10.95 (-20) ))$
  []
 
-[32] [33] [34
+[33] [34] [35
 pdfTeX warning (ext4): destination with the same identifier (name{equation.13.5
 5}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2187 \end{remark}
-                   ] [35] [36] [37] [38] [39]
+l.2234   \]
+           ] [36] [37] [38] [39] [40]
 Overfull \hbox (3.0476pt too wide) in paragraph at lines 2628--2636
 []\OT1/cmr/m/it/10.95 (-20) Viscous term. $[]\OT1/cmr/bx/n/10.95 (-20) m \OMS/c
 msy/m/n/10.95 ^^A \OML/cmm/m/it/10.95 ^^W [][] \OMS/cmsy/m/n/10.95 r\OML/cmm/m/
@@ -915,7 +896,7 @@ it/10.95 u \OMS/cmsy/m/n/10.95 ^^A \OML/cmm/m/it/10.95 n[] \OT1/cmr/m/n/10.95 (
 []\OMS/cmsy/m/n/10.95 kr[]\OML/cmm/m/it/10.95 u\OMS/cmsy/m/n/10.95 k[]$
  []
 
-[40]
+
 Overfull \hbox (0.17065pt too wide) in paragraph at lines 2667--2669
 []\OT1/cmr/m/it/10.95 (-20) The mean Mor-rey con-di-tion [] holds with $\OML/cm
 m/m/it/10.95  \OT1/cmr/m/n/10.95 (-20) = [](\OML/cmm/m/it/10.95 ^^L; \OT1/cmr/
@@ -1655,34 +1636,34 @@ mr/m/n/10.95 ) = [] [] [][] \OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 v\OMS/cmsy
  []
 
 [166] [167] [168] [169] [170] [171] [172] [173] [174] [175] [176] [177]
-[178] [179] [180] [181]
-Underfull \hbox (badness 1412) in paragraph at lines 13640--13641
+[178] [179] [180] [181] [182] [183] [184] [185] [186] [187] [188] [189]
+Underfull \hbox (badness 1412) in paragraph at lines 14243--14244
 []\OT1/cmr/bx/n/10 (+20) Withdrawn \OT1/cmr/m/n/10 (+20) (ex-act can-cel-la-
  []
 
-[182] [183] [184] [185] [186]
-Underfull \hbox (badness 2503) in paragraph at lines 14003--14006
+[190] [191] [192] [193] [194]
+Underfull \hbox (badness 2503) in paragraph at lines 14606--14609
 []\OT1/cmr/m/n/10.95 (+20) G. Sere-gin, On po-ten-tial Type II blowups for the 
 Navier--Stokes equa-tions,
  []
 
-[187] [188] (/tmp/wpt1build/claim_a_3d_proof_attempt.aux)
+[195] [196] (/tmp/wpt2build/claim_a_3d_proof_attempt.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `claim_a_3d_proof_attempt.out' has not change
 d.
-(rerunfilecheck)             Checksum: 6E5BC6FB51B980B4D58628CE1EBD48B1;71964.
+(rerunfilecheck)             Checksum: B42CFA0983FE94E860D50B46286D4E0B;73906.
  ) 
 Here is how much of TeX's memory you used:
- 16690 strings out of 476106
- 253041 string characters out of 5793933
+ 16800 strings out of 476106
+ 254511 string characters out of 5793933
  1948975 words of memory out of 5000000
- 36518 multiletter control sequences out of 15000+600000
- 598134 words of font info for 403 fonts, out of 8000000 for 9000
+ 36554 multiletter control sequences out of 15000+600000
+ 598713 words of font info for 410 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 75i,16n,79p,1028b,842s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,16n,79p,1028b,844s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texli
@@ -1716,11 +1697,11 @@ b></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/
 fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/c
 m-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1095.pfb
 >
-Output written on /tmp/wpt1build/claim_a_3d_proof_attempt.pdf (188 pages, 15702
-06 bytes).
+Output written on /tmp/wpt2build/claim_a_3d_proof_attempt.pdf (196 pages, 16189
+17 bytes).
 PDF statistics:
- 5744 PDF objects out of 6186 (max. 8388607)
- 5371 compressed objects within 54 object streams
- 1402 named destinations out of 1440 (max. 500000)
- 74089 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 5953 PDF objects out of 6186 (max. 8388607)
+ 5570 compressed objects within 56 object streams
+ 1462 named destinations out of 1728 (max. 500000)
+ 74129 words of extra memory for PDF output out of 74296 (max. 10000000)
 

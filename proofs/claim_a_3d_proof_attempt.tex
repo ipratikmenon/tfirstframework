@@ -12995,6 +12995,609 @@ the second is too strong, and the correct statement is more useful.
   \S\ref{sec:walls-s47}, so every one of them keeps the value it had; a
   session that repairs them should do so as its own change.
 \end{remark}
+% ══════════════════════════════════════════════════════════════════════════════
+\section{WP-T2: The OpenAI Profile Tested Against Ancient-Solution
+Exclusion}
+\label{sec:wpt2-openai}
+
+\S\ref{sec:typeII-wpt1} closed with the observation that the only explicit
+Type-II profile in the true-3D-Navier--Stokes literature is the forced
+construction of \cite{OpenAI2026}, and that it is \emph{anisotropic}
+(Fact~\ref{fact:wpt1-openai}). This section asks one narrow question about
+that one object: \emph{can the profile be excluded?}
+
+\begin{remark}[Scope, stated before the work rather than after it]
+  \label{rem:wpt2-scope-up-front}
+  This section is a \textbf{single-profile exclusion attempt}. Its best
+  possible outcome has the same shape as
+  \cite{NecasRuzickaSverak1996} excluding backward self-similar Type-I
+  blowup: one more profile family ruled out. It is \textbf{not}, and must not
+  be reported as, a step toward alternative (A) or (B). A logical chain from
+  here to global regularity would additionally need Wall~1 closed on the
+  Type-I side (untouched) \emph{and} a general Type-II profile-extraction
+  theorem \emph{and} a general unconditional Liouville theorem for ancient
+  solutions --- all three recognised open problems, and the reason
+  \S\ref{sec:typeII-wpt1} found Seregin's programme to be
+  scenario-conditional throughout. WP-T2 touches none of that machinery.
+  What follows settles one explicit object and nothing else.
+\end{remark}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\subsection{Deliverable 0 --- the primary source, and what it actually
+contains}
+\label{subsec:wpt2-source}
+
+Fact~\ref{fact:wpt1-openai} was recorded at S53 from the primary PDF, but the
+bibliography entry carried no locator and the profile \emph{ansatz} circulated
+in this programme only as a screenshot transcription. Both are repaired here:
+the source was re-fetched and read directly, and every formula below was
+checked against it rather than against any summary.
+
+\begin{fact}[The source, and the status of its profile equations]
+  \label{fact:wpt2-source}
+  The manuscript \cite{OpenAI2026} is a 165-page document whose
+  Theorem~1.1 reads, verbatim:
+
+  \begin{quote}
+    ``For every $\nu>0$ there exist a force $f\in C_c^\infty(\R^3\times
+    (0,\infty);\R^3)$, a compact set $K\subset\R^3$, and smooth velocity and
+    pressure fields $u,p$ on $\R^3\times[0,1)$ satisfying
+    $\partial_tu+(u\cdot\nabla)u-\nu\Delta u+\nabla p=f$, $\nabla\cdot u=0$,
+    $u(\cdot,0)=0$, such that
+    $\operatorname{supp}u(\cdot,t)\cup\operatorname{supp}p(\cdot,t)\subset K$
+    for every $0\leq t<1$,
+    $\sup_{0\leq t<1}\norm{u(t)}_{L^2(\R^3)}<\infty$,
+    $\limsup_{t\uparrow1}\norm{u(t)}_{L^\infty(\R^3)}=\infty$.''
+  \end{quote}
+
+  \noindent It states that this establishes alternative~(C) of \cite{Fefferman2000},
+  and (D) via the torus corollary. The construction is carried out at
+  $\nu=1$; general $\nu$ is recovered by
+  $u_\nu(x,t)=\sqrt\nu\,u(x/\sqrt\nu,t)$, which leaves the singular time
+  unchanged.
+
+  \textbf{(i) The exponents and similarity variables, verbatim from
+  \S2 and (4.1).} With $\tau=1-t$,
+  \[
+    \ell_r\asymp\tau^{1/2},\qquad \ell_z\asymp\tau^{1/2-h},\qquad
+    0<h<\tfrac1{100},
+  \]
+  \[
+    \abs{u^{(0)}_\theta},\ \abs{u^{(0)}_z}\asymp\tau^{-1/2-h},
+    \qquad \abs{u^{(0)}_r}=O(\tau^{-1/2}),
+  \]
+  and the similarity variables are defined by
+  \begin{equation}\label{eq:wpt2-simvars}
+    A=\tfrac12+h,\quad D=\tfrac12-h,\quad
+    \tau=q(1-\eta^2),\quad z=q^D\eta,\quad
+    X=\frac{r^2}{2q},\quad q>0,\ -1<\eta<1 .
+  \end{equation}
+  Note $A+D=1$; the source uses this identity explicitly.
+
+  \textbf{(ii) The leading field, verbatim from (4.3).}
+  \begin{equation}\label{eq:wpt2-ansatz}
+    u^{(0)}_\theta=q^{-A}E,\quad
+    u^{(0)}_z=q^{-A}U,\quad
+    r\,u^{(0)}_r=V_0,\quad
+    p^{(0)}=q^{-2A}\Pi,\quad
+    E=C^{-1}\sqrt{2X}\,\phi,
+  \end{equation}
+  with $E,U,V_0,\Pi$ functions of $(X,\eta)$ on the closed profile rectangle
+  $[0,X_c]\times[-1,1]$, and smoothness at the axis imposed on
+  $\phi$ (equivalently on $F=\phi/C$, with $V_0=Xv_0$).
+
+  \textbf{(iii) The governing profile equations \emph{are} stated
+  explicitly.} This is the question Deliverable~0 was posed to settle, and
+  the answer is the favourable one. Incompressibility and the leading radial
+  balance give (4.7),
+  \begin{equation}\label{eq:wpt2-47}
+    V_0=\frac{X}{L}\bigl(2\eta U-2D\eta\,\mathcal A_X(U)
+      -d\,\partial_\eta\mathcal A_X(U)\bigr),
+    \qquad
+    \Pi_X=\frac{E^2}{2X},
+  \end{equation}
+  with $d=1-\eta^2$, $L=1-2h\eta^2$ and $\mathcal A_X$ the radial average
+  $\mathcal A_X(f)=X^{-1}\int_0^Xf(x,\eta)\,dx$; and the vanishing of the
+  leading tangential residual stress is, by the source's Proposition~4.2,
+  the pair (4.13)
+  \begin{equation}\label{eq:wpt2-413}
+    -2L\,\frac{X\phi_{XX}+2\phi_X}{\phi}=S_q,
+    \qquad
+    -2L\,(XU_{XX}+U_X)=S_n,
+  \end{equation}
+  where $S_q,S_n$ are the explicit first-order sources of (4.9). So
+  Deliverable~2 is a test of an \emph{explicit} system, not a
+  reconstruction from asymptotics.
+
+  \textbf{(iv) The one structural fact that governs everything below},
+  stated by the source in its own dimensional analysis (\S2.1) and again in
+  its notation guide: \emph{radial viscosity is retained in the leading
+  balance and axial viscosity is not.} The source computes
+  \[
+    \frac{\abs{u_r}}{\ell_r}=O(\tau^{-1}),\qquad
+    \frac{\abs{u_z}}{\ell_z}\asymp\tau^{-1},\qquad
+    \frac{\nu}{\ell_r^2}\asymp\tau^{-1},\qquad
+    \frac{\nu/\ell_z^2}{\nu/\ell_r^2}=\frac{\ell_r^2}{\ell_z^2}
+      \asymp\tau^{2h}\longrightarrow0,
+  \]
+  and says of the radial Reynolds number
+  $\mathrm{Re}_r=\abs{u_r}\ell_r/\nu=O(1)$ that ``viscosity continues to
+  compete with radial inflow''. Correspondingly (4.12) defines the leading
+  tangential residual by \emph{adding back} $\partial_z^2u_j^{(0)}$, and the
+  notation guide describes the resulting stress as ``retaining radial
+  viscosity and omitting axial viscosity''.
+  \emph{[Fetched and read this session; every displayed formula checked
+  against the source.]}
+\end{fact}
+
+\begin{remark}[What the screenshot transcription got right, and what it
+  omitted]\label{rem:wpt2-transcription}
+  The transcription circulating in this programme before this session
+  --- $u^{(0)}=V_0/r\,e_r+q^{-A}E\,e_\theta+q^{-A}U\,e_z$,
+  $p^{(0)}=q^{-2A}\Pi$, with \eqref{eq:wpt2-simvars} --- is
+  \textbf{correct in every symbol}, and is confirmed by
+  \eqref{eq:wpt2-ansatz}. Nothing built on it needs revision. What it omitted
+  is Fact~\ref{fact:wpt2-source}(iii) and (iv): that the profile equations
+  are explicit, and that the leading balance is \emph{viscous in the radial
+  variable}. Item~(iv) is what makes the rest of this section come out the
+  way it does, and it was not on record here.
+\end{remark}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\subsection{Deliverable 1 --- the anisotropic rescaling, derived by direct
+substitution}
+\label{subsec:wpt2-aniso}
+
+Lemma~\ref{lem:wpt1-nueff} has two parameters, one length and one amplitude.
+The profile of Fact~\ref{fact:wpt2-source} has two lengths with different
+exponents and two amplitudes with different exponents, so that lemma cannot
+be applied to it, and its conclusion must not be assumed to transfer. The
+four-parameter generalisation is derived here from the cylindrical equations
+directly.
+
+\begin{lemma}[The four-parameter anisotropic rescaling: \emph{two} effective
+  viscosities]\label{lem:wpt2-aniso}
+  Let $(u,p)$ solve the axisymmetric Navier--Stokes equations
+  ($\partial_\theta\equiv0$) in cylindrical coordinates. For positive
+  constants $A_r,A_\theta,A_z,A_p,L_r,L_z,T_s$ set
+  \[
+    r=L_r\rho,\quad z=L_z\zeta,\quad t=T+T_ss,\qquad
+    v_r=A_ru_r,\quad v_\theta=A_\theta u_\theta,\quad
+    v_z=A_zu_z,\quad \tilde q=A_pp .
+  \]
+  Then continuity becomes
+  \[
+    \frac1\rho\partial_\rho(\rho v_r)
+      +\frac{A_rL_r}{A_zL_z}\,\partial_\zeta v_z=0,
+  \]
+  so the limit is incompressible \textbf{iff}
+  \begin{equation}\label{eq:wpt2-incomp}
+    \boxed{\ A_rL_r=A_zL_z=:\Lambda\ }
+  \end{equation}
+  Imposing \eqref{eq:wpt2-incomp} and normalising the advection by
+  $T_s=\Lambda$, and writing
+  $\Delta^{(m)}_\rho:=\partial_\rho^2+\rho^{-1}\partial_\rho
+   -m\rho^{-2}$, the three momentum equations become
+  \begin{align}
+    \partial_sv_\theta+v_r\partial_\rho v_\theta+v_z\partial_\zeta v_\theta
+      +\frac{v_rv_\theta}{\rho}
+      &=\nu_r\Delta^{(1)}_\rho v_\theta+\nu_z\partial_\zeta^2v_\theta,
+      \label{eq:wpt2-theta}\\
+    \partial_sv_z+v_r\partial_\rho v_z+v_z\partial_\zeta v_z
+      +\frac{A_z^2}{A_p}\,\partial_\zeta\tilde q
+      &=\nu_r\Delta^{(0)}_\rho v_z+\nu_z\partial_\zeta^2v_z,
+      \label{eq:wpt2-z}\\
+    \partial_sv_r+v_r\partial_\rho v_r+v_z\partial_\zeta v_r
+      +\frac{A_r^2}{A_p}\,\partial_\rho\tilde q
+      -\frac{A_r^2}{A_\theta^2}\,\frac{v_\theta^2}{\rho}
+      &=\nu_r\Delta^{(1)}_\rho v_r+\nu_z\partial_\zeta^2v_r,
+      \label{eq:wpt2-r}
+  \end{align}
+  with \textbf{two} effective viscosities
+  \begin{equation}\label{eq:wpt2-nurz}
+    \boxed{\ \nu_r=\nu\,\frac{A_r}{L_r},\qquad
+             \nu_z=\nu\,\frac{A_z}{L_z}\ }
+  \end{equation}
+  \emph{[Proved here, by direct substitution into the cylindrical equations;
+  independently re-checked by computer algebra.]}
+\end{lemma}
+\begin{proof}
+  $\partial_t=T_s^{-1}\partial_s$, $\partial_r=L_r^{-1}\partial_\rho$,
+  $\partial_z=L_z^{-1}\partial_\zeta$. Substituting
+  $u_r=v_r/A_r$, $u_\theta=v_\theta/A_\theta$, $u_z=v_z/A_z$, $p=\tilde q/A_p$
+  into
+  $\frac1r\partial_r(ru_r)+\partial_zu_z=0$ and multiplying by $A_rL_r$ gives
+  the displayed continuity equation. For the azimuthal equation, multiply
+  \[
+    \partial_tu_\theta+u_r\partial_ru_\theta+u_z\partial_zu_\theta
+      +\frac{u_ru_\theta}{r}
+      =\nu\Bigl(\partial_r^2u_\theta+\frac{\partial_ru_\theta}{r}
+        -\frac{u_\theta}{r^2}+\partial_z^2u_\theta\Bigr)
+  \]
+  by $A_\theta T_s$. The time term becomes $\partial_sv_\theta$; the two
+  advection terms and the curvature term acquire $T_s/(A_rL_r)$ and
+  $T_s/(A_zL_z)$, both equal to $1$ by \eqref{eq:wpt2-incomp} and
+  $T_s=\Lambda$; the radial viscous group acquires
+  $\nu T_s/L_r^2=\nu\Lambda/L_r^2=\nu A_r/L_r$ and the axial one
+  $\nu T_s/L_z^2=\nu A_zL_z/L_z^2=\nu A_z/L_z$. This is
+  \eqref{eq:wpt2-theta} with \eqref{eq:wpt2-nurz}. The axial equation is
+  identical after multiplication by $A_zT_s$, the pressure term acquiring
+  $A_zT_s/(A_pL_z)=A_z^2/A_p$. The radial equation, multiplied by $A_rT_s$,
+  acquires $A_rT_s/(A_pL_r)=A_r^2/A_p$ on the pressure gradient and
+  $A_rT_s/(A_\theta^2L_r)=A_r^2/A_\theta^2$ on the centrifugal term.
+\end{proof}
+
+\begin{remark}[Consistency with Lemma~\ref{lem:wpt1-nueff}]
+  \label{rem:wpt2-reduction}
+  Setting $A_r=A_\theta=A_z=:A$ and $L_r=L_z=:L$ makes
+  \eqref{eq:wpt2-incomp} vacuous, gives $T_s=\Lambda=AL$ --- which is exactly
+  the normalisation $\tau=AL$ of Lemma~\ref{lem:wpt1-nueff} --- and collapses
+  \eqref{eq:wpt2-nurz} to the single $\nu_{\mathrm{eff}}=\nu A/L$. With
+  $A_p=A^2$ the pressure and centrifugal coefficients in
+  \eqref{eq:wpt2-r} are both $1$, matching $\tilde p=(A\tau/L)p=A^2p$ there.
+  Lemma~\ref{lem:wpt1-nueff} was independently re-derived this session and is
+  correct; Lemma~\ref{lem:wpt2-aniso} contains it.
+\end{remark}
+
+Now specialise to the profile. This is the computation Deliverable~1 asked
+for, and the point is that it does \emph{not} reproduce
+Corollary~\ref{cor:wpt1-trichotomy}(iii).
+
+\begin{proposition}[The profile-adapted limit exists, is nontrivial, and is
+  \emph{not} Euler]\label{prop:wpt2-limit}
+  Take the exponents of Fact~\ref{fact:wpt2-source} and index the family by
+  $\tau\downarrow0$:
+  \[
+    L_r=\tau^{1/2},\quad L_z=\tau^{D},\quad
+    A_r=\tau^{1/2},\quad A_\theta=A_z=\tau^{A},\quad A_p=\tau^{2A}.
+  \]
+  Then:
+  \begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.6em]
+    \item \textbf{Incompressibility is automatic, and it is the source's own
+      identity.} $A_rL_r=\tau$ and $A_zL_z=\tau^{A+D}=\tau$, so
+      \eqref{eq:wpt2-incomp} holds \emph{exactly} --- because $A+D=1$. The
+      profile's amplitude anisotropy is precisely conjugate to its length
+      anisotropy; this is not a coincidence but incompressibility, and the
+      source uses $A+D=1$ to derive the first identity of
+      \eqref{eq:wpt2-47}. Hence $T_s=\Lambda=\tau$: the natural time unit is
+      the remaining time itself.
+    \item \textbf{Radial viscosity is preserved exactly; axial viscosity is
+      lost.} By \eqref{eq:wpt2-nurz},
+      \[
+        \nu_r=\nu\frac{\tau^{1/2}}{\tau^{1/2}}=\nu
+        \quad\text{(independent of $\tau$)},
+        \qquad
+        \nu_z=\nu\frac{\tau^{A}}{\tau^{D}}=\nu\,\tau^{2h}
+        \longrightarrow0 .
+      \]
+      This reproduces, from the rescaling alone, the source's own
+      dimensional statement quoted in Fact~\ref{fact:wpt2-source}(iv).
+    \item \textbf{The radial momentum equation degenerates to a
+      constraint.} The coefficients in \eqref{eq:wpt2-r} are
+      $A_r^2/A_p=A_r^2/A_\theta^2=\tau^{1-2A}=\tau^{-2h}\to\infty$, while
+      $A_z^2/A_p=1$ in \eqref{eq:wpt2-z}. Multiplying \eqref{eq:wpt2-r} by
+      $\tau^{2h}$ and letting $\tau\downarrow0$ kills every inertial and
+      viscous term and leaves the \emph{cyclostrophic balance}
+      \begin{equation}\label{eq:wpt2-cyclo}
+        \partial_\rho\tilde q=\frac{v_\theta^2}{\rho}.
+      \end{equation}
+    \item \textbf{The limiting system} is therefore
+      \eqref{eq:wpt2-cyclo} together with
+      \begin{align*}
+        \partial_sv_\theta+v_r\partial_\rho v_\theta
+          +v_z\partial_\zeta v_\theta+\frac{v_rv_\theta}{\rho}
+          &=\nu\Bigl(\partial_\rho^2+\frac{\partial_\rho}{\rho}
+            -\frac1{\rho^2}\Bigr)v_\theta,\\
+        \partial_sv_z+v_r\partial_\rho v_z+v_z\partial_\zeta v_z
+          +\partial_\zeta\tilde q
+          &=\nu\Bigl(\partial_\rho^2+\frac{\partial_\rho}{\rho}\Bigr)v_z,
+        \qquad
+        \frac1\rho\partial_\rho(\rho v_r)+\partial_\zeta v_z=0 .
+      \end{align*}
+      It is closed: $v_r$ is recovered from continuity, $\tilde q$ from
+      \eqref{eq:wpt2-cyclo} up to a free function $\tilde q_0(\zeta,s)$, and
+      $v_\theta,v_z$ evolve. It is nontrivial: the rescaled leading field
+      converges to the profile itself, since
+      $A_\theta q^{-A}\to\abs{s}^{-A}$, $X\to\rho^2/(2\abs{s})$ and
+      $\eta\to\zeta\abs{s}^{-D}$, giving the explicit self-similar ancient
+      solution $v_\theta=\abs{s}^{-A}E$, $v_z=\abs{s}^{-A}U$.
+    \item \textbf{Consequently the limit is not a solution of the Euler
+      equations}, and Corollary~\ref{cor:wpt1-trichotomy}(iii) does not
+      transfer: it is derived for one length and one amplitude, and the ratio
+      it drives to zero, $\nu_{\mathrm{eff}}=\nu A/L$, splits here into two
+      ratios of which only one degenerates.
+  \end{enumerate}
+  \emph{[Proved here. Items (i)--(iii) are exact; (iv)'s convergence
+  statement is the formal limit of the leading field and is asserted at that
+  level, not as a compactness theorem.]}
+\end{proposition}
+
+\begin{remark}[What the limiting system is, and why ``well-posed'' is not
+  claimed for it]\label{rem:wpt2-prandtl}
+  The system of Proposition~\ref{prop:wpt2-limit}(iv) has the exact
+  structural signature of a \textbf{boundary-layer (Prandtl-type) reduction}:
+  the momentum equation in the thin direction has degenerated into an
+  algebraic constraint fixing the pressure up to a free outer function;
+  the velocity component in that direction is recovered from continuity
+  rather than from its own evolution equation; diffusion survives \emph{only}
+  in the thin direction; and the surviving equations are advected in a
+  direction in which they have no diffusion at all. Here the thin direction
+  is the radial one ($\ell_r/\ell_z\asymp\tau^h\to0$), and the free outer
+  function is visible in the source itself as the axis pressure datum
+  $\Pi(0,\eta)$ of its (4.31), which enters
+  $\Pi=\Pi(0,\eta)+C_p$ exactly as an outer pressure gradient enters
+  Prandtl's system.
+
+  Two cautions, both material.
+  \begin{enumerate}[label=(\alph*)]
+    \item \textbf{No source read here writes this system.} The steady,
+      inviscid ``quasi-cylindrical'' approximation for slender vortices is
+      classical but is an \emph{Euler} reduction and is not this. The closest
+      verified statement is that the inner viscous core of a slender vortex
+      is treated ``by making scaling assumptions of the usual boundary-layer
+      type'' (Hall 1961; Stewartson--Hall 1963), as reported in
+      \cite{Mayer2013Long}. The identification above is therefore
+      \emph{structural}, made from the derived equations, and is offered as
+      such.
+    \item \textbf{Deliverable~1 asked whether the limit is well-posed, and
+      the honest answer is that it is well-\emph{defined} but not known to be
+      well-posed --- with specific reason for doubt.} Prandtl-type systems
+      are linearly ill-posed in Sobolev spaces: G\'erard-Varet--Dormy
+      \cite{GerardVaretDormy2010} prove exactly this for the Prandtl
+      equation, by constructing unstable quasimodes at high tangential
+      frequency around shear flows with a non-degenerate critical point, and
+      remark that ``the strong instability is due to viscosity''. Their
+      result is not transported to the present system here, and no claim is
+      made that it applies; it is recorded because the structural features
+      their proof exploits --- viscosity in the thin variable, none in the
+      advected variable --- are precisely the features
+      Proposition~\ref{prop:wpt2-limit} produces.
+  \end{enumerate}
+\end{remark}
+
+\begin{corollary}[If one insists on an Euler zoom, anisotropy forces a
+  choice, and both branches fail]\label{cor:wpt2-isotropic-dichotomy}
+  The Liouville theorems of \cite{Seregin2024TypeII, Seregin2026Axisym,
+  Seregin2026Scenarios, Seregin2026Potential} apply to ancient solutions of
+  \emph{Euler}, hence require the isotropic zoom of
+  Corollary~\ref{cor:wpt1-trichotomy}(iii), with a single length $L$ and
+  single amplitude $A$. Since
+  $\sup\abs{u}\asymp\tau^{-A}$ with $A=\tfrac12+h\in(\tfrac12,1)$, that
+  corollary does formally apply and gives $A=\tau^{A}$,
+  $\nu_{\mathrm{eff}}=\nu A/L\to0$. But one length cannot match two, and the
+  two available choices fail in opposite ways:
+  \begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.6em]
+    \item $L\asymp\ell_r=\tau^{1/2}$: then $\nu_{\mathrm{eff}}=\nu\tau^{h}
+      \to0$, and the core has rescaled radial extent $O(1)$ but rescaled
+      axial extent $\ell_z/L=\tau^{-h}\to\infty$, so the limit is
+      $\zeta$-independent. Moreover $A\abs{u_r}\asymp\tau^{A}\tau^{-1/2}
+      =\tau^{h}\to0$: the radial component is annihilated. Finally
+      $T_s=AL=\tau^{1+h}$, so $T_s/\tau=\tau^{h}\to0$ and the limit is
+      \emph{steady}. The limit object is thus a steady, $\zeta$-independent
+      columnar flow $v=v_\theta(\rho)e_\theta+v_z(\rho)e_z$ --- which solves
+      Euler exactly, for \emph{any} profiles, with pressure given by
+      \eqref{eq:wpt2-cyclo}. It is nontrivial, but it is
+      $\zeta$-independent on all of $\R$ and hence of infinite energy, and it
+      lies in no weighted class in which any of the four cited Liouville
+      theorems operates.
+    \item $L\asymp\ell_z=\tau^{D}$: then the rescaled radial extent is
+      $\ell_r/L=\tau^{h}\to0$, the core collapses onto the axis, and the
+      limit is trivial. Nontriviality --- the hypothesis every Liouville
+      argument contradicts --- fails outright.
+  \end{enumerate}
+  So the Euler-zoom route to excluding this profile is unavailable in both
+  branches, and for reasons that are consequences of the anisotropy alone.
+  \emph{[Proved here, at the level of scaling; (i) and (ii) are exponent
+  computations, not compactness theorems.]}
+\end{corollary}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\subsection{Deliverable 2 --- the profile \emph{is} excluded, and the
+Liouville machinery is not what excludes it}
+\label{subsec:wpt2-exclusion}
+
+Deliverable~2 was posed as: test the extracted ancient solution against the
+hypotheses of the four Seregin papers. Proposition~\ref{prop:wpt2-limit} and
+Corollary~\ref{cor:wpt2-isotropic-dichotomy} say that test cannot be run --- the
+profile-adapted limit is not an Euler solution, and the Euler-adapted limit is
+either trivial or of infinite energy. The correct answer to Deliverable~2 was
+nevertheless available the whole time, from a lemma this document already
+had, and it does not need an ancient solution at all.
+
+\begin{proposition}[The profile has unbounded swirl, and is therefore
+  impossible for unforced axisymmetric Navier--Stokes]
+  \label{prop:wpt2-swirl-exclusion}
+  Let $\Gamma=ru_\theta$ be the swirl of Lemma~\ref{lem:s51-gamma}. For the
+  leading profile \eqref{eq:wpt2-ansatz},
+  \begin{equation}\label{eq:wpt2-gamma}
+    \begin{aligned}
+      \Gamma^{(0)}=r\,u^{(0)}_\theta
+        &=\sqrt{2qX}\cdot q^{-A}\cdot C^{-1}\sqrt{2X}\,\phi
+        =\frac{2X\phi}{C}\,q^{\frac12-A}
+        =q^{-h}H(X,\eta),\\
+      \text{where}\quad H&:=\sqrt{2X}\,E=\frac{2X\phi}{C},
+    \end{aligned}
+  \end{equation}
+  which is the source's own identity (``the angular equation is simplest in
+  angular momentum $ru^{(0)}_\theta=q^{-h}H$'', in the proof of its
+  Proposition~4.2). Since $q\asymp\tau$ on the core
+  ($\abs{\eta}\leq\eta_0<1$) and $H\asymp1$ at the core edge $X\asymp X_b$,
+  \[
+    \sup_x\abs{\Gamma^{(0)}(x,t)}\ \gtrsim\ \tau^{-h}
+      \ \longrightarrow\ \infty
+    \qquad(\tau\downarrow0),
+  \]
+  and the same rate follows independently from the source's exterior swirl
+  $K=r^{-1-2h}H_{\mathrm{ext}}(\tau/r^2)$, for which
+  \[
+    rK=r^{-2h}H_{\mathrm{ext}}(\tau/r^2)\asymp\tau^{-h}
+    \qquad\text{at } r\asymp\tau^{1/2}.
+  \]
+
+  Consequently: \textbf{no smooth axisymmetric solution of the
+  \emph{unforced} Navier--Stokes equations with
+  $\norm{\Gamma(\cdot,0)}_{L^\infty}<\infty$ can have this profile as its
+  blowup asymptotics}, because Lemma~\ref{lem:s51-gamma} gives
+  $\norm{\Gamma(\cdot,t)}_{L^\infty}\leq\norm{\Gamma(\cdot,0)}_{L^\infty}$
+  throughout the smooth interval, and $\tau^{-h}\to\infty$ for every $h>0$.
+  (Schwartz data, as in \cite{Fefferman2000}, have
+  $\norm{ru_{\theta}(\cdot,0)}_{L^\infty}\leq
+  \norm{\,\abs{x}u_0}_{L^\infty}<\infty$.)
+  \emph{[Proved here. \eqref{eq:wpt2-gamma} is re-derived from
+  \eqref{eq:wpt2-ansatz} and agrees with the source's stated identity.]}
+\end{proposition}
+
+\begin{corollary}[The obstruction in geometric form: a Type-I core radius
+  caps the swirl at Type-I]\label{cor:wpt2-radius-cap}
+  For unforced axisymmetric flow the maximum principle gives the pointwise
+  bound $\abs{u_\theta}\leq\Gamma_0/r$ with
+  $\Gamma_0=\norm{\Gamma(\cdot,0)}_{L^\infty}$ --- i.e.\ the swirl component
+  \emph{automatically} satisfies the spatial bound
+  Definition~\ref{def:wpt1-conventions}\textbf{(S)}. Hence on a core of
+  radius $\ell_r$,
+  \[
+    \abs{u_\theta}\ \lesssim\ \frac{\Gamma_0}{\ell_r}.
+  \]
+  A core with the Type-I radial geometry $\ell_r\asymp\tau^{1/2}$ therefore
+  has $\abs{u_\theta}\lesssim\tau^{-1/2}$: \textbf{Type-I swirl}. Type-II
+  swirl $\abs{u_\theta}\asymp\tau^{-1/2-h}$ in the unforced axisymmetric
+  class requires the strictly thinner core $\ell_r\lesssim\tau^{1/2+h}$. The
+  OpenAI profile has $\ell_r\asymp\tau^{1/2}$ together with
+  $\abs{u_\theta}\asymp\tau^{-1/2-h}$, and so violates the cap by exactly
+  the factor $\tau^{-h}$ that makes it Type-II. \emph{[Proved here.]}
+\end{corollary}
+
+\begin{remark}[Exactly what is and is not excluded]
+  \label{rem:wpt2-exclusion-scope}
+  Proposition~\ref{prop:wpt2-swirl-exclusion} is outcome~(i) of the
+  Deliverable~2 trichotomy --- an exclusion by a named theorem, with its
+  hypotheses checked --- but its reach is small and must be stated at its
+  true size.
+  \begin{enumerate}[label=(\alph*)]
+    \item \textbf{It is confined to the axisymmetric class}, because
+      Lemma~\ref{lem:s51-gamma} is. It says nothing about a non-axisymmetric
+      flow with the same radial and axial scales.
+    \item \textbf{It is confined to the unforced equations.} That is the
+      point of the exercise, but it also means it is \emph{not} a statement
+      about \cite{OpenAI2026}: their flow is both forced \emph{and}
+      non-axisymmetric (the oscillatory pulses carry nonzero azimuthal
+      harmonics), so Lemma~\ref{lem:s51-gamma} does not apply to it, and
+      no contradiction with their Theorem~1.1 is asserted or implied.
+      Wall~9 of \S\ref{sec:walls-s47} governs, as before.
+    \item \textbf{It excludes one profile family, not Type-II.} Any
+      axisymmetric core with $\ell_r\lesssim\tau^{1/2+h}$ escapes
+      Corollary~\ref{cor:wpt2-radius-cap} entirely. Region~(R2) of
+      Remark~\ref{rem:wpt1-middle-band} is untouched, Wall~1 is untouched,
+      and Wall~3 keeps its classification.
+    \item \textbf{It is elementary.} The swirl maximum principle is
+      classical and already in this document; the content here is the
+      \emph{check}, and the check is one line once
+      \eqref{eq:wpt2-gamma} is in hand. No credit is claimed for machinery.
+  \end{enumerate}
+\end{remark}
+
+\begin{remark}[Two corrections and one clarification to
+  \S\ref{sec:typeII-wpt1}]\label{rem:wpt2-s53-corrections}
+  All of S53's displayed derivations were re-checked from scratch this
+  session; $\nu_{\mathrm{eff}}=\nu A/L$, the four-way trichotomy including
+  the $\beta\geq1$ scope limit, and the transcribed profile data are all
+  \textbf{correct}. Three refinements are nevertheless needed.
+  \begin{enumerate}[label=(\arabic*)]
+    \item \textbf{Corollary~\ref{cor:wpt1-swirl}(i) has a hypothesis that
+      this profile violates, and the profile shows the hypothesis is not
+      decorative.} That corollary concludes ``the Euler-zoom limit of an
+      axisymmetric Type-II blowup is swirl-free'' from
+      $\Gamma_{\mathrm{new}}=(\nu_{\mathrm{eff}}/\nu)\Gamma$ together with
+      $\norm{\Gamma(t)}_\infty\leq\norm{\Gamma(0)}_\infty$. The second
+      ingredient is Lemma~\ref{lem:s51-gamma}, which requires the
+      \emph{unforced} equations. For the profile of
+      Fact~\ref{fact:wpt2-source}, $\Gamma\asymp\tau^{-h}\to\infty$ by
+      \eqref{eq:wpt2-gamma}, and
+      $\Gamma_{\mathrm{new}}=\tau^{h}\cdot\tau^{-h}=O(1)\neq0$: the
+      Euler-zoom limit of \emph{this} object retains its swirl. The
+      corollary is correct as written; but the phrase ``any zoom with
+      $\nu_{\mathrm{eff}}\to0$ has $\Gamma\to0$'' must always be read with
+      its unforced hypothesis attached, and this profile is a concrete
+      witness that it cannot be dropped.
+    \item \textbf{Corollary~\ref{cor:wpt1-trichotomy}(iii) does not apply to
+      anisotropic profiles.} It is derived for a single length and a single
+      amplitude. Proposition~\ref{prop:wpt2-limit} shows that for two of
+      each the conclusion changes qualitatively: $\nu_r$ survives
+      undiminished while $\nu_z\to0$, and the limit is not Euler. Nothing in
+      \S\ref{sec:typeII-wpt1} claimed otherwise, but the trichotomy is
+      stated without an anisotropy caveat and could be read as more general
+      than it is.
+    \item \textbf{Clarification: the anisotropy is the obstruction to
+      \emph{rescaling}, not to \emph{exclusion}.}
+      Fact~\ref{fact:wpt1-openai} identifies $\ell_r/\ell_z\to0$ as ``the
+      sharper point'' and it is right about that ---
+      Corollary~\ref{cor:wpt2-isotropic-dichotomy} is exactly the
+      quantitative form of it. But the anisotropy is not what kills the
+      profile. Corollary~\ref{cor:wpt2-radius-cap} is a single-scale
+      statement: a profile with $\ell_r=\ell_z=\tau^{1/2}$ and
+      $\abs{u_\theta}\asymp\tau^{-1/2-h}$ would be excluded by the same
+      argument. The two length scales matter for Deliverable~1 and are
+      irrelevant to Deliverable~2.
+  \end{enumerate}
+\end{remark}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\subsection{Verdict}
+\label{subsec:wpt2-verdict}
+
+\begin{remark}[WP-T2 verdict, in the narrow terms the question deserves]
+  \label{rem:wpt2-verdict}
+  Five statements, in the order the deliverables were posed.
+  \begin{enumerate}[label=\textup{(\arabic*)},leftmargin=2.4em]
+    \item \textbf{Deliverable~0: the source exists, was read, and
+      states explicit profile equations.} They are the pair
+      \eqref{eq:wpt2-413}, closed by the identities
+      \eqref{eq:wpt2-47} and by the sources of the source's own (4.9).
+      The screenshot transcription this programme had been carrying is
+      correct in every symbol. The one thing it omitted --- that the
+      leading balance retains radial viscosity --- is what determines
+      Deliverable~1.
+    \item \textbf{Deliverable~1: the anisotropic rescaling produces a
+      well-defined, nontrivial, ancient limit, and the limit is not Euler.}
+      Lemma~\ref{lem:wpt2-aniso} replaces the single $\nu_{\mathrm{eff}}$ by
+      the pair $(\nu A_r/L_r,\ \nu A_z/L_z)$, subject to the
+      incompressibility constraint $A_rL_r=A_zL_z$ --- which the profile
+      satisfies exactly, because $A+D=1$. For the profile's exponents
+      $\nu_r=\nu$ identically and $\nu_z=\nu\tau^{2h}\to0$, and the radial
+      momentum equation degenerates to cyclostrophic balance. The limit is a
+      Prandtl-type anisotropic system, not known to be well-posed, and with
+      G\'erard-Varet--Dormy giving specific reason to doubt that it is.
+    \item \textbf{Deliverable~2: the profile is excluded --- outcome~(i) ---
+      but not by anything in the Liouville literature.} The ancient-Euler
+      route is unavailable in both of its branches
+      (Corollary~\ref{cor:wpt2-isotropic-dichotomy}). The exclusion is
+      Proposition~\ref{prop:wpt2-swirl-exclusion}: the profile carries
+      $\Gamma=ru_\theta\asymp\tau^{-h}\to\infty$, which the swirl maximum
+      principle forbids for unforced axisymmetric flow. Equivalently
+      (Corollary~\ref{cor:wpt2-radius-cap}): a core of Type-I radius cannot
+      carry Type-II swirl.
+    \item \textbf{What this is worth.} One profile family, in the
+      axisymmetric class, for the unforced equations. It is
+      \textbf{not} progress toward (A) or (B); it is
+      \textbf{not} a statement about \cite{OpenAI2026}, whose flow is forced
+      and non-axisymmetric; it is \textbf{not} a constraint on Type-II
+      blowup in general, since
+      Corollary~\ref{cor:wpt2-radius-cap} is escaped by any core with
+      $\ell_r\lesssim\tau^{1/2+h}$. Wall~1, Wall~3 and region~(R2) are
+      exactly where \S\ref{sec:typeII-wpt1} left them.
+    \item \textbf{The transferable lesson, and the only thing here a future
+      session should reuse.} The Liouville programme was the wrong tool for
+      this question and two independent computations say so: the correct
+      rescaling does not produce an Euler solution, and the wrong one
+      produces either nothing or an infinite-energy shear flow. What
+      \emph{did} settle it was a conservation law the axisymmetric class
+      supplies for free. Before importing profile-extraction machinery
+      against a candidate profile, check the candidate against
+      Corollary~\ref{cor:wpt2-radius-cap} first: it is one line, and for this
+      candidate it was decisive.
+  \end{enumerate}
+\end{remark}
+
 \section{Routes and Walls: A Referenced Record (Session S47)}
 \label{sec:walls-s47}
 
@@ -14038,16 +14641,40 @@ because it bounds what future sessions may import. The source is
 \bibitem{OpenAI2026}
   OpenAI,
   Finite time blowup for Navier--Stokes,
-  manuscript, 2026.
-  \emph{[Read for Theorem~1.1 and \S2 only. A \textbf{forced} construction:
-  $f\in C_c^\infty$. Quoted in \S\ref{sec:typeII-wpt1} as a profile, under
-  Wall~9 of \S\ref{sec:walls-s47}, not as evidence about the unforced
-  equations.]}
+  manuscript, 2026;
+  \url{https://cdn.openai.com/pdf/32d9f210-8b73-45e0-91bc-82a30aef8a9a/navier-stokes.pdf}.
+  \emph{[S53 read Theorem~1.1 and \S2. Re-fetched and read further at WP-T2
+  (\S\ref{sec:wpt2-openai}): \S3.1, \S4.1--4.2 including the similarity
+  variables (4.1), the leading \emph{ansatz} (4.3), the profile identities
+  (4.7) and the profile equations (4.13). A \textbf{forced} construction:
+  $f\in C_c^\infty$, and the full flow is \emph{not} axisymmetric --- the
+  oscillatory pulses carry nonzero azimuthal harmonics. Quoted throughout as
+  a profile, under Wall~9 of \S\ref{sec:walls-s47}, not as evidence about
+  the unforced equations.]}
 
 \bibitem{GigaKohn1987}
   Y.~Giga, R.~V.~Kohn,
   Characterizing blowup using similarity variables,
   \emph{Indiana Univ. Math. J.}, 36(1):1--40, 1987.
+
+\bibitem{GerardVaretDormy2010}
+  D.~G\'erard-Varet, E.~Dormy,
+  On the ill-posedness of the Prandtl equation,
+  \emph{J. Amer. Math. Soc.}, 23:591--609, 2010; arXiv:0904.0434.
+  \emph{[Abstract fetched and quoted at \S\ref{sec:wpt2-openai}:
+  ``We prove here that it is linearly ill-posed in Sobolev type spaces \dots\
+  the strong instability is due to viscosity''. Cited only for the structural
+  caution of Remark~\ref{rem:wpt2-prandtl}; \textbf{not} applied to the
+  system derived there.]}
+
+\bibitem{Mayer2013Long}
+  E.~W.~Mayer,
+  Long's vortex revisited,
+  arXiv:1303.1212, 5~March 2013.
+  \emph{[Read at \S\ref{sec:wpt2-openai} for one statement only: that the
+  inner viscous core of a slender vortex is treated by Hall (1961) and
+  Stewartson--Hall (1963) ``by making scaling assumptions of the usual
+  boundary-layer type''.]}
 
 \bibitem{CollotMerleRaphael2017}
   C.~Collot, F.~Merle, P.~Rapha\"el,

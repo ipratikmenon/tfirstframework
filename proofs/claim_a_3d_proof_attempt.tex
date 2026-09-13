@@ -14312,6 +14312,724 @@ rather than assumed away.
   \end{enumerate}
 \end{remark}
 
+% ══════════════════════════════════════════════════════════════════════════════
+\section{WP-A: An External Log-Weighted BMO Hypothesis on the Vorticity
+Direction, Priced Against \texorpdfstring{$\sigma^*$}{sigma*}-Decay
+(Session S57)}
+\label{sec:wpa-s57}
+
+\subsection{Scope, and what is and is not imported}
+\label{subsec:s57-scope}
+
+Two preprints of Z.~Gruji\'c \cite{Grujic2026Log,Grujic2026Decay} propose a
+conditional route to global regularity that operates on \emph{this document's
+own direction equation} \eqref{eq:dir-eq}, at \emph{this document's own
+critical scale} $r^*=M^{-1/2}$, and attacks the factor $\mathcal{L}$ at
+exactly the point Wall~1(d) (\S\ref{subsec:wall1-cz}) declares permitted: the
+gradient of $u$ is never recovered by an $L^\infty$ Calder\'on--Zygmund bound.
+The hypothesis carrying the route is that the vorticity direction lies in a
+logarithmically weighted space of bounded mean oscillation. This section
+prices that hypothesis against the no-concentration family this document
+already owns --- $\sigma^*$-decay
+(Definition~\ref{def:sigma-star}, Corollary~\ref{cor:unification}),
+\textbf{(AX)} (Proposition~\ref{prop:s51-ax}) and saturation
+(\S\ref{sec:saturation-s50}) --- under the S50 standard: \emph{a new target
+must be proved cheaper, not asserted cheaper.}
+
+\begin{remark}[Standing: what is a claim and what is a proof]
+  \label{rem:s57-standing}
+  Both sources are \textbf{unrefereed single-author preprints}
+  (\cite{Grujic2026Log}: v1 9~Jul 2026, v3 9~Sep 2026;
+  \cite{Grujic2026Decay}: v1 4~Sep 2026, v2 9~Sep 2026; no journal
+  reference on either listing). \textbf{Nothing in this document depends on
+  either of them being correct.} They are quoted as claims in
+  Fact~\ref{fact:s57-source} and nowhere used as hypotheses. Everything
+  labelled \emph{[Proved]} below --- Lemma~\ref{lem:s57-scale},
+  Lemma~\ref{lem:s57-poincare}, Propositions~\ref{prop:s57-no-gradient},
+  \ref{prop:s57-indicator}, \ref{prop:s57-onescale} and
+  Theorem~\ref{thm:s57-independence} --- is proved here from
+  Definition~\ref{def:sigma-star} and Poincar\'e's inequality, and stands
+  whether or not \cite{Grujic2026Log,Grujic2026Decay} do.
+  Remark~\ref{rem:s57-crw} records a verification of one imported technique
+  and is the only place where a source proof is audited.
+\end{remark}
+
+\subsection{The sources, and what each load-bearing step actually is}
+\label{subsec:s57-sources}
+
+\begin{fact}[The two preprints, classified step by step]\label{fact:s57-source}
+  Read in full from the primary arXiv sources at S57. Write
+  $\boldsymbol\xi=\omega/|\omega|$ for the direction (this document's
+  $\hat e$), $\phi(r)=1/|\log r|$, and
+  \begin{equation}\label{eq:s57-bmophi}
+    \|f\|_{\mathrm{bmo}_\phi}
+      \;=\; \|f\|_{L^\infty}
+      \;+\; \sup_{x\in\R^3,\;0<r<1/2}\frac{1}{\phi(r)}\,
+        \frac{1}{|B_r(x)|}\int_{B_r(x)}\bigl|f-c_{B_r(x)}\bigr|\,dy .
+  \end{equation}
+  \begin{enumerate}[label=\textup{(\alph*)},leftmargin=2.4em]
+  \item\label{it:s57-def21} \textbf{Assumed} (\cite[Def.~2.1]{Grujic2026Log},
+    \cite[Def.~3.1]{Grujic2026Decay}): a \emph{critical point singularity} ---
+    $\omega(x,t)=\Phi(x,t)|x|^{-2}$ with $\Phi$ bounded above (and, in
+    \cite{Grujic2026Decay}, below by $c_0>0$), $|\nabla\Phi|\lesssim|x|^{-1}$,
+    $\Phi$ scale-invariant or log-periodic at the core, with the stated
+    consequence that the super-level set $A_\lambda(t)=\{\omega>\lambda\}$ is
+    \emph{contained} in a ball $B_R$, $R\leq C\lambda^{-1/2}$.
+    \cite{Grujic2026Decay} adds the critical direction bound
+    $|\nabla\boldsymbol\xi|\leq C_1/\max(|x|,\ell(t))$ and an inner scale
+    $\ell(t)\to0$.
+  \item\label{it:s57-cancel} \textbf{Proved}, and it is
+    Constantin--Fefferman's cancellation \cite{Constantin1994} in commutator
+    dress: with $S=\mathcal{T}(\omega\boldsymbol\xi)$ a matrix of
+    Calder\'on--Zygmund operators, the unidirectional part
+    $\boldsymbol\xi(x)\cdot\mathcal{T}(\omega\,\boldsymbol\xi(x))(x)\,
+    \boldsymbol\xi(x)$ vanishes identically, so
+    $\alpha=\boldsymbol\xi\cdot S\boldsymbol\xi
+      =\boldsymbol\xi\cdot[\mathcal{T},\boldsymbol\xi](\omega)\,\boldsymbol\xi$.
+  \item\label{it:s57-thm41} \textbf{Proved from \ref{it:s57-def21} and the
+    bmo hypothesis} (\cite[Thm.~4.1]{Grujic2026Log}): if
+    $\omega\in L^\infty_tL^{3/2,\infty}$ under \ref{it:s57-def21} and
+    $\boldsymbol\xi\in L^\infty_t\mathrm{bmo}_\phi$, then
+    $\|\alpha(\cdot,t)\|_{L^{3/2,\infty}(B_R)}\leq C_0/|\log R|$ for all small
+    $R$, uniformly in $t$. Verified line by line at S57; see
+    Remark~\ref{rem:s57-crw}.
+  \item\label{it:s57-degiorgi} \textbf{Proved from \ref{it:s57-thm41}}
+    (\cite[\S5--\S6]{Grujic2026Log}): a Lorentz-interpolated truncated-enstrophy
+    argument upgrades the distribution function to
+    $|\{\omega>\lambda\}|\leq C_\omega\lambda^{-3/2}(\log\lambda)^{-3/2}$ and,
+    by O'Neil's convolution lemma, $|\{|u|>\lambda\}|\leq
+    C_u\lambda^{-3}(\log\lambda)^{-3}$.
+  \item\label{it:s57-thm74} \textbf{Proved from \ref{it:s57-degiorgi}}
+    (\cite[Thm.~7.4]{Grujic2026Log}, the headline claim): the improved
+    velocity distribution forces the $1$D sparseness scale
+    $r_s\sim\|u\|_\infty^{-1}(\log\|u\|_\infty)^{-1}$ below the analyticity
+    radius $\rho_s\sim\nu\|u\|_\infty^{-1}$; the harmonic-measure maximum
+    principle then contradicts the escape-time property, so $T^*$ is not
+    singular.
+  \item\label{it:s57-companion} \textbf{Assumed, four times over}
+    (\cite[Thm.~5.7, Cor.~5.8, Def.~7.7, Thm.~7.9]{Grujic2026Decay}): the
+    companion does \emph{not} propagate the hypothesis. It proves a
+    conditional \emph{transfer} theorem --- a logarithmic modulus in time of
+    the direction at the inner scale becomes a logarithmic modulus in space
+    --- under four hypotheses, none of which is established for
+    Navier--Stokes solutions: an inflow condition (H$k$) that is a
+    smallness condition on the inward radial velocity relative to $\nu$
+    ($\sup_A|x|(u_r)_-+2\nu C_\Phi\leq(3-k)\nu$); a tangential strain
+    three logarithms below critical,
+    $|P_{\boldsymbol\xi^\perp}S\boldsymbol\xi|\leq
+    \Lambda|x|^{-2}|\log|x||^{-3}$; a cap condition on the boundary data; and
+    a core-history modulus $\omega_{core}(\sigma;t)\leq\Lambda_0/|\log\sigma|$.
+  \item\label{it:s57-obstructions} \textbf{Proved, and negative}
+    (\cite[Prop.~7.10, Rem.~7.11, Prop.~7.12, Rem.~7.13]{Grujic2026Decay}):
+    the companion itself exhibits two natural critical cores on which its own
+    hypotheses fail. For a scale-invariant $e_*$-axisymmetric tube core
+    $\omega=\Phi(\vartheta)|x|^{-2}e_*$ the tangential strain is exactly
+    critical, $|F_{tan}|=\Phi_0|x|^{-2}|\sin2\vartheta|$ in the spherical
+    case, so the strain hypothesis of \ref{it:s57-companion} fails at order
+    one and ``the direction winds logarithmically as $\ell(t)\to0$''. For a
+    near-Beltrami core the twist is critical and
+    $\|\boldsymbol\xi\|_{\mathrm{bmo}_\phi}\gtrsim|\log r|$, so the
+    hypothesis of \ref{it:s57-thm74} fails outright.
+  \end{enumerate}
+\end{fact}
+
+\begin{remark}[Two defects in the sources found at S57, recorded as found]
+  \label{rem:s57-defects}
+  Neither is used below; both are recorded so that no later session repeats
+  the reading.
+  \begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.6em]
+  \item \textbf{The two papers do not meet.} \cite[Thm.~7.4]{Grujic2026Log}
+    and its restatement \cite[Thm.~7.1]{Grujic2026Decay} both require
+    $\boldsymbol\xi\in L^\infty_t\,\mathrm{bmo}_{1/|\log r|}(\R^3)$ ---
+    \emph{globally in space}, the supremum in \eqref{eq:s57-bmophi} being over
+    all $x\in\R^3$. What \cite[Cor.~5.8, Thm.~7.9]{Grujic2026Decay} delivers
+    is $\|\boldsymbol\xi(\cdot,t)\|_{\mathrm{bmo}_{1/|\log r|}(B_{\rho_1})}
+    \leq C$, a statement on one small ball. The gap is bridgeable --- the
+    proof of \cite[Thm.~4.1]{Grujic2026Log} uses the hypothesis only on balls
+    contained in $B_{2R^{1/2}}$ --- but the local form of Theorem~7.4 that
+    Theorem~7.9 invokes is stated nowhere.
+  \item \textbf{The global form is close to vacuous.} By
+    Proposition~\ref{prop:s57-indicator} below, $\boldsymbol\xi$ fails
+    \eqref{eq:s57-bmophi} at every scale near any transversal zero of
+    $\omega$. A hypothesis on all of $\R^3$ therefore also asserts that
+    $\omega$ has no such zero anywhere, which is a statement about the flow
+    far from the singularity and has nothing to do with the mechanism.
+  \end{enumerate}
+\end{remark}
+
+\subsection{Exact scale identification}
+\label{subsec:s57-scale}
+
+\begin{lemma}[The source's critical regime is this document's critical scale,
+  and its direction bound is this document's borderline]\label{lem:s57-scale}
+  Let $\omega$ satisfy Fact~\ref{fact:s57-source}\ref{it:s57-def21} with inner
+  scale $\ell(t)$ and $c_0\leq\Phi\leq C_0$, and let $M(t)=\|\omega(\cdot,t)
+  \|_{L^\infty}$, $r^*=M^{-1/2}$ as in Definition~\ref{def:sigma-star}.
+  \begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.6em]
+  \item $c_0\,\ell^{-2}\leq M\leq C_0\,\ell^{-2}$, hence
+    $C_0^{-1/2}\ell\leq r^*\leq c_0^{-1/2}\ell$: the source's inner scale and
+    this document's $r^*$ agree up to fixed constants, and the criticality
+    $M\cdot(r^*)^2=1$ of Remark~\ref{rem:marginality} \emph{is} the
+    concentration rate $\omega\sim|x|^{-2}$.
+  \item The critical direction bound
+    $|\nabla\boldsymbol\xi|\leq C_1/\max(|x|,\ell)$ of
+    \cite[Def.~3.1(6)]{Grujic2026Decay} implies
+    $\sigma^*\leq \tfrac{4\pi}{3}C_1^2\,c_0^{-3/2}C_0$, and no better: it is
+    the assertion that $\sigma^*$ is \emph{bounded}, which is the borderline
+    of Remark~\ref{rem:marginality} and the Regime-B stalemate of
+    Proposition~\ref{prop:regime-B}. It carries no logarithm, and the source
+    says so.
+  \end{enumerate}
+  \emph{[Proved.]}
+\end{lemma}
+\begin{proof}
+  (i) On the annulus $\ell<|x|<R_0$ one has $c_0|x|^{-2}\leq\omega\leq
+  C_0|x|^{-2}$, and inside $|x|\leq\ell$ the source's own bound is
+  $\omega\leq C_0\ell^{-2}$; the supremum is therefore attained at $|x|\asymp
+  \ell$ and is comparable to $\ell^{-2}$. Take $-1/2$ powers.
+  (ii) On $B_{r^*}(x^*)$ we have $|x|\lesssim r^*\asymp\ell$, so
+  $|\nabla\boldsymbol\xi|\leq C_1/\ell\leq C_1C_0^{1/2}/r^*\cdot
+  (C_0^{1/2}c_0^{-1/2})$; hence
+  $\int_{B_{r^*}}|\nabla\hat e|^2\mathbf 1\leq
+  C_1^2c_0^{-1}C_0\,(r^*)^{-2}\cdot\tfrac{4\pi}{3}(r^*)^3$ and
+  $\sigma^*=(r^*)^{-1}\int\leq\tfrac{4\pi}{3}C_1^2c_0^{-1}C_0$, absorbing the
+  comparability constant. The calibration of Remark~\ref{rem:marginality}
+  ($|\nabla\hat e|\sim1/r^*$ on $B_{r^*}$ gives $\sigma^*\sim1$) shows the
+  bound is attained, so nothing sharper follows.
+\end{proof}
+
+\subsection{The Poincar\'e translation: what is true}
+\label{subsec:s57-poincare}
+
+Definition~\ref{def:sigma-star} measures $|\nabla\hat e|^2$ in $L^2$ on one
+ball, at one scale, \emph{restricted to $\{|\omega|\geq M/4\}$};
+\eqref{eq:s57-bmophi} measures $|\hat e-\hat e_B|$ in $L^1$ on every ball, at
+every scale, with no restriction. The following definition isolates the
+object that a Poincar\'e inequality can actually connect to
+\eqref{eq:s57-bmophi}.
+
+\begin{definition}[Unrestricted deficit and its scale family]
+  \label{def:s57-sigma-tilde}
+  For a ball $B_\rho(y)\subseteq\R^3$ on which $\hat e$ is defined a.e.\ set
+  \begin{equation}\label{eq:s57-tilde}
+    \tilde\sigma_\rho(y) \;:=\; \rho^{-1}\int_{B_\rho(y)}|\nabla\hat e|^2\,dx
+    \qquad\text{(no indicator).}
+  \end{equation}
+  Say that $\hat e$ satisfies \textbf{($\Sigma_{\log}$)} on $B_{r^*}(x^*)$
+  with constant $K$ if
+  \begin{equation}\label{eq:s57-sigmalog}
+    \tilde\sigma_\rho(y)\;\leq\;K\,|\log\rho|^{-2}
+    \qquad\text{for every }B_\rho(y)\subseteq B_{r^*}(x^*),\ 0<\rho<\tfrac12 .
+  \end{equation}
+  At the single top scale $\rho=r^*$, $y=x^*$, \eqref{eq:s57-sigmalog} reads
+  $\tilde\sigma_{r^*}\leq 4K/(\log M)^2$.
+\end{definition}
+
+\begin{lemma}[Poincar\'e translation]\label{lem:s57-poincare}
+  Let $C_P=\mu_1(B_1)^{-1/2}$ be the Poincar\'e--Wirtinger constant of the
+  unit ball of $\R^3$ ($\mu_1$ the first nonzero Neumann eigenvalue,
+  $\mu_1\approx4.33$, so $C_P\leq\tfrac12$). Then for any ball $B_\rho(y)$ on
+  which $\hat e\in H^1$,
+  \begin{equation}\label{eq:s57-osc}
+    \frac{1}{|B_\rho(y)|}\int_{B_\rho(y)}
+      \bigl|\hat e-\hat e_{B_\rho(y)}\bigr|\,dx
+    \;\leq\; C_P\Bigl(\tfrac{3}{4\pi}\Bigr)^{1/2}\,
+      \bigl(\tilde\sigma_\rho(y)\bigr)^{1/2}
+    \;\leq\;\tfrac14\,\bigl(\tilde\sigma_\rho(y)\bigr)^{1/2}.
+  \end{equation}
+  Consequently \textup{($\Sigma_{\log}$)} with constant $K$ implies
+  \begin{equation}\label{eq:s57-implies}
+    \sup_{B_\rho(y)\subseteq B_{r^*}(x^*)}\frac{1}{\phi(\rho)}\,
+      \frac{1}{|B_\rho(y)|}\int_{B_\rho(y)}|\hat e-\hat e_{B_\rho(y)}|\,dx
+    \;\leq\;\tfrac14 K^{1/2},
+  \end{equation}
+  i.e.\ the local $\mathrm{bmo}_\phi$ seminorm of $\hat e$ on $B_{r^*}(x^*)$
+  is at most $\tfrac14K^{1/2}$, which is the hypothesis of
+  Fact~\ref{fact:s57-source}\ref{it:s57-thm41} in its local form.
+  \emph{[Proved.]}
+\end{lemma}
+\begin{proof}
+  Cauchy--Schwarz and Poincar\'e--Wirtinger componentwise (the constant for an
+  $\R^3$-valued function is the scalar one, by summing the three scalar
+  inequalities and using $|v|\leq\sum_i|v_i|$ only after squaring):
+  \[
+    \fint_{B_\rho}|\hat e-\hat e_{B_\rho}|
+    \leq\Bigl(\fint_{B_\rho}|\hat e-\hat e_{B_\rho}|^2\Bigr)^{1/2}
+    \leq C_P\,\rho\Bigl(\fint_{B_\rho}|\nabla\hat e|^2\Bigr)^{1/2}.
+  \]
+  Since $|B_\rho|=\tfrac{4\pi}{3}\rho^3$ and
+  $\int_{B_\rho}|\nabla\hat e|^2=\rho\,\tilde\sigma_\rho$, we get
+  $\fint_{B_\rho}|\nabla\hat e|^2=\tfrac{3}{4\pi}\tilde\sigma_\rho\rho^{-2}$,
+  and $\rho\cdot(\cdot)^{1/2}=(3/4\pi)^{1/2}\tilde\sigma_\rho^{1/2}$. With
+  $C_P\leq\tfrac12$ and $(3/4\pi)^{1/2}<0.489$ the numerical form follows.
+  Then \eqref{eq:s57-implies} is \eqref{eq:s57-osc} divided by
+  $\phi(\rho)=1/|\log\rho|$ together with \eqref{eq:s57-sigmalog}.
+\end{proof}
+
+\begin{remark}[This is the S56 sketch, and it is the only part of it that
+  survives]\label{rem:s57-sketch}
+  The audit of S56 sketched, without proof, that Poincar\'e converts the
+  external hypothesis into ``$\sigma^*\lesssim1/(\log M)^2$, a quantified form
+  of $\sigma^*$-decay''. Lemma~\ref{lem:s57-poincare} confirms the
+  \emph{shape} of that computation and nothing else. Three things have to be
+  corrected, and each is a separate failure of the intended dictionary:
+  \eqref{eq:s57-osc} runs from gradients to oscillation and \emph{not back}
+  (Proposition~\ref{prop:s57-no-gradient}); it must use the
+  \emph{unrestricted} $\tilde\sigma$, and the indicator of
+  Definition~\ref{def:sigma-star} cannot be dropped
+  (Proposition~\ref{prop:s57-indicator}); and it must hold at \emph{every}
+  scale, which the critical scale does not deliver
+  (Proposition~\ref{prop:s57-onescale}).
+\end{remark}
+
+\subsection{Three counterexamples: the translation is not an equivalence}
+\label{subsec:s57-counter}
+
+Throughout this subsection the comparison is local to $B_{r^*}(x^*)$ and
+instantaneous, which is the level at which both conditions are stated: neither
+$\sigma^*$-decay nor \eqref{eq:s57-bmophi} is derived from the equations, both
+being hypotheses imposed on the field at a time. All three fields below are
+smooth and divergence-free, hence are the vorticity of a solenoidal velocity
+field.
+
+\begin{proposition}[Log-weighted BMO does not control the coherence deficit]
+  \label{prop:s57-no-gradient}
+  For each $\delta\in(0,e^{-1})$ let
+  \[
+    \omega^{(\delta)}(x)\;=\;M\bigl(\cos g_\delta(x_3),\,
+      \sin g_\delta(x_3),\,0\bigr),
+    \qquad g_\delta(s)=\frac{1}{2|\log\delta|}\,\sin(s/\delta).
+  \]
+  Then $\nabla\cdot\omega^{(\delta)}=0$, $|\omega^{(\delta)}|\equiv M$ (so the
+  indicator of Definition~\ref{def:sigma-star} is inert and
+  $\sigma^*=\tilde\sigma_{r^*}$), the local $\mathrm{bmo}_\phi$ norm of
+  $\hat e$ obeys $\|\hat e\|_{\mathrm{bmo}_\phi}\leq 2$ uniformly in $\delta$,
+  and
+  \[
+    \sigma^*\;\geq\;\frac{\pi}{9}\,
+      \frac{(r^*)^2}{\delta^2\log^2(1/\delta)}\;\longrightarrow\;\infty
+    \qquad(\delta\to0,\ r^*\text{ fixed}).
+  \]
+  Hence the hypothesis of Fact~\ref{fact:s57-source}\ref{it:s57-thm41}
+  implies neither $\sigma^*\to0$ nor $\sigma^*=O(1)$: it carries no
+  information about $\nabla\hat e$ in $L^2$ at all. \emph{[Proved.]}
+\end{proposition}
+\begin{proof}
+  $\omega^{(\delta)}_1,\omega^{(\delta)}_2$ depend on $x_3$ only and
+  $\omega^{(\delta)}_3\equiv0$, so the divergence vanishes; $|\omega|=M$ is
+  immediate. With $\hat e=(\cos g_\delta,\sin g_\delta,0)$,
+  $\nabla\hat e=g_\delta'(x_3)\,(-\sin g_\delta,\cos g_\delta,0)\otimes e_3$,
+  so $|\nabla\hat e|=|g_\delta'|=\frac{1}{2\delta|\log\delta|}
+  |\cos(x_3/\delta)|$. For $\delta\leq r^*$,
+  $\int_{B_{r^*}}\cos^2(x_3/\delta)\,dx\geq\tfrac13|B_{r^*}|$, so
+  \[
+    \sigma^*=(r^*)^{-1}\!\!\int_{B_{r^*}}\!\!|\nabla\hat e|^2
+    \geq\frac{1}{4\delta^2\log^2(1/\delta)}\cdot\frac{1}{3}\cdot
+      \frac{4\pi}{3}(r^*)^2
+    =\frac{\pi}{9}\frac{(r^*)^2}{\delta^2\log^2(1/\delta)} .
+  \]
+  For the oscillation, $|\hat e(x)-\hat e(x')|\leq|g_\delta(x_3)-
+  g_\delta(x_3')|$, so on a ball of radius $\rho$ the oscillation of $\hat e$
+  is at most $\min\bigl(2\|g_\delta\|_\infty,\,
+  2\rho\|g_\delta'\|_\infty\bigr)
+  =\frac{1}{|\log\delta|}\min(1,\rho/\delta)$, and
+  $\fint_{B_\rho}|\hat e-\hat e_{B_\rho}|$ is bounded by the same quantity.
+  Hence
+  $\frac{1}{\phi(\rho)}\fint_{B_\rho}|\hat e-\hat e_{B_\rho}|
+  \leq\frac{|\log\rho|}{|\log\delta|}\min(1,\rho/\delta)$. For
+  $\rho\geq\delta$ this is $\leq|\log\rho|/|\log\delta|\leq1$ since
+  $|\log\cdot|$ decreases on $(0,1)$; for $\rho<\delta<e^{-1}$ it is
+  $\frac{\rho|\log\rho|}{\delta|\log\delta|}\leq1$ since $\rho\mapsto
+  \rho|\log\rho|$ increases on $(0,e^{-1})$. Adding
+  $\|\hat e\|_{L^\infty}=1$ gives $\|\hat e\|_{\mathrm{bmo}_\phi}\leq2$.
+\end{proof}
+
+\begin{proposition}[The level-set indicator cannot be dropped, and is what
+  makes $\sigma^*$ finite]\label{prop:s57-indicator}
+  Let $\omega^{(\delta)}(x)=M\cos(x_3/\delta)\,e_1$ with
+  $0<\delta<r^*$. Then $\nabla\cdot\omega^{(\delta)}=0$,
+  $\|\omega^{(\delta)}\|_{L^\infty}=M$, and
+  \begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.6em]
+  \item $\sigma^*=0$ exactly: on the open set $\{|\omega|\geq M/4\}$ the
+    direction $\hat e=\operatorname{sgn}(\cos(x_3/\delta))\,e_1$ is locally
+    constant, so $\nabla\hat e\equiv0$ there;
+  \item $\tilde\sigma_\rho=+\infty$ for every ball meeting a zero plane
+    $\{\cos(x_3/\delta)=0\}$, and, for balls $B_\rho(y)$ centred on such a
+    plane, $\fint_{B_\rho(y)}|\hat e-\hat e_{B_\rho(y)}|=1$ for
+    \emph{every} $\rho$, whence
+    $\|\hat e\|_{\mathrm{bmo}_\phi}=+\infty$.
+  \end{enumerate}
+  So $\sigma^*=0$ is compatible with the maximal possible failure of
+  \eqref{eq:s57-bmophi}. Moreover this is the generic situation: near any
+  transversal zero of $\omega$, $\hat e$ has an order-one jump at every scale,
+  $|\nabla\hat e|\lesssim|\nabla\omega|/|\omega|$ is not square-integrable,
+  and both $\tilde\sigma_\rho$ and $\|\hat e\|_{\mathrm{bmo}_\phi}$ are
+  infinite while $\sigma^*$ is unaffected. \emph{[Proved.]}
+\end{proposition}
+\begin{proof}
+  Divergence-freeness and the sup-norm are immediate. (i) $\{|\omega|\geq
+  M/4\}=\{|\cos(x_3/\delta)|\geq1/4\}$ is open and $\cos(x_3/\delta)$ does not
+  change sign on any of its connected components, so $\hat e$ is locally
+  constant there. (ii) On a ball centred on a zero plane, $\hat e=+e_1$ on one
+  open half and $-e_1$ on the other, the two halves having equal measure, so
+  $\hat e_{B_\rho}=0$ and $\fint|\hat e-\hat e_{B_\rho}|=1$; dividing by
+  $\phi(\rho)$ and letting $\rho\to0$ gives $+\infty$. The
+  distributional $\nabla\hat e$ is a surface measure on the zero planes, so
+  $\tilde\sigma_\rho=+\infty$.
+\end{proof}
+
+\begin{proposition}[One scale does not give the scale family]
+  \label{prop:s57-onescale}
+  Fix a radial profile $\chi_0\in C^\infty_c([0,1))$ with
+  $\|\chi_0'\|_\infty=\tfrac14$ and $\chi_0'\not\equiv0$, let
+  $y_0\in B_{r^*/2}(x^*)$, and for $0<\delta<r^*/4$ put
+  \[
+    \psi_\delta(x)=\delta\,\chi_0\!\left(\frac{|x-y_0|}{\delta}\right),
+    \qquad
+    \omega^{(\delta)} \;=\; e_3+\nabla\times(\psi_\delta e_1).
+  \]
+  Then $\nabla\cdot\omega^{(\delta)}=0$, $\tfrac34\leq|\omega^{(\delta)}|
+  \leq\tfrac54$ (so $|\omega|\geq M/4$ everywhere and the indicator is
+  inert), and there are constants $C,c_0>0$ independent of $\delta$ with
+  \[
+    \sigma^*\;\leq\;C\,\frac{\delta}{r^*}\;\longrightarrow\;0,
+    \qquad\text{while}\qquad
+    \fint_{B_\delta(y_0)}\bigl|\hat e-\hat e_{B_\delta(y_0)}\bigr|\;=\;c_0
+    \quad\text{for every }\delta .
+  \]
+  Hence $\sigma^*\to0$ --- the decay this document's open problem asks for
+  (Corollary~\ref{cor:unification}) --- does not imply
+  \eqref{eq:s57-bmophi} at any scale below $r^*$, since \eqref{eq:s57-bmophi}
+  demands $c_0\leq K/|\log\delta|$. \emph{[Proved.]}
+\end{proposition}
+\begin{proof}
+  $\nabla\times$ of anything is divergence-free. With $\psi_\delta$ radial
+  about $y_0$, $\nabla\times(\psi_\delta e_1)=\nabla\psi_\delta\times e_1$ and
+  $|\nabla\psi_\delta|=|\chi_0'|\leq\tfrac14$, giving the magnitude bounds and
+  $M=\|\omega\|_{L^\infty(B_{r^*})}\leq\tfrac54$, so $M/4\leq\tfrac{5}{16}
+  <\tfrac34$. The field $W_\delta:=\nabla\psi_\delta\times e_1$ satisfies
+  $W_\delta(x)=W_1\bigl(y_0+(x-y_0)/\delta\bigr)$ --- it depends on $x$ only
+  through $(x-y_0)/\delta$ --- so $\hat e$ restricted to $B_\delta(y_0)$ is
+  the $\delta$-dilate of the fixed field $\hat e_1$ on $B_1(y_0)$, and its
+  mean oscillation over $B_\delta(y_0)$ equals the fixed number
+  $c_0:=\fint_{B_1(y_0)}|\hat e_1-(\hat e_1)_{B_1(y_0)}|$, which is positive
+  because $\chi_0'\not\equiv0$ makes $\hat e_1$ non-constant. Finally
+  $|\nabla\hat e|\leq2|\nabla\omega|/|\omega|\leq
+  \tfrac83\|\nabla W_\delta\|_\infty\leq C/\delta$, supported in
+  $B_\delta(y_0)$, so $\int_{B_{r^*}}|\nabla\hat e|^2\leq
+  C^2\delta^{-2}\cdot\tfrac{4\pi}{3}\delta^3=C'\delta$ and
+  $\sigma^*\leq C'\delta/r^*$.
+\end{proof}
+
+\subsection{The verdict on the dictionary}
+\label{subsec:s57-verdict}
+
+\begin{theorem}[The external hypothesis and $\sigma^*$-decay are logically
+  independent]\label{thm:s57-independence}
+  Consider, as conditions on a smooth divergence-free field $\omega$ on
+  $B_{r^*}(x^*)$ at one time:
+  \begin{enumerate}[label=\textup{(\Alph*)},leftmargin=2.6em]
+  \item\label{it:s57-A} \textup{($\sigma^*$-decay, as this document uses it)}
+    $\sigma^*$ small, with $\sigma^*$ as in Definition~\ref{def:sigma-star} ---
+    an $L^2$ bound on $\nabla\hat e$, on the single ball $B_{r^*}(x^*)$, at
+    the single scale $r^*$, restricted to $\{|\omega|\geq M/4\}$.
+  \item\label{it:s57-B} \textup{(the external hypothesis, local form)} the
+    $\mathrm{bmo}_{1/|\log r|}$ seminorm of $\hat e$ over all balls
+    $B_\rho(y)\subseteq B_{r^*}(x^*)$ is small --- an $L^1$ bound on the mean
+    oscillation of $\hat e$, at every scale, with no level-set restriction.
+  \end{enumerate}
+  Then \ref{it:s57-A}$\,\not\Rightarrow\,$\ref{it:s57-B} and
+  \ref{it:s57-B}$\,\not\Rightarrow\,$\ref{it:s57-A}, and the failures are not
+  quantitative near-misses:
+  \begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.6em]
+  \item \ref{it:s57-B} with constant $2$ is compatible with
+    $\sigma^*=+\infty$ in the limit
+    (Proposition~\ref{prop:s57-no-gradient});
+  \item $\sigma^*=0$ is compatible with
+    $\|\hat e\|_{\mathrm{bmo}_\phi}=+\infty$
+    (Proposition~\ref{prop:s57-indicator});
+  \item $\sigma^*\to0$ is compatible with the failure of \ref{it:s57-B} by a
+    factor $|\log\delta|$ at scale $\delta$
+    (Proposition~\ref{prop:s57-onescale}).
+  \end{enumerate}
+  What survives is a single one-way implication, in the direction
+  gradients~$\to$~oscillation, for the \emph{unrestricted scale family}:
+  \begin{equation}\label{eq:s57-survives}
+    \textbf{($\Sigma_{\log}$) with constant }K
+    \;\Longrightarrow\;\ref{it:s57-B}\text{ with constant }\tfrac14K^{1/2},
+  \end{equation}
+  and the implication is \emph{strict}: by
+  Proposition~\ref{prop:s57-no-gradient} the converse fails.
+  \emph{[Proved.]}
+\end{theorem}
+\begin{proof}
+  (i)--(iii) are the three propositions of
+  \S\ref{subsec:s57-counter}; \eqref{eq:s57-survives} is
+  Lemma~\ref{lem:s57-poincare}, and its strictness is
+  Proposition~\ref{prop:s57-no-gradient}, whose field satisfies
+  \ref{it:s57-B} with constant $2$ while
+  $\tilde\sigma_{r^*}=\sigma^*\to\infty$ violates
+  \eqref{eq:s57-sigmalog} for every fixed $K$.
+\end{proof}
+
+\begin{corollary}[The S56 dictionary is refuted in the form proposed]
+  \label{cor:s57-refuted}
+  The relation ``$\boldsymbol\xi\in\mathrm{bmo}_{1/|\log r|}$ at $r^*$ reads
+  $\sigma^*\lesssim1/(\log M)^2$'' is \textbf{not} a translation. It is
+  correct only as a sufficient condition, only for the unrestricted
+  $\tilde\sigma_{r^*}$ of \eqref{eq:s57-tilde}, and only for the single ball
+  $B_{r^*}(x^*)$ --- i.e.\ only as the top scale of \eqref{eq:s57-survives}.
+  In particular the external hypothesis is \textbf{not} a fifth avatar of
+  $\sigma^*$-decay, and no cheapness claim can be made in either direction.
+  \emph{[Proved.]}
+\end{corollary}
+
+\begin{remark}[What the correct translation is, and what it costs]
+  \label{rem:s57-correct-translation}
+  The honest statement of the external hypothesis in this document's
+  variables is \eqref{eq:s57-sigmalog}, and against
+  Definition~\ref{def:sigma-star} it differs in three independent ways, each
+  of which is a strengthening except the first:
+  \begin{enumerate}[label=\textup{(\alph*)},leftmargin=2.4em]
+  \item \textbf{Weaker in norm.} $L^1$ mean oscillation is weaker than an
+    $L^2$ gradient bound; this is the one genuine relaxation, and it is what
+    lets the source admit ``wild oscillatory defects''. It is also why
+    \ref{it:s57-B} carries no gradient information at all
+    (Proposition~\ref{prop:s57-no-gradient}).
+  \item \textbf{Stronger in scale.} It is a scale family on $(0,r^*]$, not a
+    statement at $r^*$. The proof of
+    Fact~\ref{fact:s57-source}\ref{it:s57-thm41} uses the hypothesis on every
+    sub-ball of $B_{2R}$ (near field, via the Jones extension), on $B_R$
+    (John--Nirenberg), and on the dyadic balls $B_{2^jR}$ up to radius
+    $R^{1/2}$ (oscillation tail), for every small $R$. It does \emph{not}
+    collapse to the critical scale, and
+    Proposition~\ref{prop:s57-onescale} shows the collapse is false.
+  \item \textbf{Stronger in support.} It has no level-set restriction, and by
+    Proposition~\ref{prop:s57-indicator} it therefore also asserts, silently,
+    that $\omega$ has no transversal zero in the region. This is the
+    substantive content of the $\mathbf 1_{\{|\omega|\geq M/4\}}$ in
+    \eqref{eq:sigma-star}: not a convenience, but what keeps $\sigma^*$
+    finite. Any future attempt to transport an unrestricted-oscillation
+    hypothesis into this document must supply a zero-free core as a separate
+    hypothesis.
+  \end{enumerate}
+\end{remark}
+
+\subsection{Against the rest of the no-concentration family}
+\label{subsec:s57-family}
+
+\begin{remark}[Against \textbf{(AX)} and against saturation]
+  \label{rem:s57-family}
+  \begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.6em]
+  \item \textbf{(AX)} (Proposition~\ref{prop:s51-ax}) is a pointwise bound on
+    a \emph{magnitude} component, $\|\omega_\theta/r\|_{L^\infty(B_{2r^*})}
+    \leq KM/r^*$, inside the axisymmetric class; \ref{it:s57-B} is an
+    integrated bound on the \emph{direction}, in no symmetry class. Neither
+    implies the other, and there is no common refinement: \textbf{(AX)}
+    permits an arbitrary direction field away from the axis, and
+    Proposition~\ref{prop:s57-indicator}'s field satisfies neither.
+  \item \textbf{Saturation} (Definition~\ref{def:s50-saturation}) is a
+    statement about $M(t)$ in time; \ref{it:s57-B} is a statement about
+    $\hat e(\cdot,t)$ in space. No implication runs either way. The
+    comparison that \emph{is} meaningful is of currency, and it is exact:
+    Theorem~\ref{thm:s50-equivalence} says that removing one logarithm from
+    $\|\nabla u\|_{L^\infty}\lesssim M\mathcal{L}$ is equivalent to
+    logarithm-free saturation, and
+    Fact~\ref{fact:s57-source}\ref{it:s57-thm41} buys exactly one logarithm
+    --- but in $\|\alpha\|_{L^{3/2,\infty}(B_R)}$, not in
+    $\|\nabla u\|_{L^\infty}$. That is a Wall~1(d)-permitted reformulation
+    paying the same single-logarithm deficit in a weaker norm, which is
+    precisely why Proposition~\ref{prop:s51-poloidal-sharp} does not
+    contradict it: the counterexample there saturates an $L^\infty$ bound and
+    says nothing about a restricted Lorentz norm of $\hat e\cdot S\hat e$.
+  \item \textbf{The family verdict.} The pattern
+    Remark~\ref{rem:s51-verdict-log} records now has a fourth instance.
+    \ref{it:s57-B} is a no-concentration hypothesis of the same family as
+    saturation and \textbf{(AX)}: scale-invariant, imposed rather than proved,
+    and --- by Fact~\ref{fact:s57-source}\ref{it:s57-companion} and
+    \ref{it:s57-obstructions} --- not established for Navier--Stokes
+    solutions by its own companion paper, which instead exhibits two natural
+    critical cores on which it fails. \emph{It has not been shown to be
+    cheaper than what it replaces, and this section does not claim that it
+    is.} What is new, relative to the three earlier instances, is that this
+    one is \emph{not} a relabelling of $\sigma^*$-decay
+    (Corollary~\ref{cor:s57-refuted}); it is a genuinely different condition
+    on the same object, and it is incomparable.
+  \end{enumerate}
+\end{remark}
+
+\subsection{The imported technique, checked in isolation}
+\label{subsec:s57-crw}
+
+\begin{remark}[The commutator/Coifman--Rochberg--Weiss step holds]
+  \label{rem:s57-crw}
+  The step carrying Fact~\ref{fact:s57-source}\ref{it:s57-thm41} was checked
+  at S57 independently of the rest of \cite{Grujic2026Log}. It is
+  \textbf{correct}, and the chain is the following, each link standard.
+  \begin{enumerate}[label=\textup{(\arabic*)},leftmargin=2.6em]
+  \item \emph{The cancellation.} $S=\mathcal T(\omega\boldsymbol\xi)$ with
+    $\mathcal T$ a matrix of second-order Riesz transforms; the fully
+    symmetric contraction of its kernel against $e\otimes e\otimes e$
+    vanishes, which is exactly the factor
+    $\det(\hat y,\boldsymbol\xi(x+y),\boldsymbol\xi(x))$ in
+    Constantin's formula for $\alpha$ \cite{Constantin1994,
+    ConstantinFefferman1993}. Hence $\alpha=\boldsymbol\xi\cdot
+    [\mathcal T,\boldsymbol\xi](\omega)\,\boldsymbol\xi$ and
+    $|\alpha|\leq|[\mathcal T,\boldsymbol\xi](\omega)|$. Correct, and not new:
+    it is Constantin--Fefferman's observation rewritten.
+  \item \emph{Smallness of the symbol.} Since $\phi(r)=1/|\log r|$ is
+    increasing on $(0,1)$, \eqref{eq:s57-bmophi} gives, for every sub-ball of
+    $B_{2R}$ of radius $r\leq2R<1/2$, mean oscillation
+    $\leq\|\boldsymbol\xi\|_{\mathrm{bmo}_\phi}\phi(r)
+    \leq\|\boldsymbol\xi\|_{\mathrm{bmo}_\phi}\phi(2R)$, i.e.\
+    $\|\boldsymbol\xi\|_{\mathrm{BMO}(B_{2R})}\leq C\phi(2R)$. Correct; the
+    monotonicity is used in the right direction, and again at the truncation
+    $2^{N+1}R\approx R^{1/2}$ of the dyadic tail.
+  \item \emph{Jones extension.} A ball is a uniform domain with absolute
+    (scale-invariant) constants, so \cite{Jones1980} supplies
+    $\tilde{\boldsymbol\xi}$ on $\R^3$ with
+    $\|\tilde{\boldsymbol\xi}\|_{\mathrm{BMO}(\R^3)}\leq C\phi(2R)$. Correct.
+    The substitution
+    $[\mathcal T,\boldsymbol\xi](\omega\chi_{B_{2R}})(x)
+    =[\mathcal T,\tilde{\boldsymbol\xi}](\omega\chi_{B_{2R}})(x)$ for
+    $x\in B_R$ is legitimate because the source is supported in $B_{2R}$,
+    where $\tilde{\boldsymbol\xi}=\boldsymbol\xi$, and $x\in B_R\subset
+    B_{2R}$.
+  \item \emph{CRW itself.} \cite{CRW1976} gives
+    $\|[b,R_j]\|_{L^p\to L^p}\leq C_p\|b\|_{\mathrm{BMO}}$,
+    $1<p<\infty$. The operator needed here is a composition of two Riesz
+    transforms, and $[R_iR_j,b]=R_i[R_j,b]+[R_i,b]R_j$, so the bound transfers
+    with the same linear dependence on $\|b\|_{\mathrm{BMO}}$ \emph{without}
+    invoking any general Calder\'on--Zygmund version. The vector-valued
+    bookkeeping is componentwise. Correct.
+  \item \emph{The passage to $L^{3/2,\infty}$.} Real (Marcinkiewicz--Hunt)
+    interpolation \cite{Hunt1966} between $L^{p_0}\to L^{p_0}$ and
+    $L^{p_1}\to L^{p_1}$ with $1<p_0<3/2<p_1<\infty$ gives boundedness on
+    $(L^{p_0},L^{p_1})_{\theta,\infty}=L^{3/2,\infty}$ with norm
+    $\lesssim\|b\|_{\mathrm{BMO}}^{1-\theta}\|b\|_{\mathrm{BMO}}^{\theta}
+    =\|b\|_{\mathrm{BMO}}$. Correct. \emph{One cosmetic error:} the source
+    calls these ``the reflexive Lorentz spaces''; $L^{3/2,\infty}$ is not
+    reflexive (it is not even normed in the displayed quasi-norm, though for
+    $p>1$ it is normable via $f^{**}$). The conclusion is unaffected.
+  \item \emph{The far field.} The rearrangement computation
+    \[
+      \bigl\||y|^{-3}\chi_{\{|y|>2R\}}\bigr\|_{L^{3,1}}\asymp R^{-2},
+    \]
+    the John--Nirenberg $L^2$ and $L^4$ oscillation bounds, the local
+    embeddings
+    \[
+      \|g\|_{L^{3/2,\infty}(B_R)}\lesssim R^{1/2}\|g\|_{L^2(B_R)},
+      \qquad
+      \|g\|_{L^{3,1}(B)}\lesssim|B|^{1/12}\|g\|_{L^4(B)},
+    \]
+    the telescoping
+    $|c_{k+1}-c_0|\lesssim\sum_{j\leq k+1}\phi(2^jR)$, and the reversed
+    double sum were all re-derived at S57 and are correct as stated.
+  \end{enumerate}
+  \textbf{Consequence for this programme.} The technique is available
+  independently of whether \cite{Grujic2026Log} is right as a whole: it is a
+  proof that \emph{the stretching eigenvalue is a commutator whose symbol is
+  the direction field, so that any smallness of the direction's BMO norm at
+  small scales is a gain on $\alpha$ in a restricted critical Lorentz norm,
+  linearly}. This is the first estimate on record in this programme that
+  extracts a gain from the direction field without an $L^\infty$
+  Calder\'on--Zygmund bound, and it is therefore inside Wall~1(d)'s permitted
+  class. \textbf{It is not, by itself, a route around Wall~1}: by
+  Theorem~\ref{thm:s57-independence} the smallness it consumes is not
+  available from $\sigma^*$, and by
+  Fact~\ref{fact:s57-source}\ref{it:s57-obstructions} it is not available from
+  the companion paper either.
+\end{remark}
+
+\begin{remark}[The Albritton--Bradshaw prior, corrected]
+  \label{rem:s57-ab}
+  S56 recorded that Albritton--Bradshaw \cite{AlbrittonBradshaw2022} analysed
+  earlier sparseness claims of the same author and concluded that ``the
+  scaling gap is not reduced'', and inferred that this bears negatively on the
+  endgame of \cite{Grujic2026Log}, which routes through sparseness and
+  analyticity. \textbf{Read at S57, the prior does not say that.} Their paper
+  has two halves. The second half is indeed negative, and is about the
+  \emph{a priori} sparseness classes $Z^{(k)}_{\bar\alpha_k}$ of
+  Bradshaw--Farhat--Gruji\'c and Gruji\'c--Xu: their Proposition~4.1 and
+  \S4 examples show that within that class ``membership in
+  $Z^{(k)}_{\bar\alpha_k}$ is not stronger than the condition of finite
+  kinetic energy $u\in L^\infty_tL^2_x$'', and that the informal
+  identification $Z^{(k)}_\alpha\sim W^{k-1/\alpha,\infty}$ ``should not be
+  taken seriously''. The \emph{first} half is positive: they ``give a simple
+  proof that sufficiently sparse Navier--Stokes solutions do not develop
+  singularities'', explicitly ``an alternative to the approach of [Gru13],
+  which is based on analyticity and the `harmonic measure maximum principle'\,''
+  (their Theorem~1.2 and Corollary~1.3). The endgame of
+  \cite[\S7]{Grujic2026Log} uses only the \emph{conditional} direction ---
+  sparseness at a scale below the analyticity radius implies continuation ---
+  which is the half Albritton--Bradshaw reprove and endorse. \textbf{The
+  negative prior therefore does not attach to the step S56 attached it to.}
+  It remains a relevant caution about how sparseness results in this lineage
+  have been \emph{interpreted}, and it is recorded here so that the
+  correction, not the original, is what a later session inherits.
+\end{remark}
+
+\subsection{Ledger}
+\label{subsec:s57-ledger}
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Item & Status & Where \\
+\hline
+Scale identification $\ell\asymp r^*$
+  & \textbf{Proved} & Lem.~\ref{lem:s57-scale}(i) \\
+Source's direction bound $\equiv$ $\sigma^*$ bounded
+  & \textbf{Proved} & Lem.~\ref{lem:s57-scale}(ii) \\
+Poincar\'e translation (gradients $\to$ osc.)
+  & \textbf{Proved} & Lem.~\ref{lem:s57-poincare} \\
+$\mathrm{bmo}_\phi\not\Rightarrow\sigma^*$ bounded
+  & \textbf{Proved} (c/ex) & Prop.~\ref{prop:s57-no-gradient} \\
+Indicator not removable
+  & \textbf{Proved} (c/ex) & Prop.~\ref{prop:s57-indicator} \\
+$\sigma^*\to0\not\Rightarrow\mathrm{bmo}_\phi$ below $r^*$
+  & \textbf{Proved} (c/ex) & Prop.~\ref{prop:s57-onescale} \\
+The two hypotheses are independent
+  & \textbf{Proved} & Thm.~\ref{thm:s57-independence} \\
+S56's dictionary
+  & \textbf{Refuted as stated} & Cor.~\ref{cor:s57-refuted} \\
+Commutator/CRW step
+  & \textbf{Verified correct} & Rem.~\ref{rem:s57-crw} \\
+\cite[Thm.~7.4]{Grujic2026Log} as a whole
+  & \textbf{Not adjudicated} & Rem.~\ref{rem:s57-standing} \\
+Propagation of the hypothesis
+  & \textbf{Open} & Fact~\ref{fact:s57-source}\ref{it:s57-companion} \\
+Albritton--Bradshaw prior
+  & \textbf{Corrected} & Rem.~\ref{rem:s57-ab} \\
+Walls 1, 3, 9; \textbf{(AX)}; saturation
+  & \textbf{Unchanged} & \S\ref{sec:walls-s47} \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{remark}[What is explicitly not claimed]\label{rem:s57-notclaimed}
+  \begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.6em]
+  \item No position is taken on whether
+    \cite[Thm.~7.4]{Grujic2026Log} is true. \S\S5--7 of that paper were read
+    and their internal steps found consistent, but a referee report is not a
+    session's work and was not attempted; Fact~\ref{fact:s57-source} records
+    the dependency structure, not a verdict.
+  \item Nothing here is an attempt to prove the
+    $\mathrm{bmo}_{1/|\log r|}$ hypothesis for Navier--Stokes solutions.
+    That is the open problem in different notation.
+  \item The counterexamples of \S\ref{subsec:s57-counter} are admissible
+    instantaneous vorticity fields, not Navier--Stokes solutions. They refute
+    implications \emph{between the two conditions as stated}, which is the
+    level at which cheapness claims are made and the level S50 set. They do
+    not exclude the possibility that along an actual blow-up trajectory the
+    two conditions are dynamically linked; no such link is known, and
+    establishing one would be a new result.
+  \item No new conjecture is introduced, no wall is reclassified, and
+    \eqref{eq:s57-sigmalog} is a \emph{definition used for comparison}, not a
+    target proposed for attack.
+  \end{enumerate}
+\end{remark}
+
 \section{Routes and Walls: A Referenced Record (Session S47)}
 \label{sec:walls-s47}
 
@@ -15417,6 +16135,59 @@ because it bounds what future sessions may import. The source is
   C.~Collot, F.~Merle, P.~Rapha\"el,
   On strongly anisotropic type~II blow up,
   arXiv:1709.04941, 14~September 2017.
+
+\bibitem{Grujic2026Log}
+  Z.~Gruji\'c,
+  Logarithmic depletion of vortex stretching and singularity evasion in the
+  3D Navier--Stokes equations,
+  arXiv:2607.08866; v1 9~July 2026, v3 9~September 2026.
+  \emph{[Unrefereed preprint, no journal reference. Read in full from the
+  primary source at S57 (\S\ref{sec:wpa-s57}): Definition~2.1, the
+  $\mathrm{bmo}_\phi$ definition~(2), Remarks 2.2--2.3, the commutator
+  identity~(7) of \S3, Theorem~4.1 and its complete proof, \S5.1--5.3
+  including (23)--(40), \S6 including (41)--(49), and \S7 including
+  Definition~7.1, Theorem~7.3, Theorem~7.4 and its proof. Quoted as a claim
+  only; \textbf{no statement in this document depends on it}
+  (Remark~\ref{rem:s57-standing}). The commutator/Coifman--Rochberg--Weiss
+  step is independently verified in Remark~\ref{rem:s57-crw}.]}
+
+\bibitem{Grujic2026Decay}
+  Z.~Gruji\'c,
+  On decay of the local mean oscillations of the vorticity direction in
+  critical Navier--Stokes flows,
+  arXiv:2609.05720; v1 4~September 2026, v2 9~September 2026.
+  \emph{[Unrefereed preprint, no journal reference. Read in full at S57: \S2
+  (the direction equation (3), which is \eqref{eq:dir-eq} term for term),
+  Definition~3.1 and Remark~3.2, the drift decomposition (7)--(10),
+  Assumptions 4.1--4.2 (H$k$), Assumptions 5.1--5.6, Theorem~5.7,
+  Corollary~5.8, Remark~5.9, \S7.2--7.4 including Lemma~7.3,
+  Proposition~7.5, Definition~7.7 and Theorem~7.9, and the obstructions
+  \S7.5 (Propositions 7.10 and 7.12 with Remarks 7.11 and 7.13). Quoted as a
+  claim only.]}
+
+\bibitem{AlbrittonBradshaw2022}
+  D.~Albritton, Z.~Bradshaw,
+  Remarks on sparseness and regularity of Navier--Stokes solutions,
+  arXiv:2110.02187v2, 5~April 2022.
+  \emph{[Read at S57 for \S1, \S1.1 and \S1.2 in full. Both halves are
+  quoted in Remark~\ref{rem:s57-ab}; the negative verdict concerns the a
+  priori sparseness classes, not the conditional sparseness-implies-regularity
+  criterion, which this paper reproves.]}
+
+\bibitem{CRW1976}
+  R.~R.~Coifman, R.~Rochberg, G.~Weiss,
+  Factorization theorems for Hardy spaces in several variables,
+  \emph{Ann. of Math.}, 103(3):611--635, 1976.
+
+\bibitem{Jones1980}
+  P.~W.~Jones,
+  Extension theorems for BMO,
+  \emph{Indiana Univ. Math. J.}, 29(1):41--66, 1980.
+
+\bibitem{Hunt1966}
+  R.~A.~Hunt,
+  On $L(p,q)$ spaces,
+  \emph{L'Enseignement Math.}, 12(4):249--276, 1966.
 \end{thebibliography}
 
 \end{document}

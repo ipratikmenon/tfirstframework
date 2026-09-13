@@ -15030,6 +15030,453 @@ Walls 1, 3, 9; \textbf{(AX)}; saturation
   \end{enumerate}
 \end{remark}
 
+% ══════════════════════════════════════════════════════════════════════════════
+\section{CD-1: The Forcing Floor as a General Theorem
+  (Session S60)}
+\label{sec:cd1-general-floor}
+
+\S\ref{sec:wpt3-forcing-floor} proved a forcing floor for \emph{one} field:
+the leading axisymmetric profile of \cite{OpenAI2026}. This section asks what
+in that proof was specific to that profile and what was generic, and answers
+it by stating and proving the general theorem the S55 argument is an instance
+of. The outcome is that the profile-specific ingredient --- exact
+self-similarity --- is load-bearing for far less than S55's own record
+suggested: it is needed neither for the exponent nor for the constant, only
+for the \emph{time-localisation} of the conclusion
+(Remark~\ref{rem:cd1-selfsimilar}).
+
+\begin{quote}\small
+  \textbf{Scope, stated first and not to be detached from what follows.}
+  Everything here is a statement about a \emph{given} axisymmetric velocity
+  field, with $f$ \emph{defined} as its momentum residual, exactly as in
+  Lemma~\ref{lem:wpt3-forced-swirl}. No forcing term is introduced into any
+  argument of this document toward Fefferman's alternatives (A) or (B); the
+  standing prohibition on doing so is unaffected. This section is not a step
+  toward (A) or (B) --- it proves a \emph{lower} bound on a residual, the
+  opposite direction of travel --- and it is not a challenge to (C) or (D):
+  the class is \emph{axisymmetric}, and the field of Theorem~1.1 of
+  \cite{OpenAI2026} is not, so nothing here applies to it
+  (Remark~\ref{rem:wpt3-scope}, restated at
+  Remark~\ref{rem:cd1-scope}\ref{it:cd1-notCD}). Wall~9's classification is
+  unchanged.
+\end{quote}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\subsection{Extension of the two S55 lemmas to \texorpdfstring{$\nu\geq0$}{nu
+  >= 0}}
+\label{subsec:cd1-nu0}
+
+\begin{remark}[Both S55 lemmas hold for $\nu=0$, i.e.\ for Euler]
+  \label{rem:cd1-euler}
+  Lemma~\ref{lem:wpt3-forced-swirl} and Lemma~\ref{lem:wpt3-forced-max} are
+  stated for $\nu>0$. Neither proof uses positivity.
+  \begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+    \item In Lemma~\ref{lem:wpt3-forced-swirl}, $\nu$ multiplies the vector
+      Laplacian throughout; setting $\nu=0$ deletes that term from the
+      definition of $f$ and from \eqref{eq:wpt3-forced-gamma} simultaneously,
+      and the three ingredients (a)--(c) of its proof are unchanged. At
+      $\nu=0$ the identity reads
+      $\partial_t\Gamma+u_r\partial_r\Gamma+u_z\partial_z\Gamma=rf_\theta$
+      with $f=\partial_tu+(u\cdot\grad)u+\grad p$.
+    \item In Lemma~\ref{lem:wpt3-forced-max}, $\nu$ enters only through the
+      single inequality
+      $\nu(\partial_r^2\Gamma+\partial_z^2\Gamma)\leq0$ at an interior
+      maximum, which at $\nu=0$ holds as the identity $0\leq0$. Parts
+      (i), (iii), (iv), (v) never mention $\nu$.
+  \end{enumerate}
+  Both lemmas therefore hold verbatim for every $\nu\geq0$, and are used in
+  that range below. \emph{(At $\nu=0$ the unforced case of
+  \eqref{eq:wpt3-integral} is the classical conservation of $\max ru_\theta$
+  by axisymmetric Euler transport, so the generalisation degenerates
+  correctly at both ends.)}
+\end{remark}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\subsection{The general theorem}
+\label{subsec:cd1-theorem}
+
+\begin{theorem}[Cost of forcing at the swirl maximum]
+  \label{thm:cd1-general-floor}
+  Let $\nu\geq0$, let $(u,p)$ be axisymmetric and smooth on
+  $\R^3\times[t_0,t_1)$ with $\divg u=0$, let
+  $f\coloneqq\partial_tu+(u\cdot\grad)u-\nu\Delta u+\grad p$ be its momentum
+  residual, and assume \textbf{(H1)}--\textbf{(H3)} of
+  Lemma~\ref{lem:wpt3-forced-max}. Write $\Gamma=ru_\theta$,
+  $M(t)=\max_x\Gamma(\cdot,t)>0$, $\Sigma(t)=\{\Gamma(\cdot,t)=M(t)\}$, and
+  \begin{equation}\label{eq:cd1-RF}
+    R(t)\coloneqq\max_{x\in\Sigma(t)}r(x)\in(0,\infty),
+    \qquad
+    F(t)\coloneqq\max_{x\in\Sigma(t)}\abs{f_\theta(x,t)} .
+  \end{equation}
+  Then:
+  \begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.6em]
+    \item\label{it:cd1-ratio} \textbf{Ratio form (no geometric hypothesis).}
+      For every $t$ there is a swirl maximiser $x_\star=x_\star(t)\in\Sigma(t)$
+      with
+      \begin{equation}\label{eq:cd1-ratio}
+        \frac{f_\theta(x_\star,t)}{u_\theta(x_\star,t)}
+        \ \geq\ \frac{d^{+}}{dt}\log M(t) .
+      \end{equation}
+      Both sides have dimensions of inverse time; $u_\theta(x_\star,t)>0$
+      automatically.
+    \item\label{it:cd1-radius} \textbf{Radius form.} For every $t$,
+      \begin{equation}\label{eq:cd1-radius}
+        F(t)\ \geq\ \frac{1}{R(t)}\,\frac{d^{+}M}{dt}(t) .
+      \end{equation}
+    \item\label{it:cd1-int} \textbf{Integrated form, assuming no
+      differentiability anywhere.} For $t_0\leq s\leq t<t_1$,
+      \begin{equation}\label{eq:cd1-int}
+        \int_s^t R(\sigma)\,F(\sigma)\,d\sigma\ \geq\ M(t)-M(s).
+      \end{equation}
+  \end{enumerate}
+  \emph{[Proved here. Proposition~\ref{prop:wpt3-floor} is the special case
+  recorded in Corollary~\ref{cor:cd1-recovers}.]}
+\end{theorem}
+
+\begin{proof}
+  By Remark~\ref{rem:cd1-euler} the two S55 lemmas apply for every
+  $\nu\geq0$. By Lemma~\ref{lem:wpt3-forced-max}(i) every $x\in\Sigma(t)$ has
+  $r(x)>0$, and $\Sigma(t)$ is nonempty and compact by (H1)--(H2); $rf_\theta$
+  is continuous by (H1); so the maximum in \eqref{eq:wpt3-dini} is attained,
+  at some $x_\star\in\Sigma(t)$, and $R(t)$, $F(t)$ in \eqref{eq:cd1-RF} are
+  attained and finite, with $R(t)>0$.
+
+  \textbf{\ref{it:cd1-radius}.} By \eqref{eq:wpt3-dini},
+  \[
+    \frac{d^{+}M}{dt}(t)\ \leq\ (rf_\theta)(x_\star,t)
+      \ \leq\ r(x_\star)\,\abs{f_\theta(x_\star,t)}
+      \ \leq\ R(t)\,F(t),
+  \]
+  and $R(t)>0$.
+
+  \textbf{\ref{it:cd1-ratio}.} At the same $x_\star$, $\Gamma(x_\star,t)=M(t)$
+  gives $u_\theta(x_\star,t)=M(t)/r(x_\star)>0$, since $M(t)>0$ by (H3) and
+  $r(x_\star)>0$. Hence
+  \[
+    \frac{f_\theta(x_\star,t)}{u_\theta(x_\star,t)}
+      =\frac{r(x_\star)f_\theta(x_\star,t)}{M(t)}
+      \ \geq\ \frac{1}{M(t)}\frac{d^{+}M}{dt}(t)
+      \ =\ \frac{d^{+}}{dt}\log M(t),
+  \]
+  the last step because $M>0$ is locally Lipschitz
+  (Lemma~\ref{lem:wpt3-forced-max}(iii)), so $\log M$ is too and its right
+  derivative is $M^{-1}d^{+}M/dt$.
+
+  \textbf{\ref{it:cd1-int}.} This is \eqref{eq:wpt3-integral} together with
+  $\max_{\Sigma(\sigma)}(rf_\theta)\leq R(\sigma)F(\sigma)$ pointwise in
+  $\sigma$; measurability of the integrand is as in the proof of
+  Lemma~\ref{lem:wpt3-forced-max}(iv).
+\end{proof}
+
+\begin{remark}[How to read \eqref{eq:cd1-ratio}]\label{rem:cd1-read}
+  Inequality \eqref{eq:cd1-ratio} carries no geometric input at all --- no
+  core radius, no growth rate, no self-similarity --- and says:
+  \begin{quote}
+    \emph{at a swirl maximum, the azimuthal residual, measured against the
+    local swirl velocity, is at least the logarithmic growth rate of the
+    swirl maximum.}
+  \end{quote}
+  If $M(t)\asymp\tau^{-a}$ with $\tau=T-t$ then the right side is $a/\tau$,
+  so $\abs{f_\theta}\geq(a/\tau)\abs{u_\theta}$ \emph{at that point}: the
+  residual is at least as large as the term $\partial_tu_\theta$ would be for
+  a field growing at that rate. This is the general form of
+  Remark~\ref{rem:wpt3-calibration}'s ``full leading order in its own
+  momentum equation'', which S55 verified term by term for one profile using
+  that profile's four exponents. Here it is a consequence of the swirl
+  maximum principle alone.
+\end{remark}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\subsection{The rate form, and what it contains}
+\label{subsec:cd1-rate}
+
+\begin{corollary}[Prescribed swirl growth on a prescribed core geometry]
+  \label{cor:cd1-rate}
+  Keep the hypotheses of Theorem~\ref{thm:cd1-general-floor} on
+  $[s_0,T)$ with $T<\infty$, write $\tau=T-t$, and assume
+  \begin{itemize}[leftmargin=2.6em]
+    \item[\textbf{(G1)}] \emph{(swirl growth rate)}
+      $M(t)\geq c_1\tau^{-a}$ on $[s_0,T)$, for some $a>0$, $c_1>0$;
+    \item[\textbf{(G2)}] \emph{(core-radius geometry)}
+      $R(\sigma)\leq R_0\,(T-\sigma)^{b}$ on $[s_0,T)$, for some
+      $R_0>0$ and $b\in\R$.
+  \end{itemize}
+  Suppose $F(\sigma)\leq K(T-\sigma)^{-p}$ on $[s_0,T)$ for some
+  $K,p>0$. Then
+  \begin{equation}\label{eq:cd1-exponent}
+    p\ \geq\ 1+a+b ,
+  \end{equation}
+  and if $p=1+a+b$ then
+  \begin{equation}\label{eq:cd1-constant}
+    K\ \geq\ \frac{a\,c_1}{R_0} .
+  \end{equation}
+  Equivalently: no axisymmetric field with swirl-maximum growth
+  $\tau^{-a}$ whose swirl maximisers stay inside radius $R_0\tau^{b}$ can
+  have azimuthal residual $O(\tau^{-p})$ at those maximisers for any
+  $p<1+a+b$. \emph{[Proved here.]}
+\end{corollary}
+
+\begin{proof}
+  Put $\tau_0=T-s_0$ and $\tau_t=T-t$. By \eqref{eq:cd1-int} and the two
+  hypotheses, for every $t\in(s_0,T)$,
+  \begin{equation}\label{eq:cd1-master}
+    c_1\tau_t^{-a}-M(s_0)\ \leq\ M(t)-M(s_0)
+      \ \leq\ R_0K\int_{s_0}^{t}(T-\sigma)^{b-p}\,d\sigma
+      \ =\ R_0K\int_{\tau_t}^{\tau_0}\tau^{b-p}\,d\tau .
+  \end{equation}
+  Three cases.
+
+  \emph{If $b-p>-1$}, the right integral is at most
+  $\tau_0^{\,b-p+1}/(b-p+1)$, a constant, while the left side
+  $\to+\infty$ as $t\uparrow T$ (since $a>0$, $c_1>0$). Contradiction.
+
+  \emph{If $b-p=-1$}, the right integral is
+  $\log(\tau_0/\tau_t)$, which is $o(\tau_t^{-a})$ for every $a>0$, while the
+  left side is $\geq\tfrac12c_1\tau_t^{-a}$ for $t$ close to $T$.
+  Contradiction.
+
+  \emph{If $b-p<-1$}, write $\beta\coloneqq p-b-1>0$; then
+  \[
+    \int_{\tau_t}^{\tau_0}\tau^{b-p}\,d\tau
+      =\frac{\tau_t^{-\beta}-\tau_0^{-\beta}}{\beta}
+      \ \leq\ \frac{\tau_t^{-\beta}}{\beta}.
+  \]
+  Substituting into \eqref{eq:cd1-master} and multiplying by
+  $\tau_t^{\,a}>0$,
+  \begin{equation}\label{eq:cd1-limit}
+    c_1-M(s_0)\,\tau_t^{\,a}\ \leq\ \frac{R_0K}{\beta}\,\tau_t^{\,a-\beta}
+    \qquad\text{for all }t\in(s_0,T).
+  \end{equation}
+  If $\beta<a$ the right side tends to $0$ and the left to $c_1>0$ as
+  $\tau_t\downarrow0$, a contradiction; hence $\beta\geq a$, which is
+  \eqref{eq:cd1-exponent}. If $\beta=a$, i.e.\ $p=1+a+b$, then
+  \eqref{eq:cd1-limit} reads $c_1-M(s_0)\tau_t^{a}\leq R_0K/a$, and letting
+  $\tau_t\downarrow0$ gives $c_1\leq R_0K/a$, which is
+  \eqref{eq:cd1-constant}.
+\end{proof}
+
+\begin{corollary}[Proposition~\ref{prop:wpt3-floor} is the case
+  $(a,b)=(h,\tfrac12)$, constant included]\label{cor:cd1-recovers}
+  For the leading field of Proposition~\ref{prop:wpt3-floor},
+  \eqref{eq:wpt3-Mexact} gives (G1) with $a=h$ and $c_1=c_*$, and
+  \eqref{eq:wpt3-rm} gives (G2) with $b=\tfrac12$ and $R_0=c_r$ (taking the
+  maximum over maximisers if $(X_*,\eta_*)$ is not unique). Corollary
+  \ref{cor:cd1-rate} then forbids $\abs{f^{(0)}_\theta}=O(\tau^{-p})$ at the
+  maximisers for
+  \[
+    p\ <\ 1+h+\tfrac12\ =\ \tfrac32+h\ =\ A+1 ,
+  \]
+  and at $p=A+1$ forces the constant $K\geq hc_*/c_r$. These are exactly the
+  exponent and the constant of \eqref{eq:wpt3-floorB}. \emph{[Immediate.]}
+\end{corollary}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\subsection{Which hypotheses were profile-specific, and which were not}
+\label{subsec:cd1-audit}
+
+\begin{remark}[The exact self-similarity of the OpenAI profile is
+  load-bearing for less than S55 recorded]\label{rem:cd1-selfsimilar}
+  The S55 derivation obtained $M(t)=c_*\tau^{-h}$ \emph{exactly}, and
+  identified that exactness --- available because the leading field is
+  exactly self-similar --- as ``what makes the floor exact rather than
+  heuristic''. Corollary~\ref{cor:cd1-rate} locates that claim precisely.
+  \begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+    \item \textbf{The exponent does not need it.} \eqref{eq:cd1-exponent}
+      follows from the one-sided bounds (G1)--(G2) alone. No exactness, no
+      self-similarity, and --- because the proof routes through the
+      integrated form \eqref{eq:cd1-int} rather than the differential form
+      \eqref{eq:cd1-radius} --- no differentiability of $M$ at any point.
+    \item \textbf{The constant does not need it either.}
+      \eqref{eq:cd1-constant} recovers $hc_*/c_r$ from the asymptotic
+      constants $c_1,R_0$ alone.
+    \item \textbf{What it does buy is time-localisation, and only that.}
+      With exactness one has the floor \emph{at every $t$}, at an identified
+      point. Without it, Corollary~\ref{cor:cd1-rate} is a statement about
+      the whole interval: it excludes a uniform power bound, so it yields
+      only ``for every $s<T$ there exists $\sigma\in(s,T)$ at which the floor
+      holds'', with $\sigma$ not identified. For a construction that is
+      merely asymptotically self-similar, that is the correct and the only
+      available form.
+  \end{enumerate}
+  So the honest summary is: \emph{exact self-similarity was a convenience of
+  presentation, not a hypothesis of the mathematics.} The one genuinely
+  profile-specific step of S55 was Step~5 --- the derivation of the
+  maximiser's radius $c_r\tau^{1/2}$ as an \emph{output}. In the general
+  theorem that radius is an \emph{input}, (G2); and part
+  \ref{it:cd1-ratio} of Theorem~\ref{thm:cd1-general-floor} dispenses with it
+  altogether by measuring the residual against the local swirl instead of in
+  absolute terms.
+\end{remark}
+
+\begin{remark}[Hypothesis audit: what is generic, what does work, and where
+  the class boundary is]\label{rem:cd1-audit}
+  The hypotheses divide cleanly into four groups.
+  \begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+    \item \textbf{Generic, and doing no work:} (H1) and (H3). (H1) is
+      smoothness. (H3) is an orientation convention: if $\max\Gamma\leq0$
+      while $\max(-\Gamma)>0$, replace $u_\theta$ by $-u_\theta$.
+    \item \textbf{Generic, and doing all the work:} the pressure-free swirl
+      equation \eqref{eq:wpt3-forced-gamma}, and the annihilation of both the
+      drift and the singular first-order term at an interior maximum. Neither
+      uses anything about the field beyond axisymmetry and $\divg u=0$.
+    \item \textbf{The one hypothesis that must be checked per
+      construction:} (H2), uniform compactness of the maximiser set on
+      compact time intervals. It is what makes the Danskin upper bound in
+      Lemma~\ref{lem:wpt3-forced-max}(iii) available, and it fails for fields
+      whose swirl maximum escapes to spatial infinity. For the S55 profile it
+      was established in Step~3 of Proposition~\ref{prop:wpt3-floor} from the
+      decay $H\sim\sqrt2c_\infty X^{-h}$ and the vanishing of
+      $(1-\eta^2)^h$ at $\eta=\pm1$; for a compactly supported construction
+      it is automatic.
+    \item \textbf{The class boundary is axisymmetry, and it is absolute.} The
+      only lever is $(\grad p)_\theta=r^{-1}\partial_\theta p=0$. Outside the
+      axisymmetric class there is no scalar swirl equation, the pressure does
+      not drop out, and no analogue of
+      Theorem~\ref{thm:cd1-general-floor} is proved or claimed here. This is
+      why the theorem, like \S\ref{sec:wpt3-forcing-floor} before it, says
+      nothing whatever about Theorem~1.1 of \cite{OpenAI2026}.
+  \end{enumerate}
+\end{remark}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\subsection{A positive-measure form}
+\label{subsec:cd1-Lq}
+
+Remark~\ref{rem:wpt3-pointwise} recorded that
+Lemma~\ref{lem:wpt3-forced-max} yields no statement on any set of positive
+measure, and S55 left open whether some uniform version is provable. The
+following is one --- obtained not by upgrading the pointwise statement, which
+Remark~\ref{rem:wpt3-pointwise}(a),(b) shows is impossible, but by running the
+same swirl equation against $\abs\Gamma^{q-2}\Gamma$ instead of at a point.
+
+\begin{proposition}[$L^q$ floor on the azimuthal residual]
+  \label{prop:cd1-Lq}
+  Let $\nu\geq0$ and let $(u,p)$ be as in Lemma~\ref{lem:wpt3-forced-swirl}
+  on $\R^3\times I$, with $\Gamma(\cdot,t)$ compactly supported in a fixed
+  compact set for $t\in I$. Fix $2\leq q<\infty$. Then $t\mapsto
+  \norm{\Gamma(\cdot,t)}_{L^q(\R^3)}$ is locally Lipschitz and, wherever it
+  is positive,
+  \begin{equation}\label{eq:cd1-Lq}
+    \frac{d}{dt}\norm{\Gamma(\cdot,t)}_{L^q}
+      \ \leq\ \norm{\bigl(rf_\theta\bigr)(\cdot,t)}_{L^q}
+    \qquad\text{for a.e. }t\in I .
+  \end{equation}
+  Consequently $\norm{\Gamma(\cdot,t)}_{L^q}-\norm{\Gamma(\cdot,s)}_{L^q}
+  \leq\int_s^t\norm{rf_\theta}_{L^q}\,d\sigma$: growth of the $L^q$ swirl norm
+  forces a floor on an \emph{integrated} norm of the residual.
+  \emph{[Proved here.]}
+\end{proposition}
+
+\begin{proof}
+  $\Gamma=ru_\theta=x_1u_2-x_2u_1$ is smooth on $\R^3$ and vanishes on the
+  axis. Multiply \eqref{eq:wpt3-forced-gamma} by
+  $q\abs\Gamma^{q-2}\Gamma$ and integrate $dx=r\,dr\,d\theta\,dz$ over
+  $\R^3$; all integrals converge and all integrations by parts are justified
+  by compact support and smoothness. Four terms:
+  \begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+    \item \textbf{Time.} $\displaystyle\int
+      q\abs\Gamma^{q-2}\Gamma\,\partial_t\Gamma\,dx
+      =\frac{d}{dt}\int\abs\Gamma^{q}dx$.
+    \item \textbf{Drift.} $\displaystyle\int
+      q\abs\Gamma^{q-2}\Gamma\,(u\cdot\grad\Gamma)\,dx
+      =\int u\cdot\grad\bigl(\abs\Gamma^{q}\bigr)dx=0$, by $\divg u=0$
+      and compact support. (Here $u\cdot\grad\Gamma
+      =u_r\partial_r\Gamma+u_z\partial_z\Gamma$ by axisymmetry.)
+    \item \textbf{Diffusion.} $\displaystyle\int
+      q\abs\Gamma^{q-2}\Gamma\,\nu\Delta\Gamma\,dx
+      =-q(q-1)\nu\int\abs\Gamma^{q-2}\abs{\grad\Gamma}^2dx\ \leq\ 0$
+      (for $q\geq2$ the integrand is locally integrable).
+    \item \textbf{The singular first-order term vanishes identically.} With
+      $dx=r\,dr\,d\theta\,dz$ the factor $r$ cancels the $r^{-1}$:
+      \[
+        \int q\abs\Gamma^{q-2}\Gamma\Bigl(-\frac{2\nu}{r}\partial_r\Gamma\Bigr)dx
+        =-4\pi\nu\!\int_{\R}\!\int_0^\infty\!\partial_r\bigl(\abs\Gamma^{q}\bigr)
+          dr\,dz
+        =4\pi\nu\!\int_{\R}\abs{\Gamma(0,z)}^{q}dz=0,
+      \]
+      because $\Gamma$ vanishes on the axis and has compact support. \emph{No
+      $\eps$-exhaustion of the axis is needed}, for the same reason as in
+      Lemma~\ref{lem:wpt3-forced-max}(i).
+  \end{enumerate}
+  Hence, with $N(t)\coloneqq\norm{\Gamma(\cdot,t)}_{L^q}$,
+  \[
+    \frac{d}{dt}N^q\ \leq\ q\int\abs\Gamma^{q-2}\Gamma\,(rf_\theta)\,dx
+      \ \leq\ q\,N^{q-1}\norm{rf_\theta}_{L^q}
+  \]
+  by H\"older with exponents $q/(q-1)$ and $q$. Since
+  $\frac{d}{dt}N^q=qN^{q-1}\frac{d}{dt}N$ wherever $N>0$ and $N$ is
+  differentiable, \eqref{eq:cd1-Lq} follows; $N$ is locally Lipschitz because
+  $\partial_t\Gamma$ is bounded on compacts and the supports are contained in
+  a fixed compact, so the integrated form holds by absolute continuity.
+\end{proof}
+
+\begin{remark}[What the $L^q$ form does and does not deliver]
+  \label{rem:cd1-Lq-scope}
+  \begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+    \item It is a floor on $\norm{rf_\theta}_{L^q}$, not on
+      $\norm{f_\theta}_{L^q}$. Converting needs a bound on $r$ over the
+      support of $f_\theta$ --- a strictly stronger geometric hypothesis than
+      (G2), which constrains only the maximiser set.
+    \item It does not contradict Remark~\ref{rem:wpt3-pointwise}(b): that
+      remark says no $L^q$ bound follows \emph{from the pointwise statement},
+      and the spike counterexample there still applies to
+      Theorem~\ref{thm:cd1-general-floor}. Proposition~\ref{prop:cd1-Lq} is a
+      different argument with a different hypothesis --- growth of
+      $\norm\Gamma_{L^q}$, not of $\max\Gamma$ --- and the two are
+      independent.
+    \item \textbf{It does not apply to the leading field of
+      Proposition~\ref{prop:wpt3-floor}}, and this should be stated rather
+      than glossed. There $\Gamma^{(0)}=q^{-h}H$ with
+      $H\sim\sqrt2c_\infty X^{-h}$ at large $X$ and $X=r^2/(2q)$, so
+      $\Gamma^{(0)}\to\sqrt2\,c_\infty2^{h}r^{-2h}$ as $X\to\infty$,
+      \emph{independently of $q$}; that is not in $L^{q'}(\R^3)$ for any
+      $q'<\infty$. The proposition is a tool for compactly supported
+      constructions, not for that exactly self-similar profile.
+    \item Letting $q\to\infty$ formally returns
+      Lemma~\ref{lem:wpt3-forced-max}(v); no independent content is claimed
+      at the endpoint.
+  \end{enumerate}
+\end{remark}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\subsection{Scope}
+\label{subsec:cd1-scope}
+
+\begin{remark}[Scope of \S\ref{sec:cd1-general-floor}, at its true size]
+  \label{rem:cd1-scope}
+  \begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.6em]
+    \item \textbf{What is new.} A general lower bound, stated once for a
+      class rather than verified for one profile: \eqref{eq:cd1-ratio},
+      \eqref{eq:cd1-radius}, \eqref{eq:cd1-int},
+      \eqref{eq:cd1-exponent}--\eqref{eq:cd1-constant}; the extension to
+      $\nu=0$ (Remark~\ref{rem:cd1-euler}); the $L^q$ form
+      (Proposition~\ref{prop:cd1-Lq}); and the finding that exact
+      self-similarity was not load-bearing
+      (Remark~\ref{rem:cd1-selfsimilar}).
+    \item \textbf{What is elementary.} All of it. The ingredients are the
+      classical axisymmetric swirl maximum principle, Danskin's envelope
+      theorem, and one division. No credit is claimed for machinery; the
+      content is the generality and the hypothesis audit.
+    \item \textbf{Still pointwise.} Parts \ref{it:cd1-ratio} and
+      \ref{it:cd1-radius} are statements at one moving point, and
+      Remark~\ref{rem:wpt3-pointwise} applies to them verbatim.
+      Proposition~\ref{prop:cd1-Lq} is the one statement here that is not.
+    \item\label{it:cd1-notCD} \textbf{Not a statement about (C) or (D), and
+      not about \cite{OpenAI2026}.} The class is axisymmetric
+      (Remark~\ref{rem:cd1-audit}(d)); the field of that paper's Theorem~1.1
+      is not, so the theorem does not apply to it, and no error in it is
+      asserted or implied. Wall~9 governs and is unchanged.
+    \item \textbf{Not a step toward (A) or (B).} It bounds a residual from
+      below. Wall~1, Wall~3, Region~(R2) and
+      Proposition~\ref{prop:wpt2-swirl-exclusion} are untouched.
+    \item \textbf{No forcing is introduced into this document's own
+      arguments.} $f$ is defined as the residual of a field that is given,
+      exactly as in \S\ref{sec:wpt3-forcing-floor}. Studying the residual a
+      construction requires is not the same as adding a forcing term to a
+      regularity argument, and the latter remains excluded.
+  \end{enumerate}
+\end{remark}
+
 \section{Routes and Walls: A Referenced Record (Session S47)}
 \label{sec:walls-s47}
 

@@ -108,6 +108,17 @@ all; and a symmetry-reduced setting in which \(\nabla u\) is recovered by
 lower-dimensional elliptic problems, which is untested and must be settled by a
 written estimate before anything is built on it.
 
+\emph{Amended at \Sn{58}: both permitted directions have since been tested, and
+neither delivered.} The symmetry-reduced setting was executed at \Sn{52}: in
+the axisymmetric class \(\nabla u\) splits into a swirl block, which is
+logarithm-free and sharp, and a poloidal block, and
+\texttt{prop:s51-poloidal-sharp} \emph{proves} the poloidal block is not
+logarithm-free. The general reformulation was tested at \Sn{57} against the
+best external candidate the literature contains --- its key estimate is
+correct, but the smallness it consumes is not available from anything this
+programme owns. Chapter~\ref{ch:pressure-testing} is the record. The
+classification is unchanged: \OPEN{}, and structural.
+
 \begin{obsv}[Wall 1 is the book's most important \OPEN]
 \label{obs:wall1-open}
 It would have been easy, and flattering, to classify this one \IMPOSSIBLE{}.
@@ -116,6 +127,17 @@ past. But ``three attempts failed'' is not a proof, and \Sn{47} declined to
 promote it. Chapter~\ref{ch:cz-log} is devoted to it, and to why the question
 of whether it can be removed is the sharpest technical question the programme
 has posed.
+
+\smallskip
+\emph{Amended at \Sn{58}: the count is no longer three.} \Sn{50} proved that
+saturation and Wall~1(a) are the same requirement rather than a cheaper one;
+\Sn{52} proved the axisymmetric class does not evade it; and the
+\Sn{53}--\Sn{57} arc of Chapter~\ref{ch:pressure-testing} tested it three
+further times --- under reformulation, against the one explicit external
+profile, and against the best external methodology available. Every one of
+those sessions closed with the classification unaltered. The reasoning of this
+observation is unaltered with it: more failed attempts are still not a proof,
+and the wall stays \OPEN{}.
 \end{obsv}
 
 \section{Wall 2 --- the profile route and hypothesis (R): \texorpdfstring{\WITHDRAWN}{withdrawn}}
@@ -190,6 +212,16 @@ entire reframe would be vacuous against it.'' Two further reservations:
 \textbf{(N)} restricts the conclusion to non-degenerate points, and the
 surviving target must beat the constant \(1\) exactly --- the marginal pattern
 the \Sn{31} audit identified as where errors hide.
+
+\emph{Amended at \Sn{58}: the quoted sentence is right about the conclusion and
+imprecise about the reason.} \Sn{53} derived what a rescaling actually costs
+(\texttt{lem:wpt1-nueff}: \(\nu_{\mathrm{eff}}=\nu A/L\)), and the consequence
+is that a rescaling normalising a supercritical rate does not produce nothing
+--- it produces a limit that solves \emph{Euler}, on which none of this
+programme's parabolic tools says anything. That is a stronger obstruction, not
+a weaker one. Future sessions should quote \texttt{rem:wpt1-correction} rather
+than this sentence; see Chapter~\ref{ch:pressure-testing},
+\S\ref{sec:pt-s53}. The classification is unchanged.
 
 \textbf{Classification.} \OPEN{}, and outside the present methods.
 
@@ -425,6 +457,16 @@ to an unmodified \(f\equiv0\) solver. The one substantive observation, recorded
 as an observation and not as evidence: sustaining that anisotropic collapse
 against dissipation required an externally injected, precisely tuned force.
 
+\emph{Amended at \Sn{58}: ``load-bearing, not decorative'' now carries a
+number.} \Sn{55} proved a forced version of the swirl maximum principle and
+applied it to the construction's leading axisymmetric field, obtaining a
+pointwise lower bound \(\abs{f_\vartheta}\gtrsim\tau^{-(A+1)}\) at the running
+swirl maximum --- full leading order in its own momentum equation --- which the
+source's own stated stress exponent meets exactly, by an entirely different
+route. No error in that construction is asserted and none was found; the
+classification is unchanged. Chapter~\ref{ch:pressure-testing},
+\S\ref{sec:pt-s55}.
+
 \begin{record}
 \textbf{Wall 9's framing needs one correction, made at \Sn{49}.} The wall as
 written adds, after the classification, that ``in Fefferman's formulation the
@@ -455,7 +497,10 @@ be deleted, and the geometry may still be borrowed.
 table, reproduced with the \Sn{48} amendment to row~2 and no other change.
 Four walls carry \IMPOSSIBLE{}, and every one of the four is
 \emph{qualified} --- for a route, over a structure, as a test, or as an
-import.}
+import. \emph{Amended at \Sn{58}:} the document's own table has since gained
+rows 3\('\)--3\('''\) (\Sn{53}) and 9\('\) (\Sn{55}); they refine what those
+two entries say, they change no classification, and they are described in
+Chapter~\ref{ch:pressure-testing} rather than added here.}
 \label{tab:walls}\\
 \toprule
 \# & Route & Classification & Primary reference \\

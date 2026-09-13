@@ -1,0 +1,880 @@
+% =====================================================================
+%  Chapter 17b — Pressure-testing the landscape (S53–S57)
+% =====================================================================
+\chapter{Pressure-Testing the Landscape}
+\label{ch:pressure-testing}
+
+\begin{record}
+\textbf{Sources of record.} Five session logs, read in full, all in
+\texttt{SESSION-LOG/}:
+
+\smallskip
+{\raggedright\ttfamily
+2026-09-12-S53-typeII-reconnaissance.md\\
+2026-09-12-S54-wpt2-openai-profile.md\\
+2026-09-12-S55-wpt3-forcing-floor.md\\
+2026-09-12-S56-strategic-audit-literature.md\\
+2026-09-13-S57-wpa-grujic-bmo-pricing.md\par}
+
+\smallskip
+Each is cross-checked here against its
+\texttt{PROGRESS.md} \textsc{key finding} block
+and, where finer detail was needed, against the proof document directly:
+\S\,\texttt{sec:typeII-wpt1} (\Sn{53}), \S\,\texttt{sec:wpt2-openai}
+(\Sn{54}), \S\,\texttt{sec:wpt3-forcing-floor} (\Sn{55}) and
+\S\,\texttt{sec:wpa-s57} (\Sn{57}).
+
+\smallskip
+\textbf{Citation convention, as everywhere in this book.} Objects of the proof
+document are named as text --- \texttt{lem:wpt1-nueff} and the rest --- because
+that document is not this one and its labels do not resolve here. Only
+cross-references \emph{inside} this book are set as references.
+
+\smallskip
+\textbf{No numerics.} This entire thread produced no experiment and no
+\texttt{results.db} row. Everything in it is derivation and reading, and every
+quantitative statement below traces to a session log or to a labelled object in
+the proof document.
+\end{record}
+
+Chapter~\ref{ch:openai} surveyed the external landscape as it stood at \Sn{49}:
+a forced blow-up construction, two strands of work with different claims, a
+Type-II profile the programme's machinery cannot see, and a wall --- Wall~9 ---
+forbidding the import of any of it. That chapter ends with a survey. This one
+is what happened when the programme went back and pushed on the survey's
+conclusions, one at a time, over five consecutive sessions.
+
+The short form is easy to state and worth stating before any of the
+mathematics: \emph{nothing moved}. Five sessions, four of them commissioned to
+find a way through or around the central obstruction, produced four correct
+results and one literature sweep, and not one of them reclassified a single
+wall. That is the chapter's subject.
+
+\section{The thesis, stated first}
+\label{sec:pt-thesis}
+
+The programme's central obstruction is Wall~1 (\S\ref{sec:wall1},
+Chapter~\ref{ch:cz-log}): the sup-norm of a Calder\'on--Zygmund image costs
+\(M\Lfac\) and not \(M\), and every enstrophy budget from \Sn{33} onward
+inherits the factor. It was identified as defect D8 in the \Sn{31} audit,
+consolidated as a wall in \Sn{47}, and has since been tested by every session
+that had a plausible reason to think it could be got round.
+
+\begin{record}
+\textbf{The claim this chapter makes.} The \Sn{53}--\Sn{57} arc is the
+\textbf{fifth, sixth and seventh independent confirmation} --- after \Sn{48},
+\Sn{50} and \Sn{52} --- that the obstruction is real and does not move:
+
+\smallskip
+\emph{not under reformulation} (\Sn{53}: adapting the rescaling to reach
+Type-II does not adapt the tools, it deletes the term they are built on);
+
+\emph{not under the one concrete external candidate profile} (\Sn{54},
+\Sn{55}: the only explicit Type-II profile in existence is excluded in the
+unforced axisymmetric class, and the forcing it needs instead is bounded below
+at full leading order);
+
+\emph{not under the best external methodology this programme could find}
+(\Sn{56}, \Sn{57}: located, read in full from primary sources, priced, and
+refuted as a route around the wall, with one genuine technique kept).
+
+\smallskip
+This is not a breakthrough. It is the most thorough stress-test the
+obstruction has received, and it survived all of it.
+\end{record}
+
+Two things have to be said immediately, because the claim is easy to inflate.
+
+\textbf{What ``confirmation'' means here.} It does not mean that anything was
+proved \emph{about} Wall~1. Wall~1 remains \OPEN{} and structural; no proof in
+the document says the logarithm cannot be removed, and none of these five
+sessions produced one. What each session did was take a specific candidate
+route --- a reformulation, a profile, a methodology --- and establish that it
+does not deliver what the wall requires. Each closes with the same ledger line,
+in its own words: \emph{Wall~1, Wall~3, Wall~9 unchanged in classification}.
+Seven failed routes are not a theorem. They are evidence about where to look,
+which is what a walls document is for.
+
+\textbf{Three of the five sessions are not literally about Wall~1.} \Sn{53}
+sharpens Wall~3 (the ceiling), \Sn{54} and \Sn{55} sharpen Wall~9
+(forcing).\footnote{The counting differs between two of this chapter's own
+sources, and the difference is bookkeeping, not substance. The
+\texttt{PROGRESS.md} \textsc{key finding} block for \Sn{57} calls that session
+``the fifth independent confirmation (after \Sn{48}, \Sn{50}, \Sn{52},
+\Sn{53})'' --- four priors, the arc contributing one. The brief commissioning
+this chapter counts the wall's own original identification (D8 at \Sn{31},
+consolidated at \Sn{47}) as the first, making \Sn{48}, \Sn{50} and \Sn{52} the
+second through fourth and the arc the fifth through seventh, with \Sn{54} and
+\Sn{55} read as one confirmation and \Sn{56}--\Sn{57} as another. Nothing
+mathematical depends on which convention is used; this chapter adopts the
+brief's, and records the discrepancy rather than silently picking one.} They
+belong in the same arc anyway, for a reason \Sn{53} makes explicit: the walls
+are not independent. The machinery of \S33--\S44 is parabolic and Type-I-rate
+essential, so a route that escapes Wall~1 by leaving the Type-I class hands the
+problem to Wall~3, and a route that escapes Wall~3 by importing a constructed
+singularity hands it to Wall~9. The arc tested all three exits, and found each
+one closed by a different mechanism.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  >={Latex[length=2mm]},
+  ev/.style={draw, rounded corners=2pt, font=\scriptsize, align=left,
+             inner sep=4pt, text width=64mm},
+  neg/.style={ev, draw=impossiblered, thick},
+  neu/.style={ev, draw=rulegrey},
+  keep/.style={draw, rounded corners=2pt, font=\scriptsize, align=left,
+               inner sep=4pt, text width=42mm, draw=provedgreen, very thick},
+  ar/.style={->, thick, rulegrey}
+]
+\node[neu] (s53) at (0,0)
+  {\Sn{53} \textbf{Can the machinery be adapted to Type-II?}\\
+   \texttt{lem:wpt1-nueff}: any rescaling normalising a supercritical rate
+   has \(\nu_{\mathrm{eff}}=\nu A/L\to0\). The limit solves \emph{Euler}};
+\node[neg, below=6mm of s53] (s54)
+  {\Sn{54} \textbf{Does the one explicit Type-II profile survive unforced?}\\
+   \texttt{prop:wpt2-swirl-exclusion}: no. Its swirl
+   \(\Gamma\asymp\tau^{-h}\to\infty\) contradicts the swirl maximum principle};
+\node[neg, below=6mm of s54] (s55)
+  {\Sn{55} \textbf{How much forcing does it actually need?}\\
+   \texttt{prop:wpt3-floor}: \(\abs{f_\vartheta}\gtrsim\tau^{-(A+1)}\) at the
+   swirl maximum --- full leading order. The source's own exponent agrees};
+\node[neu, below=6mm of s55] (s56)
+  {\Sn{56} \textbf{Is there anything better outside?}\\
+   One candidate in the entire 2024--2026 sweep: a log-weighted BMO depletion
+   mechanism, in this document's own direction equation};
+\node[neg, below=6mm of s56] (s57)
+  {\Sn{57} \textbf{Is it cheaper than what we already have?}\\
+   \texttt{thm:s57-independence}: not a relabelling, not comparable, not
+   cheaper. Three explicit counterexamples};
+
+\foreach \a/\b in {s53/s54, s54/s55, s55/s56, s56/s57}{\draw[ar] (\a) -- (\b);}
+
+\node[keep, right=7mm of s53] (k53)
+  {\textbf{kept:} the trichotomy, and the correct reason the vacuity holds};
+\node[keep, right=7mm of s54] (k54)
+  {\textbf{kept:} \texttt{cor:wpt2-radius-cap} --- check a candidate profile
+   against it \emph{first}};
+\node[keep, right=7mm of s55] (k55)
+  {\textbf{kept:} the forced swirl maximum principle, a genuine
+   generalisation};
+\node[keep, right=7mm of s56] (k56)
+  {\textbf{kept:} a map of what does \emph{not} exist in the literature};
+\node[keep, right=7mm of s57] (k57)
+  {\textbf{kept:} the commutator/CRW estimate, verified correct};
+
+\foreach \a/\b in {s53/k53, s54/k54, s55/k55, s56/k56, s57/k57}
+  {\draw[->, thick, provedgreen] (\a.east) -- (\b.west);}
+
+\node[draw=impossiblered, very thick, rounded corners=2pt, font=\scriptsize,
+      align=center, inner sep=5pt, text width=100mm, below=7mm of s57.south west,
+      anchor=north west] (led)
+  {\textbf{Ledger after five sessions:} Wall~1 \OPEN{}, Wall~3 \OPEN{},
+   Wall~9 \IMPOSSIBLE{} as an import route --- \emph{every classification
+   exactly as \Sn{47} left it}};
+\draw[ar] (s57) -- (led);
+\end{tikzpicture}
+\caption[The five-session arc]{The arc, as a chain. Each session asked one
+question about a route past the programme's obstructions; each returned a
+correct negative, and each left something behind that is worth keeping
+independently of the negative. The bottom box is what did not change.}
+\label{fig:pt-arc}
+\end{figure}
+
+\section{\texorpdfstring{\Sn{53}: what a rescaling costs}{S53: what a rescaling costs}}
+\label{sec:pt-s53}
+
+Chapter~\ref{ch:openai}, \S\ref{sec:s49-two-strands}, recorded the fact that
+cuts hardest against this programme: the one explicitly constructed singular
+profile in the literature is Type-II, and the machinery of \S33--\S39 is blind
+to Type-II by construction. The document's own statement of why is a single
+sentence in \texttt{rem:s39-distance}: ``a Type-II singularity would rescale to
+nothing''. \Sn{53} was commissioned to find out whether that sentence is true,
+and whether the blindness is fundamental or an artefact.
+
+It is neither, as posed, and the true statement is \emph{worse} for the
+programme than the one it replaces.
+
+\subsection{The price of a rescaling, computed}
+
+The escape everyone reaches for is to rescale differently. Give the rescaling
+two parameters instead of one --- an amplitude \(A\) and a length \(L\) --- and
+ask what equation the limit satisfies. Writing
+\(v(y,s)=A\,u(x^*+Ly,\,T+\tau s)\) and normalising the nonlinearity by
+\(\tau=AL\), \texttt{lem:wpt1-nueff} gives the answer in one line:
+\[
+  \nu_{\mathrm{eff}} \;=\; \nu\,\frac{A}{L}.
+\]
+The programme's standard rescaling is the case \(A=L\), which returns
+\(\nu_{\mathrm{eff}}=\nu\). Every other member of the family changes the
+viscosity, and the direction of the change is forced by the blow-up rate it is
+asked to normalise. Requiring \(\sup\abs{u}\asymp(T-t)^{-\beta}\) to rescale to
+size one gives \(A=L^{\beta/(1-\beta)}\), hence
+\(\nu_{\mathrm{eff}}/\nu=L^{(2\beta-1)/(1-\beta)}\), and
+\texttt{cor:wpt1-trichotomy} reads it off.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}l l p{0.44\textwidth}@{}}
+\toprule
+Rate \(\beta\) & \(\nu_{\mathrm{eff}}\) as \(L\downarrow0\) & What the limit
+  object solves \\
+\midrule
+\(\beta<\tfrac12\) & \(\to\infty\)
+  & Stokes / heat. No blow-up mechanism survives \\[3pt]
+\(\beta=\tfrac12\) & \(=\nu\)
+  & \textbf{Navier--Stokes.} \(A=L\); the \emph{unique} member of the family
+    that preserves the equation, and exactly the programme's own rescaling \\[3pt]
+\(\tfrac12<\beta<1\) & \(\to0\)
+  & \textbf{Euler.} This is Seregin's zoom, with \(\beta=\alpha/(\alpha+1)\) \\[3pt]
+\(\beta\geq1\) & ---
+  & \textbf{No member of the family works.} At \(\beta=1\) normalisation forces
+    \(L=1\), i.e.\ no spatial zoom; for \(\beta>1\) it forces
+    \(\tau=AL\to\infty\), contradicting \(\tau\leq T\) \\
+\bottomrule
+\end{tabular}
+\caption[The rescaling trichotomy]{\texttt{cor:wpt1-trichotomy}. The
+programme's rescaling is not one choice among many: it is the only one that
+leaves the equation alone. The last row is a scope limit on the Euler-zoom
+method itself and is stated in no source \Sn{53} read.}
+\label{tab:pt-trichotomy}
+\end{table}
+
+Three independent checks were run and all three agree: \(A=L=\lambda\) returns
+the document's own rescaling; Seregin's Euler scaling \(A=\lambda^\alpha\),
+\(L=\lambda\) returns \(\nu_{\mathrm{eff}}=\nu\lambda^{\alpha-1}\to0\) for
+\(\alpha>1\); and his \(f\)-form returns \(\nu_{\mathrm{eff}}=\nu f(\lambda)\).
+
+\subsection{The correction, reported as the session was asked to report it}
+
+\begin{record}
+\textbf{\texttt{rem:s39-distance}(1) is right about the conclusion and
+imprecise about the reason,} and the correct statement --- \Sn{53}'s
+\texttt{rem:wpt1-correction}, which future sessions should quote instead --- is
+this:
+
+\smallskip
+\emph{A rescaling that normalises a supercritical blow-up rate in \(L^\infty\)
+necessarily has \(\nu_{\mathrm{eff}}=\nu A/L\to0\), so its limit object solves
+\textbf{Euler}. The vacuity is not that nothing survives; it is that what
+survives is \emph{inviscid} --- and every tool of \S33--\S44 is parabolic:
+Moser iteration, the magnitude Caccioppoli inequality, De Giorgi level
+iteration, \texttt{lem:local-enstrophy-typeI}, CKN \(\varepsilon\)-regularity,
+backward uniqueness. None of them says anything about a solution of the Euler
+equations.}
+\end{record}
+
+That is a strictly stronger obstruction than ``there is no limit object''. A
+limit object that exists and lies outside every estimate the programme owns is
+worse than no limit object at all, because it removes the hope that a
+compactness argument could be repaired. \Sn{53} also found a second respect in
+which the old sentence was too strong: under the weaker Caffarelli--Kohn--%
+Nirenberg hypothesis \(g<\infty\), the \emph{same} \(\lambda\)-family is bounded
+in \(L^\infty_tL^2_{\mathrm{loc}}\cap L^2_t\dot H^1_{\mathrm{loc}}\) and the
+classical compactness does produce an ancient suitable weak Navier--Stokes
+solution, viscosity retained.
+
+\subsection{The loophole, and why it closes on dimensional grounds}
+
+If the Euler zoom must throw the viscosity away, the natural hope is to find one
+that still carries something this programme controls. In the axisymmetric class
+the obvious candidate is the swirl \(\Gamma=r\,u_\vartheta\), which is free by
+the maximum principle. It does not work, and \texttt{cor:wpt1-swirl} gives the
+reason in one line: under the two-parameter family,
+\[
+  \Gamma_{\mathrm{new}} \;=\; \frac{A}{L}\,\Gamma
+  \;=\; \frac{\nu_{\mathrm{eff}}}{\nu}\,\Gamma ,
+\]
+because \(\Gamma\) and \(\nu\) have the same dimension \(L^2/T\), so
+\(\Gamma/\nu\) is invariant across the whole family. Hence any zoom that keeps
+the swirl keeps the viscosity --- that is, is the programme's own rescaling, and
+needs Type-I. ``An Euler zoom that keeps the swirl'' is dimensionally
+impossible, not merely unknown.\footnote{The conclusion in the direction
+``\(\nu_{\mathrm{eff}}\to0\Rightarrow\Gamma\to0\)'' carries a hypothesis that
+the \Sn{53} log states without: the maximum principle \texttt{lem:s51-gamma}
+holds for the \emph{unforced} equations. \Sn{54} found a concrete witness that
+the hypothesis is load-bearing, and the proof document's version of the
+corollary cites the lemma correctly. The document governs; the \Sn{53} log's
+phrasing should not be reused. Note also that \texttt{lem:s51-gamma} and its
+neighbours carry the label prefix \texttt{s51} while the session that wrote
+them was \Sn{52} --- a pre-existing off-by-one between the document's headings
+and the session logs, recorded here so it is not rediscovered.}
+
+\subsection{The verdict, and the region nobody owns}
+
+\Sn{53}'s verdict was referral, not a target: the branch of mathematics that
+owns Type-II for true three-dimensional Navier--Stokes is \emph{Liouville
+theorems for ancient solutions of the Euler equations in weighted classes
+defined by a blow-up scenario}, and it is one author's programme --- four
+papers by Seregin, all of them \emph{scenario-conditional}. No unconditional
+exclusion of Type-II exists in that literature, and none is claimed there. This
+programme has no foothold in it: it has never written an Euler estimate.
+
+One structural finding deserves to be carried, because it means the two
+literatures do not tile the space they appear to. The Type-II results are
+stated in a \emph{third} convention --- Caffarelli--Kohn--Nirenberg
+scale-invariant energies --- and temporal Type-I implies the CKN version, so
+Seregin's Type-II class is strictly \emph{smaller} than this document's. Between
+them lies a region, \(\mathrm{(R2)}\): temporally Type-II but CKN Type-I,
+addressed by neither. Whether it is populated is unknown. Any future claim to
+have ``covered Type-II'' has to say what it does about it.
+
+And \Sn{53} kept ``open'' and ``expected'' apart, deliberately. Nothing read
+excludes Type-II; equally, no source read asserts that it occurs. The strongest
+unforced numerical candidate in the literature is Type-I-shaped, and the only
+Type-II profile is forced.
+
+\section{\texorpdfstring{\Sn{54}: the one concrete candidate, and what killed
+it}{S54: the one concrete candidate, and what killed it}}
+\label{sec:pt-s54}
+
+\Sn{53} left one obvious next question. There exists, in the world, exactly one
+explicit Type-II profile for a Navier--Stokes-type system: the collapsing
+anisotropic vortex core of Chapter~\ref{ch:openai}, \S\ref{sec:their-mechanism}.
+Does it survive as an ancient solution of the unforced equations?
+
+The first thing \Sn{54} did was fetch the primary document rather than work from
+the programme's own transcription of it. The transcription --- carried since
+\Sn{40} from a screenshot --- turned out to be \emph{correct in every symbol},
+and the governing profile equations turned out to be stated explicitly in the
+source rather than left implicit in its asymptotics. One fact was missing from
+the programme's record, and it governed everything downstream: the leading
+balance \textbf{retains radial viscosity and omits axial viscosity}. The source
+says so three separate ways, including the dimensional statement
+\(\mathrm{Re}_r=O(1)\) already reproduced in \S\ref{sec:their-mechanism}.
+
+\subsection{The rescaling with two lengths, and a limit that is not Euler}
+
+\texttt{lem:wpt2-aniso} generalises \texttt{lem:wpt1-nueff} to independent
+radial and axial scales. With \(r=L_r\rho\), \(z=L_z\zeta\), and amplitudes
+\(A_r,A_\vartheta,A_z\), the limit is incompressible \emph{if and only if}
+\(A_rL_r=A_zL_z=:\Lambda\), and normalising the advection by \(\Lambda\)
+produces not one effective viscosity but two:
+\[
+  \nu_r=\nu\,\frac{A_r}{L_r},\qquad \nu_z=\nu\,\frac{A_z}{L_z}.
+\]
+\texttt{lem:wpt1-nueff} is the isotropic special case, and was re-derived
+independently before being used.
+
+Fed the profile's own exponents, \texttt{prop:wpt2-limit} returns three things,
+all of which came out against the session's expectation. The incompressibility
+constraint holds \emph{automatically}, because the profile's amplitude
+anisotropy is exactly conjugate to its length anisotropy --- \(A+D=1\), which is
+the source's own identity. The radial viscosity is preserved \emph{exactly},
+\(\nu_r=\nu\), while \(\nu_z=\nu\tau^{2h}\to0\). And the radial momentum
+equation degenerates, its pressure and centrifugal coefficients both diverging,
+leaving the cyclostrophic balance \(\partial_\rho\tilde q=v_\vartheta^2/\rho\)
+--- which is again the source's own identity.
+
+So the limit exists, is closed and nontrivial, and \textbf{does not solve
+Euler}. Structurally it is a boundary-layer (Prandtl-type) reduction: momentum
+degenerated to a constraint in the thin direction, thin-direction velocity
+recovered from continuity, diffusion in the thin direction only. Two cautions
+were recorded with it, and both belong here. No source read writes this system,
+so the identification is structural and is offered as such. And well-%
+\emph{defined} is not well-\emph{posed}: Prandtl's system is linearly ill-posed
+in Sobolev spaces, by Gérard-Varet--Dormy, whose proof exploits exactly the
+features this limit has. That result is not transported, and no claim is made
+that it applies.
+
+The consequence for the Liouville programme is negative in both directions.
+Those theorems need an \emph{isotropic} Euler zoom, and one length cannot match
+two: scaling by \(\ell_r\) gives a steady, \(\zeta\)-independent, infinite-%
+energy columnar Euler flow lying in no weighted class any of the four theorems
+uses; scaling by \(\ell_z\) collapses the core onto the axis and the limit is
+trivial, so nontriviality --- the hypothesis every Liouville argument
+contradicts --- fails outright.
+
+\subsection{The exclusion, which needed none of that}
+
+The profile is excluded, and the argument uses none of the preceding
+subsection. It is three lines of the swirl maximum principle.
+
+\begin{record}
+\textbf{\texttt{prop:wpt2-swirl-exclusion}.} The profile's angular momentum is
+\(\Gamma^{(0)}=r\,u_\vartheta^{(0)}=q^{-h}H(X,\eta)\) --- an identity stated
+verbatim in the source's own proof, and re-derived independently here --- so
+\(\sup\abs{\Gamma^{(0)}}\gtrsim\tau^{-h}\to\infty\). But for smooth
+axisymmetric solutions of the \emph{unforced} equations,
+\texttt{lem:s51-gamma} gives \(\norm{\Gamma(t)}_\infty\leq
+\norm{\Gamma(0)}_\infty\), and Schwartz data have
+\(\norm{\,\abs{x}u_0}_\infty<\infty\). \textbf{Contradiction.} The profile
+cannot be the blow-up asymptotics of an unforced axisymmetric Navier--Stokes
+solution.
+\end{record}
+
+The geometric form, \texttt{cor:wpt2-radius-cap}, is the part worth carrying
+forward. The maximum principle gives \(\abs{u_\vartheta}\leq\Gamma_0/r\) ---
+that is, the swirl component automatically satisfies the \emph{spatial} Type-I
+bound. So on a core of radius \(\ell_r\) the swirl is capped at
+\(\Gamma_0/\ell_r\), and an unforced axisymmetric core with the Type-I radial
+geometry \(\ell_r\asymp\tau^{1/2}\) can carry only Type-I swirl. Type-II swirl
+requires a strictly thinner core, \(\ell_r\lesssim\tau^{1/2+h}\). The profile
+has \(\ell_r\asymp\tau^{1/2}\) together with
+\(\abs{u_\vartheta}\asymp\tau^{-1/2-h}\), and misses the cap by exactly the
+factor \(\tau^{-h}\) that makes it Type-II.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>={Latex[length=2mm]}, scale=1.0]
+  \draw[->, thick, gray] (0,0) -- (8.7,0)
+    node[right, font=\scriptsize] {\(\log\tfrac1\tau\)};
+  \draw[->, thick, gray] (0,0) -- (0,4.5)
+    node[above, font=\scriptsize] {\(\log\sup\abs{u_\vartheta}\)};
+
+  % shaded wedge between the two rates
+  \fill[impossiblered, opacity=0.10]
+    (0,0.35) -- (7.8,4.15) -- (7.8,3.20) -- cycle;
+
+  % Type-I cap: slope 1/2
+  \draw[provedgreen, very thick] (0,0.35) -- (7.8,3.20);
+  % Type-II profile: slope 1/2+h
+  \draw[impossiblered, very thick] (0,0.35) -- (7.8,4.15);
+
+  \draw[<->, thick] (8.05,3.20) -- node[right, font=\scriptsize]
+    {\(\tau^{-h}\)} (8.05,4.15);
+
+  \node[impossiblered, font=\scriptsize, anchor=south west, align=left]
+    (plab) at (0.9,3.05) {the profile: \(\tau^{-1/2-h}\)};
+  \draw[impossiblered, thin] (plab.south east) -- (3.55,2.15);
+  \node[provedgreen, font=\scriptsize, anchor=north west, align=left]
+    at (3.4,1.35) {cap from the maximum principle:\\
+      \(\abs{u_\vartheta}\leq\Gamma_0/\ell_r\asymp\tau^{-1/2}\)};
+\end{tikzpicture}
+\caption[The swirl radius cap]{\texttt{cor:wpt2-radius-cap} in one picture,
+both lines drawn at the same core radius \(\ell_r\asymp\tau^{1/2}\). In the
+unforced axisymmetric class the swirl maximum principle caps
+\(\abs{u_\vartheta}\) by \(\Gamma_0/r\), so a core of Type-I radius can carry
+only Type-I swirl. The shaded wedge is the excess \(\tau^{-h}\) that makes the
+candidate profile Type-II --- and it is exactly the amount by which the profile
+violates a free conservation law.}
+\label{fig:pt-radius-cap}
+\end{figure}
+
+\subsection{Four things this is not}
+
+\Sn{54}'s own statement of its scope is reproduced here without softening,
+because the result is narrow and the temptation to quote it broadly is real.
+
+\begin{enumerate}[label=\textup{(\alph*)},leftmargin=2.4em]
+\item \emph{Axisymmetric class only.} \texttt{lem:s51-gamma} is. Nothing is said
+  about a non-axisymmetric flow with the same scales.
+\item \emph{Unforced only} --- which is the point of the exercise, but which
+  also means \textbf{this is not a statement about the source's theorem}. That
+  flow is forced \emph{and} non-axisymmetric, so the maximum principle never
+  applied to it. No contradiction with it is asserted or implied. Wall~9 governs
+  (\S\ref{sec:wall9}).
+\item \emph{One profile family, not Type-II.} Any axisymmetric core with
+  \(\ell_r\lesssim\tau^{1/2+h}\) escapes the cap entirely. Wall~1, Wall~3 and
+  region \(\mathrm{(R2)}\) are untouched.
+\item \emph{Elementary.} The swirl maximum principle is classical and was
+  already in the document. The content is the check, not the machinery, and no
+  credit is claimed for the latter.
+\end{enumerate}
+
+The transferable lesson is a piece of process, and it is the one thing from
+\Sn{54} a future session should actually reuse: the Liouville programme was the
+wrong tool, two independent computations say so, and what settled the question
+was a conservation law the class supplies for free. \emph{Before importing
+profile-extraction machinery against a candidate profile, check it against
+\texttt{cor:wpt2-radius-cap} first.}
+
+\section{\texorpdfstring{\Sn{55}: putting a number on Wall 9}{S55: putting a number on Wall 9}}
+\label{sec:pt-s55}
+
+Wall~9 says the forcing in such a construction is ``load-bearing, not
+decorative'' (\S\ref{sec:wall9}). That is a qualitative statement, inherited
+from \Sn{40}'s reading, and a qualitative statement is exactly the kind of thing
+that decays into a slogan. \Sn{55} turned it into a number.
+
+\subsection{The forced swirl maximum principle}
+
+The tool is a generalisation of \texttt{lem:s51-gamma} that did not exist in the
+document. \texttt{lem:wpt3-forced-swirl}: for axisymmetric flow, adding a force
+\(f\) adds \textbf{exactly} \(r f_\vartheta\) to the swirl equation and nothing
+else. Neither \(f_r\) nor \(f_z\) appears, and there is still no pressure term.
+The three places this could fail --- pressure, advection, the vector Laplacian
+--- were each checked rather than assumed.
+
+\texttt{lem:wpt3-forced-max} then runs the maximum principle with the force in
+place, on three hypotheses and no more: smoothness; attainment of the maximum
+with \emph{uniformly} compact maximiser sets; and positivity of the running
+maximum. Two features are worth recording. The maximiser is automatically off
+the axis, since \(\Gamma=r u_\vartheta=O(r^2)\) there --- so the singular
+coefficient \(-2\nu/r\) is never evaluated at \(r=0\), and the
+\(\varepsilon\)-exhaustion used in the unforced lemma's own proof is not needed.
+The forced statement is, in that one respect, \emph{cleaner} than the statement
+it generalises. And the derivative of the maximum is handled by Danskin, both
+one-sided derivatives written out, with an integrated form that assumes no
+differentiability anywhere; at \(f\equiv0\) it returns \texttt{lem:s51-gamma}
+exactly, so it is a genuine generalisation rather than a parallel statement.
+
+\begin{record}
+\textbf{The commissioning brief's own statement of the target was false, and
+had to be corrected.} It asked for
+\(\tfrac{\dee}{\dee t}\norm{\Gamma}_\infty\leq(rf_\vartheta)(x_m(t),t)\). For
+the absolute-value norm that is wrong: if the norm is attained where
+\(\Gamma<0\), that point is a global \emph{minimum}, the diffusion term there
+is \(\geq0\), and the inequality \emph{reverses}. The correct statements are the
+brief's inequality for the \emph{signed} maximum, and a version carrying a sign
+factor for the norm. Nothing downstream changed --- the floor is stated for the
+signed maximum --- but the erroneous form should not be propagated. Recorded in
+the document as \texttt{rem:wpt3-handover-sign}.
+\end{record}
+
+\subsection{The floor}
+
+Because the leading field is exactly self-similar, its swirl maximum is not
+merely comparable to a power of \(\tau=1-t\) but \emph{equal} to one:
+\(M(t)=\sup_x\Gamma^{(0)}=c_*\tau^{-h}\) exactly, with \(c_*\) attained in the
+interior of the profile domain. That exactness is what makes the result a floor
+rather than a scaling heuristic. Differentiating and applying the forced maximum
+principle gives \texttt{prop:wpt3-floor}:
+\[
+  \abs{r f_\vartheta^{(0)}} \;\geq\; h\,c_*\,\tau^{-(A+1/2)},
+  \qquad
+  \abs{f_\vartheta^{(0)}} \;\geq\; \frac{h\,c_*}{c_r}\,\tau^{-(A+1)}
+  \;=\;\frac{h\,c_*}{c_r}\,\tau^{-(3/2+h)},
+\]
+pointwise at the running swirl maximum, whose radius \(c_r\tau^{1/2}\) is an
+\emph{output} of the computation and not an assumption fed into it.
+
+The calibration is what gives the exponent its meaning. Every individual term
+of the leading field's own azimuthal momentum equation --- the time derivative,
+the radial advection, the radial viscous term --- is of size
+\(\tau^{-(A+1)}\), while the axial viscous term is smaller by \(\tau^{2h}\). So
+the floor says the azimuthal residual is of \emph{full leading order in its own
+momentum equation}: not a perturbation, not lower order, and not made so by any
+choice of the free profile data. That is the quantitative content of Wall~9's
+``load-bearing''. As a by-product the same computation independently reproduces
+the source's own structural claim that radial viscosity is retained in the
+leading balance and axial viscosity is not.
+
+\subsection{The comparison, and what it does not say}
+
+The floor was derived from the swirl maximum principle and a single exponent.
+The source states its own forcing scaling, in a different place and for a
+different reason, as a stress exponent \(T=q^{-A-1/2}T_0\). Converting gives
+\(\abs{f_{\vartheta,B}}\asymp\tau^{-(A+1)}\) for the axisymmetric background:
+\textbf{the same two exponents, by a genuinely different route}, with radial
+integration of the residual on one side and a maximum principle on the other.
+Neither derivation uses the other's input.
+
+Four qualifications travel with that, all of them from the session's own record.
+The comparison is \textbf{exponent-level only}: the floor's constant carries
+\(h<1/100\) and the source quotes no numerical value, so constants are not
+compared. The statement is \textbf{pointwise, at one moving point} --- a set of
+measure zero, from which no positive-measure and no \(L^q\) statement for
+\(q<\infty\) follows, a spike of measure \(\varepsilon\) tracking the maximiser
+being enough to satisfy it. There is \textbf{no tension with the source's main
+theorem}, whose final force is flat and whose full field is non-axisymmetric, so
+the lemma does not apply to it at all; what the floor bounds is the residual of
+the \emph{axisymmetric background}, an intermediate object the construction
+never claims is small. And \textbf{no error is asserted, and none was found}. A
+single derived requirement the source does not state --- that the swirl maximum
+is forced into the active annulus where the pulses act,
+\texttt{cor:wpt3-annulus} --- is recorded as a fact checkable in one line by
+anyone holding the profile, explicitly not as a defect.
+
+\begin{obsv}[The sharpest available form of Wall 9]
+\label{obs:pt-wall9-sharp}
+Read in the useful direction, the floor explains \emph{why} such constructions
+break axisymmetry: any mechanism carrying an axisymmetric background's swirl
+from \(O(1)\) to \(\tau^{-h}\) must inject azimuthal momentum at full leading
+order, and the only free conservation law of the class forbids doing it for
+nothing. Breaking axisymmetry is not a convenience of the construction; it is
+what the swirl maximum principle costs.
+
+\smallskip
+This is documentation-sharpening, and the session classified it as such. It is
+not a step toward alternatives (A) or (B) --- it proves a \emph{lower} bound on
+a forcing, which is the opposite direction of travel --- and Wall~9's
+classification is unchanged.
+\end{obsv}
+
+\section{\texorpdfstring{\Sn{56}: what the literature actually contains}{S56: what the literature actually contains}}
+\label{sec:pt-s56}
+
+At this point the internal toolkit was, in the sense \Sn{52} and \Sn{53} used
+the word, exhausted. \Sn{56} was a strategic audit: sweep the 2024--2026
+literature against the now-precise statement of the obstruction and report what
+exists.
+
+It returned one find, one honest negative, and one piece of context that is
+uncomfortable and belongs in the record anyway.
+
+\textbf{The find.} Two preprints of a single author propose a conditional route
+to global regularity that operates \emph{in this document's own direction
+equation}, at \emph{this document's own critical scale}, and attacks the
+logarithm at exactly the point Wall~1's consequence clause declares permitted:
+the gradient of \(u\) is never recovered by an \(L^\infty\)
+Calder\'on--Zygmund bound. The mechanism recasts the stretching eigenvalue
+\(\alpha=\ehat\cdot S\ehat\) as a singular-integral commutator and pays for it
+with Coifman--Rochberg--Weiss; the hypothesis carrying it is that the vorticity
+direction lies in a \emph{logarithmically weighted} space of bounded mean
+oscillation, a condition that fails the Dini criterion and is therefore far
+weaker than Constantin--Fefferman. The identification of the direction equation
+was verified term for term against the document's own \texttt{eq:dir-eq}, and
+the concentration regime against the document's own criticality
+\(M\,(\rstar)^2=1\). It was the only methodology the sweep found that
+plausibly satisfies Wall~1's escape clause.
+
+\textbf{The counterweight, recorded at the same time and treated as
+load-bearing:} unrefereed, single author, sweeping conclusion.
+
+\textbf{The negative.} On the branch \Sn{53} named as owning Type-II ---
+Liouville theorems for ancient Euler flows --- there is \emph{nothing new
+whatsoever}. The systematic sweep returns exactly the four papers \Sn{53} had
+already read, and the 2024--2026 ``ancient solutions'' literature is essentially
+all geometric flows. The branch this programme was told to refer the question to
+has not moved in the interval.
+
+\textbf{Two methodologies closed by citation rather than opinion.} A
+shell-model blow-up result whose interactions are, in its own words, organically
+represented in the true Euler/Navier--Stokes nonlinearity means no purely
+cascade-budget argument can distinguish Navier--Stokes from a blowing-up object.
+And computer-assisted proof on the regularity side exists but is structurally a
+posteriori and short-time: it can exclude blow-up for fixed data on a fixed
+interval and can never deliver a universally quantified statement.
+
+\textbf{One ledger correction, made here and worth flagging because it cuts in
+the programme's disfavour.} Wall~9 does \emph{not} govern the separate,
+\emph{unforced} Euler construction by the same group; it continues to govern the
+forced Navier--Stokes paper of Chapter~\ref{ch:openai} exactly as written. The
+two are different papers, and reading the wall as covering both would be an
+error in this programme's own favour.
+
+\textbf{And the context.} Every AI-assisted effort the sweep found targets
+blow-up; none targets regularity. \Sn{56} records the structural reason rather
+than treating it as fashion: blow-up is an existence statement with a
+certificate, regularity is a universally quantified statement without one. That
+asymmetry will not reverse on its own, and this programme is on the side of it
+that has no certificate to offer.
+
+\section{\texorpdfstring{\Sn{57}: pricing the candidate}{S57: pricing the candidate}}
+\label{sec:pt-s57}
+
+\Sn{56} ended with a recommendation and a prediction. The recommendation was one
+gated session to \emph{price} the candidate --- not to adopt it --- under the
+standard \Sn{50} set: a new target must be proved cheaper, not asserted cheaper.
+The prediction was that the answer would be a fifth avatar of a requirement the
+programme already owns, the pattern of \Sn{50} and \Sn{52}, which would itself
+be a legitimate result.
+
+\Sn{57} refuted the prediction and confirmed the conclusion. The hypothesis is
+\emph{not} a relabelling of the programme's own \(\sstar\)-decay --- the two are
+logically independent --- and it is still not cheaper.
+
+\subsection{The dictionary, and the one implication that survives}
+
+The proposed dictionary was a Poincar\'e inequality: gradients control
+oscillation, so a smallness hypothesis on the direction's mean oscillation
+should read as a smallness hypothesis on \(\sstar\). Poincar\'e does run in that
+direction, and \texttt{lem:s57-poincare} makes the surviving implication exact:
+if the \emph{unrestricted} deficit satisfies
+\(\tilde\sigma_\rho(y)\leq K\abs{\log\rho}^{-2}\) for \emph{every} ball
+\(B_\rho(y)\subseteq B_{\rstar}(x^*)\), then the local log-weighted seminorm of
+\(\ehat\) is at most \(\tfrac14K^{1/2}\). At the top scale this is precisely the
+sketch \Sn{56} proposed --- but only as a \emph{sufficient} condition, only for
+the unrestricted deficit, and only at one ball.
+
+Everything else fails, and the failures are not quantitative near-misses. Three
+explicit fields settle it, all smooth, all divergence-free, hence all the
+vorticity of a solenoidal velocity field.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}l >{\raggedright\arraybackslash}p{0.29\textwidth}
+                     >{\raggedright\arraybackslash}p{0.24\textwidth}
+                     >{\raggedright\arraybackslash}p{0.28\textwidth}@{}}
+\toprule
+& Field & What it does & What it refutes \\
+\midrule
+\textbf{(C1)}
+  & \(\omega=M(\cos g_\delta(x_3),\sin g_\delta(x_3),0)\),
+    \(g_\delta(s)=\frac{\sin(s/\delta)}{2\abs{\log\delta}}\)
+  & seminorm \(\leq2\) uniformly, while \(\sstar\to\infty\)
+  & the hypothesis carries \emph{no} \(L^2\) information about
+    \(\nabla\ehat\) at all \\[10pt]
+\textbf{(C2)}
+  & \(\omega=M\cos(x_3/\delta)\,e_1\)
+  & \(\sstar=0\) exactly, while the seminorm is \(+\infty\)
+  & the level-set indicator of \(\sstar\) is load-bearing, not cosmetic \\[10pt]
+\textbf{(C3)}
+  & \(\omega=e_3+\nabla\times(\psi_\delta e_1)\),
+    \(\psi_\delta=\delta\chi_0(\abs{x-y_0}/\delta)\)
+  & \(\sstar\to0\), while the hypothesis fails at scale \(\delta\) by a factor
+    \(\abs{\log\delta}\)
+  & one scale does not give the scale family \\
+\bottomrule
+\end{tabular}
+\caption[The three counterexamples]{The three fields of
+\texttt{prop:s57-no-gradient}, \texttt{prop:s57-indicator} and
+\texttt{prop:s57-onescale}, which together prove
+\texttt{thm:s57-independence}: neither condition implies the other. In (C1) and
+(C3) the indicator is inert by construction, so the failure cannot be blamed on
+it; (C2) is the case where it does all the work.}
+\label{tab:pt-counterexamples}
+\end{table}
+
+\begin{obsv}[What (C2) says about the programme's own definition]
+\label{obs:pt-indicator}
+The restriction to \(\{\abs\omega\geq M/4\}\) in the definition of \(\sstar\)
+has always looked like a convenience. It is not. Near any \emph{transversal
+zero} of \(\omega\) the direction has an order-one jump at every scale, so the
+unrestricted deficit is \textbf{generically infinite} --- and the indicator is
+what keeps \(\sstar\) finite at all. Any unrestricted-oscillation hypothesis
+imported into this programme therefore needs a zero-free core supplied as a
+separate assumption. That is a fact about the programme's own machinery,
+discovered by pricing somebody else's.
+\end{obsv}
+
+The honest translation, once the three failures are accounted for, is that the
+external hypothesis differs from \(\sstar\)-decay in three independent ways:
+weaker in norm (\(L^1\) oscillation against an \(L^2\) gradient bound --- the
+one genuine relaxation, and the reason it carries no gradient information),
+stronger in scale (a family on \((0,\rstar]\), not a statement at \(\rstar\)),
+and stronger in support (unrestricted, where \(\sstar\) is level-restricted).
+Incomparable, in short. And against the wider family, the verdict is the one the
+programme has now reached four times: a scale-invariant no-concentration
+condition, imposed rather than proved, not established for Navier--Stokes
+solutions --- by the companion paper's own admission --- and not shown cheaper
+than what it would replace. What is new is only that this one is not a
+relabelling.
+
+\subsection{The byproduct that is worth keeping}
+
+The commutator step was checked in isolation, link by link, and \textbf{it
+holds}. The cancellation is Constantin--Fefferman's, correctly restated in
+commutator dress; the smallness of the symbol uses the weight's monotonicity in
+the right direction; the extension step is legitimate on a ball; and the
+Coifman--Rochberg--Weiss application reduces, via the operator identity
+\([R_iR_j,b]=R_i[R_j,b]+[R_i,b]R_j\), to the classical bound for Riesz
+transforms, so no general Calder\'on--Zygmund commutator theory is needed. One
+cosmetic error in the source was noted and does not affect the conclusion.
+
+\begin{record}
+\textbf{What the programme keeps from \Sn{57}, independent of the paper's
+overall fate.} \emph{The stretching eigenvalue is a commutator whose symbol is
+the direction field, so any smallness of the direction's \textup{BMO} norm at
+small scales is a linear gain on \(\alpha\) in a restricted critical Lorentz
+norm.}
+
+\smallskip
+This is the first estimate on record in this programme that extracts a gain
+from the direction field \emph{without} an \(L^\infty\) Calder\'on--Zygmund
+bound --- that is, inside the class Wall~1's own consequence clause declares
+permitted.
+
+\smallskip
+\textbf{And it is not by itself a route around Wall~1.} The smallness it
+consumes is not available from \(\sstar\) (Table~\ref{tab:pt-counterexamples}),
+and it is not available from the companion paper either, whose transfer theorem
+is conditional on four assumed hypotheses and whose own final section exhibits
+two natural critical cores --- a point-concentrated tube, a Beltrami core ---
+where those hypotheses fail. The propagation question is open, and the source
+says so itself.
+\end{record}
+
+\subsection{Two corrections \texorpdfstring{\Sn{57}}{S57} made to \texorpdfstring{\Sn{56}}{S56}}
+
+Both were found by going to primary sources rather than to the previous
+session's rendering of them, which is the discipline that produced them.
+
+First, \Sn{56} rendered the central theorem's hypothesis as a Lorentz-space
+condition on \(\omega\). It is not: it is a structural definition that
+additionally supplies a \emph{containment} of the super-level sets in a ball of
+a specific radius --- information a norm bound does not give, since a norm
+bounds the measure and not the location, and information the source's own
+argument needs.
+
+Second, and more to the point, \Sn{56}'s load-bearing counterweight was pointed
+at the wrong half of its citation. The paper \Sn{56} invoked as having
+undermined the same author's earlier claims has two halves: its negative verdict
+concerns certain \emph{a priori} sparseness classes specifically, while its
+first half \emph{positively reproves}, as an explicit alternative to the
+author's own approach, the conditional criterion that the new preprint's endgame
+actually uses. The prior remains a fair caution about interpretation. It does
+not attach where \Sn{56} attached it.
+
+\begin{record}
+\textbf{The source hierarchy, applied.} Where \Sn{56} and \Sn{57} disagree,
+\Sn{57} governs --- later session, primary sources, and the corrections are in
+the direction of \emph{weakening} the programme's own counterweight against an
+external claim, not strengthening it. Where a session log and the proof document
+disagree, the document governs (\S\ref{sec:source-hierarchy}). Both rules were
+needed in this chapter: once for \Sn{53}'s statement of the swirl corollary, and
+once here.
+\end{record}
+
+\section{What the arc changed, and what it did not}
+\label{sec:pt-ledger}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}l p{0.34\textwidth} p{0.34\textwidth}@{}}
+\toprule
+Session & What it settled & What it left standing \\
+\midrule
+\Sn{53}
+  & The vacuity against Type-II is derived, not asserted, and its reason is
+    that the limit object is \emph{inviscid}
+  & Wall~3 \OPEN{}. Type-II unreachable; region \(\mathrm{(R2)}\) owned by
+    nobody \\[3pt]
+\Sn{54}
+  & The one explicit Type-II profile is excluded in the unforced axisymmetric
+    class, by a free conservation law
+  & Wall~1, Wall~3 untouched. Not a statement about the source's theorem \\[3pt]
+\Sn{55}
+  & Wall~9's ``load-bearing'' is a number: \(\tau^{-(A+1)}\), full leading
+    order, matched exactly by the source's own exponent
+  & Wall~9 \IMPOSSIBLE{} as an import route, classification unchanged \\[3pt]
+\Sn{56}
+  & The external landscape, mapped: one candidate, nothing at all on the
+    ancient-Euler branch
+  & Internal toolkit exhausted; no wall touched \\[3pt]
+\Sn{57}
+  & The candidate is logically independent of \(\sstar\)-decay and not cheaper;
+    its commutator step is correct and is kept
+  & Wall~1 \OPEN{} and structural, exactly as \Sn{47} classified it \\
+\bottomrule
+\end{tabular}
+\caption[The arc's ledger]{Five sessions, five correct results, no
+reclassification. The right-hand column is the one the chapter is about.}
+\label{tab:pt-ledger}
+\end{table}
+
+Two amendments to earlier chapters follow from the arc and are made there rather
+than here: the statement in \S\ref{sec:wall1} that a symmetry-reduced
+reformulation is ``untested'' is no longer true, and the walls table of
+\S\ref{sec:walls-table} has since gained rows this book does not reproduce.
+Both are noted in place.
+
+\begin{obsv}[Why a negative arc is worth a chapter]
+\label{obs:pt-why}
+A reader is entitled to ask what five sessions of confirmed negatives are doing
+in a book, and the answer is the same one Chapter~\ref{ch:walls} gives for the
+walls document itself: a route that is known to be closed costs nothing to
+avoid, and a route that is merely \emph{suspected} to be closed costs a session
+every time somebody has the idea again.
+
+\smallskip
+There is a sharper reason here. Before this arc, the programme's position on
+Type-II rested on one sentence of its own, unverified --- ``a Type-II
+singularity would rescale to nothing'' --- and its position on the external
+landscape rested on a reading of one expository document. Both have now been
+checked against primary sources, and both turned out to be \emph{right in
+conclusion and wrong in reason}. That is the characteristic outcome of this
+arc, and it is a better thing to know than a slogan that happens to be true.
+
+\smallskip
+What the arc did \emph{not} produce is any movement toward alternatives (A) or
+(B). The distance recorded in Chapter~\ref{ch:where-it-stands},
+\S\ref{sec:ceiling-vs-prize}, is unchanged, as it has been since \Sn{39}. Five
+more sessions of correct mathematics did not shorten it by anything at all, and
+the honest summary of the arc is the one its own logs use: we tested this as
+hard as we know how, and the wall held.
+\end{obsv}

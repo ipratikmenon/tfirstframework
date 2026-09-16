@@ -1,0 +1,577 @@
+% =====================================================================
+%  Chapter 17c — The forcing-floor class theorem, and where it stops (S60-S62)
+% =====================================================================
+\chapter{The Forcing-Floor Class Theorem, and Where It Stops}
+\label{ch:forcing-floor}
+
+\begin{record}
+\textbf{Sources of record.} Two session logs and one scoping handover, read in
+full:
+
+\smallskip
+{\raggedright\ttfamily
+2026-09-13-S60-cd1-forcing-floor-general.md\\
+HANDOVER-S61-CD2.md\\
+2026-09-16-S62-cd2-fractional-and-second-instance.md\par}
+
+\smallskip
+\Sn{61} has no session-log file, by design: its commit was a scoping handover
+for \Sn{62}, not a session that touched the proof document or ran anything.
+
+\smallskip
+Each is cross-checked here against its \texttt{PROGRESS.md} \textsc{key
+finding} block (\Sn{60}, \Sn{62}), and, where finer technical detail was
+needed, against the proof document directly: \S\,\texttt{sec:cd1-general-floor}
+(\Sn{60}). \Sn{62} made no \texttt{proofs/} edit, so there is nothing further
+to check there; its findings live only in its own session log and its
+\texttt{PROGRESS.md} block.
+
+\smallskip
+\textbf{Citation convention, as everywhere in this book.} Objects of the proof
+document are named as text --- \texttt{thm:cd1-general-floor} and the rest ---
+because that document is not this one and its labels do not resolve here.
+External papers are named by author and arXiv identifier in running prose,
+never by a \texttt{\textbackslash cite} key this book's own bibliography does
+not carry. Only cross-references \emph{inside} this book are set as
+references.
+
+\smallskip
+\textbf{No numerics.} Like the arc of Chapter~\ref{ch:pressure-testing}, this
+one produced no experiment and no \texttt{results.db} row. Everything below is
+derivation and reading, and every quantitative statement traces to a session
+log, to \texttt{PROGRESS.md}, or to a labelled object in the proof document.
+\end{record}
+
+Chapter~\ref{ch:pressure-testing} closed with Wall~1 exactly where \Sn{47}
+left it, tested three further times and unmoved. A fourth test followed it
+directly: \Sn{59}, a second strategic audit, examined the programme's own
+founding thermodynamic thesis --- Route~1 with \(\mu(T)\), Route~2 with the
+auxiliary scalar \(\theta\), the scalar-\(T\) strong maximum principle itself
+--- and found that it inherits Wall~1 \emph{by construction}, because Wall~1
+is a property of \(\operatorname{div}u=0\) and both routes enforce
+\(\operatorname{div}u=0\) exactly by design. Its \texttt{PROGRESS.md} entry
+calls this the programme's sixth independent confirmation that the obstruction
+is real. This chapter is not about \Sn{59}, and does not re-argue it; it is
+recorded here only because it is the last event before the one this chapter
+is about.
+
+\section{The pivot, stated first}
+\label{sec:ff-thesis}
+
+\begin{record}
+\textbf{The chapter's thesis, stated as its own claim rather than left
+implicit.} After four more independent confirmations that Wall~1 does not
+move, the owner changed the question being actively pursued. Not ``prove (A)
+or (B)'' --- that question, and Wall~1's classification, are exactly where
+\Sn{47} left them, and nothing in this chapter touches either. A different,
+bounded, well-posed question about somebody else's already-published
+mathematics: \emph{how much forcing do existing forced blow-up constructions
+actually require, and is any of it removable?} This is Fefferman's
+alternatives (C) and (D), studied from outside, never by putting a forcing
+term into this programme's own arguments --- a standing, absolute rule
+(Wall~9, \S\ref{sec:wall9}) that nothing below relaxes.
+
+\smallskip
+Three sessions answer parts of that question, and together they are a
+complete small arc. \Sn{60} generalises one profile's forcing floor
+(\Sn{55}, \S\ref{sec:pt-s55}) into a genuine class theorem --- the first
+piece of general mathematics this line produced, rather than a check against
+a single external object. \Sn{62}, after a scoping-only \Sn{61}, pushes that
+theorem to its two natural next tests: extend it to fractional dissipation,
+and find a second instance to run it against. Both are pushed as far as they
+honestly go within three sessions. The extension fails for a reason that can
+be written down exactly rather than merely asserted; the one further
+instance the literature contains satisfies the theorem's hypotheses but sits
+in a corner where the theorem has nothing sharp to say. The line is closed in
+consequence. That is this chapter's ending, not a setback to argue around,
+and the chapter says so as plainly as Chapter~\ref{ch:pressure-testing} said
+of its own five-session arc that nothing moved.
+\end{record}
+
+\section{\texorpdfstring{\Sn{60}: a class theorem, and what it does not need}{S60: a class theorem, and what it does not need}}
+\label{sec:ff-s60}
+
+\Sn{60} was commissioned with two threads. Thread~1 asked whether \Sn{55}'s
+one-profile forcing floor generalises. Thread~2 asked, separately, whether the
+unforced OpenAI Euler construction of Chapter~\ref{ch:openai} survives being
+given a fixed viscosity \(\nu>0\). The two are logically independent and the
+session kept them so; this section does the same, and reports Thread~2 as the
+closed matter it is before Thread~1 as the matter this chapter continues.
+
+\subsection{The theorem}
+\label{sec:ff-s60-theorem}
+
+For axisymmetric, smooth \((u,p)\) with \(\operatorname{div}u=0\) and
+\(\nu\ge0\), define the residual
+\(f:=\partial_tu+(u\cdot\nabla)u-\nu\Delta u+\nabla p\) --- literally what is
+left over once \(u\) is substituted into the axisymmetric momentum equation,
+Navier--Stokes at \(\nu>0\) or Euler at \(\nu=0\). With \(\Gamma=ru_\vartheta\),
+\(M(t)=\max\Gamma>0\) attained on a set \(\Sigma(t)\) satisfying the uniform
+compactness carried over from \Sn{55}'s \texttt{lem:wpt3-forced-max},
+\(R(t)=\max_{\Sigma(t)}r\) and \(F(t)=\max_{\Sigma(t)}\abs{f_\vartheta}\),
+\texttt{thm:cd1-general-floor} gives three equivalent-strength forms. The
+first needs no geometric input of any kind:
+\begin{align}
+\text{(i)}\quad & \frac{f_\vartheta(x_*)}{u_\vartheta(x_*)}\;\ge\;
+  \frac{\dee^+}{\dee t}\log M(t) \qquad\text{for some }x_*\in\Sigma(t), \\[4pt]
+\text{(ii)}\quad & F(t)\;\ge\;\frac{1}{R(t)}\,\frac{\dee^+}{\dee t}M(t), \\[4pt]
+\text{(iii)}\quad & \int_s^tR(\sigma)F(\sigma)\dee\sigma\;\ge\;M(t)-M(s)
+  \qquad\text{(no differentiability of }M\text{ used anywhere).}
+\end{align}
+Form (i) is the one worth carrying forward. It has no core radius, no
+prescribed growth rate and no self-similarity in it, and reads: \emph{at a
+swirl maximum, the azimuthal residual measured against the local swirl is at
+least the logarithmic growth rate of the swirl maximum.} That sentence is the
+general form of what \Sn{55} could establish only for one profile, by
+comparing four exponents of that profile's own azimuthal momentum equation.
+\texttt{rem:cd1-euler} records that neither this theorem nor the \Sn{55}
+lemmas it rests on use the sign of \(\nu\): the only place \(\nu\) appears in
+the proof is the inequality \(\nu(\partial_r^2\Gamma+\partial_z^2\Gamma)\le0\)
+at an interior maximum, which at \(\nu=0\) reads \(0\le0\). So the floor
+covers forced axisymmetric Euler exactly as it covers forced Navier--Stokes
+--- which matters for this line specifically, because more than one
+construction the field is trying to de-force is Euler, not Navier--Stokes.
+
+\subsection{The rate corollary, and the OpenAI recovery}
+\label{sec:ff-s60-rate}
+
+Adding two hypotheses turns the ratio form into a number. With (G1)
+\(M(t)\ge c_1\tau^{-a}\), \(a>0\), a prescribed swirl growth rate, and (G2)
+\(R(\sigma)\le R_0\tau^b\), a prescribed core-radius geometry, a bound
+\(\abs{f_\vartheta}\le K\tau^{-p}\) at the maximisers is forced by
+\texttt{cor:cd1-rate} to satisfy
+\[
+p\;\ge\;1+a+b, \qquad\text{and at equality}\qquad K\;\ge\;\frac{a\,c_1}{R_0}.
+\]
+\texttt{cor:cd1-recovers} checks this against the OpenAI leading axisymmetric
+field, whose own swirl maximum and maximiser radius (\Sn{55}'s
+\texttt{eq:wpt3-Mexact}, \texttt{eq:wpt3-rm}) are exactly (G1)--(G2) with
+\(a=h\), \(c_1=c_*\), \(b=1/2\), \(R_0=c_r\): the corollary forces
+\(p\ge3/2+h\) and \(K\ge hc_*/c_r\), which is \texttt{prop:wpt3-floor}'s own
+exponent and constant, recovered exactly. The general theorem contains the
+\Sn{55} result rather than merely resembling it.
+
+\subsection{The correction to \texorpdfstring{\Sn{55}}{S55}'s own record}
+\label{sec:ff-s60-correction}
+
+\Sn{55}'s log said, of the exact power \(M(t)=c_*\tau^{-h}\), that this
+exactness --- not \(\asymp\) --- was ``what makes the floor exact rather than
+a scaling heuristic, and it is available only because the leading field is
+exactly self-similar.'' \Sn{60} found that overstated, and \texttt{rem:cd1-%
+selfsimilar} splits the claim three ways. The exponent needs none of it: the
+bound \(p\ge1+a+b\) follows from the one-sided asymptotics (G1)--(G2) alone,
+through the \emph{integrated} form (iii), which needs no differentiability of
+\(M\) at any point. The constant needs none of it either: \(K\ge ac_1/R_0\) is
+recovered from the asymptotic constants alone. What exactness actually buys
+is time-localisation, and only that --- with it, the floor holds at every
+\(t\), at an identified point; without it, one gets only ``for every \(s<T\)
+there is some \(\sigma\in(s,T)\) at which the floor holds,'' with \(\sigma\)
+unidentified. The one genuinely profile-specific step of \Sn{55} was deriving
+the maximiser radius as an \emph{output} of the exact profile; in the general
+theorem that radius is an \emph{input}, (G2), and form~(i) dispenses with it
+entirely by measuring the residual against the local swirl rather than in
+absolute units. This is a real correction to how the programme's own record
+characterised its earlier result, in the same spirit as the corrections
+Chapter~\ref{ch:pressure-testing} records elsewhere: right about the
+conclusion, imprecise about the reason.
+
+\subsection{The hypothesis audit, and the wall that does not move}
+\label{sec:ff-s60-audit}
+
+\texttt{rem:cd1-audit} sorts the theorem's hypotheses into three groups.
+Smoothness and an orientation convention are generic and do no work. The
+pressure-free swirl equation and the exact vanishing of the singular
+\(-2\nu/r\) diffusion term at an interior maximum are also generic, in a
+stronger sense: both follow from axisymmetry and \(\operatorname{div}u=0\)
+alone, and need nothing else --- in particular the maximiser is automatically
+off the axis, since \(\Gamma=O(r^2)\) there, so no \(\varepsilon\)-exhaustion
+is needed to reach it. The one hypothesis that must be checked per
+construction is (H2), uniform compactness of the maximiser set \(\Sigma(t)\):
+it is what lets a Danskin argument extract the upper bound at all, it is
+automatic for a compactly supported field, and it can fail if the swirl
+maximum is allowed to escape to spatial infinity.
+
+One boundary is not a matter of technique at all. \emph{Axisymmetry is the
+only lever the theorem uses}, through \((\nabla p)_\vartheta=
+r^{-1}\partial_\vartheta p=0\). Outside that class there is no scalar swirl
+equation, and no analogue is proved or claimed. This is why
+\texttt{thm:cd1-general-floor}, exactly like \texttt{prop:wpt3-floor} before
+it, says nothing at all about the field OpenAI's own Theorem~1.1 actually
+claims a blow-up for --- that field is non-axisymmetric. Wall~9 governs and
+its classification does not move.
+
+\subsection{A positive-measure floor, and where it cannot reach}
+\label{sec:ff-s60-lq}
+
+\Sn{55} recorded, and deliberately did not pursue, whether a uniform
+(positive-measure) version of the floor is provable. \texttt{prop:cd1-Lq}
+answers one specific version of that in four lines: for compactly supported
+\(\Gamma\), testing the swirl equation with \(\abs{\Gamma}^{q-2}\Gamma\), the
+drift integrates away by \(\operatorname{div}u=0\), the diffusion contributes
+a sign-definite sink, the same singular term vanishes identically for the
+same structural reason as \S\ref{sec:ff-s60-audit}, and H\"older finishes it:
+\[
+\frac{\dee}{\dee t}\norm{\Gamma(\cdot,t)}_{L^q}\;\le\;\norm{rf_\vartheta(\cdot,t)}_{L^q},
+\qquad 2\le q<\infty,\ \nu\ge0.
+\]
+Three honest caveats travel with it. It bounds \(\norm{rf_\vartheta}_{L^q}\),
+not \(\norm{f_\vartheta}_{L^q}\); converting the two needs a radius bound on
+the \emph{support} of the residual, strictly stronger than (G2). It does not
+contradict \texttt{rem:wpt3-pointwise}(b) --- a different hypothesis, growth
+of a norm rather than of a pointwise maximum, and the spike counterexample
+that motivated that remark still applies to the pointwise statement. And it
+does \textbf{not} apply to the OpenAI leading field at all: there
+\(\Gamma^{(0)}\to\sqrt2\,c_\infty2^hr^{-2h}\) at large radius, independently
+of \(q\), so it lies in no \(L^{q'}(\mathbb R^3)\) for any finite \(q'\). The
+positive-measure floor is a tool for compactly supported constructions, and
+the one profile this line had in hand at \Sn{60} was not one.
+
+\subsection{Thread 2, closed: the unforced Euler mechanism against viscosity}
+\label{sec:ff-s60-thread2}
+
+Separately from all of the above, \Sn{60} asked whether the OpenAI \emph{Euler}
+construction --- an iterated-oscillation scheme in the C\'ordoba--Mart\'inez-%
+Zoroa lineage, not a self-similar profile, whose own Theorem~1.1 claims a
+smooth compactly supported datum blowing up in finite time for the unforced
+Euler equations --- survives being given a fixed viscosity. Read from the
+primary source, the packet construction is available only under the paper's
+own condition (3.12), which combined with its own (5.10)/(5.12) forces the
+packet frequency at stage \(j\) to exceed a fixed enormous power of the
+gradient it produces: \(k_j>h_j^{10^8Q}\) for a fixed constant \(Q\). Viscous
+marginality --- the packet's dissipation rate must not exceed the stretching
+rate that amplifies it --- instead needs \(k_j\lesssim\ell_j(h_{j-1}/\nu)^{1/2}\).
+The two are incompatible in the exponent, by a factor of order \(2\times10^8Q\),
+for every fixed \(\nu>0\) once \(h_j\to\infty\); the computation is explicit
+and was checked against the paper's own displayed scales rather than
+estimated.
+
+This structural negative is corroborated three independent ways, all from
+primary sources fetched and read that session: the same construction lineage,
+pushed by C\'ordoba, Mart\'inez-Zoroa and Zheng (arXiv:2407.06776) to
+hypodissipation \(\abs{\nabla}^\alpha\), survives only to
+\(\alpha<\alpha_0=(22-8\sqrt7)/9\approx0.093\) out of a real viscosity's
+\(\alpha=2\) --- and still needs forcing; OpenAI's own companion
+Navier--Stokes paper abandons this packet geometry entirely for a
+self-similar background sitting exactly at the viscous scale
+(\(\ell_r\asymp\tau^{1/2}\), \(\mathrm{Re}_r=O(1)\), viscous damping a leading
+term throughout) when it needed viscosity to be survivable at all, and it too
+needs forcing there; and the Euler paper's only appearance of \(\nu\) is an
+auxiliary regularisation, introduced and then explicitly removed, that carries
+no information about a physical viscous limit.
+
+What this does \emph{not} do is answer the question that would actually
+matter: whether the construction's smooth Euler datum, run through
+Navier--Stokes at \(\nu\to0\), stays regular. That is exactly Constantin's own
+named open problem, ``a gap between the two ranges of viscosities'' with ``no
+[known way] to close it,'' and closing it would need a uniform-in-\(\nu\) a
+priori estimate --- the same class of object Wall~1 obstructs. \Sn{60}'s own
+recommendation was explicit: this is a complete survey, not a work package,
+and opening it further would be manufacturing a target. Thread~2 is not
+continued anywhere in this chapter, and no further session touched it.
+
+\section{\texorpdfstring{\Sn{61}: scoping the next step}{S61: scoping the next step}}
+\label{sec:ff-s61}
+
+\Sn{61} is a handover, not a session: no worktree, no proof-document edit, no
+session log, by design. It set two deliverables for \Sn{62}, in a deliberate
+order. \emph{Do the harder, more likely to fail thing first}: attempt to
+extend the swirl maximum principle underlying \texttt{thm:cd1-general-floor}
+from the classical Laplacian to fractional dissipation, \(\abs{\nabla}^\alpha\)
+with \(0<\alpha<2\), because if that fails there is no point searching for
+constructions that would need it. Only then look for a second instance of the
+theorem's hypotheses in the literature, checking any candidate from its
+primary source rather than from a secondary description, exactly as \Sn{54}
+and \Sn{55} had done for the OpenAI profile.
+
+Five named failure modes carried forward from \Sn{60} governed both
+deliverables, and are worth restating because \Sn{62} in fact triggered two of
+them and treated both as legitimate outcomes rather than setbacks: \textbf{H1}
+--- the class has one member, and no second instance exists to test the
+theorem against; \textbf{H2} --- the fractional swirl equation has no clean
+scalar form; \textbf{H3} --- rediscovering a result already in the fractional
+Calder\'on--Zygmund literature without attribution, guarded against by
+reading first and deriving second; \textbf{H4} --- drifting into advocacy for
+(C)/(D) as a goal in its own right, which this programme does not do;
+\textbf{H5} --- blurring the standing prohibition on introducing forcing into
+this programme's own arguments, which nothing in \Sn{60}--\Sn{62} does.
+
+\section{\texorpdfstring{\Sn{62}: the natural extension, and the second instance}{S62: the natural extension, and the second instance}}
+\label{sec:ff-s62}
+
+\subsection{Deliverable 1: the fractional extension fails, precisely}
+\label{sec:ff-s62-fractional}
+
+The classical (\(\alpha=2\)) proof works because the maximum principle is
+applied not to \(u_\vartheta\) but to \(\Gamma=ru_\vartheta\), via the
+vector-Laplacian identity \((\Delta u)_\vartheta=\Delta
+u_\vartheta-u_\vartheta/r^2\), which converts the momentum equation for
+\(u_\vartheta\) into a genuinely \emph{closed scalar equation for \(\Gamma\)}.
+For a pure-swirl axisymmetric field, the azimuthal component of the fractional
+Laplacian \((-\Delta)^{\alpha/2}u\) --- independently re-derived this session,
+component-wise in the fixed Cartesian frame --- works out instead to
+\[
+g_\vartheta(x)\;=\;c_{3,\alpha}\,\mathrm{P.V.}\!\int
+\bigl[u_\vartheta(x)-u_\vartheta(y)\cos(\theta_x-\theta_y)\bigr]\,
+\abs{x-y}^{-3-\alpha}\dee y.
+\]
+This is genuinely different from the classical Calder\'on-type scalar
+comparison \(\theta(x)-\theta(y)\) that the C\'ordoba--C\'ordoba inequality
+governs --- the PNAS~2003 result was fetched and confirmed to apply to
+\emph{scalars} specifically --- because of the angle-dependent,
+sign-changing weight \(\cos(\theta_x-\theta_y)\).
+
+A concrete counterexample shows the naive extension fails outright, not
+merely that a proof was not found. Fix \(x\) at an interior maximiser of
+\(\Gamma\), and take \(y\) at the \emph{same} angle (\(\cos(\theta_x-\theta_y)
+=1\)) with radius \(r_y\) slightly less than \(r_x\). Since \(\Gamma'(r_x)=0\)
+at the maximum, \(\Gamma(y)\approx\Gamma(x)\) to leading order, but
+\(u_\vartheta(y)=\Gamma(y)/r_y>\Gamma(x)/r_x=u_\vartheta(x)\) purely because
+\(r_y<r_x\) --- so the bracket \(u_\vartheta(x)-u_\vartheta(y)\) is
+\emph{strictly negative}, even at zero angular separation, at a point where
+the classical argument needs it to vanish or help. The mechanism that makes
+the classical case work --- the local, \(y\to x\) degeneration of the angular
+weight into a single algebraic curvature term that cancels exactly at
+\(\Gamma\)'s critical point --- has no analogue once \(\alpha<2\) makes the
+operator genuinely long-range: \(g_\vartheta\) cannot be re-expressed as a
+nonlocal operator on \(\Gamma\) alone carrying a sign property at \(\Gamma\)'s
+maximum. This is H2, precisely located rather than merely invoked: the
+classical proof's specific mechanism --- reduction to a closed scalar
+equation on \(\Gamma\) via the vector-Laplacian identity --- has no fractional
+counterpart, because \(u_\vartheta\) and \(\Gamma\) need not share a
+maximiser once the comparison point \(y\) is allowed to range freely in
+radius.
+
+Two things this is not. It is not a claim that no fractional swirl maximum
+principle exists by any means at all --- an added radial-monotonicity
+hypothesis on \(u_\vartheta\) near the maximiser would block exactly this
+counterexample, and whether some other route closes the gap is a separate,
+unattempted question. And it is not a rediscovery left unattributed: the
+literature search run that session found no prior result addressing this
+specific question. The consequence for this line is direct: no fractional
+\texttt{cor:cd1-rate} exists, so nothing built earlier in this chapter carries
+over to hypodissipative constructions.
+
+\subsection{Deliverable 2: two ruled out, one found in a degenerate corner}
+\label{sec:ff-s62-second}
+
+Both candidates \Sn{60} had named were checked from primary sources and both
+were ruled out --- on axisymmetry specifically, not on existence, and both
+papers are confirmed real and were previously used correctly in this
+programme for other purposes. One further instance, not named in the
+handover, was found by a genuine search and satisfies the theorem's
+hypotheses; it is degenerate in the one respect that matters for a numeric
+floor. Table~\ref{tab:ff-candidates} records all three.
+
+\begin{table}[ht]
+\centering
+\footnotesize
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.19\textwidth}
+                     >{\raggedright\arraybackslash}p{0.23\textwidth}
+                     >{\raggedright\arraybackslash}p{0.23\textwidth}
+                     >{\raggedright\arraybackslash}p{0.21\textwidth}@{}}
+\toprule
+Paper & What it is & Axisymmetric? & Applies to the floor theorem? \\
+\midrule
+arXiv:2309.08495\newline(C\'ordoba--%
+  Mart\'inez-Zoroa)
+  & Forced 3D Euler, \(C^{1,1/2-\varepsilon}\cap L^2\) force
+  & \textbf{No} --- its own abstract states ``a specific focus on
+    non-axisymmetric solutions''
+  & Excluded \\[8pt]
+arXiv:2407.06776\newline(C\'ordoba--%
+  Mart\'inez-Zoroa--Zheng)
+  & Forced hypodissipative NS, \(\abs{\nabla}^\alpha\),
+    \(\alpha<\alpha_0\approx0.093\)
+  & \textbf{No} --- \S1.2.5 states verbatim the vorticity is
+    \emph{axial} (reflection symmetry across coordinate planes),
+    velocity \emph{polar}: a Cartesian vortex-layer symmetry, not
+    azimuthal swirl
+  & Excluded --- completes, not corrects, \Sn{60}, which used this
+    paper only for its Thread-2 threshold \\[8pt]
+arXiv:2311.12306\newline(Qi S.\ Zhang)
+  & Forced axisymmetric pure-swirl ASNS, two explicit closed-form
+    self-similar solutions (Theorem~1.1)
+  & \textbf{Yes} --- its system (1.4) is literally the ASNS system
+    \texttt{lem:wpt3-forced-swirl} is built for; a finite-cylinder
+    domain makes (H2) automatic
+  & Hypotheses satisfied; degenerate \(a=0\) corner of
+    \texttt{cor:cd1-rate} (Table~\ref{tab:ff-rate}) \\
+\bottomrule
+\end{tabular}
+\caption[The three candidates checked at S62]{The two constructions named in
+\texttt{HANDOVER-S61-CD2.md}, both real and both previously used correctly in
+this programme, ruled out here on a dimension neither prior use had checked;
+and the one further instance a genuine search turned up.}
+\label{tab:ff-candidates}
+\end{table}
+
+The new instance repays derivation. Zhang's self-similar solution is
+\(v_\vartheta(r,t)=u_\vartheta(r,t)+\alpha r\), with
+\(u_\vartheta(r,t)=\varphi_0(\rho)/\sqrt{2(T-t)}\) and
+\(\rho=r/\sqrt{2(T-t)}\) (the paper's own equations). Substituting
+\(r=\rho\sqrt{2(T-t)}\),
+\[
+\Gamma(r,t)\;=\;r\,v_\vartheta\;=\;\rho\,\varphi_0(\rho)\;+\;2\alpha(T-t)\rho^2 .
+\]
+The first term is an exact function of \(\rho\) alone; the second is a
+genuine, but asymptotically subleading, \(O(T-t)\) correction, vanishing at
+any fixed \(\rho\) as \(t\to T\) --- a real residual, not the ``no residual
+\(t\)-dependence'' the session's own subagent draft first claimed, a
+distinction the orchestrator's independent re-derivation flagged and
+corrected in the write-up without changing the substance. Because
+\(\varphi_0(r)=O(r/(r^2+1))\) decays (the paper's own bound),
+\(\rho\varphi_0(\rho)\) attains a finite maximum at some \(\rho_*=O(1)\), and
+its physical location \(r_m(t)=\rho_*\sqrt{2(T-t)}\to0\) --- exponent
+\(b=1/2\) in this document's (G1)/(G2) notation, matching OpenAI's own \(b\)
+exactly. At that maximiser the correction term is \(O(T-t)\to0\), so
+\(M(t)=\max\Gamma\to\rho_*\varphi_0(\rho_*)\), a nonzero \emph{constant} ---
+exponent \(a=0\).
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.30\textwidth} c c
+                     >{\raggedright\arraybackslash}p{0.36\textwidth}@{}}
+\toprule
+Construction & \(a\) & \(b\) &
+  Floor from \texttt{cor:cd1-rate} \\
+\midrule
+OpenAI leading axisymmetric field (\Sn{55}, \Sn{60})
+  & \(h\) (\(<1/100\)) & \(1/2\)
+  & \(p\ge\tfrac32+h\), \(K\ge hc_*/c_r\) --- nontrivial, matches the
+    source's own exponent exactly \\[6pt]
+Zhang ASNS self-similar solution (\Sn{62})
+  & \(0\) & \(1/2\)
+  & \(p\ge\tfrac32\), \(K\ge0\) --- the trivial floor \\
+\bottomrule
+\end{tabular}
+\caption[The rate corollary, applied twice]{\texttt{cor:cd1-rate} run against
+both known instances. The class of fields satisfying
+\texttt{thm:cd1-general-floor}'s hypotheses has (at least) two members; the
+class for which the rate corollary says something \emph{nontrivial}
+(\(a>0\)) still has exactly one.}
+\label{tab:ff-rate}
+\end{table}
+
+Because \(a=0\), \texttt{cor:cd1-rate} yields only \(K\ge0\) here --- a floor
+every force trivially satisfies. Zhang's construction satisfies the
+theorem's hypotheses and is a genuine second member of the class the theorem
+speaks about; it is not a second member of the smaller class for which the
+theorem says anything a reader would call sharp. This is the precise,
+corrected form of failure mode H1: not the flat ``the class has one member''
+named in advance as the most likely outcome, but a class with at least two
+confirmed members split by whether the rate corollary is informative on
+them. There is nothing left to compare for Zhang's case in the three-way
+sense \Sn{55} ran for OpenAI's: a trivial floor has no source-stated forcing
+scaling to check it against.
+
+\section{What the arc changed, and where it stopped}
+\label{sec:ff-ledger}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  >={Latex[length=2mm]},
+  ev/.style={draw, rounded corners=2pt, font=\scriptsize, align=left,
+             inner sep=4pt, text width=68mm},
+  posbox/.style={ev, draw=provedgreen, thick},
+  neg/.style={ev, draw=impossiblered, thick},
+  neu/.style={ev, draw=rulegrey},
+  ar/.style={->, thick, rulegrey}
+]
+\node[neu] (pivot) at (0,0)
+  {\textbf{Pivot} (after \Sn{52}, \Sn{53}, \Sn{57}, \Sn{59}).
+   Active question changes from ``prove (A)/(B)'' to ``how much forcing do
+   existing forced constructions need, and is it removable?'' --- never by
+   forcing this programme's own arguments};
+\node[posbox, below=6mm of pivot] (s60a)
+  {\Sn{60}, Thread 1. \texttt{thm:cd1-general-floor}: a genuine class
+   theorem, \(\nu\ge0\) including Euler, recovering \texttt{prop:wpt3-floor}
+   exactly as one instance};
+\node[neu, below=6mm of s60a] (s60b)
+  {\Sn{60}, Thread 2. OpenAI's unforced Euler mechanism structurally
+   incompatible with any fixed \(\nu>0\) --- corroborated three ways,
+   closed as a survey, not opened as a work package};
+\node[neu, below=6mm of s60b] (s61)
+  {\Sn{61} (scoping only). Attempt the fractional extension first; then
+   search for a second instance};
+\node[neg, below=6mm of s61] (s62a)
+  {\Sn{62}, Deliverable 1. Fractional extension \textbf{fails} (H2),
+   precisely located: no vector-Laplacian identity survives for
+   \(\abs{\nabla}^\alpha\), \(\alpha<2\)};
+\node[neu, below=6mm of s62a] (s62b)
+  {\Sn{62}, Deliverable 2. Two named candidates excluded on axisymmetry;
+   one new instance found (Zhang), degenerate (\(a=0\))};
+\node[draw=impossiblered, very thick, rounded corners=2pt, font=\scriptsize,
+      align=center, inner sep=5pt, text width=68mm, below=6mm of s62b]
+  (closed) {\textbf{Line closed.} Recommendation taken; no further CD
+   session};
+
+\foreach \a/\b in {pivot/s60a, s60a/s60b, s60b/s61, s61/s62a, s62a/s62b, s62b/closed}
+  {\draw[ar] (\a) -- (\b);}
+\end{tikzpicture}
+\caption[The three-session arc]{Pivot, general theorem, natural extension
+attempted and priced, closed --- inside three sessions. The chain is drawn
+straight because nothing in it doubled back: each session answered the
+question the previous one posed and handed forward exactly one next
+question.}
+\label{fig:ff-arc}
+\end{figure}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}l p{0.34\textwidth} p{0.34\textwidth}@{}}
+\toprule
+Session & What it settled & What it left standing \\
+\midrule
+\Sn{60}
+  & \texttt{prop:wpt3-floor} generalises into a genuine class theorem for
+    \(\nu\ge0\), needing no geometric hypothesis in its sharpest form; the
+    OpenAI Euler mechanism fails at fixed \(\nu>0\), structurally
+  & Axisymmetry is the theorem's absolute boundary; the
+    \(\nu\to0\) question is Constantin's own open gap, not tractable here \\[3pt]
+\Sn{61}
+  & Nothing new (scoping only)
+  & Ordered the two live questions and named the failure modes both
+    triggered in the event \\[3pt]
+\Sn{62}
+  & The fractional extension fails for an exactly locatable reason; a
+    second axisymmetric forced instance exists and was checked
+  & No fractional floor exists to build on; the nontrivial-floor class
+    still has one member \\
+\bottomrule
+\end{tabular}
+\caption[The arc's ledger]{Three sessions, one genuine theorem, one
+precisely-located negative, one closed line.}
+\label{tab:ff-ledger}
+\end{table}
+
+\begin{obsv}[A closed line is not a failed one]
+\label{obs:ff-closed}
+\Sn{62}'s own recommendation is unambiguous: close the line, and do not
+manufacture a reason to continue when the honest answer is that it is done.
+The owner accepted that recommendation. Nothing here is a setback dressed up
+as a stopping point. \texttt{thm:cd1-general-floor} is real mathematics ---
+elementary, by its own account, but general in a way nothing in this
+programme's forcing-floor work was before it, and it survives being pushed:
+it extends to \(\nu=0\) for free, it recovers its own special case exactly,
+and a second, entirely independent construction (Zhang's) satisfies its
+hypotheses on the first genuine attempt to find one. The fractional question
+was a real question with a real answer, not a convenient place to stop
+looking, and the answer is precisely locatable rather than a shrug: the
+proof's one load-bearing algebraic fact --- that the vector-Laplacian
+identity converts a vector equation for \(u_\vartheta\) into a scalar one for
+\(\Gamma\) --- is a fact about the classical Laplacian specifically and has
+no long-range analogue.
+
+\smallskip
+Nothing here is a step toward alternatives (A) or (B), and nothing here
+argues that (C) or (D) ought to be anyone's goal. The programme's own
+standing rule is unmoved by any of it: no forcing term has entered, or will
+enter, an argument of this document toward its own object. What three
+sessions produced instead is exactly what the pivot asked for --- a
+sharper, numerically checkable answer to a question about other people's
+already-published constructions --- and an honest report that the question,
+for this theorem, has been answered as far as it currently can be.
+\end{obsv}

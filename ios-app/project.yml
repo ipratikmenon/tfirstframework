@@ -1,0 +1,117 @@
+# Generate the Xcode project with:  brew install xcodegen && xcodegen generate
+# Then open TotalRecall.xcodeproj. Set DEVELOPMENT_TEAM (and change the bundle ids / app group
+# below if example.com is not yours) before running on a device.
+name: TotalRecall
+options:
+  bundleIdPrefix: com.example
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+  developmentLanguage: en
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: ""
+    # Google Cloud iOS OAuth client id (xxxx.apps.googleusercontent.com). Leave empty to disable Gmail.
+    GMAIL_CLIENT_ID: ""
+packages:
+  RecallCore:
+    path: .
+targets:
+  TotalRecall:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+        excludes:
+          - "Resources/Assets.xcassets/**/.gitkeep"
+    dependencies:
+      - package: RecallCore
+        product: RecallCore
+      - target: ShareExtension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.totalrecall
+        PRODUCT_NAME: TotalRecall
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        TARGETED_DEVICE_FAMILY: "1"
+        ENABLE_PREVIEWS: YES
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: Total Recall
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        GmailClientID: $(GMAIL_CLIENT_ID)
+        ITSAppUsesNonExemptEncryption: false
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UIBackgroundModes:
+          - location
+          - audio
+          - fetch
+        BGTaskSchedulerPermittedIdentifiers:
+          - com.example.totalrecall.refresh
+        NSLocationWhenInUseUsageDescription: Total Recall uses your location to show routes and to recall what matters near where you are going.
+        NSLocationAlwaysAndWhenInUseUsageDescription: Total Recall notes the places you spend time in the background and reminds you of to-dos when you are near the right place. Location never leaves your iPhone.
+        NSMicrophoneUsageDescription: Total Recall listens only when you start a session, to find tasks in what you say. Audio is understood on your iPhone and is never saved.
+        NSSpeechRecognitionUsageDescription: Speech is turned into text on your iPhone to find to-dos. It is never sent to a server.
+        NSPhotoLibraryUsageDescription: Total Recall reads when and where your photos were taken, and text in screenshots, to make them searchable. Photos are never copied or uploaded.
+        NSCalendarsFullAccessUsageDescription: Total Recall adds your events and who attended to your timeline and uses event locations to remind you before trips.
+        NSHealthShareUsageDescription: Total Recall adds your daily steps and workouts to your timeline.
+        NSFaceIDUsageDescription: Total Recall uses Face ID to lock your memories.
+    entitlements:
+      path: App/TotalRecall.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.example.totalrecall
+        com.apple.developer.healthkit: true
+        com.apple.developer.healthkit.access: []
+  ShareExtension:
+    type: app-extension
+    platform: iOS
+    sources:
+      - ShareExtension
+      - App/Support/AppGroup.swift
+    dependencies:
+      - package: RecallCore
+        product: RecallCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.totalrecall.share
+        PRODUCT_NAME: ShareExtension
+        TARGETED_DEVICE_FAMILY: "1"
+    info:
+      path: ShareExtension/Info.plist
+      properties:
+        CFBundleDisplayName: Total Recall
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.share-services
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
+          NSExtensionAttributes:
+            NSExtensionActivationRule:
+              NSExtensionActivationSupportsText: true
+              NSExtensionActivationSupportsWebURLWithMaxCount: 1
+              NSExtensionActivationSupportsImageWithMaxCount: 5
+    entitlements:
+      path: ShareExtension/ShareExtension.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.example.totalrecall
+schemes:
+  TotalRecall:
+    build:
+      targets:
+        TotalRecall: all
+    run:
+      config: Debug
+    archive:
+      config: Release

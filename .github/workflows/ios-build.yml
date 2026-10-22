@@ -1,0 +1,39 @@
+name: Total Recall iOS
+on:
+  push:
+    paths: ["ios-app/**", ".github/workflows/ios-build.yml"]
+  pull_request:
+    paths: ["ios-app/**", ".github/workflows/ios-build.yml"]
+  workflow_dispatch:
+
+jobs:
+  core-tests-linux:
+    name: RecallCore tests (Linux)
+    runs-on: ubuntu-latest
+    container: swift:6.0
+    steps:
+      - uses: actions/checkout@v4
+      - name: swift test
+        working-directory: ios-app
+        run: swift test
+
+  app-build:
+    name: Build app (iOS Simulator)
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Core tests on macOS
+        working-directory: ios-app
+        run: swift test
+      - name: Generate project
+        working-directory: ios-app
+        run: xcodegen generate
+      - name: Build
+        working-directory: ios-app
+        run: |
+          set -o pipefail
+          xcodebuild -project TotalRecall.xcodeproj -scheme TotalRecall \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO build | tail -n 60

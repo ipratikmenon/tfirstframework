@@ -1,0 +1,8 @@
+.build/
+.swiftpm/
+*.xcodeproj
+xcuserdata/
+DerivedData/
+App/Info.plist
+ShareExtension/Info.plist
+*.entitlements

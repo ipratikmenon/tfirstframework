@@ -46,6 +46,9 @@ public struct RouteMatch: Hashable, Identifiable, Sendable {
     public var reason: MatchReason
     public var score: Double
     public var id: UUID { candidate.id }
+    public init(candidate: RouteCandidate, reason: MatchReason, score: Double) {
+        self.candidate = candidate; self.reason = reason; self.score = score
+    }
 }
 
 /// Decides which stored to-dos and memories are relevant to a planned trip.

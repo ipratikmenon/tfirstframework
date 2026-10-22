@@ -84,6 +84,9 @@ public struct ProfileMatch: Hashable, Sendable {
     public var profile: Profile
     public var score: Double
     public var matchedRules: [ProfileRule]
+    public init(profile: Profile, score: Double, matchedRules: [ProfileRule]) {
+        self.profile = profile; self.score = score; self.matchedRules = matchedRules
+    }
 }
 
 public struct ProfileAssigner: Sendable {

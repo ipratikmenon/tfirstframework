@@ -4,6 +4,10 @@ public struct SearchHit: Hashable, Identifiable, Sendable {
     public var id: UUID
     public var score: Double
     public var snippet: String
+
+    public init(id: UUID, score: Double, snippet: String) {
+        self.id = id; self.score = score; self.snippet = snippet
+    }
 }
 
 /// Natural-language time expressions in a query: "last tuesday", "yesterday", "3 days ago".

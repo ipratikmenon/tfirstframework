@@ -33,7 +33,11 @@ jobs:
       - name: Build
         working-directory: ios-app
         run: |
-          set -o pipefail
-          xcodebuild -project TotalRecall.xcodeproj -scheme TotalRecall \
+          if ! xcodebuild -project TotalRecall.xcodeproj -scheme TotalRecall \
             -destination 'generic/platform=iOS Simulator' \
-            CODE_SIGNING_ALLOWED=NO build | tail -n 60
+            CODE_SIGNING_ALLOWED=NO build > build.log 2>&1; then
+            grep -E "error:" build.log | sort -u | head -80
+            exit 1
+          fi
+          grep -E "warning:" build.log | sort -u | head -40 || true
+          tail -n 3 build.log

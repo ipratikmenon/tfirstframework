@@ -32,6 +32,11 @@ public struct PlannedAlert: Hashable, Identifiable, Sendable {
     public var fireDate: Date
     public var reason: AlertReason
     public var score: Double
+
+    public init(id: UUID, title: String, body: String, fireDate: Date, reason: AlertReason, score: Double) {
+        self.id = id; self.title = title; self.body = body
+        self.fireDate = fireDate; self.reason = reason; self.score = score
+    }
 }
 
 /// Chooses which alerts to schedule: due dates plus places the routine model expects the user to be.

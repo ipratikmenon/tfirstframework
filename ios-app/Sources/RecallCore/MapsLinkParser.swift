@@ -4,6 +4,9 @@ public struct SharedDestination: Equatable, Sendable {
     public var name: String?
     public var address: String?
     public var coordinate: Coordinate?
+    public init(name: String? = nil, address: String? = nil, coordinate: Coordinate? = nil) {
+        self.name = name; self.address = address; self.coordinate = coordinate
+    }
 }
 
 /// Reads destinations out of links shared from Apple Maps or Google Maps.

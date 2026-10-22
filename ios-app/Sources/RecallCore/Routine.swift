@@ -13,6 +13,9 @@ public struct RoutinePrediction: Hashable, Sendable {
     public var coordinate: Coordinate
     public var probability: Double
     public var expectedArrival: Date
+    public init(coordinate: Coordinate, probability: Double, expectedArrival: Date) {
+        self.coordinate = coordinate; self.probability = probability; self.expectedArrival = expectedArrival
+    }
 }
 
 /// Learns where the user usually is by weekday and hour from past visits.

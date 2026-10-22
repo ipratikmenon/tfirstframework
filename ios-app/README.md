@@ -44,6 +44,7 @@ Settings (iOS) > Action Button > Shortcut > Total Recall > Capture To-Dos.
 
 ## Status
 
-`RecallCore` is compiled and tested on Linux (37 tests). The SwiftUI app target has not been compiled
-in the environment that wrote it (no Xcode there), so expect to fix a few compiler errors on first build.
-The CI workflow in `.github/workflows/ios-build.yml` builds it on a macOS runner.
+- `RecallCore`: 37 unit tests pass on Linux and macOS (CI).
+- App and Share extension: compile cleanly for the iOS Simulator with Xcode 16.4 (CI, no code signing).
+- Not yet run on a device or simulator by a person. Permissions, background visit capture, Action Button
+  capture, Gmail sign-in and the Share extension need hands-on testing on a real iPhone.
